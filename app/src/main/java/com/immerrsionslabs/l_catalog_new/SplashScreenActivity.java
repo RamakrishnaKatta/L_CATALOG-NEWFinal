@@ -79,7 +79,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
             public void onAnimationEnd(Animation animation) {
                 // Start Main Screen
 
-                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, OnBoarding.class);
                 startActivity(i);
             }
 
