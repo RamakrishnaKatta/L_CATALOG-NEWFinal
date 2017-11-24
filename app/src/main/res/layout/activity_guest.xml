@@ -111,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_10"
-        app:backgroundTint="@color/primary_darker"
+        app:backgroundTint="@color/primary"
         app:fabSize="mini"
         app:srcCompat="@mipmap/ic_back" />
 

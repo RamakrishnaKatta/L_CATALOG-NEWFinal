@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UserAccountActivity"
+    tools:showIn="@layout/activity_user_account">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_24"
+        android:paddingRight="@dimen/margin_24"
+        android:paddingTop="@dimen/margin_30">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="Company_Icon"
+                android:src="@drawable/companyicon" />
+
+            <TextView
+                android:id="@+id/application_name"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="@string/app_newName"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+
+        <!-- Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_3"
+            android:textColorHint="@color/primary_dark">
+
+            <EditText
+                android:id="@+id/user_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Address Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_3"
+            android:textColorHint="@color/primary_dark">
+
+            <EditText
+                android:id="@+id/user_input_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:inputType="textPostalAddress"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_3"
+            android:textColorHint="@color/primary_dark"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/user_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- mobile number -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_3"
+            android:textColorHint="@color/primary_dark"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/user_input_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mobile_number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColor="@color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Edit Button -->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_edit_account"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_3"
+            android:padding="@dimen/margin_12"
+            android:text="EDIT PROFILE"
+            android:visibility="visible" />
+
+        <!-- Update Button -->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_update_account"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_3"
+            android:padding="@dimen/margin_12"
+            android:text="UPDATE PROFILE"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

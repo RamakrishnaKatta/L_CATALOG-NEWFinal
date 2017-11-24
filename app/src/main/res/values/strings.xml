@@ -27,10 +27,10 @@
     <string name="guest_sign">UEST</string>
     <string name="guest_hint">If you are a oneTime Shopper…</string>
     <string name="company_icon">Company Icon</string>
-    <string name="name">Name</string>
-    <string name="address">Address</string>
-    <string name="email">Email</string>
-    <string name="mobile_number">Mobile Number</string>
+    <string name="name">My Name</string>
+    <string name="address">My Address</string>
+    <string name="email">My Email</string>
+    <string name="mobile_number">My Number</string>
     <string name="password">Password</string>
     <string name="re_enter_password">Re Enter Password</string>
     <string name="create_account">CREATE ACCOUNT</string>
@@ -129,5 +129,31 @@
     <string name="new_vendor_state">In which State?</string>
     <string name="new_vendor_pincode">States PinCode?</string>
     <string name="new_vendor_location">Which City?</string>
+    <string name="guest_details">Login as Guest</string>
+    <string name="autofill_details">Auto Fill</string>
+    <string name="my_profile">My profile</string>
+    <string name="profile_account">My Account</string>
+    <string name="profile_notifications">My Notifications</string>
+    <string name="profile_favorites">My Favorites</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="become_a_vendor">Become a Vendor?</string>
+    <string name="vendor_registration">Vendor Registration</string>
+    <string name="help_amp_support">Help &amp; Support</string>
+    <string name="support_feedback">FeedBack</string>
+    <string name="support_terms_conditions">Terms &amp; Conditions</string>
+    <string name="support_help">Help Center</string>
+    <string name="support_about">About</string>
+    <string name="notifications">Notifications</string>
+    <string name="what_is_l_catalog">What is L-CATALOG ?</string>
+    <string name="product_objectives">Product Objectives ?</string>
+    <string name="definition_and_description">Definition and Description :</string>
+    <string name="product_overview">Product Overview :</string>
+    <string name="contact_us">Contact Us :</string>
+    <string name="icon_linkedin">LinkedIn</string>
+    <string name="icon_facebook">Facebook</string>
+    <string name="icon_instagram">Instagram</string>
+    <string name="icon_twitter">Twitter</string>
+    <string name="icon_youtube">YouTube</string>
 
 </resources>

@@ -254,24 +254,24 @@ public class UserTypeActivity extends AppCompatActivity {
     /*Showcaseview for the Signup, Login, Guest*/
     private void ShowcaseView() {
         prefManager1.setUserTypeActivityScreenLaunch(false);
-        Log.e(TAG, "the show caseviews are implemented" + prefManager1.UserTypeActivityScreenLaunch());
+        Log.e(TAG, "Show case views are Implemented here" + prefManager1.UserTypeActivityScreenLaunch());
 
         final TapTargetSequence sequence = new TapTargetSequence(this).targets(
-                TapTarget.forView(findViewById(R.id.btn_new_customer), "Click here if you are new...")
+                TapTarget.forView(findViewById(R.id.btn_new_customer), "Click here if you want to signup with us...")
                         .tintTarget(false)
                         .targetRadius(25)
                         .transparentTarget(true)
                         .cancelable(false)
                         .textColor(R.color.white)
                         .id(1),
-                TapTarget.forView(findViewById(R.id.btn_customer), "Click here if you visited us before.")
+                TapTarget.forView(findViewById(R.id.btn_customer), "Click here if you visited us before")
                         .tintTarget(false)
                         .transparentTarget(true)
                         .cancelable(false)
                         .targetRadius(25)
                         .textColor(R.color.white)
                         .id(2),
-                TapTarget.forView(findViewById(R.id.btn_shopper), "Click here if you are a Onetime User.")
+                TapTarget.forView(findViewById(R.id.btn_shopper), "Click here if you are a Onetime User")
                         .tintTarget(false)
                         .transparentTarget(true)
                         .textColor(R.color.white)
@@ -296,7 +296,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark);
         builder.setTitle("Alert");
         builder.setMessage("Press OK to get out of this App");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
