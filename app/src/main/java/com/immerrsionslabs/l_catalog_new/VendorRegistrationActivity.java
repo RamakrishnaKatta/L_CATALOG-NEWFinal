@@ -51,7 +51,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
     public static final String KEY_V_LOCATION = "loc";
     public static final String KEY_V_STATE = "state";
     public static final String KEY_V_PIN = "pin";
-    public static final String KEY_V_MOBILENO = "mobile";
+    public static final String KEY_V_MOBILENO = "mobile_no";
 
     private static final String REGISTER_URL = "http://35.154.150.204:4000/vendor_requests";
 

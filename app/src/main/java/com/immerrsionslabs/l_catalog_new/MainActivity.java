@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /*showcaseview for the MainActivity(Notifications and Welcome screen*/
     private void ShowcaseView() {
-        prefManager3.SetMainActivityScreenLaunch(false);
+        prefManager3.SetMainActivityScreenLaunch();
         Log.e(TAG, "" + prefManager3.MainActivityScreenLaunch());
 
         final Toolbar toolbar = findViewById(R.id.toolbar);

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -260,7 +259,6 @@ public class SignupActivity extends AppCompatActivity {
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     public void run() {
                         if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
                             onSignupFailed();

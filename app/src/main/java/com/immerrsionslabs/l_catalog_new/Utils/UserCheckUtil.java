@@ -29,7 +29,7 @@ public class UserCheckUtil {
 
     public static String readFromFile(String user_type) {
 
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         String text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/" + user_type + ".txt";
 
         try {
@@ -40,7 +40,7 @@ public class UserCheckUtil {
             String strLine;
 
             while ((strLine = bufferedReader.readLine()) != null) {
-                ret = ret + strLine;
+                ret.append(strLine);
             }
             dataInputStream.close();
         } catch (FileNotFoundException e) {
@@ -48,7 +48,7 @@ public class UserCheckUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ret;
+        return ret.toString();
     }
 
     private static boolean isExternalStorageReadOnly() {

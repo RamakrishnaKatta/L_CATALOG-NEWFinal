@@ -253,7 +253,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     /*Showcaseview for the Signup, Login, Guest*/
     private void ShowcaseView() {
-        prefManager1.setUserTypeActivityScreenLaunch(false);
+        prefManager1.setUserTypeActivityScreenLaunch();
         Log.e(TAG, "Show case views are Implemented here" + prefManager1.UserTypeActivityScreenLaunch());
 
         final TapTargetSequence sequence = new TapTargetSequence(this).targets(

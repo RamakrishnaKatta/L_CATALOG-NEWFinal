@@ -74,6 +74,10 @@
             android:name=".FeedbackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark"/>
+
         <activity
             android:name=".GalleryActivity"
             android:screenOrientation="portrait"
@@ -93,6 +97,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".notifications.NotificationCountSetClass" />
+
     </application>
 
 </manifest>

@@ -25,7 +25,6 @@ public class GalleryActivity extends AppCompatActivity {
     public static final int GRID_PADDING = 8; // in dp
 
     private ImageUtils imageUtils;
-    private GridViewImageAdapter adapter;
     private GridView gridView;
     private int columnWidth;
 
@@ -53,7 +52,7 @@ public class GalleryActivity extends AppCompatActivity {
         ArrayList<String> imagePaths = imageUtils.getFilePaths();
 
         // Gridview adapter
-        adapter = new GridViewImageAdapter(GalleryActivity.this, imagePaths, columnWidth);
+        GridViewImageAdapter adapter = new GridViewImageAdapter(GalleryActivity.this, imagePaths, columnWidth);
 
         // setting grid view adapter
         gridView.setAdapter(adapter);

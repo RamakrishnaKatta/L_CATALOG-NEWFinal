@@ -129,7 +129,7 @@ public class GuestActivity extends AppCompatActivity {
     }
 
     private void ShowcaseView() {
-        prefManager2.setGuestActivityScreenLaunch(false);
+        prefManager2.setGuestActivityScreenLaunch();
         Log.e(TAG, "" + prefManager2.GuestActivityScreenLaunch());
 
         TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "Click here to autofill your recent credentials ")

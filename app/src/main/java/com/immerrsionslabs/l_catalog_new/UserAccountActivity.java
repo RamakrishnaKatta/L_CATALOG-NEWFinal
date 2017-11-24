@@ -32,7 +32,10 @@ public class UserAccountActivity extends AppCompatActivity {
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
-    private String user_email, user_name, user_address, user_phone, user_type;
+    private String user_name;
+    private String user_address;
+    private String user_phone;
+    private String user_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,8 @@ public class UserAccountActivity extends AppCompatActivity {
 
         final Bundle user_details = getIntent().getExtras();
 
-        user_email = user_details.getString("user_email");
+        assert user_details != null;
+        String user_email = user_details.getString("user_email");
         user_name = user_details.getString("user_name");
         user_address = user_details.getString("user_address");
         user_phone = user_details.getString("user_phone");

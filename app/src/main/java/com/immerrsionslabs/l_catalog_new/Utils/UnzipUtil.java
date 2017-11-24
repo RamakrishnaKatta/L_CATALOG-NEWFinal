@@ -17,7 +17,6 @@ public class UnzipUtil {
 
     private String zipFile;
     private String location;
-    private String dir_location;
 
     public UnzipUtil(String zipFileLocation, String extractLocation) {
 
@@ -43,7 +42,7 @@ public class UnzipUtil {
             ZipEntry zip_entry;
 
             while ((zip_entry = zip_in.getNextEntry()) != null) {
-                dir_location = zip_entry.getName();
+                String dir_location = zip_entry.getName();
                 Log.e(TAG + " :unzip-Decompress", "Unzipping " + dir_location);
 
                 if (zip_entry.isDirectory()) {
@@ -53,7 +52,7 @@ public class UnzipUtil {
                     FileOutputStream file_out = new FileOutputStream(location + dir_location);
                     BufferedOutputStream buf_out = new BufferedOutputStream(file_out);
                     byte[] buffer = new byte[1024];
-                    int read = 0;
+                    int read;
 //                    for (int i = zip_in.read(); i != -1; i = zip_in.read()) {
 //                        file_out.write(i);
 //                    }

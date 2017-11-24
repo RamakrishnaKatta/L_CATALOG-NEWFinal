@@ -19,7 +19,7 @@ import java.util.Locale;
 public class ImageUtils {
 
     // SD card image directory
-    private static final String PHOTO_ALBUM = "/L_CATALOGUE/Screenshots/";
+    private static final String PHOTO_ALBUM = "/L_CATALOG/Screenshots/";
 
     private static final String TAG = "Utils";
 
@@ -91,10 +91,7 @@ public class ImageUtils {
     private boolean IsSupportedFile(String filePath) {
         String ext = filePath.substring((filePath.lastIndexOf(".") + 1), filePath.length());
 
-        if (FILE_EXTN.contains(ext.toLowerCase(Locale.getDefault())))
-            return true;
-        else
-            return false;
+        return FILE_EXTN.contains(ext.toLowerCase(Locale.getDefault()));
     }
 
     /*

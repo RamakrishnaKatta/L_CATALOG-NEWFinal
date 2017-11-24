@@ -21,7 +21,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = "http://lcatalog.immersionslabs.com:8080" + urls[0];
+        String urldisplay = "http://35.154.150.204:4000/upload/images/" + urls[0];
         Log.e(TAG, "image1URL : " + urldisplay);
         Bitmap mIcon = null;
         try {

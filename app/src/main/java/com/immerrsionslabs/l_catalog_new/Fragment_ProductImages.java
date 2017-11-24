@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -33,14 +32,11 @@ import com.like.OnLikeListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener {
 
@@ -299,7 +295,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     }
 
     private void ShowcaseView(View view) {
-        prefManager.setProductPageActivityScreenLaunch(false);
+        prefManager.setProductPageActivityScreenLaunch();
         Log.e(TAG, " " + prefManager.ProductPageActivityScreenLaunch());
         final Display display = getActivity().getWindowManager().getDefaultDisplay();
         final TapTargetSequence sequence = new TapTargetSequence(getActivity()).targets(

@@ -175,9 +175,7 @@ public class Fragment_ProductDetails extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        Activity activity;
         if (context instanceof Activity) {
-            activity = (Activity) context;
         }
     }
 

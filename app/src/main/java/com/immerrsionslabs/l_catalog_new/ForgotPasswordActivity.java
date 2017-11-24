@@ -34,10 +34,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
-/**
- * Created by ramky on 16-11-2017.
- */
-
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private static final String TAG = "ForgotPassword";
@@ -45,7 +41,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private static final String PASSWORD_UPDATE_URL = "http://lcatalog.immersionslabs.com:8080/lll/web/user/update_password";
 
-    private TextView app_name, powered;
     private Button _submitButton;
     private EditText _emailText, _passwordText, _reenterPasswordText;
     private String email, password, ReEnterPass;
@@ -56,8 +51,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        app_name = findViewById(R.id.application_name);
-        powered = findViewById(R.id.lucidleanlabs);
+        TextView app_name = findViewById(R.id.application_name);
+        TextView powered = findViewById(R.id.lucidleanlabs);
         _submitButton = findViewById(R.id.btn_submit);
 
         if (getSupportActionBar() != null) {

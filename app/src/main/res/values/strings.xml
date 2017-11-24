@@ -155,5 +155,7 @@
     <string name="icon_instagram">Instagram</string>
     <string name="icon_twitter">Twitter</string>
     <string name="icon_youtube">YouTube</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_subject">Hi welcome to the Lucid Lean Labs and you can avail so many offers from Lucid Lean Labs.</string>
 
 </resources>
