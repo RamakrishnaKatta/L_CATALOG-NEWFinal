@@ -57,8 +57,8 @@ public class PrefManager {
 
 
     /*UserTypeActivity Screen Pref*/
-    public void setUserTypeActivityScreenLaunch(boolean UserTypeActivityScreen) {
-        editor1.putBoolean(USERTYPEACTIVITY_LAUNCH_SCREEN, UserTypeActivityScreen);
+    public void setUserTypeActivityScreenLaunch() {
+        editor1.putBoolean(USERTYPEACTIVITY_LAUNCH_SCREEN, false);
         editor1.commit();
     }
 
@@ -68,8 +68,8 @@ public class PrefManager {
 
 
     /*GuestActivity Screen pref*/
-    public void setGuestActivityScreenLaunch(boolean GuestActivityScreen) {
-        editor2.putBoolean(GUESTACTIVITY_LAUNCH_SCREEN, GuestActivityScreen);
+    public void setGuestActivityScreenLaunch() {
+        editor2.putBoolean(GUESTACTIVITY_LAUNCH_SCREEN, false);
         editor2.commit();
     }
 
@@ -79,8 +79,8 @@ public class PrefManager {
 
 
     /*MainActivity Screen  Pref*/
-    public void SetMainActivityScreenLaunch(boolean MainActivityScreen) {
-        editor3.putBoolean(MAINACTIVITY_LAUNCH_SCREEN, MainActivityScreen);
+    public void SetMainActivityScreenLaunch() {
+        editor3.putBoolean(MAINACTIVITY_LAUNCH_SCREEN, false);
         editor3.commit();
     }
 
@@ -90,8 +90,8 @@ public class PrefManager {
 
 
     /*ProductPageActivity Screen Pref*/
-    public void setProductPageActivityScreenLaunch(boolean ProductPageActivityScreen) {
-        editor4.putBoolean(PRODUCTPAGEACTIVITY_LAUNCH_SCREEN, ProductPageActivityScreen);
+    public void setProductPageActivityScreenLaunch() {
+        editor4.putBoolean(PRODUCTPAGEACTIVITY_LAUNCH_SCREEN, false);
         editor4.commit();
     }
 
@@ -101,8 +101,8 @@ public class PrefManager {
 
 
     /*LoginActivity Screen Pref*/
-    public void SetLoginActivityScreenLaunch(boolean LoginActivityScreen) {
-        editor5.putBoolean(LOGINACTIVITY_LAUNCH_SCREEN, LoginActivityScreen);
+    public void SetLoginActivityScreenLaunch() {
+        editor5.putBoolean(LOGINACTIVITY_LAUNCH_SCREEN, false);
         editor5.commit();
     }
 
