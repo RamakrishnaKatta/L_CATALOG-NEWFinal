@@ -777,49 +777,49 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="@dimen/margin_5"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
 
-            <!--<RelativeLayout-->
-                <!--android:id="@+id/step16"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center_horizontal|center_vertical"-->
-                <!--android:onClick="step16"-->
-                <!--android:orientation="horizontal">-->
+            <RelativeLayout
+                android:id="@+id/step16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step16"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_toStartOf="@+id/img16"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:text="What is L Catalog’s Fashion Calculator?"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="16sp"-->
-                    <!--android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img16"
+                    android:padding="@dimen/margin_2"
+                    android:text="What is L Catalog’s Fashion Calculator?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/img16"-->
-                    <!--android:layout_width="@dimen/margin_20"-->
-                    <!--android:layout_height="@dimen/margin_20"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:src="@mipmap/ic_faq_down" />-->
+                <ImageView
+                    android:id="@+id/img16"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
 
-            <!--</RelativeLayout>-->
+            </RelativeLayout>
 
-            <!--<TextView-->
-                <!--android:id="@+id/step16text"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="@dimen/margin_2"-->
-                <!--android:text="Fashion calculator helps you decide the listing price. It will ask you 3 basic questions – age of the product, condition and brand. On the basis of these 3 parameters, it gives you a range of prices to pick from. It also shows you the listing price and your earnings."-->
-                <!--android:textColor="@android:color/white" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/step16text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Fashion calculator helps you decide the listing price. It will ask you 3 basic questions – age of the product, condition and brand. On the basis of these 3 parameters, it gives you a range of prices to pick from. It also shows you the listing price and your earnings."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -910,102 +910,102 @@
         </LinearLayout>
 
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="@dimen/margin_5"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
 
-            <!--<RelativeLayout-->
-                <!--android:id="@+id/step19"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center_horizontal|center_vertical"-->
-                <!--android:onClick="step19"-->
-                <!--android:orientation="horizontal">-->
+            <RelativeLayout
+                android:id="@+id/step19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step19"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_toStartOf="@+id/img19"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:text="I just found a buyer, how do I ship my order?"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="16sp"-->
-                    <!--android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img19"
+                    android:padding="@dimen/margin_2"
+                    android:text="I just found a buyer, how do I ship my order?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/img19"-->
-                    <!--android:layout_width="@dimen/margin_20"-->
-                    <!--android:layout_height="@dimen/margin_20"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:src="@mipmap/ic_faq_down" />-->
+                <ImageView
+                    android:id="@+id/img19"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
 
-            <!--</RelativeLayout>-->
+            </RelativeLayout>
 
-            <!--<TextView-->
-                <!--android:id="@+id/step19text1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="@dimen/margin_2"-->
-                <!--android:text="Congratulations on your first sale! You would have received an invoice on your email from us. Kindly, print that out, keep your item ready, make sure your item is dry cleaned, ironed and ready to be loved by your purchaser. You can also write a personal note to the buyer on the L Catalog Thank You card. We love spreading the love!"-->
-                <!--android:textColor="@android:color/white" />-->
+            <TextView
+                android:id="@+id/step19text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Congratulations on your first sale! You would have received an invoice on your email from us. Kindly, print that out, keep your item ready, make sure your item is dry cleaned, ironed and ready to be loved by your purchaser. You can also write a personal note to the buyer on the L Catalog Thank You card. We love spreading the love!"
+                android:textColor="@android:color/white" />
 
-            <!--<TextView-->
-                <!--android:id="@+id/step19text2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="@dimen/margin_2"-->
-                <!--android:text="Shortly, a shipping person will come and collect the product from you."-->
-                <!--android:textColor="@android:color/white" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/step19text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Shortly, a shipping person will come and collect the product from you."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="@dimen/margin_5"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
 
-            <!--<RelativeLayout-->
-                <!--android:id="@+id/step20"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center_horizontal|center_vertical"-->
-                <!--android:onClick="step20"-->
-                <!--android:orientation="horizontal">-->
+            <RelativeLayout
+                android:id="@+id/step20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step20"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_toStartOf="@+id/img20"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:text="How do I get paid?"-->
-                    <!--android:textColor="@android:color/white"-->
-                    <!--android:textSize="16sp"-->
-                    <!--android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img20"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I get paid?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/img20"-->
-                    <!--android:layout_width="@dimen/margin_20"-->
-                    <!--android:layout_height="@dimen/margin_20"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:padding="@dimen/margin_2"-->
-                    <!--android:src="@mipmap/ic_faq_down" />-->
+                <ImageView
+                    android:id="@+id/img20"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
 
-            <!--</RelativeLayout>-->
+            </RelativeLayout>
 
-            <!--<TextView-->
-                <!--android:id="@+id/step20text"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:padding="@dimen/margin_2"-->
-                <!--android:text="At the time of uploading the product, we ask you for your account details, and the moment the product is approved by the buyer, within 2 business days, your money will be transferred to the account registered with L Catalog."-->
-                <!--android:textColor="@android:color/white" />-->
+            <TextView
+                android:id="@+id/step20text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="At the time of uploading the product, we ask you for your account details, and the moment the product is approved by the buyer, within 2 business days, your money will be transferred to the account registered with L Catalog."
+                android:textColor="@android:color/white" />
 
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
 
         <LinearLayout

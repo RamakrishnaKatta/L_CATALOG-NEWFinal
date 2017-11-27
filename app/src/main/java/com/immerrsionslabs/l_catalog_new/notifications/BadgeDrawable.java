@@ -25,10 +25,10 @@ public class BadgeDrawable extends Drawable {
     private boolean mWillDraw = false;
 
     public BadgeDrawable(Context context) {
-        mTextSize = context.getResources().getDimension(R.dimen.text_size_small);
+        mTextSize = context.getResources().getDimension(R.dimen.text_size_16);
 
         mBadgePaint = new Paint();
-        mBadgePaint.setColor(ContextCompat.getColor(context, R.color.accent));
+        mBadgePaint.setColor(ContextCompat.getColor(context, R.color.white));
         mBadgePaint.setAntiAlias(true);
         mBadgePaint.setStyle(Paint.Style.FILL);
 
