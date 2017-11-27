@@ -37,7 +37,7 @@ import java.util.Objects;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 @SuppressLint("Registered")
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private PrefManager prefManager3;
     private static final String TAG = "MainActivity";
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -380,6 +379,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         } else if (id == R.id.nav_feedback) {
             Intent intent = new Intent(this, FeedbackActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_faq) {
+            Intent intent = new Intent(this, faqActivity.class);
             startActivity(intent);
         }
 

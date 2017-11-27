@@ -56,16 +56,20 @@
         <menu>
             <item
                 android:id="@+id/nav_feedback"
-                 android:title="@string/support_feedback" />
+                android:icon="@mipmap/ic_feedback"
+                android:title="@string/support_feedback" />
             <item
                 android:id="@+id/nav_terms_conditions"
+                android:icon="@mipmap/ic_terms_conditions"
                 android:title="@string/support_terms_conditions" />
             <item
-                android:id="@+id/nav_help_center"
-                android:title="@string/support_help" />
-            <item
                 android:id="@+id/nav_about"
+                android:icon="@mipmap/ic_about_us"
                 android:title="@string/support_about" />
+            <item
+                android:id="@+id/nav_faq"
+                android:icon="@mipmap/ic_faq"
+                android:title="@string/support_faq" />
         </menu>
     </item>
 

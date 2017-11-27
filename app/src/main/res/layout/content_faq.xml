@@ -1,0 +1,1075 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".faqActivity"
+    tools:showIn="@layout/activity_faq">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/margin_50">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_3"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:padding="@dimen/margin_2"
+                    android:text="@string/what_is_l_catalog"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="The L – Catalog is an Augmented reality (AR) catalogue which helps the furniture manufacturers/vendors to deliver the user/customer the furniture portably in the form of a pattern printed on a paper."
+                android:textColor="@android:color/white" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="The goal of this product is to provide the opportunity to all the furniture vendors to deliver the customers the feel of having the furniture right in front of him/her without bringing the actual furniture home."
+                android:textColor="@android:color/white" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="This product will let the vendor/manufacturer to have his own android mobile application in the android app store, which will let him have more exposure to the rest of the country aswellas the world if possible and the greatest exposure to the market. "
+                android:textColor="@android:color/white" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L - CATALOG is now available on Android, and tons of covetable wardrobes are waiting, so download it now!"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:padding="@dimen/margin_2"
+                android:text="Visit our website: www.immersionslabs.com"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img1"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I get Started on L - CATALOG?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step1text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="The short checklist below will get you started:"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img2"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I create my account?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step2text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="This product will let the vendor/manufacturer to have his own android mobile application in the android app store, which will let him have more exposure to the rest of the country aswellas the world if possible and the greatest exposure to the market. This android app will have the capability of augmenting the furniture into the real world physically."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img3"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I upload?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step3text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Start uploading style inspirations or items that you will like to sell from your closet. It’s only going to take you 60 seconds from an iPhone or an Android phone! Snap a picture, add in your product details and pick a price. See how easy it is to make your first sale!"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img4"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I shop?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step4text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="You can shop directly from your newsfeed, because all that you see are products as per your preference selection and also from other closets you like aka Admire. So get tapping! Create a personalized shopping experience by following all the closets you love."
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/img5"
+                    android:padding="@dimen/margin_2"
+                    android:text="What is Zap Exclusive?"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/margin_16"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentRight="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step5text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Zap Exclusive is a premium service where L Catalog personally handpicks the products in this closet – all the products are mostly new with tags and exclusive luxury items. We carry out extra verification of all the luxury handbags, shoes, clothes and accessories. L Catalog also lists the products on behalf of the sellers so that their identity is not disclosed. Plus, they are entitled to special white glove service!"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/step5text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="This service is free for now, L Catalog does not charge extra for this premium service."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img6"
+                    android:padding="@dimen/margin_2"
+                    android:text="Sounds great. How do I get the L - CATALOG app?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step6text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L - CATALOG is available on Google play store : Here are the links"
+
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/step6text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:padding="@dimen/margin_2"
+                android:text="You can also shop from the web! www.immersionslabs.com"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/img7"
+                    android:padding="@dimen/margin_2"
+                    android:text="Can I change my Username if it suddenly sounds lame?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img7"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step7text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Currently, you cannot change your username, so make sure you select something that you love when you register."
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img8"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I trust the stuff I’m buying on L - CATALOG?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img8"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step8text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L - CATALOG personally handpicks its sellers and it assures that all the products are legit. If you are still not satisfied, L- CATALOG gives you 24 hours when you purchase something – from the time the product reaches you – and gives you the option to return it if you don’t love it. We keep your money in the escrow account for those 24 hours. After we verify your claim, we give you the option of earning L-CATALOG credits."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img9"
+                    android:padding="@dimen/margin_2"
+                    android:text="What are L - CATALOG credits?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img9"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step9text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L Catalog creates a ZapCash (Wallet) for you where your L Catalog shopping money is stored."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img10"
+                    android:padding="@dimen/margin_2"
+                    android:text="What are the Shipping rates on L CATALOG?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img10"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step10text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="All users will be provided with free shipping on orders above Rs. 1800. Not bad, right?"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step11"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img11"
+                    android:padding="@dimen/margin_2"
+                    android:text="Help! I purchased an item, but did not receive a confirmation email. What do I do now?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img11"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step11text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="We hear you! You can write to helpdesk@immersionslabs.com with your email address, order information and your L Catalog username. You can also call us on 080 4000 4540 and we’ll get back to you asap!"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step12"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img12"
+                    android:padding="@dimen/margin_2"
+                    android:text="Oops! I accidentally purchased an item, how do I cancel the order?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img12"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step12text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Sorry. Currently, we do not have an order cancellation option, but you can email us on helpdesk@immersionslabs.com or call us at 9036600966 and we’ll see if we can help. But make sure you notify to us within 24 hours."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step13"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img13"
+                    android:padding="@dimen/margin_2"
+                    android:text="When can I expect to receive my L catalog order?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img13"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step13text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="We allow our sellers to dispatch the order within 7 days. However, most of the orders are shipped within 3 business days. As soon as the order is placed, we work really hard to send the product to you at the earliest."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step14"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img14"
+                    android:padding="@dimen/margin_2"
+                    android:text="What should I do when I receive my order?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img14"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step14text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="You will have 24 hours from the time you get your order. If you want to return an item, you can go on L Catalog app > Menu bar > My order > Return. You can select one of the 4 options provided to you and we will have a Zap care agent reach out to you at the earliest."
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/step14text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L Catalog ensures all the products listed are authentic and in great condition, but we let you, the buyer, take the call."
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step15"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img15"
+                    android:padding="@dimen/margin_2"
+                    android:text="How do I sell on L - CATALOG ?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img15"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step15text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="You can only sell from L Catalog app. To make a listing, click on the camera icon on the top right of the app, add clear pictures of your item from your phone library, and write a description. It takes only 60 seconds to make a listing!"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="@dimen/margin_5"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/step16"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal|center_vertical"-->
+                <!--android:onClick="step16"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_toStartOf="@+id/img16"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:text="What is L Catalog’s Fashion Calculator?"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img16"-->
+                    <!--android:layout_width="@dimen/margin_20"-->
+                    <!--android:layout_height="@dimen/margin_20"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:src="@mipmap/ic_faq_down" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/step16text"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/margin_2"-->
+                <!--android:text="Fashion calculator helps you decide the listing price. It will ask you 3 basic questions – age of the product, condition and brand. On the basis of these 3 parameters, it gives you a range of prices to pick from. It also shows you the listing price and your earnings."-->
+                <!--android:textColor="@android:color/white" />-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step17"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img17"
+                    android:padding="@dimen/margin_2"
+                    android:text="What is the fees for selling on L CATALOG?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img17"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step17text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L- CATALOG charges only a flat 25% commission, where we market your products and make sure you get the right buyer for your closet – someone who fits your style preference and size. We also fulfill your order, send you the packaging material and shipping is free!"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step18"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img18"
+                    android:padding="@dimen/margin_2"
+                    android:text="What are Storefronts?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img18"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step18text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L-CATALOG has partnered with A-list Interior designers and furniture vendors who sell their collections at discounted prices. Don’t forget to check them out – it’s a steal!"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="@dimen/margin_5"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/step19"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal|center_vertical"-->
+                <!--android:onClick="step19"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_toStartOf="@+id/img19"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:text="I just found a buyer, how do I ship my order?"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img19"-->
+                    <!--android:layout_width="@dimen/margin_20"-->
+                    <!--android:layout_height="@dimen/margin_20"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:src="@mipmap/ic_faq_down" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/step19text1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/margin_2"-->
+                <!--android:text="Congratulations on your first sale! You would have received an invoice on your email from us. Kindly, print that out, keep your item ready, make sure your item is dry cleaned, ironed and ready to be loved by your purchaser. You can also write a personal note to the buyer on the L Catalog Thank You card. We love spreading the love!"-->
+                <!--android:textColor="@android:color/white" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/step19text2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/margin_2"-->
+                <!--android:text="Shortly, a shipping person will come and collect the product from you."-->
+                <!--android:textColor="@android:color/white" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="@dimen/margin_5"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/step20"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal|center_vertical"-->
+                <!--android:onClick="step20"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_toStartOf="@+id/img20"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:text="How do I get paid?"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/img20"-->
+                    <!--android:layout_width="@dimen/margin_20"-->
+                    <!--android:layout_height="@dimen/margin_20"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:padding="@dimen/margin_2"-->
+                    <!--android:src="@mipmap/ic_faq_down" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/step20text"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/margin_2"-->
+                <!--android:text="At the time of uploading the product, we ask you for your account details, and the moment the product is approved by the buyer, within 2 business days, your money will be transferred to the account registered with L Catalog."-->
+                <!--android:textColor="@android:color/white" />-->
+
+        <!--</LinearLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/step21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="step21"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/img21"
+                    android:padding="@dimen/margin_2"
+                    android:text="What if I want to change my Account Number?"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img21"
+                    android:layout_width="@dimen/margin_20"
+                    android:layout_height="@dimen/margin_20"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_2"
+                    android:src="@mipmap/ic_faq_down" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/step21text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="You can go back to the My Account and change the details there. Currently, we do not have an option to change the account number on the dashboard."
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/step21text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="L - CATALOG is working on introducing new, sassy features to make user experience better every time, so brace yourselves!"
+                android:textColor="@android:color/white"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_2"
+                android:text="Happy Shopping!"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+

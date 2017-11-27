@@ -48,7 +48,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CatalogActivity"
             android:screenOrientation="portrait"
@@ -74,14 +74,24 @@
             android:name=".FeedbackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ForgotPasswordActivity"
+        <activity
+            android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark"/>
+            android:theme="@style/AppTheme.Dark" />
 
         <activity
             android:name=".GalleryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".NotifyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".faqActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
 
         <activity android:name=".FullScreenImageViewActivity" />
 
@@ -98,6 +108,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".notifications.NotificationCountSetClass" />
+
+
+        <receiver android:name=".MyScheduledReceiver" />
 
     </application>
 
