@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:contentDescription="Company_Icon"
+                android:contentDescription="@string/company_icon"
                 android:src="@drawable/companyicon" />
 
             <TextView
@@ -36,7 +36,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/app_newName"
-                android:textSize="30sp" />
+                android:textSize="@dimen/text_size_max" />
 
         </LinearLayout>
 
@@ -54,7 +54,7 @@
                 android:id="@+id/user_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User Name"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -125,7 +125,7 @@
             android:layout_marginBottom="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_3"
             android:padding="@dimen/margin_12"
-            android:text="EDIT PROFILE"
+            android:text="@string/btn_edit_profile"
             android:visibility="visible" />
 
         <!-- Update Button -->
@@ -136,7 +136,7 @@
             android:layout_marginBottom="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_3"
             android:padding="@dimen/margin_12"
-            android:text="UPDATE PROFILE"
+            android:text="@string/btn_update_profile"
             android:visibility="gone" />
 
     </LinearLayout>

@@ -12,9 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_24"
-        android:paddingRight="@dimen/margin_24"
-        android:paddingTop="@dimen/margin_10">
+        android:padding="@dimen/margin_20">
 
         <!-- Vendor Name Label -->
         <android.support.design.widget.TextInputLayout
@@ -92,6 +90,7 @@
                 android:id="@+id/vendor_pincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="6"
                 android:hint="@string/new_vendor_pincode"
                 android:inputType="number" />
         </android.support.design.widget.TextInputLayout>

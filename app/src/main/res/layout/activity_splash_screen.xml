@@ -17,15 +17,16 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/companyicon" />
+            android:src="@drawable/companyicon"
+            android:contentDescription="@string/company_icon" />
 
         <TextView
             android:id="@+id/application_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="L-CATALOG"
-            android:textSize="30sp"
+            android:text="@string/app_name"
+            android:textSize="@dimen/text_size_max"
             android:visibility="invisible" />
 
         <TextView
@@ -33,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Powered by Immersion Software Labs."
-            android:textSize="16sp"
+            android:text="@string/powered_immersionslabs"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold"
             android:visibility="invisible" />
     </LinearLayout>

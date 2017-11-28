@@ -30,8 +30,8 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="@dimen/margin_40"
-                    android:contentDescription="Company_Icon"
+                    android:layout_marginStart="@dimen/margin_40"
+                    android:contentDescription="@string/company_icon"
                     android:src="@drawable/companyicon" />
 
                 <LinearLayout
@@ -44,9 +44,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_20"
-                        android:gravity="left|center_vertical"
+                        android:gravity="start|center_vertical"
                         android:text="@string/app_newName"
-                        android:textSize="30sp"
+                        android:textSize="@dimen/text_size_max"
                         android:textStyle="bold" />
 
                     <TextView
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="@string/powered_immersionslabs"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/shape"
-                        android:gravity="top|left"
+                        android:gravity="top|start"
                         android:hint="@string/FeedBack_Subject"
                         android:inputType="textMultiLine"
                         android:lines="10"
@@ -147,7 +147,7 @@
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_marginTop="20dp"
                 android:paddingTop="@dimen/margin_10"
-                android:text="THANK YOU" />
+                android:text="@string/feedback_submit" />
         </LinearLayout>
 
 

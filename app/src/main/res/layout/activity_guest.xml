@@ -37,7 +37,7 @@
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:text="@string/app_name"
-                android:textSize="30sp" />
+                android:textSize="@dimen/text_size_max" />
 
             <TextView
                 android:id="@+id/lucidleanlabs"
@@ -45,7 +45,7 @@
                 android:layout_height="fill_parent"
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
             <!-- Name Label -->

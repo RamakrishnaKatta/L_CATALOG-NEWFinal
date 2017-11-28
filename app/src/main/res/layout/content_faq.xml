@@ -104,7 +104,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I get Started on L - CATALOG?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -148,7 +148,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I create my account?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -193,7 +193,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I upload?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -238,7 +238,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I shop?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -335,7 +335,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="Sounds great. How do I get the L - CATALOG app?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -391,7 +391,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="Can I change my Username if it suddenly sounds lame?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -437,7 +437,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I trust the stuff I’m buying on L - CATALOG?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -482,7 +482,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What are L - CATALOG credits?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -527,7 +527,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What are the Shipping rates on L CATALOG?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -571,7 +571,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="Help! I purchased an item, but did not receive a confirmation email. What do I do now?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -615,7 +615,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="Oops! I accidentally purchased an item, how do I cancel the order?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -659,7 +659,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="When can I expect to receive my L catalog order?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -703,7 +703,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What should I do when I receive my order?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -755,7 +755,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I sell on L - CATALOG ?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -799,7 +799,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What is L Catalog’s Fashion Calculator?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -843,7 +843,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What is the fees for selling on L CATALOG?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -887,7 +887,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What are Storefronts?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -932,7 +932,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="I just found a buyer, how do I ship my order?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -984,7 +984,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="How do I get paid?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -1030,7 +1030,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="What if I want to change my Account Number?"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <ImageView

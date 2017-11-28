@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="@dimen/text_size_max" />
 
             <TextView
                 android:id="@+id/immersionslabs"
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:padding="@dimen/margin_10"
                 android:text="@string/welcome_aboard"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_xxxlarge"
                 android:textStyle="bold|italic" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:padding="@dimen/margin_10"
                 android:text="@string/firstly_who_you_are_matters"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_xxxlarge"
                 android:textStyle="bold|italic" />
 
             <LinearLayout
@@ -99,7 +99,7 @@
                         android:layout_toRightOf="@+id/btn_customer"
                         android:text="@string/login_sign"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_xxlarge"
                         android:textStyle="bold" />
 
                     <TextView
@@ -112,7 +112,7 @@
                         android:padding="@dimen/margin_10"
                         android:text="@string/login_hint"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="italic"
                         tools:ignore="RtlSymmetry" />
 
@@ -146,7 +146,7 @@
                         android:layout_toRightOf="@+id/btn_new_customer"
                         android:text="@string/signup_sign"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_xxlarge"
                         android:textStyle="bold" />
 
                     <TextView
@@ -158,7 +158,7 @@
                         android:padding="@dimen/margin_10"
                         android:text="@string/signup_hint"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="italic"
                         tools:ignore="RtlSymmetry" />
 
@@ -193,7 +193,7 @@
                         android:layout_toRightOf="@+id/btn_shopper"
                         android:text="@string/guest_sign"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_xxlarge"
                         android:textStyle="bold" />
 
                     <TextView
@@ -206,7 +206,7 @@
                         android:padding="@dimen/margin_10"
                         android:text="@string/guest_hint"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="italic"
                         tools:ignore="RtlSymmetry" />
 

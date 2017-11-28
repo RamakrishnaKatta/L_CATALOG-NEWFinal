@@ -36,7 +36,7 @@
             android:text="@string/slide2_title"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_max"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:text="@string/slide2_desc"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_size_xxlarge" />
     </LinearLayout>
 
 </LinearLayout>

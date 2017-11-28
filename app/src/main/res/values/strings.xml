@@ -158,5 +158,21 @@
     <string name="icon_youtube">YouTube</string>
     <string name="notifications_title">Notifications</string>
     <string name="notifications_subject">Hi welcome to the Lucid Lean Labs and you can avail so many offers from Lucid Lean Labs.</string>
+    <string name="feedback_submit">THANK YOU</string>
+    <string name="submit">Submit</string>
+    <string name="catalog_description">My description.</string>
+    <string name="discount_percentage">20%</string>
+    <string name="discount_price">800/-</string>
+    <string name="price_Tag">/-</string>
+    <string name="original_price">1000</string>
+
+    <string name="catalog_title">My Name </string>
+    <string name="discount_price_title">AFTER DISCOUNT PRICE:</string>
+    <string name="discount_title">Discount -</string>
+    <string name="original_price_title">ORIGINAL PRICE:</string>
+    <string name="product_share">share</string>
+    <string name="btn_edit_profile">EDIT PROFILE</string>
+    <string name="btn_update_profile">UPDATE PROFILE</string>
+    <string name="notifications_text">Hi welcome to the Immersion Software Labs and you can avail so many offers from Lucid Lean Labs.</string>
 
 </resources>

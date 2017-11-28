@@ -45,7 +45,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="@dimen/margin_5"
-                    android:text="Title "
+                    android:text="@string/catalog_title"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -57,9 +57,9 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:padding="@dimen/margin_5"
-                    android:text="Hi welcome to the Immersion Software Labs and you can avail so many offers from Lucid Lean Labs."
+                    android:text="@string/notifications_text"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_size_xlarge"
                     android:textStyle="bold" />
 
             </LinearLayout>

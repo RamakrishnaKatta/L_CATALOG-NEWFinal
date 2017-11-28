@@ -296,7 +296,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Alert");
         builder.setMessage("Press OK to get out of this App");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

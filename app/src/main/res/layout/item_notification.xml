@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/notifications_title"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
                 <TextView
@@ -51,7 +51,7 @@
                     android:maxLines="3"
                     android:text="@string/notifications_subject"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="italic|bold" />
             </LinearLayout>
         </RelativeLayout>
