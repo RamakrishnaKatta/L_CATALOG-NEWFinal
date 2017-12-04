@@ -345,6 +345,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "This is Your Profile !!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, UserAccountActivity.class).putExtras(user_details);
                 startActivity(intent);
+                overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+
             } else {
                 Toast.makeText(this, "You are a Guest, You dont possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
             }
@@ -361,28 +363,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "here are all your notifications, Check out !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NotifyActivity.class);
             startActivity(intent);
+            overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+
 
         } else if (id == R.id.nav_sign_up) {
 
             Toast.makeText(this, "Thanks for your thought on Creating an Account, Appreciated !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SignupActivity.class);
             startActivity(intent);
+            overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+
 
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, UserTypeActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
         } else if (id == R.id.nav_about) {
 
             Intent intent = new Intent(this, AboutUsActivity.class);
             startActivity(intent);
+            overridePendingTransition( R.anim.slide_in_bottom, R.anim.slide_out_bottom );
+
         } else if (id == R.id.nav_feedback) {
             Intent intent = new Intent(this, FeedbackActivity.class);
             startActivity(intent);
+
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
+
         } else if (id == R.id.nav_faq) {
             Intent intent = new Intent(this, faqActivity.class);
             startActivity(intent);
+            overridePendingTransition( R.anim.slide_in_bottom, R.anim.slide_out_bottom );
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

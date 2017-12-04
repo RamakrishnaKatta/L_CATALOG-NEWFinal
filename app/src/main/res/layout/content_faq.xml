@@ -34,7 +34,7 @@
                     android:padding="@dimen/margin_2"
                     android:text="@string/what_is_l_catalog"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_size_16"
+                    android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
 

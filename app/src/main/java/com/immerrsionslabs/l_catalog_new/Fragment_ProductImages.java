@@ -42,7 +42,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL = "http://35.154.150.204:4000/vendors";
+    private static String FILE_URL = "http://35.154.150.204:4000/upload/3dviewfiles/";
     private static String EXTENDED_URL;
 
     private PrefManager prefManager;
@@ -88,18 +88,18 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         article_images = getArguments().getString("img");
         article_name = getArguments().getString("article_name");
-        article_id = getArguments().getString("article_id");
+        article_id = getArguments().getString("view_3d");
 
-        try {
-
-            JSONArray image_json = new JSONArray(article_images);
-            for (int i=0;i<image_json.length();i++){
-                image1 = image_json.getString(0);
-                image2 = image_json.getString(1);
-                image3 = image_json.getString(2);
-                image4 = image_json.getString(3);
-
-            }
+//        try {
+//
+//            JSONArray image_json = new JSONArray(article_images);
+//            for (int i=0;i<image_json.length();i++){
+//                image1 = image_json.getString(0);
+//                image2 = image_json.getString(1);
+//                image3 = image_json.getString(2);
+//                image4 = image_json.getString(3);
+//
+//            }
 
 //            image1 = image_json.getString("image1");
 //            image2 = image_json.getString("image2");
@@ -107,10 +107,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 //            image4 = image_json.getString("image4");
 //            image5 = image_json.getString("image5");
 
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         Log.e(TAG, "Article Image 1----" + image1);
         Log.e(TAG, "Article Image 2----" + image2);
@@ -140,10 +140,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
             private void addBottomDots(int currentPage) {
 
-//                dots = new TextView[slider_images.size()];
-
-//                int[] colorsActive = view.getResources().getIntArray(R.array.array_dot_active);
-//                int[] colorsInactive = view.getResources().getIntArray(R.array.array_dot_inactive);
 
                 Slider_dots.removeAllViews();
 
@@ -172,7 +168,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Article_3DSFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/article_view.3ds";
         Log.e(TAG, "Object3DFileLocation--" + Article_3DSFileLocation);
 
-        note = (LinearLayout) view.findViewById(R.id.download_note);
+        note = view.findViewById(R.id.download_note);
 
         zip_file = new File(Article_ZipFileLocation);
         object_3d_file = new File(Article_3DSFileLocation);
@@ -301,16 +297,20 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         final TapTargetSequence sequence = new TapTargetSequence(getActivity()).targets(
                 TapTarget.forView(view.findViewById(R.id.article_download_icon), "DOWNLOAD", "Click Here before you click the 3d & Augment ")
                         .targetRadius(30)
+                        .textColor(R.color.white)
                         .outerCircleColor(R.color.primary)
                         .id(1),
                 TapTarget.forView(view.findViewById(R.id.article_augment_icon), "AUGMENT", "Click Here to Augment the Object")
                         .cancelable(false)
+                        .textColor(R.color.white)
+
                         .targetRadius(30)
                         .outerCircleColor(R.color.primary)
                         .id(2),
                 TapTarget.forView(view.findViewById(R.id.article_3dview_icon), "3D", "Click Here see the object in 3d View")
                         .cancelable(false)
                         .targetRadius(30)
+                        .textColor(R.color.white)
                         .outerCircleColor(R.color.primary)
                         .id(3)
         ).listener(new TapTargetSequence.Listener() {
