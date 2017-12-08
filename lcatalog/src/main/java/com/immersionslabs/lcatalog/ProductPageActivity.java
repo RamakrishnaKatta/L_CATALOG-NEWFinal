@@ -136,7 +136,8 @@ public class ProductPageActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
         Intent intent = new Intent(this, CatalogActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |Intent.FLAG_ACTIVITY_CLEAR_TOP );
+
         intent.putExtra("activity", "ProductPage");
         startActivity(intent);
         finish();
