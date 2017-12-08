@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.immersionslabs.lcatalog.Utils.DownloadManager;
+import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
@@ -30,9 +30,6 @@ import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import com.like.LikeButton;
 import com.like.OnAnimationEndListener;
 import com.like.OnLikeListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,8 +40,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL = "http://35.154.150.204:4000/upload/3dviewfiles/";
-    private static String EXTENDED_URL;
+    private static String FILE_URL_3DS = "http://35.154.150.204:4000/upload/3dviewfiles/";
+    private static String EXTENDED_URL_3DS;
 
     private PrefManager prefManager;
 
@@ -66,9 +63,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     LikeButton likeButton;
 
-    String Article_ZipFileLocation, Article_ExtractLocation, Article_3DSFileLocation;
-    private boolean zip_downloaded = true;
-    File zip_file, object_3d_file;
+    String Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation, Article_3DS_FileLocation;
+    private boolean zip_3ds_downloaded = true;
+    File article_3ds_zip_file, article_3ds_file;
 
     public Fragment_ProductImages() {
         // Required empty public constructor
@@ -160,26 +157,26 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        Article_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
-        Log.e(TAG, "ZipFileLocation--" + Article_ZipFileLocation);
-        Article_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
-        Log.e(TAG, "ExtractLocation--" + Article_ExtractLocation);
-        Article_3DSFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/article_view.3ds";
-        Log.e(TAG, "Object3DFileLocation--" + Article_3DSFileLocation);
+        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
+        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
+        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
+        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
+        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/article_view.3ds";
+        Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
 
         note = view.findViewById(R.id.download_note);
 
-        zip_file = new File(Article_ZipFileLocation);
-        object_3d_file = new File(Article_3DSFileLocation);
+        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
+        article_3ds_file = new File(Article_3DS_FileLocation);
 
-        zip_downloaded = false;
+        zip_3ds_downloaded = false;
 
         article_3d_view.setEnabled(false);
-        if (object_3d_file.exists()) {
+        if (article_3ds_file.exists()) {
             article_3d_view.setEnabled(true);
             article_download.setVisibility(View.GONE);
             note.setVisibility(View.GONE);
-            zip_downloaded = true;
+            zip_3ds_downloaded = true;
         }
 
         article_download.setOnClickListener(new View.OnClickListener() {
@@ -197,18 +194,19 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             public void run() {
                                 try {
                                     addModelFolder();
-                                    EXTENDED_URL = FILE_URL + article_3ds;
-                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL);
-                                    new DownloadManager(EXTENDED_URL, article_name, article_3ds);
+                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds;
+                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
+                                    new DownloadManager_3DS(EXTENDED_URL_3DS, article_name, article_3ds);
 
-                                    if (zip_file.exists()) {
-                                        new UnzipUtil(Article_ZipFileLocation, Article_ExtractLocation);
+                                    if (article_3ds_zip_file.exists()) {
+                                        new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
                                     } else {
-                                        Toast.makeText(getContext(), "Failed to download the Files", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Cannot locate Zipper, Try to download again", Toast.LENGTH_SHORT).show();
                                     }
 
-                                    zip_downloaded = true;
-                                    Log.e(TAG, "Zip Downloaded ---------- " + zip_downloaded);
+                                    zip_3ds_downloaded = true;
+
+                                    Log.e(TAG, "Zip Downloaded ---------- " + zip_3ds_downloaded);
                                     progressDialog.dismiss();
                                     article_download.setVisibility(View.GONE);
                                     article_3d_view.setEnabled(true);
@@ -217,8 +215,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 } catch (IOException e) {
                                     article_download.setVisibility(View.VISIBLE);
                                     article_3d_view.setEnabled(false);
-                                    zip_downloaded = false;
-                                    Log.e(TAG, "Zip Not Downloaded ---------- " + zip_downloaded);
+                                    zip_3ds_downloaded = false;
+                                    Log.e(TAG, "Zip Not Downloaded ---------- " + zip_3ds_downloaded);
                                     e.printStackTrace();
                                     note.setVisibility(View.VISIBLE);
                                 }
@@ -230,7 +228,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3d_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (zip_downloaded == true) {
+                if (zip_3ds_downloaded == true) {
 
                     Bundle b3 = new Bundle();
                     b3.putString("article_name", article_name);
