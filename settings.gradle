@@ -1,1 +1,1 @@
-include ':lcatalog'
+include ':lcatalog', ':aRBaseLib'

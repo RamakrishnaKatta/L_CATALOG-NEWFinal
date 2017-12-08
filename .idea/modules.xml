@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/L_CATALOG-NEW.iml" filepath="$PROJECT_DIR$/L_CATALOG-NEW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aRBaseLib/aRBaseLib.iml" filepath="$PROJECT_DIR$/aRBaseLib/aRBaseLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/lcatalog/lcatalog.iml" filepath="$PROJECT_DIR$/lcatalog/lcatalog.iml" />
     </modules>
   </component>

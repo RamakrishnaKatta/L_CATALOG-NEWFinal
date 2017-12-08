@@ -14,8 +14,8 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-
     <application
+        android:name=".augment.ARNativeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_foreground"
         android:label="@string/app_name"
@@ -23,6 +23,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".OnBoarding"
@@ -84,6 +94,10 @@
             android:theme="@style/AppTheme.Dark" />
 
         <activity
+            android:name=".augment.ARNativeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity
             android:name=".GalleryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -99,20 +113,7 @@
 
         <activity android:name=".FullScreenImageViewActivity" />
 
-        <activity
-            android:name=".SplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".notifications.NotificationCountSetClass" />
-
 
         <receiver android:name=".MyScheduledReceiver" />
 
