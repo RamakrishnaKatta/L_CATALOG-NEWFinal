@@ -132,7 +132,7 @@ public class UserAccountActivity extends AppCompatActivity {
             return;
         }
 
-        final ProgressDialog progressDialog = new ProgressDialog(UserAccountActivity.this, R.style.AppTheme_Dark);
+        final ProgressDialog progressDialog = new ProgressDialog(UserAccountActivity.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Updating Account...");
         progressDialog.show();

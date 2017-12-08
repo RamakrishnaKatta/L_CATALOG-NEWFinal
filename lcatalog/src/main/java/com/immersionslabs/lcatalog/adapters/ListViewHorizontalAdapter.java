@@ -34,8 +34,9 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
     private ArrayList<String> item_prices;
     private ArrayList<String> item_discounts;
     private ArrayList<String> item_vendors;
-//    private ArrayList<String> item_images;
+    //    private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
+    private ArrayList<String> item_3ds;
 
     @SuppressLint("LongLogTag")
     public ListViewHorizontalAdapter(Activity activity,
@@ -46,7 +47,8 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                                      ArrayList<String> item_discounts,
                                      ArrayList<String> item_vendors,
 //                                     ArrayList<String> item_images,
-                                     ArrayList<String> item_dimensions) {
+                                     ArrayList<String> item_dimensions,
+                                     ArrayList<String> item_3ds) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -56,6 +58,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         this.item_vendors = item_vendors;
 //        this.item_images = item_images;
         this.item_dimensions = item_dimensions;
+        this.item_3ds = item_3ds;
 
         Log.e(TAG, "ids----" + item_ids);
         Log.e(TAG, "names----" + item_names);
@@ -65,6 +68,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         Log.e(TAG, "vendors----" + item_vendors);
 //        Log.e(TAG, "Images----" + item_images);
         Log.e(TAG, "Dimensions----" + item_dimensions);
+        Log.e(TAG, "3ds " + item_3ds);
 
         this.activity = activity;
     }
@@ -75,7 +79,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView item_name, item_description, item_price, item_discount, item_vendor, item_price_new;
-//        private ImageView item_image;
+        //        private ImageView item_image;
         private RelativeLayout h_container;
 
         ViewHolder(View view) {
@@ -163,6 +167,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 b.putString("article_discount", item_discounts.get(position));
                 b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
+                b.putString("article_3ds", item_3ds.get(position));
 //                b.putString("article_images", item_images.get(position));
                 b.putString("article_position", String.valueOf(position));
 

@@ -26,6 +26,7 @@ import com.immersionslabs.lcatalog.Utils.DownloadManager;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
+import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import com.like.LikeButton;
 import com.like.OnAnimationEndListener;
 import com.like.OnLikeListener;
@@ -54,7 +55,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     // article_images is split in to five parts and assigned to each string
     String image1, image2, image3, image4, image5;
 
-    String article_name, article_id;
+    String article_name, article_3ds;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -86,24 +87,29 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3d_view = view.findViewById(R.id.article_3dview_icon);
         article_augment = view.findViewById(R.id.article_augment_icon);
 
-        article_images = getArguments().getString("img");
+        article_images = getArguments().getString("article_images");
         article_name = getArguments().getString("article_name");
-        article_id = getArguments().getString("view_3d");
+        article_3ds = getArguments().getString("article_3ds");
 
-        try {
+        Log.d(TAG, "onCreateView:3ds" + article_3ds);
+        Log.d(TAG, "onCreateView:name" + article_name);
 
-            JSONArray image_json = new JSONArray(article_images);
-            for (int i=0;i<image_json.length();i++){
-                image1 = image_json.getString(0);
-                image2 = image_json.getString(1);
-                image3 = image_json.getString(2);
-                image4 = image_json.getString(3);
 
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//
+//            JSONArray image_json = new JSONArray(article_images);
+//            for (int i=0;i<image_json.length();i++){
+//                image1 = image_json.getString(0);
+//                image2 = image_json.getString(1);
+//                image3 = image_json.getString(2);
+//                image4 = image_json.getString(3);
+//
+//            }
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         Log.e(TAG, "Article Image 1----" + image1);
         Log.e(TAG, "Article Image 2----" + image2);
@@ -154,7 +160,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        Article_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_id + ".zip";
+        Article_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
         Log.e(TAG, "ZipFileLocation--" + Article_ZipFileLocation);
         Article_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
         Log.e(TAG, "ExtractLocation--" + Article_ExtractLocation);
@@ -180,7 +186,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             @Override
             public void onClick(View v) {
 
-                final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.AppTheme_Dark);
+                final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.AppTheme_Dark_Dialog);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Downloading Article, Just for once....");
                 progressDialog.setTitle("Article Downloading");
@@ -191,9 +197,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             public void run() {
                                 try {
                                     addModelFolder();
-                                    EXTENDED_URL = FILE_URL + article_id + ".zip";
+                                    EXTENDED_URL = FILE_URL + article_3ds;
                                     Log.e(TAG, "URL ---------- " + EXTENDED_URL);
-                                    new DownloadManager(EXTENDED_URL, article_name, article_id);
+                                    new DownloadManager(EXTENDED_URL, article_name,  article_3ds);
 
                                     if (zip_file.exists()) {
                                         new UnzipUtil(Article_ZipFileLocation, Article_ExtractLocation);
@@ -228,7 +234,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                     Bundle b3 = new Bundle();
                     b3.putString("article_name", article_name);
-                    Intent _3d_intent = new Intent(getContext(), MainActivity.class).putExtras(b3);
+                    Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
                     startActivity(_3d_intent);
                 }
             }

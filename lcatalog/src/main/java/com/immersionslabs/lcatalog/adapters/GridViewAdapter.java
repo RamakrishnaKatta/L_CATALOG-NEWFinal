@@ -33,6 +33,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     private ArrayList<String> item_discounts;
     private ArrayList<String> item_vendors;
     private ArrayList<String> item_dimensions;
+    private ArrayList<String> item_3ds;
 
     public GridViewAdapter(Activity activity,
                            ArrayList<String> item_ids,
@@ -41,7 +42,8 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                            ArrayList<String> item_prices,
                            ArrayList<String> item_discounts,
                            ArrayList<String> item_vendors,
-                           ArrayList<String> item_dimensions) {
+                           ArrayList<String> item_dimensions,
+                           ArrayList<String> item_3ds) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -50,6 +52,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         this.item_discounts = item_discounts;
         this.item_vendors = item_vendors;
         this.item_dimensions = item_dimensions;
+        this.item_3ds = item_3ds;
 
 
         Log.e(TAG, "ids----" + item_ids);
@@ -59,6 +62,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         Log.e(TAG, "discounts----" + item_discounts);
         Log.e(TAG, "vendors----" + item_vendors);
         Log.e(TAG, "Dimensions----" + item_dimensions);
+        Log.e(TAG, "3ds ---- " + item_3ds);
 
         this.activity = activity;
     }
@@ -129,7 +133,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         viewHolder.item_price.setText((Html.fromHtml("<strike>" + item_prices.get(position) + "</strike>")));
         viewHolder.item_price.setPaintFlags(viewHolder.item_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.item_discount.setText(item_discounts.get(position) + "%");
-        viewHolder.item_price_new.setText(itemNewPrice + "/-");
+        viewHolder.item_price_new.setText(itemNewPrice );
 
         viewHolder.grid_container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +151,8 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                 b.putString("article_discount", item_discounts.get(position));
                 b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
+                b.putString("article_3ds",item_3ds.get(position));
+
 //                b.putString("article_images", item_images.get(position));
                 b.putString("article_position", String.valueOf(position));
 

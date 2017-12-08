@@ -128,7 +128,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         _submitButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(ForgotPasswordActivity.this,
-                R.style.AppTheme_Dark);
+                R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Updating Password...");
         progressDialog.show();

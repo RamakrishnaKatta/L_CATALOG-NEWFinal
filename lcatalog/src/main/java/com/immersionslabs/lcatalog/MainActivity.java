@@ -31,6 +31,7 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
+import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 
 import java.util.Objects;
 
@@ -282,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.action_replay_info) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog);
             builder.setTitle("Watch the welcome Slider, If you missed it");
             builder.setMessage("To see the welcome slider again, either you can go to Settings -> apps -> welcome slider -> clear data or Press OK ");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
