@@ -199,7 +199,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     addModelFolder();
                                     EXTENDED_URL = FILE_URL + article_3ds;
                                     Log.e(TAG, "URL ---------- " + EXTENDED_URL);
-                                    new DownloadManager(EXTENDED_URL, article_name,  article_3ds);
+                                    new DownloadManager(EXTENDED_URL, article_name, article_3ds);
 
                                     if (zip_file.exists()) {
                                         new UnzipUtil(Article_ZipFileLocation, Article_ExtractLocation);
