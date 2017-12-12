@@ -137,6 +137,8 @@ public class SignupActivity extends AppCompatActivity {
         Log.e(TAG, "KEY_VENDORID--" + KEY_VENDORID);
 
 
+        Log.e(TAG, "----------------------------");
+
         _nameText = findViewById(R.id.input_name);
         final String name = _nameText.getText().toString().trim();
         Log.e(TAG, "name--" + name);
@@ -178,17 +180,19 @@ public class SignupActivity extends AppCompatActivity {
         signup_parameters.put(KEY_MOBILE_NO, mobile);
         signup_parameters.put(KEY_PASSWORD, password);
         signup_parameters.put(KEY_TYPE, "CUSTOMER");
-        signup_parameters.put(KEY_VENDORID, 100000); // This Value should be changed when a user is registered under specific customer
+        signup_parameters.put(KEY_VENDORID, 100000); // This Value should be changed when a user is registered under specific custome
 
+        Log.e(TAG, "----------------------------");
+
+        Log.e(TAG, "name--" + name);
         Log.e(TAG, "adress--" + address);
         Log.e(TAG, "email--" + email);
         Log.e(TAG, "mobile--" + mobile);
         Log.e(TAG, "password--" + password);
-        Log.e(TAG, "name--" + name);
+
 
         Log.e(TAG, "request--" + signup_parameters);
 
-//
         JSONObject request = new JSONObject();
         request.put("request", signup_parameters);
 //        Log.e(TAG, "Request--" + request);
@@ -201,7 +205,7 @@ public class SignupActivity extends AppCompatActivity {
                     resp = requestResponse.getString("success");
                     code = requestResponse.getString("status_code");
                     message = requestResponse.getString("message");
-                    Log.e(TAG, "response--" + resp + " code--" + code + " message--" + message);
+                    Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

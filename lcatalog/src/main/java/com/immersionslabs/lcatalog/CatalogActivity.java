@@ -204,6 +204,7 @@ public class CatalogActivity extends AppCompatActivity {
                                 item_vendors.add(obj.getString("vendor_id"));
                                 item_dimensions.add(obj.getString("dimensions"));
                                 item_3ds.add(obj.getString("view_3d"));
+                                item_images.add(obj.getString("img"));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -302,12 +303,9 @@ public class CatalogActivity extends AppCompatActivity {
                 item_prices.add(obj.getString("price"));
                 item_discounts.add(obj.getString("discount"));
                 item_vendors.add(obj.getString("vendor_id"));
+                item_images.add(obj.getString("img"));
                 item_dimensions.add(obj.getString("dimensions"));
                 item_3ds.add(obj.getString("view_3d"));
-
-
-                item_images.add(obj.getString("images"));
-
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -323,7 +321,7 @@ public class CatalogActivity extends AppCompatActivity {
         Log.e(TAG, "dimensions******" + item_dimensions);
         Log.e(TAG, "3ds******" + item_3ds);
 
-        gridAdapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_dimensions, item_3ds);
+        gridAdapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_images, item_dimensions, item_3ds);
         horizontalAdapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_dimensions, item_3ds);
         VerticalAdapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_dimensions, item_3ds);
 

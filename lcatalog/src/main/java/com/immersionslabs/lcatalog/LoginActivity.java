@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -39,6 +38,7 @@ import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_FORGOT_PASSWORD = 0;
 
     private static final String LOGIN_URL = "http://35.154.150.204:4000/customerLogin";
-    private static final String Local_url ="http://192.168.0.10:4000/customerLogin";
+    private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
 
     TextView app_name, _forgot_password, powered;
     EditText _emailText, _passwordText;
@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
+
         _loginButton = findViewById(R.id.btn_login);
         _forgot_password = findViewById(R.id.link_forgot_password);
         get_details = findViewById(R.id.btn_get_data);
@@ -253,14 +254,16 @@ public class LoginActivity extends AppCompatActivity {
                     message = requestResponse.getString("message");
                     Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
 
+                    JSONArray user_details_array = requestResponse.getJSONArray("data");
+                    for (int i = 0; i < user_details_array.length(); i++) {
 
-                    JSONObject user_details = requestResponse.getJSONObject("data");
-
-                    userName = user_details.getString("name");
-                    userAddress = user_details.getString("adress");
-                    userEmail = user_details.getString("email");
-                    userPhone = user_details.getString("mobile_no");
-                    Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
+                        JSONObject user_details = user_details_array.getJSONObject(i);
+                        userName = user_details.getString("name");
+                        userAddress = user_details.getString("adress");
+                        userEmail = user_details.getString("email");
+                        userPhone = user_details.getString("mobile_no");
+                        Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -336,18 +339,19 @@ public class LoginActivity extends AppCompatActivity {
 
         Bundle user_data = new Bundle();
         user_data.putString("name", userName);
-        user_data.putString("mobile_no", userPhone);
-        user_data.putString("adress", userAddress);
+        user_data.putString("phone", userPhone);
+        user_data.putString("address", userAddress);
         user_data.putString("email", userEmail);
         Log.e(TAG, "User -- " + user_data);
 
-        if (userName != null | userPhone != null | userAddress != null | userEmail != null) {
+        if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
             Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
             startActivity(intent);
             finish();
         } else {
             _loginButton = findViewById(R.id.btn_login);
-            CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! \n Please try to login as guest for this time");
+            CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! " +
+                    "\n Please try to login as guest for this time");
 
             _loginButton.setEnabled(true);
         }

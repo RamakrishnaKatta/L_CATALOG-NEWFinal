@@ -97,20 +97,34 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
             // 1.889: 2040x1080
 
             // Some values that are close to standard ratios.
-            new PixelSizeToAspectRatio(683, 384, ASPECT_RATIO._16_9, "16:9"), // ~1.778: 1366x768
-            new PixelSizeToAspectRatio(85, 48, ASPECT_RATIO._16_9, "16:9"), // ~1.778: 1360x768
-            new PixelSizeToAspectRatio(256, 135, ASPECT_RATIO._17_9, "17:9"), // ~1.889: 2048x1080, (2K)
-            new PixelSizeToAspectRatio(512, 307, ASPECT_RATIO._5_3, "5:3"), // ~1.667: 1024x614
-            new PixelSizeToAspectRatio(30, 23, ASPECT_RATIO._4_3, "4:3"), // ~1.333: 480x368
-            new PixelSizeToAspectRatio(128, 69, ASPECT_RATIO._17_9, "17:9"), // ~1.889: 1024x552
-            new PixelSizeToAspectRatio(30, 23, ASPECT_RATIO._11_9, "11:9"), // ~1.222: 592x480
-            new PixelSizeToAspectRatio(53, 30, ASPECT_RATIO._16_9, "16:9"), // ~1.767: 848x480
-            new PixelSizeToAspectRatio(37, 30, ASPECT_RATIO._11_9, "11:9"), // ~1.233: 592x480
-            new PixelSizeToAspectRatio(192, 145, ASPECT_RATIO._4_3, "4:3"), // ~1.324: 1152x870
-            new PixelSizeToAspectRatio(640, 427, ASPECT_RATIO._3_2, "3:2"), // ~1.499: 1280x854
-            new PixelSizeToAspectRatio(427, 240, ASPECT_RATIO._16_9, "16:9"), // ~1.779: 854x480
+            new PixelSizeToAspectRatio(683, 384, ASPECT_RATIO._16_9, "16:9"),
+            // ~1.778: 1366x768
+            new PixelSizeToAspectRatio(85, 48, ASPECT_RATIO._16_9, "16:9"),
+            // ~1.778: 1360x768
+            new PixelSizeToAspectRatio(256, 135, ASPECT_RATIO._17_9, "17:9"),
+            // ~1.889: 2048x1080, (2K)
+            new PixelSizeToAspectRatio(512, 307, ASPECT_RATIO._5_3, "5:3"),
+            // ~1.667: 1024x614
+            new PixelSizeToAspectRatio(30, 23, ASPECT_RATIO._4_3, "4:3"),
+            // ~1.333: 480x368
+            new PixelSizeToAspectRatio(128, 69, ASPECT_RATIO._17_9, "17:9"),
+            // ~1.889: 1024x552
+            new PixelSizeToAspectRatio(30, 23, ASPECT_RATIO._11_9, "11:9"),
+            // ~1.222: 592x480
+            new PixelSizeToAspectRatio(53, 30, ASPECT_RATIO._16_9, "16:9"),
+            // ~1.767: 848x480
+            new PixelSizeToAspectRatio(37, 30, ASPECT_RATIO._11_9, "11:9"),
+            // ~1.233: 592x480
+            new PixelSizeToAspectRatio(192, 145, ASPECT_RATIO._4_3, "4:3"),
+            // ~1.324: 1152x870
+            new PixelSizeToAspectRatio(640, 427, ASPECT_RATIO._3_2, "3:2"),
+            // ~1.499: 1280x854
+            new PixelSizeToAspectRatio(427, 240, ASPECT_RATIO._16_9, "16:9"),
+            // ~1.779: 854x480
     };
+
     private ListPreference cameraIndexPreference;
+
     private ListPreference cameraResolutionPreference;
 
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -171,7 +185,6 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
         try {
             cam = Camera.open(camIndex);
 
-
             Camera.Parameters params = cam.getParameters();
             List<Camera.Size> previewSizes = params.getSupportedPreviewSizes();
             cam.release();
@@ -181,6 +194,7 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
             // String camResolution =
             // sharedPreferences.getString("pref_cameraResolution",
             // getResources().getString(R.string.pref_defaultValue_cameraResolution);
+
             String camResolution = cameraResolutionPreference.getValue();
             boolean foundCurrentResolution = false;
             CharSequence[] entries = new CharSequence[previewSizes.size()];
@@ -188,8 +202,7 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
             for (int i = 0; i < previewSizes.size(); i++) {
                 int w = previewSizes.get(i).width;
                 int h = previewSizes.get(i).height;
-                entries[i] = w + "x" + h + "   (" + findAspectRatioName(w, h)
-                        + ")";
+                entries[i] = w + "x" + h + "   (" + findAspectRatioName(w, h) + ")";
                 entryValues[i] = w + "x" + h;
                 if (entryValues[i].equals(camResolution))
                     foundCurrentResolution = true;
@@ -199,8 +212,7 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
 
             if (!foundCurrentResolution) {
                 cameraResolutionPreference.setValue(entryValues[0].toString());
-                cameraResolutionPreference
-                        .setSummary(cameraResolutionPreference.getEntry());
+                cameraResolutionPreference.setSummary(cameraResolutionPreference.getEntry());
             }
 
         } catch (RuntimeException e) {
@@ -229,8 +241,7 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
             cameraIndexPreference.setSummary(cameraIndexPreference.getEntry());
             buildResolutionListForCameraIndex();
         } else if (key.equals("pref_cameraResolution")) {
-            cameraResolutionPreference.setSummary(cameraResolutionPreference
-                    .getEntry());
+            cameraResolutionPreference.setSummary(cameraResolutionPreference.getEntry());
         }
     }
 
@@ -240,8 +251,7 @@ public class CameraPreferencesActivity extends PreferenceActivity implements
         super.onPause();
 
         // Unregister the listener whenever a key changes
-        getPreferenceManager().getSharedPreferences()
-                .unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
     /**

@@ -59,7 +59,7 @@ public class ProductPageActivity extends AppCompatActivity {
         position = (String) b.getCharSequence("article_position");
         id = (String) b.getCharSequence("article_id");
 
-        article_3ds =(String)b.getCharSequence("article_3ds");
+        article_3ds = (String) b.getCharSequence("article_3ds");
         oldPrice = (String) b.getCharSequence("article_price");
         discount = (String) b.getCharSequence("article_discount");
         Integer x = Integer.parseInt(oldPrice);
@@ -94,7 +94,7 @@ public class ProductPageActivity extends AppCompatActivity {
         Log.e(TAG, "Article Position----" + position);
         Log.e(TAG, "Article Images----" + images);
         Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
-        Log.e(TAG, "onCreate: 3ds"+article_3ds );
+        Log.e(TAG, "Article 3ds File----" + article_3ds);
 
         TabLayout tabLayout = findViewById(R.id.product_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
@@ -103,7 +103,7 @@ public class ProductPageActivity extends AppCompatActivity {
 
         final ViewPager viewPager = findViewById(R.id.product_pager);
         final ProductPageAdapter adapter = new ProductPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
-                name, description, oldPrice, discount, newPrice, dimensions, width, height, length, position, id, images, article_vendor_id,article_3ds);
+                name, description, oldPrice, discount, newPrice, dimensions, width, height, length, position, id, images, article_vendor_id, article_3ds);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -136,7 +136,7 @@ public class ProductPageActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
         Intent intent = new Intent(this, CatalogActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |Intent.FLAG_ACTIVITY_CLEAR_TOP );
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         intent.putExtra("activity", "ProductPage");
         startActivity(intent);

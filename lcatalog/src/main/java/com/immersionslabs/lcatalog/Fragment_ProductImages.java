@@ -31,6 +31,9 @@ import com.like.LikeButton;
 import com.like.OnAnimationEndListener;
 import com.like.OnLikeListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,22 +94,21 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:name" + article_name);
 
+        try {
 
-//
-//        try {
-//
-//            JSONArray image_json = new JSONArray(article_images);
-//            for (int i=0;i<image_json.length();i++){
-//                image1 = image_json.getString(0);
-//                image2 = image_json.getString(1);
-//                image3 = image_json.getString(2);
-//                image4 = image_json.getString(3);
-//
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+            JSONArray image_json = new JSONArray(article_images);
+            for (int i = 0; i < image_json.length(); i++) {
+                image1 = image_json.getString(0);
+                image2 = image_json.getString(1);
+                image3 = image_json.getString(2);
+                image4 = image_json.getString(3);
+                image5 = image_json.getString(4);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Log.e(TAG, "Article Image 1----" + image1);
         Log.e(TAG, "Article Image 2----" + image2);
@@ -136,6 +138,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
             private void addBottomDots(int currentPage) {
 
+                dots = new TextView[slider_images.size()];
 
                 Slider_dots.removeAllViews();
 
