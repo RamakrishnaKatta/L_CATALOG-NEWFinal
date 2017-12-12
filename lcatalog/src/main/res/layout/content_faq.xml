@@ -279,9 +279,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_toLeftOf="@+id/img5"
+                    android:layout_toStartOf="@+id/img5"
                     android:padding="@dimen/margin_2"
-                    android:text="What is Zap Exclusive?"
+                    android:text="What is L catalog premium?"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/margin_16"
                     android:textStyle="bold" />
@@ -301,7 +301,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_2"
-                android:text="Zap Exclusive is a premium service where L Catalog personally handpicks the products in this closet – all the products are mostly new with tags and exclusive luxury items. We carry out extra verification of all the luxury handbags, shoes, clothes and accessories. L Catalog also lists the products on behalf of the sellers so that their identity is not disclosed. Plus, they are entitled to special white glove service!"
+                android:text=" premium service where L Catalog personally handpicks the products in this closet – all the products are mostly new with tags and exclusive luxury items. We carry out extra verification of all the luxury handbags, shoes, clothes and accessories. L Catalog also lists the products on behalf of the sellers so that their identity is not disclosed. Plus, they are entitled to special white glove service!"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -500,7 +500,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_2"
-                android:text="L Catalog creates a ZapCash (Wallet) for you where your L Catalog shopping money is stored."
+                android:text="L Catalog creates Wallet for you where your L Catalog shopping money is stored."
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
@@ -721,7 +721,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_2"
-                android:text="You will have 24 hours from the time you get your order. If you want to return an item, you can go on L Catalog app > Menu bar > My order > Return. You can select one of the 4 options provided to you and we will have a Zap care agent reach out to you at the earliest."
+                android:text="You will have 24 hours from the time you get your order. If you want to return an item, you can go on L Catalog app > Menu bar > My order > Return. You can select one of the 4 options provided to you and we will have a L catalog care agent reach out to you at the earliest."
                 android:textColor="@android:color/white" />
 
             <TextView
