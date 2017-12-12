@@ -7,10 +7,11 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -53,12 +54,18 @@ public class GuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest);
 
-
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
         _guestLoginButton = findViewById(R.id.btn_guest);
         get_details = findViewById(R.id.btn_get_data);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_guest);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         String guest_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/guest.txt";
         file_guest = new File(guest_text_file_location);
@@ -71,17 +78,6 @@ public class GuestActivity extends AppCompatActivity {
 
         //Disables the keyboard to appear on the activity launch
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-        FloatingActionButton fab = findViewById(R.id.fab_guest);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(GuestActivity.this, UserTypeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         get_details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,9 +252,18 @@ public class GuestActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
+        setResult(RESULT_CANCELED);
         super.onBackPressed();
-        startActivity(new Intent(this, UserTypeActivity.class));
         finish();
     }
 
@@ -296,10 +301,12 @@ public class GuestActivity extends AppCompatActivity {
             Log.d(TAG, "onPause: Scheduled Alarm Cancelled ");
         }
     }
+
     @Override
     public void onPause() {
         super.onPause();
     }
+
     public void onDestroy() {
         super.onDestroy();
     }

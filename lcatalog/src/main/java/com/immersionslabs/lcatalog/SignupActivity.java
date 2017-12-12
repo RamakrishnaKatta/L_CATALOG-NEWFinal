@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -78,17 +79,13 @@ public class SignupActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_signup);
+        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab_signup);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(SignupActivity.this, UserTypeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         _signupButton = findViewById(R.id.btn_signup);
         _signupButton.setOnClickListener(new View.OnClickListener() {
@@ -303,9 +300,18 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
+        setResult(RESULT_CANCELED);
         super.onBackPressed();
-        startActivity(new Intent(this, UserTypeActivity.class));
         finish();
     }
 

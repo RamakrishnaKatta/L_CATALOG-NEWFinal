@@ -140,7 +140,6 @@ public class UserTypeActivity extends AppCompatActivity {
                     Log.e(TAG, "Enter this loop of Folder Creation");
                     CreateFolderStructure();
                 }
-                finish();
             }
         });
 
@@ -155,7 +154,6 @@ public class UserTypeActivity extends AppCompatActivity {
                     Log.e(TAG, "Enter this loop of Folder Creation");
                     CreateFolderStructure();
                 }
-                finish();
             }
         });
 
@@ -170,7 +168,6 @@ public class UserTypeActivity extends AppCompatActivity {
                     Log.e(TAG, "Enter this loop of Folder Creation");
                     CreateFolderStructure();
                 }
-                finish();
             }
         });
 
