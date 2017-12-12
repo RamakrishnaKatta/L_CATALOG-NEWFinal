@@ -173,5 +173,22 @@
     <string name="product_share">share</string>
     <string name="btn_edit_profile">EDIT PROFILE</string>
     <string name="btn_update_profile">UPDATE PROFILE</string>
+    <string name="product_title">TITLE :</string>
+    <string name="product_title_name">please display the text here............</string>
+    <string name="product_desc">DESCRIPTION :</string>
+    <string name="product_desc_name">Description of the product will be displayed here and also the related products</string>
+    <string name="product_rating">4.3 *</string>
+    <string name="product_rating_reviews"><![CDATA[50 ratings & 15 reviews]]></string>
+    <string name="disc_percent">20% OFF</string>
+    <string name="dimen_width">WIDTH :</string>
+    <string name="width_value">30 in</string>
+    <string name="dimen_length">LENGTH :</string>
+    <string name="length_value">25 in</string>
+    <string name="dimen_height">HEIGHT :</string>
+    <string name="height_value">20 in</string>
+    <string name="providedby_vendor">PROVIDED BY :</string>
+    <string name="vendor_title">NAME :</string>
+    <string name="vendor_name">CMR</string>
+    <string name="vendor_address_title">ADDRESS :</string>
 
 </resources>

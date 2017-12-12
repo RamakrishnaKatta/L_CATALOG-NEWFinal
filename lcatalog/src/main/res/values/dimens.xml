@@ -19,7 +19,10 @@
     <dimen name="margin_24">24dp</dimen>
 
     <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+
     <dimen name="margin_50">50dp</dimen>
     <dimen name="margin_75">75dp</dimen>
 
@@ -45,5 +48,26 @@
     <dimen name="text_size_xxxlarge">24sp</dimen>
 
     <dimen name="text_size_max">30sp</dimen>
+
+
+    <!--Dimens for Tab text sizes-->
+    <dimen name="text_tab_small">24sp</dimen>
+    <dimen name="text_tab_medium">28sp</dimen>
+    <dimen name="text_tab_large">32sp</dimen>
+    <dimen name="text_tab_xlarge">36sp</dimen>
+    <dimen name="text_tab_xxlarge">40sp</dimen>
+    <dimen name="text_tab_44">44sp</dimen>
+    <dimen name="text_tab_xxxlarge">48sp</dimen>
+
+    <dimen name="text_tab_max">60sp</dimen>
+
+
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_300">300dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_400">400dp</dimen>
+    <dimen name="margin_140">140dp</dimen>
+    <dimen name="margin_500">500dp</dimen>
 
 </resources>

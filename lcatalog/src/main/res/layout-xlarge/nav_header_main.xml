@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/margin_5"
-    android:paddingLeft="@dimen/margin_16"
-    android:paddingRight="@dimen/margin_16"
-    android:paddingTop="@dimen/margin_16"
+    android:paddingBottom="@dimen/margin_10"
+    android:paddingLeft="@dimen/margin_32"
+    android:paddingRight="@dimen/margin_32"
+    android:paddingTop="@dimen/margin_32"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <LinearLayout
@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/margin_10">
+        android:paddingTop="@dimen/margin_20">
 
         <ImageView
             android:id="@+id/icon_image"
@@ -31,11 +31,11 @@
             android:id="@+id/application_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/margin_3"
+            android:paddingStart="@dimen/margin_6"
             android:paddingEnd="@dimen/margin_0"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_max" />
+            android:textSize="@dimen/text_tab_max" />
     </LinearLayout>
 
     <TextView
@@ -45,12 +45,12 @@
         android:gravity="center"
         android:text="@string/powered_immersionslabs"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_tab_large"
         android:textStyle="bold" />
 
     <View
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/margin_1"
+        android:layout_height="@dimen/margin_2"
         android:background="@color/white" />
 
     <TextView
@@ -58,10 +58,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:paddingTop="@dimen/margin_3"
+        android:paddingTop="@dimen/margin_6"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_xlarge"
+        android:textSize="@dimen/text_tab_xlarge"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -74,20 +74,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:paddingTop="@dimen/margin_3"
+            android:paddingTop="@dimen/margin_6"
             android:text="@string/nav_hi"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_xlarge" />
+            android:textSize="@dimen/text_tab_xlarge" />
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:paddingTop="@dimen/margin_3"
+            android:paddingTop="@dimen/margin_6"
             android:text="@string/Logged_userName"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_xlarge" />
+            android:textSize="@dimen/text_tab_xlarge" />
 
     </LinearLayout>
 

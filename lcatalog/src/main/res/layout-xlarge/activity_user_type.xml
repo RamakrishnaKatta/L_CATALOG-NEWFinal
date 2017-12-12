@@ -1,0 +1,221 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".UserTypeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_20">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="@dimen/margin_200"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/companyicon" />
+
+            <TextView
+                android:id="@+id/application_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tab_max" />
+
+            <TextView
+                android:id="@+id/immersionslabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/powered_immersionslabs"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tab_large"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/welcome_aboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/margin_20"
+                android:text="@string/welcome_aboard"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tab_xxxlarge"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/who_are_you"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/margin_20"
+                android:text="@string/firstly_who_you_are_matters"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tab_xxxlarge"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_6"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <ImageButton
+                        android:id="@+id/btn_customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/login_sign"
+                        android:scaleType="center"
+                        android:src="@mipmap/ic_l" />
+
+                    <TextView
+                        android:id="@+id/txt_customer_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/btn_customer"
+                        android:layout_toRightOf="@+id/btn_customer"
+                        android:text="@string/login_sign"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_xxlarge"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/txt_customer_text"
+                        android:layout_toRightOf="@+id/txt_customer_text"
+                        android:padding="@dimen/margin_20"
+                        android:text="@string/login_hint"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="italic"
+                         />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <ImageButton
+                        android:id="@+id/btn_new_customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/signup_hint"
+                        android:scaleType="center"
+                        android:src="@mipmap/ic_s" />
+
+                    <TextView
+                        android:id="@+id/txt_new_customer_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/btn_new_customer"
+                        android:layout_toRightOf="@+id/btn_new_customer"
+                        android:text="@string/signup_sign"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_xxlarge"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_new_customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/txt_new_customer_text"
+                        android:padding="@dimen/margin_20"
+                        android:text="@string/signup_hint"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="italic"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <ImageButton
+                        android:id="@+id/btn_shopper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/guest_sign"
+                        android:scaleType="center"
+                        android:src="@mipmap/ic_g" />
+
+
+                    <TextView
+                        android:id="@+id/txt_shopper_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/btn_shopper"
+                        android:layout_toRightOf="@+id/btn_shopper"
+                        android:text="@string/guest_sign"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_xxlarge"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_shopper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/txt_shopper_text"
+                        android:layout_toRightOf="@+id/txt_shopper_text"
+                        android:padding="@dimen/margin_20"
+                        android:text="@string/guest_hint"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="italic"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

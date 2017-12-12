@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginEnd="@dimen/margin_5"
+    android:layout_marginEnd="@dimen/margin_10"
     android:background="@drawable/background_curves">
 
     <ScrollView
@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/h_item_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200"
+                android:layout_height="@dimen/margin_400"
                 android:layout_alignParentTop="true"
                 android:contentDescription="@string/app_name" />
 
@@ -29,10 +29,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/h_item_image"
                 android:gravity="center"
-                android:padding="@dimen/margin_10"
+                android:padding="@dimen/margin_20"
                 android:text="@string/catalog_title"
                 android:textColor="@color/primary_dark"
-                android:textSize="@dimen/text_size_xxlarge"
+                android:textSize="@dimen/text_tab_xxlarge"
                 android:textStyle="bold" />
 
             <TextView
@@ -41,10 +41,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/h_item_name"
                 android:gravity="center"
-                android:padding="@dimen/margin_10"
+                android:padding="@dimen/margin_20"
                 android:text="@string/catalog_description"
                 android:textColor="@color/primary_dark"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_tab_large"
                 android:textStyle="italic" />
 
             <LinearLayout
@@ -54,26 +54,26 @@
                 android:layout_below="@+id/h_item_description"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="@dimen/margin_10">
+                android:padding="@dimen/margin_20">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/margin_5">
+                    android:padding="@dimen/margin_10">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/discount_price_title"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_tab_small" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_3"
+                        android:layout_marginEnd="@dimen/margin_6"
                         android:text="@string/Rs"
                         android:textColor="@color/black" />
 
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/discount_price"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:background="@color/black"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/margin_5">
+                    android:padding="@dimen/margin_10">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                         android:gravity="center"
                         android:text="@string/discount_title"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                     <TextView
@@ -109,11 +109,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:padding="@dimen/margin_3"
+                        android:padding="@dimen/margin_6"
                         android:text="@string/discount_percentage"
                         android:textAlignment="center"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -134,7 +134,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_3"
+                        android:layout_marginEnd="@dimen/margin_6"
                         android:text="@string/Rs"
                         android:textColor="@color/red" />
 
@@ -144,14 +144,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/original_price"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_tab_small" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/price_Tag"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_tab_small" />
                 </LinearLayout>
             </LinearLayout>
 

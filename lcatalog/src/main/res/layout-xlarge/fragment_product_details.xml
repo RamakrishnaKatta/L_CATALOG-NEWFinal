@@ -9,69 +9,69 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/margin_5">
+        android:padding="@dimen/margin_10">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_20"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/article_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_3"
+                android:padding="@dimen/margin_6"
                 android:text="@string/product_title"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_tab_large"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/article_title_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_3"
+                android:padding="@dimen/margin_6"
                 android:text="@string/product_title_name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_tab_medium" />
 
             <View
                 android:id="@+id/layout_separator2"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1"
+                android:layout_height="@dimen/margin_2"
                 android:background="@color/white" />
 
             <TextView
                 android:id="@+id/article_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_3"
+                android:padding="@dimen/margin_2"
                 android:text="@string/product_desc"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_tab_large"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/article_description_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_3"
+                android:padding="@dimen/margin_6"
                 android:text="@string/product_desc_name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_tab_medium" />
         </LinearLayout>
 
         <View
             android:id="@+id/layout_separator3"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_1"
+            android:layout_height="@dimen/margin_2"
             android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_3"
+            android:layout_margin="@dimen/margin_6"
             android:orientation="horizontal">
 
             <TextView
@@ -79,36 +79,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/black"
-                android:paddingBottom="@dimen/margin_2"
-                android:paddingLeft="@dimen/margin_6"
-                android:paddingRight="@dimen/margin_6"
-                android:paddingTop="@dimen/margin_2"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12"
+                android:paddingTop="@dimen/margin_4"
                 android:text="@string/product_rating"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_medium"
+                android:textSize="@dimen/text_tab_medium"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/text_ratings_reviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_24"
                 android:text="@string/product_rating_reviews"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_tab_medium" />
 
         </LinearLayout>
 
         <View
             android:id="@+id/layout_separator4"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_1"
+            android:layout_height="@dimen/margin_2"
             android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_6"
             android:orientation="vertical">
 
             <LinearLayout
@@ -121,16 +121,16 @@
                     android:id="@+id/article_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_5"
+                    android:padding="@dimen/margin_10"
                     android:text="@string/original_price_title"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large"
+                    android:textSize="@dimen/text_tab_large"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textColor="@color/black" />
 
@@ -139,25 +139,25 @@
                     android:id="@+id/article_price_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/margin_20"
+                    android:paddingEnd="@dimen/margin_40"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/original_price"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_tab_small" />
 
                 <TextView
                     android:id="@+id/article_price_discount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/black"
-                    android:paddingBottom="@dimen/margin_3"
-                    android:paddingLeft="@dimen/margin_10"
-                    android:paddingRight="@dimen/margin_10"
-                    android:paddingTop="@dimen/margin_3"
+                    android:paddingBottom="@dimen/margin_6"
+                    android:paddingLeft="@dimen/margin_20"
+                    android:paddingRight="@dimen/margin_20"
+                    android:paddingTop="@dimen/margin_6"
                     android:text="@string/disc_percent"
                     android:textAlignment="center"
                     android:textColor="@color/maroon"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -171,17 +171,17 @@
                     android:id="@+id/article_price_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_5"
+                    android:padding="@dimen/margin_10"
                     android:text="@string/discount_price_title"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large"
+                    android:textSize="@dimen/text_tab_large"
                     android:textStyle="bold" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textColor="@color/black" />
 
@@ -190,12 +190,12 @@
                     android:id="@+id/article_price_value_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/margin_20"
+                    android:paddingEnd="@dimen/margin_40"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/discount_price"
                     android:textColor="@color/white"
                     android:textColorHint="@color/jet"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -205,13 +205,13 @@
         <View
             android:id="@+id/layout_separator5"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_1"
+            android:layout_height="@dimen/margin_2"
             android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_6"
             android:baselineAligned="false"
             android:gravity="center"
             android:orientation="horizontal"
@@ -227,20 +227,20 @@
                     android:id="@+id/article_width"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/dimen_width"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/article_width_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/width_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_tab_medium" />
 
             </LinearLayout>
 
@@ -254,20 +254,20 @@
                     android:id="@+id/article_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/dimen_length"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/article_length_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/length_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_tab_medium" />
 
             </LinearLayout>
 
@@ -281,10 +281,10 @@
                     android:id="@+id/article_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/dimen_height"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
                 <TextView
@@ -292,10 +292,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLength="200"
-                    android:padding="@dimen/margin_3"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/height_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_tab_medium" />
 
             </LinearLayout>
 
@@ -304,17 +304,17 @@
         <View
             android:id="@+id/layout_separator6"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_1"
+            android:layout_height="@dimen/margin_2"
             android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_6"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="250dp"
+                android:layout_width="@dimen/margin_500"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -323,10 +323,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="@dimen/margin_5"
+                    android:padding="@dimen/margin_10"
                     android:text="@string/providedby_vendor"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large"
+                    android:textSize="@dimen/text_tab_large"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -339,20 +339,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:padding="@dimen/margin_5"
+                        android:padding="@dimen/margin_10"
                         android:text="@string/vendor_title"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
+                        android:textSize="@dimen/text_tab_medium"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/article_vendor_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_5"
+                        android:padding="@dimen/margin_10"
                         android:text="@string/vendor_name"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="italic" />
                 </LinearLayout>
 
@@ -365,20 +365,20 @@
                         android:id="@+id/article_vendor_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_3"
+                        android:padding="@dimen/margin_6"
                         android:text="@string/vendor_address_title"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
+                        android:textSize="@dimen/text_tab_medium"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/article_vendor_address_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_3"
+                        android:padding="@dimen/margin_6"
                         android:text="@string/dummy_address"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="italic" />
 
                 </LinearLayout>
@@ -390,7 +390,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:padding="@dimen/margin_3">
+                android:padding="@dimen/margin_6">
 
                 <ImageView
                     android:id="@+id/article_vendor_logo"

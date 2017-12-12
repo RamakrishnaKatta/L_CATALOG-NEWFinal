@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_catalog"
+            android:icon="@mipmap/ic_catalog"
+            android:title="@string/nav_catalog" />
+        <item
+            android:id="@+id/nav_augment"
+            android:icon="@mipmap/ic_augment"
+            android:title="@string/menu_augment" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@mipmap/ic_menu_slideshow"
+            android:title="@string/menu_gallery" />
+    </group>
+
+    <item android:title="@string/my_profile">
+        <menu>
+            <item
+                android:id="@+id/nav_user_account"
+                android:alphabeticShortcut="@string/_3d_text"
+                android:icon="@mipmap/ic_menu_user_account"
+                android:title="@string/profile_account" />
+            <item
+                android:id="@+id/nav_user_notify"
+                android:icon="@mipmap/ic_notifications"
+                android:title="@string/profile_notifications" />
+            <item
+                android:id="@+id/nav_user_favorite"
+                android:icon="@mipmap/ic_fav_off"
+                android:title="@string/profile_favorites" />
+            <item
+                android:id="@+id/nav_sign_up"
+                android:icon="@mipmap/ic_signup"
+                android:title="@string/sign_up" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@mipmap/ic_signout"
+                android:title="@string/sign_out" />
+        </menu>
+    </item>
+
+    <item android:title="@string/become_a_vendor">
+        <menu>
+            <item
+                android:id="@+id/nav_ven_reg"
+                android:icon="@mipmap/ic_vendor_register"
+                android:title="@string/vendor_registration" />
+        </menu>
+    </item>
+
+    <item android:title="@string/help_amp_support">
+        <menu>
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@mipmap/ic_feedback"
+                android:title="@string/support_feedback" />
+            <item
+                android:id="@+id/nav_terms_conditions"
+                android:icon="@mipmap/ic_terms_conditions"
+                android:title="@string/support_terms_conditions" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@mipmap/ic_about_us"
+                android:title="@string/support_about" />
+            <item
+                android:id="@+id/nav_faq"
+                android:icon="@mipmap/ic_faq"
+                android:title="@string/support_faq" />
+        </menu>
+    </item>
+
+</menu>

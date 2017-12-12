@@ -44,8 +44,8 @@
     </style>
 
     <style name="NavigationViewStyle">
-        <item name="android:textSize">13sp</item> <!-- menu item text size-->
-        <item name="android:listPreferredItemHeightSmall">35dp</item><!-- menu item height-->
+        <item name="android:textSize">@dimen/text_size_medium</item> <!-- menu item text size-->
+        <item name="android:listPreferredItemHeightSmall">@dimen/margin_35</item><!-- menu item height-->
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
