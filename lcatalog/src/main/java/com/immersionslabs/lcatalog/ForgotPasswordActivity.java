@@ -40,7 +40,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private static final String TAG = "ForgotPassword";
     private static final int REQUEST_FORGOT = 0;
 
-    private static final String PASSWORD_UPDATE_URL = "http://lcatalog.immersionslabs.com:8080/lll/web/user/update_password";
+    private static final String PASSWORD_UPDATE_URL = "http://35.154.150.204:4000/users/changePassword";
 
     private Button _submitButton;
     private EditText _emailText, _passwordText, _reenterPasswordText;
@@ -141,20 +141,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         final JSONObject password_update_parameters = new JSONObject();
         password_update_parameters.put("email", email);
-        password_update_parameters.put("newPassword", password);
+        password_update_parameters.put("password", password);
         Log.e(TAG, "Request--" + password_update_parameters);
 
-        final JSONObject request = new JSONObject();
-        request.put("request", password_update_parameters);
-        Log.e(TAG, "Request--" + request);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, PASSWORD_UPDATE_URL, request, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, PASSWORD_UPDATE_URL, password_update_parameters, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject requestResponse) {
                 Log.e(TAG, "response--" + requestResponse);
                 try {
-                    code = requestResponse.getString("code");
+                    code = requestResponse.getString("status_code");
                     message = requestResponse.getString("message");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -186,7 +182,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void run() {
                 // On complete call either onLoginSuccess or onLoginFailed
 
-                if (Objects.equals(message, "SUCCESS")) {
+                if (Objects.equals(code, "200")) {
                     onSubmitSuccess();
                 } else {
                     onSubmitFailed();
@@ -260,6 +256,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private void onSubmitSuccess() {
         _submitButton = findViewById(R.id.btn_submit);
         _submitButton.setEnabled(false);
+        CustomMessage.getInstance().CustomMessage(this, "Password has been changed successfully, Try login with the new password");
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

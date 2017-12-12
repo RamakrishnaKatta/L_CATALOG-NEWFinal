@@ -187,12 +187,7 @@ public class SignupActivity extends AppCompatActivity {
         Log.e(TAG, "mobile--" + mobile);
         Log.e(TAG, "password--" + password);
 
-
         Log.e(TAG, "request--" + signup_parameters);
-
-        JSONObject request = new JSONObject();
-        request.put("request", signup_parameters);
-//        Log.e(TAG, "Request--" + request);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REGISTER_URL, signup_parameters, new Response.Listener<JSONObject>() {
             @Override
@@ -207,7 +202,6 @@ public class SignupActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -226,7 +220,6 @@ public class SignupActivity extends AppCompatActivity {
                         e1.printStackTrace();
                     }
                 }
-
             }
         }) {
             @Override
