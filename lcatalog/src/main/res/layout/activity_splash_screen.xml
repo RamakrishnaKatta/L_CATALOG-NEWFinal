@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -14,11 +14,11 @@
 
         <ImageView
             android:id="@+id/splash_icon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/margin_150"
+            android:layout_height="@dimen/margin_150"
             android:layout_gravity="center"
-            android:src="@drawable/companyicon"
-            android:contentDescription="@string/company_icon" />
+            android:contentDescription="@string/company_icon"
+            android:src="@drawable/companyicon" />
 
         <TextView
             android:id="@+id/application_name"

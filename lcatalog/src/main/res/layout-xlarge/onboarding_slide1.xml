@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:ignore="UselessParent">
+       >
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="@dimen/margin_300"

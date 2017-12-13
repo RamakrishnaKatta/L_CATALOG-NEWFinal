@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".GuestActivity"
-    tools:showIn="@layout/activity_guest">
+    tools:context=".LoginActivity"
+    tools:showIn="@layout/activity_login">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,65 +19,65 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_50">
-
+            android:padding="@dimen/margin_40"
+            android:paddingTop="@dimen/margin_100">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/icon"
-                android:layout_width="@dimen/margin_100"
-                android:layout_height="@dimen/margin_100"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="@dimen/margin_200"
                 android:layout_gravity="center_horizontal"
-                android:contentDescription="@string/app_name"
+                android:contentDescription="@string/company_icon"
                 android:src="@drawable/companyicon" />
-
 
             <TextView
                 android:id="@+id/application_name"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/app_name"
-                android:textSize="@dimen/text_size_max" />
+                android:text="@string/app_newName"
+                android:textSize="@dimen/text_tab_max" />
 
             <TextView
                 android:id="@+id/immersionslabs"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_tab_large"
                 android:textStyle="bold" />
 
-            <!-- Name Label -->
+            <!--  Email Label -->
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/area_input_name"
+                android:id="@+id/area_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_3">
+                android:layout_margin="@dimen/margin_6"
+                android:visibility="visible">
 
                 <EditText
-                    android:id="@+id/input_name"
+                    android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/name"
-                    android:inputType="textPersonName" />
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
-            <!-- mobile number -->
+            <!--  Password Label -->
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/area_input_mobile"
+                android:id="@+id/area_input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_3">
+                android:layout_margin="@dimen/margin_6"
+                android:visibility="visible"
+                app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/input_mobile"
+                    android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/mobile_number"
-                    android:inputType="number"
-                    android:maxLength="10" />
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
@@ -88,22 +88,32 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_guest"
-                    android:layout_width="@dimen/margin_200"
-                    android:layout_height="@dimen/margin_40"
-                    android:layout_marginTop="@dimen/margin_3"
-                    android:padding="@dimen/margin_10"
-                    android:text="@string/guest_details" />
+                    android:id="@+id/btn_login"
+                    android:layout_width="@dimen/margin_400"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_6"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_20"
+                    android:text="@string/btn_login" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/autofill_details"
+                    android:contentDescription="@string/btn_login"
                     app:srcCompat="@mipmap/ic_get_details" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/link_forgot_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_12"
+                android:gravity="center"
+                android:text="@string/forgot_password"
+                android:textSize="@dimen/text_tab_xxlarge" />
 
         </LinearLayout>
 

@@ -14,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/article_image_slider_area"
             android:layout_width="fill_parent"
-            android:layout_height="600dp">
+            android:layout_height="@dimen/margin_600">
 
             <ImageView
                 android:id="@+id/article_image_view"
@@ -40,7 +40,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/margin_2"
                 android:layout_above="@id/article_slider_dots"
                 android:alpha=".5" />
 
@@ -91,8 +91,7 @@
                 android:layout_weight="1.4"
                 android:background="@color/transparent"
                 android:contentDescription="@string/menu_augment"
-                app:srcCompat="@mipmap/ic_augment"
-                tools:ignore="VectorDrawableCompat" />
+                app:srcCompat="@mipmap/ic_augment" />
 
             <ImageButton
                 android:id="@+id/article_3dview_icon"

@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_vendor_registration">
 
     <LinearLayout
+        android:paddingTop="@dimen/margin_75"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -170,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_32"
             android:layout_marginTop="@dimen/margin_6"
-            android:padding="@dimen/margin_12"
+            android:padding="@dimen/margin_24"
             android:text="@string/new_vendor_submit" />
     </LinearLayout>
 

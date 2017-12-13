@@ -77,9 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_3"
-                    android:gravity="left"
-                    android:orientation="horizontal"
-                    tools:ignore="RtlHardcoded">
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/btn_customer"
@@ -96,7 +95,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/btn_customer"
-                        android:layout_toRightOf="@+id/btn_customer"
                         android:text="@string/login_sign"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_xxlarge"
@@ -108,7 +106,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/txt_customer_text"
-                        android:layout_toRightOf="@+id/txt_customer_text"
                         android:padding="@dimen/margin_10"
                         android:text="@string/login_hint"
                         android:textColor="@color/white"
@@ -159,8 +156,7 @@
                         android:text="@string/signup_hint"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_medium"
-                        android:textStyle="italic"
-                        tools:ignore="RtlSymmetry" />
+                        android:textStyle="italic" />
 
                 </RelativeLayout>
 
@@ -169,9 +165,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10"
-                    android:gravity="left"
-                    android:orientation="horizontal"
-                    tools:ignore="RtlHardcoded">
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/btn_shopper"
@@ -190,7 +185,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/btn_shopper"
-                        android:layout_toRightOf="@+id/btn_shopper"
                         android:text="@string/guest_sign"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_xxlarge"
@@ -202,13 +196,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/txt_shopper_text"
-                        android:layout_toRightOf="@+id/txt_shopper_text"
                         android:padding="@dimen/margin_10"
                         android:text="@string/guest_hint"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_medium"
-                        android:textStyle="italic"
-                        tools:ignore="RtlSymmetry" />
+                        android:textStyle="italic" />
 
                 </RelativeLayout>
 

@@ -19,8 +19,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_50">
+            android:padding="@dimen/margin_40"
+            android:paddingTop="@dimen/margin_100">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,9 +29,9 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/margin_75"
-                    android:layout_height="@dimen/margin_75"
-                    android:layout_marginStart="@dimen/margin_40"
+                    android:layout_width="@dimen/margin_150"
+                    android:layout_height="@dimen/margin_150"
+                    android:layout_marginStart="@dimen/margin_80"
                     android:contentDescription="@string/company_icon"
                     android:src="@drawable/companyicon" />
 
@@ -44,11 +44,12 @@
                         android:id="@+id/application_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_20"
+                        android:layout_marginTop="@dimen/margin_40"
                         android:gravity="center"
                         android:text="@string/app_newName"
                         android:textSize="@dimen/text_size_max"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                       />
 
                     <TextView
                         android:id="@+id/immersionslabs"
@@ -56,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="@string/powered_immersionslabs"
-                        android:textSize="@dimen/text_size_large"
+                        android:textSize="@dimen/text_tab_large"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -67,7 +68,7 @@
                 android:id="@+id/area_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2">
+                android:layout_margin="@dimen/margin_4">
 
                 <EditText
                     android:id="@+id/input_name"
@@ -82,7 +83,7 @@
                 android:id="@+id/area_input_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2">
+                android:layout_margin="@dimen/margin_4">
 
                 <EditText
                     android:id="@+id/input_address"
@@ -97,7 +98,7 @@
                 android:id="@+id/area_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2"
+                android:layout_margin="@dimen/margin_4"
                 android:visibility="visible">
 
                 <EditText
@@ -113,7 +114,7 @@
                 android:id="@+id/area_input_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2"
+                android:layout_margin="@dimen/margin_4"
                 android:visibility="visible">
 
                 <EditText
@@ -130,7 +131,7 @@
                 android:id="@+id/area_input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2"
+                android:layout_margin="@dimen/margin_4"
                 android:visibility="visible"
                 app:passwordToggleEnabled="true">
 
@@ -147,7 +148,7 @@
                 android:id="@+id/area_input_reEnterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_2"
+                android:layout_margin="@dimen/margin_4"
                 android:visibility="visible"
                 app:passwordToggleEnabled="true">
 
@@ -164,8 +165,8 @@
                 android:id="@+id/btn_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_3"
-                android:padding="@dimen/margin_12"
+                android:layout_margin="@dimen/margin_6"
+                android:padding="@dimen/margin_24"
                 android:text="@string/create_account"
                 android:textAlignment="center" />
 
