@@ -7,14 +7,13 @@
 
     <ScrollView
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/h_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_30"
             android:orientation="horizontal">
 
             <ImageView
@@ -33,7 +32,7 @@
                 android:padding="@dimen/margin_10"
                 android:text="@string/catalog_title"
                 android:textColor="@color/primary_dark"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_xxlarge"
                 android:textStyle="bold" />
 
             <TextView
@@ -45,7 +44,7 @@
                 android:padding="@dimen/margin_10"
                 android:text="@string/catalog_description"
                 android:textColor="@color/primary_dark"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="italic" />
 
             <LinearLayout
@@ -131,6 +130,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_0"
                             android:text="@string/percentage_symbol"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_size_small"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_3"
+                            android:text="@string/discount_off"
                             android:textColor="@color/red"
                             android:textSize="@dimen/text_size_small"
                             android:textStyle="bold" />

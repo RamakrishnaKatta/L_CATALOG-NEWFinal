@@ -7,13 +7,13 @@
 
     <ScrollView
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/h_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView
@@ -85,6 +85,13 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price_Tag"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_tab_small" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,17 +111,38 @@
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/h_item_discount_value"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:padding="@dimen/margin_6"
-                        android:text="@string/discount_percentage"
-                        android:textAlignment="center"
-                        android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small"
-                        android:textStyle="bold" />
+                        android:background="@color/black">
+
+                        <TextView
+                            android:id="@+id/h_item_discount_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/discount_percentage"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_tab_small"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_0"
+                            android:text="@string/percentage_symbol"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_tab_small"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_6"
+                            android:text="@string/discount_off"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_tab_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -123,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/margin_10">
+                    android:padding="@dimen/margin_20">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,7 +162,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_6"
+                        android:layout_gravity="center"
                         android:text="@string/Rs"
                         android:textColor="@color/red" />
 

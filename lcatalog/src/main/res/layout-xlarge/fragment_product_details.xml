@@ -46,7 +46,7 @@
                 android:id="@+id/article_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_2"
+                android:padding="@dimen/margin_4"
                 android:text="@string/product_desc"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_tab_large"
@@ -132,33 +132,57 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
                     android:id="@+id/article_price_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/margin_40"
-                    android:paddingStart="@dimen/margin_0"
                     android:text="@string/original_price"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
-
                 <TextView
-                    android:id="@+id/article_price_discount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:paddingBottom="@dimen/margin_6"
-                    android:paddingLeft="@dimen/margin_20"
-                    android:paddingRight="@dimen/margin_20"
-                    android:paddingTop="@dimen/margin_6"
-                    android:text="@string/disc_percent"
-                    android:textAlignment="center"
-                    android:textColor="@color/maroon"
-                    android:textSize="@dimen/text_tab_medium"
-                    android:textStyle="bold" />
+                    android:paddingStart="@dimen/margin_0"
+                    android:paddingEnd="@dimen/margin_40"
+                    android:text="@string/price_Tag"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_small" />
+
+                <LinearLayout
+                    android:padding="@dimen/margin_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/black">
+
+                    <TextView
+                        android:id="@+id/article_price_discount_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/discount_percentage"
+                        android:textColor="@color/maroon"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/percentage_symbol"
+                        android:textColor="@color/maroon"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/discount_off"
+                        android:textColor="@color/maroon"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -183,20 +207,26 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
                     android:id="@+id/article_price_value_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/margin_40"
-                    android:paddingStart="@dimen/margin_0"
                     android:text="@string/discount_price"
                     android:textColor="@color/white"
                     android:textColorHint="@color/jet"
                     android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_0"
+                    android:paddingEnd="@dimen/margin_20"
+                    android:text="@string/price_Tag"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_medium" />
 
             </LinearLayout>
 
@@ -242,6 +272,14 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_6"
+                    android:text="@string/dimension_value"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_medium" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -269,6 +307,15 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_6"
+                    android:text="@string/dimension_value"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_medium" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -291,11 +338,19 @@
                     android:id="@+id/article_height_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="200"
                     android:padding="@dimen/margin_6"
                     android:text="@string/height_value"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_6"
+                    android:text="@string/dimension_value"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_medium" />
+
 
             </LinearLayout>
 
@@ -304,7 +359,7 @@
         <View
             android:id="@+id/layout_separator6"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_2"
+            android:layout_height="@dimen/margin_1"
             android:background="@color/white" />
 
         <LinearLayout
