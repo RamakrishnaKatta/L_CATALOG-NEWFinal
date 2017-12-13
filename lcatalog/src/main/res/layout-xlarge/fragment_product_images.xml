@@ -55,13 +55,13 @@
         <LinearLayout
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_80"
+            android:layout_height="@dimen/margin_60"
             android:orientation="horizontal"
             android:padding="@dimen/margin_6"
             android:weightSum="5">
 
             <LinearLayout
-                android:layout_width="@dimen/margin_140"
+                android:layout_width="@dimen/margin_120"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -69,7 +69,7 @@
                     android:id="@+id/article_fav_icon"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    app:icon_size="@dimen/margin_120"
+                    app:icon_size="@dimen/margin_100"
                     app:icon_type="heart"
                     app:like_drawable="@mipmap/ic_fav_on"
                     app:unlike_drawable="@mipmap/ic_fav_off" />

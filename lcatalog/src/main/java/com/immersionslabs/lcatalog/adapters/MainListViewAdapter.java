@@ -21,7 +21,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class MainListViewAdapter extends  RecyclerView.Adapter<MainListViewAdapter.ViewHolder> {
+public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapter.ViewHolder> {
 
     private static final String TAG = "MainListViewAdapter";
 
@@ -103,12 +103,10 @@ public class MainListViewAdapter extends  RecyclerView.Adapter<MainListViewAdapt
         try {
 
             JSONArray images_json = new JSONArray(get_image);
-            for (int i=0;i<images_json.length();i++){
-
-                im1 = images_json.getString(Integer.parseInt("img"));
-                Log.e(TAG, "img >>>>" + im1);
+            for (int i = 0; i < images_json.length(); i++) {
+                im1 = images_json.getString(0);
+                Log.e(TAG, "image1 >>>>" + im1);
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -119,8 +117,6 @@ public class MainListViewAdapter extends  RecyclerView.Adapter<MainListViewAdapt
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
-//        new DownloadImageTask(viewHolder.item_image).execute(im1);
-        // Picasso.with(activity.getContext()).load(im1).centerCrop().into(viewHolder.item_image);
         viewHolder.item_name.setText(item_names.get(position));
         viewHolder.item_description.setText(item_descriptions.get(position));
 

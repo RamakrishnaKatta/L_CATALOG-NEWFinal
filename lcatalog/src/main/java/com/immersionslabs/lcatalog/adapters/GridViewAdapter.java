@@ -118,7 +118,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
 
             JSONArray images_json = new JSONArray(get_image);
             for (int i = 0; i < images_json.length(); i++) {
-                im1 = images_json.getString(i);
+                im1 = images_json.getString(0);
                 Log.e(TAG, "image1 >>>>" + im1);
             }
 
@@ -127,7 +127,8 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         }
         new DownloadImageTask(viewHolder.item_image).execute(im1);
 
-        Glide.with(activity).load("http://35.154.150.204:4000/upload/images/" + im1)
+        Glide.with(activity)
+                .load("http://35.154.150.204:4000/upload/images/" + im1)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
@@ -138,10 +139,10 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         String itemNewPrice = Integer.toString(z);
 
         viewHolder.item_name.setText(item_names.get(position));
-        viewHolder.item_description.setText(item_descriptions.get(position) + "...");
+        viewHolder.item_description.setText(item_descriptions.get(position));
         viewHolder.item_price.setText((Html.fromHtml("<strike>" + item_prices.get(position) + "</strike>")));
         viewHolder.item_price.setPaintFlags(viewHolder.item_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        viewHolder.item_discount.setText(item_discounts.get(position) + "%");
+        viewHolder.item_discount.setText(item_discounts.get(position));
         viewHolder.item_price_new.setText(itemNewPrice);
 
         viewHolder.grid_container.setOnClickListener(new View.OnClickListener() {

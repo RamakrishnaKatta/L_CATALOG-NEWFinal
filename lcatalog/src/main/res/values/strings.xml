@@ -161,7 +161,7 @@
     <string name="feedback_submit">THANK YOU</string>
     <string name="submit">Submit</string>
     <string name="catalog_description">My description.</string>
-    <string name="discount_percentage">20%</string>
+    <string name="discount_percentage">20</string>
     <string name="discount_price">800</string>
     <string name="price_Tag">/-</string>
     <string name="original_price">1000</string>
@@ -190,5 +190,6 @@
     <string name="vendor_title">NAME :</string>
     <string name="vendor_name">CMR</string>
     <string name="vendor_address_title">ADDRESS :</string>
+    <string name="percentage_symbol">%</string>
 
 </resources>

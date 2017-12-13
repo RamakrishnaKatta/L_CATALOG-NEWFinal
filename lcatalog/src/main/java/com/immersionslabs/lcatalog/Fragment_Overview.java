@@ -69,7 +69,7 @@ public class Fragment_Overview extends Fragment {
                 Log.e(TAG, "response--" + response);
 
                 try {
-                    JSONArray resp = response.getJSONArray("resp");
+                    JSONArray resp = response.getJSONArray("data");
                     mainRecyclerView(resp);
 
                 } catch (JSONException e) {
@@ -108,9 +108,9 @@ public class Fragment_Overview extends Fragment {
             try {
                 obj = m_jsonArray.getJSONObject(i);
 
-                item_ids.add(obj.getString("id"));
+                item_ids.add(obj.getString("_id"));
                 item_descriptions.add(obj.getString("description"));
-                item_images.add(obj.getString("images"));
+                item_images.add(obj.getString("img"));
                 item_names.add(obj.getString("name"));
                 item_prices.add(obj.getString("price"));
                 item_discounts.add(obj.getString("discount"));
