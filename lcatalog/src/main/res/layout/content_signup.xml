@@ -167,7 +167,8 @@
                 android:layout_margin="@dimen/margin_3"
                 android:padding="@dimen/margin_12"
                 android:text="@string/create_account"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_medium" />
 
         </LinearLayout>
 

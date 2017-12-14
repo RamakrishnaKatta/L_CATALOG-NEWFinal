@@ -90,10 +90,11 @@
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_guest"
                     android:layout_width="@dimen/margin_200"
-                    android:layout_height="@dimen/margin_40"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_3"
                     android:padding="@dimen/margin_10"
-                    android:text="@string/guest_details" />
+                    android:text="@string/guest_details"
+                    android:textSize="@dimen/text_size_medium" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"

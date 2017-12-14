@@ -94,7 +94,8 @@
                     android:layout_margin="@dimen/margin_3"
                     android:gravity="center"
                     android:padding="@dimen/margin_10"
-                    android:text="@string/btn_login" />
+                    android:text="@string/btn_login"
+                    android:textSize="@dimen/text_size_medium" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"

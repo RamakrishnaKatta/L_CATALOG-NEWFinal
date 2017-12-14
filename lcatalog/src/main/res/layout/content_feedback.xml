@@ -152,6 +152,8 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:paddingTop="@dimen/margin_10"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_medium"
                 android:text="@string/feedback_submit" />
         </LinearLayout>
 

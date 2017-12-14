@@ -33,9 +33,9 @@
                 android:id="@+id/application_name"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/app_newName"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_max" />
 
         </LinearLayout>
@@ -126,6 +126,8 @@
             android:layout_marginTop="@dimen/margin_3"
             android:padding="@dimen/margin_12"
             android:text="@string/btn_edit_profile"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_medium"
             android:visibility="visible" />
 
         <!-- Update Button -->
@@ -136,6 +138,8 @@
             android:layout_marginBottom="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_3"
             android:padding="@dimen/margin_12"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_medium"
             android:text="@string/btn_update_profile"
             android:visibility="gone" />
 

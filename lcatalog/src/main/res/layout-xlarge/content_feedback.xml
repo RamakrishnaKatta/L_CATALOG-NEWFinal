@@ -147,6 +147,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="@dimen/text_tab_medium"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:paddingTop="@dimen/margin_20"
                 android:text="@string/feedback_submit" />

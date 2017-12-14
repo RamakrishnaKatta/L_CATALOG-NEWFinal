@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -38,6 +39,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener {
 
@@ -260,27 +263,26 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-//        addBottomDots(0);
 
-//        final Handler handler = new Handler();
-//        final Runnable update = new Runnable() {
-//            @Override
-//            public void run() {
-//                if (page_position == slider_images.size()) {
-//                    page_position = 0;
-//                } else {
-//                    page_position = page_position + 1;
-//                }
-//                ArticleViewPager.setCurrentItem(page_position, true);
-//            }
-//        };
-//
-//        new Timer().schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                handler.post(update);
-//            }
-//        }, 2000, 5000);
+        final Handler handler = new Handler();
+        final Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                if (page_position == slider_images.size()) {
+                    page_position = 0;
+                } else {
+                    page_position = page_position + 1;
+                }
+                ArticleViewPager.setCurrentItem(page_position, true);
+            }
+        };
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        }, 2000, 5000);
 
         prefManager = new PrefManager(getActivity());
         Log.e(TAG, " " + prefManager.ProductPageActivityScreenLaunch());

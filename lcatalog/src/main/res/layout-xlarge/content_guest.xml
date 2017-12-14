@@ -90,15 +90,18 @@
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_guest"
                     android:layout_width="@dimen/margin_400"
-                    android:layout_height="@dimen/margin_80"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_6"
                     android:padding="@dimen/margin_20"
-                    android:text="@string/guest_details" />
+                    android:text="@string/guest_details"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_tab_medium" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/autofill_details"
                     app:srcCompat="@mipmap/ic_get_details" />

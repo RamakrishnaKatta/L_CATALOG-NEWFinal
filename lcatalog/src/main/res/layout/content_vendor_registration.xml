@@ -171,6 +171,8 @@
             android:layout_marginBottom="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_3"
             android:padding="@dimen/margin_12"
+            android:textSize="@dimen/text_size_medium"
+            android:textAlignment="center"
             android:text="@string/new_vendor_submit" />
     </LinearLayout>
 
