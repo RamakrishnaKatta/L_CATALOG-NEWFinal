@@ -1,109 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Feedbacklayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".FeedbackActivity"
     tools:showIn="@layout/activity_feedback">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_5"
-        android:fitsSystemWindows="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/margin_75">
-
-        <!-- Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/area_input_feed_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_5"
-            android:layout_marginTop="@dimen/margin_5"
-            android:textColorHint="@color/white"
-            android:visibility="visible">
-
-            <EditText
-                android:id="@+id/input_feed_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:hint="@string/name"
-                android:inputType="textPersonName"
-                android:maxLength="50"
-                android:textColor="@color/white" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <!-- Number Label -->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/area_input_feed_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_5"
-            android:layout_marginTop="@dimen/margin_5"
-            android:textColorHint="@color/white"
-            android:visibility="visible">
-
-            <EditText
-                android:id="@+id/input_feed_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:hint="@string/mobile_number"
-                android:inputType="number"
-                android:maxLength="10" />
-
-        </android.support.design.widget.TextInputLayout>
-
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:layout_marginTop="@dimen/margin_20"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_50"
+            android:fitsSystemWindows="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_5">
 
-            <!--Feedback Label-->
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/area_input_feed_subject"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_30"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/margin_75"
+                    android:layout_height="@dimen/margin_75"
+                    android:layout_marginStart="@dimen/margin_40"
+                    android:contentDescription="@string/company_icon"
+                    android:src="@drawable/companyicon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/application_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:gravity="center"
+                        android:text="@string/app_newName"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_max"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/immersionslabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/powered_immersionslabs"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/area_input_feed_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
                 android:textColorHint="@color/white"
                 android:visibility="visible">
 
                 <EditText
-                    android:id="@+id/input_feed_subject"
+                    android:id="@+id/input_feed_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_10"
                     android:background="@drawable/shape"
-                    android:gravity="top|start"
-                    android:hint="@string/FeedBack_Subject"
-                    android:inputType="textMultiLine"
-                    android:lines="10"
-                    android:maxLines="15"
-                    android:paddingBottom="@dimen/margin_5"
-                    android:scrollbars="vertical" />
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:textColor="@color/white" />
 
             </android.support.design.widget.TextInputLayout>
+
+
+            <!-- Number Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/area_input_feed_number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:textColorHint="@color/white"
+                android:visibility="visible">
+
+                <EditText
+                    android:id="@+id/input_feed_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:hint="@string/mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_20"
+                android:orientation="vertical">
+
+                <!--Feedback Label-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/area_input_feed_subject"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_30"
+                    android:textColorHint="@color/white"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:id="@+id/input_feed_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:background="@drawable/shape"
+                        android:gravity="top|start"
+                        android:hint="@string/FeedBack_Subject"
+                        android:inputType="textMultiLine"
+                        android:lines="10"
+                        android:maxLines="15"
+                        android:paddingBottom="@dimen/margin_5"
+                        android:scrollbars="vertical" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_feed_submit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_10"
+                android:text="@string/feedback_submit" />
         </LinearLayout>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:paddingTop="@dimen/margin_10"
-            android:text="@string/feedback_submit" />
-    </LinearLayout>
+    </ScrollView>
 
 
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

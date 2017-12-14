@@ -18,6 +18,7 @@
     <string name="slide4_title_capture">CAPTURE</string>
     <string name="slide4_title_share">SHARE</string>
     <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
+    <string name="powered_symbol_immersionslabs">Immersion Software Labs. ℗ </string>
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly, Who you are matters !!</string>
     <string name="login_hint">If you are a customer already…</string>
@@ -111,7 +112,7 @@
         tricky part is to take a screen shot as if the furniture exists in the real. There
         will be a Gallery Button in app  which shows the list of screenshots that were taken earlier using the L – Catalog app. \n
     </string>
-    <string name="FeedBack_Subject">I am here to take your valuable FeedBack</string>
+    <string name="FeedBack_Subject">My valuable FeedBack</string>
     <string name="New_password">New Password</string>
     <string name="ReEnter_new_password">Re Enter New Password</string>
     <string name="note_download">NOTE : Please click the download button before you click the 3d view, as it is already been disabled until you download</string>

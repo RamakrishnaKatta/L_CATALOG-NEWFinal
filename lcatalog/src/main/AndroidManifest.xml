@@ -95,7 +95,7 @@
         <activity
             android:name=".FeedbackActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait"

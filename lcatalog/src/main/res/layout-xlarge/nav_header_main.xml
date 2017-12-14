@@ -35,7 +35,7 @@
             android:paddingEnd="@dimen/margin_0"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_tab_max" />
+            android:textSize="@dimen/text_tab_xlarge" />
     </LinearLayout>
 
     <TextView
@@ -43,9 +43,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/powered_immersionslabs"
+        android:text="@string/powered_symbol_immersionslabs"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_tab_large"
+        android:textSize="@dimen/text_tab_small"
         android:textStyle="bold" />
 
     <View
@@ -61,7 +61,7 @@
         android:paddingTop="@dimen/margin_6"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="@dimen/text_tab_xlarge"
+        android:textSize="@dimen/text_tab_medium"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -77,7 +77,7 @@
             android:paddingTop="@dimen/margin_6"
             android:text="@string/nav_hi"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_tab_xlarge" />
+            android:textSize="@dimen/text_tab_medium" />
 
         <TextView
             android:id="@+id/user_name"
@@ -87,7 +87,7 @@
             android:paddingTop="@dimen/margin_6"
             android:text="@string/Logged_userName"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_tab_xlarge" />
+            android:textSize="@dimen/text_tab_medium" />
 
     </LinearLayout>
 
