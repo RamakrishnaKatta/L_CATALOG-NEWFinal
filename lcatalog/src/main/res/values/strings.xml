@@ -194,5 +194,7 @@
     <string name="percentage_symbol">%</string>
     <string name="dimension_value">in</string>
     <string name="discount_off"> OFF</string>
+    <string name="customer">CUSTOMER</string>
+    <string name="guest">GUEST</string>
 
 </resources>

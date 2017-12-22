@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_type.setText(R.string.customer);
         } else {
             user_email.setText("Phone No: " + guest_phone);
-            user_type.setText("GUEST");
+            user_type.setText(R.string.guest);
         }
 
         prefManager3 = new PrefManager(this);
@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "This is Your Profile !!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, UserAccountActivity.class).putExtras(user_details);
                 startActivity(intent);
-                overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
             } else {
                 Toast.makeText(this, "You are a Guest, You dont possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "here are all your notifications, Check out !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NotifyActivity.class);
             startActivity(intent);
-            overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
 
         } else if (id == R.id.nav_sign_up) {
@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Thanks for your thought on Creating an Account, Appreciated !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SignupActivity.class);
             startActivity(intent);
-            overridePendingTransition( R.anim.slide_in_top, R.anim.slide_out_top);
+            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
 
         } else if (id == R.id.nav_logout) {
@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Intent intent = new Intent(this, AboutUsActivity.class);
             startActivity(intent);
-            overridePendingTransition( R.anim.slide_in_bottom, R.anim.slide_out_bottom );
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
 
         } else if (id == R.id.nav_feedback) {
             Intent intent = new Intent(this, FeedbackActivity.class);
@@ -396,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_faq) {
             Intent intent = new Intent(this, faqActivity.class);
             startActivity(intent);
-            overridePendingTransition( R.anim.slide_in_bottom, R.anim.slide_out_bottom );
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
 
         }
 
