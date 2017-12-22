@@ -35,7 +35,7 @@ public class Fragment_ProductDetails extends Fragment {
 
     private static final String TAG = "Fragment_ProductDetails";
 
-    private static final String REGISTER_URL = "http://35.154.150.204:4000/vendorArticles/by?id=";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/by?id=";
     private static String VENDOR_URL = null;
 
     //String Values assigned from the Bundle Arguments
@@ -94,8 +94,8 @@ public class Fragment_ProductDetails extends Fragment {
         a_height = getArguments().getString("article_height");
         a_length = getArguments().getString("article_length");
         Log.e(TAG, "--" + a_width + "--" + a_height + "--" + a_length);
-        article_width.setText(a_width );
-        article_height.setText(a_height );
+        article_width.setText(a_width);
+        article_height.setText(a_height);
         article_length.setText(a_length);
 
         a_vendor_id = getArguments().getString("article_vendor_id");

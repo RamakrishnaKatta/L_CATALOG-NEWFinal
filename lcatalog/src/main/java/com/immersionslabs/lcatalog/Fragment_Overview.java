@@ -30,7 +30,7 @@ import java.util.ArrayList;
 public class Fragment_Overview extends Fragment {
     private static final String TAG = "Fragment_Overview";
 
-    private static final String REGISTER_URL = "http://35.154.150.204:4000/vendorArticles";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_descriptions;

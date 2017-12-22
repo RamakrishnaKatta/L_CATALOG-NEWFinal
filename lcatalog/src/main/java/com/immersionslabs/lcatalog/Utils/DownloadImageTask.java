@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.immersionslabs.lcatalog.EnvConstants;
+
 import java.io.InputStream;
 import java.net.URL;
 
@@ -21,7 +23,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = "http://35.154.150.204:4000/upload/images/" + urls[0];
+        String urldisplay = EnvConstants.APP_BASE_URL + "/upload/images/" + urls[0];
         Log.e(TAG, "image1URL : " + urldisplay);
         Bitmap mIcon = null;
         try {

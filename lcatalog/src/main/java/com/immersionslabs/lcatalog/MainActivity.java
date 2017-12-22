@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user_email = header.findViewById(R.id.user_email);
         if (email != null) {
             user_email.setText(email);
-            user_type.setText("CUSTOMER");
+            user_type.setText(R.string.customer);
         } else {
             user_email.setText("Phone No: " + guest_phone);
             user_type.setText("GUEST");

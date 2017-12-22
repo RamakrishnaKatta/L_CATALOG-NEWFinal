@@ -40,7 +40,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private static final String TAG = "ForgotPassword";
     private static final int REQUEST_FORGOT = 0;
 
-    private static final String PASSWORD_UPDATE_URL = "http://35.154.150.204:4000/users/changePassword";
+    private static final String PASSWORD_UPDATE_URL = EnvConstants.APP_BASE_URL + "/users/changePassword";
 
     private Button _submitButton;
     private EditText _emailText, _passwordText, _reenterPasswordText;

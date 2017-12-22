@@ -52,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
     public static final String KEY_TYPE = "type";
     public static final String KEY_VENDORID = "vendor_id";
 
-    private static final String REGISTER_URL = "http://35.154.150.204:4000/users";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users";
 
     TextView app_name, powered;
     private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;

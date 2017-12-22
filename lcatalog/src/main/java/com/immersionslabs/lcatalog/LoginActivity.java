@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
 
-    private static final String LOGIN_URL = "http://35.154.150.204:4000/customerLogin";
+    private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
     private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
 
     TextView app_name, _forgot_password, powered;

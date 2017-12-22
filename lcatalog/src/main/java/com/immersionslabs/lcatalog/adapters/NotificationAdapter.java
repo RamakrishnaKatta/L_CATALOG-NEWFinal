@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.EnvConstants;
 import com.immersionslabs.lcatalog.NotifyActivity;
 import com.immersionslabs.lcatalog.R;
 
@@ -91,7 +92,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         Glide
                 .with(activity)
-                .load("http://35.154.150.204:4000/upload/images/" + get_image)
+                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + get_image)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.imageView);

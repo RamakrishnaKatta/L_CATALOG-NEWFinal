@@ -46,7 +46,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL_3DS = "http://35.154.150.204:4000/upload/3dviewfiles/";
+    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/";
     private static String EXTENDED_URL_3DS;
 
     private PrefManager prefManager;

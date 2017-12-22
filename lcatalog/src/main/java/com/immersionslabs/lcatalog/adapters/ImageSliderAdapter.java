@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.immersionslabs.lcatalog.EnvConstants;
 import com.immersionslabs.lcatalog.R;
 
 import java.io.InputStream;
@@ -58,7 +59,7 @@ public class ImageSliderAdapter extends PagerAdapter {
     }
 
     public Bitmap download_images(String urls) {
-        String urldisplay = "http://35.154.150.204:4000/upload/images/" + urls;
+        String urldisplay = EnvConstants.APP_BASE_URL + "/upload/images/" + urls;
         Bitmap mIcon = null;
         try {
 
