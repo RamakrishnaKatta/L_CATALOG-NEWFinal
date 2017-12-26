@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">L CATALOG</string>
+    <string name="app_name_temp">L CATALOG/NEW</string>
     <string name="app_newName">L CATALOG</string>
     <string name="powered_by">Powered by</string>
     <string name="company_name">Immersion Software Labs</string>
@@ -196,5 +197,17 @@
     <string name="discount_off"> OFF</string>
     <string name="customer">CUSTOMER</string>
     <string name="guest">GUEST</string>
+    <string name="Article3dViewActivity">3D Article View</string>
+    <string name="LoginActivity">User Login Page</string>
+    <string name="GuestActivity">Guest Login Page</string>
+    <string name="SignupActivity">User SignUp Page</string>
+    <string name="UserAccountActivity">Account Details</string>
+    <string name="AboutUsActivity">About Us</string>
+    <string name="FeedbackActivity">Feedback Page</string>
+    <string name="VendorRegistrationActivity">Vendor Registration</string>
+    <string name="NotifyActivity">User Notifications</string>
+    <string name="GalleryActivity">Screenshot Gallery</string>
+    <string name="ForgotPasswordActivity">Forgot Password Page</string>
+    <string name="faqActivity">F A Q</string>
 
 </resources>

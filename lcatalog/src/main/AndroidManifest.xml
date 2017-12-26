@@ -5,12 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SET_ALARM" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
 
     <supports-screens
@@ -29,7 +29,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Dark">
 
         <activity
             android:name=".SplashScreenActivity"
@@ -53,18 +53,22 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".Article3dViewActivity"
+            android:label="@string/Article3dViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SignupActivity"
+            android:label="@string/SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".LoginActivity"
+            android:label="@string/LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".GuestActivity"
+            android:label="@string/GuestActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -82,22 +86,27 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".VendorRegistrationActivity"
+            android:label="@string/VendorRegistrationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".UserAccountActivity"
+            android:label="@string/UserAccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".AboutUsActivity"
+            android:label="@string/AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FeedbackActivity"
+            android:label="@string/FeedbackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ForgotPasswordActivity"
+            android:label="@string/ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
@@ -107,15 +116,18 @@
 
         <activity
             android:name=".GalleryActivity"
+            android:label="@string/GalleryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".NotifyActivity"
+            android:label="@string/NotifyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".faqActivity"
+            android:label="@string/faqActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

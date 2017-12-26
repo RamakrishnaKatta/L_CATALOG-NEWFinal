@@ -149,7 +149,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         mPointProgramHandle = ShaderHelper.createAndLinkProgram(pointVertexShaderHandle, pointFragmentShaderHandle, new String[]{"a_Position"});
 
         // Set the background frame color
-        GLES20.glClearColor(0.6f, 0.6f, 0.6f, 1.0f);
+        GLES20.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
         // Use culling to remove back faces.
         GLES20.glEnable(GLES20.GL_CULL_FACE);
@@ -162,7 +162,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         final float eyeY = 0.0f;
         final float eyeZ = 0.0f;
 
-        // We are looking toward the distance
+        // We are looking towards the distance
         final float lookX = 0.0f;
         final float lookY = 0.0f;
         final float lookZ = -3.0f;
