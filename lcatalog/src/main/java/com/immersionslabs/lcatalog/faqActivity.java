@@ -151,8 +151,8 @@ public class faqActivity extends AppCompatActivity {
         step_text21_2.setVisibility(View.GONE);
 
     }
-//    onclick functions
-//    ----------------------------------------------------
+
+//    onclick functions ----------------------------------------------------
 
     public void step1(View v) {
         if (step1.getTag().toString().equals("down")) {
@@ -427,6 +427,7 @@ public class faqActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
