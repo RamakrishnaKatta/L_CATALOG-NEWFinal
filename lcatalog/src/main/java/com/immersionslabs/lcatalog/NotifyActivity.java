@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class NotifyActivity extends AppCompatActivity {
 
-    private static final String REGISTER_URL = "http://lcatalog.immersionslabs.com:8080/lll/app/notify/get_all";
+    private static final String REGISTER_URL = "http://35.154.150.204:4000/notification";
     private static final String TAG = "NotifyActivity";
 
     ArrayList<String> notification_titles;
@@ -56,6 +56,8 @@ public class NotifyActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Snackbar.make(view, "Firebase is Getting Activated", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -112,7 +114,7 @@ public class NotifyActivity extends AppCompatActivity {
                 Log.e(TAG, "response--" + response);
 
                 try {
-                    JSONArray resp = response.getJSONArray("resp");
+                    JSONArray resp = response.getJSONArray("data");
                     loading.dismiss();
                     NotificationView(resp);
 
@@ -153,10 +155,10 @@ public class NotifyActivity extends AppCompatActivity {
             try {
                 obj = resp.getJSONObject(i);
 
-                notification_ids.add(obj.getString("id"));
-                notification_messages.add(obj.getString("msg"));
-                notification_images.add(obj.getString("path"));
+                notification_ids.add(obj.getString("_id"));
+                notification_messages.add(obj.getString("body"));
                 notification_titles.add(obj.getString("title"));
+                notification_images.add(obj.getString("img"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

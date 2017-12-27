@@ -135,6 +135,17 @@
 
         <activity android:name=".notifications.NotificationCountSetClass" />
 
+        <service android:name=".services.NotifyIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".services.NotifyMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <receiver android:name=".MyScheduledReceiver" />
 
     </application>

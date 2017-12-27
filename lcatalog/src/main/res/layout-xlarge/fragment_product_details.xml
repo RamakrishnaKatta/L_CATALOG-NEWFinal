@@ -34,7 +34,7 @@
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_title_name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_tab_small" />
 
             <View
                 android:id="@+id/layout_separator2"
@@ -59,7 +59,7 @@
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_desc_name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_tab_small" />
         </LinearLayout>
 
         <View

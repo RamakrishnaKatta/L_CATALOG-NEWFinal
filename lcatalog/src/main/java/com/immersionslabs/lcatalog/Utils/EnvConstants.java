@@ -1,4 +1,4 @@
-package com.immersionslabs.lcatalog;
+package com.immersionslabs.lcatalog.Utils;
 
 public class EnvConstants {
 

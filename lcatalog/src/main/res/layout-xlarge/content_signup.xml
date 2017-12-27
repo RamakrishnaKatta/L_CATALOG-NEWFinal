@@ -47,7 +47,7 @@
                         android:layout_marginTop="@dimen/margin_40"
                         android:gravity="center"
                         android:text="@string/app_newName"
-                        android:textSize="@dimen/text_size_max"
+                        android:textSize="@dimen/text_tab_max"
                         android:textStyle="bold" />
 
                     <TextView

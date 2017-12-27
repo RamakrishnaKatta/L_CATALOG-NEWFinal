@@ -7,8 +7,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.immersionslabs.lcatalog.EnvConstants;
-
 import java.io.InputStream;
 import java.net.URL;
 

@@ -20,6 +20,7 @@
     <string name="slide4_title_share">SHARE</string>
     <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
     <string name="powered_symbol_immersionslabs">Immersion Software Labs. ℗ </string>
+    <string name="powered_by_symbol">&#8471;</string>
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly, Who you are matters !!</string>
     <string name="login_hint">If you are a customer already…</string>

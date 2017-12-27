@@ -28,6 +28,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import org.json.JSONException;
@@ -51,9 +52,9 @@ public class VendorRegistrationActivity extends AppCompatActivity {
     public static final String KEY_V_LOCATION = "loc";
     public static final String KEY_V_STATE = "state";
     public static final String KEY_V_PIN = "pin";
-    public static final String KEY_V_MOBILENO = "mobile_no";
+    public static final String KEY_V_MOBILENO = "mobile";
 
-    private static final String REGISTER_URL = "http://35.154.150.204:4000/vendor_requests";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendor_requests";
 
     private EditText v_companyName, v_companyContactPerson, v_companyAddress, v_companyLocation, v_companyState, v_companyPin, v_companyEmail, v_companyMobileNo, v_totalModels;
     private Button v_registerButton;
@@ -167,7 +168,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         }
         v_registerButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(VendorRegistrationActivity.this, R.style.AppTheme_Dark);
+        final ProgressDialog progressDialog = new ProgressDialog(VendorRegistrationActivity.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Submitting Vendor Registration Form to L Catalog......");
         progressDialog.show();
@@ -197,10 +198,10 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                 Log.e(TAG, "Response--" + requestResponse);
 
                 try {
-                    resp = requestResponse.getString("resp");
-                    code = requestResponse.getString("code");
+                    resp = requestResponse.getString("success");
+//                    code = requestResponse.getString("code");
                     message = requestResponse.getString("message");
-                    Log.e(TAG, "response--" + resp + " code--" + code + " message--" + message);
+                    Log.e(TAG, "response--" + resp + " message--" + message);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -262,7 +263,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed depending on success
 
-                        if (Objects.equals(message, "SUCCESS") || Objects.equals(code, "200")) {
+                        if (Objects.equals(message, "success") || Objects.equals(code, "message")) {
                             onVendorRegistrationSuccess();
                         } else {
                             onVendorRegistrationFailed();

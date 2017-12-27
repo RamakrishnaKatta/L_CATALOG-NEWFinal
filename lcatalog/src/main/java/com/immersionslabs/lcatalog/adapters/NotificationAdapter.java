@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.NotifyActivity;
 import com.immersionslabs.lcatalog.R;
 
@@ -87,7 +87,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
         String get_image = notification_images.get(position);
-        String new_image = get_image.replace("\\", File.separator);
+//        String new_image = get_image.replace("\\", File.separator);
 
 
         Glide

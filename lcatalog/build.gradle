@@ -82,11 +82,11 @@ dependencies {
     /*JSON*/
     compile 'com.android.volley:volley:1.0.0'
     /*Firebase */
-    compile 'com.google.firebase:firebase-messaging:11.6.2'
-    compile 'com.google.firebase:firebase-core:11.6.2'
-    compile 'com.google.firebase:firebase-crash:11.6.2'
-    compile 'com.google.firebase:firebase-auth:11.6.2'
-    compile 'com.google.android.gms:play-services-auth:11.6.2'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-crash:11.8.0'
+    compile 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
     /*show Case View*/
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -95,3 +95,6 @@ dependencies {
 
     compile project(':aRBaseLib')
 }
+
+
+apply plugin: 'com.google.gms.google-services'

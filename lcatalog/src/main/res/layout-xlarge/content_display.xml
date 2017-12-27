@@ -47,7 +47,7 @@
                     android:padding="@dimen/margin_10"
                     android:text="@string/catalog_title"
                     android:textColor="@color/white"
-                    android:textSize="44sp"
+                    android:textSize="@dimen/text_tab_44"
                     android:textStyle="bold" />
 
                 <TextView

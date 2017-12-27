@@ -25,7 +25,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.DownloadImageTask;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +37,7 @@ public class Fragment_ProductDetails extends Fragment {
 
     private static final String TAG = "Fragment_ProductDetails";
 
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/by?id=";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/by?id=";
     private static String VENDOR_URL = null;
 
     //String Values assigned from the Bundle Arguments
@@ -101,7 +103,7 @@ public class Fragment_ProductDetails extends Fragment {
         a_vendor_id = getArguments().getString("article_vendor_id");
         Log.e(TAG, "--" + a_vendor_id);
 
-        VENDOR_URL = REGISTER_URL + a_vendor_id;
+        VENDOR_URL = VENDOR_URL + a_vendor_id;
         Log.e(TAG, "VENDOR_URL--" + VENDOR_URL);
 
         try {
@@ -124,11 +126,22 @@ public class Fragment_ProductDetails extends Fragment {
                 Log.e(TAG, "response--" + response);
 
                 try {
-                    JSONObject resp = response.getJSONObject("resp");
-                    vendor_id = resp.getString("id");
-                    vendor_name = resp.getString("name");
-                    vendor_address = resp.getString("code");
-                    vendor_image = resp.getString("logo");
+                    JSONObject resp = response.getJSONObject("success");
+                    JSONArray array = response.getJSONArray("data");
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject object = array.getJSONObject(i);
+                        vendor_id = object.getString("id");
+                        vendor_name = object.getString("name");
+                        vendor_address = object.getString("code");
+                        vendor_image = object.getString("logo");
+                    }
+
+//
+//                    vendor_id = resp.getString("id");
+//                    vendor_name = resp.getString("name");
+//                    vendor_address = resp.getString("code");
+//                    vendor_image = resp.getString("logo");
 
                     Log.e(TAG, "Article Vendor ID--" + vendor_id);
                     Log.e(TAG, "Article Vendor Name--" + vendor_name);
