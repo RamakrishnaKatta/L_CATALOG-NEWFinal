@@ -21,37 +21,36 @@
 
         <ImageView
             android:id="@+id/icon_image"
-            android:layout_width="@dimen/margin_75"
-            android:layout_height="@dimen/margin_75"
-            android:layout_gravity="bottom"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:contentDescription="@string/company_icon" />
+            android:layout_width="@dimen/margin_50"
+            android:layout_height="@dimen/margin_50"
+            android:layout_gravity="center|left"
+            android:contentDescription="@string/company_icon"
+            app:srcCompat="@drawable/companyicon" />
 
         <TextView
             android:id="@+id/application_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/margin_3"
             android:paddingEnd="@dimen/margin_0"
+            android:paddingStart="@dimen/margin_3"
             android:text="@string/app_name"
-            android:textColor="@color/white"
             android:textSize="@dimen/text_size_max" />
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/immersionslabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="right"
         android:text="@string/powered_symbol_immersionslabs"
-        android:textColor="@color/white"
         android:textSize="@dimen/text_size_xlarge"
         android:textStyle="bold" />
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="@dimen/margin_1"
-        android:background="@color/white" />
+        android:background="@color/white"/>
 
     <TextView
         android:id="@+id/guest_image"
@@ -76,7 +75,6 @@
             android:gravity="start"
             android:paddingTop="@dimen/margin_3"
             android:text="@string/nav_hi"
-            android:textColor="@color/white"
             android:textSize="@dimen/text_size_xlarge" />
 
         <TextView
@@ -86,7 +84,6 @@
             android:gravity="start"
             android:paddingTop="@dimen/margin_3"
             android:text="@string/Logged_userName"
-            android:textColor="@color/white"
             android:textSize="@dimen/text_size_xlarge" />
 
     </LinearLayout>
@@ -98,7 +95,6 @@
         android:autoLink="email"
         android:gravity="start"
         android:text="@string/email_phone_number"
-        android:textColor="@color/white"
         android:textSize="@dimen/text_size_xlarge" />
 
 </LinearLayout>

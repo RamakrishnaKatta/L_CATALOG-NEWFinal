@@ -51,6 +51,7 @@
 
 
     <!--Dimens for Tab text sizes-->
+    <dimen name="text_tab_tiny">20sp</dimen>
     <dimen name="text_tab_small">24sp</dimen>
     <dimen name="text_tab_medium">28sp</dimen>
     <dimen name="text_tab_large">32sp</dimen>

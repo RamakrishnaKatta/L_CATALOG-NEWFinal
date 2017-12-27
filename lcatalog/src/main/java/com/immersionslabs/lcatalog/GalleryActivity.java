@@ -45,7 +45,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         imageUtils = new ImageUtils(this);
 
-        // Initilizing Grid View
+        // Initializing Grid View
         InitilizeGridLayout();
 
         // loading all image paths from SD card

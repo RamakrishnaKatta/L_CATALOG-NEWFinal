@@ -5,7 +5,6 @@
     android:id="@+id/Feedbacklayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".FeedbackActivity"
     tools:showIn="@layout/activity_feedback">
@@ -18,53 +17,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/margin_10"
             android:fitsSystemWindows="true"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="@dimen/margin_150">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/margin_75"
-                    android:layout_height="@dimen/margin_75"
-                    android:layout_marginStart="@dimen/margin_40"
-                    android:contentDescription="@string/company_icon"
-                    android:src="@drawable/companyicon" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/application_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_20"
-                        android:gravity="center"
-                        android:text="@string/app_newName"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_tab_max"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/immersionslabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="@string/powered_immersionslabs"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_tab_large"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
 
             <!-- Name Label -->
             <android.support.design.widget.TextInputLayout
@@ -73,7 +31,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_10"
-                android:textColorHint="@color/white"
                 android:visibility="visible">
 
                 <EditText
@@ -83,8 +40,7 @@
                     android:background="@drawable/shape"
                     android:hint="@string/name"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:textColor="@color/white" />
+                    android:maxLength="50" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_10"
-                android:textColorHint="@color/white"
                 android:visibility="visible">
 
                 <EditText
@@ -122,7 +77,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/margin_60"
-                    android:textColorHint="@color/white"
                     android:visibility="visible">
 
                     <EditText
@@ -143,14 +97,14 @@
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="200dp"
+                android:id="@+id/btn_feed_submit"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="@dimen/text_tab_medium"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:paddingTop="@dimen/margin_20"
-                android:text="@string/feedback_submit" />
+                android:text="@string/feedback_submit"
+                android:textSize="@dimen/text_tab_small" />
 
         </LinearLayout>
 

@@ -19,7 +19,7 @@
     <string name="slide4_title_capture">CAPTURE</string>
     <string name="slide4_title_share">SHARE</string>
     <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
-    <string name="powered_symbol_immersionslabs">Immersion Software Labs. ℗ </string>
+    <string name="powered_symbol_immersionslabs">&#8471; Immersion Software Labs. </string>
     <string name="powered_by_symbol">&#8471;</string>
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly, Who you are matters !!</string>
@@ -161,7 +161,7 @@
     <string name="icon_youtube">YouTube</string>
     <string name="notifications_title">Notifications</string>
     <string name="notifications_subject">Hi welcome to the Immersion Software Labs and you can avail so many offers from Immersion Software Labs.</string>
-    <string name="feedback_submit">THANK YOU</string>
+    <string name="feedback_submit">SUBMIT</string>
     <string name="submit">Submit</string>
     <string name="catalog_description">My description.</string>
     <string name="discount_percentage">20</string>

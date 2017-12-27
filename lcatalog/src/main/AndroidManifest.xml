@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -98,7 +97,7 @@
             android:name=".AboutUsActivity"
             android:label="@string/AboutUsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".FeedbackActivity"
             android:label="@string/FeedbackActivity"
@@ -109,17 +108,11 @@
             android:label="@string/ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
-        <activity
-            android:name=".augment.ARNativeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
         <activity
             android:name=".GalleryActivity"
             android:label="@string/GalleryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".NotifyActivity"
             android:label="@string/NotifyActivity"
@@ -131,6 +124,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
+        <activity
+            android:name=".augment.ARNativeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity android:name=".FullScreenImageViewActivity" />
 
         <activity android:name=".notifications.NotificationCountSetClass" />
@@ -140,6 +137,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <service android:name=".services.NotifyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
