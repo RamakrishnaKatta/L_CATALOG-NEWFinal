@@ -11,9 +11,9 @@
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:statusBarColor">@color/complete_transparent</item>
 
-        <item name="colorPrimary">@color/primary_dark</item>
+        <item name="colorPrimary">@color/complete_transparent</item>
         <item name="colorPrimaryDark">@color/primary_darker</item>
         <item name="colorAccent">@color/white</item>
 
@@ -32,7 +32,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:statusBarColor">@color/complete_transparent</item>
 
     </style>
 </resources>

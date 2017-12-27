@@ -51,18 +51,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".Article3dViewActivity"
-            android:label="@string/Article3dViewActivity"
+            android:name=".LoginActivity"
+            android:label="@string/LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SignupActivity"
             android:label="@string/SignupActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -73,9 +68,14 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CatalogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".Article3dViewActivity"
+            android:label="@string/Article3dViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -123,7 +123,6 @@
             android:label="@string/faqActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
         <activity
             android:name=".augment.ARNativeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
