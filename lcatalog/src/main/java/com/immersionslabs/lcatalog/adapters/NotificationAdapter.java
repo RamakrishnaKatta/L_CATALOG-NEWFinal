@@ -92,7 +92,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         Glide
                 .with(activity)
-                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + get_image)
+                .load(EnvConstants.APP_BASE_URL + "/upload/notifications/" + get_image)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.imageView);

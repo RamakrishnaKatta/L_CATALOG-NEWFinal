@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.adapters.NotificationAdapter;
 
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 
 public class NotifyActivity extends AppCompatActivity {
 
-    private static final String REGISTER_URL = "http://35.154.150.204:4000/notification";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/notification";
     private static final String TAG = "NotifyActivity";
 
     ArrayList<String> notification_titles;
