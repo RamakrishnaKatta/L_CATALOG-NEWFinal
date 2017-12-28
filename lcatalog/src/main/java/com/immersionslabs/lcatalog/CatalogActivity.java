@@ -357,7 +357,6 @@ public class CatalogActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
         finish();
-
     }
 
     @Override

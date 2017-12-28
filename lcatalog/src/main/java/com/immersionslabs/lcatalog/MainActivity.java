@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_email.setText(email);
             user_type.setText(R.string.customer);
         } else {
-            user_email.setText("Phone No: " + guest_phone);
+            user_email.setText("Mobile # " + guest_phone);
             user_type.setText(R.string.guest);
         }
 
@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         checkInternetConnection();
     }
-
 
     private boolean checkInternetConnection() {
         // get Connectivity Manager object to check connection
@@ -175,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
-
 
     /*showcaseview for the MainActivity(Notifications and Welcome screen*/
     private void ShowcaseView() {
@@ -215,7 +213,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         sequence.start();
-
     }
 
     @Override
@@ -225,13 +222,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
+            }else {
+                super.onBackPressed();
             }
-            super.onBackPressed();
-            return;
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Double Click will take you to EXIT", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -244,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 System.exit(0);
             }
-        }, 5000);
+        }, 3000);
     }
 
     @Override
@@ -290,7 +287,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(DialogInterface dialog, int which) {
 
                     // We normally won't show the welcome slider again in real app but this is for testing
-
                     PrefManager prefManager = new PrefManager(getApplicationContext());
 
                     // make first time launch TRUE
@@ -348,15 +344,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
             } else {
-                Toast.makeText(this, "You are a Guest, You dont possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You are a Guest, You don't possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
             }
-
 
         } else if (id == R.id.nav_ven_reg) {
 
             Toast.makeText(this, "We will not disappoint you, Lets get in Touch !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, VendorRegistrationActivity.class);
             startActivity(intent);
+
+        } else if (id == R.id.nav_user_favorite) {
+
+            Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_user_budget_bar) {
+
+            Toast.makeText(this, "This feature lets you create your budget furniture list !!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_user_notify) {
 
@@ -365,14 +368,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
-
         } else if (id == R.id.nav_sign_up) {
 
             Toast.makeText(this, "Thanks for your thought on Creating an Account, Appreciated !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SignupActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-
 
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
@@ -396,7 +397,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, faqActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

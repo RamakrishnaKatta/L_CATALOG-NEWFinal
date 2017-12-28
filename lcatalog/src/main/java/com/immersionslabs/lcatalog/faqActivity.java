@@ -28,50 +28,49 @@ public class faqActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        img1 =  findViewById(R.id.img1);
-        img2 =  findViewById(R.id.img2);
-        img3 =  findViewById(R.id.img3);
-        img4 =  findViewById(R.id.img4);
-        img5 =  findViewById(R.id.img5);
-        img6 =  findViewById(R.id.img6);
-        img7 =  findViewById(R.id.img7);
-        img8 =  findViewById(R.id.img8);
-        img9 =  findViewById(R.id.img9);
-        img10 =  findViewById(R.id.img10);
-        img11 =  findViewById(R.id.img11);
-        img12 =  findViewById(R.id.img12);
-        img13 =  findViewById(R.id.img13);
-        img14 =  findViewById(R.id.img14);
-        img15 =  findViewById(R.id.img15);
-        img16 =  findViewById(R.id.img16);
-        img17 =  findViewById(R.id.img17);
-        img18 =  findViewById(R.id.img18);
-        img19 =  findViewById(R.id.img19);
-        img20 =  findViewById(R.id.img20);
-        img21 =  findViewById(R.id.img21);
+        img1 = findViewById(R.id.img1);
+        img2 = findViewById(R.id.img2);
+        img3 = findViewById(R.id.img3);
+        img4 = findViewById(R.id.img4);
+        img5 = findViewById(R.id.img5);
+        img6 = findViewById(R.id.img6);
+        img7 = findViewById(R.id.img7);
+        img8 = findViewById(R.id.img8);
+        img9 = findViewById(R.id.img9);
+        img10 = findViewById(R.id.img10);
+        img11 = findViewById(R.id.img11);
+        img12 = findViewById(R.id.img12);
+        img13 = findViewById(R.id.img13);
+        img14 = findViewById(R.id.img14);
+        img15 = findViewById(R.id.img15);
+        img16 = findViewById(R.id.img16);
+        img17 = findViewById(R.id.img17);
+        img18 = findViewById(R.id.img18);
+        img19 = findViewById(R.id.img19);
+        img20 = findViewById(R.id.img20);
+        img21 = findViewById(R.id.img21);
 
-
-        step1 =  findViewById(R.id.step1);
-        step2 =  findViewById(R.id.step2);
-        step3 =  findViewById(R.id.step3);
-        step4 =  findViewById(R.id.step4);
-        step5 =  findViewById(R.id.step5);
-        step6 =  findViewById(R.id.step6);
-        step7 =  findViewById(R.id.step7);
-        step8 =  findViewById(R.id.step8);
-        step9 =  findViewById(R.id.step9);
-        step10 =  findViewById(R.id.step10);
-        step11 =  findViewById(R.id.step11);
-        step12 =  findViewById(R.id.step12);
-        step13 =  findViewById(R.id.step13);
-        step14 =  findViewById(R.id.step14);
-        step15 =  findViewById(R.id.step15);
-        step16 =  findViewById(R.id.step16);
-        step17 =  findViewById(R.id.step17);
-        step18 =  findViewById(R.id.step18);
-        step19 =  findViewById(R.id.step19);
-        step20 =  findViewById(R.id.step20);
-        step21 =  findViewById(R.id.step21);
+        step1 = findViewById(R.id.step1);
+        step2 = findViewById(R.id.step2);
+        step3 = findViewById(R.id.step3);
+        step4 = findViewById(R.id.step4);
+        step5 = findViewById(R.id.step5);
+        step6 = findViewById(R.id.step6);
+        step7 = findViewById(R.id.step7);
+        step8 = findViewById(R.id.step8);
+        step9 = findViewById(R.id.step9);
+        step10 = findViewById(R.id.step10);
+        step11 = findViewById(R.id.step11);
+        step12 = findViewById(R.id.step12);
+        step13 = findViewById(R.id.step13);
+        step14 = findViewById(R.id.step14);
+        step15 = findViewById(R.id.step15);
+        step16 = findViewById(R.id.step16);
+        step17 = findViewById(R.id.step17);
+        step18 = findViewById(R.id.step18);
+        step19 = findViewById(R.id.step19);
+        step20 = findViewById(R.id.step20);
+        step21 = findViewById(R.id.step21);
 
         step1.setTag("down");
         step2.setTag("down");
@@ -94,7 +93,6 @@ public class faqActivity extends AppCompatActivity {
         step19.setTag("down");
         step20.setTag("down");
         step21.setTag("down");
-
 
         step_text1 = findViewById(R.id.step1text);
         step_text2 = findViewById(R.id.step2text);
@@ -373,7 +371,6 @@ public class faqActivity extends AppCompatActivity {
             img18.setImageResource(R.mipmap.ic_faq_down);
             step_text18.setVisibility(View.GONE);
             step18.setTag("down");
-
         }
     }
 
@@ -417,7 +414,6 @@ public class faqActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -434,8 +430,13 @@ public class faqActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
+    }
 }

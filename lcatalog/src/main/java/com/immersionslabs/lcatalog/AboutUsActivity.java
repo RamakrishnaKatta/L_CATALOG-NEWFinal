@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-
 import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -36,11 +35,9 @@ public class AboutUsActivity extends AppCompatActivity {
         heading4 = findViewById(R.id.textview7);
         heading5 = findViewById(R.id.textview9);
 
-
         heading3.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-
 
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +81,6 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         });
 
-
         Toolbar toolbar = findViewById(R.id.toolbar_about_us);
         setSupportActionBar(toolbar);
 
@@ -120,7 +116,6 @@ public class AboutUsActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -128,7 +123,9 @@ public class AboutUsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        setResult(RESULT_CANCELED);
         super.onBackPressed();
+        finish();
     }
 
     @Override
@@ -142,7 +139,6 @@ public class AboutUsActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

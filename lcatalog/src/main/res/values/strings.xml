@@ -210,5 +210,7 @@
     <string name="GalleryActivity">Screenshot Gallery</string>
     <string name="ForgotPasswordActivity">Forgot Password Page</string>
     <string name="faqActivity">F A Q</string>
+    <string name="profile_budget_list">My Budget List</string>
+    <string name="profile_favourites">My Favourites</string>
 
 </resources>

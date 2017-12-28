@@ -13,11 +13,11 @@
         <item name="colorPrimaryDark">@color/primary_darker</item>
         <item name="colorAccent">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
+        <item name="colorControlActivated">@color/transparent</item>
+        <item name="colorControlHighlight">@color/transparent</item>
         <item name="android:textColorHint">@color/white</item>
         <item name="colorButtonNormal">@color/primary_dark</item>
-        <item name="android:colorBackground">@color/white</item>
+        <item name="android:colorBackground">@color/complete_transparent</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -36,6 +36,9 @@
         <item name="android:textSize">@dimen/text_size_medium</item> <!-- menu item text size-->
         <item name="android:listPreferredItemHeightSmall">@dimen/margin_35
         </item><!-- menu item height-->
+        <item name="colorPrimary">@color/primary_darker</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

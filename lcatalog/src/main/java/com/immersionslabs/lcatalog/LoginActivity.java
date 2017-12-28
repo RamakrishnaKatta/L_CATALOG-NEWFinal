@@ -51,8 +51,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
-    private PrefManager prefManager5;
 
+    private PrefManager prefManager5;
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_LOGIN = 0;

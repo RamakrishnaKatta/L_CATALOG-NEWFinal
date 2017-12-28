@@ -30,13 +30,13 @@ public class Article3dViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article3d_view);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_3dView);
+        setSupportActionBar(toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        Toolbar toolbar = findViewById(R.id.toolbar_3dView);
-        setSupportActionBar(toolbar);
 
         Bundle b3 = getIntent().getExtras();
         name = (String) b3.getCharSequence("article_name");
@@ -111,6 +111,13 @@ public class Article3dViewActivity extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     @Override

@@ -26,13 +26,6 @@
 
         <item name="colorButtonNormal">@color/primary_dark</item>
         <item name="android:colorButtonNormal">@color/primary_dark</item>
-        <item name="android:colorBackground">@color/white</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@color/complete_transparent</item>
-
+        <item name="android:colorBackground">@color/complete_transparent</item>
     </style>
 </resources>
