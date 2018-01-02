@@ -19,10 +19,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImageTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -144,7 +144,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
-        new DownloadImageTask(viewHolder.item_image).execute(im1);
+        new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));

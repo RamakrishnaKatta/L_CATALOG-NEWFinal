@@ -10,19 +10,18 @@ import android.widget.ImageView;
 import java.io.InputStream;
 import java.net.URL;
 
-
-public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    private static final String TAG = "DownloadImageTask";
+public class DownloadImages_Product extends AsyncTask<String, Void, Bitmap> {
+    private static final String TAG = "DownloadImages_Product";
     @SuppressLint("StaticFieldLeak")
     private ImageView bmImage;
 
-    public DownloadImageTask(ImageView bmImage) {
+    public DownloadImages_Product(ImageView bmImage) {
         this.bmImage = bmImage;
     }
 
     protected Bitmap doInBackground(String... urls) {
         String urldisplay = EnvConstants.APP_BASE_URL + "/upload/images/" + urls[0];
-        Log.e(TAG, "image1URL : " + urldisplay);
+        Log.e(TAG, "Product_image1URL : " + urldisplay);
         Bitmap mIcon = null;
         try {
 

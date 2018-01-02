@@ -24,7 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.DownloadImageTask;
+import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
+import com.immersionslabs.lcatalog.Utils.DownloadImages_Vendor;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ public class Fragment_ProductDetails extends Fragment {
 
     private static final String TAG = "Fragment_ProductDetails";
 
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/by?id=";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
     private static String VENDOR_URL = null;
 
     //String Values assigned from the Bundle Arguments
@@ -103,7 +104,7 @@ public class Fragment_ProductDetails extends Fragment {
         a_vendor_id = getArguments().getString("article_vendor_id");
         Log.e(TAG, "--" + a_vendor_id);
 
-        VENDOR_URL = VENDOR_URL + a_vendor_id;
+        VENDOR_URL = REGISTER_URL + a_vendor_id;
         Log.e(TAG, "VENDOR_URL--" + VENDOR_URL);
 
         try {
@@ -126,22 +127,20 @@ public class Fragment_ProductDetails extends Fragment {
                 Log.e(TAG, "response--" + response);
 
                 try {
-                    JSONObject resp = response.getJSONObject("success");
+                    String response_type = response.getString("success");
+                    Log.e(TAG, "Vendor Response Type--" + response_type);
+                    String response_message = response.getString("message");
+                    Log.e(TAG, "Vendor Response Message--" + response_message);
+
                     JSONArray array = response.getJSONArray("data");
                     for (int i = 0; i < array.length(); i++) {
 
                         JSONObject object = array.getJSONObject(i);
                         vendor_id = object.getString("id");
                         vendor_name = object.getString("name");
-                        vendor_address = object.getString("code");
+                        vendor_address = object.getString("location");
                         vendor_image = object.getString("logo");
                     }
-
-//
-//                    vendor_id = resp.getString("id");
-//                    vendor_name = resp.getString("name");
-//                    vendor_address = resp.getString("code");
-//                    vendor_image = resp.getString("logo");
 
                     Log.e(TAG, "Article Vendor ID--" + vendor_id);
                     Log.e(TAG, "Article Vendor Name--" + vendor_name);
@@ -150,7 +149,7 @@ public class Fragment_ProductDetails extends Fragment {
 
                     article_vendor_name.setText(vendor_name);
                     article_vendor_location.setText(vendor_address);
-                    new DownloadImageTask(article_vendor_logo).execute(vendor_image);
+                    new DownloadImages_Vendor(article_vendor_logo).execute(vendor_image);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImageTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -126,7 +126,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new DownloadImageTask(viewHolder.item_image).execute(im1);
+        new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Glide.with(activity)
                 .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)
