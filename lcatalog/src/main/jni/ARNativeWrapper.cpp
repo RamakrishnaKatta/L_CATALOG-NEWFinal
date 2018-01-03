@@ -56,9 +56,8 @@
             const char *model20file = "/storage/emulated/0/L_CATALOG/cache/Data/models/norland.obj";
             const char *model21file = "/storage/emulated/0/L_CATALOG/cache/Data/models/window.obj";
 
-            //Mapping to pattern 1 - bed sofa.obj
+        //Mapping to pattern 1 - bed sofa.obj
             models[0].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern1.patt;80");
-
             arwSetMarkerOptionBool(models[0].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[0].patternID, ARW_MARKER_OPTION_FILTERED, true);
 
@@ -68,11 +67,11 @@
                     exit(-1);
                 }
             glmScale(models[0].obj, 15.0f);
-                //glmRotate(models[0].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[0].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[0].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE);
             models[0].visible = false;
 
-            //Mapping to pattern 2 - dressing_table.obj
+        //Mapping to pattern 2 - dressing_table.obj
             models[1].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern2.patt;80");
             arwSetMarkerOptionBool(models[1].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[1].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -83,11 +82,11 @@
                     exit(-1);
                 }
             glmScale(models[1].obj, 15.0f);
-                //glmRotate(models[1].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[1].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[1].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE);
             models[1].visible = false;
 
-            //Mapping to pattern 3 - outdoor sofa.obj
+        //Mapping to pattern 3 - outdoor sofa.obj
             models[2].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern3.patt;80");
             arwSetMarkerOptionBool(models[2].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[2].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -98,11 +97,11 @@
                       exit(-1);
                     }
             glmScale(models[2].obj, 15.0f);
-                //glmRotate(models[2].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[2].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[2].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
             models[2].visible = false;
 
-            //Mapping to pattern 4 - wardrobe.obj
+        //Mapping to pattern 4 - wardrobe.obj
             models[3].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern4.patt;80");
             arwSetMarkerOptionBool(models[3].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[3].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -113,11 +112,11 @@
                       exit(-1);
                     }
             glmScale(models[3].obj, 15.0f);
-                //glmRotate(models[3].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[3].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[3].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
             models[3].visible = false;
 
-             //Mapping to pattern 5 - study_table.obj
+        //Mapping to pattern 5 - study_table.obj
             models[4].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern5.patt;80");
             arwSetMarkerOptionBool(models[4].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[4].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -128,11 +127,11 @@
                       exit(-1);
                     }
             glmScale(models[4].obj, 15.0f);
-                //glmRotate(models[4].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[4].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[4].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                         models[4].visible = false;
 
-            //Mapping to pattern 6 - parasona.obj
+        //Mapping to pattern 6 - parasona.obj
             models[5].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern6.patt;80");
             arwSetMarkerOptionBool(models[5].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[5].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -143,11 +142,11 @@
                      exit(-1);
                    }
             glmScale(models[5].obj, 15.0f);
-               //glmRotate(models[5].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[5].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[5].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                        models[5].visible = false;
 
-            //Mapping to pattern 7 - Barrel Set.obj
+        //Mapping to pattern 7 - Barrel Set.obj
             models[6].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern7.patt;80");
             arwSetMarkerOptionBool(models[6].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[6].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -158,11 +157,11 @@
                     exit(-1);
                   }
             glmScale(models[6].obj, 15.0f);
-              //glmRotate(models[6].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            //glmRotate(models[6].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[6].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                       models[6].visible = false;
 
-            //Mapping to pattern 8 - teak bed.obj
+        //Mapping to pattern 8 - teak bed.obj
             models[7].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern8.patt;80");
             arwSetMarkerOptionBool(models[7].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[7].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -177,7 +176,7 @@
             glmCreateArrays(models[7].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[7].visible = false;
 
-            //Mapping to pattern 9 - wall paint.obj
+        //Mapping to pattern 9 - wall paint.obj
             models[8].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern9.patt;80");
             arwSetMarkerOptionBool(models[8].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[8].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -192,7 +191,7 @@
             glmCreateArrays(models[8].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[8].visible = false;
 
-            //Mapping to pattern 10 - florence compact sofa.obj
+        //Mapping to pattern 10 - florence compact sofa.obj
             models[9].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern10.patt;80");
             arwSetMarkerOptionBool(models[9].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[9].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -207,7 +206,7 @@
             glmCreateArrays(models[9].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[9].visible = false;
 
-            //Mapping to pattern 11  - 4 Seated Dining table.obj
+        //Mapping to pattern 11  - 4 Seated Dining table.obj
             models[10].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern11.patt;80");
             arwSetMarkerOptionBool(models[10].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[10].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -222,7 +221,7 @@
             glmCreateArrays(models[10].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[10].visible = false;
 
-            //Mapping to pattern 12  - Alba Sheesham Coffee Table.obj
+        //Mapping to pattern 12  - Alba Sheesham Coffee Table.obj
             models[11].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern12.patt;80");
             arwSetMarkerOptionBool(models[11].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[11].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -237,7 +236,7 @@
             glmCreateArrays(models[11].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[11].visible = false;
 
-            //Mapping to pattern 13  - chelsea.obj
+        //Mapping to pattern 13  - chelsea.obj
             models[12].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern13.patt;80");
             arwSetMarkerOptionBool(models[12].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[12].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -252,7 +251,7 @@
             glmCreateArrays(models[12].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[12].visible = false;
 
-            //Mapping to pattern 14  - Multiple_Frames_Buddha_Art_Wall_Painting.obj
+        //Mapping to pattern 14  - Multiple_Frames_Buddha_Art_Wall_Painting.obj
             models[13].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern14.patt;80");
             arwSetMarkerOptionBool(models[13].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[13].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -267,7 +266,7 @@
             glmCreateArrays(models[13].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[13].visible = false;
 
-            //Mapping to pattern 15  - Floor Lamp.obj
+        //Mapping to pattern 15  - Floor Lamp.obj
             models[14].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern15.patt;80");
             arwSetMarkerOptionBool(models[14].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[14].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -283,7 +282,7 @@
                     models[14].visible = false;
 
 
-              //Mapping to pattern 16  - wallpartition.obj
+        //Mapping to pattern 16  - wallpartition.obj
             models[15].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern16.patt;80");
             arwSetMarkerOptionBool(models[15].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[15].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -298,8 +297,7 @@
             glmCreateArrays(models[15].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[15].visible = false;
 
-
-              //Mapping to pattern 17  - otootman.obj
+        //Mapping to pattern 17  - otootman.obj
             models[16].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern17.patt;80");
             arwSetMarkerOptionBool(models[16].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[16].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -314,8 +312,7 @@
             glmCreateArrays(models[16].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[16].visible = false;
 
-
-              //Mapping to pattern 18  - kitchenunit.obj
+        //Mapping to pattern 18  - kitchenunit.obj
             models[17].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern18.patt;80");
             arwSetMarkerOptionBool(models[17].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[17].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -330,7 +327,7 @@
             glmCreateArrays(models[17].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[17].visible = false;
 
-              //Mapping to pattern 19  - goldchain.obj
+        //Mapping to pattern 19  - goldchain.obj
             models[18].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern19.patt;80");
             arwSetMarkerOptionBool(models[18].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[18].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -345,7 +342,7 @@
             glmCreateArrays(models[18].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[18].visible = false;
 
-                //Mapping to pattern 20  - royaloka_tvset.obj
+        //Mapping to pattern 20  - royaloka_tvset.obj
             models[19].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern20.patt;80");
             arwSetMarkerOptionBool(models[19].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[19].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -360,7 +357,7 @@
             glmCreateArrays(models[19].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[19].visible = false;
 
-                //Mapping to pattern 21  - norland.obj
+        //Mapping to pattern 21  - norland.obj
             models[20].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern21.patt;80");
             arwSetMarkerOptionBool(models[20].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[20].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -375,13 +372,12 @@
             glmCreateArrays(models[20].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[20].visible = false;
 
-
-         //Mapping to pattern 21  - window.obj
+        //Mapping to pattern 21  - window.obj
             models[21].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern22.patt;80");
             arwSetMarkerOptionBool(models[21].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[21].patternID, ARW_MARKER_OPTION_FILTERED, true);
 
-            models[21].obj = glmReadOBJ2(model21file, 0, 0); // context 20, don't read textures yet.
+            models[21].obj = glmReadOBJ2(model21file, 0, 0); // context 21, don't read textures yet.
                 if (!models[21].obj) {
                   LOGE("Error loading model from file '%s'.", model20file);
                   exit(-1);

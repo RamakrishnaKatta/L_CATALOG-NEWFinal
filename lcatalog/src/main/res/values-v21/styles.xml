@@ -28,4 +28,26 @@
         <item name="android:colorButtonNormal">@color/primary_dark</item>
         <item name="android:colorBackground">@color/complete_transparent</item>
     </style>
+
+    <style name="AppTheme.Dark.NavigationViewStyle">
+        <item name="android:textSize">@dimen/text_size_medium</item> <!-- menu item text size-->
+        <item name="android:listPreferredItemHeightSmall">@dimen/margin_35
+        </item><!-- menu item height-->
+        <item name="colorPrimary">@color/primary_darker</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/complete_transparent</item>
+    </style>
+
+    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/primary_dark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/primary</item>
+    </style>
+
 </resources>
