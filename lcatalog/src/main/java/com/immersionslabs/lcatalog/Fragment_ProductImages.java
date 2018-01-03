@@ -54,6 +54,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     LinearLayout note;
     ImageButton article_share, article_download, article_3d_view, article_augment;
+    TextView zip_downloaded;
 
     String article_images;
     // article_images is split in to five parts and assigned to each string
@@ -90,6 +91,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_download = view.findViewById(R.id.article_download_icon);
         article_3d_view = view.findViewById(R.id.article_3dview_icon);
         article_augment = view.findViewById(R.id.article_augment_icon);
+        zip_downloaded = view.findViewById(R.id.download_text);
 
         article_images = getArguments().getString("article_images");
         article_name = getArguments().getString("article_name");
@@ -184,6 +186,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             article_download.setVisibility(View.GONE);
             note.setVisibility(View.GONE);
             zip_3ds_downloaded = true;
+            zip_downloaded.setText("File Downloaded");
+            zip_downloaded.setTextColor(Color.BLUE);
         }
 
         article_download.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +222,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     article_download.setVisibility(View.GONE);
                                     article_3d_view.setEnabled(true);
                                     note.setVisibility(View.GONE);
+                                    zip_downloaded.setText("File Downloaded");
+                                    zip_downloaded.setTextColor(Color.BLUE);
 
                                 } catch (IOException e) {
                                     article_download.setVisibility(View.VISIBLE);
@@ -226,6 +232,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     Log.e(TAG, "Zip Not Downloaded ---------- " + zip_3ds_downloaded);
                                     e.printStackTrace();
                                     note.setVisibility(View.VISIBLE);
+                                    zip_downloaded.setText("Download !");
+
                                 }
                             }
                         }, 6000);
