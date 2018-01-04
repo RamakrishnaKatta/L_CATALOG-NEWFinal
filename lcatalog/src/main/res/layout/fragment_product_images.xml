@@ -61,21 +61,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_40"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:gravity="start"
                     android:orientation="horizontal">
 
                     <com.like.LikeButton
                         android:id="@+id/article_fav_icon"
-                        android:layout_width="53dp"
+                        android:layout_width="56dp"
                         android:layout_height="match_parent"
-                        android:paddingEnd="@dimen/margin_4"
-                        android:paddingStart="@dimen/margin_4"
+                        android:layout_gravity="center"
                         app:icon_size="@dimen/margin_60"
                         app:icon_type="heart"
                         app:like_drawable="@mipmap/ic_fav_on"
@@ -84,11 +83,11 @@
                     <TextView
                         android:id="@+id/favourite_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Favourite"
+                        android:text="@string/favourite"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
@@ -103,7 +102,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:gravity="start"
                     android:orientation="horizontal">
 
@@ -120,11 +119,11 @@
                     <TextView
                         android:id="@+id/share_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Share"
+                        android:text="@string/product_share"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
@@ -163,11 +162,11 @@
                     <TextView
                         android:id="@+id/augment_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Augment"
+                        android:text="@string/menu_augment"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
@@ -200,11 +199,11 @@
                     <TextView
                         android:id="@+id/view3d_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="360&#176; View"
+                        android:text="@string/article_3d_text"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
@@ -243,11 +242,11 @@
                     <TextView
                         android:id="@+id/download_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Download"
+                        android:text="@string/article_download"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
@@ -279,11 +278,11 @@
                     <TextView
                         android:id="@+id/add_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Budget List"
+                        android:text="@string/budget_list"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>

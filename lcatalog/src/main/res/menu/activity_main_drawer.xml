@@ -37,10 +37,6 @@
                 android:icon="@mipmap/ic_budget"
                 android:title="@string/profile_budget_list" />
             <item
-                android:id="@+id/nav_user_favorite"
-                android:icon="@mipmap/ic_fav_off"
-                android:title="@string/profile_favorites" />
-            <item
                 android:id="@+id/nav_sign_up"
                 android:icon="@mipmap/ic_signup"
                 android:title="@string/sign_up" />

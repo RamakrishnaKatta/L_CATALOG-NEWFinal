@@ -46,6 +46,7 @@
     <string name="menu_augment">Augment</string>
     <string name="menu_gallery">Gallery</string>
     <string name="_3d_text">360&#xb0; Object Rotation</string>
+    <string name="article_3d_text">360&#176; View</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -212,5 +213,8 @@
     <string name="faqActivity">F A Q</string>
     <string name="profile_budget_list">My Budget List</string>
     <string name="profile_favourites">My Favourites</string>
+    <string name="article_download">Download</string>
+    <string name="budget_list">Budget List</string>
+    <string name="favourite">Favourite</string>
 
 </resources>

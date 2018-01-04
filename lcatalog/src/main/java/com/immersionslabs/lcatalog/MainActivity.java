@@ -353,7 +353,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, VendorRegistrationActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_user_favorite) {
+        } else if (id == R.id.nav_user_favourites) {
+            Intent intent = new Intent(this,MyfavoriteActivity.class);
+            startActivity(intent);
 
             Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
 

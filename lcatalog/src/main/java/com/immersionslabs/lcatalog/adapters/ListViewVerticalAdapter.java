@@ -126,6 +126,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Glide
                 .with(activity)
@@ -133,7 +134,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
-        new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));

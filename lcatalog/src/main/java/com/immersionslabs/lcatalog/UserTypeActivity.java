@@ -255,25 +255,28 @@ public class UserTypeActivity extends AppCompatActivity {
 
         final TapTargetSequence sequence = new TapTargetSequence(this).targets(
                 TapTarget.forView(findViewById(R.id.btn_new_customer), "Click here if you want to signup with us...")
-                        .tintTarget(false)
-                        .targetRadius(25)
                         .transparentTarget(true)
+                        .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
                         .cancelable(false)
                         .textColor(R.color.white)
+                        .tintTarget(true)
                         .id(1),
                 TapTarget.forView(findViewById(R.id.btn_customer), "Click here if you visited us before")
-                        .tintTarget(false)
                         .transparentTarget(true)
-                        .cancelable(false)
+                        .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
+                        .cancelable(false)
                         .textColor(R.color.white)
+                        .tintTarget(true)
                         .id(2),
                 TapTarget.forView(findViewById(R.id.btn_shopper), "Click here if you are a Onetime User")
-                        .tintTarget(false)
                         .transparentTarget(true)
-                        .textColor(R.color.white)
+                        .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
                         .cancelable(false)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
                         .id(3)
         ).listener(new TapTargetSequence.Listener() {
             @Override

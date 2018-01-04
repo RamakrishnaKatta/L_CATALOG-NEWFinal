@@ -94,6 +94,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
+            android:name=".MyfavoriteActivity"
+            android:label="@string/favourite"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
             android:name=".AboutUsActivity"
             android:label="@string/AboutUsActivity"
             android:screenOrientation="portrait"
