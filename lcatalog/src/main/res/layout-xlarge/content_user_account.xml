@@ -133,11 +133,11 @@
         <!-- Update Button -->
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_update_account"
-            android:layout_width="fill_parent"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_50"
             android:layout_marginTop="@dimen/margin_10"
-            android:padding="@dimen/margin_24"
+            android:padding="@dimen/margin_20"
             android:text="@string/btn_update_profile"
             android:textAlignment="center"
             android:textSize="@dimen/text_tab_medium"

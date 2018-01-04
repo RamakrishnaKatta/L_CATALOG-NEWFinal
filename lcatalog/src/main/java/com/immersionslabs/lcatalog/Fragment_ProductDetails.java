@@ -3,6 +3,7 @@ package com.immersionslabs.lcatalog;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.DownloadImages_Vendor;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -34,7 +35,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class Fragment_ProductDetails extends Fragment {
+public class Fragment_ProductDetails extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "Fragment_ProductDetails";
 
@@ -50,6 +51,8 @@ public class Fragment_ProductDetails extends Fragment {
     TextView article_title, article_description, article_old_price, article_discount, article_width, article_height, article_length, article_new_price;
     TextView article_vendor_name, article_vendor_location;
     ImageView article_vendor_logo;
+
+    LinearLayout vendor_details;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +73,9 @@ public class Fragment_ProductDetails extends Fragment {
         article_vendor_location = view.findViewById(R.id.article_vendor_address_text);
 
         article_vendor_logo = view.findViewById(R.id.article_vendor_logo);
+
+        vendor_details = view.findViewById(R.id.vendor_details);
+        vendor_details.setOnClickListener(this);
 
         a_title = getArguments().getString("article_title");
         Log.e(TAG, "--" + a_title);
@@ -206,4 +212,18 @@ public class Fragment_ProductDetails extends Fragment {
         super.onPause();
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.vendor_details:
+
+                Bundle vendor_data = new Bundle();
+                vendor_data.putString("vendor_id", vendor_id);
+
+                Intent intent = new Intent(getActivity(), VendorProfileActivity.class).putExtras(vendor_data);
+                startActivity(intent);
+        }
+
+    }
 }

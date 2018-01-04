@@ -217,4 +217,7 @@
     <string name="budget_list">Budget List</string>
     <string name="favourite">Favourite</string>
 
+    <string name="title_activity_vendor_details">VendorDetailsActivity</string>
+    <string name="menu_vendors">Vendors</string>
+
 </resources>

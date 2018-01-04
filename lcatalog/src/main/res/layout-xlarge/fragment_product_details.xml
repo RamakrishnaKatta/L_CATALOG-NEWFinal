@@ -328,7 +328,6 @@
                     android:text="@string/dimension_value"
                     android:textSize="@dimen/text_tab_small" />
 
-
             </LinearLayout>
 
         </LinearLayout>
@@ -340,6 +339,7 @@
             android:background="@color/white" />
 
         <LinearLayout
+            android:id="@+id/vendor_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_6"

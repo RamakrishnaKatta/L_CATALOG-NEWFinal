@@ -337,7 +337,8 @@
             android:background="@color/white" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:id="@+id/vendor_details"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_3"
             android:orientation="horizontal">
