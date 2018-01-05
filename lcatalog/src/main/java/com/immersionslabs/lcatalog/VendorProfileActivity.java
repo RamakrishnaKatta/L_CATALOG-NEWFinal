@@ -69,8 +69,8 @@ public class VendorProfileActivity extends AppCompatActivity {
                 Bundle vendor_data = new Bundle();
                 vendor_data.putString("vendor_id", vendor_id);
 
-//                Intent intent = new Intent(VendorProfileActivity.this, VendorProfileActivity.class).putExtras(vendor_data);
-//                startActivity(intent);
+                Intent intent = new Intent(VendorProfileActivity.this, VendorCatalogActivity.class).putExtras(vendor_data);
+                startActivity(intent);
             }
         });
 

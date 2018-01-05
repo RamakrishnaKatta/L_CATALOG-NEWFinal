@@ -182,7 +182,6 @@ public class GuestActivity extends AppCompatActivity {
         _GuestPhoneText = findViewById(R.id.input_mobile);
         guest_phone = _GuestPhoneText.getText().toString().trim();
 
-
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Providing Access...");
@@ -246,6 +245,7 @@ public class GuestActivity extends AppCompatActivity {
 
         Log.d(TAG, "onLoginSuccess: ");
         Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         scheduleAlarm();
         finish();

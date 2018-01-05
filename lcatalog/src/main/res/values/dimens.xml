@@ -74,5 +74,6 @@
     <dimen name="margin_250">250dp</dimen>
     <dimen name="margin_70">70dp</dimen>
     <dimen name="margin_600">600dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

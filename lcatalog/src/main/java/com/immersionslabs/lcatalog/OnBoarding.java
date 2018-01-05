@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -34,8 +33,8 @@ public class OnBoarding extends AppCompatActivity {
     private PrefManager prefManager;
 
 
-     TextView welcome_11, welcome_13, welcome_21, welcome_31, welcome_32, welcome_41;
-     TextView welcome_14, welcome_22, welcome_42, welcome_43;
+    TextView welcome_11, welcome_13, welcome_21, welcome_31, welcome_32, welcome_41;
+    TextView welcome_14, welcome_22, welcome_42, welcome_43;
 
 
     @Override
@@ -83,7 +82,6 @@ public class OnBoarding extends AppCompatActivity {
         MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
 
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +153,9 @@ public class OnBoarding extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.SetWelcomeActivityScreenLaunch(false);
-        startActivity(new Intent(OnBoarding.this, UserTypeActivity.class));
+        Intent intent = new Intent(OnBoarding.this, UserTypeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

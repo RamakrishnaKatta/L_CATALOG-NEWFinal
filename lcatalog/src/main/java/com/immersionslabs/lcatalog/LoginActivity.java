@@ -345,6 +345,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
             Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
         } else {

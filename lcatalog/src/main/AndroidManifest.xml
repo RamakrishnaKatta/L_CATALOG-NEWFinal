@@ -29,18 +29,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Dark">
-
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".OnBoarding"
             android:label="@string/app_name"
@@ -67,6 +65,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -80,7 +79,6 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProductPageActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -133,12 +131,18 @@
             android:label="@string/title_activity_vendor_details"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
+        <activity
+            android:name=".VendorCatalogActivity"
+            android:label="@string/title_activity_vendor_catalog"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".augment.ARNativeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <activity android:name=".FullScreenImageViewActivity" />
+        <activity
+            android:name=".FullScreenImageViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
 
         <activity android:name=".notifications.NotificationCountSetClass" />
 
@@ -147,7 +151,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".services.NotifyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
