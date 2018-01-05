@@ -53,7 +53,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         imageView.startAnimation(animation_2);
 
 
-
         animation_2.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -81,6 +80,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
                 Intent i = new Intent(SplashScreenActivity.this, OnBoarding.class);
                 startActivity(i);
+                finish();
             }
 
             @Override

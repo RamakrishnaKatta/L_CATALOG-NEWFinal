@@ -137,6 +137,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
+            android:name=".VendorListActivity"
+            android:label="@string/title_activity_vendor_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
             android:name=".augment.ARNativeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity

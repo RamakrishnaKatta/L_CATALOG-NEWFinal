@@ -72,7 +72,7 @@
     <string name="profile_favorites">My Favorites</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign Out</string>
-    <string name="become_a_vendor">Become a Vendor?</string>
+    <string name="our_vendor">Our Vendors</string>
     <string name="vendor_registration">Vendor Registration</string>
     <string name="help_amp_support">Help &amp; Support</string>
     <string name="support_feedback">FeedBack</string>
@@ -214,5 +214,7 @@
     <string name="GalleryActivity">Screenshot Gallery</string>
     <string name="title_activity_vendor_details">Vendor Details</string>
     <string name="title_activity_vendor_catalog">Vendor Catalog</string>
+    <string name="title_activity_vendor_list">Our Vendors</string>
+    <string name="vendor_catalog">Vendor Catalog</string>
 
 </resources>
