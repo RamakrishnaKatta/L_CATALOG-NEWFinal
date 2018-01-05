@@ -165,7 +165,7 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Internal Error", Toast.LENGTH_SHORT).show();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {

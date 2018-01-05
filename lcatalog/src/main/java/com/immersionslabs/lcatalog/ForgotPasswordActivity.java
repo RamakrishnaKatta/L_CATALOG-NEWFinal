@@ -160,7 +160,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ForgotPasswordActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ForgotPasswordActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
                 // As of f605da3 the following should work
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {

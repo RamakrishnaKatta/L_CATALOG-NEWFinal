@@ -85,7 +85,7 @@ public class VendorListActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(VendorListActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(VendorListActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {

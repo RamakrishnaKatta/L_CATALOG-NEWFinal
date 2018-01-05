@@ -127,7 +127,7 @@ public class NotifyActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NotifyActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(NotifyActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {

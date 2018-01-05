@@ -137,7 +137,7 @@ public class MyfavoriteActivity extends AppCompatActivity {
                 item_images.add(obj.getString("img"));
                 item_discounts.add(obj.getString("discount"));
                 item_3ds.add(obj.getString("view_3d"));
-                item_dimensions.add(obj.getString("view_3d"));
+                item_dimensions.add(obj.getString("dimensions"));
                 item_vendors.add(obj.getString("vendor_id"));
 
             } catch (JSONException e) {
@@ -145,15 +145,15 @@ public class MyfavoriteActivity extends AppCompatActivity {
             }
         }
 
-        Log.e(TAG, "GetData: ids" + item_ids);
-        Log.e(TAG, "GetData: ids" + item_names);
-        Log.e(TAG, "GetData: ids" + item_descriptions);
-        Log.e(TAG, "GetData: ids" + item_prices);
-        Log.e(TAG, "GetData: ids" + item_images);
-        Log.e(TAG, "GetData: ids" + item_dimensions);
-        Log.e(TAG, "GetData: ids" + item_discounts);
-        Log.e(TAG, "GetData: ids" + item_3ds);
-        Log.e(TAG, "GetData: ids" + item_vendors);
+        Log.e(TAG, "Ids" + item_ids);
+        Log.e(TAG, "Names" + item_names);
+        Log.e(TAG, "Descriptions" + item_descriptions);
+        Log.e(TAG, "Prices" + item_prices);
+        Log.e(TAG, "Images" + item_images);
+        Log.e(TAG, "Dimensions" + item_dimensions);
+        Log.e(TAG, "Discounts" + item_discounts);
+        Log.e(TAG, "3ds" + item_3ds);
+        Log.e(TAG, "Vendors" + item_vendors);
 
         favoritemanager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(favoritemanager);

@@ -231,7 +231,7 @@ public class CatalogActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CatalogActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
