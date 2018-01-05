@@ -30,10 +30,11 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import javax.security.auth.login.LoginException;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 
 public class MyfavoriteActivity extends AppCompatActivity {
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/100003";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
+    private static String FAVOURITE_URL = null;
     private static final String TAG = "MyfavoriteActivity";
 
     private ArrayList<String> item_ids;
@@ -46,22 +47,18 @@ public class MyfavoriteActivity extends AppCompatActivity {
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
 
-    MyFavoriteAdapter favoriteAdapter;
-
-
     RecyclerView recycler;
     GridLayoutManager favoritemanager;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
+        FAVOURITE_URL = REGISTER_URL + UserId;
 
         recycler = findViewById(R.id.favorite_recycler);
         recycler.setHasFixedSize(true);
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar_favorite);
         setSupportActionBar(toolbar);
@@ -80,14 +77,13 @@ public class MyfavoriteActivity extends AppCompatActivity {
         item_dimensions = new ArrayList<>();
         item_3ds = new ArrayList<>();
 
-
         CommongetData();
     }
 
     private void CommongetData() {
         Log.e(TAG, "CommongetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTER_URL, object, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FAVOURITE_URL, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e(TAG, "onResponse: response" + response);
@@ -128,7 +124,7 @@ public class MyfavoriteActivity extends AppCompatActivity {
 
     private void GetData(JSONArray resp) {
 
-        for (int i =0;i<resp.length();i++){
+        for (int i = 0; i < resp.length(); i++) {
             JSONObject obj = null;
 
             try {
@@ -147,22 +143,21 @@ public class MyfavoriteActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         }
-        Log.e(TAG, "GetData: ids"+ item_ids);
-        Log.e(TAG, "GetData: ids"+ item_names);
-        Log.e(TAG, "GetData: ids"+ item_descriptions);
-        Log.e(TAG, "GetData: ids"+ item_prices);
-        Log.e(TAG, "GetData: ids"+ item_images);
-        Log.e(TAG, "GetData: ids"+ item_dimensions);
-        Log.e(TAG, "GetData: ids"+ item_discounts);
-        Log.e(TAG, "GetData: ids"+ item_3ds);
-        Log.e(TAG, "GetData: ids"+ item_vendors);
+
+        Log.e(TAG, "GetData: ids" + item_ids);
+        Log.e(TAG, "GetData: ids" + item_names);
+        Log.e(TAG, "GetData: ids" + item_descriptions);
+        Log.e(TAG, "GetData: ids" + item_prices);
+        Log.e(TAG, "GetData: ids" + item_images);
+        Log.e(TAG, "GetData: ids" + item_dimensions);
+        Log.e(TAG, "GetData: ids" + item_discounts);
+        Log.e(TAG, "GetData: ids" + item_3ds);
+        Log.e(TAG, "GetData: ids" + item_vendors);
 
         favoritemanager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(favoritemanager);
-        MyFavoriteAdapter adapter = new MyFavoriteAdapter(this,item_ids,item_names,item_descriptions,item_prices,item_discounts,item_dimensions,item_images,item_3ds,item_vendors);
+        MyFavoriteAdapter adapter = new MyFavoriteAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
         recycler.setAdapter(adapter);
     }
 

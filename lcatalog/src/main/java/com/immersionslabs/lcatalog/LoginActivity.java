@@ -50,6 +50,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
+
 public class LoginActivity extends AppCompatActivity {
 
     private PrefManager prefManager5;
@@ -67,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton get_details;
     CoordinatorLayout LoginLayout;
 
+    String userId;
     String resp, code, message;
     String userName, userEmail, userPhone, userAddress;
     String email, password;
@@ -257,10 +260,15 @@ public class LoginActivity extends AppCompatActivity {
                     for (int i = 0; i < user_details_array.length(); i++) {
 
                         JSONObject user_details = user_details_array.getJSONObject(i);
+                        userId = user_details.getString("id");
                         userName = user_details.getString("name");
-                        userAddress = user_details.getString("adress");
+                        userAddress = user_details.getString("address");
                         userEmail = user_details.getString("email");
                         userPhone = user_details.getString("mobile_no");
+
+                        JSONArray fav_ids = user_details.getJSONArray("article_ids");
+
+                        Log.e(TAG, "favourite JSON Ids " + fav_ids);
                         Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
                     }
 
@@ -331,6 +339,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         Button _loginButton = findViewById(R.id.btn_login);
 
+        UserId = userId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
 
         _loginButton.setEnabled(true);

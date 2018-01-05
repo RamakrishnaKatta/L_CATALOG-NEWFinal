@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,10 +51,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 
 public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener {
 
@@ -116,6 +115,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_images = getArguments().getString("article_images");
         article_name = getArguments().getString("article_name");
         article_3ds = getArguments().getString("article_3ds");
+        article_id = getArguments().getString("article_id");
 
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:name" + article_name);
@@ -396,8 +396,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         JSONObject favorites = new JSONObject();
         try {
             favorites.put("liked", value);
-            favorites.put("userid", 200005);
+            favorites.put("userid", UserId);
             favorites.put("article_id", article_id);
+            Log.e(TAG, "--------------------------------------------------" + UserId);
+            Log.e(TAG, "--------------------------------------------------" + article_id);
 
         } catch (Exception e) {
             e.printStackTrace();
