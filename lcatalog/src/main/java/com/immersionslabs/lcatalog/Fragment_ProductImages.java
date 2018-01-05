@@ -21,6 +21,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
@@ -35,11 +45,15 @@ import com.like.OnLikeListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,6 +62,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private static final String TAG = "Fragment_ProductImages";
 
     private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/";
+
+    private static String LIKE_URL = "http://35.154.150.204:4000/users/favouriteArticles";
+
     private static String EXTENDED_URL_3DS;
 
     private PrefManager prefManager;
@@ -56,11 +73,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     ImageButton article_share, article_download, article_3d_view, article_augment;
     TextView zip_downloaded;
 
-    String article_images;
+    String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
     String image1, image2, image3, image4, image5;
 
     String article_name, article_3ds;
+
+    String resp, code, message;
+    String userid;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -358,16 +378,72 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     @Override
     public void onAnimationEnd(LikeButton likeButton) {
+
     }
 
     @Override
     public void liked(LikeButton likeButton) {
-        Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+        likeApiCall(1);
     }
 
     @Override
     public void unLiked(LikeButton likeButton) {
+        likeApiCall(0);
         Toast.makeText(getContext(), "Disliked!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void likeApiCall(final int value) {
+        JSONObject favorites = new JSONObject();
+        try {
+            favorites.put("liked", value);
+            favorites.put("userid", 200005);
+            favorites.put("article_id", article_id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, LIKE_URL, favorites, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e(TAG, "onResponse: Like" + response);
+                if (value == 1) {
+                    Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    resp = response.getString("success");
+                    code = response.getString("status_code");
+                    message = response.getString("message");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                // As of f605da3 the following should work
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        JSONObject request = new JSONObject(res);
+                    } catch (UnsupportedEncodingException | JSONException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonObjectRequest);
+
     }
 
     @Override
