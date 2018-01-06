@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.adapters;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,9 +28,7 @@ import java.util.ArrayList;
 
 public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.ViewHolder> {
 
-
     private static final String TAG = "MyFavoriteAdapter";
-
 
     private Activity activity;
 
@@ -83,7 +80,7 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_favorite, parent, false);
+        View view = inflater.inflate(R.layout.item_grid, parent, false);
 
         return new ViewHolder(view);
     }
@@ -109,7 +106,6 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
 
-
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));
         Integer z = (x * (100 - y)) / 100;
@@ -121,7 +117,6 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
         viewHolder.item_price.setPaintFlags(viewHolder.item_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.item_discount.setText(item_discounts.get(position));
         viewHolder.item_price_new.setText(itemNewPrice);
-
 
         viewHolder.favorite_container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,12 +141,9 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
                 intent.putExtras(b);
 
                 context[0].startActivity(intent);
-
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -165,13 +157,13 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
 
         ViewHolder(View view) {
             super(view);
-            favorite_container = view.findViewById(R.id.fav_container);
-            item_image = view.findViewById(R.id.fav_item_image);
-            item_name = view.findViewById(R.id.fav_item_name);
-            item_description = view.findViewById(R.id.fav_item_description);
-            item_price = view.findViewById(R.id.fav_item_price);
-            item_discount = view.findViewById(R.id.fav_item_discount_value);
-            item_price_new = view.findViewById(R.id.fav_item_price_new);
+            favorite_container = view.findViewById(R.id.grid_container);
+            item_image = view.findViewById(R.id.grid_item_image);
+            item_name = view.findViewById(R.id.grid_item_name);
+            item_description = view.findViewById(R.id.grid_item_description);
+            item_price = view.findViewById(R.id.grid_item_price);
+            item_discount = view.findViewById(R.id.grid_item_discount_value);
+            item_price_new = view.findViewById(R.id.grid_item_price_new);
         }
     }
 }

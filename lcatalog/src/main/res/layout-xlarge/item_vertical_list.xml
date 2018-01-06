@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_4"
     android:background="@drawable/background_curves"
-    android:paddingTop="@dimen/margin_32">
+    android:paddingTop="@dimen/margin_32"
+    app:cardBackgroundColor="@color/complete_transparent">
 
     <RelativeLayout
         android:id="@+id/v_container"
@@ -21,12 +23,12 @@
 
         <TextView
             android:id="@+id/v_item_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/v_item_image"
-            android:paddingEnd="@dimen/margin_0"
+            android:paddingEnd="@dimen/margin_40"
             android:paddingStart="@dimen/margin_40"
-            android:paddingTop="@dimen/margin_40"
+            android:paddingTop="@dimen/margin_20"
             android:text="@string/catalog_title"
             android:textColor="@color/primary_dark"
             android:textSize="@dimen/text_tab_medium"
@@ -34,25 +36,29 @@
 
         <TextView
             android:id="@+id/v_item_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/v_item_name"
             android:layout_toEndOf="@+id/v_item_image"
             android:ellipsize="end"
             android:maxLines="2"
-            android:paddingEnd="@dimen/margin_0"
+            android:paddingEnd="@dimen/margin_40"
             android:paddingStart="@dimen/margin_40"
+            android:paddingTop="@dimen/margin_20"
             android:text="@string/catalog_description"
             android:textColor="@color/primary_dark"
             android:textSize="@dimen/text_tab_small"
             android:textStyle="italic" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/v_item_description"
             android:layout_toEndOf="@+id/v_item_image"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/margin_40"
+            android:paddingStart="@dimen/margin_20"
+            android:paddingTop="@dimen/margin_20">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -61,13 +67,13 @@
                 android:paddingEnd="@dimen/margin_6"
                 android:paddingStart="@dimen/margin_20">
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_tab_small" />
 
                 <TextView
                     android:id="@+id/v_item_price"
@@ -82,10 +88,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="@dimen/margin_6"
-                    android:paddingStart="@dimen/margin_6"
+                    android:paddingStart="@dimen/margin_2"
                     android:text="@string/price_Tag"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_small" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -100,7 +107,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_10"
                     android:text="@string/Rs"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_tab_small" />
 
                 <TextView
                     android:id="@+id/v_item_price_new"
@@ -120,14 +128,15 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_tab_small" />
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/black">
+                android:background="@color/black"
+                android:paddingEnd="@dimen/margin_10"
+                android:paddingStart="@dimen/margin_10">
 
                 <TextView
                     android:id="@+id/v_item_discount_value"
@@ -141,11 +150,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_0"
                     android:text="@string/percentage_symbol"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_small"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
         </LinearLayout>
