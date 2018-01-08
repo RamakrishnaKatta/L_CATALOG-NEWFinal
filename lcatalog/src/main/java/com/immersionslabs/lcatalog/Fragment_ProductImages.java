@@ -125,6 +125,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             likeButton.setLiked(true);
         } else {
             Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
+            likeButton.setLiked(false);
         }
 
         try {
