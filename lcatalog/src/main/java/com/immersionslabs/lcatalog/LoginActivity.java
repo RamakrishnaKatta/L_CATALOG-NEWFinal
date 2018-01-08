@@ -46,11 +46,13 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -77,10 +79,13 @@ public class LoginActivity extends AppCompatActivity {
     File file_customer;
     String[] text_from_customer_file;
 
+    ArrayList<String> temp = new ArrayList<String>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
@@ -267,8 +272,15 @@ public class LoginActivity extends AppCompatActivity {
                         userPhone = user_details.getString("mobile_no");
 
                         JSONArray fav_ids = user_details.getJSONArray("article_ids");
+                        final int no_of_fav_ids = fav_ids.length() - 1;
+                        for (int j = 0; j <= no_of_fav_ids; j++) {
+                            temp.add(fav_ids.getString(j));
+                        }
+
+                        user_Favourite_list = temp;
 
                         Log.e(TAG, "favourite JSON Ids " + fav_ids);
+                        Log.e(TAG, "favourite Array List Ids " + user_Favourite_list);
                         Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
                     }
 

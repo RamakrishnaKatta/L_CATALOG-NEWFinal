@@ -36,6 +36,7 @@ import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import java.util.Objects;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 @SuppressLint("Registered")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -385,6 +386,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
+            user_Favourite_list.clear();
             Intent intent = new Intent(this, UserTypeActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);

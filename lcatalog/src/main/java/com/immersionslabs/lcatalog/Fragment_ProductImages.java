@@ -55,6 +55,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener {
 
@@ -79,7 +80,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     String article_name, article_3ds;
 
     String resp, code, message;
-    String userid;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -120,6 +120,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:name" + article_name);
 
+        if (user_Favourite_list.contains(article_id)) {
+            Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
+            likeButton.setLiked(true);
+        } else {
+            Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
+        }
+
         try {
 
             JSONArray image_json = new JSONArray(article_images);
@@ -129,7 +136,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 image3 = image_json.getString(2);
                 image4 = image_json.getString(3);
                 image5 = image_json.getString(4);
-
             }
 
         } catch (JSONException e) {
@@ -213,7 +219,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.AppTheme_Dark_Dialog);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Downloading Article, Just for once....");
@@ -383,11 +388,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     @Override
     public void liked(LikeButton likeButton) {
+        user_Favourite_list.add(article_id);
         likeApiCall(1);
     }
 
     @Override
     public void unLiked(LikeButton likeButton) {
+        user_Favourite_list.remove(article_id);
         likeApiCall(0);
         Toast.makeText(getContext(), "Disliked!", Toast.LENGTH_SHORT).show();
     }
