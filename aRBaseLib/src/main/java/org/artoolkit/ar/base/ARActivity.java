@@ -324,10 +324,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                         : Camera.Parameters.FLASH_MODE_OFF);
                 preview.camera.setParameters(param);
                 flashmode = !flashmode;
-            } catch (Exception e) {
+                Toast toast = Toast.makeText(this, "Flash Activated", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.show();
+
+            } catch (Exception ignored) {
             }
         }
-
     }
 
     private void CameraImage() {
