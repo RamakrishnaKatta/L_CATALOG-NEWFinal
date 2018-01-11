@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.Utils;
 
-
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Environment;
@@ -18,7 +17,7 @@ import java.util.Locale;
 
 public class ImageUtils {
 
-    // SD card image directory
+    // SD card screenshots_directory
     private static final String PHOTO_ALBUM = "/L_CATALOG/Screenshots/";
 
     private static final String TAG = "Utils";
@@ -27,7 +26,7 @@ public class ImageUtils {
     private static final List<String> FILE_EXTN = Arrays.asList("jpg", "jpeg", "png");
 
     private Context _context;
-    private File directory;
+    private File screenshots_directory;
 
     // constructor
     public ImageUtils(Context context) {
@@ -39,49 +38,54 @@ public class ImageUtils {
      */
     public ArrayList<String> getFilePaths() {
 
-        ArrayList<String> filePaths = new ArrayList<>();
+        ArrayList<String> ImageFilePaths = new ArrayList<>();
+
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Log.e(TAG, "ERROR, No Card Found------");
         } else {
-            directory = new File(android.os.Environment.getExternalStorageDirectory() + PHOTO_ALBUM);
-            directory.mkdirs();
+            screenshots_directory = new File(android.os.Environment.getExternalStorageDirectory() + PHOTO_ALBUM);
+            screenshots_directory.mkdirs();
         }
 
-        // check for directory
-        if (directory.isDirectory()) {
+        // check for screenshots_directory
+        if (screenshots_directory.isDirectory()) {
 
             // getting list of file paths
-            File[] listOfFiles = directory.listFiles();
+            File[] listOfImages = screenshots_directory.listFiles();
             //Log.e(TAG, "List Of files------" + Arrays.toString(listOfFiles));
 
             // Check for count
-            if (listOfFiles.length > 0) {
+            if (listOfImages.length > 0) {
+
+                // screenshots_directory is empty
+                Toast.makeText(_context, "Here are your screenshots !", Toast.LENGTH_LONG).show();
 
                 // loop through all files
-                for (File listOfFile : listOfFiles) {
+                for (File listOfImageFiles : listOfImages) {
 
                     // get file path
-                    String filePath = listOfFile.getAbsolutePath();
+                    String ImagePath = listOfImageFiles.getAbsolutePath();
                     // check for supported file extension
-                    if (IsSupportedFile(filePath)) {
+                    if (IsSupportedFile(ImagePath)) {
                         // Add image path to array list
-                        filePaths.add(filePath);
+                        ImageFilePaths.add(ImagePath);
                     }
                 }
+
             } else {
-                // image directory is empty
-                Toast.makeText(_context, PHOTO_ALBUM + " is empty. Please load some images in it !", Toast.LENGTH_LONG).show();
+                // screenshots_directory is empty
+                Toast.makeText(_context, "You haven't taken any screenshots Yet !", Toast.LENGTH_LONG).show();
             }
 
         } else {
             AlertDialog.Builder alert = new AlertDialog.Builder(_context);
-            alert.setTitle("Error!");
-            alert.setMessage(PHOTO_ALBUM + " directory path is not valid! Please set the image directory name AppConstant.java class");
+            alert.setTitle("Permission Error!");
+            alert.setMessage("We are unable to read your Storage, have you given the permissions ?");
             alert.setPositiveButton("OK", null);
             alert.show();
         }
 
-        return filePaths;
+        return ImageFilePaths;
     }
 
     /*
