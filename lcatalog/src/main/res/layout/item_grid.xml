@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingEnd="@dimen/margin_10"
+                android:paddingEnd="@dimen/margin_3"
                 android:paddingStart="@dimen/margin_3">
 
                 <TextView
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingEnd="@dimen/margin_10"
+                android:paddingEnd="@dimen/margin_5"
                 android:paddingStart="@dimen/margin_3">
 
                 <TextView
@@ -124,8 +124,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/margin_3"
-                    android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_small" />
@@ -136,8 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/black"
-                android:paddingEnd="@dimen/margin_10"
-                android:paddingStart="@dimen/margin_10">
+                android:gravity="center"
+                android:paddingEnd="@dimen/margin_0"
+                android:paddingStart="@dimen/margin_3">
 
                 <TextView
                     android:id="@+id/grid_item_discount_value"

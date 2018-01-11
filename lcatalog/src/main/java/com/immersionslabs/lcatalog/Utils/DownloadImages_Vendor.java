@@ -30,8 +30,8 @@ public class DownloadImages_Vendor extends AsyncTask<String, Void, Bitmap> {
             mIcon = BitmapFactory.decodeStream(in);
 
         } catch (Exception e) {
+            Log.e("Error", "" + e.getMessage());
 
-            Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
         return mIcon;
