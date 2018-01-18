@@ -29,6 +29,8 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +38,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String TAG = "ForgotPassword";
     private static final int REQUEST_FORGOT = 0;
@@ -145,40 +147,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         password_update_parameters.put("password", password);
         Log.e(TAG, "Request--" + password_update_parameters);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, PASSWORD_UPDATE_URL, password_update_parameters, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject requestResponse) {
-                Log.e(TAG, "response--" + requestResponse);
-                try {
-                    code = requestResponse.getString("status_code");
-                    message = requestResponse.getString("message");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ForgotPasswordActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-                // As of f605da3 the following should work
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-
+        ApiService.getInstance(this).postData(this, PASSWORD_UPDATE_URL, password_update_parameters, "FORGOT", "POST PASSWORD");
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 // On complete call either onLoginSuccess or onLoginFailed
@@ -268,6 +237,27 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         CustomMessage.getInstance().CustomMessage(ForgotPasswordActivity.this, "Please Enter valid Email Id");
 
         _submitbtn.setEnabled(true);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject requestResponse, String flag) {
+
+        if (flag.equals("POST PASSWORD")) {
+            Log.e(TAG, "response--" + requestResponse);
+            try {
+                code = requestResponse.getString("status_code");
+                message = requestResponse.getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(ForgotPasswordActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
+
     }
 
     @Override

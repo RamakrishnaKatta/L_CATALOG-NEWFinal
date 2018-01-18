@@ -22,6 +22,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.MyFavoriteAdapter;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 
-public class MyfavoriteActivity extends AppCompatActivity {
+public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunication {
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static String FAVOURITE_URL = null;
     private static final String TAG = "MyfavoriteActivity";
@@ -83,43 +85,8 @@ public class MyfavoriteActivity extends AppCompatActivity {
     private void CommongetData() {
         Log.e(TAG, "CommongetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, FAVOURITE_URL, object, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e(TAG, "onResponse: response" + response);
 
-                try {
-                    JSONArray resp = response.getJSONArray("data");
-                    GetData(resp);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MyfavoriteActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                        Log.e(TAG, "request--" + request);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        ApiService.getInstance(this).getData(this, false, "FAVORITE", FAVOURITE_URL, "FAVORITE_LIST");
     }
 
     private void GetData(JSONArray resp) {
@@ -181,4 +148,24 @@ public class MyfavoriteActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("FAVORITE_LIST")) {
+            Log.e(TAG, "onResponse: response" + response);
+
+            try {
+                JSONArray resp = response.getJSONArray("data");
+                GetData(resp);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(MyfavoriteActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+
+    }
 }

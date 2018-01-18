@@ -34,6 +34,8 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.Utils.RegisterCollection;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,9 +62,11 @@ public class SignupActivity extends AppCompatActivity {
     TextView app_name, powered;
     private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;
     private Button _signupButton;
+    RegisterCollection collection;
+    Sessionmanager sessionmanager;
 
     CoordinatorLayout SignupLayout;
-
+    String name, email, address, mobile, password;
     String resp, code, message;
 
     @Override
@@ -80,6 +84,7 @@ public class SignupActivity extends AppCompatActivity {
         app_name.setTypeface(custom_font);
         powered.setTypeface(custom_font2);
 
+        sessionmanager = new Sessionmanager(getApplicationContext());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Toolbar toolbar = findViewById(R.id.toolbar_signup);
@@ -140,24 +145,32 @@ public class SignupActivity extends AppCompatActivity {
         Log.e(TAG, "----------------------------");
 
         _nameText = findViewById(R.id.input_name);
-        final String name = _nameText.getText().toString().trim();
+        name = _nameText.getText().toString().trim();
         Log.e(TAG, "name--" + name);
 
         _addressText = findViewById(R.id.input_address);
-        final String address = _addressText.getText().toString().trim();
+        address = _addressText.getText().toString().trim();
         Log.e(TAG, "adress--" + address);
 
         _emailText = findViewById(R.id.input_email);
-        final String email = _emailText.getText().toString().trim();
+        email = _emailText.getText().toString().trim();
         Log.e(TAG, "email--" + email);
 
         _mobileText = findViewById(R.id.input_mobile);
-        final String mobile = _mobileText.getText().toString().trim();
+        mobile = _mobileText.getText().toString().trim();
         Log.e(TAG, "mobile_no--" + mobile);
 
         _passwordText = findViewById(R.id.input_password);
-        final String password = _passwordText.getText().toString().trim();
+        password = _passwordText.getText().toString().trim();
         Log.e(TAG, "password--" + password);
+
+        collection = new RegisterCollection(name, email, mobile, address, password);
+        sessionmanager.signupthings();
+        sessionmanager.createUserLoginSession(name, email, mobile, address, password);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
+
 
         _reEnterPasswordText = findViewById(R.id.input_reEnterPassword);
 
@@ -167,10 +180,10 @@ public class SignupActivity extends AppCompatActivity {
         }
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+//        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Creating Account...");
+//        progressDialog.show();
 
         // SIGN_UP LOGIC !!
         JSONObject signup_parameters = new JSONObject();
@@ -261,7 +274,7 @@ public class SignupActivity extends AppCompatActivity {
                         } else {
                             onSignupSuccess();
                         }
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                     }
                 }, 3000);
     }

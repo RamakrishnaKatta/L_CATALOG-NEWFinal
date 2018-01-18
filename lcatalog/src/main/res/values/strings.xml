@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">L CATALOG</string>
-    <string name="app_name_temp">L CATALOG/NEW</string>
-    <string name="app_newName">L CATALOG</string>
     <string name="powered_by">Powered by</string>
     <string name="company_name">Immersion Software Labs</string>
     <string name="company_icon">Company Icon</string>
@@ -25,10 +23,10 @@
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly, Who you are matters !!</string>
     <string name="login_hint">If you are a customer already…</string>
-    <string name="login_sign">LOGIN</string>
-    <string name="signup_sign">SIGNUP</string>
+    <string name="login_sign">OGIN</string>
+    <string name="signup_sign">IGNUP</string>
     <string name="signup_hint">If you want to become a customer…</string>
-    <string name="guest_sign">GUEST</string>
+    <string name="guest_sign">UEST</string>
     <string name="guest_hint">If you are a oneTime Shopper…</string>
 
     <string name="name">My Name</string>

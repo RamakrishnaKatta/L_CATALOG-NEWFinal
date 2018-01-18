@@ -27,6 +27,8 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.adapters.NotificationAdapter;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-public class NotifyActivity extends AppCompatActivity {
+public class NotifyActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/notification";
     private static final String TAG = "NotifyActivity";
@@ -44,6 +46,7 @@ public class NotifyActivity extends AppCompatActivity {
     ArrayList<String> notification_messages;
     ArrayList<String> notification_images;
     ArrayList<String> notification_ids;
+    ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,45 +108,47 @@ public class NotifyActivity extends AppCompatActivity {
 
 
     private void GetNotificationData() {
-        final ProgressDialog loading = ProgressDialog.show(this, "Please wait...", "Fetching data...", false, false);
+        loading = ProgressDialog.show(this, "Please wait...", "Fetching data...", false, false);
 
         final JSONObject baseclass = new JSONObject();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTER_URL, baseclass, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e(TAG, "response--" + response);
-
-                try {
-                    JSONArray resp = response.getJSONArray("data");
-                    loading.dismiss();
-                    NotificationView(resp);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NotifyActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                        Log.e(TAG, "request--" + request);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        ApiService.getInstance(this).getData(this, false, "NOTIFICATIONS", REGISTER_URL, "NOTIFY");
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTER_URL, baseclass, new Response.Listener<JSONObject>() {
+//
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                Log.e(TAG, "response--" + response);
+//
+//                try {
+//                    JSONArray resp = response.getJSONArray("data");
+//                    loading.dismiss();
+//                    NotificationView(resp);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(NotifyActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
+//                NetworkResponse response = error.networkResponse;
+//                if (error instanceof ServerError && response != null) {
+//                    try {
+//                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+//                        // Now you can use any deserializer to make sense of data
+//                        JSONObject request = new JSONObject(res);
+//                        Log.e(TAG, "request--" + request);
+//                    } catch (UnsupportedEncodingException | JSONException e1) {
+//                        // Couldn't properly decode data to string
+//                        e1.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(jsonObjectRequest);
     }
 
 
@@ -194,5 +199,25 @@ public class NotifyActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        Log.e(TAG, "response--" + response);
+
+        try {
+            JSONArray resp = response.getJSONArray("data");
+            loading.dismiss();
+            NotificationView(resp);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(NotifyActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+
     }
 }

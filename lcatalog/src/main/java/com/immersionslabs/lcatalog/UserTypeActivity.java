@@ -27,6 +27,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,12 +53,19 @@ public class UserTypeActivity extends AppCompatActivity {
 
     private PrefManager prefManager1;
     private boolean success = true;
+    Sessionmanager sessionmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_type);
+        sessionmanager = new Sessionmanager(getApplicationContext());
 
+        if (sessionmanager.isUserLoggedIn()) {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            finish();
+        }
         RequestPermissions();
 
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");

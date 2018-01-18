@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String guest_name, guest_phone;
     TextView user_type, user_email, user_name, app_name, powered;
 
+    Sessionmanager sessionmanager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sessionmanager = new Sessionmanager(getApplicationContext());
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
@@ -89,29 +93,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        final Bundle user_data = getIntent().getExtras();
-        Log.d(TAG, "Dummy -- " + user_data);
+//        final Bundle user_data = getIntent().getExtras();
+//        Log.d(TAG, "Dummy -- " + user_data);
+//
+//        name = user_data.getString("name");
+//        Log.e(TAG, "name:  " + name);
+//
+//        address = user_data.getString("address");
+//        Log.e(TAG, "address:  " + address);
+//
+//        email = user_data.getString("email");
+//        Log.e(TAG, "email:  " + email);
+//
+//        phone = user_data.getString("phone");
+//        Log.e(TAG, "phone:  " + phone);
 
-        name = user_data.getString("name");
-        Log.e(TAG, "name:  " + name);
-
-        address = user_data.getString("address");
-        Log.e(TAG, "address:  " + address);
-
-        email = user_data.getString("email");
-        Log.e(TAG, "email:  " + email);
-
-        phone = user_data.getString("phone");
-        Log.e(TAG, "phone:  " + phone);
-
-        final Bundle guest_data = getIntent().getExtras();
-        Log.d(TAG, "Dummy -- " + guest_data);
-
-        guest_name = guest_data.getString("guest_name");
-        Log.e(TAG, "guest name:  " + guest_name);
-
-        guest_phone = guest_data.getString("guest_phone");
-        Log.e(TAG, "guest phone:  " + guest_phone);
+//        final Bundle guest_data = getIntent().getExtras();
+//        Log.d(TAG, "Dummy -- " + guest_data);
+//
+//        guest_name = guest_data.getString("guest_name");
+//        Log.e(TAG, "guest name:  " + guest_name);
+//
+//        guest_phone = guest_data.getString("guest_phone");
+//        Log.e(TAG, "guest phone:  " + guest_phone);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

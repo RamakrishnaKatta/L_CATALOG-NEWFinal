@@ -30,6 +30,8 @@ import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.adapters.GridViewAdapter;
 import com.immersionslabs.lcatalog.adapters.ListViewHorizontalAdapter;
 import com.immersionslabs.lcatalog.adapters.ListViewVerticalAdapter;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +41,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
     private static final String TAG = "CatalogActivity";
@@ -176,78 +178,9 @@ public class CatalogActivity extends AppCompatActivity {
     private void commonGetdata() {
         Log.e(TAG, "commonGetdata: " + REGISTER_URL);
         final JSONObject baseclass = new JSONObject();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTER_URL, baseclass, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e(TAG, "response--" + response);
+        ApiService.getInstance(this).getData(this, false, "CATALOGUE", REGISTER_URL, "GETDATA");
 
-                if (refreshLayout.isRefreshing()) {
-                    refreshLayout.setRefreshing(false);
-                }
-                try {
-                    JSONArray resp = response.getJSONArray("data");
-
-                    if (!Loadmore) {
-                        CatalogView(resp);
-                    } else {
-
-                        for (int i = 0; i < resp.length(); i++) {
-                            JSONObject obj = null;
-                            try {
-                                obj = resp.getJSONObject(i);
-
-                                item_ids.add(obj.getString("_id"));
-                                item_names.add(obj.getString("name"));
-                                item_descriptions.add(obj.getString("description"));
-                                item_prices.add(obj.getString("price"));
-                                item_discounts.add(obj.getString("discount"));
-                                item_vendors.add(obj.getString("vendor_id"));
-                                item_dimensions.add(obj.getString("dimensions"));
-                                item_3ds.add(obj.getString("view_3d"));
-                                item_images.add(obj.getString("img"));
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
-                            gridAdapter.notifyDataSetChanged();
-                        } else if (fab_vertical.getSize() == 0 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 1) {
-                            VerticalAdapter.notifyDataSetChanged();
-                        } else if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 0 && fab_grid.getSize() == 1) {
-                            horizontalAdapter.notifyDataSetChanged();
-                        }
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                        Log.e(TAG, "request--" + request);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
     }
 
     /*Internet message for Network connectivity*/
@@ -369,4 +302,60 @@ public class CatalogActivity extends AppCompatActivity {
         super.onPause();
     }
 
+
+//    Api response
+//    ======================================
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("GETDATA")) {
+            Log.e(TAG, "onResponseCallback: response" + response);
+            System.out.println("RESP : " + response);
+            if (refreshLayout.isRefreshing()) {
+                refreshLayout.setRefreshing(false);
+            }
+            try {
+                JSONArray resp = response.getJSONArray("data");
+
+                if (!Loadmore) {
+                    CatalogView(resp);
+                } else {
+
+                    for (int i = 0; i < resp.length(); i++) {
+                        JSONObject obj = null;
+                        try {
+                            obj = resp.getJSONObject(i);
+
+                            item_ids.add(obj.getString("_id"));
+                            item_names.add(obj.getString("name"));
+                            item_descriptions.add(obj.getString("description"));
+                            item_prices.add(obj.getString("price"));
+                            item_discounts.add(obj.getString("discount"));
+                            item_vendors.add(obj.getString("vendor_id"));
+                            item_dimensions.add(obj.getString("dimensions"));
+                            item_3ds.add(obj.getString("view_3d"));
+                            item_images.add(obj.getString("img"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
+                        gridAdapter.notifyDataSetChanged();
+                    } else if (fab_vertical.getSize() == 0 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 1) {
+                        VerticalAdapter.notifyDataSetChanged();
+                    } else if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 0 && fab_grid.getSize() == 1) {
+                        horizontalAdapter.notifyDataSetChanged();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(CatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+    }
 }

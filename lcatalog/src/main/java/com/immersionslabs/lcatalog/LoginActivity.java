@@ -38,6 +38,7 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import org.json.JSONArray;
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
+    Sessionmanager sessionmanager;
 
     private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
     private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
@@ -87,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+        sessionmanager= new Sessionmanager(getApplicationContext());
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
 
@@ -350,6 +353,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         Button _loginButton = findViewById(R.id.btn_login);
+        sessionmanager.loginthings();
 
         UserId = userId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
