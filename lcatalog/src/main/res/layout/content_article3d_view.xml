@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/complete_transparent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Article3dViewActivity"
     tools:showIn="@layout/activity_article3d_view">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/complete_transparent"
         android:orientation="vertical">
 
         <com.immersionslabs.lcatalog.loader3ds.MyGLSurfaceView
             android:id="@+id/glView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/complete_transparent" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:paddingLeft="@dimen/margin_20"
-            android:paddingRight="@dimen/margin_75"
-            android:paddingBottom="@dimen/margin_10">
+            android:paddingBottom="@dimen/margin_10"
+            android:paddingEnd="@dimen/margin_75"
+            android:paddingStart="@dimen/margin_20">
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/seekbar1"

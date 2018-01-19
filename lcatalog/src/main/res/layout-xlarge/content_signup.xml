@@ -10,8 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,18 +18,20 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/margin_40"
-            android:paddingTop="@dimen/margin_100">
+            android:paddingEnd="@dimen/margin_40"
+            android:paddingStart="@dimen/margin_40"
+            android:paddingTop="@dimen/margin_40">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_40"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/margin_150"
-                    android:layout_height="@dimen/margin_150"
+                    android:layout_width="@dimen/margin_140"
+                    android:layout_height="@dimen/margin_140"
                     android:layout_marginStart="@dimen/margin_80"
                     android:contentDescription="@string/company_icon"
                     android:src="@drawable/companyicon" />
@@ -38,15 +39,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/application_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_40"
-                        android:gravity="center"
                         android:text="@string/app_name"
+                        android:textAlignment="center"
                         android:textSize="@dimen/text_tab_max"
                         android:textStyle="bold" />
 
@@ -54,10 +55,11 @@
                         android:id="@+id/immersionslabs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
                         android:text="@string/powered_immersionslabs"
+                        android:textAlignment="center"
                         android:textSize="@dimen/text_tab_large"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -168,7 +170,7 @@
                 android:padding="@dimen/margin_24"
                 android:text="@string/create_account"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_tab_medium" />
+                android:textSize="@dimen/text_tab_small" />
 
         </LinearLayout>
 

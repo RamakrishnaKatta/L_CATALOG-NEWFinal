@@ -22,9 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:paddingLeft="@dimen/margin_60"
-            android:paddingRight="@dimen/margin_100"
-            android:paddingBottom="@dimen/margin_10">
+            android:paddingBottom="@dimen/margin_10"
+            android:paddingEnd="@dimen/margin_100"
+            android:paddingStart="@dimen/margin_60">
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/seekbar1"
