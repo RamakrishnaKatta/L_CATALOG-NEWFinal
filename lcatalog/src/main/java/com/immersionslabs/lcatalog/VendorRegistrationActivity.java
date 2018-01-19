@@ -200,8 +200,8 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                 try {
                     resp = requestResponse.getString("success");
 //                    code = requestResponse.getString("code");
-                    message = requestResponse.getString("message");
-                    Log.e(TAG, "response--" + resp + " message--" + message);
+//                    message = requestResponse.getString("message");
+                    Log.e(TAG, "response--" + resp);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -263,10 +263,10 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed depending on success
 
-                        if (Objects.equals(message, "success") || Objects.equals(code, "message")) {
-                            onVendorRegistrationSuccess();
-                        } else {
+                        if (Objects.equals(resp, "success")) {
                             onVendorRegistrationFailed();
+                        } else {
+                            onVendorRegistrationSuccess();
                         }
                         progressDialog.dismiss();
                     }
@@ -362,8 +362,8 @@ public class VendorRegistrationActivity extends AppCompatActivity {
 
     public void onVendorRegistrationSuccess() {
 
-        CustomMessage.getInstance().CustomMessage(VendorRegistrationActivity.this, "Successfully registered your request, We will respond very soon! ");
-
+//        CustomMessage.getInstance().CustomMessage(VendorRegistrationActivity.this, "Successfully registered your request, We will respond very soon! ");
+        Toast.makeText(this, "Successfully registered your request, We will respond very soon! ", Toast.LENGTH_LONG).show();
         v_registerButton = findViewById(R.id.btn_vendor_submit);
         v_registerButton.setEnabled(true);
         setResult(RESULT_OK, null);
@@ -375,7 +375,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         CustomMessage.getInstance().CustomMessage(VendorRegistrationActivity.this, "Vendor Registration Failed");
 
         v_registerButton = findViewById(R.id.btn_vendor_submit);
-        v_registerButton.setEnabled(true);
+        v_registerButton.setEnabled(false);
     }
 
     @Override
