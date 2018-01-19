@@ -34,12 +34,12 @@ import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
-@SuppressLint("Registered")
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private PrefManager prefManager3;
@@ -92,6 +92,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        HashMap hashMap = new HashMap();
+        hashMap = sessionmanager.getUserDetails();
+        name = (String) hashMap.get(Sessionmanager.KEY_NAME);
+        Log.e(TAG, "name:  " + name);
+
+        address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
+        Log.e(TAG, "address:  " + address);
+
+        email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
+        Log.e(TAG, "email:  " + email);
+
+        phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
+        Log.e(TAG, "phone:  " + phone);
+
 
 //        final Bundle user_data = getIntent().getExtras();
 //        Log.d(TAG, "Dummy -- " + user_data);
@@ -308,8 +323,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem Nav_item) {
         // Handle navigation view item clicks here.
@@ -335,11 +348,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             user_log_type = user_type.getText().toString().trim();
 
-            user_details.putString("user_email", email);
-            user_details.putString("user_name", name);
-            user_details.putString("user_address", address);
-            user_details.putString("user_phone", phone);
-            user_details.putString("user_type", user_log_type);
+//            user_details.putString("user_email", email);
+//            user_details.putString("user_name", name);
+//            user_details.putString("user_address", address);
+//            user_details.putString("user_phone", phone);
+//            user_details.putString("user_type", user_log_type);
 
             if (Objects.equals(user_log_type, "CUSTOMER")) {
 
@@ -391,8 +404,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
             user_Favourite_list.clear();
+            sessionmanager.logoutUser();
             Intent intent = new Intent(this, UserTypeActivity.class);
             startActivity(intent);
+            finish();
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
         } else if (id == R.id.nav_about) {

@@ -75,12 +75,8 @@ public class Sessionmanager {
     }
 
     public void logoutUser() {
-        editor.clear();
+        editor.putBoolean(IS_USER_LOGIN,false);
         editor.commit();
-        Intent i = new Intent(context, MainActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
     }
 
     public boolean isUserLoggedIn() {

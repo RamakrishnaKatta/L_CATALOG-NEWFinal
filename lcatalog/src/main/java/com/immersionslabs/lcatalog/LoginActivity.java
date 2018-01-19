@@ -361,15 +361,15 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
         setResult(RESULT_OK, null);
 
-        Bundle user_data = new Bundle();
-        user_data.putString("name", userName);
-        user_data.putString("phone", userPhone);
-        user_data.putString("address", userAddress);
-        user_data.putString("email", userEmail);
-        Log.e(TAG, "User -- " + user_data);
+//        Bundle user_data = new Bundle();
+//        user_data.putString("name", userName);
+//        user_data.putString("phone", userPhone);
+//        user_data.putString("address", userAddress);
+//        user_data.putString("email", userEmail);
+//        Log.e(TAG, "User -- " + user_data);
 
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
-            Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
