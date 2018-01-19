@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:contentDescription="@null"
             android:padding="@dimen/margin_20"
-            android:src="@drawable/ic_augment" />
+            android:src="@drawable/ic_augment_hd" />
     </LinearLayout>
 
 

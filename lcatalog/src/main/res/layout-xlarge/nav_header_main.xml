@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/side_nav_bar"
+    android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/margin_5"
     android:paddingLeft="@dimen/margin_16"
@@ -23,7 +24,7 @@
             android:id="@+id/icon_image"
             android:layout_width="@dimen/margin_75"
             android:layout_height="@dimen/margin_75"
-            android:layout_gravity="center|left"
+            android:layout_gravity="center|start"
             android:contentDescription="@string/company_icon"
             app:srcCompat="@drawable/companyicon" />
 
@@ -94,7 +95,6 @@
         android:layout_height="wrap_content"
         android:autoLink="email"
         android:gravity="start"
-        android:paddingStart="@dimen/margin_4"
         android:text="@string/email_phone_number"
         android:textSize="@dimen/text_tab_tiny" />
 

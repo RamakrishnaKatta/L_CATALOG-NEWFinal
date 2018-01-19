@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_6"
+    android:layout_margin="@dimen/margin_5"
     android:background="@drawable/background_curves"
     app:cardBackgroundColor="@color/complete_transparent"
-    app:cardCornerRadius="@dimen/margin_6">
+    app:cardCornerRadius="@dimen/margin_5">
 
     <RelativeLayout
         android:id="@+id/grid_container"
@@ -40,7 +40,7 @@
             android:padding="@dimen/margin_6"
             android:text="@string/catalog_title"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_tab_small"
+            android:textSize="@dimen/text_tab_tootiny"
             android:textStyle="bold" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:padding="@dimen/margin_6"
             android:text="@string/catalog_description"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_tab_small"
+            android:textSize="@dimen/text_tab_tootiny"
             android:textStyle="italic" />
 
         <LinearLayout
@@ -78,7 +78,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tootiny" />
 
                 <TextView
                     android:id="@+id/grid_item_price"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/original_price"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tootiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tootiny" />
             </LinearLayout>
 
             <LinearLayout
@@ -111,7 +111,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tootiny" />
 
                 <TextView
                     android:id="@+id/grid_item_price_new"
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/discount_price"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tootiny"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -142,7 +142,7 @@
                     android:text="@string/discount_percentage"
                     android:textAlignment="center"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tootiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/percentage_symbol"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tootiny"
                     android:textStyle="bold" />
 
             </LinearLayout>

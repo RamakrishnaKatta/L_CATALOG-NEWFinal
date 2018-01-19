@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/app_newName"
+                android:text="@string/app_name"
                 android:textSize="@dimen/text_tab_max" />
 
             <TextView
@@ -89,14 +89,14 @@
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_login"
-                    android:layout_width="@dimen/margin_400"
+                    android:layout_width="@dimen/margin_250"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_6"
                     android:gravity="center"
-                    android:padding="@dimen/margin_20"
+                    android:padding="@dimen/margin_15"
                     android:text="@string/btn_login"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium" />
+                    android:textSize="@dimen/text_tab_small" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"

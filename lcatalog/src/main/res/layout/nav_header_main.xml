@@ -24,7 +24,7 @@
             android:id="@+id/icon_image"
             android:layout_width="@dimen/margin_50"
             android:layout_height="@dimen/margin_50"
-            android:layout_gravity="center|left"
+            android:layout_gravity="center|start"
             android:contentDescription="@string/company_icon"
             app:srcCompat="@drawable/companyicon" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/immersionslabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:gravity="end"
         android:text="@string/powered_symbol_immersionslabs"
         android:textSize="@dimen/text_size_xlarge"
         android:textStyle="bold" />
@@ -96,6 +96,6 @@
         android:autoLink="email"
         android:gravity="start"
         android:text="@string/email_phone_number"
-        android:textSize="@dimen/text_size_xlarge" />
+        android:textSize="@dimen/text_size_medium" />
 
 </LinearLayout>

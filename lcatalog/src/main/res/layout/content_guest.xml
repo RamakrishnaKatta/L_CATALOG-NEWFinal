@@ -22,7 +22,6 @@
             android:padding="@dimen/margin_20"
             android:paddingTop="@dimen/margin_50">
 
-
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/icon"
                 android:layout_width="@dimen/margin_100"

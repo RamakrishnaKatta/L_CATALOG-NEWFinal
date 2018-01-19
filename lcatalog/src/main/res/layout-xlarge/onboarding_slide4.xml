@@ -33,7 +33,7 @@
                     android:id="@+id/capture_image"
                     android:layout_width="@dimen/margin_200"
                     android:layout_height="@dimen/margin_200"
-                    android:src="@drawable/ic_capture"
+                    android:src="@drawable/ic_capture_hd"
                     android:contentDescription="@string/slide4_title_capture" />
 
                 <TextView
@@ -87,7 +87,7 @@
                     android:layout_width="@dimen/margin_200"
                     android:layout_height="@dimen/margin_200"
                     android:layout_below="@+id/txt_welcome_42"
-                    android:src="@drawable/ic_share"
+                    android:src="@drawable/ic_share_hd"
                     android:contentDescription="@string/slide4_title_share" />
 
             </RelativeLayout>

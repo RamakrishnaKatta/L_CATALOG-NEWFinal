@@ -22,7 +22,6 @@
             android:padding="@dimen/margin_40"
             android:paddingTop="@dimen/margin_100">
 
-
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/icon"
                 android:layout_width="@dimen/margin_200"
@@ -89,13 +88,13 @@
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_guest"
-                    android:layout_width="@dimen/margin_400"
+                    android:layout_width="@dimen/margin_250"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_6"
-                    android:padding="@dimen/margin_20"
+                    android:padding="@dimen/margin_15"
                     android:text="@string/guest_details"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium" />
+                    android:textSize="@dimen/text_tab_small" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"

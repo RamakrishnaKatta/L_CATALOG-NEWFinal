@@ -25,7 +25,7 @@
                 android:layout_height="fill_parent"
                 android:background="@color/oil"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/app_newName"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/dummy_icon" />
 
             <LinearLayout
