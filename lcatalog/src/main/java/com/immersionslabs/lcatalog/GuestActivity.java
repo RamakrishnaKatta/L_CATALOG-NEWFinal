@@ -26,6 +26,7 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.Utils.background;
 
 import java.io.File;
 import java.util.Calendar;
@@ -247,7 +248,11 @@ public class GuestActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        scheduleAlarm();
+
+        //if (background.isAppIsInBackground(this)){
+            scheduleAlarm();
+       // }
+
         finish();
     }
 

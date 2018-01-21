@@ -165,12 +165,12 @@ public class SignupActivity extends AppCompatActivity {
         Log.e(TAG, "password--" + password);
 
         collection = new RegisterCollection(name, email, mobile, address, password);
-        sessionmanager.signupthings();
-        sessionmanager.createUserLoginSession(name, email, mobile, address, password);
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        finish();
-
+//        sessionmanager.signupthings();
+//        sessionmanager.createUserLoginSession(name, email, mobile, address, password);
+//        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//        startActivity(intent);
+//        finish();
+//
 
         _reEnterPasswordText = findViewById(R.id.input_reEnterPassword);
 
@@ -178,12 +178,8 @@ public class SignupActivity extends AppCompatActivity {
             onSignupFailed();
             return;
         }
-        _signupButton.setEnabled(false);
+//        _signupButton.setEnabled(false);
 
-//        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setMessage("Creating Account...");
-//        progressDialog.show();
 
         // SIGN_UP LOGIC !!
         JSONObject signup_parameters = new JSONObject();
@@ -205,6 +201,12 @@ public class SignupActivity extends AppCompatActivity {
 
         Log.e(TAG, "request--" + signup_parameters);
 
+        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REGISTER_URL, signup_parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject requestResponse) {
@@ -213,6 +215,9 @@ public class SignupActivity extends AppCompatActivity {
                     resp = requestResponse.getString("success");
                     code = requestResponse.getString("status_code");
                     message = requestResponse.getString("message");
+
+                    progressDialog.dismiss();
+                    onSignupSuccess();
                     Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
 
                 } catch (JSONException e) {
@@ -222,8 +227,9 @@ public class SignupActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 Toast.makeText(SignupActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-
+                onSignupFailed();
                 // As of f605da3 the following should work
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
@@ -266,17 +272,17 @@ public class SignupActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
-                            onSignupFailed();
-                        } else {
-                            onSignupSuccess();
-                        }
-//                        progressDialog.dismiss();
-                    }
-                }, 3000);
+//        new android.os.Handler().postDelayed(
+//                new Runnable() {
+//                    public void run() {
+//                        if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
+//                            onSignupFailed();
+//                        } else {
+//                            onSignupSuccess();
+//                        }
+////                        progressDialog.dismiss();
+//                    }
+//                }, 3000);
     }
 
     @Override
@@ -327,9 +333,9 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                Intent intent = new Intent(SignupActivity.this,UserTypeActivity.class);
+                Intent intent = new Intent(SignupActivity.this, UserTypeActivity.class);
                 startActivity(intent);
-               // SignupActivity.super.onDestroy();
+                // SignupActivity.super.onDestroy();
             }
         });
         builder.setNegativeButton("Cancel", null);

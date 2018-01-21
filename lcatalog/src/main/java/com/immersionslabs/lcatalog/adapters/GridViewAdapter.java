@@ -118,15 +118,17 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         try {
 
             JSONArray images_json = new JSONArray(get_image);
-            for (int i = 0; i < images_json.length(); i++) {
+            if(images_json.length()>0) {
+                //for (int i = 0; i < images_json.length(); i++) {
                 im1 = images_json.getString(0);
                 Log.e(TAG, "image1 >>>>" + im1);
+                //}
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new DownloadImages_Product(viewHolder.item_image).execute(im1);
+      //  new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Glide.with(activity)
                 .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)

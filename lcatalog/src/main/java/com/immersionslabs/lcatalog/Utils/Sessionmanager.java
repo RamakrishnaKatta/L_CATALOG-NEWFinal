@@ -36,8 +36,9 @@ public class Sessionmanager {
     }
 
     public void createUserLoginSession(String name, String email, String mobile, String address, String password) {
-
-        editor.putBoolean(IS_USER_LOGIN, false);
+        editor.clear();
+       // editor.commit();
+        editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_MOBILE_NO, mobile);

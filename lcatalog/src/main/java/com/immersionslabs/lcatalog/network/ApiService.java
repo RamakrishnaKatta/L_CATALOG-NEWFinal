@@ -119,7 +119,7 @@ public class ApiService {
     public void postData(final ApiCommunication listener, final String url, JSONObject params, final String SCREEN_NAME, final String flag) {
         final String csrf_token, sessionId;
 
-        PostNetworkRequest jsObjRequest = new PostNetworkRequest
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -146,8 +146,8 @@ public class ApiService {
 
     public void putData(final ApiCommunication listener, final String url, JSONObject params, final String SCREEN_NAME, final String flag) {
         final String sessionId, csrf_token;
-        PostNetworkRequest jsObjRequest = new PostNetworkRequest
-                (Request.Method.PUT, url, params, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(
+                Request.Method.PUT, url, params, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         ////Log.e(SCREEN_NAME, response + "");

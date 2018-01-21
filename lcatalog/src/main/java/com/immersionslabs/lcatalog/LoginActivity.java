@@ -1,11 +1,14 @@
 package com.immersionslabs.lcatalog;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -38,8 +41,11 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
+import com.immersionslabs.lcatalog.Utils.RegisterCollection;
 import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
     Sessionmanager sessionmanager;
+    SharedPreferences preferences;
 
     private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
     private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
@@ -89,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        sessionmanager= new Sessionmanager(getApplicationContext());
+        sessionmanager = new Sessionmanager(getApplicationContext());
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
 
@@ -98,6 +105,11 @@ public class LoginActivity extends AppCompatActivity {
         get_details = findViewById(R.id.btn_get_data);
         LoginLayout = findViewById(R.id.LoginLayout);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        sessionmanager = new Sessionmanager(getApplicationContext());
+        SharedPreferences settings = this.getSharedPreferences("LoginSession",
+                Context.MODE_PRIVATE);
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";
         file_customer = new File(customer_text_file_location);
 
@@ -353,13 +365,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         Button _loginButton = findViewById(R.id.btn_login);
-        sessionmanager.loginthings();
+        // sessionmanager.loginthings();
 
         UserId = userId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
 
-        _loginButton.setEnabled(true);
+        // _loginButton.setEnabled(true);
         setResult(RESULT_OK, null);
+
+
+        //sessionmanager.signupthings();
 
 //        Bundle user_data = new Bundle();
 //        user_data.putString("name", userName);
@@ -369,6 +384,7 @@ public class LoginActivity extends AppCompatActivity {
 //        Log.e(TAG, "User -- " + user_data);
 
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
+            sessionmanager.createUserLoginSession(userName, userEmail, userPhone, userAddress, password);
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView user_type, user_email, user_name, app_name, powered;
 
     Sessionmanager sessionmanager;
-
+    int doubleClick=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_email.setText(email);
             user_type.setText(R.string.customer);
         } else {
-            user_email.setText("Mobile # " + guest_phone);
+            user_email.setText("Mobile #" + guest_phone);
             user_type.setText(R.string.guest);
         }
 
@@ -238,30 +238,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
 
-        if (doubleBackToExitPressedOnce) {
-            DrawerLayout drawer = findViewById(R.id.drawer_layout);
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                super.onBackPressed();
-            }
+        if(doubleClick==1)  {
+            Toast.makeText(this, "Double Click will take you to EXIT", Toast.LENGTH_SHORT).show();
+        } else{
+            finish();
         }
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Double Click will take you to EXIT", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                System.exit(0);
-            }
-        }, 3000);
+        doubleClick=doubleClick+1;
+//        if (doubleBackToExitPressedOnce) {
+//            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//            if (drawer.isDrawerOpen(GravityCompat.START)) {
+//                drawer.closeDrawer(GravityCompat.START);
+//            } else {
+//                super.onBackPressed();
+//            }
+//        }
+//
+//        this.doubleBackToExitPressedOnce = true;
+//        Toast.makeText(this, "Double Click will take you to EXIT", Toast.LENGTH_SHORT).show();
+//
+//        new Handler().postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                doubleBackToExitPressedOnce = false;
+//                Intent intent = new Intent(Intent.ACTION_MAIN);
+//                intent.addCategory(Intent.CATEGORY_HOME);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                System.exit(0);
+//            }
+//        }, 3000);
     }
 
     @Override
@@ -275,8 +282,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onPrepareOptionsMenu(Menu menu) {
         // Get the notifications MenuItem and its LayerDrawable (layer-list)
 
-//        MenuItem item = menu.findItem(R.id.action_notifications);
-//        NotificationCountSetClass.setAddToCart(MainActivity.this, item, notificationCount);
+        // MenuItem item = menu.findItem(R.id.action_notifications);
+        // NotificationCountSetClass.setAddToCart(MainActivity.this, item, notificationCount);
 
         // force the ActionBar to relayout its MenuItems. onCreateOptionsMenu(Menu) will be called again.
 
@@ -324,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem Nav_item) {
+    public boolean onNavigationItemSelected(MenuItem Nav_item) {
         // Handle navigation view item clicks here.
         int id = Nav_item.getItemId();
 

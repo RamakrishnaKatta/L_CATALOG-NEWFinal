@@ -116,23 +116,25 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         return new ViewHolder(view);
     }
 
-    @SuppressLint("LongLogTag")
     @Override
     public void onBindViewHolder(ListViewHorizontalAdapter.ViewHolder viewHolder, final int position) {
 
         final Context[] context = new Context[1];
 
-        viewHolder.item_image.setImageResource(R.drawable.dummy_icon);
+//        viewHolder.item_image.setImageResource(R.drawable.dummy_icon);
 
         String im1 = null;
         String get_image = item_images.get(position);
         try {
 
             JSONArray images_json = new JSONArray(get_image);
-            for (int i = 0; i < images_json.length(); i++) {
+            if (images_json.length() > 0) {
+//            for (int i = 0; i < images_json.length(); i++) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "image1 >>>>" + im1);
             }
+// }
+            Log.e(TAG, "image1 >>>>" + im1);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -140,7 +142,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
 
         new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
-        Glide   .with(activity)
+        Glide.with(activity)
                 .load(EnvConstants.APP_BASE_URL + "/upload/images" + im1)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
