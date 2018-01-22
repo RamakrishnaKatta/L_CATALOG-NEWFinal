@@ -25,8 +25,8 @@ import com.getkeepsafe.taptargetview.TapTargetView;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
-import com.immersionslabs.lcatalog.Utils.background;
 
 import java.io.File;
 import java.util.Calendar;
@@ -50,10 +50,14 @@ public class GuestActivity extends AppCompatActivity {
     File file_guest;
     String[] text_from_guest_file;
 
+    Sessionmanager sessionmanager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest);
+
+        sessionmanager = new Sessionmanager(getApplicationContext());
 
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
@@ -237,6 +241,7 @@ public class GuestActivity extends AppCompatActivity {
         Bundle user_data = new Bundle();
         user_data.putString("guest_name", guest_name);
         user_data.putString("guest_phone", guest_phone);
+        user_data.putString("user_type", "GUEST");
         Log.e(TAG, "User -- " + user_data);
 
         final String Credentials = guest_name + "  ###  " + guest_phone;
@@ -245,13 +250,16 @@ public class GuestActivity extends AppCompatActivity {
         Log.e(TAG, "User Details-- " + text_file_date);
 
         Log.d(TAG, "onLoginSuccess: ");
+
+        sessionmanager.logoutUser();
+
         Intent intent = new Intent(this, MainActivity.class).putExtras(user_data);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
         //if (background.isAppIsInBackground(this)){
-            scheduleAlarm();
-       // }
+        scheduleAlarm();
+        // }
 
         finish();
     }

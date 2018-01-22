@@ -1,17 +1,12 @@
 package com.immersionslabs.lcatalog.Utils;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.immersionslabs.lcatalog.LoginActivity;
-import com.immersionslabs.lcatalog.MainActivity;
 
 import java.util.HashMap;
-
-import static com.immersionslabs.lcatalog.SignupActivity.KEY_PASSWORD;
-import static com.immersionslabs.lcatalog.SignupActivity.KEY_USERNAME;
 
 public class Sessionmanager {
     SharedPreferences pref;
@@ -19,14 +14,15 @@ public class Sessionmanager {
     Context context;
     int PRIVATE_MODE = 0;
 
-    private static final String PREF_NAME = "AndroidExample";
-    private static final String IS_USER_LOGIN = "IsUserLoggedIn";
+    private static final String PREF_NAME = "LCatalog_Preferences";
+    public static final String IS_USER_LOGIN = "IsUserLoggedIn";
 
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_MOBILE_NO = "mobile_no";
     public static final String KEY_ADDRESS = "adress";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_USER_TYPE = "user_type";
 
     public Sessionmanager(Context context) {
         this.context = context;
@@ -35,15 +31,15 @@ public class Sessionmanager {
         editor = pref.edit();
     }
 
-    public void createUserLoginSession(String name, String email, String mobile, String address, String password) {
-        editor.clear();
-       // editor.commit();
+    public void createUserLoginSession(String type, String name, String email, String mobile, String address, String password) {
+
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_MOBILE_NO, mobile);
         editor.putString(KEY_ADDRESS, address);
         editor.putString(KEY_PASSWORD, password);
+        editor.putString(KEY_USER_TYPE, type);
         editor.commit();
     }
 
@@ -72,11 +68,12 @@ public class Sessionmanager {
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_MOBILE_NO, pref.getString(KEY_MOBILE_NO, null));
         user.put(KEY_ADDRESS, pref.getString(KEY_ADDRESS, null));
+        user.put(KEY_USER_TYPE, pref.getString(KEY_USER_TYPE, null));
         return user;
     }
 
     public void logoutUser() {
-        editor.putBoolean(IS_USER_LOGIN,false);
+        editor.putBoolean(IS_USER_LOGIN, false);
         editor.commit();
     }
 

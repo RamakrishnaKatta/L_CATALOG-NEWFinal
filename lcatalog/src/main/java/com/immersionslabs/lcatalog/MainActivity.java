@@ -1,15 +1,10 @@
 package com.immersionslabs.lcatalog;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -37,7 +32,6 @@ import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,7 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView user_type, user_email, user_name, app_name, powered;
 
     Sessionmanager sessionmanager;
-    int doubleClick=1;
+
+    int doubleClick = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,45 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        HashMap hashMap = new HashMap();
-        hashMap = sessionmanager.getUserDetails();
-        name = (String) hashMap.get(Sessionmanager.KEY_NAME);
-        Log.e(TAG, "name:  " + name);
-
-        address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
-        Log.e(TAG, "address:  " + address);
-
-        email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
-        Log.e(TAG, "email:  " + email);
-
-        phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
-        Log.e(TAG, "phone:  " + phone);
-
-
-//        final Bundle user_data = getIntent().getExtras();
-//        Log.d(TAG, "Dummy -- " + user_data);
-//
-//        name = user_data.getString("name");
-//        Log.e(TAG, "name:  " + name);
-//
-//        address = user_data.getString("address");
-//        Log.e(TAG, "address:  " + address);
-//
-//        email = user_data.getString("email");
-//        Log.e(TAG, "email:  " + email);
-//
-//        phone = user_data.getString("phone");
-//        Log.e(TAG, "phone:  " + phone);
-
-//        final Bundle guest_data = getIntent().getExtras();
-//        Log.d(TAG, "Dummy -- " + guest_data);
-//
-//        guest_name = guest_data.getString("guest_name");
-//        Log.e(TAG, "guest name:  " + guest_name);
-//
-//        guest_phone = guest_data.getString("guest_phone");
-//        Log.e(TAG, "guest phone:  " + guest_phone);
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -145,20 +102,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         powered.setTypeface(custom_font2);
 
         user_name = header.findViewById(R.id.user_name);
-
-        if (name != null) {
-            user_name.setText(name);
-        } else {
-            user_name.setText(guest_name);
-        }
-
-        user_type = header.findViewById(R.id.guest_image);
-
+        user_type = header.findViewById(R.id.user_type_text);
         user_email = header.findViewById(R.id.user_email);
-        if (email != null) {
+
+        if (sessionmanager.isUserLoggedIn()){
+
+            HashMap hashMap = new HashMap();
+            hashMap = sessionmanager.getUserDetails();
+            name = (String) hashMap.get(Sessionmanager.KEY_NAME);
+            Log.e(TAG, "name:  " + name);
+
+            address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
+            Log.e(TAG, "address:  " + address);
+
+            email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
+            Log.e(TAG, "email:  " + email);
+
+            phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
+            Log.e(TAG, "phone:  " + phone);
+
+            user_log_type = (String) hashMap.get(Sessionmanager.KEY_USER_TYPE);
+            Log.e(TAG, "User Log Type:  " + user_log_type);
+
+            user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
-        } else {
+        }
+        else {
+
+            final Bundle guest_data = getIntent().getExtras();
+            Log.d(TAG, "Dummy -- " + guest_data);
+
+            guest_name = guest_data.getString("guest_name");
+            Log.e(TAG, "guest name:  " + guest_name);
+
+            guest_phone = guest_data.getString("guest_phone");
+            Log.e(TAG, "guest phone:  " + guest_phone);
+
+            user_name.setText(guest_name);
             user_email.setText("Mobile #" + guest_phone);
             user_type.setText(R.string.guest);
         }
@@ -238,13 +219,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
 
-        if(doubleClick==1)  {
+        if (doubleClick == 1) {
             Toast.makeText(this, "Double Click will take you to EXIT", Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             finish();
         }
 
-        doubleClick=doubleClick+1;
+        doubleClick = doubleClick + 1;
 //        if (doubleBackToExitPressedOnce) {
 //            DrawerLayout drawer = findViewById(R.id.drawer_layout);
 //            if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -351,20 +332,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_user_account) {
 
-            Bundle user_details = new Bundle();
-
-            user_log_type = user_type.getText().toString().trim();
-
-//            user_details.putString("user_email", email);
-//            user_details.putString("user_name", name);
-//            user_details.putString("user_address", address);
-//            user_details.putString("user_phone", phone);
-//            user_details.putString("user_type", user_log_type);
 
             if (Objects.equals(user_log_type, "CUSTOMER")) {
 
                 Toast.makeText(this, "This is Your Profile !!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, UserAccountActivity.class).putExtras(user_details);
+                Intent intent = new Intent(this, UserAccountActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 

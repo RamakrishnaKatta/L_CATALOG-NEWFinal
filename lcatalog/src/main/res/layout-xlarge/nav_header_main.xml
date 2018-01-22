@@ -54,7 +54,7 @@
         android:background="@color/white" />
 
     <TextView
-        android:id="@+id/guest_image"
+        android:id="@+id/user_type_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"

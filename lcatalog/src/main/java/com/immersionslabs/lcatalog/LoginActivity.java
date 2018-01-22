@@ -24,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -41,11 +40,8 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
-import com.immersionslabs.lcatalog.Utils.RegisterCollection;
 import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
-import com.immersionslabs.lcatalog.network.ApiCommunication;
-import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,8 +50,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
@@ -82,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String userId;
     String resp, code, message;
-    String userName, userEmail, userPhone, userAddress;
+    String userName, userEmail, userPhone, userAddress, userType;
     String email, password;
 
     File file_customer;
@@ -95,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        userType = "CUSTOMER";
 
         sessionmanager = new Sessionmanager(getApplicationContext());
         app_name = findViewById(R.id.application_name);
@@ -108,8 +103,8 @@ public class LoginActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         sessionmanager = new Sessionmanager(getApplicationContext());
-        SharedPreferences settings = this.getSharedPreferences("LoginSession",
-                Context.MODE_PRIVATE);
+
+        SharedPreferences settings = this.getSharedPreferences("LoginSession", Context.MODE_PRIVATE);
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";
         file_customer = new File(customer_text_file_location);
 
@@ -207,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setData() {
+
         if (!file_customer.exists()) {
             CustomMessage.getInstance().CustomMessage(LoginActivity.this, "No Saved Details Yet");
 
@@ -225,9 +221,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login() throws JSONException {
         Log.e(TAG, "Customer Login");
-
-        Log.e(TAG, "KEY_EMAIL--" + "email");
-        Log.e(TAG, "KEY_PASSWORD--" + "password");
 
         if (!validate()) {
             onLoginFailed();
@@ -253,8 +246,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final String Credentials = email + "  ###  " + password;
         UserCheckUtil.writeToFile(Credentials, "customer");
-        String text_file_date = UserCheckUtil.readFromFile("customer");
-        Log.e(TAG, "User Details-- " + text_file_date);
+        String text_file_data = UserCheckUtil.readFromFile("customer");
+        Log.e(TAG, "User Details-- " + text_file_data);
 
         final JSONObject login_parameters = new JSONObject();
         login_parameters.put("email", email);
@@ -320,23 +313,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             }
-        }) {
-            public Map<String, String> getParams() {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("email", email);
-                params.put("password", password);
-                Log.e(TAG, "Hash map...." + String.valueOf(params));
-                Log.e(TAG, "Hash map .. " + params);
-                return params;
-            }
-
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-        };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 
@@ -364,31 +342,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+
         Button _loginButton = findViewById(R.id.btn_login);
-        // sessionmanager.loginthings();
 
         UserId = userId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
 
-        // _loginButton.setEnabled(true);
+        _loginButton.setEnabled(true);
         setResult(RESULT_OK, null);
 
-
-        //sessionmanager.signupthings();
-
-//        Bundle user_data = new Bundle();
-//        user_data.putString("name", userName);
-//        user_data.putString("phone", userPhone);
-//        user_data.putString("address", userAddress);
-//        user_data.putString("email", userEmail);
-//        Log.e(TAG, "User -- " + user_data);
-
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
-            sessionmanager.createUserLoginSession(userName, userEmail, userPhone, userAddress, password);
+
+            sessionmanager.signupthings();
+            sessionmanager.createUserLoginSession(userType, userName, userEmail, userPhone, userAddress, password);
+
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
+
         } else {
             _loginButton = findViewById(R.id.btn_login);
             CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! " +

@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import static android.R.id.message;
@@ -32,15 +34,16 @@ public class UserAccountActivity extends AppCompatActivity {
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
-    private String user_name;
-    private String user_address;
-    private String user_phone;
-    private String user_type;
+    private String user_name, user_address, user_phone, user_email;
+
+    Sessionmanager sessionmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
+
+        sessionmanager = new Sessionmanager(getApplicationContext());
 
         Toolbar toolbar = findViewById(R.id.toolbar_user_account);
         setSupportActionBar(toolbar);
@@ -54,14 +57,13 @@ public class UserAccountActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        final Bundle user_details = getIntent().getExtras();
+        HashMap hashmap = new HashMap();
 
-        assert user_details != null;
-        String user_email = user_details.getString("user_email");
-        user_name = user_details.getString("user_name");
-        user_address = user_details.getString("user_address");
-        user_phone = user_details.getString("user_phone");
-        user_type = user_details.getString("user_type");
+        hashmap = sessionmanager.getUserDetails();
+        user_name = (String) hashmap.get(Sessionmanager.KEY_NAME);
+        user_address = (String) hashmap.get(Sessionmanager.KEY_ADDRESS);
+        user_email = (String) hashmap.get(Sessionmanager.KEY_EMAIL);
+        user_phone = (String) hashmap.get(Sessionmanager.KEY_MOBILE_NO);
 
         name = findViewById(R.id.user_input_name);
         disableEditText(name);

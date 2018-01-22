@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -34,15 +32,11 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
-import com.immersionslabs.lcatalog.Utils.RegisterCollection;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
@@ -55,19 +49,19 @@ public class SignupActivity extends AppCompatActivity {
     public static final String KEY_MOBILE_NO = "mobile_no";
     public static final String KEY_ADDRESS = "adress";
     public static final String KEY_TYPE = "type";
-    public static final String KEY_VENDORID = "vendor_id";
+    public static final String KEY_VENDOR_ID = "vendor_id";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users";
 
     TextView app_name, powered;
     private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;
     private Button _signupButton;
-    RegisterCollection collection;
-    Sessionmanager sessionmanager;
 
     CoordinatorLayout SignupLayout;
-    String name, email, address, mobile, password;
+    String name, email, address, mobile, password, reEnterPassword;
     String resp, code, message;
+    String type = "CUSTOMER";
+    int vendor_id = 100000; // This Value should be changed when a user is registered under specific customer
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +78,6 @@ public class SignupActivity extends AppCompatActivity {
         app_name.setTypeface(custom_font);
         powered.setTypeface(custom_font2);
 
-        sessionmanager = new Sessionmanager(getApplicationContext());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Toolbar toolbar = findViewById(R.id.toolbar_signup);
@@ -110,7 +103,6 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             InternetMessage();
         }
-
     }
 
     private void InternetMessage() {
@@ -131,55 +123,49 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() throws JSONException {
+
         Log.e(TAG, "Sign Up");
+        Log.e(TAG, "----------------------------");
 
-        Log.e(TAG, "KEY_USERNAME--" + KEY_USERNAME);
-        Log.e(TAG, "KEY_PASSWORD--" + KEY_PASSWORD);
-        Log.e(TAG, "KEY_EMAIL--" + KEY_EMAIL);
-        Log.e(TAG, "KEY_MOBILE_NO--" + KEY_MOBILE_NO);
-        Log.e(TAG, "KEY_ADDRESS--" + KEY_ADDRESS);
-        Log.e(TAG, "KEY_TYPE--" + KEY_TYPE);
-        Log.e(TAG, "KEY_VENDORID--" + KEY_VENDORID);
-
+        Log.e(TAG, "KEY_USERNAME--  " + KEY_USERNAME);
+        Log.e(TAG, "KEY_PASSWORD--  " + KEY_PASSWORD);
+        Log.e(TAG, "KEY_EMAIL--     " + KEY_EMAIL);
+        Log.e(TAG, "KEY_MOBILE_NO-- " + KEY_MOBILE_NO);
+        Log.e(TAG, "KEY_ADDRESS--   " + KEY_ADDRESS);
+        Log.e(TAG, "KEY_TYPE--      " + KEY_TYPE);
+        Log.e(TAG, "KEY_VENDOR_ID-- " + KEY_VENDOR_ID);
 
         Log.e(TAG, "----------------------------");
 
         _nameText = findViewById(R.id.input_name);
         name = _nameText.getText().toString().trim();
-        Log.e(TAG, "name--" + name);
+        Log.e(TAG, KEY_USERNAME + "--      " + name);
 
         _addressText = findViewById(R.id.input_address);
         address = _addressText.getText().toString().trim();
-        Log.e(TAG, "adress--" + address);
+        Log.e(TAG, KEY_ADDRESS + "--    " + address);
 
         _emailText = findViewById(R.id.input_email);
         email = _emailText.getText().toString().trim();
-        Log.e(TAG, "email--" + email);
+        Log.e(TAG, KEY_EMAIL + "--     " + email);
 
         _mobileText = findViewById(R.id.input_mobile);
         mobile = _mobileText.getText().toString().trim();
-        Log.e(TAG, "mobile_no--" + mobile);
+        Log.e(TAG, KEY_MOBILE_NO + "-- " + mobile);
 
         _passwordText = findViewById(R.id.input_password);
         password = _passwordText.getText().toString().trim();
-        Log.e(TAG, "password--" + password);
-
-        collection = new RegisterCollection(name, email, mobile, address, password);
-//        sessionmanager.signupthings();
-//        sessionmanager.createUserLoginSession(name, email, mobile, address, password);
-//        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//        startActivity(intent);
-//        finish();
-//
+        Log.e(TAG, KEY_PASSWORD + "--  " + password);
 
         _reEnterPasswordText = findViewById(R.id.input_reEnterPassword);
+        reEnterPassword = _reEnterPasswordText.getText().toString().trim();
 
         if (!validate()) {
             onSignupFailed();
             return;
         }
-//        _signupButton.setEnabled(false);
 
+        _signupButton.setEnabled(false);
 
         // SIGN_UP LOGIC !!
         JSONObject signup_parameters = new JSONObject();
@@ -188,16 +174,18 @@ public class SignupActivity extends AppCompatActivity {
         signup_parameters.put(KEY_EMAIL, email);
         signup_parameters.put(KEY_MOBILE_NO, mobile);
         signup_parameters.put(KEY_PASSWORD, password);
-        signup_parameters.put(KEY_TYPE, "CUSTOMER");
-        signup_parameters.put(KEY_VENDORID, 100000); // This Value should be changed when a user is registered under specific custome
+        signup_parameters.put(KEY_TYPE, type);
+        signup_parameters.put(KEY_VENDOR_ID, vendor_id);
 
         Log.e(TAG, "----------------------------");
 
-        Log.e(TAG, "name--" + name);
-        Log.e(TAG, "adress--" + address);
-        Log.e(TAG, "email--" + email);
-        Log.e(TAG, "mobile--" + mobile);
-        Log.e(TAG, "password--" + password);
+        Log.e(TAG, "KEY_USERNAME --  " + name);
+        Log.e(TAG, "KEY_ADDRESS --   " + address);
+        Log.e(TAG, "KEY_EMAIL --     " + email);
+        Log.e(TAG, "KEY_MOBILE_NO -- " + mobile);
+        Log.e(TAG, "KEY_PASSWORD --  " + password);
+        Log.e(TAG, "KEY_TYPE --      " + type);
+        Log.e(TAG, "KEY_VENDOR_ID -- " + vendor_id);
 
         Log.e(TAG, "request--" + signup_parameters);
 
@@ -205,7 +193,6 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
-
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REGISTER_URL, signup_parameters, new Response.Listener<JSONObject>() {
             @Override
@@ -243,46 +230,22 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 }
             }
-        }) {
-            @Override
-            public Map<String, String> getParams() {
-                HashMap<String, String> params = new HashMap<>();
-                params.put(KEY_USERNAME, name);
-                params.put(KEY_PASSWORD, password);
-                params.put(KEY_EMAIL, email);
-                params.put(KEY_ADDRESS, address);
-                params.put(KEY_MOBILE_NO, mobile);
-                params.put(KEY_TYPE, "CUSTOMER");
-                params.put(KEY_VENDORID, "100000");  // This Value should be changed when a user is registered under specific customer
-
-                Log.e(TAG, "HashMap--" + String.valueOf(params));
-                Log.e(TAG, "HashMap--" + params);
-
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-        };
+        });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 
-//        new android.os.Handler().postDelayed(
-//                new Runnable() {
-//                    public void run() {
-//                        if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
-//                            onSignupFailed();
-//                        } else {
-//                            onSignupSuccess();
-//                        }
-////                        progressDialog.dismiss();
-//                    }
-//                }, 3000);
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
+                            onSignupFailed();
+                        } else {
+                            onSignupSuccess();
+                        }
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
     }
 
     @Override
@@ -344,20 +307,6 @@ public class SignupActivity extends AppCompatActivity {
 
     public boolean validate() {
         boolean valid = true;
-
-        _nameText = findViewById(R.id.input_name);
-        _addressText = findViewById(R.id.input_address);
-        _emailText = findViewById(R.id.input_email);
-        _mobileText = findViewById(R.id.input_mobile);
-        _passwordText = findViewById(R.id.input_password);
-        _reEnterPasswordText = findViewById(R.id.input_reEnterPassword);
-
-        String name = _nameText.getText().toString().trim();
-        String address = _addressText.getText().toString().trim();
-        String email = _emailText.getText().toString().trim();
-        String mobile = _mobileText.getText().toString().trim();
-        String password = _passwordText.getText().toString().trim();
-        String reEnterPassword = _reEnterPasswordText.getText().toString().trim();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
