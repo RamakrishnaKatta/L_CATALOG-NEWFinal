@@ -137,6 +137,8 @@ public class GuestActivity extends AppCompatActivity {
                         .cancelable(false)
                         .tintTarget(false)
                         .textColor(R.color.white)
+                        .targetRadius(30)
+                        .outerCircleColor(R.color.primary_dark)
                 , new TapTargetView.Listener() {
                     @Override
                     public void onTargetClick(TapTargetView view) {

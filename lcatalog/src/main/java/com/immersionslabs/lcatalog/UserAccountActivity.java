@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -49,8 +48,11 @@ public class UserAccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView app_name = findViewById(R.id.application_name);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        app_name.setTypeface(custom_font);
+        TextView powered = findViewById(R.id.immersionslabs);
+        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
+        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
+        app_name.setTypeface(custom_font1);
+        powered.setTypeface(custom_font2);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

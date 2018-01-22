@@ -21,15 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
@@ -50,11 +42,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
@@ -339,19 +328,19 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 TapTarget.forView(view.findViewById(R.id.article_download_icon), "DOWNLOAD", "Click Here before you click the 3d & Augment ")
                         .targetRadius(30)
                         .textColor(R.color.white)
-                        .outerCircleColor(R.color.primary)
+                        .outerCircleColor(R.color.primary_dark)
                         .id(1),
                 TapTarget.forView(view.findViewById(R.id.article_augment_icon), "AUGMENT", "Click Here to Augment the Object")
                         .cancelable(false)
                         .textColor(R.color.white)
                         .targetRadius(30)
-                        .outerCircleColor(R.color.primary)
+                        .outerCircleColor(R.color.primary_dark)
                         .id(2),
                 TapTarget.forView(view.findViewById(R.id.article_3dview_icon), "3D", "Click Here see the object in 3d View")
                         .cancelable(false)
                         .targetRadius(30)
                         .textColor(R.color.white)
-                        .outerCircleColor(R.color.primary)
+                        .outerCircleColor(R.color.primary_dark)
                         .id(3)
         ).listener(new TapTargetSequence.Listener() {
             @Override
@@ -481,7 +470,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(getContext(),"Internal Error", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
 
     }
 
