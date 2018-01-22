@@ -68,7 +68,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
         } catch (Exception e) {
 
-            Log.e("Error", e.getMessage());
+            Log.e("Error", "" + e.getMessage());
             e.printStackTrace();
         }
         return mIcon;
