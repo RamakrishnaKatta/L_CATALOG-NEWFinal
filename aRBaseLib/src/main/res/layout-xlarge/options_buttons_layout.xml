@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:gravity="center">
 
         <ImageButton
             android:id="@+id/button_screenshot"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:contentDescription="@string/buttonsDesc"
@@ -35,6 +35,7 @@
             android:text="SCREENSHOT"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
@@ -45,13 +46,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="80dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="120dp">
 
         <ImageButton
             android:id="@+id/button_flash"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:contentDescription="@string/buttonsDesc"
@@ -66,6 +67,7 @@
             android:text="FLASH"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -75,13 +77,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp">
 
         <ImageButton
             android:id="@+id/button_capture"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:contentDescription="@string/buttonsDesc"
@@ -96,6 +98,7 @@
             android:text="CAPTURE"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

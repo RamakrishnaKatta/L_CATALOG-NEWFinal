@@ -34,13 +34,11 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class ARRenderer implements GLSurfaceView.Renderer {
 
-    public boolean printOptionEnable = false;
-
     /**
      * Android logging tag for this class.
      */
     protected final static String TAG = "ARRenderer";
-
+    public boolean printOptionEnable = false;
     public int width_surface, height_surface;
 
     /**

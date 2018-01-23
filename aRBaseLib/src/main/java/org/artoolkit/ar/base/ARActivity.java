@@ -27,9 +27,6 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -81,6 +78,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Layout that will be filled with the camera preview and GL views. This is provided by the subclass using {@link #supplyFrameLayout() supplyFrameLayout()}.
      */
     protected FrameLayout mainFrameLayout;
+    RelativeLayout mFlashButtonArea;
     /**
      * Camera preview which will provide video frames.
      */
@@ -90,17 +88,11 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      */
     private GLSurfaceView mOpenGlSurfaceViewInstance;
     private boolean firstUpdate = false;
-
     private Context mContext;
-
     private ImageButton mSettingButton;
-
     private ImageButton mFlashButton;
     private ImageButton mCaptureButton;
     private ImageButton mScreenshotButton;
-
-    RelativeLayout mFlashButtonArea;
-
     private boolean flashmode = false;
 
     private ProgressDialog progressDialog;
@@ -400,23 +392,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.settings) {
-            startActivity(new Intent(this, CameraPreferencesActivity.class));
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
     }
 
     /**
