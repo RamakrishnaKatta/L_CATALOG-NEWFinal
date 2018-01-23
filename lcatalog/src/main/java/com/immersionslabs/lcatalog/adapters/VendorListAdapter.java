@@ -73,7 +73,7 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
     @Override
     public void onBindViewHolder(VendorListAdapter.ViewHolder viewHolder, final int position) {
 
-        new DownloadImages_Vendor(viewHolder.vendor_logo).execute(vendor_logos.get(position));
+//        new DownloadImages_Vendor(viewHolder.vendor_logo).execute(vendor_logos.get(position));
 
         Glide.with(activity)
                 .load(EnvConstants.APP_BASE_URL + "/upload/vendorLogos/" + vendor_logos.get(position))

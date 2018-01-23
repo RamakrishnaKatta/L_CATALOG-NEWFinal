@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.immersionslabs.lcatalog.Utils.background;
 
 public class MyScheduledReceiver extends BroadcastReceiver {
 
@@ -16,7 +15,8 @@ public class MyScheduledReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
 
-//        Toast.makeText(context, "Your Guest Session will Expires in 2 minutes ", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Your Guest Session will Expires in 2 minutes ", Toast.LENGTH_LONG).show();
+
         Log.v("MyScheduledReceiver", "Intent Fired");
 
         new Handler().postDelayed(new Runnable() {
@@ -25,13 +25,12 @@ public class MyScheduledReceiver extends BroadcastReceiver {
                 Log.d(TAG, "run:here we go ");
                 System.out.println("here we go");
 
-                if(background.isAppIsInBackground(context)) {
-                    Toast.makeText(context, "Your Guest Session will Expires in 2 minutes ", Toast.LENGTH_LONG).show();
-                }
-//                Intent broadcastIntent = new Intent(context, UserTypeActivity.class);
-//                broadcastIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                broadcastIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                context.startActivity(broadcastIntent);
+                Intent broadcastIntent = new Intent(context, UserTypeActivity.class);
+                broadcastIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                broadcastIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(broadcastIntent);
+
+//                Toast.makeText(context, "Your Guest Session will Expires in 2 minutes ", Toast.LENGTH_LONG).show();
 
             }
         }, 2 * 60 * 1000);

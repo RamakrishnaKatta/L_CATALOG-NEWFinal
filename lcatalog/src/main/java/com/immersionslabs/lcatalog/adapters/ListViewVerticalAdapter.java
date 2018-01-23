@@ -97,8 +97,10 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
 
         try {
             JSONArray images_json = new JSONArray(get_image);
-            im1 = images_json.getString(0);
-            Log.e(TAG, "onBindViewHolder: image 1" + im1);
+            if (images_json.length() > 0) {
+                im1 = images_json.getString(0);
+            }
+            Log.e(TAG, " image 1>>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

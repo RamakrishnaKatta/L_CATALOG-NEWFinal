@@ -84,12 +84,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
         final Context[] context = new Context[1];
-        viewHolder.imageView.setImageResource(R.drawable.dummy_icon);
-
+//        viewHolder.imageView.setImageResource(R.drawable.dummy_icon);
 
         String get_image = notification_images.get(position);
 //        String new_image = get_image.replace("\\", File.separator);
-
 
         Glide
                 .with(activity)

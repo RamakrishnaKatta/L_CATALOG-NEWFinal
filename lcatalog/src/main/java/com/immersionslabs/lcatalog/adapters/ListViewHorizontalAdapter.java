@@ -100,14 +100,16 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         String get_image = item_images.get(position);
         try {
             JSONArray images_json = new JSONArray(get_image);
-            im1 = images_json.getString(0);
-            Log.e(TAG, "image 2" + im1);
+            if (images_json.length() > 0) {
+                im1 = images_json.getString(0);
+            }
+            Log.e(TAG, "image >>>>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Glide.with(activity)
-                .load(EnvConstants.APP_BASE_URL+"/upload/images/"+im1)
+                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.item_image);
