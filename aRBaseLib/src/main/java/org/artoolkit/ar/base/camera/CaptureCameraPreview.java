@@ -227,11 +227,11 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         parameters.setPreviewSize(Integer.parseInt(dims[0]), Integer.parseInt(dims[1]));
         parameters.setPreviewFrameRate(30);
 
-        if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-            Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
-        }
-
+//        if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+//            Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
+//        }
+//
 //        if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
 //            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 //            Log.e(TAG, "CameraModes(): Focus Auto Applied ");
@@ -256,9 +256,9 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
 //            parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
 //            Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
 //        }
-
+//
 //        parameters.setExposureCompensation(0);
-//        camera.setParameters(parameters);
+        camera.setParameters(parameters);
 
         parameters = camera.getParameters();
         captureWidth = parameters.getPreviewSize().width;

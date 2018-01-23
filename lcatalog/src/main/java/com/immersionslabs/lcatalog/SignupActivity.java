@@ -262,7 +262,7 @@ public class SignupActivity extends AppCompatActivity {
         CustomMessage.getInstance().CustomMessage(SignupActivity.this, "SignUp Success, Welcome");
 
         _signupButton = findViewById(R.id.btn_signup);
-        _signupButton.setEnabled(true);
+        _signupButton.setEnabled(false);
         setResult(RESULT_OK, null);
 
         Intent intent = new Intent(this, LoginActivity.class);

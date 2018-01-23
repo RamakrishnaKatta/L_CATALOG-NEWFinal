@@ -36,6 +36,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.artoolkit.ar.base.camera.CameraEventListener;
@@ -97,6 +98,8 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     private ImageButton mFlashButton;
     private ImageButton mCaptureButton;
     private ImageButton mScreenshotButton;
+
+    RelativeLayout mFlashButtonArea;
 
     private boolean flashmode = false;
 
@@ -255,8 +258,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         mCaptureButton.setOnClickListener(this);
         mScreenshotButton.setOnClickListener(this);
 
+        mFlashButtonArea = OptionsButtonLayout.findViewById(R.id.button_flash_area);
         if (!getBaseContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-            mFlashButton.setVisibility(View.GONE);
+            mFlashButtonArea.setVisibility(View.GONE);
         }
     }
 
@@ -290,27 +294,14 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             v.getContext().startActivity(new Intent(v.getContext(), CameraPreferencesActivity.class));
         }
         if (v.equals(mFlashButton)) {
-
-            Toast toast = Toast.makeText(this, "You Clicked on Flash Button", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.show();
-
             CameraFlash();
         }
 
         if (v.equals(mCaptureButton)) {
-            Toast toast = Toast.makeText(this, "You Clicked on Capture Button", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.show();
-
             CameraImage();
         }
 
         if (v.equals(mScreenshotButton)) {
-            Toast toast = Toast.makeText(this, "You Clicked on ScreenCapture Button", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.show();
-
             renderer.printOptionEnable = true;
         }
     }
