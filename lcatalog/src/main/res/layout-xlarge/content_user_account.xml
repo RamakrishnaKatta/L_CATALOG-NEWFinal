@@ -72,8 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
-                android:textColor="@color/white"
-                android:inputType="textPersonName" />
+                android:inputType="text"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Address Label -->
@@ -88,8 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/address"
-                android:textColor="@color/white"
-                android:inputType="textPostalAddress" />
+                android:inputType="text"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <!--  Email Label -->
@@ -105,8 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:textColor="@color/white"
-                android:inputType="textEmailAddress" />
+                android:inputType="text"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- mobile number -->
@@ -122,9 +122,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile_number"
-                android:inputType="number"
-                android:textColor="@color/white"
-                android:maxLength="10" />
+                android:inputType="text"
+                android:maxLength="10"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Edit Button -->
