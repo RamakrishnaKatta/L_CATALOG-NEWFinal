@@ -9,20 +9,37 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.Sessionmanager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static android.R.id.message;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.APP_BASE_URL;
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.GlobalUserId;
 
 public class UserAccountActivity extends AppCompatActivity {
 
@@ -33,7 +50,9 @@ public class UserAccountActivity extends AppCompatActivity {
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
-    private String user_name, user_address, user_phone, user_email;
+    private String user_name, user_address, user_phone, user_email, resp, message, code, user_id, user_password;
+
+    private String LOGIN_URL = APP_BASE_URL + "/users";
 
     Sessionmanager sessionmanager;
 
@@ -43,6 +62,9 @@ public class UserAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_account);
 
         sessionmanager = new Sessionmanager(getApplicationContext());
+        HashMap hashmap = new HashMap();
+
+        hashmap = sessionmanager.getUserDetails();
 
         Toolbar toolbar = findViewById(R.id.toolbar_user_account);
         setSupportActionBar(toolbar);
@@ -59,13 +81,12 @@ public class UserAccountActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        HashMap hashmap = new HashMap();
-
-        hashmap = sessionmanager.getUserDetails();
         user_name = (String) hashmap.get(Sessionmanager.KEY_NAME);
         user_address = (String) hashmap.get(Sessionmanager.KEY_ADDRESS);
         user_email = (String) hashmap.get(Sessionmanager.KEY_EMAIL);
         user_phone = (String) hashmap.get(Sessionmanager.KEY_MOBILE_NO);
+        user_id = (String) hashmap.get(Sessionmanager.KEY_USER_ID);
+        user_password = (String) hashmap.get(Sessionmanager.KEY_PASSWORD);
 
         name = findViewById(R.id.user_input_name);
         disableEditText(name);
@@ -141,8 +162,65 @@ public class UserAccountActivity extends AppCompatActivity {
         progressDialog.setMessage("Updating Account...");
         progressDialog.show();
 
-        // UPDATE LOGIC !!
+        user_name = name.getText().toString();
+        user_email = email.getText().toString();
+        user_phone = mobile.getText().toString();
+        user_address = address.getText().toString();
 
+        try {
+            final JSONObject user_update_parameters = new JSONObject();
+            user_update_parameters.put("name", user_name);
+            user_update_parameters.put("email", user_email);
+            user_update_parameters.put("mobile_no", user_phone);
+            user_update_parameters.put("adress", user_address);
+
+            Log.e(TAG, "Request--" + user_update_parameters);
+
+            final JSONObject request = new JSONObject();
+            request.put("request", user_update_parameters);
+            Log.e(TAG, "Request--" + request);
+            LOGIN_URL += "/" + GlobalUserId;
+            Log.e(TAG, "Global user Id--" + GlobalUserId);
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, LOGIN_URL, user_update_parameters, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject requestResponse) {
+                    Log.e(TAG, "response--" + requestResponse);
+
+                    try {
+                        resp = requestResponse.getString("success");
+                        code = requestResponse.getString("status_code");
+                        message = requestResponse.getString("message");
+                        Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //Toast.makeText(UserTypeActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
+                    // As of f605da3 the following should work
+                    NetworkResponse response = error.networkResponse;
+                    if (error instanceof ServerError && response != null) {
+                        try {
+                            String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                            // Now you can use any deserializer to make sense of data
+                            JSONObject request = new JSONObject(res);
+                        } catch (UnsupportedEncodingException | JSONException e1) {
+                            // Couldn't properly decode data to string
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            });
+            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -157,9 +235,11 @@ public class UserAccountActivity extends AppCompatActivity {
     }
 
     public void updateSuccess() {
+
         CustomMessage.getInstance().CustomMessage(UserAccountActivity.this, "Update Success");
 
-        // Toast.makeText(getBaseContext(), "Update Success", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Update Success", Toast.LENGTH_LONG).show();
+        sessionmanager.updatedetails(user_name, user_email, user_phone, user_address);
         Intent intent = new Intent(this, UserAccountActivity.class);
         startActivity(intent);
         finish();

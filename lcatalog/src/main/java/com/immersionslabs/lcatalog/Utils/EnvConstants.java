@@ -8,5 +8,7 @@ public class EnvConstants {
 
     public static String UserId = null;
 
+    public static String GlobalUserId = null;
+
     public static ArrayList<String> user_Favourite_list = new ArrayList<String>();
 }

@@ -52,6 +52,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.immersionslabs.lcatalog.Utils.EnvConstants.GlobalUserId;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton get_details;
     CoordinatorLayout LoginLayout;
 
-    String userId;
+    String userId, globalUserId;
     String resp, code, message;
     String userName, userEmail, userPhone, userAddress, userType;
     String email, password;
@@ -275,6 +276,7 @@ public class LoginActivity extends AppCompatActivity {
                     for (int i = 0; i < user_details_array.length(); i++) {
 
                         JSONObject user_details = user_details_array.getJSONObject(i);
+                        globalUserId = user_details.getString("_id");
                         userId = user_details.getString("id");
                         userName = user_details.getString("name");
                         userAddress = user_details.getString("address");
@@ -348,6 +350,7 @@ public class LoginActivity extends AppCompatActivity {
         Button _loginButton = findViewById(R.id.btn_login);
 
         UserId = userId;
+        GlobalUserId = globalUserId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
 
         _loginButton.setEnabled(true);
@@ -356,7 +359,7 @@ public class LoginActivity extends AppCompatActivity {
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
 
             sessionmanager.signupthings();
-            sessionmanager.createUserLoginSession(userType, userName, userEmail, userPhone, userAddress, password);
+            sessionmanager.createUserLoginSession(userId, userType, userName, userEmail, userPhone, userAddress, password);
 
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
