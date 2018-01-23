@@ -39,7 +39,7 @@
             android:maxLines="2"
             android:padding="@dimen/margin_6"
             android:text="@string/catalog_title"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_dark"
             android:textSize="@dimen/text_tab_tootiny"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             android:maxLines="2"
             android:padding="@dimen/margin_6"
             android:text="@string/catalog_description"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_dark"
             android:textSize="@dimen/text_tab_tootiny"
             android:textStyle="italic" />
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primary_dark"
                     android:textSize="@dimen/text_tab_tootiny" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/discount_price"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/primary_dark"
                     android:textSize="@dimen/text_tab_tootiny"
                     android:textStyle="bold" />
 
@@ -127,7 +127,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/primary_dark"
                 android:paddingEnd="@dimen/margin_10"
                 android:paddingStart="@dimen/margin_10">
 
@@ -135,7 +135,7 @@
                     android:id="@+id/grid_item_discount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
+                    android:background="@color/primary_dark"
                     android:gravity="end"
                     android:paddingEnd="@dimen/margin_0"
                     android:paddingStart="@dimen/margin_6"
