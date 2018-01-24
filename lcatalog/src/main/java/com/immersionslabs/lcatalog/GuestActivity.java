@@ -25,7 +25,7 @@ import com.getkeepsafe.taptargetview.TapTargetView;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import java.io.File;
@@ -50,14 +50,14 @@ public class GuestActivity extends AppCompatActivity {
     File file_guest;
     String[] text_from_guest_file;
 
-    Sessionmanager sessionmanager;
+    SessionManager sessionmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest);
 
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
 
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);

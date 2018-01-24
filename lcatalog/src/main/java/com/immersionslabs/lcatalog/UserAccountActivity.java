@@ -29,7 +29,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
+import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,14 +55,14 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private String LOGIN_URL = APP_BASE_URL + "/users";
 
-    Sessionmanager sessionmanager;
+    SessionManager sessionmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
 
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
         HashMap hashmap = new HashMap();
 
         hashmap = sessionmanager.getUserDetails();
@@ -81,12 +82,12 @@ public class UserAccountActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        user_name = (String) hashmap.get(Sessionmanager.KEY_NAME);
-        user_address = (String) hashmap.get(Sessionmanager.KEY_ADDRESS);
-        user_email = (String) hashmap.get(Sessionmanager.KEY_EMAIL);
-        user_phone = (String) hashmap.get(Sessionmanager.KEY_MOBILE_NO);
-        user_id = (String) hashmap.get(Sessionmanager.KEY_USER_ID);
-        user_password = (String) hashmap.get(Sessionmanager.KEY_PASSWORD);
+        user_name = (String) hashmap.get(SessionManager.KEY_NAME);
+        user_address = (String) hashmap.get(SessionManager.KEY_ADDRESS);
+        user_email = (String) hashmap.get(SessionManager.KEY_EMAIL);
+        user_phone = (String) hashmap.get(SessionManager.KEY_MOBILE_NO);
+        user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
+        user_password = (String) hashmap.get(SessionManager.KEY_PASSWORD);
 
         name = findViewById(R.id.user_input_name);
         disableEditText(name);
@@ -239,7 +240,14 @@ public class UserAccountActivity extends AppCompatActivity {
         CustomMessage.getInstance().CustomMessage(UserAccountActivity.this, "Update Success");
 
         Toast.makeText(getBaseContext(), "Update Success", Toast.LENGTH_LONG).show();
+
         sessionmanager.updatedetails(user_name, user_email, user_phone, user_address);
+
+        final String Credentials = user_email + "  ###  " + user_password;
+        UserCheckUtil.writeToFile(Credentials, "customer");
+        String text_file_data = UserCheckUtil.readFromFile("customer");
+        Log.e(TAG, "User Details-- " + text_file_data);
+
         Intent intent = new Intent(this, UserAccountActivity.class);
         startActivity(intent);
         finish();
