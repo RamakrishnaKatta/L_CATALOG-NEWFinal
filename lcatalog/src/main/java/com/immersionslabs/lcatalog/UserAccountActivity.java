@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,7 +240,14 @@ public class UserAccountActivity extends AppCompatActivity {
         CustomMessage.getInstance().CustomMessage(UserAccountActivity.this, "Update Success");
 
         Toast.makeText(getBaseContext(), "Update Success", Toast.LENGTH_LONG).show();
+
         sessionmanager.updatedetails(user_name, user_email, user_phone, user_address);
+
+        final String Credentials = user_email + "  ###  " + user_password;
+        UserCheckUtil.writeToFile(Credentials, "customer");
+        String text_file_data = UserCheckUtil.readFromFile("customer");
+        Log.e(TAG, "User Details-- " + text_file_data);
+
         Intent intent = new Intent(this, UserAccountActivity.class);
         startActivity(intent);
         finish();

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String name, email, phone, address, user_log_type;
     String guest_name, guest_phone;
     TextView user_type, user_email, user_name, app_name, powered;
-
+    HashMap hashMap;
     Sessionmanager sessionmanager;
 
     int doubleClick = 1;
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (sessionmanager.isUserLoggedIn()){
 
-            HashMap hashMap = new HashMap();
+             hashMap = new HashMap();
             hashMap = sessionmanager.getUserDetails();
             name = (String) hashMap.get(Sessionmanager.KEY_NAME);
             Log.e(TAG, "name:  " + name);
@@ -415,6 +415,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onResume() {
         super.onResume();
+        if (sessionmanager.isUserLoggedIn()){
+
+            hashMap = new HashMap();
+            hashMap = sessionmanager.getUserDetails();
+            name = (String) hashMap.get(Sessionmanager.KEY_NAME);
+            Log.e(TAG, "name:  " + name);
+
+            address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
+            Log.e(TAG, "address:  " + address);
+
+            email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
+            Log.e(TAG, "email:  " + email);
+
+            phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
+            Log.e(TAG, "phone:  " + phone);
+
+            user_log_type = (String) hashMap.get(Sessionmanager.KEY_USER_TYPE);
+            Log.e(TAG, "User Log Type:  " + user_log_type);
+
+            user_name.setText(name);
+            user_email.setText(email);
+            user_type.setText(R.string.customer);
+        }
+
     }
 
     @Override
