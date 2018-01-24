@@ -16,26 +16,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
+import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ApiCommunication {
@@ -50,6 +43,9 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     private String email, password, ReEnterPass;
     String code, message;
 
+    CryptionRijndeal rijndeal_obj;
+    SessionManager sessionManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +54,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
         TextView app_name = findViewById(R.id.application_name);
         TextView powered = findViewById(R.id.immersionslabs);
         _submitButton = findViewById(R.id.btn_submit);
+        rijndeal_obj = new CryptionRijndeal();
+        sessionManager = new SessionManager(getApplicationContext());
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -116,7 +114,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
         });
         snackbar.show();
     }
-
 
     private void submit() throws JSONException {
         Log.e(TAG, "Password Update Request");
@@ -224,9 +221,22 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     }
 
     private void onSubmitSuccess() {
+
         _submitButton = findViewById(R.id.btn_submit);
         _submitButton.setEnabled(false);
         CustomMessage.getInstance().CustomMessage(this, "Password has been changed successfully, Try login with the new password");
+        try {
+            String emailtext = rijndeal_obj.encrypt(email);
+            String passwordtext = rijndeal_obj.encrypt(password);
+            final String Credentials = emailtext + "  ###  " + passwordtext;
+            UserCheckUtil.writeToFile(Credentials, "customer");
+            String text_file_data = UserCheckUtil.readFromFile("customer");
+            Log.e(TAG, "User Details-- " + text_file_data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        sessionManager.updatepassword(password);
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -251,7 +261,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override

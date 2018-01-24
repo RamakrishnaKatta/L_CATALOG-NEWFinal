@@ -42,6 +42,7 @@ import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_FORGOT_PASSWORD = 0;
     SessionManager sessionmanager;
     SharedPreferences preferences;
+    CryptionRijndeal rijndeal_obj;
 
     private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
     private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
@@ -104,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         sessionmanager = new SessionManager(getApplicationContext());
+        rijndeal_obj = new CryptionRijndeal();
 
         SharedPreferences settings = this.getSharedPreferences("LoginSession", Context.MODE_PRIVATE);
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";
@@ -211,12 +214,20 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
             text_from_customer_file = UserCheckUtil.readFromFile("customer").split(" ### ");
+            String dec_password_text = null;
+            String dec_email_text = null;
+            try {
+                dec_email_text = rijndeal_obj.decrypt(text_from_customer_file[0].trim());
+                dec_password_text = rijndeal_obj.decrypt(text_from_customer_file[1].trim());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             _emailText = findViewById(R.id.input_email);
-            _emailText.setText(text_from_customer_file[0].trim());
+            _emailText.setText(dec_email_text);
 
             _passwordText = findViewById(R.id.input_password);
-            _passwordText.setText(text_from_customer_file[1].trim());
+            _passwordText.setText(dec_password_text);
         }
 
         _loginButton.setEnabled(true);
@@ -246,11 +257,16 @@ public class LoginActivity extends AppCompatActivity {
         Log.e(TAG, "Entered password--" + password);
 
         // Implement your own authentication logic here.
-
-        final String Credentials = email + "  ###  " + password;
-        UserCheckUtil.writeToFile(Credentials, "customer");
-        String text_file_data = UserCheckUtil.readFromFile("customer");
-        Log.e(TAG, "User Details-- " + text_file_data);
+        try {
+            String enc_email_text = rijndeal_obj.encrypt(email);
+            String enc_password_text = rijndeal_obj.decrypt(password);
+            final String Credentials = enc_email_text + "  ###  " + enc_password_text;
+            UserCheckUtil.writeToFile(Credentials, "customer");
+            String text_file_data = UserCheckUtil.readFromFile("customer");
+            Log.e(TAG, "User Details-- " + text_file_data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         final JSONObject login_parameters = new JSONObject();
         login_parameters.put("email", email);

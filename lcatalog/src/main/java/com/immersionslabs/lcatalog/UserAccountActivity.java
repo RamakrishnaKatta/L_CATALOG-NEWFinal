@@ -31,6 +31,7 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +57,7 @@ public class UserAccountActivity extends AppCompatActivity {
     private String LOGIN_URL = APP_BASE_URL + "/users";
 
     SessionManager sessionmanager;
+    CryptionRijndeal rijndeal_obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,7 @@ public class UserAccountActivity extends AppCompatActivity {
         user_phone = (String) hashmap.get(SessionManager.KEY_MOBILE_NO);
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_password = (String) hashmap.get(SessionManager.KEY_PASSWORD);
+        rijndeal_obj = new CryptionRijndeal();
 
         name = findViewById(R.id.user_input_name);
         disableEditText(name);
@@ -242,11 +245,19 @@ public class UserAccountActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Update Success", Toast.LENGTH_LONG).show();
 
         sessionmanager.updatedetails(user_name, user_email, user_phone, user_address);
+        try {
+            String enc_email_text = rijndeal_obj.encrypt(user_email);
+            String enc_password_text = rijndeal_obj.encrypt(user_password);
 
-        final String Credentials = user_email + "  ###  " + user_password;
-        UserCheckUtil.writeToFile(Credentials, "customer");
-        String text_file_data = UserCheckUtil.readFromFile("customer");
-        Log.e(TAG, "User Details-- " + text_file_data);
+            final String Credentials = enc_email_text + "  ###  " + enc_password_text;
+            UserCheckUtil.writeToFile(Credentials, "customer");
+
+            String text_file_data = UserCheckUtil.readFromFile("customer");
+            Log.e(TAG, "User Details-- " + text_file_data);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(this, UserAccountActivity.class);
         startActivity(intent);

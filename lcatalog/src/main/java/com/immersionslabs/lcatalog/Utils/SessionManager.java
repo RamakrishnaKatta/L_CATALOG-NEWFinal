@@ -97,4 +97,9 @@ public class SessionManager {
         editor.commit();
 
     }
+
+    public void updatepassword(String password) {
+        editor.putString(KEY_PASSWORD, password);
+        editor.commit();
+    }
 }
