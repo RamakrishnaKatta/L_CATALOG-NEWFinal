@@ -258,7 +258,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
 //        }
 //
 //        parameters.setExposureCompensation(0);
-        camera.setParameters(parameters);
+//        camera.setParameters(parameters);
 
         parameters = camera.getParameters();
         captureWidth = parameters.getPreviewSize().width;

@@ -27,11 +27,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
-import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +41,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.APP_BASE_URL;
-import static com.immersionslabs.lcatalog.Utils.EnvConstants.GlobalUserId;
 
 public class UserAccountActivity extends AppCompatActivity {
 
@@ -52,7 +51,7 @@ public class UserAccountActivity extends AppCompatActivity {
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
-    private String user_name, user_address, user_phone, user_email, resp, message, code, user_id, user_password;
+    private String user_name, user_address, user_phone, user_email, resp, message, code, user_id, user_password, user_global_id;
 
     private String LOGIN_URL = APP_BASE_URL + "/users";
 
@@ -63,11 +62,6 @@ public class UserAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_account);
-
-        sessionmanager = new SessionManager(getApplicationContext());
-        HashMap hashmap = new HashMap();
-
-        hashmap = sessionmanager.getUserDetails();
 
         Toolbar toolbar = findViewById(R.id.toolbar_user_account);
         setSupportActionBar(toolbar);
@@ -84,12 +78,20 @@ public class UserAccountActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        sessionmanager = new SessionManager(getApplicationContext());
+        HashMap hashmap = new HashMap();
+
+        hashmap = sessionmanager.getUserDetails();
+
         user_name = (String) hashmap.get(SessionManager.KEY_NAME);
         user_address = (String) hashmap.get(SessionManager.KEY_ADDRESS);
         user_email = (String) hashmap.get(SessionManager.KEY_EMAIL);
         user_phone = (String) hashmap.get(SessionManager.KEY_MOBILE_NO);
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_password = (String) hashmap.get(SessionManager.KEY_PASSWORD);
+        user_global_id = (String) hashmap.get(SessionManager.KEY_GLOBAL_USER_ID);
+
+
         rijndeal_obj = new CryptionRijndeal();
 
         name = findViewById(R.id.user_input_name);
@@ -183,8 +185,8 @@ public class UserAccountActivity extends AppCompatActivity {
             final JSONObject request = new JSONObject();
             request.put("request", user_update_parameters);
             Log.e(TAG, "Request--" + request);
-            LOGIN_URL += "/" + GlobalUserId;
-            Log.e(TAG, "Global user Id--" + GlobalUserId);
+            LOGIN_URL += "/" + user_global_id;
+            Log.e(TAG, "Global user Id--" + user_global_id);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, LOGIN_URL, user_update_parameters, new Response.Listener<JSONObject>() {
                 @Override

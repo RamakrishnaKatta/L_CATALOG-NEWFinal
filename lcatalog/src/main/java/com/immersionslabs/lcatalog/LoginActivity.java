@@ -36,13 +36,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
-import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,8 +53,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.immersionslabs.lcatalog.Utils.EnvConstants.GlobalUserId;
-import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 public class LoginActivity extends AppCompatActivity {
@@ -365,8 +363,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button _loginButton = findViewById(R.id.btn_login);
 
-        UserId = userId;
-        GlobalUserId = globalUserId;
         CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
 
         _loginButton.setEnabled(true);
@@ -375,7 +371,7 @@ public class LoginActivity extends AppCompatActivity {
         if (userName != null & userPhone != null & userAddress != null & userEmail != null) {
 
             sessionmanager.signupthings();
-            sessionmanager.createUserLoginSession(userId, userType, userName, userEmail, userPhone, userAddress, password);
+            sessionmanager.createUserLoginSession(globalUserId, userId, userType, userName, userEmail, userPhone, userAddress, password);
 
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

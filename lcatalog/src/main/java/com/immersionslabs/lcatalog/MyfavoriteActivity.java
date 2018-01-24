@@ -11,16 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MyFavoriteAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -29,12 +22,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import static com.immersionslabs.lcatalog.Utils.EnvConstants.UserId;
+import java.util.HashMap;
 
 public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunication {
+
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static String FAVOURITE_URL = null;
     private static final String TAG = "MyfavoriteActivity";
@@ -49,14 +41,24 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
 
+    String user_id;
+
     RecyclerView recycler;
     GridLayoutManager favoritemanager;
+
+    SessionManager sessionmanager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
-        FAVOURITE_URL = REGISTER_URL + UserId;
+        sessionmanager = new SessionManager(getApplicationContext());
+        HashMap hashmap = new HashMap();
+
+        hashmap = sessionmanager.getUserDetails();
+        user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
+
+        FAVOURITE_URL = REGISTER_URL + user_id;
 
         recycler = findViewById(R.id.favorite_recycler);
         recycler.setHasFixedSize(true);
@@ -83,7 +85,7 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     }
 
     private void CommongetData() {
-        Log.e(TAG, "CommongetData: " + REGISTER_URL);
+        Log.e(TAG, "CommonGetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
 
         ApiService.getInstance(this).getData(this, false, "FAVORITE", FAVOURITE_URL, "FAVORITE_LIST");

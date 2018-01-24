@@ -105,9 +105,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user_type = header.findViewById(R.id.user_type_text);
         user_email = header.findViewById(R.id.user_email);
 
-        if (sessionmanager.isUserLoggedIn()){
+        if (sessionmanager.isUserLoggedIn()) {
 
-             hashMap = new HashMap();
+            hashMap = new HashMap();
             hashMap = sessionmanager.getUserDetails();
             name = (String) hashMap.get(SessionManager.KEY_NAME);
             Log.e(TAG, "name:  " + name);
@@ -127,8 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
-        }
-        else {
+        } else {
 
             final Bundle guest_data = getIntent().getExtras();
             Log.d(TAG, "Dummy -- " + guest_data);
@@ -357,10 +356,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
 
         } else if (id == R.id.nav_user_favourites) {
-            Intent intent = new Intent(this, MyfavoriteActivity.class);
-            startActivity(intent);
 
-            Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
+            if (Objects.equals(user_log_type, "CUSTOMER")) {
+
+                Intent intent = new Intent(this, MyfavoriteActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
+                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+
+            } else {
+//                if (!user_Favourite_list.isEmpty()) {
+//                Intent intent = new Intent(this, MyfavoriteActivity.class);
+//                startActivity(intent);
+                Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();
+//                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+            }
 
         } else if (id == R.id.nav_user_budget_bar) {
 
@@ -415,7 +425,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onResume() {
         super.onResume();
-        if (sessionmanager.isUserLoggedIn()){
+        if (sessionmanager.isUserLoggedIn()) {
 
             hashMap = new HashMap();
             hashMap = sessionmanager.getUserDetails();

@@ -50,10 +50,19 @@ public class UserTypeActivity extends AppCompatActivity {
             _newCustomer,
             _shopper;
     ImageView delete_cache;
-
+    SessionManager sessionmanager;
     private PrefManager prefManager1;
     private boolean success = true;
-    SessionManager sessionmanager;
+
+    private static boolean isExternalStorageReadOnly() {
+        String extStorageState = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState);
+    }
+
+    private static boolean isExternalStorageAvailable() {
+        String extStorageState = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(extStorageState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,6 +311,8 @@ public class UserTypeActivity extends AppCompatActivity {
         sequence.start();
     }
 
+     /*Permissions Required for the app and granted*/
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
@@ -333,8 +344,6 @@ public class UserTypeActivity extends AppCompatActivity {
             }
         }
     }
-
-     /*Permissions Required for the app and granted*/
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void RequestPermissions() {
@@ -428,16 +437,6 @@ public class UserTypeActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", okListener)
                 .create()
                 .show();
-    }
-
-    private static boolean isExternalStorageReadOnly() {
-        String extStorageState = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState);
-    }
-
-    private static boolean isExternalStorageAvailable() {
-        String extStorageState = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(extStorageState);
     }
 
     @Override
