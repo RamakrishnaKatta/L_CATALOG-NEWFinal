@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String guest_name, guest_phone;
     TextView user_type, user_email, user_name, app_name, powered;
     HashMap hashMap;
-    Sessionmanager sessionmanager;
+    SessionManager sessionmanager;
 
     int doubleClick = 1;
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
@@ -109,19 +109,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
              hashMap = new HashMap();
             hashMap = sessionmanager.getUserDetails();
-            name = (String) hashMap.get(Sessionmanager.KEY_NAME);
+            name = (String) hashMap.get(SessionManager.KEY_NAME);
             Log.e(TAG, "name:  " + name);
 
-            address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
+            address = (String) hashMap.get(SessionManager.KEY_ADDRESS);
             Log.e(TAG, "address:  " + address);
 
-            email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
+            email = (String) hashMap.get(SessionManager.KEY_EMAIL);
             Log.e(TAG, "email:  " + email);
 
-            phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
+            phone = (String) hashMap.get(SessionManager.KEY_MOBILE_NO);
             Log.e(TAG, "phone:  " + phone);
 
-            user_log_type = (String) hashMap.get(Sessionmanager.KEY_USER_TYPE);
+            user_log_type = (String) hashMap.get(SessionManager.KEY_USER_TYPE);
             Log.e(TAG, "User Log Type:  " + user_log_type);
 
             user_name.setText(name);
@@ -419,19 +419,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             hashMap = new HashMap();
             hashMap = sessionmanager.getUserDetails();
-            name = (String) hashMap.get(Sessionmanager.KEY_NAME);
+            name = (String) hashMap.get(SessionManager.KEY_NAME);
             Log.e(TAG, "name:  " + name);
 
-            address = (String) hashMap.get(Sessionmanager.KEY_ADDRESS);
+            address = (String) hashMap.get(SessionManager.KEY_ADDRESS);
             Log.e(TAG, "address:  " + address);
 
-            email = (String) hashMap.get(Sessionmanager.KEY_EMAIL);
+            email = (String) hashMap.get(SessionManager.KEY_EMAIL);
             Log.e(TAG, "email:  " + email);
 
-            phone = (String) hashMap.get(Sessionmanager.KEY_MOBILE_NO);
+            phone = (String) hashMap.get(SessionManager.KEY_MOBILE_NO);
             Log.e(TAG, "phone:  " + phone);
 
-            user_log_type = (String) hashMap.get(Sessionmanager.KEY_USER_TYPE);
+            user_log_type = (String) hashMap.get(SessionManager.KEY_USER_TYPE);
             Log.e(TAG, "User Log Type:  " + user_log_type);
 
             user_name.setText(name);

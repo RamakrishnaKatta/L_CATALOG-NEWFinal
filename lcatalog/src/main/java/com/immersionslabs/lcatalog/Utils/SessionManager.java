@@ -8,11 +8,10 @@ import com.immersionslabs.lcatalog.LoginActivity;
 
 import java.util.HashMap;
 
-public class Sessionmanager {
+public class SessionManager {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
-    int PRIVATE_MODE = 0;
 
     private static final String PREF_NAME = "LCatalog_Preferences";
     public static final String IS_USER_LOGIN = "IsUserLoggedIn";
@@ -25,7 +24,7 @@ public class Sessionmanager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
 
-    public Sessionmanager(Context context) {
+    public SessionManager(Context context) {
         this.context = context;
         int PRIVATE_MODE = 0;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

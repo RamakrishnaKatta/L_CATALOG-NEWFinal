@@ -40,7 +40,7 @@ import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import org.json.JSONArray;
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
-    Sessionmanager sessionmanager;
+    SessionManager sessionmanager;
     SharedPreferences preferences;
 
     private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
         userType = "CUSTOMER";
 
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
 
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
 
         SharedPreferences settings = this.getSharedPreferences("LoginSession", Context.MODE_PRIVATE);
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";

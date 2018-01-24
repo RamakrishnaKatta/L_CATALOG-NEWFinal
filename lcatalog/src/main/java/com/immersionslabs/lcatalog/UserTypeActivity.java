@@ -27,7 +27,7 @@ import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
-import com.immersionslabs.lcatalog.Utils.Sessionmanager;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -53,13 +53,13 @@ public class UserTypeActivity extends AppCompatActivity {
 
     private PrefManager prefManager1;
     private boolean success = true;
-    Sessionmanager sessionmanager;
+    SessionManager sessionmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_type);
-        sessionmanager = new Sessionmanager(getApplicationContext());
+        sessionmanager = new SessionManager(getApplicationContext());
 
         if (sessionmanager.isUserLoggedIn()) {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
