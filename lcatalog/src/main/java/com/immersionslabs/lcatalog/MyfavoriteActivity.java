@@ -1,6 +1,7 @@
 package com.immersionslabs.lcatalog;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,12 +25,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static String FAVOURITE_URL = null;
     private static final String TAG = "MyfavoriteActivity";
+    private static String GUEST_FAVOURITE_URL = null;
+
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -41,7 +45,7 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
 
-    String user_id;
+    String user_id, USER_LOG_TYPE;
 
     RecyclerView recycler;
     GridLayoutManager favoritemanager;
@@ -52,6 +56,9 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
+        // Intent intent = getIntent();
+        USER_LOG_TYPE = EnvConstants.user_type;
+
         sessionmanager = new SessionManager(getApplicationContext());
         HashMap hashmap = new HashMap();
 
@@ -59,6 +66,7 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
 
         FAVOURITE_URL = REGISTER_URL + user_id;
+        GUEST_FAVOURITE_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
 
         recycler = findViewById(R.id.favorite_recycler);
         recycler.setHasFixedSize(true);
@@ -85,10 +93,19 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     }
 
     private void CommongetData() {
+
         Log.e(TAG, "CommonGetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
+        if (USER_LOG_TYPE.equals("CUSTOMER")) {
+            ApiService.getInstance(this).getData(this, false, "FAVORITE", FAVOURITE_URL, "FAVORITE_LIST");
+        } else if (USER_LOG_TYPE.equals("GUEST")) {
+            Iterator iterator = EnvConstants.user_Favourite_list.iterator();
+            while (iterator.hasNext()) {
+                String TEMP_GUEST_FAVOURITE_URL = GUEST_FAVOURITE_URL + "/" + iterator.next().toString();
+                ApiService.getInstance(this).getData(this, false, "FAVORITE", TEMP_GUEST_FAVOURITE_URL, "GUEST");
 
-        ApiService.getInstance(this).getData(this, false, "FAVORITE", FAVOURITE_URL, "FAVORITE_LIST");
+            }
+        }
     }
 
     private void GetData(JSONArray resp) {
@@ -113,6 +130,41 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
                 e.printStackTrace();
             }
         }
+
+        Log.e(TAG, "Ids" + item_ids);
+        Log.e(TAG, "Names" + item_names);
+        Log.e(TAG, "Descriptions" + item_descriptions);
+        Log.e(TAG, "Prices" + item_prices);
+        Log.e(TAG, "Images" + item_images);
+        Log.e(TAG, "Dimensions" + item_dimensions);
+        Log.e(TAG, "Discounts" + item_discounts);
+        Log.e(TAG, "3ds" + item_3ds);
+        Log.e(TAG, "Vendors" + item_vendors);
+
+        favoritemanager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recycler.setLayoutManager(favoritemanager);
+        MyFavoriteAdapter adapter = new MyFavoriteAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
+        recycler.setAdapter(adapter);
+    }
+
+    private void GetData(JSONObject obj) {
+
+
+        try {
+            item_ids.add(obj.getString("_id"));
+            item_names.add(obj.getString("name"));
+            item_descriptions.add(obj.getString("description"));
+            item_prices.add(obj.getString("price"));
+            item_images.add(obj.getString("img"));
+            item_discounts.add(obj.getString("discount"));
+            item_3ds.add(obj.getString("view_3d"));
+            item_dimensions.add(obj.getString("dimensions"));
+            item_vendors.add(obj.getString("vendor_id"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         Log.e(TAG, "Ids" + item_ids);
         Log.e(TAG, "Names" + item_names);
@@ -163,7 +215,18 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
                 e.printStackTrace();
             }
         }
+        if (flag.equals("GUEST")) {
+            try {
+                JSONObject RESP = response.getJSONObject("data");
+                GetData(RESP);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
+
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
