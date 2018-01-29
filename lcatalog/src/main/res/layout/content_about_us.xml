@@ -140,7 +140,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_facebook"
-                        android:fitsSystemWindows="true"
                         android:src="@mipmap/ic_facebook" />
 
                     <ImageView
@@ -150,7 +149,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_linkedin"
-                        android:fitsSystemWindows="true"
                         android:src="@mipmap/ic_linkedin" />
 
                     <ImageView
@@ -160,7 +158,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_instagram"
-                        android:fitsSystemWindows="true"
                         android:src="@mipmap/ic_instagram" />
 
                     <ImageView
@@ -170,7 +167,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_twitter"
-                        android:fitsSystemWindows="true"
                         android:src="@mipmap/ic_twitter" />
 
                     <ImageView
@@ -180,7 +176,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_youtube"
-                        android:fitsSystemWindows="true"
                         android:src="@mipmap/ic_youtube" />
 
                 </LinearLayout>
