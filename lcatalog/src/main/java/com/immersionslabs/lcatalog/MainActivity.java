@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
@@ -46,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView user_type, user_email, user_name, app_name, powered;
     HashMap hashMap;
     SessionManager sessionmanager;
-
     int doubleClick = 1;
 
     @Override
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             user_log_type = (String) hashMap.get(SessionManager.KEY_USER_TYPE);
             Log.e(TAG, "User Log Type:  " + user_log_type);
-
+            EnvConstants.user_type = user_log_type;
             user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
@@ -137,7 +137,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             guest_phone = guest_data.getString("guest_phone");
             Log.e(TAG, "guest phone:  " + guest_phone);
-
+            user_log_type = "GUEST";
+            EnvConstants.user_type = user_log_type;
             user_name.setText(guest_name);
             user_email.setText("Mobile #" + guest_phone);
             user_type.setText(R.string.guest);
@@ -360,18 +361,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (Objects.equals(user_log_type, "CUSTOMER")) {
 
                 Intent intent = new Intent(this, MyfavoriteActivity.class);
+                // intent.putExtra("userlogtype", "CUSTOMER");
                 startActivity(intent);
                 Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
             } else {
-//                if (!user_Favourite_list.isEmpty()) {
-//                Intent intent = new Intent(this, MyfavoriteActivity.class);
-//                startActivity(intent);
-                Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();
-//                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-            }
+                if (!user_Favourite_list.isEmpty()) {
+                    Intent intent = new Intent(this, MyfavoriteActivity.class);
+                    //   intent.putExtra("userlogtype", "GUEST");
+                    startActivity(intent);
+                    Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();
+                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                }
 
+            }
         } else if (id == R.id.nav_user_budget_bar) {
 
             Toast.makeText(this, "This feature lets you create your budget furniture list !!", Toast.LENGTH_SHORT).show();
