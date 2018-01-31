@@ -26,12 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/v_item_image"
-            android:paddingEnd="@dimen/margin_40"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"
-            android:paddingTop="@dimen/margin_20"
+            android:paddingTop="@dimen/margin_10"
             android:text="@string/catalog_title"
             android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_tab_medium"
+            android:textSize="@dimen/text_tab_small"
             android:textStyle="bold" />
 
         <TextView
@@ -42,17 +42,18 @@
             android:layout_toEndOf="@+id/v_item_image"
             android:ellipsize="end"
             android:maxLines="2"
-            android:paddingEnd="@dimen/margin_40"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"
-            android:paddingTop="@dimen/margin_20"
+            android:paddingTop="@dimen/margin_10"
             android:text="@string/catalog_description"
             android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_tab_small"
+            android:textSize="@dimen/text_tab_tiny"
             android:textStyle="italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:layout_below="@+id/v_item_description"
             android:layout_toEndOf="@+id/v_item_image"
             android:orientation="horizontal"
@@ -73,7 +74,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:id="@+id/v_item_price"
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/original_price"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -91,7 +92,7 @@
                     android:paddingStart="@dimen/margin_2"
                     android:text="@string/price_Tag"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
             </LinearLayout>
 
@@ -108,7 +109,7 @@
                     android:layout_marginEnd="@dimen/margin_10"
                     android:text="@string/Rs"
                     android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:id="@+id/v_item_price_new"
@@ -116,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/discount_price"
                     android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -126,7 +127,7 @@
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
                     android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
             </LinearLayout>
 
@@ -144,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/discount_percentage"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -152,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/percentage_symbol"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
             </LinearLayout>

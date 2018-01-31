@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UserTypeActivity extends AppCompatActivity {
+    Toast toast;
 
     private static final String TAG = "UserTypeActivity";
     private static final int MY_PERMISSIONS_REQUEST = 10;
@@ -141,7 +142,10 @@ public class UserTypeActivity extends AppCompatActivity {
                 if (delete_models || delete_patterns || delete_data) {
                     Toast.makeText(getBaseContext(), "Debugging: Cache Files Removed", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getBaseContext(), "Debugging: Cache doesn't exist", Toast.LENGTH_SHORT).show();
+                    if (toast != null)
+                        toast.cancel();
+                    toast = Toast.makeText(getBaseContext(), "Debugging: Cache doesn't exist", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });
