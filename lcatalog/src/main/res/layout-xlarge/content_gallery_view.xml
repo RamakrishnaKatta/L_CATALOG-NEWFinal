@@ -8,18 +8,11 @@
     tools:context=".VendorRegistrationActivity"
     tools:showIn="@layout/activity_gallery_view">
 
-    <GridView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/image_grid_view"
+        android:layout_margin="@dimen/margin_10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_5"
-        android:clickable="true"
-        android:drawSelectorOnTop="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:numColumns="auto_fit"
-        android:orientation="vertical"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="@dimen/margin_10" />
+        android:visibility="visible"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
