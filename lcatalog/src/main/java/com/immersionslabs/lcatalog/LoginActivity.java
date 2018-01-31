@@ -257,7 +257,7 @@ public class LoginActivity extends AppCompatActivity {
         // Implement your own authentication logic here.
         try {
             String enc_email_text = rijndeal_obj.encrypt(email);
-            String enc_password_text = rijndeal_obj.decrypt(password);
+            String enc_password_text = rijndeal_obj.encrypt(password);
             final String Credentials = enc_email_text + "  ###  " + enc_password_text;
             UserCheckUtil.writeToFile(Credentials, "customer");
             String text_file_data = UserCheckUtil.readFromFile("customer");

@@ -2,15 +2,11 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -19,16 +15,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.FullScreenImageViewActivity;
 import com.immersionslabs.lcatalog.GalleryActivity;
 import com.immersionslabs.lcatalog.R;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdapter.ViewHolder> {
 
-    public static final String TAG = "Grid";
+    public static final String TAG = "GridViewImageAdapter";
     private Activity _activity;
     private ArrayList<String> _filePaths = new ArrayList<>();
 
@@ -81,6 +73,5 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
             gallery_container = itemView.findViewById(R.id.gallery_container);
         }
     }
-
 
 }
