@@ -31,7 +31,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
 public class CatalogActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";

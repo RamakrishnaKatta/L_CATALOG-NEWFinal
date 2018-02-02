@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-
 public class MyScheduledReceiver extends BroadcastReceiver {
 
     public static final String TAG = "MyScheduledReceiver";

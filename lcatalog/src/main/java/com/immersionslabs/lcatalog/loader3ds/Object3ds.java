@@ -6,7 +6,6 @@ import java.nio.FloatBuffer;
 
 class Object3ds {
 
-
     private final int mBytesPerFloat = 4;
     private float[] vertices;
     private int[] faces;

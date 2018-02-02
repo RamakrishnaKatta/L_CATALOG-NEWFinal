@@ -11,10 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-/**
- * Created by ramky on 29-11-2017.
- */
-
 public class Parser3ds {
     private final Context mActivityContext;
     private final int mPositionDataSize = 3;
