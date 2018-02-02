@@ -7,22 +7,18 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.CatalogActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
@@ -76,8 +72,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         Log.e(TAG, "Dimensions----" + item_dimensions);
         Log.e(TAG, "3ds----" + item_3ds);
         this.activity = activity;
-
-
     }
 
     @Override
@@ -147,8 +141,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);
-
-
             }
         });
     }
@@ -159,10 +151,10 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+
         private TextView item_name, item_description, item_price, item_discount, item_price_new;
         private ImageView item_image;
         private RelativeLayout v_container;
-
 
         ViewHolder(View itemView) {
             super(itemView);

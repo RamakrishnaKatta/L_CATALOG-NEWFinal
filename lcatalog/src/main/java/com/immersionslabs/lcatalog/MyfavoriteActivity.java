@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,11 +29,13 @@ import java.util.Iterator;
 public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
-    private static String FAVOURITE_URL = null;
     private static final String TAG = "MyfavoriteActivity";
+    private static String FAVOURITE_URL = null;
     private static String GUEST_FAVOURITE_URL = null;
-
-
+    String user_id, USER_LOG_TYPE;
+    RecyclerView recycler;
+    GridLayoutManager favoritemanager;
+    SessionManager sessionmanager;
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -44,13 +45,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
-
-    String user_id, USER_LOG_TYPE;
-
-    RecyclerView recycler;
-    GridLayoutManager favoritemanager;
-
-    SessionManager sessionmanager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

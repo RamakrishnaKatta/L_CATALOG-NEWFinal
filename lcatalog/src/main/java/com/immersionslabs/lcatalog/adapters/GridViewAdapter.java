@@ -17,16 +17,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
-import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-
 
 public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHolder> {
     private static final String TAG = "GridViewAdapter";
@@ -76,27 +74,6 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         Log.e(TAG, "3ds ---- " + item_3ds);
 
         this.activity = activity;
-    }
-
-    /**
-     * View holder to display each RecyclerView item
-     */
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView item_name, item_description, item_price, item_discount, item_price_new;
-        private ImageView item_image;
-        private RelativeLayout grid_container;
-
-        ViewHolder(View view) {
-            super(view);
-            grid_container = view.findViewById(R.id.grid_container);
-            item_image = view.findViewById(R.id.grid_item_image);
-            item_name = view.findViewById(R.id.grid_item_name);
-            item_description = view.findViewById(R.id.grid_item_description);
-            item_price = view.findViewById(R.id.grid_item_price);
-            item_discount = view.findViewById(R.id.grid_item_discount_value);
-            item_price_new = view.findViewById(R.id.grid_item_price_new);
-        }
     }
 
     @Override
@@ -172,8 +149,6 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                 intent.putExtras(b);
 
                 context[0].startActivity(intent);
-
-//                Toast.makeText(activity, "You clicked on Article: " + position, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -181,5 +156,26 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     @Override
     public int getItemCount() {
         return item_names.size();
+    }
+
+    /**
+     * View holder to display each RecyclerView item
+     */
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView item_name, item_description, item_price, item_discount, item_price_new;
+        private ImageView item_image;
+        private RelativeLayout grid_container;
+
+        ViewHolder(View view) {
+            super(view);
+            grid_container = view.findViewById(R.id.grid_container);
+            item_image = view.findViewById(R.id.grid_item_image);
+            item_name = view.findViewById(R.id.grid_item_name);
+            item_description = view.findViewById(R.id.grid_item_description);
+            item_price = view.findViewById(R.id.grid_item_price);
+            item_discount = view.findViewById(R.id.grid_item_discount_value);
+            item_price_new = view.findViewById(R.id.grid_item_price_new);
+        }
     }
 }

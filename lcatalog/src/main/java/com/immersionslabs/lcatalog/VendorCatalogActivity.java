@@ -34,7 +34,10 @@ public class VendorCatalogActivity extends AppCompatActivity {
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/userArticles/";
     private static final String TAG = "VendorCatalogActivity";
     private static String VENDOR_URL = null;
-
+    RecyclerView vendor_recycler;
+    GridLayoutManager VendorCatalogManager;
+    String vendor_id;
+    Integer vendor_id_no;
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -44,11 +47,6 @@ public class VendorCatalogActivity extends AppCompatActivity {
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
-
-    RecyclerView vendor_recycler;
-    GridLayoutManager VendorCatalogManager;
-    String vendor_id;
-    Integer vendor_id_no;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

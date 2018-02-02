@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.immersionslabs.lcatalog.Fragment_Illustration;
 import com.immersionslabs.lcatalog.Fragment_Overview;
 
-public class MainPageAdapter  extends FragmentStatePagerAdapter {
+public class MainPageAdapter extends FragmentStatePagerAdapter {
     private int mNumOfTabs;
 
     public MainPageAdapter(FragmentManager fm, int NumOfTabs) {

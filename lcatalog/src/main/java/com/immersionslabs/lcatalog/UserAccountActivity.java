@@ -47,16 +47,13 @@ public class UserAccountActivity extends AppCompatActivity {
     private static final String TAG = "UserAccountActivity";
 
     private static final int REQUEST_UPDATE = 0;
-
+    SessionManager sessionmanager;
+    CryptionRijndeal rijndeal_obj;
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
     private String user_name, user_address, user_phone, user_email, resp, message, code, user_id, user_password, user_global_id;
-
     private String LOGIN_URL = APP_BASE_URL + "/users";
-
-    SessionManager sessionmanager;
-    CryptionRijndeal rijndeal_obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +138,7 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
@@ -221,7 +218,7 @@ public class UserAccountActivity extends AppCompatActivity {
                     }
                 }
             });
-            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(4000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(jsonObjectRequest);
         } catch (Exception e) {

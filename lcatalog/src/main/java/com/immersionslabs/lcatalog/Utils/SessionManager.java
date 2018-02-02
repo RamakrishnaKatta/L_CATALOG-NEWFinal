@@ -9,13 +9,7 @@ import com.immersionslabs.lcatalog.LoginActivity;
 import java.util.HashMap;
 
 public class SessionManager {
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
-    Context context;
-
-    private static final String PREF_NAME = "LCatalog_Preferences";
     public static final String IS_USER_LOGIN = "IsUserLoggedIn";
-
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_MOBILE_NO = "mobile_no";
@@ -24,6 +18,10 @@ public class SessionManager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
+    private static final String PREF_NAME = "LCatalog_Preferences";
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    Context context;
 
     public SessionManager(Context context) {
         this.context = context;
@@ -99,7 +97,6 @@ public class SessionManager {
     public void loginthings() {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.commit();
-
     }
 
     public void updatepassword(String password) {

@@ -40,9 +40,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
-    private static final String TAG = "SignupActivity";
-    private static final int REQUEST_SIGNUP = 0;
-
     public static final String KEY_USERNAME = "name";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
@@ -50,18 +47,18 @@ public class SignupActivity extends AppCompatActivity {
     public static final String KEY_ADDRESS = "adress";
     public static final String KEY_TYPE = "type";
     public static final String KEY_VENDOR_ID = "vendor_id";
-
+    private static final String TAG = "SignupActivity";
+    private static final int REQUEST_SIGNUP = 0;
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users";
 
     TextView app_name, powered;
-    private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;
-    private Button _signupButton;
-
     CoordinatorLayout SignupLayout;
     String name, email, address, mobile, password, reEnterPassword;
     String resp, code, message;
     String type = "CUSTOMER";
     int vendor_id = 100000; // This Value should be changed when a user is registered under specific customer
+    private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;
+    private Button _signupButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,7 +104,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
@@ -231,7 +228,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 
@@ -259,7 +256,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupSuccess() {
-        CustomMessage.getInstance().CustomMessage(SignupActivity.this, "SignUp Success, Welcome");
+        CustomMessage.getInstance().CustomMessage(SignupActivity.this, "SignUp Success, Please Welcome");
 
         _signupButton = findViewById(R.id.btn_signup);
         _signupButton.setEnabled(false);
@@ -272,7 +269,21 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
+
         CustomMessage.getInstance().CustomMessage(SignupActivity.this, "SignUp failed, Please Try Again");
+
+        if (name != null) {
+            _nameText.setText(name);
+        }
+        if (email != null) {
+            _emailText.setText(email);
+        }
+        if (address != null) {
+            _addressText.setText(address);
+        }
+        if (mobile != null) {
+            _mobileText.setText(mobile);
+        }
 
         _signupButton = findViewById(R.id.btn_signup);
         _signupButton.setEnabled(true);

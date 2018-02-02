@@ -18,10 +18,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.CatalogActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
@@ -43,7 +41,6 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
     private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
-
 
     public ListViewHorizontalAdapter(Activity activity,
                                      ArrayList<String> item_ids,
@@ -77,8 +74,6 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         Log.e(TAG, "3ds----" + item_3ds);
 
         this.activity = activity;
-
-
     }
 
     @Override
@@ -88,7 +83,6 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
 
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(ListViewHorizontalAdapter.ViewHolder holder, final int position) {
@@ -153,9 +147,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 context[0].startActivity(intent);
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -182,8 +174,6 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
             Typeface custom_font2 = Typeface.createFromAsset(activity.getAssets(), "fonts/Cookie-Regular.ttf");
             item_name.setTypeface(custom_font);
             item_description.setTypeface(custom_font2);
-
-
         }
     }
 }

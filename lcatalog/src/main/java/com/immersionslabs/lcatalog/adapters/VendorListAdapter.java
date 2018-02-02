@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Vendor;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.VendorProfileActivity;
 
@@ -46,19 +45,6 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
         Log.e(TAG, "logos----" + vendor_logos);
 
         this.activity = activity;
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView vendor_name;
-        private ImageView vendor_logo;
-        private RelativeLayout grid_container;
-
-        ViewHolder(View view) {
-            super(view);
-            grid_container = view.findViewById(R.id.vendor_list_container);
-            vendor_logo = view.findViewById(R.id.vendor_list_logo);
-            vendor_name = view.findViewById(R.id.vendor_list_name);
-        }
     }
 
     @Override
@@ -99,5 +85,18 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
     @Override
     public int getItemCount() {
         return vendor_ids.size();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView vendor_name;
+        private ImageView vendor_logo;
+        private RelativeLayout grid_container;
+
+        ViewHolder(View view) {
+            super(view);
+            grid_container = view.findViewById(R.id.vendor_list_container);
+            vendor_logo = view.findViewById(R.id.vendor_list_logo);
+            vendor_name = view.findViewById(R.id.vendor_list_name);
+        }
     }
 }

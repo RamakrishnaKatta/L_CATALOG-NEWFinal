@@ -26,16 +26,40 @@ import com.immersionslabs.lcatalog.Utils.PrefManager;
 
 public class OnBoarding extends AppCompatActivity {
 
+    TextView welcome_11, welcome_13, welcome_21, welcome_31, welcome_32, welcome_41;
+    TextView welcome_14, welcome_22, welcome_42, welcome_43;
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
     private Button btnSkip, btnNext;
+    //	viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+            addBottomDots(position);
+
+            // changing the next button text 'NEXT' / 'GOT IT'
+            if (position == layouts.length - 1) {
+                // last page. make button text to GOT IT
+                btnNext.setText(getString(R.string.start));
+                btnSkip.setVisibility(View.GONE);
+            } else {
+                // still pages are left
+                btnNext.setText(getString(R.string.next));
+                btnSkip.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+    };
     private PrefManager prefManager;
-
-
-    TextView welcome_11, welcome_13, welcome_21, welcome_31, welcome_32, welcome_41;
-    TextView welcome_14, welcome_22, welcome_42, welcome_43;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +138,7 @@ public class OnBoarding extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +148,6 @@ public class OnBoarding extends AppCompatActivity {
                 } else {
 
                     InternetMessage();
-                    // CustomMessage.getInstance().CustomMessage(this,"Check Your Internet connection.");
                 }
             }
         });
@@ -159,34 +182,6 @@ public class OnBoarding extends AppCompatActivity {
         finish();
     }
 
-    //	viewpager change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-            addBottomDots(position);
-
-            // changing the next button text 'NEXT' / 'GOT IT'
-            if (position == layouts.length - 1) {
-                // last page. make button text to GOT IT
-                btnNext.setText(getString(R.string.start));
-                btnSkip.setVisibility(View.GONE);
-            } else {
-                // still pages are left
-                btnNext.setText(getString(R.string.next));
-                btnSkip.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
-    };
-
     /**
      * Making notification bar transparent
      */
@@ -196,6 +191,22 @@ public class OnBoarding extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     /**
@@ -288,21 +299,5 @@ public class OnBoarding extends AppCompatActivity {
             View view = (View) object;
             container.removeView(view);
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    public void onBackPressed() {
-        setResult(RESULT_CANCELED);
-        super.onBackPressed();
-        finish();
     }
 }

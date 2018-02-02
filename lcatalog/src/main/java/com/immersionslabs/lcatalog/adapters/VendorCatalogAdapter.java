@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Product;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
@@ -28,7 +26,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class VendorCatalogAdapter extends RecyclerView.Adapter<VendorCatalogAdapter.ViewHolder> {
-
 
     private static final String TAG = "VendorCatalogAdapter";
 
@@ -76,27 +73,6 @@ public class VendorCatalogAdapter extends RecyclerView.Adapter<VendorCatalogAdap
         Log.e(TAG, "3ds ---- " + item_3ds);
 
         this.activity = activity;
-    }
-
-    /**
-     * View holder to display each RecyclerView item
-     */
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView item_name, item_description, item_price, item_discount, item_price_new;
-        private ImageView item_image;
-        private RelativeLayout grid_container;
-
-        ViewHolder(View view) {
-            super(view);
-            grid_container = view.findViewById(R.id.grid_container);
-            item_image = view.findViewById(R.id.grid_item_image);
-            item_name = view.findViewById(R.id.grid_item_name);
-            item_description = view.findViewById(R.id.grid_item_description);
-            item_price = view.findViewById(R.id.grid_item_price);
-            item_discount = view.findViewById(R.id.grid_item_discount_value);
-            item_price_new = view.findViewById(R.id.grid_item_price_new);
-        }
     }
 
     @Override
@@ -169,5 +145,26 @@ public class VendorCatalogAdapter extends RecyclerView.Adapter<VendorCatalogAdap
     @Override
     public int getItemCount() {
         return item_names.size();
+    }
+
+    /**
+     * View holder to display each RecyclerView item
+     */
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView item_name, item_description, item_price, item_discount, item_price_new;
+        private ImageView item_image;
+        private RelativeLayout grid_container;
+
+        ViewHolder(View view) {
+            super(view);
+            grid_container = view.findViewById(R.id.grid_container);
+            item_image = view.findViewById(R.id.grid_item_image);
+            item_name = view.findViewById(R.id.grid_item_name);
+            item_description = view.findViewById(R.id.grid_item_description);
+            item_price = view.findViewById(R.id.grid_item_price);
+            item_discount = view.findViewById(R.id.grid_item_discount_value);
+            item_price_new = view.findViewById(R.id.grid_item_price_new);
+        }
     }
 }

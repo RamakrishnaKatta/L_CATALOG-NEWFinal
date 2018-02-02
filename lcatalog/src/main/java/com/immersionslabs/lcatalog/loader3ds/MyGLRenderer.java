@@ -20,18 +20,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
-    private final Context mActivityContext;
     private static final String TAG = "MyGLRenderer";
-
-    /**
-     * Model view projection matrices for 3d transforms
-     */
-    private float[] mModelMatrix = new float[16];
-    private float[] mViewMatrix = new float[16];
-    private float[] mProjectionMatrix = new float[16];
-    private float[] mMVPMatrix = new float[16];
-
-    private float[] mLightModelMatrix = new float[16];
+    private final Context mActivityContext;
     /**
      * Used to hold a light centered on the origin in model space. We need a 4th coordinate so we can get translations to work when
      * we multiply this by our transformation matrices.
@@ -46,18 +36,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
      */
     private final float[] mLightPosInEyeSpace = new float[4];
     /**
-     * This will be used to pass in the light position.
+     * Store the accumulated rotation.
      */
-    private int mLightPosHandle;
-
-    private Parser3ds[] model;
-
-    private int currentObject = 0;
-
+    private final float[] mAccumulatedRotation = new float[16];
+    /**
+     * Store the current rotation.
+     */
+    private final float[] mCurrentRotation = new float[16];
     // These still work without volatile, but refreshes are not guaranteed to happen.
     volatile float mDeltaX;
     volatile float mDeltaY;
-
+    /**
+     * Model view projection matrices for 3d transforms
+     */
+    private float[] mModelMatrix = new float[16];
+    private float[] mViewMatrix = new float[16];
+    private float[] mProjectionMatrix = new float[16];
+    private float[] mMVPMatrix = new float[16];
+    private float[] mLightModelMatrix = new float[16];
+    /**
+     * This will be used to pass in the light position.
+     */
+    private int mLightPosHandle;
+    private Parser3ds[] model;
+    private int currentObject = 0;
     private int mMVPMatrixHandle;
     private int mMVMatrixHandle;
     /**
@@ -65,26 +67,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
      */
     private int mTextureCoordinateHandle;
     private int mTextureUniformHandle;
-
     private int mProgramHandle;
     private int mPositionHandle;
     private int mNormalHandle;
-
     /**
      * This is a handle to our light point program.
      */
     private int mPointProgramHandle;
-
-    /**
-     * Store the accumulated rotation.
-     */
-    private final float[] mAccumulatedRotation = new float[16];
-
-    /**
-     * Store the current rotation.
-     */
-    private final float[] mCurrentRotation = new float[16];
-
     /**
      * A temporary matrix.
      */

@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.adapters;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +12,6 @@ import com.immersionslabs.lcatalog.Fragment_ProductImages;
 public class ProductPageAdapter extends FragmentStatePagerAdapter {
 
     private static final String TAG = "ProductPageAdapter";
-
 
     private String a_name, a_description, a_old_price, a_discount, a_newPrice, a_dimensions,
             a_width, a_height, a_length, a_position, a_id, a_images, a_vendor_id, a_3ds;
@@ -52,7 +50,6 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
         this.a_id = id;
         this.a_vendor_id = article_vendor_id;
         this.a_3ds = article_3ds;
-
 
         Log.e(TAG, "Acquired Article Details: " + a_name
                 + " ---" + a_dimensions

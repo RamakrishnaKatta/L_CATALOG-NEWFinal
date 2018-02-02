@@ -32,13 +32,11 @@ import java.util.ArrayList;
 public class VendorListActivity extends AppCompatActivity {
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors";
     private static final String TAG = "VendorListActivity";
-
+    RecyclerView recycler;
+    GridLayoutManager VendorListManager;
     private ArrayList<String> vendor_ids;
     private ArrayList<String> vendor_names;
     private ArrayList<String> vendor_logos;
-
-    RecyclerView recycler;
-    GridLayoutManager VendorListManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,6 +7,7 @@ import java.nio.FloatBuffer;
 class Object3ds {
 
 
+    private final int mBytesPerFloat = 4;
     private float[] vertices;
     private int[] faces;
     private float[] textureUV;
@@ -17,18 +18,16 @@ class Object3ds {
     private int numFaces;
     private int textureHandle;
     private boolean hasTexture = false;
-
     private FloatBuffer positionBuffer;
     private FloatBuffer textureBuffer;
     private FloatBuffer normalBuffer;
-    private final int mBytesPerFloat = 4;
-
-    public void setVertices(float[] inputVertices) {
-        vertices = inputVertices;
-    }
 
     public float[] getVertices() {
         return vertices;
+    }
+
+    public void setVertices(float[] inputVertices) {
+        vertices = inputVertices;
     }
 
     public void setFaces(int[] inputFaces) {
@@ -39,12 +38,12 @@ class Object3ds {
         textureUV = inputTextures;
     }
 
-    public void setTextureHandle(int ID) {
-        textureHandle = ID;
-    }
-
     public int getTextureHandle() {
         return textureHandle;
+    }
+
+    public void setTextureHandle(int ID) {
+        textureHandle = ID;
     }
 
     public void resetPositionBuffer() {
@@ -71,10 +70,6 @@ class Object3ds {
         return textureBuffer;
     }
 
-    public void setNumFaces(int nr) {
-        numFaces = nr;
-    }
-
     public void setHasTexture() {
         hasTexture = true;
     }
@@ -85,6 +80,10 @@ class Object3ds {
 
     public int getNumFaces() {
         return numFaces;
+    }
+
+    public void setNumFaces(int nr) {
+        numFaces = nr;
     }
 
     public float getScaleFactor() {

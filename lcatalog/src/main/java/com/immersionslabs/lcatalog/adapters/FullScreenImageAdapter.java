@@ -51,7 +51,6 @@ public class FullScreenImageAdapter extends PagerAdapter {
         Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
         imgDisplay.setImageBitmap(bitmap);
 
-
         container.addView(viewLayout);
 
         return viewLayout;
@@ -60,6 +59,5 @@ public class FullScreenImageAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((RelativeLayout) object);
-
     }
 }

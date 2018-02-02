@@ -57,33 +57,27 @@ import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list
 
 public class LoginActivity extends AppCompatActivity {
 
-    private PrefManager prefManager5;
-
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
+    private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
+    private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
     SessionManager sessionmanager;
     SharedPreferences preferences;
     CryptionRijndeal rijndeal_obj;
-
-    private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
-    private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
-
     TextView app_name, _forgot_password, powered;
     EditText _emailText, _passwordText;
     Button _loginButton;
     ImageButton get_details;
     CoordinatorLayout LoginLayout;
-
     String userId, globalUserId;
     String resp, code, message;
     String userName, userEmail, userPhone, userAddress, userType;
     String email, password;
-
     File file_customer;
     String[] text_from_customer_file;
-
     ArrayList<String> temp = new ArrayList<String>();
+    private PrefManager prefManager5;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -171,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
@@ -332,7 +326,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(4000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 

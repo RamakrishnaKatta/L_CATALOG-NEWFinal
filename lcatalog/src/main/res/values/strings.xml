@@ -187,10 +187,10 @@
             <br /> &#187; A camera screen that can recognize these patterns and augment into the real world
             <br /> &#187; This screen can recognize multiple patterns at a time i.e., it can augment all 3D models on to the real world .\n
             <br /> &#187; These 3D objects are intractable as in \n
-            <!--<br /> &#8226; Single Click displays the accurate dimensions of the object.\n-->
-            <!--<br /> &#8226; Double click lets the user choose the fabrics, if exist.\n-->
-            <!--<br /> &#8226; Long press opens the feedback message opens right below the object. \n-->
-            <br /> &#187; The feedback screen lets the user to send a personal message to the vendor/ manufacturer if he/she needs a customization to the existing furniture object.\n
+        <!--<br /> &#8226; Single Click displays the accurate dimensions of the object.\n-->
+        <!--<br /> &#8226; Double click lets the user choose the fabrics, if exist.\n-->
+        <!--<br /> &#8226; Long press opens the feedback message opens right below the object. \n-->
+        <br /> &#187; The feedback screen lets the user to send a personal message to the vendor/ manufacturer if he/she needs a customization to the existing furniture object.\n
             <br /> &#187; Once submitted, the message will be tagged with the object ID as well as the User contact
         details, in case provided (One means is mandatory).\n
             <br /> &#187;  Once the user scans the articles, the user will be able to take a screenshot of the screen which

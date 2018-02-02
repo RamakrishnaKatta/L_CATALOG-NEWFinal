@@ -33,24 +33,20 @@ import java.util.Calendar;
 
 public class GuestActivity extends AppCompatActivity {
 
-    AlarmManager alarmManager;
-    PendingIntent pendingIntent;
-    private PrefManager prefManager2;
-
     private static final String TAG = "GuestActivity";
     private static final int REQUEST_GUEST_LOGIN = 0;
-
+    AlarmManager alarmManager;
+    PendingIntent pendingIntent;
     TextView app_name, powered;
     EditText _guestNameText, _GuestPhoneText;
     Button _guestLoginButton;
     EditText _nameText, _mobileText;
     ImageButton get_details;
-
     String guest_name, guest_phone;
     File file_guest;
     String[] text_from_guest_file;
-
     SessionManager sessionmanager;
+    private PrefManager prefManager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +110,7 @@ public class GuestActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override

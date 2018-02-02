@@ -37,12 +37,10 @@ import java.util.List;
 import java.util.Map;
 
 public class UserTypeActivity extends AppCompatActivity {
-    Toast toast;
-
     private static final String TAG = "UserTypeActivity";
     private static final int MY_PERMISSIONS_REQUEST = 10;
     private static final int REQUEST_USERTYPE = 0;
-
+    Toast toast;
     TextView app_name,
             welcome_aboard,
             who_are_you,
@@ -211,7 +209,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override

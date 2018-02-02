@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;

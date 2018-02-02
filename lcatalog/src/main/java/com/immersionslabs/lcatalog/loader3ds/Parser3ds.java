@@ -16,27 +16,24 @@ import java.util.ArrayList;
  */
 
 public class Parser3ds {
-    private BufferedInputStream stream;
-    private int pos;
-    private int limit;
     private final Context mActivityContext;
-    private int defaultTextureID;
-    private ArrayList<Float> scales = new ArrayList<>();
-    private float scaleFactor = 0.0f;
-    private float initialScaleFactor = 0.0f;
-
-    float[] vertices;
-    ArrayList<Object3ds> models = new ArrayList<Object3ds>();
-    int[] faces;
-    int numFaces;
-    ArrayList<String[]> materials = new ArrayList<String[]>();
-
     private final int mPositionDataSize = 3;
     /**
      * Size of the texture coordinate data in elements.
      */
     private final int mTextureCoordinateDataSize = 2;
-
+    float[] vertices;
+    ArrayList<Object3ds> models = new ArrayList<Object3ds>();
+    int[] faces;
+    int numFaces;
+    ArrayList<String[]> materials = new ArrayList<String[]>();
+    private BufferedInputStream stream;
+    private int pos;
+    private int limit;
+    private int defaultTextureID;
+    private ArrayList<Float> scales = new ArrayList<>();
+    private float scaleFactor = 0.0f;
+    private float initialScaleFactor = 0.0f;
     private boolean objReady = false;
 
     /**
@@ -74,6 +71,17 @@ public class Parser3ds {
         objReady = true;
     }
 
+    static private short makeShort(byte b1, byte b0) {
+        return (short) ((b1 << 8) | (b0 & 0xff));
+    }
+
+    static private int makeInt(byte b3, byte b2, byte b1, byte b0) {
+        return (((b3) << 24) |
+                ((b2 & 0xff) << 16) |
+                ((b1 & 0xff) << 8) |
+                ((b0 & 0xff)));
+    }
+
     private byte getByte() throws IOException {
         int read = stream.read();
         if (read == -1) {
@@ -99,17 +107,6 @@ public class Parser3ds {
 
     public float getFloat() throws IOException {
         return Float.intBitsToFloat(getInt());
-    }
-
-    static private short makeShort(byte b1, byte b0) {
-        return (short) ((b1 << 8) | (b0 & 0xff));
-    }
-
-    static private int makeInt(byte b3, byte b2, byte b1, byte b0) {
-        return (((b3) << 24) |
-                ((b2 & 0xff) << 16) |
-                ((b1 & 0xff) << 8) |
-                ((b0 & 0xff)));
     }
 
     private String readString() throws IOException {

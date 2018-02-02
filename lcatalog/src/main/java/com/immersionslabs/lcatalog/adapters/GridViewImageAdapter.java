@@ -29,7 +29,6 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
 
         this._activity = activity;
         this._filePaths = imagePaths;
-
     }
 
     @Override
@@ -73,5 +72,4 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
             gallery_container = itemView.findViewById(R.id.gallery_container);
         }
     }
-
 }

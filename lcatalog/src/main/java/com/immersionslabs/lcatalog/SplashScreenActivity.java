@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SplashScreenActivity extends AppCompatActivity implements Animation.AnimationListener {
+
     Animation animFadeIn;
     LinearLayout linearLayout;
     TextView app_name, powered;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
         app_name.setTypeface(custom_font);
         powered.setTypeface(custom_font2);
-
 
         animate();
 
@@ -51,7 +50,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         final Animation animation_1 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
         final Animation animation_2 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.anti_rotate);
         imageView.startAnimation(animation_2);
-
 
         animation_2.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -87,7 +85,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
             public void onAnimationRepeat(Animation animation) {
             }
         });
-
     }
 
     @Override
@@ -99,16 +96,13 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
     @Override
     public void onAnimationStart(Animation animation) {
-
     }
 
     @Override
     public void onAnimationEnd(Animation animation) {
-
     }
 
     @Override
     public void onAnimationRepeat(Animation animation) {
-
     }
 }

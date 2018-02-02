@@ -57,32 +57,6 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
         this.activity = activity;
     }
 
-    /**
-     * View holder to display each RecylerView item
-     */
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView item_image;
-        private TextView item_name, item_description, item_price, item_discount, item_price_new;
-
-        LinearLayout main_container;
-
-        ViewHolder(View view) {
-            super(view);
-
-            main_container = view.findViewById(R.id.main_container);
-            item_image = view.findViewById(R.id.main_image);
-            item_name = view.findViewById(R.id.main_title);
-            item_description = view.findViewById(R.id.main_data);
-
-            Typeface custom_font = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Graduate-Regular.ttf");
-            Typeface custom_font2 = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
-            item_name.setTypeface(custom_font);
-            item_description.setTypeface(custom_font2);
-
-        }
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
@@ -126,5 +100,30 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     @Override
     public int getItemCount() {
         return item_names.size();
+    }
+
+    /**
+     * View holder to display each RecylerView item
+     */
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView item_image;
+        LinearLayout main_container;
+        private TextView item_name, item_description, item_price, item_discount, item_price_new;
+
+        ViewHolder(View view) {
+            super(view);
+
+            main_container = view.findViewById(R.id.main_container);
+            item_image = view.findViewById(R.id.main_image);
+            item_name = view.findViewById(R.id.main_title);
+            item_description = view.findViewById(R.id.main_data);
+
+            Typeface custom_font = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Graduate-Regular.ttf");
+            Typeface custom_font2 = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
+            item_name.setTypeface(custom_font);
+            item_description.setTypeface(custom_font2);
+
+        }
     }
 }

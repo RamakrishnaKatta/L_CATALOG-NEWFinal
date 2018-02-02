@@ -4,12 +4,16 @@ public class GetItems {
 
     String userId, userName, userAddress, userEmail, userPhone, userPassword;
 
+    public String getUserName() {
+        return userName;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserId() {
+        return userId;
     }
 
     public void setUserId(String userId) {
@@ -17,8 +21,8 @@ public class GetItems {
 
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserAddress() {
+        return userAddress;
     }
 
     public void setUserAddress(String userAddress) {
@@ -26,8 +30,8 @@ public class GetItems {
 
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public void setUserEmail(String userEmail) {
@@ -35,23 +39,19 @@ public class GetItems {
 
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getUserPhone() {
+        return userPhone;
     }
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public String getUserPassword() {
+        return userPassword;
     }
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
     }
 }

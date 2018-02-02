@@ -36,10 +36,8 @@ public class VendorProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "VendorProfileActivity";
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
-    private static String VENDOR_URL = null;
-
     private static final int REQUEST_UPDATE = 0;
-
+    private static String VENDOR_URL = null;
     String vendor_id, vendor_name, vendor_address, vendor_image, vendor_no_of_articles;
     TextView profile_vendor_name, profile_vendor_location;
     ImageView profile_vendor_logo;
@@ -157,7 +155,6 @@ public class VendorProfileActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_UPDATE) {
@@ -170,7 +167,7 @@ public class VendorProfileActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override

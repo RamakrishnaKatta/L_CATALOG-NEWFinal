@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.services;
 
-import android.app.Service;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,8 +17,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
-import com.immersionslabs.lcatalog.LoginActivity;
-import com.immersionslabs.lcatalog.SignupActivity;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONException;
@@ -32,10 +29,9 @@ import java.util.Map;
 
 public class NotifyIDService extends FirebaseInstanceIdService {
     private static final String TAG = "NotifyIDService";
-    String refreshedToken;
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL+"/userTokens";
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/userTokens";
     private static String TOKEN_REG_URL = null;
-
+    String refreshedToken;
     String resp, code, message;
     Context context;
 
@@ -89,7 +85,7 @@ public class NotifyIDService extends FirebaseInstanceIdService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NotifyIDService.this,"Internal Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(NotifyIDService.this, "Internal Error", Toast.LENGTH_LONG).show();
                 // As of f605da3 the following should work
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
@@ -117,7 +113,7 @@ public class NotifyIDService extends FirebaseInstanceIdService {
                 return headers;
             }
         };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 

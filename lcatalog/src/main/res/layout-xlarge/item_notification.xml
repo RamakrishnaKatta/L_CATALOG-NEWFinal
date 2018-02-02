@@ -9,18 +9,18 @@
 
     <RelativeLayout
         android:id="@+id/v_container"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
-            android:paddingStart="@dimen/margin_10"
-            android:paddingEnd="@dimen/margin_0"
             android:id="@+id/notify_image"
             android:layout_width="@dimen/margin_200"
             android:layout_height="@dimen/margin_200"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:paddingEnd="@dimen/margin_0"
+            android:paddingStart="@dimen/margin_10" />
 
         <TextView
             android:id="@+id/notification_title"

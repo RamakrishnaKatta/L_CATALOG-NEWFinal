@@ -77,8 +77,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_6"
-                        android:paddingStart="@dimen/margin_20"
                         android:paddingEnd="@dimen/margin_0"
+                        android:paddingStart="@dimen/margin_20"
                         android:text="@string/Rs"
                         android:textColor="@color/primary_dark"
                         android:textSize="@dimen/text_tab_small" />

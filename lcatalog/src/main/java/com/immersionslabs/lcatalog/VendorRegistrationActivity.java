@@ -39,10 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-
 public class VendorRegistrationActivity extends AppCompatActivity {
-
-    private static final String TAG = "VendorRegistrationActivity";
 
     public static final String KEY_V_COMPANYNAME = "company_name";
     public static final String KEY_V_CONTACTPERSONNAME = "contact_person_name";
@@ -53,13 +50,12 @@ public class VendorRegistrationActivity extends AppCompatActivity {
     public static final String KEY_V_STATE = "state";
     public static final String KEY_V_PIN = "pin";
     public static final String KEY_V_MOBILENO = "mobile";
-
+    private static final String TAG = "VendorRegistrationActivity";
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendor_requests";
-
+    String companyName, companyContactName, companyAddress, companyLocation, companyState, companyPin, companyEmail, companyMobileNo, companyModelCount;
+    String resp, message;
     private EditText v_companyName, v_companyContactPerson, v_companyAddress, v_companyLocation, v_companyState, v_companyPin, v_companyEmail, v_companyMobileNo, v_totalModels;
     private Button v_registerButton;
-
-    String resp, code, message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +93,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
@@ -127,39 +123,39 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         Log.e(TAG, "KEY_V_MOBILENO--" + KEY_V_MOBILENO);
 
         v_companyName = findViewById(R.id.vendor_name);
-        final String companyName = v_companyName.getText().toString().trim();
+        companyName = v_companyName.getText().toString().trim();
         Log.e(TAG, "Company Name--" + companyName);
 
         v_companyContactPerson = findViewById(R.id.vendor_contact_name);
-        final String companyContactName = v_companyContactPerson.getText().toString().trim();
+        companyContactName = v_companyContactPerson.getText().toString().trim();
         Log.e(TAG, "Company ContactName--" + companyContactName);
 
         v_companyAddress = findViewById(R.id.vendor_address);
-        final String companyAddress = v_companyAddress.getText().toString().trim();
+        companyAddress = v_companyAddress.getText().toString().trim();
         Log.e(TAG, "Company Address--" + companyAddress);
 
         v_companyLocation = findViewById(R.id.vendor_location);
-        final String companyLocation = v_companyLocation.getText().toString().trim();
+        companyLocation = v_companyLocation.getText().toString().trim();
         Log.e(TAG, "Company Location--" + companyLocation);
 
         v_companyState = findViewById(R.id.vendor_state);
-        final String companyState = v_companyState.getText().toString().trim();
+        companyState = v_companyState.getText().toString().trim();
         Log.e(TAG, "Company State--" + companyState);
 
         v_companyPin = findViewById(R.id.vendor_pincode);
-        final String companyPin = v_companyPin.getText().toString().trim();
+        companyPin = v_companyPin.getText().toString().trim();
         Log.e(TAG, "company PinCode--" + companyPin);
 
         v_companyEmail = findViewById(R.id.vendor_email);
-        final String companyEmail = v_companyEmail.getText().toString().trim();
+        companyEmail = v_companyEmail.getText().toString().trim();
         Log.e(TAG, "Company Email--" + companyEmail);
 
         v_companyMobileNo = findViewById(R.id.vendor_mobile);
-        final String companyMobileNo = v_companyMobileNo.getText().toString().trim();
+        companyMobileNo = v_companyMobileNo.getText().toString().trim();
         Log.e(TAG, "company Mobile No--" + companyMobileNo);
 
         v_totalModels = findViewById(R.id.vendor_modelcount);
-        final String companyModelCount = v_totalModels.getText().toString().trim();
+        companyModelCount = v_totalModels.getText().toString().trim();
         Log.e(TAG, "Company Model Count--" + companyModelCount);
 
         if (!validate()) {
@@ -210,7 +206,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(VendorRegistrationActivity.this,"Internal Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(VendorRegistrationActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
                 // As of f605da3 the following should work
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
@@ -239,7 +235,6 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                 params.put(KEY_V_TOTALMODELS, companyModelCount);
 
                 Log.e(TAG, "HashMap--" + String.valueOf(params));
-                Log.e(TAG, "HashMap--" + params);
 
                 return params;
             }
@@ -252,8 +247,7 @@ public class VendorRegistrationActivity extends AppCompatActivity {
             }
         };
 
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 
@@ -264,9 +258,9 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                         // On complete call either onSignupSuccess or onSignupFailed depending on success
 
                         if (Objects.equals(resp, "success")) {
-                            onVendorRegistrationFailed();
-                        } else {
                             onVendorRegistrationSuccess();
+                        } else {
+                            onVendorRegistrationFailed();
                         }
                         progressDialog.dismiss();
                     }
@@ -362,7 +356,6 @@ public class VendorRegistrationActivity extends AppCompatActivity {
 
     public void onVendorRegistrationSuccess() {
 
-//        CustomMessage.getInstance().CustomMessage(VendorRegistrationActivity.this, "Successfully registered your request, We will respond very soon! ");
         Toast.makeText(this, "Successfully registered your request, We will respond very soon! ", Toast.LENGTH_LONG).show();
         v_registerButton = findViewById(R.id.btn_vendor_submit);
         v_registerButton.setEnabled(true);
@@ -373,6 +366,34 @@ public class VendorRegistrationActivity extends AppCompatActivity {
     public void onVendorRegistrationFailed() {
 
         CustomMessage.getInstance().CustomMessage(VendorRegistrationActivity.this, "Vendor Registration Failed");
+
+        if (companyName != null) {
+            v_companyName.setText(companyName);
+        }
+        if (companyContactName != null) {
+            v_companyContactPerson.setText(companyContactName);
+        }
+        if (companyAddress != null) {
+            v_companyAddress.setText(companyAddress);
+        }
+        if (companyLocation != null) {
+            v_companyLocation.setText(companyLocation);
+        }
+        if (companyState != null) {
+            v_companyState.setText(companyState);
+        }
+        if (companyPin != null) {
+            v_companyPin.setText(companyPin);
+        }
+        if (companyEmail != null) {
+            v_companyEmail.setText(companyEmail);
+        }
+        if (companyMobileNo != null) {
+            v_companyMobileNo.setText(companyMobileNo);
+        }
+        if (companyModelCount != null) {
+            v_totalModels.setText(companyModelCount);
+        }
 
         v_registerButton = findViewById(R.id.btn_vendor_submit);
         v_registerButton.setEnabled(false);

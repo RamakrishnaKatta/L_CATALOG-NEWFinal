@@ -37,17 +37,16 @@ import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private PrefManager prefManager3;
     private static final String TAG = "MainActivity";
-
     boolean doubleBackToExitPressedOnce = false;
-
     String name, email, phone, address, user_log_type;
     String guest_name, guest_phone;
     TextView user_type, user_email, user_name, app_name, powered;
     HashMap hashMap;
     SessionManager sessionmanager;
     int doubleClick = 1;
+    NavigationView navigationView;
+    private PrefManager prefManager3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
@@ -139,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.e(TAG, "guest phone:  " + guest_phone);
             user_log_type = "GUEST";
             EnvConstants.user_type = user_log_type;
-            user_name.setText(guest_name);
-            user_email.setText("Mobile #" + guest_phone);
+            user_name.setText(" " + guest_name);
+            user_email.setText("Mobile # " + guest_phone);
             user_type.setText(R.string.guest);
         }
 
@@ -149,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (prefManager3.MainActivityScreenLaunch()) {
             ShowcaseView();
         }
+
+        CustomMenu();
 
         checkInternetConnection();
     }
@@ -256,7 +257,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
+    }
+
+    private void CustomMenu() {
+        Menu nav_menu = navigationView.getMenu();
+
+        if (Objects.equals(user_log_type, "CUSTOMER")) {
+            nav_menu.findItem(R.id.nav_sign_up).setVisible(false);
+        }
+
+        if (Objects.equals(user_log_type, "GUEST")) {
+            nav_menu.findItem(R.id.nav_user_account).setVisible(false);
+            nav_menu.findItem(R.id.nav_logout).setTitle("EXIT");
+        }
     }
 
     @Override
@@ -313,6 +328,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem Nav_item) {
+
         // Handle navigation view item clicks here.
         int id = Nav_item.getItemId();
 
@@ -332,16 +348,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_user_account) {
 
-
             if (Objects.equals(user_log_type, "CUSTOMER")) {
 
                 Toast.makeText(this, "This is Your Profile !!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, UserAccountActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-
-            } else {
-                Toast.makeText(this, "You are a Guest, You don't possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
             }
 
         } else if (id == R.id.nav_ven) {
@@ -374,15 +386,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                 }
-
             }
-        } else if (id == R.id.nav_user_budget_bar) {
-
-            Toast.makeText(this, "This feature lets you create your budget furniture list !!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_user_notify) {
 
-            Toast.makeText(this, "here are all your notifications, Check out !!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Here are all your notifications, Check out !!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NotifyActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
@@ -452,7 +460,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_email.setText(email);
             user_type.setText(R.string.customer);
         }
-
     }
 
     @Override

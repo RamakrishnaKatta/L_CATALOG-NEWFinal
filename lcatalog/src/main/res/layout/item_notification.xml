@@ -4,26 +4,26 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_4"
-    app:cardElevation="@dimen/margin_3"
-    app:cardCornerRadius="@dimen/margin_3"
     android:background="@drawable/background_curves"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/margin_3"
+    app:cardElevation="@dimen/margin_3">
 
 
     <RelativeLayout
         android:id="@+id/notification_container"
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
-            android:paddingEnd="@dimen/margin_0"
-            android:paddingStart="@dimen/margin_5"
             android:id="@+id/notify_image"
             android:layout_width="@dimen/margin_100"
             android:layout_height="@dimen/margin_100"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:paddingEnd="@dimen/margin_0"
+            android:paddingStart="@dimen/margin_5" />
 
         <TextView
             android:id="@+id/notification_title"

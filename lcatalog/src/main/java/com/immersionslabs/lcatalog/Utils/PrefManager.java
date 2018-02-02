@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PrefManager {
-    private SharedPreferences pref, pref1, pref2, pref3, pref4, pref5;
-    private SharedPreferences.Editor editor, editor1, editor2, editor3, editor4, editor5;
-
     // Shared preferences file name
     private static final String PREF_NAME_1 = " L_Catalog_welcome_Screen ";
     private static final String PREF_NAME_2 = " L_Catalog_UserTypeActivityScreen ";
@@ -15,14 +12,14 @@ public class PrefManager {
     private static final String PREF_NAME_3 = " L_Catalog_GuestActivityScreen ";
     private static final String PREF_NAME_4 = " L_Catalog_MainActivityScreen ";
     private static final String PREF_NAME_5 = " L_Catalog_ProductPageActivityScreen ";
-
-
     private static final String WELCOMEACTIVITY_SCREEN_LAUNCH = "WelcomeActivityScreenLaunch";
     private static final String USERTYPEACTIVITY_LAUNCH_SCREEN = "UserTypeActivityLaunchScreen";
     private static final String GUESTACTIVITY_LAUNCH_SCREEN = "GuestActivityLaunchScreen";
     private static final String MAINACTIVITY_LAUNCH_SCREEN = "MainActivityLaunchScreen";
     private static final String PRODUCTPAGEACTIVITY_LAUNCH_SCREEN = "ProductPageActivityLaunchScreen";
     private static final String LOGINACTIVITY_LAUNCH_SCREEN = "LoginActivityLaunchScreen";
+    private SharedPreferences pref, pref1, pref2, pref3, pref4, pref5;
+    private SharedPreferences.Editor editor, editor1, editor2, editor3, editor4, editor5;
 
 
     @SuppressLint("CommitPrefEdits")
