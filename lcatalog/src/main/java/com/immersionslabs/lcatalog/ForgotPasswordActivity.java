@@ -17,12 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
-import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
@@ -37,14 +37,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     private static final int REQUEST_FORGOT = 0;
 
     private static final String PASSWORD_UPDATE_URL = EnvConstants.APP_BASE_URL + "/users/changePassword";
-
+    String code, message;
+    CryptionRijndeal rijndeal_obj;
+    SessionManager sessionManager;
     private Button _submitButton;
     private EditText _emailText, _passwordText, _reenterPasswordText;
     private String email, password, ReEnterPass;
-    String code, message;
-
-    CryptionRijndeal rijndeal_obj;
-    SessionManager sessionManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,7 +96,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +106,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
                 } else {
 
                     InternetMessage();
-                    // CustomMessage.getInstance().CustomMessage(this,"Check Your Internet connection.");
                 }
             }
         });
@@ -156,7 +153,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
                 }
                 progressDialog.dismiss();
             }
-        }, 2000);
+        }, 3000);
     }
 
     @Override
@@ -244,7 +241,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
 
     private void onSubmitFailed() {
         Button _submitbtn = findViewById(R.id.btn_submit);
-        CustomMessage.getInstance().CustomMessage(ForgotPasswordActivity.this, "Please Enter valid Email Id");
+
+        if (email != null) {
+            _emailText.setText(email);
+        }
+
+        CustomMessage.getInstance().CustomMessage(ForgotPasswordActivity.this, "Your email is not registered, Please Enter a registered Email Id");
 
         _submitbtn.setEnabled(true);
     }

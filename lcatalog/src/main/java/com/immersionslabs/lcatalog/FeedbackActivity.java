@@ -11,10 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FeedbackActivity extends AppCompatActivity {
+    public static final String TAG = "FeedbackActivity";
     EditText feed_name, feed_subject, feed_number;
     Button feed_Submit;
-
-    public static final String TAG = "FeedbackActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

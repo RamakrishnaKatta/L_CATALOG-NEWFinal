@@ -12,7 +12,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Fragment_Overview;
 
 import org.json.JSONObject;
 
@@ -23,36 +22,15 @@ public class ApiService {
     private static ApiService instance;
     private static Context mCtx;
     private static Context context;
-    private RequestQueue requestQueue;
-
     private static int intClearCache = 0;
-
     private static ProgressDialog progressDialog;
-
+    private RequestQueue requestQueue;
     private Map headers;
 
 
     private ApiService(Context context) {
         mCtx = context;
         requestQueue = getRequestQueue();
-    }
-
-    private RequestQueue getRequestQueue() {
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
-            if (intClearCache == 1) {
-                requestQueue.getCache().clear();
-            }
-        }
-        return requestQueue;
-    }
-
-    public <T> void addToRequestQueue(Request<T> req) {
-        req.setRetryPolicy(new DefaultRetryPolicy(
-                (int) TimeUnit.SECONDS.toMillis(20),
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        getRequestQueue().add(req);
     }
 
     public static synchronized ApiService getInstance(Context context) {
@@ -82,6 +60,23 @@ public class ApiService {
 
     }
 
+    private RequestQueue getRequestQueue() {
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            if (intClearCache == 1) {
+                requestQueue.getCache().clear();
+            }
+        }
+        return requestQueue;
+    }
+
+    public <T> void addToRequestQueue(Request<T> req) {
+        req.setRetryPolicy(new DefaultRetryPolicy(
+                (int) TimeUnit.SECONDS.toMillis(20),
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        getRequestQueue().add(req);
+    }
 
     public void getData(final ApiCommunication listener, boolean iscached, final String SCREEN_NAME, final String url, final String flag) {
 
@@ -104,8 +99,7 @@ public class ApiService {
                 listener.onErrorCallback(error, flag);
                 getRequestQueue().getCache().remove(url);
             }
-        })
-        ;
+        });
         request.setRetryPolicy(new DefaultRetryPolicy(
                 7000,
                 1,
@@ -148,24 +142,24 @@ public class ApiService {
         final String sessionId, csrf_token;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(
                 Request.Method.PUT, url, params, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        ////Log.e(SCREEN_NAME, response + "");
-                        listener.onResponseCallback(response, flag);
-                    }
-                }, new Response.ErrorListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+                ////Log.e(SCREEN_NAME, response + "");
+                listener.onResponseCallback(response, flag);
+            }
+        }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error.networkResponse != null) {
-                            ////Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
-                            Toast.makeText(mCtx, "Out Dataa", Toast.LENGTH_SHORT).show();
-                        }
-                        // TODO Auto-generated method stub
-                        listener.onErrorCallback(error, flag);
-                        getRequestQueue().getCache().remove(url);
-                    }
-                }) ;
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse != null) {
+                    ////Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
+                    Toast.makeText(mCtx, "Out Dataa", Toast.LENGTH_SHORT).show();
+                }
+                // TODO Auto-generated method stub
+                listener.onErrorCallback(error, flag);
+                getRequestQueue().getCache().remove(url);
+            }
+        });
         addToRequestQueue(jsObjRequest);
         Log.e(SCREEN_NAME, jsObjRequest.getUrl() + " ");
     }
@@ -206,4 +200,4 @@ public class ApiService {
         Log.e(SCREEN_NAME, jsObjRequest.getUrl() + " ");
     }
 
-   }
+}

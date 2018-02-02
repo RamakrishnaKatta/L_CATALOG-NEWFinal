@@ -66,39 +66,29 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
 
     private static String EXTENDED_URL_3DS;
-
-    private PrefManager prefManager;
-
     LinearLayout note;
     ImageButton article_share, article_download, article_3d_view, article_augment;
     TextView zip_downloaded;
-
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
     String image1, image2, image3, image4, image5;
-
     String article_name, article_3ds;
-
     String resp, code, message;
-
     String user_id;
-
-    private ViewPager ArticleViewPager;
-    private LinearLayout Slider_dots;
     ImageSliderAdapter imagesliderAdapter;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
     int page_position = 0;
     int value;
-
     LikeButton likeButton;
-
     String Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation, Article_3DS_FileLocation;
-    private boolean zip_3ds_downloaded = true;
     File article_3ds_zip_file, article_3ds_file;
-
     SessionManager sessionmanager;
     String user_log_type;
+    private PrefManager prefManager;
+    private ViewPager ArticleViewPager;
+    private LinearLayout Slider_dots;
+    private boolean zip_3ds_downloaded = true;
 
     public Fragment_ProductImages() {
         // Required empty public constructor

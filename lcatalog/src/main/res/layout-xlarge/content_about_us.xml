@@ -137,45 +137,45 @@
                         android:id="@+id/facebook_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_facebook"
-                        android:layout_gravity="center"
                         android:src="@mipmap/ic_facebook" />
 
                     <ImageView
                         android:id="@+id/linkedin_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_linkedin"
-                        android:layout_gravity="center"
                         android:src="@mipmap/ic_linkedin" />
 
                     <ImageView
                         android:id="@+id/instagram_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_instagram"
-                        android:layout_gravity="center"
                         android:src="@mipmap/ic_instagram" />
 
                     <ImageView
                         android:id="@+id/twitter_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_twitter"
-                        android:layout_gravity="center"
                         android:src="@mipmap/ic_twitter" />
 
                     <ImageView
                         android:id="@+id/youtube_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@string/icon_youtube"
-                        android:layout_gravity="center"
                         android:src="@mipmap/ic_youtube" />
 
                 </LinearLayout>

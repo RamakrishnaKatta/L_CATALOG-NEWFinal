@@ -36,7 +36,16 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
     private static final String TAG = "CatalogActivity";
-
+    GridViewAdapter gridAdapter;
+    ListViewVerticalAdapter VerticalAdapter;
+    ListViewHorizontalAdapter horizontalAdapter;
+    RecyclerView recycler;
+    ProgressBar progressBar;
+    GridLayoutManager GridManager;
+    LinearLayoutManager HorizontalManager, VerticalManager;
+    SwipeRefreshLayout refreshLayout;
+    FloatingActionButton fab_grid, fab_vertical, fab_horizontal;
+    Boolean Loadmore = false;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
     private ArrayList<String> item_prices;
@@ -46,18 +55,6 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_ids;
     private ArrayList<String> item_3ds;
-
-    GridViewAdapter gridAdapter;
-    ListViewVerticalAdapter VerticalAdapter;
-    ListViewHorizontalAdapter horizontalAdapter;
-
-    RecyclerView recycler;
-    ProgressBar progressBar;
-    GridLayoutManager GridManager;
-    LinearLayoutManager HorizontalManager, VerticalManager;
-    SwipeRefreshLayout refreshLayout;
-    FloatingActionButton fab_grid, fab_vertical, fab_horizontal;
-    Boolean Loadmore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,7 +196,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override

@@ -24,8 +24,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="@color/oil"
-                android:scaleType="centerCrop"
                 android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
                 android:src="@drawable/dummy_icon" />
 
             <LinearLayout

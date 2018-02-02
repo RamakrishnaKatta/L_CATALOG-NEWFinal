@@ -33,12 +33,12 @@
                     android:visibility="visible" />
 
                 <ProgressBar
+                    android:id="@+id/progress_grid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/progress_grid"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
             </android.support.v4.widget.SwipeRefreshLayout>
         </RelativeLayout>
 

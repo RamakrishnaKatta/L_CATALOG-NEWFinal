@@ -39,6 +39,7 @@ public class BadgeDrawable extends Drawable {
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
     }
+
     @Override
     public void draw(@NonNull Canvas canvas) {
         if (!mWillDraw) {

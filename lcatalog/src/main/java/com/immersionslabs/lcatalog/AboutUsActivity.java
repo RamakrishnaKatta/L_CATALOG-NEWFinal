@@ -15,10 +15,9 @@ import android.widget.TextView;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 public class AboutUsActivity extends AppCompatActivity {
+    public static final String TAG = "AboutUsActivity";
     ImageView facebook, linkedIn, twitter, instagram, youtube;
     TextView heading3, heading4, heading5;
-
-    public static final String TAG = "AboutUsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,18 +97,14 @@ public class AboutUsActivity extends AppCompatActivity {
 
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
-        final Snackbar snackbar = Snackbar.make(view, "Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
                 if (NetworkConnectivity.checkInternetConnection(AboutUsActivity.this)) {
-
-
                 } else {
-
                     InternetMessage();
-                    // CustomMessage.getInstance().CustomMessage(this,"Check Your Internet connection.");
                 }
             }
         });

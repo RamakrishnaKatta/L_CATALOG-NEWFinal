@@ -1,22 +1,14 @@
 package com.immersionslabs.lcatalog.augment;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
-import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadManager_AR;
-import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 
 import org.artoolkit.ar.base.ARActivity;
 import org.artoolkit.ar.base.assets.AssetHelper;
 import org.artoolkit.ar.base.rendering.ARRenderer;
-
-import java.io.File;
-import java.io.IOException;
 
 import static com.immersionslabs.lcatalog.augment.ARNativeApplication.getInstance;
 
@@ -33,8 +25,8 @@ public class ARNativeActivity extends ARActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arnative);
 
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 //
 //        Article_AR_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/ar_files.zip";
 //        Article_AR_ExtractLocation = Environment.getExternalStorageState() + "/L_CATALOG/cache/Data/models/";
@@ -65,7 +57,6 @@ public class ARNativeActivity extends ARActivity {
 //        Toast.makeText(this, "AR Zip File Downloaded and Unzipped", Toast.LENGTH_SHORT).show();
 
         initializeInstance();
-
     }
 
 //    private void addCacheFolder() throws IOException {

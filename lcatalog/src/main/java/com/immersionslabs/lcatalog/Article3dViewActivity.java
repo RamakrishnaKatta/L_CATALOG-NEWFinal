@@ -3,6 +3,7 @@ package com.immersionslabs.lcatalog;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,16 +20,19 @@ import com.immersionslabs.lcatalog.loader3ds.MyGLSurfaceView;
 
 public class Article3dViewActivity extends AppCompatActivity {
     private static final String TAG = "Article3dViewActivity";
-
+    String name;
     private MyGLSurfaceView mGLView;
     private MyGLRenderer mRenderer;
     private SeekBar scaleBar;
-    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article3d_view);
+
+//        CameraView cameraView = new CameraView(this);
+//        addContentView(cameraView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+//        Log.e(TAG, "CameraView added to the Activity");
 
         Toolbar toolbar = findViewById(R.id.toolbar_3dView);
         setSupportActionBar(toolbar);
@@ -46,8 +50,6 @@ public class Article3dViewActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
                 if (scaleBar.getVisibility() == View.INVISIBLE) {
                     scaleBar.setVisibility(View.VISIBLE);
                 } else if (scaleBar.getVisibility() == View.VISIBLE) {
@@ -57,6 +59,8 @@ public class Article3dViewActivity extends AppCompatActivity {
         });
 
         mGLView = findViewById(R.id.glView);
+        mGLView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        mGLView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
         // Check if the system supports OpenGL ES 2.0.
         final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

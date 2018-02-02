@@ -10,15 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.MainListViewAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
@@ -28,21 +20,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class Fragment_Overview extends Fragment implements ApiCommunication {
     private static final String TAG = "Fragment_Overview";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
-
+    RecyclerView main_recycler;
     private ArrayList<String> item_ids;
     private ArrayList<String> item_descriptions;
     private ArrayList<String> item_names;
     private ArrayList<String> item_images;
     private ArrayList<String> item_prices;
     private ArrayList<String> item_discounts;
-    RecyclerView main_recycler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +101,7 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
             main_recycler.setAdapter(gridAdapter);
         }
     }
+
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_SHORT).show();
