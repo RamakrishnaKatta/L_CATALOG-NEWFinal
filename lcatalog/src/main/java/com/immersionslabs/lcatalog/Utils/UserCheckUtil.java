@@ -11,13 +11,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class UserCheckUtil {
+
     private static final String TAG = "UserCheckUtil";
 
     public static void writeToFile(String data, String user_type) {
         try {
-            Log.e(TAG + "-writeToFile", "Storage State: " + isExternalStorageReadOnly() + "Storage State(ExternalStorageAvailability): " + isExternalStorageAvailable());
+            Log.e(TAG, "- writeToFile" + "Storage State: " + isExternalStorageReadOnly() + "Storage State(ExternalStorageAvailability): " + isExternalStorageAvailable());
             String text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/" + user_type + ".txt";
             FileOutputStream fileOutputStream = new FileOutputStream(text_file_location);
             fileOutputStream.write(data.getBytes());
@@ -33,7 +33,7 @@ public class UserCheckUtil {
         String text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/" + user_type + ".txt";
 
         try {
-            Log.e(TAG + "-readFromFile", "Storage State(ReadOnlyState): " + !isExternalStorageReadOnly() + " Storage State(ExternalStorageAvailability): " + isExternalStorageAvailable());
+            Log.e(TAG, "- readFromFile" + "Storage State(ReadOnlyState): " + !isExternalStorageReadOnly() + " Storage State(ExternalStorageAvailability): " + isExternalStorageAvailable());
             FileInputStream fileInputStream = new FileInputStream(text_file_location);
             DataInputStream dataInputStream = new DataInputStream(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(dataInputStream));
@@ -44,7 +44,7 @@ public class UserCheckUtil {
             }
             dataInputStream.close();
         } catch (FileNotFoundException e) {
-            Log.e(TAG + "-login activity", "File not found: " + e.toString());
+            Log.e(TAG, "- login activity" + "File not found: " + e.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

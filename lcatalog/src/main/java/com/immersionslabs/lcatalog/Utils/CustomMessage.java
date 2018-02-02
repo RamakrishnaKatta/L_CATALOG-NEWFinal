@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.Utils;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.Snackbar;

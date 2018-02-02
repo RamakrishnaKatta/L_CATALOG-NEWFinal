@@ -13,7 +13,6 @@ import android.view.View;
 
 public class TouchImageView extends AppCompatImageView {
 
-
     // We can be in one of these 3 states
     static final int NONE = 0;
     static final int DRAG = 1;
