@@ -29,12 +29,15 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static final String TAG = "MyfavoriteActivity";
+
     private static String FAVOURITE_URL = null;
     private static String GUEST_FAVOURITE_URL = null;
+
     String user_id, USER_LOG_TYPE;
     RecyclerView recycler;
     GridLayoutManager favoritemanager;
     SessionManager sessionmanager;
+
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -49,7 +52,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
 
-        // Intent intent = getIntent();
         USER_LOG_TYPE = EnvConstants.user_type;
 
         sessionmanager = new SessionManager(getApplicationContext());
@@ -142,7 +144,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
 
     private void GetData(JSONObject obj) {
 
-
         try {
             item_ids.add(obj.getString("_id"));
             item_names.add(obj.getString("name"));
@@ -157,7 +158,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         Log.e(TAG, "Ids" + item_ids);
         Log.e(TAG, "Names" + item_names);
@@ -183,7 +183,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onResume() {
@@ -216,10 +215,8 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
     }
-
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {

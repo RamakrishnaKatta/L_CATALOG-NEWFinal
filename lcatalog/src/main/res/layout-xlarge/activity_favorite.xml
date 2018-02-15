@@ -25,5 +25,4 @@
 
     <include layout="@layout/content_favorite" />
 
-
 </android.support.design.widget.CoordinatorLayout>

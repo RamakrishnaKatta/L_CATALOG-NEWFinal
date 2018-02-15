@@ -7,9 +7,10 @@
     <string name="Rs">\u20B9</string>
 
     <string name="slide2_title">AUGMENT</string>
-    <string name="slide2_desc">Augment will let you see the object chosen by you augmented into the real world.</string>
+    <string name="slide2_desc">Augment Feature will let you see the object chosen by you and Project into the real world with the help of a pattern \n available at </string>
+    <string name="slide2_link"><param>http://portal.immersionslabs.com/</param></string>
     <string name="slide3_title">360&#xb0; Object Rotation</string>
-    <string name="slide3_desc">This feature lets you rotate the object in and around, to get a clear picture what you are exactly buying.</string>
+    <string name="slide3_desc">This feature lets you rotate the object in and around, to get a clear picture of what you are exactly buying.</string>
     <string name="slide4_desc">This feature lets you capture the surrounds after the objects are augmented. Also lets you share between the close ones.</string>
     <string name="slide4_title_capture">CAPTURE</string>
     <string name="slide4_title_share">SHARE</string>
@@ -21,7 +22,7 @@
     <string name="powered_symbol_immersionslabs">&#8471; Immersion Software Labs. </string>
     <string name="powered_by_symbol">&#8471;</string>
     <string name="welcome_aboard">Welcome Aboard</string>
-    <string name="firstly_who_you_are_matters">Firstly, Who you are matters !!</string>
+    <string name="firstly_who_you_are_matters">Firstly for Us, Who you are matters !!</string>
     <string name="login_hint">If you are a customer already…</string>
     <string name="login_sign">OGIN</string>
     <string name="signup_sign">IGNUP</string>

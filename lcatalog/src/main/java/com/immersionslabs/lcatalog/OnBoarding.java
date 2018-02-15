@@ -26,7 +26,7 @@ import com.immersionslabs.lcatalog.Utils.PrefManager;
 public class OnBoarding extends AppCompatActivity {
 
     TextView welcome_11, welcome_13, welcome_21, welcome_31, welcome_32, welcome_41;
-    TextView welcome_14, welcome_22, welcome_42, welcome_43;
+    TextView welcome_14, welcome_22, welcome_23, welcome_42, welcome_43;
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
@@ -72,7 +72,6 @@ public class OnBoarding extends AppCompatActivity {
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -82,10 +81,8 @@ public class OnBoarding extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         dotsLayout = findViewById(R.id.layoutDots);
         btnSkip = findViewById(R.id.btn_skip);
-        btnSkip.setTextSize(20);
         btnSkip.setTypeface(btnSkip.getTypeface(), Typeface.BOLD_ITALIC);
         btnNext = findViewById(R.id.btn_next);
-        btnNext.setTextSize(20);
         btnNext.setTypeface(btnNext.getTypeface(), Typeface.BOLD_ITALIC);
 
         // layouts of all welcome sliders
@@ -262,6 +259,12 @@ public class OnBoarding extends AppCompatActivity {
             welcome_22 = view.findViewById(R.id.txt_welcome_22);
             if (welcome_22 != null) {
                 welcome_22.setTypeface(custom_font2);
+            }
+
+            //SubTitles
+            welcome_23 = view.findViewById(R.id.txt_welcome_23);
+            if (welcome_23 != null) {
+                welcome_23.setTypeface(custom_font2);
             }
 
             welcome_43 = view.findViewById(R.id.txt_welcome_43);
