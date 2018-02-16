@@ -68,6 +68,10 @@ public class BudgetManager
 
 
     }
+    public ArrayList GET_BUDGET_ARTICLE_IDS()
+    {
+        return Articles;
+    }
     }
 
 

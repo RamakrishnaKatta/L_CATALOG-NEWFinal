@@ -91,6 +91,12 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_tab_medium" />
         </android.support.design.widget.TextInputLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/budget_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_12"
+            android:visibility="visible" />
 
     </LinearLayout>
 

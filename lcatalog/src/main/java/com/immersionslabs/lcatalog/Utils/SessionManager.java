@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class SessionManager {
 
-    SharedPreferences pref;
+    private SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
 
@@ -146,9 +146,9 @@ public class SessionManager {
         String id_current_budget = ID + KEY_CURRENT_VALUE;
 
 
-            editor.putInt(id_current_budget, currentvalue);
+        editor.putInt(id_current_budget, currentvalue);
 
-            editor.commit();
+        editor.commit();
 
 
     }
@@ -167,6 +167,7 @@ public class SessionManager {
         Integer budgetval = pref.getInt(id_total_budget, 0);
         return budgetval;
     }
+
     public Integer CURRENT_VAL() {
         String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
         String id_current_budget = ID + KEY_CURRENT_VALUE;
@@ -178,8 +179,8 @@ public class SessionManager {
     public boolean IS_ARTICLE_EXISTS(String article_id) {
         String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
         String id_article_added = ID + article_id + KEY_IS_ARTICLE_ADDED;
-      boolean returnval=pref.getBoolean(id_article_added,false);
-      return returnval;
+        boolean returnval = pref.getBoolean(id_article_added, false);
+        return returnval;
     }
 
     public void ADD_ARTICLE(String article_id) {
@@ -195,20 +196,27 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void REMOVE_ARTICLE(String aricle_id,String article_price) {
+    public void REMOVE_ARTICLE(String aricle_id, String article_price) {
         String id = pref.getString(KEY_GLOBAL_USER_ID, null);
-               Set<String> set;
+        Set<String> set;
         String id_article_added = id + aricle_id + KEY_IS_ARTICLE_ADDED;
-        set = pref.getStringSet(id,null );
+        set = pref.getStringSet(id, null);
 
 
         if (set.contains(aricle_id)) {
             set.remove(aricle_id);
-            editor.putBoolean(id_article_added,false);
+            editor.putBoolean(id_article_added, false);
 
-           editor.commit();
+            editor.commit();
         }
 
+    }
+
+    public Set GET_BUDGET_ARTICLES() {
+        String id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        Set<String> set;
+        set = pref.getStringSet(id, null);
+        return set;
     }
 }
 
