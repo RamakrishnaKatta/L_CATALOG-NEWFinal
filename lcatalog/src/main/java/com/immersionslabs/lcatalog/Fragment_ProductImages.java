@@ -124,7 +124,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_removelist = view.findViewById(R.id.article_remove_icon);
         Add_Text = view.findViewById(R.id.add_text);
 
-
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
         budgetManager = new BudgetManager();
@@ -139,7 +138,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3ds = getArguments().getString("article_3ds");
         article_id = getArguments().getString("article_id");
         article_price = getArguments().getString("article_new_price");
-
 
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:name" + article_name);
@@ -278,7 +276,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     article_3d_view.setEnabled(true);
                                     note.setVisibility(View.GONE);
                                     zip_downloaded.setText("File Downloaded");
-                                    zip_downloaded.setTextColor(Color.BLUE);
+                                    zip_downloaded.setTextColor(getResources().getColor(R.color.primary_dark));
 
                                 } catch (IOException e) {
                                     article_download.setVisibility(View.VISIBLE);
@@ -288,7 +286,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     e.printStackTrace();
                                     note.setVisibility(View.VISIBLE);
                                     zip_downloaded.setText("Download !");
-
                                 }
                             }
                         }, 6000);
@@ -338,13 +335,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         Toast.makeText(getContext(), "Budget not set, Redirecting to budget set page", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getContext(), BudgetBarActivity.class);
                         startActivity(intent);
+
                     } else {
                         Integer price = Integer.parseInt(article_price);
                         Integer prevprice = getdetails.get(SessionManager.KEY_CURRENT_VALUE);
                         Integer currentprice = price + prevprice;
                         Integer remaining = totalbudget - currentprice;
                         if (remaining > 0) {
-                            sessionmanager.updateCurrentvalue(currentprice, article_id);
+                            sessionmanager.updateCurrentvalue(currentprice);
                             sessionmanager.ADD_ARTICLE(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
@@ -361,9 +359,22 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     } else {
                         Integer price = Integer.parseInt(article_price);
                         Integer prevprice = budgetManager.getCurrent_Value();
+                        Integer totalbudget=budgetManager.getTotal_Budget();
                         Integer currentprice = price + prevprice;
-                        budgetManager.setCurrent_Value(currentprice);
-                        Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
+                        Integer Remaining=totalbudget-currentprice;
+                        if(Remaining>0)
+                        {
+                            budgetManager.setCurrent_Value(currentprice);
+                            budgetManager.Add_Articles(article_id);
+                            article_budgetlist.setVisibility(View.GONE);
+                            article_removelist.setVisibility(View.VISIBLE);
+                            Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
+                        }
+                        if(Remaining <=0)
+                        {
+                            Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 }
             }
@@ -374,7 +385,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
-                        sessionmanager.REMOVE_ARTICLE(article_id);
+
+                        Integer price = Integer.parseInt(article_price);
+                        Integer prevprice = sessionmanager.CURRENT_VAL();
+                        Integer currentprice = prevprice - price;
+                        sessionmanager.updateCurrentvalue(currentprice);
+                        sessionmanager.REMOVE_ARTICLE(article_id, article_price);
                         Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                         article_budgetlist.setVisibility(View.VISIBLE);
                         article_removelist.setVisibility(View.GONE);
@@ -383,6 +399,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         Toast.makeText(getContext(), "No Artcle Found", Toast.LENGTH_LONG).show();
                     }
                 } else {
+                    Integer price = Integer.parseInt(article_price);
+                    Integer prevprice = budgetManager.getCurrent_Value();
+                    Integer currentprice = prevprice - price;
+                    budgetManager.setCurrent_Value(currentprice);
+                    budgetManager.RemoveArticles(article_id);
+                    Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                    article_budgetlist.setVisibility(View.VISIBLE);
+                    article_removelist.setVisibility(View.GONE);
 
                 }
             }
@@ -585,10 +609,29 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     public void onResume() {
         super.onResume();
 
-        if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+        if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
+        {
+            article_budgetlist.setVisibility(View.GONE);
+            article_removelist.setVisibility(View.VISIBLE);
+        }
+        else
+            {
             article_budgetlist.setVisibility(View.VISIBLE);
             article_removelist.setVisibility(View.GONE);
         }
+
+        if (budgetManager.IS_ARTICLE_EXISTS(article_id))
+        {
+            article_budgetlist.setVisibility(View.GONE);
+            article_removelist.setVisibility(View.VISIBLE);
+        }
+        else
+            {
+            article_budgetlist.setVisibility(View.VISIBLE);
+            article_removelist.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override

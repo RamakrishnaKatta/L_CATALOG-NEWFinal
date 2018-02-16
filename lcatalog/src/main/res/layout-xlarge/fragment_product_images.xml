@@ -153,6 +153,17 @@
                         android:paddingStart="@dimen/margin_8"
                         app:srcCompat="@mipmap/ic_add" />
 
+                    <ImageButton
+                        android:id="@+id/article_remove_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/note_download"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:visibility="gone"
+                        app:srcCompat="@mipmap/ic_remove" />
+
                     <TextView
                         android:id="@+id/add_text"
                         android:layout_width="wrap_content"

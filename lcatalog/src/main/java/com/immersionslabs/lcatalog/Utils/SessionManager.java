@@ -140,13 +140,17 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void updateCurrentvalue(Integer currentvalue, String article_id) {
+    public void updateCurrentvalue(Integer currentvalue) {
+
         String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
         String id_current_budget = ID + KEY_CURRENT_VALUE;
-        String id_article_added = ID + article_id + KEY_IS_ARTICLE_ADDED;
-        editor.putInt(id_current_budget, currentvalue);
-        editor.putBoolean(id_article_added, true);
-        editor.commit();
+
+
+            editor.putInt(id_current_budget, currentvalue);
+
+            editor.commit();
+
+
     }
 
     public void updateTotalBudget(Integer totalbudget) {
@@ -163,6 +167,12 @@ public class SessionManager {
         Integer budgetval = pref.getInt(id_total_budget, 0);
         return budgetval;
     }
+    public Integer CURRENT_VAL() {
+        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String id_current_budget = ID + KEY_CURRENT_VALUE;
+        Integer currentval = pref.getInt(id_current_budget, 0);
+        return currentval;
+    }
 
 
     public boolean IS_ARTICLE_EXISTS(String article_id) {
@@ -174,27 +184,29 @@ public class SessionManager {
 
     public void ADD_ARTICLE(String article_id) {
         String id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String id_article_added = id + article_id + KEY_IS_ARTICLE_ADDED;
         Set<String> set;
         set = pref.getStringSet(id, null);
         if (set == null)
             set = new HashSet<String>();
         set.add(article_id);
         editor.putStringSet(id, set);
+        editor.putBoolean(id_article_added, true);
         editor.commit();
     }
 
-    public void REMOVE_ARTICLE(String aricle_id) {
+    public void REMOVE_ARTICLE(String aricle_id,String article_price) {
         String id = pref.getString(KEY_GLOBAL_USER_ID, null);
-        Set<String> set;
+               Set<String> set;
         String id_article_added = id + aricle_id + KEY_IS_ARTICLE_ADDED;
         set = pref.getStringSet(id,null );
 
 
         if (set.contains(aricle_id)) {
             set.remove(aricle_id);
-            editor.remove(id_article_added);
-            editor.putBoolean(id_article_added,true);
-            editor.commit();
+            editor.putBoolean(id_article_added,false);
+
+           editor.commit();
         }
 
     }

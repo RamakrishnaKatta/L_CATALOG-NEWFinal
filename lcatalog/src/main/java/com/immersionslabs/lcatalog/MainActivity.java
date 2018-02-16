@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int doubleClick = 1;
     NavigationView navigationView;
     private PrefManager prefManager3;
+    BudgetManager  budgetManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
-
+budgetManager=new BudgetManager();
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -388,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_user_budget_bar) {
 
             if (Objects.equals(EnvConstants.user_type, "GUEST")) {
-                Integer budgetval = sessionmanager.BUDGET_VAL();
+                Integer budgetval =budgetManager.getTotal_Budget();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {

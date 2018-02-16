@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -72,11 +73,15 @@ private KeyListener listener;
                     budget_value = Total_budget_val.getText().toString();
                     sessionManager.updateTotalBudget(Integer.parseInt(budget_value));
                     Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
+                    startActivity(intent);
 
                 } else {
                     budget_value = Total_budget_val.getText().toString();
                     budgetManager.setTotal_Budget(Integer.parseInt(budget_value));
                     Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
+                    startActivity(intent);
 
                 }
             }

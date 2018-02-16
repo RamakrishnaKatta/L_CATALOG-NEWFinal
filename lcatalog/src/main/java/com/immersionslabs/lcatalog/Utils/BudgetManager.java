@@ -1,8 +1,17 @@
 package com.immersionslabs.lcatalog.Utils;
 
-public class BudgetManager {
+import com.immersionslabs.lcatalog.Article3dViewActivity;
+
+import java.util.ArrayList;
+
+public class BudgetManager
+{
 
     private static Integer Current_Value = 0, Total_Budget = 0, Remaining_Budget = 0;
+    private static ArrayList<String> Articles=new ArrayList<String>();
+
+
+
 
     public Integer getCurrent_Value() {
         return Current_Value;
@@ -28,5 +37,38 @@ public class BudgetManager {
         Total_Budget = total_Budget;
     }
 
-}
+    public void Add_Articles(String article_id)
+    {Articles.add(article_id);
+
+    }
+    public void RemoveArticles(String article_id)
+    {
+        if(Articles.contains(article_id))
+        {
+            Articles.remove(article_id);
+        }
+
+    }
+    public boolean IS_ARTICLE_EXISTS(String article_id)
+    { Articles.add("empty");
+        boolean flag;
+        if(Articles.contains(article_id))
+        {
+            flag=true;
+        }
+        else
+        {
+
+                flag=false;
+
+        }
+        Articles.remove("empty");
+        return flag;
+
+
+    }
+    }
+
+
+
 
