@@ -51,7 +51,16 @@ private KeyListener listener;
 
         Total_budget_val = findViewById(id.input_budget);
         disableEditText(Total_budget_val);
-        String text_total=Integer.toString(sessionManager.BUDGET_VAL());
+        String text_total;
+        if(EnvConstants.user_type.equals("CUSTOMER"))
+        {
+            text_total=Integer.toString(sessionManager.BUDGET_VAL());
+        }
+        else
+        {
+            text_total=Integer.toString(budgetManager.getTotal_Budget());
+        }
+
         Total_budget_val.setText(text_total);
         submit_button=findViewById(id.btn_budget_submit);
         edit_button = findViewById(id.btn_budget_edit);
@@ -73,15 +82,15 @@ private KeyListener listener;
                     budget_value = Total_budget_val.getText().toString();
                     sessionManager.updateTotalBudget(Integer.parseInt(budget_value));
                     Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
-                    startActivity(intent);
+//                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
+//                    startActivity(intent);
 
                 } else {
                     budget_value = Total_budget_val.getText().toString();
                     budgetManager.setTotal_Budget(Integer.parseInt(budget_value));
                     Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
-                    startActivity(intent);
+//                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
+//                    startActivity(intent);
 
                 }
             }

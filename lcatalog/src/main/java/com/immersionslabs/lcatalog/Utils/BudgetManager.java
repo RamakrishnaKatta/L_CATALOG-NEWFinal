@@ -18,6 +18,7 @@ public class BudgetManager
     }
 
     public Integer getRemaining_Budget() {
+        Remaining_Budget=getTotal_Budget()-getCurrent_Value();
         return Remaining_Budget;
     }
 
