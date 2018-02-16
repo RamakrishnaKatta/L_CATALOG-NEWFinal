@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
         final ViewPager viewPager = findViewById(R.id.pager);
         final MainPageAdapter adapter = new MainPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
@@ -354,13 +354,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, UserAccountActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+
+            } else {
+                Toast.makeText(this, "You are a Guest, You don't possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
             }
-
-        } else if (id == R.id.nav_ven) {
-
-            Toast.makeText(this, "You are entering Individual Vendor Catalog", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, VendorListActivity.class);
-            startActivity(intent);
 
         } else if (id == R.id.nav_ven_reg) {
 
@@ -384,6 +381,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     //   intent.putExtra("userlogtype", "GUEST");
                     startActivity(intent);
                     Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();
+                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                }
+            }
+
+        } else if (id == R.id.nav_user_budget_bar) {
+
+            if (Objects.equals(EnvConstants.user_type, "GUEST")) {
+                Integer budgetval = sessionmanager.BUDGET_VAL();
+                if (budgetval == 0) {
+                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, BudgetListActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+                }
+            } else {
+                Integer budgetval = sessionmanager.BUDGET_VAL();
+                if (budgetval == 0) {
+                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, BudgetListActivity.class);
+                    startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                 }
             }
@@ -455,6 +476,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             user_log_type = (String) hashMap.get(SessionManager.KEY_USER_TYPE);
             Log.e(TAG, "User Log Type:  " + user_log_type);
+            EnvConstants.user_type = user_log_type;
 
             user_name.setText(name);
             user_email.setText(email);

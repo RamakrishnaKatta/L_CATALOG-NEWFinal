@@ -75,6 +75,7 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
                 b_tab1.putString("article_name", a_name);
 
                 b_tab1.putString("article_3ds", a_3ds);
+                b_tab1.putString("article_new_price", a_newPrice);
                 Fragment_ProductImages tab1 = new Fragment_ProductImages();
                 tab1.setArguments(b_tab1);
                 return tab1;

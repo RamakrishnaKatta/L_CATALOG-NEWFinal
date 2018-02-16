@@ -158,6 +158,17 @@
             android:label="Camera Preferences"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".BudgetBarActivity"
+            android:label="@string/title_activity_budget_bar"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".BudgetListActivity"
+            android:label="@string/title_activity_budget_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+
 
         <activity android:name=".notifications.NotificationCountSetClass" />
 
@@ -166,6 +177,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <service android:name=".services.NotifyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

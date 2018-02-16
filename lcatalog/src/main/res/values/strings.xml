@@ -135,6 +135,8 @@
     <string name="budget_list">Budget List</string>
     <string name="favourite">Favourite</string>
     <string name="menu_vendors">Vendors</string>
+    <string name="title_activity_budget_list">Budget List</string>
+    <string name="title_activity_budget_bar">Budget Bar</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

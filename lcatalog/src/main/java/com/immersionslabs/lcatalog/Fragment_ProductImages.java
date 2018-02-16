@@ -32,6 +32,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
@@ -66,29 +67,41 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
 
     private static String EXTENDED_URL_3DS;
+
+    private PrefManager prefManager;
+
     LinearLayout note;
-    ImageButton article_share, article_download, article_3d_view, article_augment;
+    ImageButton article_share, article_download, article_3d_view, article_augment, article_budgetlist, article_removelist;
     TextView zip_downloaded;
+
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
     String image1, image2, image3, image4, image5;
-    String article_name, article_3ds;
+
+    String article_name, article_3ds, article_price;
+
     String resp, code, message;
+
     String user_id;
+    BudgetManager budgetManager;
+
+    private ViewPager ArticleViewPager;
+    private LinearLayout Slider_dots;
     ImageSliderAdapter imagesliderAdapter;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
+    TextView Add_Text;
     int page_position = 0;
     int value;
+
     LikeButton likeButton;
+
     String Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation, Article_3DS_FileLocation;
+    private boolean zip_3ds_downloaded = true;
     File article_3ds_zip_file, article_3ds_file;
+
     SessionManager sessionmanager;
     String user_log_type;
-    private PrefManager prefManager;
-    private ViewPager ArticleViewPager;
-    private LinearLayout Slider_dots;
-    private boolean zip_3ds_downloaded = true;
 
     public Fragment_ProductImages() {
         // Required empty public constructor
@@ -107,10 +120,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3d_view = view.findViewById(R.id.article_3dview_icon);
         article_augment = view.findViewById(R.id.article_augment_icon);
         zip_downloaded = view.findViewById(R.id.download_text);
+        article_budgetlist = view.findViewById(R.id.article_budget_icon);
+        article_removelist = view.findViewById(R.id.article_remove_icon);
+        Add_Text = view.findViewById(R.id.add_text);
+
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
-
+        budgetManager = new BudgetManager();
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_log_type = (String) hashmap.get(SessionManager.KEY_USER_TYPE);
@@ -121,6 +138,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_name = getArguments().getString("article_name");
         article_3ds = getArguments().getString("article_3ds");
         article_id = getArguments().getString("article_id");
+        article_price = getArguments().getString("article_new_price");
+
 
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:name" + article_name);
@@ -308,6 +327,66 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
+        article_budgetlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    HashMap<String, Integer> getdetails;
+                    getdetails = sessionmanager.getBudgetDetails();
+                    Integer totalbudget = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
+                    if (totalbudget == 0) {
+                        Toast.makeText(getContext(), "Budget not set, Redirecting to budget set page", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getContext(), BudgetBarActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Integer price = Integer.parseInt(article_price);
+                        Integer prevprice = getdetails.get(SessionManager.KEY_CURRENT_VALUE);
+                        Integer currentprice = price + prevprice;
+                        Integer remaining = totalbudget - currentprice;
+                        if (remaining > 0) {
+                            sessionmanager.updateCurrentvalue(currentprice, article_id);
+                            sessionmanager.ADD_ARTICLE(article_id);
+                            article_budgetlist.setVisibility(View.GONE);
+                            article_removelist.setVisibility(View.VISIBLE);
+                            Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
+                        } else if (remaining <= 0) {
+                            Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                } else {
+                    if (budgetManager.getTotal_Budget() == 0) {
+                        Toast.makeText(getContext(), "Budget not set, Redirecting to budget set page", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getContext(), BudgetBarActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Integer price = Integer.parseInt(article_price);
+                        Integer prevprice = budgetManager.getCurrent_Value();
+                        Integer currentprice = price + prevprice;
+                        budgetManager.setCurrent_Value(currentprice);
+                        Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
+        article_removelist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+                        sessionmanager.REMOVE_ARTICLE(article_id);
+                        Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                        article_budgetlist.setVisibility(View.VISIBLE);
+                        article_removelist.setVisibility(View.GONE);
+
+                    } else {
+                        Toast.makeText(getContext(), "No Artcle Found", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+
+                }
+            }
+        });
 
         final Handler handler = new Handler();
         final Runnable update = new Runnable() {
@@ -505,6 +584,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onResume() {
         super.onResume();
+
+        if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+            article_budgetlist.setVisibility(View.VISIBLE);
+            article_removelist.setVisibility(View.GONE);
+        }
     }
 
     @Override
