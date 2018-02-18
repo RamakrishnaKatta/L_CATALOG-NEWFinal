@@ -602,28 +602,34 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onResume() {
         super.onResume();
+if(EnvConstants.user_type.equals("GUEST"))
+{
+    if (budgetManager.IS_ARTICLE_EXISTS(article_id))
+    {
+        article_budgetlist.setVisibility(View.GONE);
+        article_removelist.setVisibility(View.VISIBLE);
+    }
+    else
+    {
+        article_budgetlist.setVisibility(View.VISIBLE);
+        article_removelist.setVisibility(View.GONE);
+    }
+}
+if(EnvConstants.user_type.equals("CUSTOMER"))
+{
 
+    if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
+    {
+        article_budgetlist.setVisibility(View.GONE);
+        article_removelist.setVisibility(View.VISIBLE);
+    }
+    else
+    {
+        article_budgetlist.setVisibility(View.VISIBLE);
+        article_removelist.setVisibility(View.GONE);
+    }
 
-        if (budgetManager.IS_ARTICLE_EXISTS(article_id))
-        {
-            article_budgetlist.setVisibility(View.GONE);
-            article_removelist.setVisibility(View.VISIBLE);
-        }
-        else
-            {
-            article_budgetlist.setVisibility(View.VISIBLE);
-            article_removelist.setVisibility(View.GONE);
-        }
-        if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
-        {
-            article_budgetlist.setVisibility(View.GONE);
-            article_removelist.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            article_budgetlist.setVisibility(View.VISIBLE);
-            article_removelist.setVisibility(View.GONE);
-        }
+}
 
 
 

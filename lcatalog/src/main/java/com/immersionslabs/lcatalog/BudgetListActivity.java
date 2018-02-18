@@ -126,7 +126,7 @@ setlist=new HashSet<String>();
         item_dimensions = new ArrayList<>();
         item_3ds = new ArrayList<>();
 
-        CommongetData();
+
 
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,12 +137,13 @@ setlist=new HashSet<String>();
             }
         });
 
-
+CommongetData();
     }
 
     private void CommongetData() {
         Log.e(TAG, "CommonGetData: " + BUDGET_URL);
-        if (USER_LOG_TYPE.equals("CUSTOMER")) {
+        if (USER_LOG_TYPE.equals("CUSTOMER"))
+        {
 
            setlist=sessionmanager.ReturnID();
           if(null==setlist)
@@ -150,7 +151,7 @@ setlist=new HashSet<String>();
               Toast.makeText(getApplicationContext(),"Empty",Toast.LENGTH_LONG).show();
           }
           else
-          { Toast.makeText(getApplicationContext(),"Not Empty",Toast.LENGTH_LONG).show();
+          {
               Iterator iterator=setlist.iterator();
               while(iterator.hasNext())
               {
@@ -179,11 +180,43 @@ setlist=new HashSet<String>();
               }
 
           }
-        } else if (USER_LOG_TYPE.equals("GUEST")) {
-            Iterator iterator = EnvConstants.user_Favourite_list.iterator();
-            while (iterator.hasNext()) {
-                String TEMP_GUEST_FAVOURITE_URL = BUDGET_URL + "/" + iterator.next().toString();
-               // ApiService.getInstance(this).getData(this, false, "FAVORITE", TEMP_GUEST_FAVOURITE_URL, "GUEST");
+        }
+
+        else if (USER_LOG_TYPE.equals("GUEST"))
+        {
+            ArrayList<String> strings=budgetManager.GET_BUDGET_ARTICLE_IDS();
+            if(null==strings)
+            {
+                Toast.makeText(getApplicationContext(),"Empty",Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Iterator iterator=strings.iterator();
+                while(iterator.hasNext())
+                {
+                    String temp_budgtet_url=BUDGET_URL+iterator.next().toString();
+                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            JSONObject RESP = null;
+                            try {
+                                RESP = response.getJSONObject("data");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            GetData(RESP);
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
+                    requestQueue.add(jsonObjectRequest);
+
+                }
 
             }
         }
@@ -262,6 +295,8 @@ setlist=new HashSet<String>();
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
         }
+
+
     }
 
     @Override
