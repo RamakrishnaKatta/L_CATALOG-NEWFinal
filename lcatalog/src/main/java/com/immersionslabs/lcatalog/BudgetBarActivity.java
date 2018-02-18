@@ -54,7 +54,7 @@ private KeyListener listener;
         String text_total;
         if(EnvConstants.user_type.equals("CUSTOMER"))
         {
-            text_total=Integer.toString(sessionManager.BUDGET_VAL());
+            text_total=Integer.toString(sessionManager.GET_TOTAL_VALUE());
         }
         else
         {
@@ -80,7 +80,7 @@ private KeyListener listener;
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     budget_value = Total_budget_val.getText().toString();
-                    sessionManager.updateTotalBudget(Integer.parseInt(budget_value));
+                    sessionManager.SET_TOTAL_VALUE(Integer.parseInt(budget_value));
                     Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
 //                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
 //                    startActivity(intent);

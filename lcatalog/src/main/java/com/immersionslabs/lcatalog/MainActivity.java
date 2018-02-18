@@ -400,7 +400,7 @@ budgetManager=new BudgetManager();
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                 }
             } else {
-                Integer budgetval = sessionmanager.BUDGET_VAL();
+                Integer budgetval = sessionmanager.GET_TOTAL_VALUE();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {

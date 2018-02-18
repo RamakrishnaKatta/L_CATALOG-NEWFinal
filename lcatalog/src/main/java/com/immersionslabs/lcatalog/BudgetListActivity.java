@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,13 +25,14 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
+import com.immersionslabs.lcatalog.adapters.BudgetListAdapter;
 import com.immersionslabs.lcatalog.adapters.MyFavoriteAdapter;
-import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,12 +45,19 @@ public class BudgetListActivity extends AppCompatActivity {
 
     EditText Total_budget, Current_value, Remaining_value;
     Button Alter_Budget;
-    SessionManager sessionManager;
-    private KeyListener listener;
+    SessionManager sessionmanager;
     HashMap<String, Integer> getdetails;
     BudgetManager budgetManager;
+    KeyListener listener;
+
+
+
+    private static String BUDGET_URL = null;
+
+    String user_id, USER_LOG_TYPE;
     RecyclerView recycler;
-    GridLayoutManager BUDGET_MANAGER;
+    GridLayoutManager budgetlistmanager;
+
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -61,10 +68,12 @@ public class BudgetListActivity extends AppCompatActivity {
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
 
+
     Integer current_value, total_budget_value, remaining_value;
+    Set<String> setlist;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
-    String BUDGET_LIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,20 +81,21 @@ public class BudgetListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_budget_list);
 
         budgetManager = new BudgetManager();
+        USER_LOG_TYPE = EnvConstants.user_type;
+
+        sessionmanager = new SessionManager(getApplicationContext());
+        HashMap hashmap = new HashMap();
+
+        hashmap = sessionmanager.getUserDetails();
+        user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
+
+
+        BUDGET_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
         recycler = findViewById(R.id.budget_recycler);
         recycler.setHasFixedSize(true);
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
-        item_ids = new ArrayList<>();
-        item_descriptions = new ArrayList<>();
-        item_names = new ArrayList<>();
-        item_images = new ArrayList<>();
-        item_vendors = new ArrayList<>();
-        item_prices = new ArrayList<>();
-        item_discounts = new ArrayList<>();
-        item_dimensions = new ArrayList<>();
-        item_3ds = new ArrayList<>();
+setlist=new HashSet<String>();
 
         Toolbar toolbar = findViewById(R.id.toolbar_budget_list);
         setSupportActionBar(toolbar);
@@ -105,6 +115,19 @@ public class BudgetListActivity extends AppCompatActivity {
         disableEditText(Remaining_value);
         Alter_Budget = findViewById(R.id.btn_alter_budget);
 
+
+        item_ids = new ArrayList<>();
+        item_descriptions = new ArrayList<>();
+        item_names = new ArrayList<>();
+        item_images = new ArrayList<>();
+        item_vendors = new ArrayList<>();
+        item_prices = new ArrayList<>();
+        item_discounts = new ArrayList<>();
+        item_dimensions = new ArrayList<>();
+        item_3ds = new ArrayList<>();
+
+        CommongetData();
+
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,66 +137,69 @@ public class BudgetListActivity extends AppCompatActivity {
             }
         });
 
-        CommongetData();
+
     }
 
     private void CommongetData() {
+        Log.e(TAG, "CommonGetData: " + BUDGET_URL);
+        if (USER_LOG_TYPE.equals("CUSTOMER")) {
 
-        Log.e(TAG, "Current User Type: " + EnvConstants.user_type);
-
-        final JSONObject object = new JSONObject();
-
-        if (EnvConstants.user_type.equals("CUSTOMER")) {
-            Set setlist = new HashSet();
-            setlist = sessionManager.GET_BUDGET_ARTICLES();
-            if (setlist.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "No articles found", Toast.LENGTH_LONG).show();
-            } else {
-                Log.e(TAG, "Customer Articles Array : \n " + setlist);
-                for (Object aSetlist : setlist) {
-
-                    String BUDGET_ARTICLES_URL = BUDGET_LIST_URL + "/" + aSetlist.toString();
-                    Log.e(TAG, "Budget Articles URL" + BUDGET_ARTICLES_URL);
-
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, BUDGET_ARTICLES_URL, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            GetData(response);
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    });
-                    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(4000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                    RequestQueue requestQueue = Volley.newRequestQueue(this);
-                    requestQueue.add(jsonObjectRequest);
-                }
-            }
-        } else if (EnvConstants.user_type.equals("GUEST")) {
-            ArrayList arrayList = new ArrayList();
-            arrayList = budgetManager.GET_BUDGET_ARTICLE_IDS();
-            Log.e(TAG, "Guest Articles Array : \n " + arrayList);
-            for (Object anArrayList : arrayList) {
-                String BUDGET_ARTICLES_URL = BUDGET_LIST_URL + "/" + anArrayList.toString();
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, BUDGET_ARTICLES_URL, null, new Response.Listener<JSONObject>() {
+           setlist=sessionmanager.ReturnID();
+          if(null==setlist)
+          {
+              Toast.makeText(getApplicationContext(),"Empty",Toast.LENGTH_LONG).show();
+          }
+          else
+          { Toast.makeText(getApplicationContext(),"Not Empty",Toast.LENGTH_LONG).show();
+              Iterator iterator=setlist.iterator();
+              while(iterator.hasNext())
+              {
+                  String temp_budgtet_url=BUDGET_URL+iterator.next().toString();
+                JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        GetData(response);
+                        JSONObject RESP = null;
+                        try {
+                            RESP = response.getJSONObject("data");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        GetData(RESP);
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
                     }
                 });
-                jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(4000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
-                requestQueue.add(jsonObjectRequest);
+                  RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
+                  requestQueue.add(jsonObjectRequest);
+
+              }
+
+          }
+        } else if (USER_LOG_TYPE.equals("GUEST")) {
+            Iterator iterator = EnvConstants.user_Favourite_list.iterator();
+            while (iterator.hasNext()) {
+                String TEMP_GUEST_FAVOURITE_URL = BUDGET_URL + "/" + iterator.next().toString();
+               // ApiService.getInstance(this).getData(this, false, "FAVORITE", TEMP_GUEST_FAVOURITE_URL, "GUEST");
+
             }
         }
     }
 
+
+    private void disableEditText(EditText editText) {
+        editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
+        editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setClickable(false);
+        listener = editText.getKeyListener();
+        editText.setKeyListener(null);
+        editText.setBackgroundColor(Color.TRANSPARENT);
+    }
     private void GetData(JSONObject obj) {
 
         try {
@@ -191,30 +217,29 @@ public class BudgetListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        BUDGET_MANAGER = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        recycler.setLayoutManager(BUDGET_MANAGER);
-        MyFavoriteAdapter adapter = new MyFavoriteAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
-        recycler.setAdapter(adapter);
-    }
+        Log.e(TAG, "Ids" + item_ids);
+        Log.e(TAG, "Names" + item_names);
+        Log.e(TAG, "Descriptions" + item_descriptions);
+        Log.e(TAG, "Prices" + item_prices);
+        Log.e(TAG, "Images" + item_images);
+        Log.e(TAG, "Dimensions" + item_dimensions);
+        Log.e(TAG, "Discounts" + item_discounts);
+        Log.e(TAG, "3ds" + item_3ds);
+        Log.e(TAG, "Vendors" + item_vendors);
 
-    private void disableEditText(EditText editText) {
-        editText.setFocusable(false);
-        editText.setFocusableInTouchMode(false);
-        editText.setEnabled(false);
-        editText.setCursorVisible(false);
-        editText.setClickable(false);
-        listener = editText.getKeyListener();
-        editText.setKeyListener(null);
-        editText.setBackgroundColor(Color.TRANSPARENT);
+        budgetlistmanager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recycler.setLayoutManager(budgetlistmanager);
+        BudgetListAdapter adapter = new BudgetListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
+        recycler.setAdapter(adapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (EnvConstants.user_type.equals("CUSTOMER")) {
-            sessionManager = new SessionManager(getApplicationContext());
+            sessionmanager = new SessionManager(getApplicationContext());
             getdetails = new HashMap<>();
-            getdetails = sessionManager.getBudgetDetails();
+            getdetails = sessionmanager.getBudgetDetails();
 
             current_value = getdetails.get(SessionManager.KEY_CURRENT_VALUE);
             total_budget_value = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
@@ -243,26 +268,7 @@ public class BudgetListActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
     }
-//
-//    @Override
-//    public void onResponseCallback(JSONObject response, String flag) {
-//
-//        if (flag.equals("budget_list")) {
-//            try {
-//                JSONObject RESP = response.getJSONObject("data");
-//                GetData(RESP);
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void onErrorCallback(VolleyError error, String flag) {
-//        Toast.makeText(MyfavoriteActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-//
-//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

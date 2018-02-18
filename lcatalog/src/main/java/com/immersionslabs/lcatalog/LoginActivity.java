@@ -357,7 +357,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Button _loginButton = findViewById(R.id.btn_login);
 
-        CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
+        //CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
         setResult(RESULT_OK, null);
@@ -374,8 +375,9 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
             _loginButton = findViewById(R.id.btn_login);
-            CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! " +
-                    "\n Please try to login as guest for this time");
+//            CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! " +
+//                    "\n Please try to login as guest for this time");
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
             _loginButton.setEnabled(true);
         }
@@ -383,8 +385,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginFailed() {
         Button _loginButton = findViewById(R.id.btn_login);
-        CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login failed Please Sign Up or Try Logging Again");
-
+       // CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login failed Please Sign Up or Try Logging Again");
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 

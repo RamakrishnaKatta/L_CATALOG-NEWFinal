@@ -8,6 +8,7 @@ import com.immersionslabs.lcatalog.LoginActivity;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class SessionManager {
@@ -21,6 +22,8 @@ public class SessionManager {
 
     public static final String KEY_CURRENT_VALUE = "currentvalue";
     public static final String KEY_TOTAL_BUDGET_VALUE = "totalbudgetvalue";
+    public static final String KEY_REMAINING_VALUE = "remainingvalue";
+
 
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
@@ -30,7 +33,7 @@ public class SessionManager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
-    public static final String KEY_IS_ARTICLE_ADDED = "is_article_added";
+    Set<String> set = new HashSet<String>();
 
 
     public SessionManager(Context context) {
@@ -124,6 +127,8 @@ public class SessionManager {
         editor.remove(KEY_USER_TYPE);
         editor.putBoolean(IS_USER_LOGIN, false);
         editor.commit();
+//        editor.clear();
+//        editor.commit();
     }
 
     public boolean isUserLoggedIn() {
@@ -140,83 +145,114 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void updateCurrentvalue(Integer currentvalue) {
-
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_current_budget = ID + KEY_CURRENT_VALUE;
-
-
-        editor.putInt(id_current_budget, currentvalue);
-
+    public void ADD_ARTICLE(String article_id, Integer price) {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Article_Id = article_id;
+        int currentvalue, total, remaining;
+        String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
+        String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
+        String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
+        String Unique_Article_Id = Global_id + Article_Id;
+        total = pref.getInt(Unique_total_value_Id, 0);
+        currentvalue = pref.getInt(Unique_Current_Id, 0);
+        currentvalue = currentvalue + price;
+        remaining = total - currentvalue;
+        set = pref.getStringSet(Global_id, null);
+        if (null == set)
+            set = new HashSet<String>();
+        set.add(Article_Id);
+        editor.putInt(Unique_Current_Id, currentvalue);
+        editor.putInt(Unique_Remaining_Id, remaining);
+        editor.putBoolean(Unique_Article_Id, true);
+        editor.putStringSet(Global_id, set);
         editor.commit();
 
-
     }
 
-    public void updateTotalBudget(Integer totalbudget) {
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_total_budget = ID + KEY_TOTAL_BUDGET_VALUE;
-        editor.putInt(id_total_budget, totalbudget);
-
+    public void REMOVE_ARTICLE(String article_id, Integer price) {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Article_Id = article_id;
+        int currentvalue, total, remaining;
+        String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
+        String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
+        String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
+        String Unique_Article_Id = Global_id + Article_Id;
+        total = pref.getInt(Unique_total_value_Id, 0);
+        currentvalue = pref.getInt(Unique_Current_Id, 0);
+        currentvalue = currentvalue - price;
+        remaining = total - currentvalue;
+        set.remove(Article_Id);
+        editor.putInt(Unique_Current_Id, currentvalue);
+        editor.putInt(Unique_Remaining_Id, remaining);
+        editor.putBoolean(Unique_Article_Id, false);
+        editor.putStringSet(Global_id, set);
         editor.commit();
     }
 
-    public Integer BUDGET_VAL() {
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_total_budget = ID + KEY_TOTAL_BUDGET_VALUE;
-        Integer budgetval = pref.getInt(id_total_budget, 0);
-        return budgetval;
+    public void SET_TOTAL_VALUE(int totalval) {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
+        editor.putInt(Unique_total_value_Id, totalval);
+        editor.commit();
+
     }
 
-    public Integer CURRENT_VAL() {
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_current_budget = ID + KEY_CURRENT_VALUE;
-        Integer currentval = pref.getInt(id_current_budget, 0);
-        return currentval;
+    public int GET_CURRENT_VALUE() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
+        int returnval;
+        returnval = pref.getInt(Unique_Current_Id, 0);
+        return returnval;
+
     }
 
+    public int GET_TOTAL_VALUE() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
+        int returnval;
+        returnval = pref.getInt(Unique_total_value_Id, 0);
+        return returnval;
 
-    public boolean IS_ARTICLE_EXISTS(String article_id) {
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_article_added = ID + article_id + KEY_IS_ARTICLE_ADDED;
-        boolean returnval = pref.getBoolean(id_article_added, false);
+    }
+
+    public int GET_REMAINING_VALUE() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
+        int returnval;
+        returnval = pref.getInt(Unique_Remaining_Id, 0);
         return returnval;
     }
 
-    public void ADD_ARTICLE(String article_id) {
-        String id = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_article_added = id + article_id + KEY_IS_ARTICLE_ADDED;
-        Set<String> set;
-        set = pref.getStringSet(id, null);
-        if (set == null)
-            set = new HashSet<String>();
-        set.add(article_id);
-        editor.putStringSet(id, set);
-        editor.putBoolean(id_article_added, true);
-        editor.commit();
-    }
-
-    public void REMOVE_ARTICLE(String aricle_id, String article_price) {
-        String id = pref.getString(KEY_GLOBAL_USER_ID, null);
-        Set<String> set;
-        String id_article_added = id + aricle_id + KEY_IS_ARTICLE_ADDED;
-        set = pref.getStringSet(id, null);
-
-
-        if (set.contains(aricle_id)) {
-            set.remove(aricle_id);
-            editor.putBoolean(id_article_added, false);
-
-            editor.commit();
-        }
-
-    }
-
-    public Set GET_BUDGET_ARTICLES() {
-        String id = pref.getString(KEY_GLOBAL_USER_ID, null);
-        Set<String> set;
-        set = pref.getStringSet(id, null);
+    public Set<String> ReturnID() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        set = pref.getStringSet(Global_id, null);
         return set;
     }
-}
 
+    public boolean IS_ARTICLE_EXISTS(String article_id) {
+        boolean flag=false;
+
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        set = pref.getStringSet(Global_id, null);
+        if (null == set) {
+            //do nothng
+        } else {
+            Iterator<String> iterator = set.iterator();
+            while (iterator.hasNext()) {
+                String value = iterator.next();
+                if (value.equals(article_id)) {
+                    flag = true;
+                }
+                else
+                {
+                    flag=false;
+                }
+
+                if(flag)
+                break;
+            }
+
+        }
+        return flag;
+    }
+}

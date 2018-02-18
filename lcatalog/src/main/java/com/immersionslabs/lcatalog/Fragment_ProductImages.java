@@ -338,16 +338,15 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                     } else {
                         Integer price = Integer.parseInt(article_price);
-                        Integer prevprice = getdetails.get(SessionManager.KEY_CURRENT_VALUE);
-                        Integer currentprice = price + prevprice;
-                        Integer remaining = totalbudget - currentprice;
-                        if (remaining > 0) {
-                            sessionmanager.updateCurrentvalue(currentprice);
-                            sessionmanager.ADD_ARTICLE(article_id);
+
+                         Integer remaining = sessionmanager.GET_REMAINING_VALUE();
+                        if (remaining >= 0) {
+
+                            sessionmanager.ADD_ARTICLE(article_id,price);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
-                        } else if (remaining <= 0) {
+                        } else if (remaining < 0) {
                             Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -384,21 +383,16 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+
 
                         Integer price = Integer.parseInt(article_price);
-                        Integer prevprice = sessionmanager.CURRENT_VAL();
-                        Integer currentprice = prevprice - price;
-                        sessionmanager.updateCurrentvalue(currentprice);
-                        sessionmanager.REMOVE_ARTICLE(article_id, article_price);
+                       sessionmanager.REMOVE_ARTICLE(article_id, price);
                         Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                         article_budgetlist.setVisibility(View.VISIBLE);
                         article_removelist.setVisibility(View.GONE);
 
-                    } else {
-                        Toast.makeText(getContext(), "No Artcle Found", Toast.LENGTH_LONG).show();
-                    }
-                } else {
+                                      }
+                 else {
                     Integer price = Integer.parseInt(article_price);
                     Integer prevprice = budgetManager.getCurrent_Value();
                     Integer currentprice = prevprice - price;
@@ -609,16 +603,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     public void onResume() {
         super.onResume();
 
-        if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
-        {
-            article_budgetlist.setVisibility(View.GONE);
-            article_removelist.setVisibility(View.VISIBLE);
-        }
-        else
-            {
-            article_budgetlist.setVisibility(View.VISIBLE);
-            article_removelist.setVisibility(View.GONE);
-        }
 
         if (budgetManager.IS_ARTICLE_EXISTS(article_id))
         {
@@ -630,12 +614,23 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             article_budgetlist.setVisibility(View.VISIBLE);
             article_removelist.setVisibility(View.GONE);
         }
+        if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
+        {
+            article_budgetlist.setVisibility(View.GONE);
+            article_removelist.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            article_budgetlist.setVisibility(View.VISIBLE);
+            article_removelist.setVisibility(View.GONE);
+        }
+
 
 
     }
 
     @Override
-    public void onPause() {
+    public void onPause () {
         super.onPause();
     }
 
