@@ -137,7 +137,7 @@ setlist=new HashSet<String>();
             }
         });
 
-CommongetData();
+
     }
 
     private void CommongetData() {
@@ -269,6 +269,19 @@ CommongetData();
     @Override
     public void onResume() {
         super.onResume();
+        item_ids.clear();
+        item_names.clear();
+        item_descriptions.clear();
+        item_prices.clear();
+        item_images.clear();
+        item_discounts.clear();
+        item_3ds.clear();
+        item_dimensions.clear();
+        item_vendors.clear();
+
+
+        CommongetData();
+
         if (EnvConstants.user_type.equals("CUSTOMER")) {
             sessionmanager = new SessionManager(getApplicationContext());
             getdetails = new HashMap<>();
