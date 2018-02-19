@@ -51,7 +51,6 @@ public class BudgetListActivity extends AppCompatActivity {
     KeyListener listener;
 
 
-
     private static String BUDGET_URL = null;
 
     String user_id, USER_LOG_TYPE;
@@ -95,7 +94,7 @@ public class BudgetListActivity extends AppCompatActivity {
         recycler = findViewById(R.id.budget_recycler);
         recycler.setHasFixedSize(true);
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-setlist=new HashSet<String>();
+        setlist = new HashSet<String>();
 
         Toolbar toolbar = findViewById(R.id.toolbar_budget_list);
         setSupportActionBar(toolbar);
@@ -127,7 +126,6 @@ setlist=new HashSet<String>();
         item_3ds = new ArrayList<>();
 
 
-
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,60 +140,16 @@ setlist=new HashSet<String>();
 
     private void CommongetData() {
         Log.e(TAG, "CommonGetData: " + BUDGET_URL);
-        if (USER_LOG_TYPE.equals("CUSTOMER"))
-        {
+        if (USER_LOG_TYPE.equals("CUSTOMER")) {
 
-           setlist=sessionmanager.ReturnID();
-          if(null==setlist)
-          {
-              Toast.makeText(getApplicationContext(),"Empty",Toast.LENGTH_LONG).show();
-          }
-          else
-          {
-              Iterator iterator=setlist.iterator();
-              while(iterator.hasNext())
-              {
-                  String temp_budgtet_url=BUDGET_URL+iterator.next().toString();
-                JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        JSONObject RESP = null;
-                        try {
-                            RESP = response.getJSONObject("data");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        GetData(RESP);
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                  RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
-                  requestQueue.add(jsonObjectRequest);
-
-              }
-
-          }
-        }
-
-        else if (USER_LOG_TYPE.equals("GUEST"))
-        {
-            ArrayList<String> strings=budgetManager.GET_BUDGET_ARTICLE_IDS();
-            if(null==strings)
-            {
-                Toast.makeText(getApplicationContext(),"Empty",Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                Iterator iterator=strings.iterator();
-                while(iterator.hasNext())
-                {
-                    String temp_budgtet_url=BUDGET_URL+iterator.next().toString();
-                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
+            setlist = sessionmanager.ReturnID();
+            if (null == setlist) {
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_LONG).show();
+            } else {
+                Iterator iterator = setlist.iterator();
+                while (iterator.hasNext()) {
+                    String temp_budgtet_url = BUDGET_URL + iterator.next().toString();
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             JSONObject RESP = null;
@@ -213,7 +167,39 @@ setlist=new HashSet<String>();
 
                         }
                     });
-                    RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
+                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue.add(jsonObjectRequest);
+
+                }
+
+            }
+        } else if (USER_LOG_TYPE.equals("GUEST")) {
+            ArrayList<String> strings = budgetManager.GET_BUDGET_ARTICLE_IDS();
+            if (null == strings) {
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_LONG).show();
+            } else {
+                Iterator iterator = strings.iterator();
+                while (iterator.hasNext()) {
+                    String temp_budgtet_url = BUDGET_URL + iterator.next().toString();
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            JSONObject RESP = null;
+                            try {
+                                RESP = response.getJSONObject("data");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            GetData(RESP);
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(jsonObjectRequest);
 
                 }
@@ -233,6 +219,7 @@ setlist=new HashSet<String>();
         editText.setKeyListener(null);
         editText.setBackgroundColor(Color.TRANSPARENT);
     }
+
     private void GetData(JSONObject obj) {
 
         try {

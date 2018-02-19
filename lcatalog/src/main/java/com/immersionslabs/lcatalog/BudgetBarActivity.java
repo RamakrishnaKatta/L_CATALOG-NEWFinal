@@ -24,8 +24,8 @@ import static com.immersionslabs.lcatalog.R.*;
 public class BudgetBarActivity extends AppCompatActivity {
 
     EditText Total_budget_val;
-    Button edit_button,submit_button;
-private KeyListener listener;
+    Button edit_button, submit_button;
+    private KeyListener listener;
     String budget_value;
 
     SessionManager sessionManager;
@@ -52,27 +52,24 @@ private KeyListener listener;
         Total_budget_val = findViewById(id.input_budget);
         disableEditText(Total_budget_val);
         String text_total;
-        if(EnvConstants.user_type.equals("CUSTOMER"))
-        {
-            text_total=Integer.toString(sessionManager.GET_TOTAL_VALUE());
-        }
-        else
-        {
-            text_total=Integer.toString(budgetManager.getTotal_Budget());
+        if (EnvConstants.user_type.equals("CUSTOMER")) {
+            text_total = Integer.toString(sessionManager.GET_TOTAL_VALUE());
+        } else {
+            text_total = Integer.toString(budgetManager.getTotal_Budget());
         }
 
         Total_budget_val.setText(text_total);
-        submit_button=findViewById(id.btn_budget_submit);
+        submit_button = findViewById(id.btn_budget_submit);
         edit_button = findViewById(id.btn_budget_edit);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            edit_button.setVisibility(View.GONE);
-            submit_button.setVisibility(View.VISIBLE);
-            enableEditText(Total_budget_val);
-             Total_budget_val.setTextColor(ContextCompat.getColor(getApplicationContext(), color.red));
-                Toast.makeText(getApplicationContext(),"ALTER THE BUDGET",Toast.LENGTH_LONG).show();
+                edit_button.setVisibility(View.GONE);
+                submit_button.setVisibility(View.VISIBLE);
+                enableEditText(Total_budget_val);
+                Total_budget_val.setTextColor(ContextCompat.getColor(getApplicationContext(), color.red));
+                Toast.makeText(getApplicationContext(), "ALTER THE BUDGET", Toast.LENGTH_LONG).show();
             }
         });
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -81,14 +78,14 @@ private KeyListener listener;
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     budget_value = Total_budget_val.getText().toString();
                     sessionManager.SET_TOTAL_VALUE(Integer.parseInt(budget_value));
-                    Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "BUDGET CHANGED SUCCESSFULLY", Toast.LENGTH_LONG).show();
 //                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
 //                    startActivity(intent);
 
                 } else {
                     budget_value = Total_budget_val.getText().toString();
                     budgetManager.setTotal_Budget(Integer.parseInt(budget_value));
-                    Toast.makeText(getApplicationContext(),"BUDGET CHANGED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "BUDGET CHANGED SUCCESSFULLY", Toast.LENGTH_LONG).show();
 //                    Intent intent=new Intent(getApplicationContext(),BudgetListActivity.class);
 //                    startActivity(intent);
 
@@ -96,6 +93,7 @@ private KeyListener listener;
             }
         });
     }
+
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
         editText.setFocusableInTouchMode(false);
@@ -106,6 +104,7 @@ private KeyListener listener;
         editText.setKeyListener(null);
         editText.setBackgroundColor(Color.TRANSPARENT);
     }
+
     private void enableEditText(EditText editText) {
         editText.setFocusable(true);
         editText.setFocusableInTouchMode(true);

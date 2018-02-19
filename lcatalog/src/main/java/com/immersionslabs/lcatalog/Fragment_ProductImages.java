@@ -339,10 +339,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     } else {
                         Integer price = Integer.parseInt(article_price);
 
-                         Integer remaining = sessionmanager.GET_REMAINING_VALUE();
+                        Integer remaining = sessionmanager.GET_REMAINING_VALUE();
                         if (remaining >= 0) {
 
-                            sessionmanager.ADD_ARTICLE(article_id,price);
+                            sessionmanager.ADD_ARTICLE(article_id, price);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
@@ -358,19 +358,17 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     } else {
                         Integer price = Integer.parseInt(article_price);
                         Integer prevprice = budgetManager.getCurrent_Value();
-                        Integer totalbudget=budgetManager.getTotal_Budget();
+                        Integer totalbudget = budgetManager.getTotal_Budget();
                         Integer currentprice = price + prevprice;
-                        Integer Remaining=totalbudget-currentprice;
-                        if(Remaining>0)
-                        {
+                        Integer Remaining = totalbudget - currentprice;
+                        if (Remaining > 0) {
                             budgetManager.setCurrent_Value(currentprice);
                             budgetManager.Add_Articles(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         }
-                        if(Remaining <=0)
-                        {
+                        if (Remaining <= 0) {
                             Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
                         }
 
@@ -385,14 +383,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
 
 
-                        Integer price = Integer.parseInt(article_price);
-                       sessionmanager.REMOVE_ARTICLE(article_id, price);
-                        Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
-                        article_budgetlist.setVisibility(View.VISIBLE);
-                        article_removelist.setVisibility(View.GONE);
+                    Integer price = Integer.parseInt(article_price);
+                    sessionmanager.REMOVE_ARTICLE(article_id, price);
+                    Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                    article_budgetlist.setVisibility(View.VISIBLE);
+                    article_removelist.setVisibility(View.GONE);
 
-                                      }
-                 else {
+                } else {
                     Integer price = Integer.parseInt(article_price);
                     Integer prevprice = budgetManager.getCurrent_Value();
                     Integer currentprice = prevprice - price;
@@ -602,41 +599,32 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onResume() {
         super.onResume();
-if(EnvConstants.user_type.equals("GUEST"))
-{
-    if (budgetManager.IS_ARTICLE_EXISTS(article_id))
-    {
-        article_budgetlist.setVisibility(View.GONE);
-        article_removelist.setVisibility(View.VISIBLE);
-    }
-    else
-    {
-        article_budgetlist.setVisibility(View.VISIBLE);
-        article_removelist.setVisibility(View.GONE);
-    }
-}
-if(EnvConstants.user_type.equals("CUSTOMER"))
-{
+        if (EnvConstants.user_type.equals("GUEST")) {
+            if (budgetManager.IS_ARTICLE_EXISTS(article_id)) {
+                article_budgetlist.setVisibility(View.GONE);
+                article_removelist.setVisibility(View.VISIBLE);
+            } else {
+                article_budgetlist.setVisibility(View.VISIBLE);
+                article_removelist.setVisibility(View.GONE);
+            }
+        }
+        if (EnvConstants.user_type.equals("CUSTOMER")) {
 
-    if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
-    {
-        article_budgetlist.setVisibility(View.GONE);
-        article_removelist.setVisibility(View.VISIBLE);
-    }
-    else
-    {
-        article_budgetlist.setVisibility(View.VISIBLE);
-        article_removelist.setVisibility(View.GONE);
-    }
+            if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+                article_budgetlist.setVisibility(View.GONE);
+                article_removelist.setVisibility(View.VISIBLE);
+            } else {
+                article_budgetlist.setVisibility(View.VISIBLE);
+                article_removelist.setVisibility(View.GONE);
+            }
 
-}
-
+        }
 
 
     }
 
     @Override
-    public void onPause () {
+    public void onPause() {
         super.onPause();
     }
 
