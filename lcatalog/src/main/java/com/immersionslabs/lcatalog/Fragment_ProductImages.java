@@ -3,7 +3,6 @@ package com.immersionslabs.lcatalog;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,15 +10,12 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -88,7 +84,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     String user_id;
     BudgetManager budgetManager;
-//    BudgetListActivity budgetListActivity;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -337,99 +332,43 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     getdetails = sessionmanager.getBudgetDetails();
                     Integer totalbudget = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
                     if (totalbudget == 0) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("Enter Your Budget");
+                        Toast.makeText(getContext(), "Budget not set, Redirecting to budget set page", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getContext(), BudgetBarActivity.class);
+                        startActivity(intent);
 
-                        final EditText Total_budget_val = new EditText(getContext());
-
-                        Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
-                        builder.setView(Total_budget_val);
-
-
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            String budget_value;
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                budget_value = Total_budget_val.getText().toString();
-                                sessionmanager.SET_TOTAL_VALUE(Integer.parseInt(budget_value));
-
-                            }
-                        });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-
-
-                        });
-                        builder.show();
-                    }
-                    else {
+                    } else {
                         Integer price = Integer.parseInt(article_price);
-                        Integer prevprice = sessionmanager.GET_CURRENT_VALUE();
-                        Integer temptotalbudget=sessionmanager.GET_TOTAL_VALUE();
-                        Integer tempcurrentprice = price + prevprice;
-                        Integer Remaining=temptotalbudget-tempcurrentprice;
-                        if (Remaining >= 0) {
 
-                            sessionmanager.ADD_ARTICLE(article_id,price);
+                        Integer remaining = sessionmanager.GET_REMAINING_VALUE();
+                        if (remaining >= 0) {
+
+                            sessionmanager.ADD_ARTICLE(article_id, price);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
-
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
-                        } else if (Remaining < 0) {
+                        } else if (remaining < 0) {
                             Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
                         }
                     }
                 } else {
                     if (budgetManager.getTotal_Budget() == 0) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("Enter Your Budget");
-
-                        final EditText Total_budget_val = new EditText(getContext());
-
-                        Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
-                        builder.setView(Total_budget_val);
-
-
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            String budget_value;
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                    budget_value = Total_budget_val.getText().toString();
-                                    budgetManager.setTotal_Budget(Integer.parseInt(budget_value));
-
-                            }
-                        });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-
-                        builder.show();
-
+                        Toast.makeText(getContext(), "Budget not set, Redirecting to budget set page", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getContext(), BudgetBarActivity.class);
+                        startActivity(intent);
                     } else {
                         Integer price = Integer.parseInt(article_price);
                         Integer prevprice = budgetManager.getCurrent_Value();
-                        Integer totalbudget=budgetManager.getTotal_Budget();
+                        Integer totalbudget = budgetManager.getTotal_Budget();
                         Integer currentprice = price + prevprice;
-                        Integer Remaining=totalbudget-currentprice;
-                        if(Remaining>0)
-                        {
+                        Integer Remaining = totalbudget - currentprice;
+                        if (Remaining > 0) {
                             budgetManager.setCurrent_Value(currentprice);
                             budgetManager.Add_Articles(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         }
-                        if(Remaining <=0)
-                        {
+                        if (Remaining <= 0) {
                             Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
                         }
 
@@ -444,14 +383,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
 
 
-                        Integer price = Integer.parseInt(article_price);
-                       sessionmanager.REMOVE_ARTICLE(article_id, price);
-                        Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
-                        article_budgetlist.setVisibility(View.VISIBLE);
-                        article_removelist.setVisibility(View.GONE);
+                    Integer price = Integer.parseInt(article_price);
+                    sessionmanager.REMOVE_ARTICLE(article_id, price);
+                    Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                    article_budgetlist.setVisibility(View.VISIBLE);
+                    article_removelist.setVisibility(View.GONE);
 
-                                      }
-                 else {
+                } else {
                     Integer price = Integer.parseInt(article_price);
                     Integer prevprice = budgetManager.getCurrent_Value();
                     Integer currentprice = prevprice - price;
@@ -661,41 +599,32 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onResume() {
         super.onResume();
-if(EnvConstants.user_type.equals("GUEST"))
-{
-    if (budgetManager.IS_ARTICLE_EXISTS(article_id))
-    {
-        article_budgetlist.setVisibility(View.GONE);
-        article_removelist.setVisibility(View.VISIBLE);
-    }
-    else
-    {
-        article_budgetlist.setVisibility(View.VISIBLE);
-        article_removelist.setVisibility(View.GONE);
-    }
-}
-if(EnvConstants.user_type.equals("CUSTOMER"))
-{
+        if (EnvConstants.user_type.equals("GUEST")) {
+            if (budgetManager.IS_ARTICLE_EXISTS(article_id)) {
+                article_budgetlist.setVisibility(View.GONE);
+                article_removelist.setVisibility(View.VISIBLE);
+            } else {
+                article_budgetlist.setVisibility(View.VISIBLE);
+                article_removelist.setVisibility(View.GONE);
+            }
+        }
+        if (EnvConstants.user_type.equals("CUSTOMER")) {
 
-    if (sessionmanager.IS_ARTICLE_EXISTS(article_id))
-    {
-        article_budgetlist.setVisibility(View.GONE);
-        article_removelist.setVisibility(View.VISIBLE);
-    }
-    else
-    {
-        article_budgetlist.setVisibility(View.VISIBLE);
-        article_removelist.setVisibility(View.GONE);
-    }
+            if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+                article_budgetlist.setVisibility(View.GONE);
+                article_removelist.setVisibility(View.VISIBLE);
+            } else {
+                article_budgetlist.setVisibility(View.VISIBLE);
+                article_removelist.setVisibility(View.GONE);
+            }
 
-}
-
+        }
 
 
     }
 
     @Override
-    public void onPause () {
+    public void onPause() {
         super.onPause();
     }
 
