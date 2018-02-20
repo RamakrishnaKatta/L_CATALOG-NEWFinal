@@ -1,12 +1,16 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MenuItem;
@@ -125,17 +129,52 @@ setlist=new HashSet<String>();
         item_discounts = new ArrayList<>();
         item_dimensions = new ArrayList<>();
         item_3ds = new ArrayList<>();
-
-
-
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                builder.setTitle("Enter Your Budget");
 
-                Intent intent = new Intent(BudgetListActivity.this, BudgetBarActivity.class);
-                startActivity(intent);
+                final EditText Total_budget_val = new EditText(BudgetListActivity.this );
+
+                Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
+                builder.setView(Total_budget_val);
+
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    String budget_value;
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+if(EnvConstants.user_type.equals("CUSTOMER"))
+{
+    budget_value = Total_budget_val.getText().toString();
+    sessionmanager.SET_TOTAL_VALUE(Integer.parseInt(budget_value));
+    onResume();
+
+}
+else
+{budget_value = Total_budget_val.getText().toString();
+budgetManager.setTotal_Budget(Integer.parseInt(budget_value));
+onResume();
+
+}
+
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+
+
+                });
+                builder.show();
             }
         });
+
 
 
     }
@@ -278,7 +317,6 @@ setlist=new HashSet<String>();
         item_3ds.clear();
         item_dimensions.clear();
         item_vendors.clear();
-
 
         CommongetData();
 
