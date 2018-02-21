@@ -35,6 +35,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
     private static final String TAG = "CatalogActivity";
+
     GridViewAdapter gridAdapter;
     ListViewVerticalAdapter VerticalAdapter;
     ListViewHorizontalAdapter horizontalAdapter;
@@ -45,6 +46,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
     SwipeRefreshLayout refreshLayout;
     FloatingActionButton fab_grid, fab_vertical, fab_horizontal;
     Boolean Loadmore = false;
+
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
     private ArrayList<String> item_prices;
@@ -54,6 +56,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_ids;
     private ArrayList<String> item_3ds;
+    private ArrayList<String> item_patterns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         item_dimensions = new ArrayList<>();
         item_ids = new ArrayList<>();
         item_3ds = new ArrayList<>();
+        item_patterns = new ArrayList<>();
 
         fab_vertical.setSize(1);
         fab_horizontal.setSize(1);
@@ -154,9 +158,9 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                     item_vendors.clear();
                     item_images.clear();
                     item_dimensions.clear();
+                    item_patterns.clear();
 
                     commonGetdata();
-
                 }
             }
         });
@@ -227,6 +231,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                 item_images.add(obj.getString("img"));
                 item_dimensions.add(obj.getString("dimensions"));
                 item_3ds.add(obj.getString("view_3d"));
+                item_patterns.add(obj.getString("pattern"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -241,10 +246,14 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "images******" + item_images);
         Log.e(TAG, "dimensions******" + item_dimensions);
         Log.e(TAG, "3ds******" + item_3ds);
+        Log.e(TAG, "patterns******" + item_patterns);
 
-        gridAdapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_images, item_dimensions, item_3ds);
-        horizontalAdapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_images, item_dimensions, item_3ds);
-        VerticalAdapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_vendors, item_images, item_dimensions, item_3ds);
+        gridAdapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
+        horizontalAdapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
+        VerticalAdapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
 
         if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
             recycler.removeAllViews();
@@ -322,6 +331,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                             item_dimensions.add(obj.getString("dimensions"));
                             item_3ds.add(obj.getString("view_3d"));
                             item_images.add(obj.getString("img"));
+                            item_patterns.add(obj.getString("pattern"));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

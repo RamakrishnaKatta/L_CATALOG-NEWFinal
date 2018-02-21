@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_title"
-                android:textSize="@dimen/text_tab_medium"
+                android:textSize="@dimen/text_tab_tiny"
                 android:textStyle="bold" />
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_title_name"
-                android:textSize="@dimen/text_tab_small" />
+                android:textSize="@dimen/text_tab_tiny" />
 
             <View
                 android:id="@+id/layout_separator2"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_4"
                 android:text="@string/product_desc"
-                android:textSize="@dimen/text_tab_medium"
+                android:textSize="@dimen/text_tab_tiny"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_desc_name"
-                android:textSize="@dimen/text_tab_small" />
+                android:textSize="@dimen/text_tab_tiny" />
         </LinearLayout>
 
         <View
@@ -80,7 +80,7 @@
                 android:paddingRight="@dimen/margin_12"
                 android:paddingTop="@dimen/margin_4"
                 android:text="@string/product_rating"
-                android:textSize="@dimen/text_tab_medium"
+                android:textSize="@dimen/text_tab_tiny"
                 android:textStyle="bold" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_24"
                 android:text="@string/product_rating_reviews"
-                android:textSize="@dimen/text_tab_medium" />
+                android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_10"
                     android:text="@string/original_price_title"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -125,14 +125,14 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:id="@+id/article_price_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/original_price"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
                     android:paddingEnd="@dimen/margin_40"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/discount_percentage"
                         android:textColor="@color/maroon"
-                        android:textSize="@dimen/text_tab_medium"
+                        android:textSize="@dimen/text_tab_tiny"
                         android:textStyle="bold" />
 
                     <TextView
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/percentage_symbol"
                         android:textColor="@color/maroon"
-                        android:textSize="@dimen/text_tab_medium"
+                        android:textSize="@dimen/text_tab_tiny"
                         android:textStyle="bold" />
 
                     <TextView
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/discount_off"
                         android:textColor="@color/maroon"
-                        android:textSize="@dimen/text_tab_medium"
+                        android:textSize="@dimen/text_tab_tiny"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_10"
                     android:text="@string/discount_price_title"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -205,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/discount_price"
                     android:textColorHint="@color/jet"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -214,7 +214,7 @@
                     android:paddingEnd="@dimen/margin_20"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_width"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -257,13 +257,13 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/width_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dimension_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
             </LinearLayout>
 
@@ -279,7 +279,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_length"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -288,13 +288,13 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/length_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dimension_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
 
             </LinearLayout>
@@ -311,7 +311,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_height"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -320,13 +320,13 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:text="@string/height_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dimension_value"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tiny" />
 
             </LinearLayout>
 
@@ -348,16 +348,18 @@
             <LinearLayout
                 android:layout_width="@dimen/margin_500"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:gravity="center|start"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/article_vendor_heading"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/margin_10"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/providedby_vendor"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -365,58 +367,69 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/article_vendor"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:padding="@dimen/margin_10"
-                        android:text="@string/vendor_title"
-                        android:textSize="@dimen/text_tab_medium"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/article_vendor_text"
+                        <TextView
+                            android:id="@+id/article_vendor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_6"
+                            android:text="@string/vendor_title"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_tab_tiny"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/article_vendor_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_6"
+                            android:text="@string/vendor_address_title"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_tab_tiny"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_10"
-                        android:text="@string/vendor_name"
-                        android:textSize="@dimen/text_tab_small"
-                        android:textStyle="italic" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/article_vendor_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_6"
+                            android:text="@string/vendor_name"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/text_tab_tiny"
+                            android:textStyle="italic" />
 
-                    <TextView
-                        android:id="@+id/article_vendor_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_6"
-                        android:text="@string/vendor_address_title"
-                        android:textSize="@dimen/text_tab_medium"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/article_vendor_address_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_6"
+                            android:text="@string/dummy_address"
+                            android:textAlignment="textStart"
+                            android:textSize="@dimen/text_tab_tiny"
+                            android:textStyle="italic" />
 
-                    <TextView
-                        android:id="@+id/article_vendor_address_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_6"
-                        android:text="@string/dummy_address"
-                        android:textSize="@dimen/text_tab_small"
-                        android:textStyle="italic" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center|end"
+                android:gravity="center|end"
                 android:padding="@dimen/margin_6">
 
                 <ImageView
@@ -427,6 +440,49 @@
                     android:scaleType="fitCenter" />
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/layout_separator7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_1"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/pattern_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/margin_6">
+
+                <ImageView
+                    android:id="@+id/article_pattern_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/company_icon"
+                    android:paddingTop="@dimen/margin_6"
+                    android:scaleType="fitCenter" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/article_pattern_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/margin_6"
+                android:text="@string/pattern_image"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_tab_tiny"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

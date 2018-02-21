@@ -344,17 +344,19 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="@dimen/margin_250"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:gravity="center|start"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/article_vendor_heading"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/margin_5"
+                    android:padding="@dimen/margin_3"
                     android:text="@string/providedby_vendor"
+                    android:textAlignment="center"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -363,68 +365,119 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/article_vendor"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:padding="@dimen/margin_5"
-                        android:text="@string/vendor_title"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/article_vendor_text"
+                        <TextView
+                            android:id="@+id/article_vendor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_3"
+                            android:text="@string/vendor_title"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/article_vendor_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_3"
+                            android:text="@string/vendor_address_title"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_5"
-                        android:text="@string/vendor_name"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="italic" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/article_vendor_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_3"
+                            android:text="@string/vendor_name"
+                            android:textAlignment="textStart"
+                            android:textStyle="italic" />
 
-                    <TextView
-                        android:id="@+id/article_vendor_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_3"
-                        android:text="@string/vendor_address_title"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/article_vendor_address_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/margin_3"
+                            android:text="@string/dummy_address"
+                            android:textAlignment="textStart"
+                            android:textStyle="italic" />
 
-                    <TextView
-                        android:id="@+id/article_vendor_address_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_3"
-                        android:text="@string/dummy_address"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="italic" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center|end"
+                android:gravity="center|end"
+                android:padding="@dimen/margin_3">
+
+                <ImageView
+                    android:id="@+id/article_vendor_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/company_icon"
+                    android:scaleType="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/layout_separator7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_1"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/pattern_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_3"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="@dimen/margin_3">
 
                 <ImageView
-                    android:id="@+id/article_vendor_logo"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:id="@+id/article_pattern_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/company_icon"
+                    android:padding="@dimen/margin_3"
                     android:scaleType="fitCenter" />
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/article_pattern_heading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/margin_3"
+                android:text="@string/pattern_image"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

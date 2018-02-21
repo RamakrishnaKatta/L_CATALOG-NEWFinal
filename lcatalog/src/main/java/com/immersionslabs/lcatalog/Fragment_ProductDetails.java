@@ -17,7 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Vendor;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -34,14 +35,14 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
     private static String VENDOR_URL = null;
 
     //String Values assigned from the Bundle Arguments
-    String a_title, a_description, a_new_price, a_discount, a_old_price, a_width, a_height, a_length, a_dimensions, a_vendor_id;
+    String a_title, a_description, a_new_price, a_discount, a_old_price, a_width, a_height, a_length, a_dimensions, a_vendor_id, a_pattern;
 
     //String Values assigned from the JSON Object using Vendor ID
     String vendor_name, vendor_address, vendor_image, vendor_id;
 
     TextView article_title, article_description, article_old_price, article_discount, article_width, article_height, article_length, article_new_price;
     TextView article_vendor_name, article_vendor_location;
-    ImageView article_vendor_logo;
+    ImageView article_vendor_logo, article_pattern_image;
 
     LinearLayout vendor_details;
 
@@ -64,6 +65,7 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
         article_vendor_location = view.findViewById(R.id.article_vendor_address_text);
 
         article_vendor_logo = view.findViewById(R.id.article_vendor_logo);
+        article_pattern_image = view.findViewById(R.id.article_pattern_image);
 
         vendor_details = view.findViewById(R.id.vendor_details);
         vendor_details.setOnClickListener(this);
@@ -97,6 +99,15 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
         article_width.setText(a_width);
         article_height.setText(a_height);
         article_length.setText(a_length);
+
+        a_pattern = getArguments().getString("article_pattern_file");
+        Log.e(TAG, "--" + a_pattern);
+
+        Glide.with(getContext())
+                .load(EnvConstants.APP_BASE_URL + "/upload/pattern/" + a_pattern)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(article_pattern_image);
 
         a_vendor_id = getArguments().getString("article_vendor_id");
         Log.e(TAG, "--" + a_vendor_id);
@@ -144,7 +155,6 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
                 Intent intent = new Intent(getActivity(), VendorProfileActivity.class).putExtras(vendor_data);
                 startActivity(intent);
         }
-
     }
 
     @Override
@@ -179,20 +189,17 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
 
         article_vendor_name.setText(vendor_name);
         article_vendor_location.setText(vendor_address);
-        new DownloadImages_Vendor(article_vendor_logo).execute(vendor_image);
 
-//        Glide.with(getContext())
-//                .load(EnvConstants.APP_BASE_URL+"/upload/vendorLogos"+vendor_image)
-//                .placeholder(R.drawable.dummy_icon)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(article_vendor_logo);
-
+        Glide.with(getContext())
+                .load(EnvConstants.APP_BASE_URL + "/upload/vendorLogos/" + vendor_image)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(article_vendor_logo);
     }
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -209,5 +216,4 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
     public void onPause() {
         super.onPause();
     }
-
 }

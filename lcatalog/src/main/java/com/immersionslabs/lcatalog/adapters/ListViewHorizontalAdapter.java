@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHorizontalAdapter.ViewHolder> {
 
-    private static final String TAG = "ListViewHorizontalAdapter";
+    private static final String TAG = "HorizontalAdapter";
     private Activity activity;
 
     private ArrayList<String> item_ids;
@@ -41,6 +41,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
     private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
+    private ArrayList<String> item_patterns;
 
     public ListViewHorizontalAdapter(Activity activity,
                                      ArrayList<String> item_ids,
@@ -51,7 +52,8 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                                      ArrayList<String> item_vendors,
                                      ArrayList<String> item_images,
                                      ArrayList<String> item_dimensions,
-                                     ArrayList<String> item_3ds) {
+                                     ArrayList<String> item_3ds,
+                                     ArrayList<String> item_patterns) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -62,6 +64,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         this.item_images = item_images;
         this.item_dimensions = item_dimensions;
         this.item_3ds = item_3ds;
+        this.item_patterns = item_patterns;
 
         Log.e(TAG, "id----" + item_ids);
         Log.e(TAG, "names----" + item_names);
@@ -72,6 +75,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         Log.e(TAG, "images----" + item_images);
         Log.e(TAG, "dimensions----" + item_dimensions);
         Log.e(TAG, "3ds----" + item_3ds);
+        Log.e(TAG, "patterns ---- " + item_patterns);
 
         this.activity = activity;
     }
@@ -92,12 +96,13 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
 
         String im1 = null;
         String get_image = item_images.get(position);
+
         try {
             JSONArray images_json = new JSONArray(get_image);
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
             }
-            Log.e(TAG, "image >>>>>>" + im1);
+            Log.e(TAG, "Image Thumbnail(1) >>>>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -107,8 +112,6 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.item_image);
-//        new DownloadImages_Product(holder.item_image).execute(im1);
-
 
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));
@@ -122,12 +125,10 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
         holder.item_discount.setText(item_discounts.get(position));
         holder.item_price_new.setText(itemNewPrice);
 
-
         holder.h_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
-
 
                 Intent intent = new Intent(context[0], ProductPageActivity.class);
                 Bundle b = new Bundle();
@@ -140,6 +141,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
                 b.putString("article_3ds", item_3ds.get(position));
+                b.putString("article_pattern", item_patterns.get(position));
                 b.putString("article_images", item_images.get(position));
                 b.putString("article_position", String.valueOf(position));
 

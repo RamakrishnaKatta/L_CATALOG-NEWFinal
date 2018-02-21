@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -22,7 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.DownloadImages_Vendor;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
@@ -33,6 +35,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class VendorProfileActivity extends AppCompatActivity {
+
+    private Activity activity;
 
     private static final String TAG = "VendorProfileActivity";
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
@@ -126,7 +130,11 @@ public class VendorProfileActivity extends AppCompatActivity {
                     profile_vendor_location.setText(vendor_address);
                     profile_vendor_articles_list.setText("VENDOR ARTICLES (" + vendor_no_of_articles + ")");
 
-                    new DownloadImages_Vendor(profile_vendor_logo).execute(vendor_image);
+                    Glide.with(getApplicationContext())
+                            .load(EnvConstants.APP_BASE_URL + "/upload/vendorLogos/" + vendor_image)
+                            .placeholder(R.drawable.dummy_icon)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(profile_vendor_logo);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

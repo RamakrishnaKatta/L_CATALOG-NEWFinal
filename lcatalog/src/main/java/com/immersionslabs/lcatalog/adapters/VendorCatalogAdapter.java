@@ -99,7 +99,6 @@ public class VendorCatalogAdapter extends RecyclerView.Adapter<VendorCatalogAdap
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        new DownloadImages_Product(viewHolder.item_image).execute(im1);
 
         Glide.with(activity)
                 .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)

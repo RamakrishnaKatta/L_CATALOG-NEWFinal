@@ -40,6 +40,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
     private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
+    private ArrayList<String> item_patterns;
 
     public ListViewVerticalAdapter(Activity activity,
                                    ArrayList<String> item_ids,
@@ -50,7 +51,8 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                                    ArrayList<String> item_vendors,
                                    ArrayList<String> item_images,
                                    ArrayList<String> item_dimensions,
-                                   ArrayList<String> item_3ds) {
+                                   ArrayList<String> item_3ds,
+                                   ArrayList<String> item_patterns) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -61,6 +63,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         this.item_images = item_images;
         this.item_dimensions = item_dimensions;
         this.item_3ds = item_3ds;
+        this.item_patterns = item_patterns;
 
         Log.e(TAG, "ids----" + item_ids);
         Log.e(TAG, "names----" + item_names);
@@ -71,6 +74,8 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         Log.e(TAG, "Images----" + item_images);
         Log.e(TAG, "Dimensions----" + item_dimensions);
         Log.e(TAG, "3ds----" + item_3ds);
+        Log.e(TAG, "patterns ---- " + item_patterns);
+
         this.activity = activity;
     }
 
@@ -94,7 +99,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
             }
-            Log.e(TAG, " image 1>>>>" + im1);
+            Log.e(TAG, " image Thumbnail(1) >>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -104,12 +109,11 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.item_image);
-//        new DownloadImages_Product(holder.item_image).execute(im1);
+
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));
         Integer z = (x * (100 - y)) / 100;
         String itemNewPrice = Integer.toString(z);
-
 
         holder.item_name.setText(item_names.get(position));
         holder.item_description.setText(item_descriptions.get(position));
@@ -136,6 +140,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                 b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
                 b.putString("article_3ds", item_3ds.get(position));
+                b.putString("article_pattern", item_patterns.get(position));
                 b.putString("article_images", item_images.get(position));
                 b.putString("article_position", String.valueOf(position));
 
@@ -158,6 +163,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
 
         ViewHolder(View itemView) {
             super(itemView);
+
             v_container = itemView.findViewById(R.id.v_container);
             item_image = itemView.findViewById(R.id.v_item_image);
             item_name = itemView.findViewById(R.id.v_item_name);

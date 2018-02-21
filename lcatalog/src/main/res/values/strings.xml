@@ -120,6 +120,7 @@
     <string name="dimen_height">HEIGHT :</string>
     <string name="height_value">20</string>
     <string name="providedby_vendor">PROVIDED BY :</string>
+    <string name="pattern_image">ARTICLE PATTERN</string>
     <string name="vendor_title">NAME :</string>
     <string name="vendor_name">CMR</string>
     <string name="vendor_address_title">ADDRESS :</string>
