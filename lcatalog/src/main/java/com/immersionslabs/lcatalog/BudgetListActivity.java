@@ -1,12 +1,16 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MenuItem;
@@ -46,7 +50,7 @@ public class BudgetListActivity extends AppCompatActivity {
     EditText Total_budget, Current_value, Remaining_value;
     Button Alter_Budget;
     SessionManager sessionmanager;
-    HashMap<String, Integer> getdetails;
+    HashMap<String, Long> getdetails;
     BudgetManager budgetManager;
     KeyListener listener;
 
@@ -68,7 +72,7 @@ public class BudgetListActivity extends AppCompatActivity {
     private ArrayList<String> item_vendors;
 
 
-    Integer current_value, total_budget_value, remaining_value;
+    Long current_value, total_budget_value, remaining_value;
     Set<String> setlist;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
@@ -125,15 +129,80 @@ public class BudgetListActivity extends AppCompatActivity {
         item_dimensions = new ArrayList<>();
         item_3ds = new ArrayList<>();
 
-
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                builder.setTitle("Enter Your Budget");
 
-                Intent intent = new Intent(BudgetListActivity.this, BudgetBarActivity.class);
-                startActivity(intent);
+                final EditText Total_budget_val = new EditText(BudgetListActivity.this );
+                if(EnvConstants.user_type.equals("CUSTOMER"))
+                {
+                    Total_budget_val.setHint(sessionmanager.GET_TOTAL_VALUE().toString());
+                }
+                else
+                {
+                    Total_budget_val.setHint(budgetManager.getTotal_Budget().toString());
+                }
+
+
+                Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
+                builder.setView(Total_budget_val);
+
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    String budget_value;
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(EnvConstants.user_type.equals("CUSTOMER"))
+                        {
+                            budget_value = Total_budget_val.getText().toString();
+                            if(budget_value.isEmpty())
+                            {
+                                Toast.makeText(BudgetListActivity.this,"Enter a value first",Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                sessionmanager.SET_TOTAL_VALUE(Long.parseLong(budget_value));
+
+                                onResume();
+
+                            }
+
+                        }
+                        else
+
+                        {
+                            budget_value = Total_budget_val.getText().toString();
+                            if(budget_value.isEmpty())
+                            {
+                                Toast.makeText(BudgetListActivity.this,"Enter a value first",Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                budgetManager.setTotal_Budget(Long.parseLong(budget_value));
+
+                                onResume();
+
+                            }
+                        }
+
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+
+
+                });
+                builder.show();
             }
         });
+
 
 
     }
@@ -143,8 +212,9 @@ public class BudgetListActivity extends AppCompatActivity {
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
 
             setlist = sessionmanager.ReturnID();
-            if (null == setlist) {
-                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_LONG).show();
+            if (null == setlist || setlist.isEmpty()) {
+//                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_LONG).show();
+                recycler.setVisibility(View.GONE);
             } else {
                 Iterator iterator = setlist.iterator();
                 while (iterator.hasNext()) {
@@ -175,8 +245,9 @@ public class BudgetListActivity extends AppCompatActivity {
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
             ArrayList<String> strings = budgetManager.GET_BUDGET_ARTICLE_IDS();
-            if (null == strings) {
+            if (null == strings || strings.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_LONG).show();
+                recycler.setVisibility(View.GONE);
             } else {
                 Iterator iterator = strings.iterator();
                 while (iterator.hasNext()) {
@@ -256,18 +327,20 @@ public class BudgetListActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        item_ids.clear();
-        item_names.clear();
-        item_descriptions.clear();
-        item_prices.clear();
-        item_images.clear();
-        item_discounts.clear();
-        item_3ds.clear();
-        item_dimensions.clear();
-        item_vendors.clear();
+
+            item_ids.clear();
+            item_names.clear();
+            item_descriptions.clear();
+            item_prices.clear();
+            item_images.clear();
+            item_discounts.clear();
+            item_3ds.clear();
+            item_dimensions.clear();
+            item_vendors.clear();
+
+            CommongetData();
 
 
-        CommongetData();
 
         if (EnvConstants.user_type.equals("CUSTOMER")) {
             sessionmanager = new SessionManager(getApplicationContext());
@@ -278,9 +351,9 @@ public class BudgetListActivity extends AppCompatActivity {
             total_budget_value = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
             remaining_value = total_budget_value - current_value;
 
-            str_total_budget_value = Integer.toString(total_budget_value);
-            str_current_value = Integer.toString(current_value);
-            str_remaining_value = Integer.toString(remaining_value);
+            str_total_budget_value = Long.toString(total_budget_value);
+            str_current_value = Long.toString(current_value);
+            str_remaining_value = Long.toString(remaining_value);
             Total_budget.setText(str_total_budget_value);
             Current_value.setText(str_current_value);
 
@@ -288,9 +361,9 @@ public class BudgetListActivity extends AppCompatActivity {
 
         } else {
             String Guest_Total_budget, Guest_Current_value, Guest_Remaining_budget;
-            Guest_Total_budget = Integer.toString(budgetManager.getTotal_Budget());
-            Guest_Current_value = Integer.toString(budgetManager.getCurrent_Value());
-            Guest_Remaining_budget = Integer.toString(budgetManager.getRemaining_Budget());
+            Guest_Total_budget = Long.toString(budgetManager.getTotal_Budget());
+            Guest_Current_value = Long.toString(budgetManager.getCurrent_Value());
+            Guest_Remaining_budget = Long.toString(budgetManager.getRemaining_Budget());
             Total_budget.setText(Guest_Total_budget);
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);

@@ -390,7 +390,7 @@ budgetManager=new BudgetManager();
         } else if (id == R.id.nav_user_budget_bar) {
 
             if (Objects.equals(EnvConstants.user_type, "GUEST")) {
-                Integer budgetval =budgetManager.getTotal_Budget();
+                Long budgetval =budgetManager.getTotal_Budget();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {
@@ -400,7 +400,7 @@ budgetManager=new BudgetManager();
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
                 }
             } else {
-                Integer budgetval = sessionmanager.GET_TOTAL_VALUE();
+                Long budgetval = sessionmanager.GET_TOTAL_VALUE();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {
