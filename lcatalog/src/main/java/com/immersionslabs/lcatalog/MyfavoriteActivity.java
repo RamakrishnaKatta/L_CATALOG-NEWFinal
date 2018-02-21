@@ -92,12 +92,12 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         Log.e(TAG, "CommonGetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
-            ApiService.getInstance(this).getData(this, false, "FAVORITE", FAVOURITE_URL, "FAVORITE_LIST");
+            ApiService.getInstance(this).getData(this, false, "FAVORITE ACTIVITY", FAVOURITE_URL, "FAVORITE_LIST");
         } else if (USER_LOG_TYPE.equals("GUEST")) {
             Iterator iterator = EnvConstants.user_Favourite_list.iterator();
             while (iterator.hasNext()) {
                 String TEMP_GUEST_FAVOURITE_URL = GUEST_FAVOURITE_URL + "/" + iterator.next().toString();
-                ApiService.getInstance(this).getData(this, false, "FAVORITE", TEMP_GUEST_FAVOURITE_URL, "GUEST");
+                ApiService.getInstance(this).getData(this, false, "FAVORITE ACTIVITY", TEMP_GUEST_FAVOURITE_URL, "GUEST");
 
             }
         }

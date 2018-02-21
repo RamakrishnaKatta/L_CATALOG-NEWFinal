@@ -33,19 +33,20 @@ import java.util.ArrayList;
 
 public class CatalogActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
     private static final String TAG = "CatalogActivity";
 
-    GridViewAdapter gridAdapter;
-    ListViewVerticalAdapter VerticalAdapter;
-    ListViewHorizontalAdapter horizontalAdapter;
-    RecyclerView recycler;
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
+
+    GridViewAdapter grid_Adapter;
+    ListViewVerticalAdapter Vertical_Adapter;
+    ListViewHorizontalAdapter horizontal_Adapter;
+    RecyclerView base_recycler;
     ProgressBar progressBar;
-    GridLayoutManager GridManager;
-    LinearLayoutManager HorizontalManager, VerticalManager;
+    GridLayoutManager Grid_Manager;
+    LinearLayoutManager Horizontal_Manager, Vertical_Manager;
     SwipeRefreshLayout refreshLayout;
     FloatingActionButton fab_grid, fab_vertical, fab_horizontal;
-    Boolean Loadmore = false;
+    Boolean Load_more = false;
 
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -67,13 +68,13 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         fab_vertical = findViewById(R.id.fab_vertical_list);
         fab_horizontal = findViewById(R.id.fab_horizontal_list);
 
-        recycler = findViewById(R.id.recycler);
-        recycler.setHasFixedSize(true);
-        recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        base_recycler = findViewById(R.id.recycler);
+        base_recycler.setHasFixedSize(true);
+        base_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        HorizontalManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        VerticalManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        GridManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        Horizontal_Manager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        Vertical_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        Grid_Manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
         refreshLayout = findViewById(R.id.swipe_refresh);
         progressBar = findViewById(R.id.progress_grid);
@@ -103,39 +104,39 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
 
         commonGetdata();
 
-        /*Floating Button for Gridview*/
+        /*Floating Button for Grid View*/
         fab_grid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fab_vertical.setSize(1);
                 fab_horizontal.setSize(1);
                 fab_grid.setSize(0);
-                recycler.setLayoutManager(GridManager);
-                recycler.setAdapter(gridAdapter);
+                base_recycler.setLayoutManager(Grid_Manager);
+                base_recycler.setAdapter(grid_Adapter);
             }
         });
 
-        /*Floating Button for Vertical Listview*/
+        /*Floating Button for Vertical List View*/
         fab_vertical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fab_vertical.setSize(0);
                 fab_horizontal.setSize(1);
                 fab_grid.setSize(1);
-                recycler.setLayoutManager(VerticalManager);
-                recycler.setAdapter(VerticalAdapter);
+                base_recycler.setLayoutManager(Vertical_Manager);
+                base_recycler.setAdapter(Vertical_Adapter);
             }
         });
 
-        /*Floating Button for Horizontal Listview*/
+        /*Floating Button for Horizontal List View*/
         fab_horizontal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fab_vertical.setSize(1);
                 fab_horizontal.setSize(0);
                 fab_grid.setSize(1);
-                recycler.setLayoutManager(HorizontalManager);
-                recycler.setAdapter(horizontalAdapter);
+                base_recycler.setLayoutManager(Horizontal_Manager);
+                base_recycler.setAdapter(horizontal_Adapter);
             }
         });
 
@@ -170,7 +171,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "commonGetdata: " + REGISTER_URL);
         final JSONObject baseclass = new JSONObject();
 
-        ApiService.getInstance(this).getData(this, false, "CATALOGUE", REGISTER_URL, "GETDATA");
+        ApiService.getInstance(this).getData(this, false, "CATALOGUE ACTIVITY", REGISTER_URL, "GETDATA");
 
     }
 
@@ -248,27 +249,27 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "3ds******" + item_3ds);
         Log.e(TAG, "patterns******" + item_patterns);
 
-        gridAdapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+        grid_Adapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices,
                 item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
-        horizontalAdapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+        horizontal_Adapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
                 item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
-        VerticalAdapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
+        Vertical_Adapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
                 item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
 
         if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
-            recycler.removeAllViews();
-            recycler.setLayoutManager(GridManager);
-            recycler.setAdapter(gridAdapter);
+            base_recycler.removeAllViews();
+            base_recycler.setLayoutManager(Grid_Manager);
+            base_recycler.setAdapter(grid_Adapter);
 
         } else if (fab_vertical.getSize() == 0 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 1) {
-            recycler.removeAllViews();
-            recycler.setLayoutManager(VerticalManager);
-            recycler.setAdapter(VerticalAdapter);
+            base_recycler.removeAllViews();
+            base_recycler.setLayoutManager(Vertical_Manager);
+            base_recycler.setAdapter(Vertical_Adapter);
 
         } else if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 0 && fab_grid.getSize() == 1) {
-            recycler.removeAllViews();
-            recycler.setLayoutManager(HorizontalManager);
-            recycler.setAdapter(horizontalAdapter);
+            base_recycler.removeAllViews();
+            base_recycler.setLayoutManager(Horizontal_Manager);
+            base_recycler.setAdapter(horizontal_Adapter);
         }
     }
 
@@ -298,25 +299,21 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         super.onPause();
     }
 
-
-//    Api response
-//    ======================================
+//    Api response ======================================
 
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("GETDATA")) {
             Log.e(TAG, "onResponseCallback: response" + response);
-            System.out.println("RESP : " + response);
+            Log.e(TAG, "RESP : " + response);
             if (refreshLayout.isRefreshing()) {
                 refreshLayout.setRefreshing(false);
             }
             try {
                 JSONArray resp = response.getJSONArray("data");
-
-                if (!Loadmore) {
+                if (!Load_more) {
                     CatalogView(resp);
                 } else {
-
                     for (int i = 0; i < resp.length(); i++) {
                         JSONObject obj = null;
                         try {
@@ -338,11 +335,11 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                         }
                     }
                     if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
-                        gridAdapter.notifyDataSetChanged();
+                        grid_Adapter.notifyDataSetChanged();
                     } else if (fab_vertical.getSize() == 0 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 1) {
-                        VerticalAdapter.notifyDataSetChanged();
+                        Vertical_Adapter.notifyDataSetChanged();
                     } else if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 0 && fab_grid.getSize() == 1) {
-                        horizontalAdapter.notifyDataSetChanged();
+                        horizontal_Adapter.notifyDataSetChanged();
                     }
                 }
             } catch (JSONException e) {

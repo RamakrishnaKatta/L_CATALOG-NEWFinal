@@ -64,7 +64,6 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
             e.printStackTrace();
         }
         mainRecyclerView(resp);
-
     }
 
     private void mainRecyclerView(JSONArray m_jsonArray) {

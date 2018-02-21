@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.network;
 
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -13,8 +12,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class PostNetworkRequest extends JsonRequest {
-    public PostNetworkRequest(int method, String url, String requestBody,
-                              Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+
+    public PostNetworkRequest(int method, String url, String requestBody, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, requestBody, listener,
                 errorListener);
     }
@@ -52,8 +51,7 @@ public class PostNetworkRequest extends JsonRequest {
      * @param listener      Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
      */
-    public PostNetworkRequest(int method, String url, JSONObject jsonRequest,
-                              Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+    public PostNetworkRequest(int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(), listener,
                 errorListener);
     }
@@ -64,8 +62,7 @@ public class PostNetworkRequest extends JsonRequest {
      *
      * @see #PostNetworkRequest(int, String, JSONObject, Response.Listener, Response.ErrorListener)
      */
-    public PostNetworkRequest(String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener,
-                              Response.ErrorListener errorListener) {
+    public PostNetworkRequest(String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         this(jsonRequest == null ? Method.GET : Method.POST, url, jsonRequest,
                 listener, errorListener);
     }
@@ -84,5 +81,4 @@ public class PostNetworkRequest extends JsonRequest {
             return Response.error(new ParseError(je));
         }
     }
-
 }

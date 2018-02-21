@@ -101,7 +101,7 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
 
         final JSONObject baseclass = new JSONObject();
 
-        ApiService.getInstance(this).getData(this, false, "NOTIFICATIONS", REGISTER_URL, "NOTIFY");
+        ApiService.getInstance(this).getData(this, false, "NOTIFICATIONS ACTIVITY", REGISTER_URL, "NOTIFY");
 //        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTER_URL, baseclass, new Response.Listener<JSONObject>() {
 //
 //            @Override

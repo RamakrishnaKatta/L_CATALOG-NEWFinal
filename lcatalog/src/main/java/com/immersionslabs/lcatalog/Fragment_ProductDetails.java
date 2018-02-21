@@ -127,7 +127,7 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
 
     private void getVendorData() throws JSONException {
 
-        ApiService.getInstance(getContext()).getData(this, false, "PRODUCT DETAILS", VENDOR_URL, "VENDOR DATA");
+        ApiService.getInstance(getContext()).getData(this, false, "PRODUCT DETAILS FRAGMENT", VENDOR_URL, "VENDOR DATA");
     }
 
     @Override

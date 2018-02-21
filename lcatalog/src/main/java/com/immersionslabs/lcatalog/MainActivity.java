@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
+
         } else {
 
             final Bundle guest_data = getIntent().getExtras();
@@ -389,27 +390,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_user_budget_bar) {
 
-//            if (Objects.equals(EnvConstants.user_type, "GUEST")) {
-//                Long budgetval = budgetManager.getTotal_Budget();
-//                if (budgetval == 0) {
-//                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, BudgetListActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-//                }
-//            } else {
-//                Long budgetval = sessionmanager.GET_TOTAL_VALUE();
-//                if (budgetval == 0) {
-//                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
-//                    Intent intent = new Intent(this, BudgetListActivity.class);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-//                }
-//            }
+            Toast.makeText(this, "Here is your Budget Bar, Check out !!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, BudgetListActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
         } else if (id == R.id.nav_user_notify) {
 
@@ -426,10 +410,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
 
         } else if (id == R.id.nav_logout) {
+
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
             user_Favourite_list.clear();
             sessionmanager.logoutUser();
-            budgetManager.CLEAR_ARRAY_ARTICLES();
+            budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
             Intent intent = new Intent(this, UserTypeActivity.class);
             startActivity(intent);
             finish();
@@ -452,6 +437,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
         }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

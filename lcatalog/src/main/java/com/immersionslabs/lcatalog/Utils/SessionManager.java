@@ -20,10 +20,9 @@ public class SessionManager {
     private static final String PREF_NAME = "LCatalog_Preferences";
     public static final String IS_USER_LOGIN = "IsUserLoggedIn";
 
-    public static final String KEY_CURRENT_VALUE = "currentvalue";
-    public static final String KEY_TOTAL_BUDGET_VALUE = "totalbudgetvalue";
-    public static final String KEY_REMAINING_VALUE = "remainingvalue";
-
+    public static final String KEY_CURRENT_VALUE = "current_budget_value";
+    public static final String KEY_TOTAL_BUDGET_VALUE = "total_budget_value";
+    public static final String KEY_REMAINING_VALUE = "remaining_budget_value";
 
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
@@ -33,6 +32,7 @@ public class SessionManager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
+
     Set<String> set = new HashSet<String>();
 
     public SessionManager(Context context) {
@@ -104,17 +104,6 @@ public class SessionManager {
         return user;
     }
 
-    public HashMap<String, Long> getBudgetDetails() {
-        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
-        String id_current_budget = ID + KEY_CURRENT_VALUE;
-        String id_total_budget = ID + KEY_TOTAL_BUDGET_VALUE;
-        HashMap<String, Long> user = new HashMap<String, Long>();
-        user.put(KEY_TOTAL_BUDGET_VALUE, pref.getLong(id_total_budget, 0));
-        user.put(KEY_CURRENT_VALUE, pref.getLong(id_current_budget, 0));
-
-        return user;
-    }
-
     public void logoutUser() {
         editor.remove(KEY_GLOBAL_USER_ID);
         editor.remove(KEY_USER_ID);
@@ -144,7 +133,24 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void ADD_ARTICLE(String article_id, long price) {
+    public Set<String> ReturnID() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        set = pref.getStringSet(Global_id, null);
+        return set;
+    }
+
+    public HashMap<String, Long> getBudgetDetails() {
+        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String id_current_budget = ID + KEY_CURRENT_VALUE;
+        String id_total_budget = ID + KEY_TOTAL_BUDGET_VALUE;
+        HashMap<String, Long> user = new HashMap<String, Long>();
+        user.put(KEY_TOTAL_BUDGET_VALUE, pref.getLong(id_total_budget, 0));
+        user.put(KEY_CURRENT_VALUE, pref.getLong(id_current_budget, 0));
+
+        return user;
+    }
+
+    public void BUDGET_ADD_ARTICLE(String article_id, long price) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
         Long currentvalue, total, remaining;
@@ -167,7 +173,7 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void REMOVE_ARTICLE(String article_id, Long price) {
+    public void BUDGET_REMOVE_ARTICLE(String article_id, Long price) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
         Long currentvalue, total, remaining;
@@ -187,14 +193,14 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void SET_TOTAL_VALUE(Long totalval) {
+    public void BUDGET_SET_TOTAL_VALUE(Long total_bud_val) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
-        editor.putLong(Unique_total_value_Id, totalval);
+        editor.putLong(Unique_total_value_Id, total_bud_val);
         editor.commit();
     }
 
-    public Long GET_CURRENT_VALUE() {
+    public Long BUDGET_GET_CURRENT_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
         Long returnval;
@@ -202,7 +208,7 @@ public class SessionManager {
         return returnval;
     }
 
-    public Long GET_TOTAL_VALUE() {
+    public Long BUDGET_GET_TOTAL_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
         Long returnval;
@@ -210,7 +216,7 @@ public class SessionManager {
         return returnval;
     }
 
-    public Long GET_REMAINING_VALUE() {
+    public Long BUDGET_GET_REMAINING_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
         Long returnval;
@@ -218,13 +224,7 @@ public class SessionManager {
         return returnval;
     }
 
-    public Set<String> ReturnID() {
-        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
-        set = pref.getStringSet(Global_id, null);
-        return set;
-    }
-
-    public boolean IS_ARTICLE_EXISTS(String article_id) {
+    public boolean BUDGET_IS_ARTICLE_EXISTS(String article_id) {
         boolean flag = false;
 
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
@@ -244,7 +244,6 @@ public class SessionManager {
                 if (flag)
                     break;
             }
-
         }
         return flag;
     }

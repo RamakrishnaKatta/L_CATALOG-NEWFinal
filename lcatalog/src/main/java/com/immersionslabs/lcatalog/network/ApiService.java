@@ -27,18 +27,15 @@ public class ApiService {
     private RequestQueue requestQueue;
     private Map headers;
 
-
     private ApiService(Context context) {
         mCtx = context;
         requestQueue = getRequestQueue();
     }
 
     public static synchronized ApiService getInstance(Context context) {
-
         if (instance == null)
             instance = new ApiService(context);
         return instance;
-
     }
 
     public static synchronized ApiService getInstance(Context context, int intClearCache) {
@@ -47,7 +44,6 @@ public class ApiService {
         if (instance == null)
             instance = new ApiService(context);
         return instance;
-
     }
 
     public static synchronized ApiService getInstance(Context context, int intClearCache, ProgressDialog dialog) {
@@ -57,7 +53,6 @@ public class ApiService {
         if (instance == null)
             instance = new ApiService(context);
         return instance;
-
     }
 
     private RequestQueue getRequestQueue() {
@@ -80,95 +75,101 @@ public class ApiService {
 
     public void getData(final ApiCommunication listener, boolean iscached, final String SCREEN_NAME, final String url, final String flag) {
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                listener.onResponseCallback(response, flag);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse != null) {
-                    try {
-                        Toast.makeText(mCtx, "Internal Error", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        listener.onResponseCallback(response, flag);
                     }
-                }
-                listener.onErrorCallback(error, flag);
-                getRequestQueue().getCache().remove(url);
-            }
-        });
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                7000,
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error.networkResponse != null) {
+                            try {
+                                Toast.makeText(mCtx, "Internal Error", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        listener.onErrorCallback(error, flag);
+                        getRequestQueue().getCache().remove(url);
+                    }
+                });
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                4000,
                 1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-        addToRequestQueue(request);
-        Log.e(SCREEN_NAME + "URLHIT", request.getUrl() + " ");
-
+        addToRequestQueue(jsObjRequest);
+        Log.e(SCREEN_NAME + " URL_HIT ", jsObjRequest.getUrl() + " ");
     }
 
     public void postData(final ApiCommunication listener, final String url, JSONObject params, final String SCREEN_NAME, final String flag) {
-        final String csrf_token, sessionId;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        listener.onResponseCallback(response, flag);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error.networkResponse != null) {
+                            try {
+                                Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
+                                Toast.makeText(mCtx, "internal error", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        listener.onErrorCallback(error, flag);
+                        getRequestQueue().getCache().remove(url);
+                    }
+                });
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                4000,
+                1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        addToRequestQueue(jsObjRequest);
+        Log.e(SCREEN_NAME + " URL_HIT ", jsObjRequest.getUrl() + " ");
+    }
+
+    public void putData(final ApiCommunication listener, final String url, JSONObject params, final String SCREEN_NAME, final String flag) {
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.PUT, url, params, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         ////Log.e(SCREEN_NAME, response + "");
                         listener.onResponseCallback(response, flag);
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         if (error.networkResponse != null) {
-                            ////Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
-                            Toast.makeText(mCtx, "internalerror", Toast.LENGTH_SHORT).show();
+                            try {
+                                Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
+                                Toast.makeText(mCtx, "Out Data", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-                        // TODO Auto-generated method stub
                         listener.onErrorCallback(error, flag);
                         getRequestQueue().getCache().remove(url);
                     }
                 });
-        addToRequestQueue(jsObjRequest);
-        Log.e(SCREEN_NAME + "URL  HIT", jsObjRequest.getUrl() + " ");
-    }
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                4000,
+                1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-
-    public void putData(final ApiCommunication listener, final String url, JSONObject params, final String SCREEN_NAME, final String flag) {
-        final String sessionId, csrf_token;
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(
-                Request.Method.PUT, url, params, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                ////Log.e(SCREEN_NAME, response + "");
-                listener.onResponseCallback(response, flag);
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse != null) {
-                    ////Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
-                    Toast.makeText(mCtx, "Out Dataa", Toast.LENGTH_SHORT).show();
-                }
-                // TODO Auto-generated method stub
-                listener.onErrorCallback(error, flag);
-                getRequestQueue().getCache().remove(url);
-            }
-        });
         addToRequestQueue(jsObjRequest);
         Log.e(SCREEN_NAME, jsObjRequest.getUrl() + " ");
     }
 
-
     public void deleteData(final ApiCommunication listener, boolean isCached, final String SCREEN_NAME, final String url, final String flag) {
-
-
-        ////System.out.println("sessionid___" + sessionId);
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {
@@ -178,26 +179,26 @@ public class ApiService {
                         listener.onResponseCallback(response, flag);
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
                         if (error.networkResponse != null) {
-                            ////Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
-                            ////System.out.println("apiService error :" + error.networkResponse.data.toString() + "__" + flag);
-                            Toast.makeText(mCtx, "Delete Data", Toast.LENGTH_SHORT).show();
+                            try {
+                                Log.e(SCREEN_NAME + "-" + flag, error.networkResponse.data.toString() + "");
+                                Toast.makeText(mCtx, "Out Data", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                         listener.onErrorCallback(error, flag);
                         getRequestQueue().getCache().remove(url);
                     }
                 });
         jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
-                20000,
+                4000,
                 0,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         addToRequestQueue(jsObjRequest);
         Log.e(SCREEN_NAME, jsObjRequest.getUrl() + " ");
     }
-
 }

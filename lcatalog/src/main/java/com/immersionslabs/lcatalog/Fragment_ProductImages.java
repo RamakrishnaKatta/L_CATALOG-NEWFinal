@@ -354,7 +354,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                 } else {
-                                    sessionmanager.SET_TOTAL_VALUE(Long.parseLong(budget_value));
+                                    sessionmanager.BUDGET_SET_TOTAL_VALUE(Long.parseLong(budget_value));
                                 }
                             }
                         });
@@ -369,14 +369,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         builder.show();
                     } else {
                         Long price = Long.parseLong(article_price);
-                        Long prevprice = sessionmanager.GET_CURRENT_VALUE();
-                        Long temptotalbudget = sessionmanager.GET_TOTAL_VALUE();
+                        Long prevprice = sessionmanager.BUDGET_GET_CURRENT_VALUE();
+                        Long temptotalbudget = sessionmanager.BUDGET_GET_TOTAL_VALUE();
                         Long tempcurrentprice = price + prevprice;
                         Long Remaining = temptotalbudget - tempcurrentprice;
 
                         if (Remaining >= 0) {
 
-                            sessionmanager.ADD_ARTICLE(article_id, price);
+                            sessionmanager.BUDGET_ADD_ARTICLE(article_id, price);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
 
@@ -386,7 +386,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         }
                     }
                 } else {
-                    if (budgetManager.getTotal_Budget() == 0) {
+                    if (budgetManager.BUDGET_GET_TOTAL() == 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("Enter Your Budget");
 
@@ -408,7 +408,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                                 } else {
 
-                                    budgetManager.setTotal_Budget(Long.parseLong(budget_value));
+                                    budgetManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                 }
                             }
                         });
@@ -423,13 +423,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                     } else {
                         Long price = Long.parseLong(article_price);
-                        Long prevprice = budgetManager.getCurrent_Value();
-                        Long totalbudget = budgetManager.getTotal_Budget();
+                        Long prevprice = budgetManager.BUDGET_GET_CURRENT();
+                        Long totalbudget = budgetManager.BUDGET_GET_TOTAL();
                         Long currentprice = price + prevprice;
                         Long Remaining = totalbudget - currentprice;
                         if (Remaining > 0) {
-                            budgetManager.setCurrent_Value(currentprice);
-                            budgetManager.Add_Articles(article_id);
+                            budgetManager.BUDGET_SET_CURRENT(currentprice);
+                            budgetManager.BUDGET_ADD_ARTICLE(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
@@ -447,17 +447,17 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     Long price = Long.parseLong(article_price);
-                    sessionmanager.REMOVE_ARTICLE(article_id, price);
+                    sessionmanager.BUDGET_REMOVE_ARTICLE(article_id, price);
                     Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                     article_budgetlist.setVisibility(View.VISIBLE);
                     article_removelist.setVisibility(View.GONE);
 
                 } else {
                     Long price = Long.parseLong(article_price);
-                    Long prevprice = budgetManager.getCurrent_Value();
+                    Long prevprice = budgetManager.BUDGET_GET_CURRENT();
                     Long currentprice = prevprice - price;
-                    budgetManager.setCurrent_Value(currentprice);
-                    budgetManager.RemoveArticles(article_id);
+                    budgetManager.BUDGET_SET_CURRENT(currentprice);
+                    budgetManager.BUDGET_REMOVE_ARTICLE(article_id);
                     Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                     article_budgetlist.setVisibility(View.VISIBLE);
                     article_removelist.setVisibility(View.GONE);
@@ -662,7 +662,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     public void onResume() {
         super.onResume();
         if (EnvConstants.user_type.equals("GUEST")) {
-            if (budgetManager.IS_ARTICLE_EXISTS(article_id)) {
+            if (budgetManager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                 article_budgetlist.setVisibility(View.GONE);
                 article_removelist.setVisibility(View.VISIBLE);
             } else {
@@ -672,7 +672,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         }
         if (EnvConstants.user_type.equals("CUSTOMER")) {
 
-            if (sessionmanager.IS_ARTICLE_EXISTS(article_id)) {
+            if (sessionmanager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                 article_budgetlist.setVisibility(View.GONE);
                 article_removelist.setVisibility(View.VISIBLE);
             } else {
