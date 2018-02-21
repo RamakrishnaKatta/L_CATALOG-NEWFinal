@@ -35,7 +35,6 @@ public class SessionManager {
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
     Set<String> set = new HashSet<String>();
 
-
     public SessionManager(Context context) {
         this.context = context;
         int PRIVATE_MODE = 0;
@@ -105,13 +104,13 @@ public class SessionManager {
         return user;
     }
 
-    public HashMap<String, Integer> getBudgetDetails() {
+    public HashMap<String, Long> getBudgetDetails() {
         String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
         String id_current_budget = ID + KEY_CURRENT_VALUE;
         String id_total_budget = ID + KEY_TOTAL_BUDGET_VALUE;
-        HashMap<String, Integer> user = new HashMap<String, Integer>();
-        user.put(KEY_TOTAL_BUDGET_VALUE, pref.getInt(id_total_budget, 0));
-        user.put(KEY_CURRENT_VALUE, pref.getInt(id_current_budget, 0));
+        HashMap<String, Long> user = new HashMap<String, Long>();
+        user.put(KEY_TOTAL_BUDGET_VALUE, pref.getLong(id_total_budget, 0));
+        user.put(KEY_CURRENT_VALUE, pref.getLong(id_current_budget, 0));
 
         return user;
     }
@@ -145,81 +144,77 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void ADD_ARTICLE(String article_id, Integer price) {
+    public void ADD_ARTICLE(String article_id, long price) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
-        int currentvalue, total, remaining;
+        Long currentvalue, total, remaining;
         String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
         String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
         String Unique_Article_Id = Global_id + Article_Id;
-        total = pref.getInt(Unique_total_value_Id, 0);
-        currentvalue = pref.getInt(Unique_Current_Id, 0);
+        total = pref.getLong(Unique_total_value_Id, 0);
+        currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue + price;
         remaining = total - currentvalue;
         set = pref.getStringSet(Global_id, null);
         if (null == set)
             set = new HashSet<String>();
         set.add(Article_Id);
-        editor.putInt(Unique_Current_Id, currentvalue);
-        editor.putInt(Unique_Remaining_Id, remaining);
+        editor.putLong(Unique_Current_Id, currentvalue);
+        editor.putLong(Unique_Remaining_Id, remaining);
         editor.putBoolean(Unique_Article_Id, true);
         editor.putStringSet(Global_id, set);
         editor.commit();
-
     }
 
-    public void REMOVE_ARTICLE(String article_id, Integer price) {
+    public void REMOVE_ARTICLE(String article_id, Long price) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
-        int currentvalue, total, remaining;
+        Long currentvalue, total, remaining;
         String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
         String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
         String Unique_Article_Id = Global_id + Article_Id;
-        total = pref.getInt(Unique_total_value_Id, 0);
-        currentvalue = pref.getInt(Unique_Current_Id, 0);
+        total = pref.getLong(Unique_total_value_Id, 0);
+        currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue - price;
         remaining = total - currentvalue;
         set.remove(Article_Id);
-        editor.putInt(Unique_Current_Id, currentvalue);
-        editor.putInt(Unique_Remaining_Id, remaining);
+        editor.putLong(Unique_Current_Id, currentvalue);
+        editor.putLong(Unique_Remaining_Id, remaining);
         editor.putBoolean(Unique_Article_Id, false);
         editor.putStringSet(Global_id, set);
         editor.commit();
     }
 
-    public void SET_TOTAL_VALUE(int totalval) {
+    public void SET_TOTAL_VALUE(Long totalval) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
-        editor.putInt(Unique_total_value_Id, totalval);
+        editor.putLong(Unique_total_value_Id, totalval);
         editor.commit();
-
     }
 
-    public int GET_CURRENT_VALUE() {
+    public Long GET_CURRENT_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
-        int returnval;
-        returnval = pref.getInt(Unique_Current_Id, 0);
+        Long returnval;
+        returnval = pref.getLong(Unique_Current_Id, 0);
         return returnval;
-
     }
 
-    public int GET_TOTAL_VALUE() {
+    public Long GET_TOTAL_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
-        int returnval;
-        returnval = pref.getInt(Unique_total_value_Id, 0);
+        Long returnval;
+        returnval = pref.getLong(Unique_total_value_Id, 0);
         return returnval;
-
     }
 
-    public int GET_REMAINING_VALUE() {
+    public Long GET_REMAINING_VALUE() {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
-        int returnval;
-        returnval = pref.getInt(Unique_Remaining_Id, 0);
+        Long returnval;
+        returnval = pref.getLong(Unique_Remaining_Id, 0);
         return returnval;
     }
 
@@ -230,7 +225,7 @@ public class SessionManager {
     }
 
     public boolean IS_ARTICLE_EXISTS(String article_id) {
-        boolean flag=false;
+        boolean flag = false;
 
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         set = pref.getStringSet(Global_id, null);
@@ -242,14 +237,12 @@ public class SessionManager {
                 String value = iterator.next();
                 if (value.equals(article_id)) {
                     flag = true;
-                }
-                else
-                {
-                    flag=false;
+                } else {
+                    flag = false;
                 }
 
-                if(flag)
-                break;
+                if (flag)
+                    break;
             }
 
         }

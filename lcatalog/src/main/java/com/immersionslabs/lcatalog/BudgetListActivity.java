@@ -1,9 +1,7 @@
 package com.immersionslabs.lcatalog;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,13 +28,10 @@ import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.BudgetListAdapter;
-import com.immersionslabs.lcatalog.adapters.MyFavoriteAdapter;
-import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,7 +49,6 @@ public class BudgetListActivity extends AppCompatActivity {
     BudgetManager budgetManager;
     KeyListener listener;
 
-
     private static String BUDGET_URL = null;
 
     String user_id, USER_LOG_TYPE;
@@ -71,12 +65,10 @@ public class BudgetListActivity extends AppCompatActivity {
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
 
-
     Long current_value, total_budget_value, remaining_value;
     Set<String> setlist;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +83,6 @@ public class BudgetListActivity extends AppCompatActivity {
 
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
-
 
         BUDGET_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
@@ -118,7 +109,6 @@ public class BudgetListActivity extends AppCompatActivity {
         disableEditText(Remaining_value);
         Alter_Budget = findViewById(R.id.btn_alter_budget);
 
-
         item_ids = new ArrayList<>();
         item_descriptions = new ArrayList<>();
         item_names = new ArrayList<>();
@@ -135,60 +125,38 @@ public class BudgetListActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
                 builder.setTitle("Enter Your Budget");
 
-                final EditText Total_budget_val = new EditText(BudgetListActivity.this );
-                if(EnvConstants.user_type.equals("CUSTOMER"))
-                {
+                final EditText Total_budget_val = new EditText(BudgetListActivity.this);
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
                     Total_budget_val.setHint(sessionmanager.GET_TOTAL_VALUE().toString());
-                }
-                else
-                {
+                } else {
                     Total_budget_val.setHint(budgetManager.getTotal_Budget().toString());
                 }
 
-
                 Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                 builder.setView(Total_budget_val);
-
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     String budget_value;
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(EnvConstants.user_type.equals("CUSTOMER"))
-                        {
+                        if (EnvConstants.user_type.equals("CUSTOMER")) {
                             budget_value = Total_budget_val.getText().toString();
-                            if(budget_value.isEmpty())
-                            {
-                                Toast.makeText(BudgetListActivity.this,"Enter a value first",Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
+                            if (budget_value.isEmpty()) {
+                                Toast.makeText(BudgetListActivity.this, "Enter a value first", Toast.LENGTH_LONG).show();
+                            } else {
                                 sessionmanager.SET_TOTAL_VALUE(Long.parseLong(budget_value));
-
                                 onResume();
-
                             }
-
-                        }
-                        else
-
-                        {
+                        } else {
                             budget_value = Total_budget_val.getText().toString();
-                            if(budget_value.isEmpty())
-                            {
-                                Toast.makeText(BudgetListActivity.this,"Enter a value first",Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
+                            if (budget_value.isEmpty()) {
+                                Toast.makeText(BudgetListActivity.this, "Enter a value first", Toast.LENGTH_LONG).show();
+                            } else {
                                 budgetManager.setTotal_Budget(Long.parseLong(budget_value));
-
                                 onResume();
-
                             }
                         }
-
-
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -202,9 +170,6 @@ public class BudgetListActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-
-
-
     }
 
     private void CommongetData() {
@@ -239,9 +204,7 @@ public class BudgetListActivity extends AppCompatActivity {
                     });
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(jsonObjectRequest);
-
                 }
-
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
             ArrayList<String> strings = budgetManager.GET_BUDGET_ARTICLE_IDS();
@@ -272,13 +235,10 @@ public class BudgetListActivity extends AppCompatActivity {
                     });
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     requestQueue.add(jsonObjectRequest);
-
                 }
-
             }
         }
     }
-
 
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
@@ -328,19 +288,17 @@ public class BudgetListActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-            item_ids.clear();
-            item_names.clear();
-            item_descriptions.clear();
-            item_prices.clear();
-            item_images.clear();
-            item_discounts.clear();
-            item_3ds.clear();
-            item_dimensions.clear();
-            item_vendors.clear();
+        item_ids.clear();
+        item_names.clear();
+        item_descriptions.clear();
+        item_prices.clear();
+        item_images.clear();
+        item_discounts.clear();
+        item_3ds.clear();
+        item_dimensions.clear();
+        item_vendors.clear();
 
-            CommongetData();
-
-
+        CommongetData();
 
         if (EnvConstants.user_type.equals("CUSTOMER")) {
             sessionmanager = new SessionManager(getApplicationContext());
@@ -368,8 +326,6 @@ public class BudgetListActivity extends AppCompatActivity {
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
         }
-
-
     }
 
     @Override
@@ -377,14 +333,12 @@ public class BudgetListActivity extends AppCompatActivity {
         super.onPause();
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

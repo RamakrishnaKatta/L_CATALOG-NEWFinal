@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int doubleClick = 1;
     NavigationView navigationView;
     private PrefManager prefManager3;
-    BudgetManager  budgetManager;
+    BudgetManager budgetManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
-budgetManager=new BudgetManager();
+        budgetManager = new BudgetManager();
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -390,11 +390,11 @@ budgetManager=new BudgetManager();
         } else if (id == R.id.nav_user_budget_bar) {
 
             if (Objects.equals(EnvConstants.user_type, "GUEST")) {
-                Long budgetval =budgetManager.getTotal_Budget();
+                Long budgetval = budgetManager.getTotal_Budget();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, BudgetListActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
@@ -404,7 +404,7 @@ budgetManager=new BudgetManager();
                 if (budgetval == 0) {
                     Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, BudgetListActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
@@ -451,7 +451,6 @@ budgetManager=new BudgetManager();
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

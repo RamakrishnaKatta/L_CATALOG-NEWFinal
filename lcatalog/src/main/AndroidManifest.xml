@@ -159,11 +159,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".BudgetBarActivity"
-            android:label="@string/title_activity_budget_bar"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
             android:name=".BudgetListActivity"
             android:label="@string/title_activity_budget_list"
             android:screenOrientation="portrait"
