@@ -20,7 +20,7 @@ public class DownloadImages_Product extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = "http://35.154.150.204:4000/upload/images/" + urls[0];
+        String urldisplay = EnvConstants.APP_BASE_URL + "/upload/images/" + urls[0];
         Log.e(TAG, "Product_image1URL : " + urldisplay);
         Bitmap mIcon = null;
         try {

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.Fragment_Overview;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,7 +89,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
         }
 
         Glide.with(activity)
-                .load("http://35.154.150.204:4000/upload/images/" + im1)
+                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
