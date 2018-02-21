@@ -342,15 +342,15 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                         Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                         builder.setView(Total_budget_val);
-                        final String budget_value;
-                        budget_value=Total_budget_val.getText().toString();
+
 
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                String budget_value;
+                                budget_value = Total_budget_val.getText().toString();
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                 } else {
@@ -394,14 +394,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                         Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                         builder.setView(Total_budget_val);
-                       final String budget_value;
-                        budget_value = Total_budget_val.getText().toString();
+
 
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                String budget_value;
+                                budget_value = Total_budget_val.getText().toString();
 
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();

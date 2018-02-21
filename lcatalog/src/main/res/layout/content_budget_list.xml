@@ -64,6 +64,19 @@
                         android:padding="@dimen/margin_10"
                         android:text="ALTER BUDGET"
                         android:textSize="@dimen/text_size_medium" />
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_update_budget"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_2"
+                        android:layout_marginStart="@dimen/margin_2"
+                        android:layout_marginTop="@dimen/margin_2"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_10"
+                        android:text="UPDATE BUDGET"
+                        android:textSize="@dimen/text_size_medium"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 

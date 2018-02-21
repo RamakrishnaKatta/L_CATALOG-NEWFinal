@@ -58,6 +58,12 @@ public class BudgetManager {
     public ArrayList GET_BUDGET_ARTICLE_IDS() {
         return Articles;
     }
+
+
+    public void CLEAR_ARRAY_ARTICLES()
+    {
+        Articles.clear();
+    }
 }
 
 

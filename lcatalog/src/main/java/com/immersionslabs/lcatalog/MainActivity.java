@@ -389,27 +389,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_user_budget_bar) {
 
-            if (Objects.equals(EnvConstants.user_type, "GUEST")) {
-                Long budgetval = budgetManager.getTotal_Budget();
-                if (budgetval == 0) {
-                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
+//            if (Objects.equals(EnvConstants.user_type, "GUEST")) {
+//                Long budgetval = budgetManager.getTotal_Budget();
+//                if (budgetval == 0) {
+//                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, BudgetListActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-                }
-            } else {
-                Long budgetval = sessionmanager.GET_TOTAL_VALUE();
-                if (budgetval == 0) {
-                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, BudgetListActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
-                }
-            }
+//                }
+//            } else {
+//                Long budgetval = sessionmanager.GET_TOTAL_VALUE();
+//                if (budgetval == 0) {
+//                    Toast.makeText(this, "Add Items to your Budget List first", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(this, "Here is your Budget list", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(this, BudgetListActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+//                }
+//            }
 
         } else if (id == R.id.nav_user_notify) {
 
@@ -429,6 +429,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
             user_Favourite_list.clear();
             sessionmanager.logoutUser();
+            budgetManager.CLEAR_ARRAY_ARTICLES();
             Intent intent = new Intent(this, UserTypeActivity.class);
             startActivity(intent);
             finish();
