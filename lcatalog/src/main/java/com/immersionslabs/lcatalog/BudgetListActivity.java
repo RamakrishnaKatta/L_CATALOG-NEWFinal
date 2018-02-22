@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MenuItem;
@@ -70,7 +69,6 @@ public class BudgetListActivity extends AppCompatActivity {
     Set<String> set_list;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +150,6 @@ public class BudgetListActivity extends AppCompatActivity {
                         } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
                             sessionmanager.BUDGET_SET_TOTAL_VALUE(Total_value);
                         }
-
                     } else {
                         Long Current_value = budgetManager.BUDGET_GET_CURRENT();
                         if (Total_value_String.isEmpty()) {
@@ -162,7 +159,6 @@ public class BudgetListActivity extends AppCompatActivity {
                         } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
                             budgetManager.BUDGET_SET_TOTAL(Total_value);
                         }
-
                     }
                 }
                 Update_Budget.setVisibility(View.GONE);
@@ -216,8 +212,6 @@ public class BudgetListActivity extends AppCompatActivity {
 
                     builder.show();
                 }
-
-
             }
         });
     }
@@ -370,6 +364,7 @@ public class BudgetListActivity extends AppCompatActivity {
             Total_budget.setText(str_total_budget_value);
             Current_value.setText(str_current_value);
             Remaining_value.setText(str_remaining_value);
+
             if (sessionmanager.BUDGET_RED_MARKER()) {
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 Current_value.setTextColor(getResources().getColor(R.color.red));

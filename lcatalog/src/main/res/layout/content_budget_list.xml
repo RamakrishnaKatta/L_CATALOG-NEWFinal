@@ -29,100 +29,104 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <!--  Budget Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_15"
+                    android:layout_marginStart="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:visibility="visible">
+
+                    <EditText
+                        android:id="@+id/input_your_budget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your Budget"
+                        android:inputType="number"
+                        android:textColor="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:weightSum="2">
 
-                    <!--  Budget Label -->
+                    <!--  Current Value Label -->
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_2"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:visibility="visible">
 
                         <EditText
-                            android:id="@+id/input_your_budget"
+                            android:id="@+id/input_your_current_value"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Your Budget"
+                            android:hint="Your Current Value"
                             android:inputType="number"
                             android:textColor="@color/white" />
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btn_alter_budget"
-                        android:layout_width="100dp"
+                    <!--  Remaining Budget Label -->
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_2"
-                        android:layout_marginStart="@dimen/margin_2"
-                        android:layout_marginTop="@dimen/margin_2"
+                        android:layout_margin="@dimen/margin_2"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="@dimen/margin_10"
-                        android:text="ALTER BUDGET" />
+                        android:visibility="visible">
+
+                        <EditText
+                            android:id="@+id/input_your_remaining_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Your Remaining Budget"
+                            android:inputType="number"
+                            android:textColor="@color/white" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_update_budget"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_2"
-                        android:layout_marginStart="@dimen/margin_2"
-                        android:layout_marginTop="@dimen/margin_2"
+                        android:layout_margin="@dimen/margin_2"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:padding="@dimen/margin_10"
+                        android:padding="@dimen/margin_3"
                         android:text="UPDATE BUDGET"
                         android:visibility="gone" />
 
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_alter_budget"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_2"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_3"
+                        android:text="ALTER BUDGET" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_clear_budget"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_2"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_3"
+                        android:text="CLEAR BUDGET" />
+
                 </LinearLayout>
-
-                <!--  Current Value Label -->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_2"
-                    android:visibility="visible">
-
-                    <EditText
-                        android:id="@+id/input_your_current_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Your Current Value"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
-
-                <!--  Remaining Budget Label -->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_2"
-                    android:visibility="visible">
-
-                    <EditText
-                        android:id="@+id/input_your_remaining_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Your Remaining Budget"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_clear_budget"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_2"
-                    android:layout_marginStart="@dimen/margin_2"
-                    android:layout_marginTop="@dimen/margin_2"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_10"
-                    android:text="CLEAR BUDGET" />
-
 
             </LinearLayout>
 
