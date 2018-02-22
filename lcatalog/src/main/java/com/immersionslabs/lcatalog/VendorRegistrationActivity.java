@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 import android.app.ProgressDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,17 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
@@ -34,12 +23,13 @@ import com.immersionslabs.lcatalog.network.ApiService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class VendorRegistrationActivity extends AppCompatActivity implements ApiCommunication {
+
+    private static final String TAG = "VendorRegistration";
+
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendor_requests";
 
     public static final String KEY_V_COMPANYNAME = "company_name";
     public static final String KEY_V_CONTACTPERSONNAME = "contact_person_name";
@@ -50,8 +40,7 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
     public static final String KEY_V_STATE = "state";
     public static final String KEY_V_PIN = "pin";
     public static final String KEY_V_MOBILENO = "mobile";
-    private static final String TAG = "VendorRegistrationActivity";
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendor_requests";
+
     String companyName, companyContactName, companyAddress, companyLocation, companyState, companyPin, companyEmail, companyMobileNo, companyModelCount;
     String resp, message;
     private EditText v_companyName, v_companyContactPerson, v_companyAddress, v_companyLocation, v_companyState, v_companyPin, v_companyEmail, v_companyMobileNo, v_totalModels;
@@ -186,8 +175,8 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
         request.put("request", vendor_request);
         Log.e(TAG, "Request--" + request);
 
-
         ApiService.getInstance(this).postData(this, REGISTER_URL, vendor_request, "VENDOR_REQUEST", "VENDOR_REQUEST");
+
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -201,6 +190,29 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
                     }
                 }, 3000);
     }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("VENDOR_REQUEST")) {
+            Log.e(TAG, "Response--" + response);
+
+            try {
+                resp = response.getString("success");
+//                    code = requestResponse.getString("code");
+//                    message = requestResponse.getString("message");
+                Log.e(TAG, "response--" + resp);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(VendorRegistrationActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+    }
+
     public boolean validate() {
         boolean valid = true;
 
@@ -351,28 +363,5 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("VENDOR_REQUEST")) {
-            Log.e(TAG, "Response--" + response);
-
-            try {
-                resp = response.getString("success");
-//                    code = requestResponse.getString("code");
-//                    message = requestResponse.getString("message");
-                Log.e(TAG, "response--" + resp);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(VendorRegistrationActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
     }
 }

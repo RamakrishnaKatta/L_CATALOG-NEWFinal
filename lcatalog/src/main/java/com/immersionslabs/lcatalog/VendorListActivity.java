@@ -32,8 +32,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class VendorListActivity extends AppCompatActivity implements ApiCommunication {
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors";
+
     private static final String TAG = "VendorListActivity";
+
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors";
+
     RecyclerView recycler;
     GridLayoutManager VendorListManager;
     private ArrayList<String> vendor_ids;
@@ -66,7 +69,27 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
     private void CommonGetData() {
         Log.e(TAG, "CommonGetData: " + REGISTER_URL);
         final JSONObject object = new JSONObject();
-        ApiService.getInstance(this).getData(this, false, "VENDOR_LIST", REGISTER_URL, "VENDOR_LIST");
+        ApiService.getInstance(this).getData(this, false, "VENDOR LIST ACTIVITY", REGISTER_URL, "VENDOR_LIST");
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("VENDOR_LIST")) {
+
+            Log.e(TAG, "response " + response);
+
+            try {
+                JSONArray resp = response.getJSONArray("data");
+                GetData(resp);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(VendorListActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     private void GetData(JSONArray resp) {
@@ -105,7 +128,6 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -114,25 +136,5 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("VENDOR_LIST")) {
-            Log.e(TAG, "response " + response);
-            try {
-                JSONArray resp = response.getJSONArray("data");
-                GetData(resp);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(VendorListActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
-
     }
 }

@@ -10,15 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.VendorCatalogAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
@@ -28,18 +20,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class VendorCatalogActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/userArticles/";
     private static final String TAG = "VendorCatalogActivity";
+
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/userArticles/";
     private static String VENDOR_URL = null;
+
     RecyclerView vendor_recycler;
     GridLayoutManager VendorCatalogManager;
     String vendor_id;
     Integer vendor_id_no;
+
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
@@ -77,13 +71,16 @@ public class VendorCatalogActivity extends AppCompatActivity implements ApiCommu
         item_3ds = new ArrayList<>();
 
         final Bundle vendor_data = getIntent().getExtras();
+
+        assert vendor_data != null;
         vendor_id = vendor_data.getString("vendor_id").trim();
         vendor_id_no = Integer.parseInt(vendor_id);
         vendor_id_no = vendor_id_no + 1;
+
         vendor_id = String.valueOf(vendor_id_no);
         Log.e(TAG, "Vendor Id" + vendor_id);
-        VENDOR_URL = REGISTER_URL + vendor_id;
 
+        VENDOR_URL = REGISTER_URL + vendor_id;
         Log.e(TAG, "VENDOR_URL" + VENDOR_URL);
 
         try {
@@ -176,6 +173,5 @@ public class VendorCatalogActivity extends AppCompatActivity implements ApiCommu
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(VendorCatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
-
     }
 }

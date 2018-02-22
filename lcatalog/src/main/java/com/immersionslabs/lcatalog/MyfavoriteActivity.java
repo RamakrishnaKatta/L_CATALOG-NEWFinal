@@ -97,8 +97,8 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
             Iterator iterator = EnvConstants.user_Favourite_list.iterator();
             while (iterator.hasNext()) {
                 String TEMP_GUEST_FAVOURITE_URL = GUEST_FAVOURITE_URL + "/" + iterator.next().toString();
-                ApiService.getInstance(this).getData(this, false, "FAVORITE ACTIVITY", TEMP_GUEST_FAVOURITE_URL, "GUEST");
 
+                ApiService.getInstance(this).getData(this, false, "FAVORITE ACTIVITY", TEMP_GUEST_FAVOURITE_URL, "GUEST");
             }
         }
     }
@@ -130,8 +130,8 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(MyfavoriteActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
-
     }
+
     private void GetData(JSONArray resp) {
 
         for (int i = 0; i < resp.length(); i++) {
@@ -222,6 +222,4 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     public void onPause() {
         super.onPause();
     }
-
-
 }

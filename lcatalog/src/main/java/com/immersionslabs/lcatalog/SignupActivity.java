@@ -19,16 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
@@ -38,10 +29,15 @@ import com.immersionslabs.lcatalog.network.ApiService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity implements ApiCommunication {
+
+    private static final String TAG = "SignupActivity";
+
+    private static final int REQUEST_SIGNUP = 0;
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users";
+
     public static final String KEY_USERNAME = "name";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
@@ -49,15 +45,13 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     public static final String KEY_ADDRESS = "adress";
     public static final String KEY_TYPE = "type";
     public static final String KEY_VENDOR_ID = "vendor_id";
-    private static final String TAG = "SignupActivity";
-    private static final int REQUEST_SIGNUP = 0;
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users";
 
     TextView app_name, powered;
     CoordinatorLayout SignupLayout;
     String name, email, address, mobile, password, reEnterPassword;
     String resp, code, message;
     String type = "CUSTOMER";
+
     int vendor_id = 100000; // This Value should be changed when a user is registered under specific customer
     private EditText _nameText, _addressText, _emailText, _mobileText, _passwordText, _reEnterPasswordText;
     private Button _signupButton;
@@ -188,24 +182,44 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
 
         Log.e(TAG, "request--" + signup_parameters);
 
-//        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setMessage("Creating Account...");
-//        progressDialog.show();
-
+        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
 
         ApiService.getInstance(this).postData(this, REGISTER_URL, signup_parameters, "SIGNUP", "USER_SIGNUP");
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        if (Objects.equals(message, "FAILURE") || Objects.equals(code, "500")) {
-                            onSignupFailed();
-                        } else {
+                        if (Objects.equals(message, "SUCCESS") || Objects.equals(code, "200")) {
                             onSignupSuccess();
+                        } else {
+                            onSignupFailed();
                         }
-//                        progressDialog.dismiss();
+                        progressDialog.dismiss();
                     }
                 }, 3000);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("USER_SIGNUP")) {
+            try {
+                resp = response.getString("success");
+                code = response.getString("status_code");
+                message = response.getString("message");
+                onSignupSuccess();
+                Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(SignupActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -219,6 +233,7 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     }
 
     public void onSignupSuccess() {
+
         CustomMessage.getInstance().CustomMessage(SignupActivity.this, "SignUp Success, Please Welcome");
 
         _signupButton = findViewById(R.id.btn_signup);
@@ -265,7 +280,7 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Alert");
-        builder.setMessage("Are you sure to Exit ");
+        builder.setMessage("Are you sure you don't want to SignUp ");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -275,7 +290,12 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
                 // SignupActivity.super.onDestroy();
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                CustomMessage.getInstance().CustomMessage(SignupActivity.this, "Thanks for thinking again.");
+            }
+        });
         builder.show();
     }
 
@@ -335,27 +355,5 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("USER_SIGNUP")) {
-            try {
-                resp = response.getString("success");
-                code = response.getString("status_code");
-                message = response.getString("message");
-                onSignupSuccess();
-                Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(SignupActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-
     }
 }

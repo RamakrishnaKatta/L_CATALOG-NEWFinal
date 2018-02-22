@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Fragment_Overview extends Fragment implements ApiCommunication {
+
     private static final String TAG = "Fragment_Overview";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
@@ -50,7 +51,7 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
     }
 
     private void getData() {
-        ApiService.getInstance(getContext()).getData(this, false, "CATALOGUE", REGISTER_URL, "GETDATA");
+        ApiService.getInstance(getContext()).getData(this, false, "CATALOGUE ACTIVITY", REGISTER_URL, "GETDATA");
     }
 
     @Override

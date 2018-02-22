@@ -25,15 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
@@ -56,7 +48,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -345,7 +336,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                         builder.setView(Total_budget_val);
 
-
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
 
@@ -407,9 +397,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
-
                                 } else {
-
                                     budgetManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                 }
                             }
@@ -420,7 +408,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 dialog.cancel();
                             }
                         });
-
                         builder.show();
 
                     } else {
@@ -585,9 +572,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             fav_Request.put("liked", value);
             fav_Request.put("userid", user_id);
             fav_Request.put("article_id", article_id);
+
             Log.e(TAG, "likeApiCall: UserId-- " + user_id);
             Log.e(TAG, "likeApiCall: Article Id-- " + article_id);
-
             Log.e(TAG, "Request-- " + fav_Request);
 
         } catch (Exception e) {
@@ -595,50 +582,33 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         }
 
         ApiService.getInstance(getContext()).postData(this, LIKE_URL, fav_Request, "FAVORITE", "FAVORITE_SELECT");
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, LIKE_URL, fav_Request, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject fav_Response) {
-//
-//                if (value == 1) {
-//                    Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
-//                }
-//                try {
-//                    resp = fav_Response.getString("success");
-//                    code = fav_Response.getString("status_code");
-//                    message = fav_Response.getString("message");
-//
-//                    Log.e(TAG, "Response-- " + fav_Response);
-////                    Log.e(TAG, "Response : Response -- " + resp + " \n code-- " + code + " \n message-- " + message);
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//                Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
-//                // As of f605da3 the following should work
-//                NetworkResponse response = error.networkResponse;
-//                if (error instanceof ServerError && response != null) {
-//                    try {
-//                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-//                        // Now you can use any deserializer to make sense of data
-//                        JSONObject request = new JSONObject(res);
-//                    } catch (UnsupportedEncodingException | JSONException e1) {
-//                        // Couldn't properly decode data to string
-//                        e1.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-//        requestQueue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("FAVORITE_SELECT")) {
+            Log.e(TAG, "response " + response);
+            if (value == 1) {
+                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
+            }
+            try {
+                resp = response.getString("success");
+                code = response.getString("status_code");
+                message = response.getString("message");
+
+                Log.e(TAG, "Response -- " + response);
+                Log.e(TAG, "Response -- " + resp + " \n code-- " + code + " \n message-- " + message);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -700,32 +670,5 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("FAVORITE_SELECT")) {
-            Log.e(TAG, "response "+response );
-            if (value == 1) {
-                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
-            }
-            try {
-                resp = response.getString("success");
-                code = response.getString("status_code");
-                message = response.getString("message");
-
-                Log.e(TAG, "Response-- " + response);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
-
     }
 }

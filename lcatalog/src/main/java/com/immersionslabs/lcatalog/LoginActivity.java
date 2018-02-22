@@ -24,16 +24,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
@@ -51,7 +42,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -60,13 +50,18 @@ import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list
 public class LoginActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String TAG = "LoginActivity";
+
     private static final int REQUEST_LOGIN = 0;
     private static final int REQUEST_FORGOT_PASSWORD = 0;
+
     private static final String LOGIN_URL = EnvConstants.APP_BASE_URL + "/customerLogin";
     private static final String Local_url = "http://192.168.0.10:4000/customerLogin";
+
     SessionManager sessionmanager;
     SharedPreferences preferences;
     CryptionRijndeal rijndeal_obj;
+    private PrefManager prefManager5;
+
     TextView app_name, _forgot_password, powered;
     EditText _emailText, _passwordText;
     Button _loginButton;
@@ -79,7 +74,6 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
     File file_customer;
     String[] text_from_customer_file;
     ArrayList<String> temp = new ArrayList<String>();
-    private PrefManager prefManager5;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -187,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         Log.e(TAG, "" + prefManager5.LoginActivityScreenLaunch());
 
         final Display display = getWindowManager().getDefaultDisplay();
-        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "Click here to Autofill your recent details ")
+        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "Click here to Auto fill your recent details ")
                         .cancelable(false)
                         .tintTarget(false)
                         .textColor(R.color.white)
@@ -271,7 +265,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         request.put("request", login_parameters);
         Log.e(TAG, "Request--" + request);
 
-        ApiService.getInstance(this).postData(this,LOGIN_URL,login_parameters,"LOGIN","USER_LOGIN");
+        ApiService.getInstance(this).postData(this, LOGIN_URL, login_parameters, "LOGIN", "USER_LOGIN");
 
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
@@ -288,8 +282,8 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
 
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("USER_LOGIN")){
-            Log.e(TAG, "response: "+response );
+        if (flag.equals("USER_LOGIN")) {
+            Log.e(TAG, "response: " + response);
             try {
                 resp = response.getString("success");
                 code = response.getString("status_code");
@@ -328,8 +322,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(LoginActivity.this,"Internal Error", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(LoginActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -347,7 +340,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         Button _loginButton = findViewById(R.id.btn_login);
 
         //CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login Success");
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
         setResult(RESULT_OK, null);
@@ -366,7 +359,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
             _loginButton = findViewById(R.id.btn_login);
 //            CustomMessage.getInstance().CustomMessage(LoginActivity.this, "There is a issue with your Login, maybe a network/server issue! " +
 //                    "\n Please try to login as guest for this time");
-            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
             _loginButton.setEnabled(true);
         }
@@ -374,8 +367,8 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
 
     public void onLoginFailed() {
         Button _loginButton = findViewById(R.id.btn_login);
-       // CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login failed Please Sign Up or Try Logging Again");
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+        // CustomMessage.getInstance().CustomMessage(LoginActivity.this, "Login failed Please Sign Up or Try Logging Again");
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 
@@ -430,6 +423,4 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
     public void onPause() {
         super.onPause();
     }
-
-
 }

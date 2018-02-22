@@ -17,16 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CryptionRijndeal;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
@@ -38,7 +29,6 @@ import com.immersionslabs.lcatalog.network.ApiService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -48,14 +38,17 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
 
     private static final String TAG = "UserAccountActivity";
 
+    private String LOGIN_URL = APP_BASE_URL + "/users";
     private static final int REQUEST_UPDATE = 0;
+
     SessionManager sessionmanager;
     CryptionRijndeal rijndeal_obj;
+
     private EditText name, email, address, mobile;
     private KeyListener listener;
     private Button edit_user, update_user;
-    private String user_name, user_address, user_phone, user_email, resp, message, code, user_id, user_password, user_global_id;
-    private String LOGIN_URL = APP_BASE_URL + "/users";
+    private String user_name, user_address, user_phone, user_email, user_id, user_password, user_global_id;
+    String resp, message, code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +82,6 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_password = (String) hashmap.get(SessionManager.KEY_PASSWORD);
         user_global_id = (String) hashmap.get(SessionManager.KEY_GLOBAL_USER_ID);
-
 
         rijndeal_obj = new CryptionRijndeal();
 
@@ -187,7 +179,8 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
             LOGIN_URL += "/" + user_global_id;
             Log.e(TAG, "Global user Id--" + user_global_id);
 
-            ApiService.getInstance(this).putData(this,LOGIN_URL,user_update_parameters,"UPDATE","USER_UPDATE");
+            ApiService.getInstance(this).putData(this, LOGIN_URL, user_update_parameters, "UPDATE", "USER_UPDATE");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,6 +195,28 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
                         progressDialog.dismiss();
                     }
                 }, 3000);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("USER_UPDATE")) {
+            Log.e(TAG, "response--" + response);
+
+            try {
+                resp = response.getString("success");
+                code = response.getString("status_code");
+                message = response.getString("message");
+                Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(UserAccountActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     public void updateSuccess() {
@@ -331,27 +346,5 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("USER_UPDATE")){
-            Log.e(TAG, "response--" + response);
-
-            try {
-                resp = response.getString("success");
-                code = response.getString("status_code");
-                message = response.getString("message");
-                Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(UserAccountActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 }
