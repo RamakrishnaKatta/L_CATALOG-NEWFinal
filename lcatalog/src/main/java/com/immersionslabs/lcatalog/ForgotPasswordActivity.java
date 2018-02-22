@@ -37,12 +37,14 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     private static final int REQUEST_FORGOT = 0;
 
     private static final String PASSWORD_UPDATE_URL = EnvConstants.APP_BASE_URL + "/users/changePassword";
-    String code, message;
+
     CryptionRijndeal rijndeal_obj;
     SessionManager sessionManager;
+
     private Button _submitButton;
     private EditText _emailText, _passwordText, _reenterPasswordText;
     private String email, password, ReEnterPass;
+    String code, message;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,7 +143,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
         password_update_parameters.put("password", password);
         Log.e(TAG, "Request--" + password_update_parameters);
 
-        ApiService.getInstance(this).postData(this, PASSWORD_UPDATE_URL, password_update_parameters, "FORGOT", "POST_PASSWORD");
+        ApiService.getInstance(this).postData(this, PASSWORD_UPDATE_URL, password_update_parameters, "FORGOT PASSWORD ACTIVITY", "POST_PASSWORD");
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 // On complete call either onLoginSuccess or onLoginFailed
@@ -154,6 +156,25 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
                 progressDialog.dismiss();
             }
         }, 3000);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject requestResponse, String flag) {
+
+        if (flag.equals("POST_PASSWORD")) {
+            Log.e(TAG, "response--" + requestResponse);
+            try {
+                code = requestResponse.getString("status_code");
+                message = requestResponse.getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(ForgotPasswordActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -218,7 +239,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     }
 
     private void onSubmitSuccess() {
-
         _submitButton = findViewById(R.id.btn_submit);
         _submitButton.setEnabled(false);
         CustomMessage.getInstance().CustomMessage(this, "Password has been changed successfully, Try login with the new password");
@@ -241,34 +261,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
 
     private void onSubmitFailed() {
         Button _submitbtn = findViewById(R.id.btn_submit);
-
         if (email != null) {
             _emailText.setText(email);
         }
-
-        CustomMessage.getInstance().CustomMessage(ForgotPasswordActivity.this, "Your email is not registered, Please Enter a registered Email Id");
-
+        CustomMessage.getInstance().CustomMessage(this, "Your email is not registered, Please Enter a registered Email Id");
         _submitbtn.setEnabled(true);
-    }
-
-    @Override
-    public void onResponseCallback(JSONObject requestResponse, String flag) {
-
-        if (flag.equals("POST_PASSWORD")) {
-            Log.e(TAG, "response--" + requestResponse);
-            try {
-                code = requestResponse.getString("status_code");
-                message = requestResponse.getString("message");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(ForgotPasswordActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -280,5 +277,4 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     public void onPause() {
         super.onPause();
     }
-
 }

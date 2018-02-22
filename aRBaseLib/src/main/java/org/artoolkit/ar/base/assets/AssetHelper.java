@@ -33,9 +33,7 @@ public class AssetHelper {
     public AssetHelper(AssetManager am) {
 
         manager = am;
-
     }
-
 
     public List<AssetFileTransfer> copyAssetFolder(String assetBasePath, String targetDirPath) {
 
