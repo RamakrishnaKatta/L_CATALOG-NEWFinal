@@ -127,7 +127,7 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
 
     private void getVendorData() throws JSONException {
 
-        ApiService.getInstance(getContext()).getData(this, false, "PRODUCT DETAILS FRAGMENT", VENDOR_URL, "VENDOR DATA");
+        ApiService.getInstance(getContext()).getData(this, false, "PRODUCT DETAILS FRAGMENT", VENDOR_URL, "VENDOR_DATA");
     }
 
     @Override
@@ -159,7 +159,7 @@ public class Fragment_ProductDetails extends Fragment implements View.OnClickLis
 
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("VENDOR DATA")) {
+        if (flag.equals("VENDOR_DATA")) {
             String response_type = null;
             try {
                 response_type = response.getString("success");

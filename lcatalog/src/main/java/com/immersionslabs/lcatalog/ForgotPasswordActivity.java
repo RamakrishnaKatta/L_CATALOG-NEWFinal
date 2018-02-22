@@ -141,7 +141,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
         password_update_parameters.put("password", password);
         Log.e(TAG, "Request--" + password_update_parameters);
 
-        ApiService.getInstance(this).postData(this, PASSWORD_UPDATE_URL, password_update_parameters, "FORGOT", "POST PASSWORD");
+        ApiService.getInstance(this).postData(this, PASSWORD_UPDATE_URL, password_update_parameters, "FORGOT", "POST_PASSWORD");
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
                 // On complete call either onLoginSuccess or onLoginFailed
@@ -254,7 +254,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
     @Override
     public void onResponseCallback(JSONObject requestResponse, String flag) {
 
-        if (flag.equals("POST PASSWORD")) {
+        if (flag.equals("POST_PASSWORD")) {
             Log.e(TAG, "response--" + requestResponse);
             try {
                 code = requestResponse.getString("status_code");

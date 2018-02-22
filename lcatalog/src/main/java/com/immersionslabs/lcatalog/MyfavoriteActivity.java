@@ -103,6 +103,35 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         }
     }
 
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("FAVORITE_LIST")) {
+            Log.e(TAG, " response" + response);
+
+            try {
+                JSONArray resp = response.getJSONArray("data");
+                GetData(resp);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        if (flag.equals("GUEST")) {
+            try {
+                JSONObject RESP = response.getJSONObject("data");
+                GetData(RESP);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(MyfavoriteActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+
+    }
     private void GetData(JSONArray resp) {
 
         for (int i = 0; i < resp.length(); i++) {
@@ -194,33 +223,5 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         super.onPause();
     }
 
-    @Override
-    public void onResponseCallback(JSONObject response, String flag) {
-        if (flag.equals("FAVORITE_LIST")) {
-            Log.e(TAG, "onResponse: response" + response);
 
-            try {
-                JSONArray resp = response.getJSONArray("data");
-                GetData(resp);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        if (flag.equals("GUEST")) {
-            try {
-                JSONObject RESP = response.getJSONObject("data");
-                GetData(RESP);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(MyfavoriteActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-
-    }
 }

@@ -43,6 +43,8 @@ import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +57,7 @@ import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_LOGIN = 0;
@@ -269,66 +271,7 @@ public class LoginActivity extends AppCompatActivity {
         request.put("request", login_parameters);
         Log.e(TAG, "Request--" + request);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, LOGIN_URL, login_parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject requestResponse) {
-                Log.e(TAG, "response--" + requestResponse);
-
-                try {
-                    resp = requestResponse.getString("success");
-                    code = requestResponse.getString("status_code");
-                    message = requestResponse.getString("message");
-                    Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
-
-                    JSONArray user_details_array = requestResponse.getJSONArray("data");
-                    for (int i = 0; i < user_details_array.length(); i++) {
-
-                        JSONObject user_details = user_details_array.getJSONObject(i);
-                        globalUserId = user_details.getString("_id");
-                        userId = user_details.getString("id");
-                        userName = user_details.getString("name");
-                        userAddress = user_details.getString("address");
-                        userEmail = user_details.getString("email");
-                        userPhone = user_details.getString("mobile_no");
-
-                        JSONArray fav_ids = user_details.getJSONArray("article_ids");
-                        final int no_of_fav_ids = fav_ids.length() - 1;
-                        for (int j = 0; j <= no_of_fav_ids; j++) {
-                            temp.add(fav_ids.getString(j));
-                        }
-
-                        user_Favourite_list = temp;
-
-                        Log.e(TAG, "favourite JSON Ids " + fav_ids);
-                        Log.e(TAG, "favourite Array List Ids " + user_Favourite_list);
-                        Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-                // As of f605da3 the following should work
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(4000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        ApiService.getInstance(this).postData(this,LOGIN_URL,login_parameters,"LOGIN","USER_LOGIN");
 
         new android.os.Handler().postDelayed(new Runnable() {
             public void run() {
@@ -341,6 +284,52 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         }, 3000);
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("USER_LOGIN")){
+            Log.e(TAG, "response: "+response );
+            try {
+                resp = response.getString("success");
+                code = response.getString("status_code");
+                message = response.getString("message");
+                Log.e(TAG, "resp " + resp + " code--" + code + " message--" + message);
+
+                JSONArray user_details_array = response.getJSONArray("data");
+                for (int i = 0; i < user_details_array.length(); i++) {
+
+                    JSONObject user_details = user_details_array.getJSONObject(i);
+                    globalUserId = user_details.getString("_id");
+                    userId = user_details.getString("id");
+                    userName = user_details.getString("name");
+                    userAddress = user_details.getString("address");
+                    userEmail = user_details.getString("email");
+                    userPhone = user_details.getString("mobile_no");
+
+                    JSONArray fav_ids = user_details.getJSONArray("article_ids");
+                    final int no_of_fav_ids = fav_ids.length() - 1;
+                    for (int j = 0; j <= no_of_fav_ids; j++) {
+                        temp.add(fav_ids.getString(j));
+                    }
+
+                    user_Favourite_list = temp;
+
+                    Log.e(TAG, "favourite JSON Ids " + fav_ids);
+                    Log.e(TAG, "favourite Array List Ids " + user_Favourite_list);
+                    Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(LoginActivity.this,"Internal Error", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -441,5 +430,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
     }
+
 
 }

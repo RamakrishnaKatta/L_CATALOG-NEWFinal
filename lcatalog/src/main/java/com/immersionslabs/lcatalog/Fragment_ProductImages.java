@@ -44,6 +44,8 @@ import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 import com.like.LikeButton;
 import com.like.OnAnimationEndListener;
 import com.like.OnLikeListener;
@@ -62,7 +64,7 @@ import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
-public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener {
+public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener, ApiCommunication {
 
     private static final String TAG = "Fragment_ProductImages";
 
@@ -592,50 +594,51 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, LIKE_URL, fav_Request, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject fav_Response) {
-
-                if (value == 1) {
-                    Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
-                }
-                try {
-                    resp = fav_Response.getString("success");
-                    code = fav_Response.getString("status_code");
-                    message = fav_Response.getString("message");
-
-                    Log.e(TAG, "Response-- " + fav_Response);
-//                    Log.e(TAG, "Response : Response -- " + resp + " \n code-- " + code + " \n message-- " + message);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
-                // As of f605da3 the following should work
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonObjectRequest);
+        ApiService.getInstance(getContext()).postData(this, LIKE_URL, fav_Request, "FAVORITE", "FAVORITE_SELECT");
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, LIKE_URL, fav_Request, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject fav_Response) {
+//
+//                if (value == 1) {
+//                    Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
+//                }
+//                try {
+//                    resp = fav_Response.getString("success");
+//                    code = fav_Response.getString("status_code");
+//                    message = fav_Response.getString("message");
+//
+//                    Log.e(TAG, "Response-- " + fav_Response);
+////                    Log.e(TAG, "Response : Response -- " + resp + " \n code-- " + code + " \n message-- " + message);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
+//                // As of f605da3 the following should work
+//                NetworkResponse response = error.networkResponse;
+//                if (error instanceof ServerError && response != null) {
+//                    try {
+//                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+//                        // Now you can use any deserializer to make sense of data
+//                        JSONObject request = new JSONObject(res);
+//                    } catch (UnsupportedEncodingException | JSONException e1) {
+//                        // Couldn't properly decode data to string
+//                        e1.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue.add(jsonObjectRequest);
     }
 
     @Override
@@ -686,7 +689,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 article_removelist.setVisibility(View.GONE);
             }
 
-
             if (sessionmanager.BUDGET_RED_MARKER()) {
                 Add_Text.setTextColor(getResources().getColor(R.color.red));
             } else {
@@ -698,5 +700,32 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("FAVORITE_SELECT")) {
+            Log.e(TAG, "response "+response );
+            if (value == 1) {
+                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
+            }
+            try {
+                resp = response.getString("success");
+                code = response.getString("status_code");
+                message = response.getString("message");
+
+                Log.e(TAG, "Response-- " + response);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_LONG).show();
+
     }
 }

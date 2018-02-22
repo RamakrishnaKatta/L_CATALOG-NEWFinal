@@ -362,6 +362,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "You are a Guest, You don't possess an Account !! Thanks and try Signing up ", Toast.LENGTH_SHORT).show();
             }
 
+        } else if (id == R.id.nav_ven) {
+
+            Toast.makeText(this, "We will not disappoint you, Lets get in Touch !!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, VendorListActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_ven_reg) {
 
             Toast.makeText(this, "We will not disappoint you, Lets get in Touch !!", Toast.LENGTH_SHORT).show();

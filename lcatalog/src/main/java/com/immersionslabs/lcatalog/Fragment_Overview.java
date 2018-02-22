@@ -56,14 +56,16 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
 
-        Log.e(TAG, "response--" + response);
-        JSONArray resp = null;
-        try {
-            resp = response.getJSONArray("data");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (flag.equals("GETDATA")) {
+            Log.e(TAG, "response--" + response);
+            JSONArray resp = null;
+            try {
+                resp = response.getJSONArray("data");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mainRecyclerView(resp);
         }
-        mainRecyclerView(resp);
     }
 
     private void mainRecyclerView(JSONArray m_jsonArray) {
