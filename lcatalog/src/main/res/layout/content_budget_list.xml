@@ -111,6 +111,19 @@
                         android:textColor="@color/white" />
                 </android.support.design.widget.TextInputLayout>
 
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_clear_budget"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_2"
+                    android:layout_marginStart="@dimen/margin_2"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_10"
+                    android:text="CLEAR BUDGET" />
+
+
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView

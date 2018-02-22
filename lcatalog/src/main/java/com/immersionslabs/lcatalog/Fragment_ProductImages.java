@@ -669,6 +669,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 article_budgetlist.setVisibility(View.VISIBLE);
                 article_removelist.setVisibility(View.GONE);
             }
+
+            if (budgetManager.BUDGET_RED_MARKER()) {
+                Add_Text.setTextColor(getResources().getColor(R.color.red));
+            } else {
+                Add_Text.setTextColor(getResources().getColor(R.color.white));
+            }
         }
         if (EnvConstants.user_type.equals("CUSTOMER")) {
 
@@ -678,6 +684,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             } else {
                 article_budgetlist.setVisibility(View.VISIBLE);
                 article_removelist.setVisibility(View.GONE);
+            }
+
+
+            if (sessionmanager.BUDGET_RED_MARKER()) {
+                Add_Text.setTextColor(getResources().getColor(R.color.red));
+            } else {
+                Add_Text.setTextColor(getResources().getColor(R.color.white));
             }
         }
     }

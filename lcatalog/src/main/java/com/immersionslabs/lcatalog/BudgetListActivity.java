@@ -1,11 +1,14 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,7 +43,7 @@ public class BudgetListActivity extends AppCompatActivity {
     private static final String TAG = "BudgetListActivity";
 
     EditText Total_budget, Current_value, Remaining_value;
-    Button Alter_Budget, Update_Budget;
+    Button Alter_Budget, Update_Budget, Clear_Budget;
 
     SessionManager sessionmanager;
     HashMap<String, Long> get_details;
@@ -66,6 +70,7 @@ public class BudgetListActivity extends AppCompatActivity {
     Set<String> set_list;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +114,7 @@ public class BudgetListActivity extends AppCompatActivity {
 
         Alter_Budget = findViewById(R.id.btn_alter_budget);
         Update_Budget = findViewById(R.id.btn_update_budget);
+        Clear_Budget = findViewById(R.id.btn_clear_budget);
 
         item_ids = new ArrayList<>();
         item_descriptions = new ArrayList<>();
@@ -132,17 +138,86 @@ public class BudgetListActivity extends AppCompatActivity {
         Update_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Long Total_value = Long.parseLong(Total_budget.getText().toString());
-                if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    sessionmanager.BUDGET_SET_TOTAL_VALUE(Total_value);
+                String Total_value_String = Total_budget.getText().toString();
+                if (Total_value_String.isEmpty()) {
+                    Toast.makeText(BudgetListActivity.this, "Invalid input,no value entered", Toast.LENGTH_LONG).show();
                 } else {
-                    budgetManager.BUDGET_SET_TOTAL(Total_value);
+                    Long Total_value = Long.parseLong(Total_budget.getText().toString());
+                    if (EnvConstants.user_type.equals("CUSTOMER")) {
+                        Long Current_value = sessionmanager.BUDGET_GET_CURRENT_VALUE();
+                        if (Total_value_String.isEmpty()) {
+                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                        } else if (Total_value < Current_value) {
+                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                        } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
+                            sessionmanager.BUDGET_SET_TOTAL_VALUE(Total_value);
+                        }
+
+                    } else {
+                        Long Current_value = budgetManager.BUDGET_GET_CURRENT();
+                        if (Total_value_String.isEmpty()) {
+                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                        } else if (Total_value < Current_value) {
+                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                        } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
+                            budgetManager.BUDGET_SET_TOTAL(Total_value);
+                        }
+
+                    }
                 }
                 Update_Budget.setVisibility(View.GONE);
                 Alter_Budget.setVisibility(View.VISIBLE);
                 disableEditText(Total_budget);
-                Total_budget.setTextColor(getResources().getColor(R.color.white));
                 onResume();
+            }
+        });
+        Clear_Budget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                    builder.setTitle("ARE YOU SURE YOU WANT TO CLEAR THE BUDGET?");
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sessionmanager.BUDGET_CLEAR_ARTICLES();
+                            onResume();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                    builder.setTitle("ARE YOU SURE YOU WANT TO CLEAR THE BUDGET?");
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
+                            onResume();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                }
+
+
             }
         });
     }
@@ -295,6 +370,15 @@ public class BudgetListActivity extends AppCompatActivity {
             Total_budget.setText(str_total_budget_value);
             Current_value.setText(str_current_value);
             Remaining_value.setText(str_remaining_value);
+            if (sessionmanager.BUDGET_RED_MARKER()) {
+                Total_budget.setTextColor(getResources().getColor(R.color.red));
+                Current_value.setTextColor(getResources().getColor(R.color.red));
+                Remaining_value.setTextColor(getResources().getColor(R.color.red));
+            } else {
+                Total_budget.setTextColor(getResources().getColor(R.color.white));
+                Current_value.setTextColor(getResources().getColor(R.color.white));
+                Remaining_value.setTextColor(getResources().getColor(R.color.white));
+            }
 
         } else {
             String Guest_Total_budget, Guest_Current_value, Guest_Remaining_budget;
@@ -304,6 +388,15 @@ public class BudgetListActivity extends AppCompatActivity {
             Total_budget.setText(Guest_Total_budget);
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
+            if (budgetManager.BUDGET_RED_MARKER()) {
+                Total_budget.setTextColor(getResources().getColor(R.color.red));
+                Current_value.setTextColor(getResources().getColor(R.color.red));
+                Remaining_value.setTextColor(getResources().getColor(R.color.red));
+            } else {
+                Total_budget.setTextColor(getResources().getColor(R.color.white));
+                Current_value.setTextColor(getResources().getColor(R.color.white));
+                Remaining_value.setTextColor(getResources().getColor(R.color.white));
+            }
         }
     }
 

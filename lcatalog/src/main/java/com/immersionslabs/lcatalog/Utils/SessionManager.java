@@ -247,4 +247,29 @@ public class SessionManager {
         }
         return flag;
     }
+
+    public void BUDGET_CLEAR_ARTICLES() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_Current_Id = Global_id + KEY_CURRENT_VALUE;
+        String Unique_Remaining_Id = Global_id + KEY_REMAINING_VALUE;
+        String Unique_total_value_Id = Global_id + KEY_TOTAL_BUDGET_VALUE;
+        editor.remove(Global_id);
+        editor.remove(Unique_Current_Id);
+        editor.remove(Unique_Remaining_Id);
+        editor.remove(Unique_total_value_Id);
+        editor.commit();
+    }
+
+    public boolean BUDGET_RED_MARKER() {
+        boolean returnval;
+        Long Remaining_value = BUDGET_GET_TOTAL_VALUE() - BUDGET_GET_CURRENT_VALUE();
+        Long Total_value = BUDGET_GET_TOTAL_VALUE();
+        Long Threshold_value = Total_value / 4;
+        if (Remaining_value <= Threshold_value) {
+            returnval = true;
+        } else {
+            returnval = false;
+        }
+        return returnval;
+    }
 }

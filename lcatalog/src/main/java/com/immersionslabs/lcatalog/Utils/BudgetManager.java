@@ -60,6 +60,21 @@ public class BudgetManager {
 
     public void BUDGET_CLEAR_ARRAY_ARTICLES() {
         Articles.clear();
+        Current_Value = 0L;
+        Total_Budget = 0L;
+        Remaining_Budget = 0L;
+    }
+
+    public boolean BUDGET_RED_MARKER() {
+        boolean returnval;
+        Long Threshold_value = Total_Budget / 4;
+        Long Remaining_value = BUDGET_GET_REMAINING();
+        if (Remaining_value <= Threshold_value) {
+            returnval = true;
+        } else {
+            returnval = false;
+        }
+        return returnval;
     }
 }
 
