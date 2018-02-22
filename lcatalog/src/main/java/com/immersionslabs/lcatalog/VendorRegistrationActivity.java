@@ -1,10 +1,8 @@
 package com.immersionslabs.lcatalog;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class VendorRegistrationActivity extends AppCompatActivity {
+public class VendorRegistrationActivity extends AppCompatActivity implements ApiCommunication {
 
     public static final String KEY_V_COMPANYNAME = "company_name";
     public static final String KEY_V_CONTACTPERSONNAME = "contact_person_name";
@@ -108,7 +108,6 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    @SuppressLint("LongLogTag")
     private void vendorRegister() throws JSONException {
         Log.e(TAG, "Signup");
 
@@ -187,76 +186,12 @@ public class VendorRegistrationActivity extends AppCompatActivity {
         request.put("request", vendor_request);
         Log.e(TAG, "Request--" + request);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REGISTER_URL, vendor_request, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject requestResponse) {
-                Log.e(TAG, "Response--" + requestResponse);
-
-                try {
-                    resp = requestResponse.getString("success");
-//                    code = requestResponse.getString("code");
-//                    message = requestResponse.getString("message");
-                    Log.e(TAG, "response--" + resp);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(VendorRegistrationActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-                // As of f605da3 the following should work
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        JSONObject request = new JSONObject(res);
-                    } catch (UnsupportedEncodingException | JSONException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getParams() {
-                HashMap<String, String> params = new HashMap<>();
-                params.put(KEY_V_COMPANYNAME, companyName);
-                params.put(KEY_V_CONTACTPERSONNAME, companyContactName);
-                params.put(KEY_V_ADDRESS, companyAddress);
-                params.put(KEY_V_LOCATION, companyLocation);
-                params.put(KEY_V_STATE, companyState);
-                params.put(KEY_V_PIN, companyPin);
-                params.put(KEY_V_EMAIL, companyEmail);
-                params.put(KEY_V_MOBILENO, companyMobileNo);
-                params.put(KEY_V_TOTALMODELS, companyModelCount);
-
-                Log.e(TAG, "HashMap--" + String.valueOf(params));
-
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-        };
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-
+        ApiService.getInstance(this).postData(this, REGISTER_URL, vendor_request, "VENDOR_REQUEST", "VENDOR_REQUEST");
         new android.os.Handler().postDelayed(
                 new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed depending on success
-
                         if (Objects.equals(resp, "success")) {
                             onVendorRegistrationSuccess();
                         } else {
@@ -266,7 +201,6 @@ public class VendorRegistrationActivity extends AppCompatActivity {
                     }
                 }, 3000);
     }
-
     public boolean validate() {
         boolean valid = true;
 
@@ -417,5 +351,28 @@ public class VendorRegistrationActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("VENDOR_REQUEST")) {
+            Log.e(TAG, "Response--" + response);
+
+            try {
+                resp = response.getString("success");
+//                    code = requestResponse.getString("code");
+//                    message = requestResponse.getString("message");
+                Log.e(TAG, "response--" + resp);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(VendorRegistrationActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
     }
 }
