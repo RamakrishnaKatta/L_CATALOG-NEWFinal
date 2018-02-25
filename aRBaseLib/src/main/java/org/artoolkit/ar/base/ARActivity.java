@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageManager;
@@ -33,11 +32,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.artoolkit.ar.base.camera.CameraEventListener;
-import org.artoolkit.ar.base.camera.CameraPreferencesActivity;
 import org.artoolkit.ar.base.camera.CaptureCameraPreview;
 import org.artoolkit.ar.base.rendering.ARRenderer;
 import org.artoolkit.ar.base.rendering.gles20.ARRendererGLES20;
@@ -78,7 +76,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Layout that will be filled with the camera preview and GL views. This is provided by the subclass using {@link #supplyFrameLayout() supplyFrameLayout()}.
      */
     protected FrameLayout mainFrameLayout;
-    RelativeLayout mFlashButtonArea;
+    LinearLayout mFlashButtonArea;
     /**
      * Camera preview which will provide video frames.
      */
@@ -283,7 +281,10 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     @Override
     public void onClick(View v) {
         if (v.equals(mSettingButton)) {
-            v.getContext().startActivity(new Intent(v.getContext(), CameraPreferencesActivity.class));
+
+            Toast.makeText(this, "Options are used for development purpose. \n Your current options are \n Resolution : 1280x720 \n Aspect Ratio : 16:9 ", Toast.LENGTH_SHORT).show();
+
+//            v.getContext().startActivity(new Intent(v.getContext(), CameraPreferencesActivity.class));
         }
         if (v.equals(mFlashButton)) {
             CameraFlash();

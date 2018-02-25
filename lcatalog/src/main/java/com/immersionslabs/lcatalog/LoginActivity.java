@@ -131,7 +131,6 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
             public void onClick(View v) {
                 try {
                     login();
-//                    overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

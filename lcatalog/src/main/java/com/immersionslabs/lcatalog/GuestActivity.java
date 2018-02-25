@@ -219,9 +219,7 @@ public class GuestActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 pendingIntent);
         Log.v("GuestAcivity", "session valid for 15 minutes");
-
     }
-
 
     public void onLoginFailed() {
         Button _guestLoginButton = findViewById(R.id.btn_guest);

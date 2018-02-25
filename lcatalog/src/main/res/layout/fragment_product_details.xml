@@ -433,7 +433,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/company_icon"
-                    android:scaleType="center" />
+                    android:scaleType="fitCenter" />
 
             </LinearLayout>
 
