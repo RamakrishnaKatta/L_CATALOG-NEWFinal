@@ -1,19 +1,18 @@
-# Blender MTL File: 'florence compactdd.blend'
+# Blender MTL File: 'florence compact sofa.blend'
 # Material Count: 2
 
-newmtl Material.001
+newmtl sofa_cloth
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
-Kd 0.704198 0.704198 0.704198
-Ks 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
-illum 1
-map_Kd am.jpg
-map_Bump -bm 0.500000 am.jpg
+illum 2
+map_Kd am.JPG
 
-newmtl Material.002
+newmtl wood
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
