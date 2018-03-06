@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Feedbacklayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".FeedbackActivity"
-    tools:showIn="@layout/activity_feedback">
+    android:background="@color/complete_transparent"
+    tools:context=".Fragment_ProductFeedback">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/margin_40"
         android:fitsSystemWindows="true"
         android:gravity="center"
         android:orientation="vertical">
 
-        <!-- Name Label -->
+        <!-- Article Name Label -->
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/area_input_feed_name"
+            android:id="@+id/feedback_article_name_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_6"
@@ -27,19 +25,18 @@
             android:visibility="visible">
 
             <EditText
-                android:id="@+id/input_feed_name"
+                android:id="@+id/feedback_article_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:hint="@string/name"
-                android:inputType="textPersonName"
-                android:maxLength="50" />
+                android:enabled="false"
+                android:hint="Article Name"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Number Label -->
+        <!-- Article ID Label -->
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/area_input_feed_number"
+            android:id="@+id/feedback_article_id_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_6"
@@ -47,19 +44,18 @@
             android:visibility="visible">
 
             <EditText
-                android:id="@+id/input_feed_number"
+                android:id="@+id/feedback_article_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:hint="@string/mobile_number"
-                android:inputType="number"
-                android:maxLength="10" />
+                android:enabled="false"
+                android:hint="Article ID"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
-        <!--Feedback Label-->
+        <!-- Vendor ID Label -->
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/area_input_feed_subject"
+            android:id="@+id/feedback_vendor_id_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_6"
@@ -67,30 +63,48 @@
             android:visibility="visible">
 
             <EditText
-                android:id="@+id/input_feed_subject"
+                android:id="@+id/feedback_vendor_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
+                android:enabled="false"
+                android:hint="Vendor ID"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--Article Feedback Label-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/feedback_article_message_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:layout_marginTop="@dimen/margin_6"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/feedback_article_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="top|start"
                 android:hint="@string/FeedBack_Subject"
                 android:inputType="textMultiLine"
-                android:lines="10"
+                android:lines="5"
                 android:maxLines="15"
                 android:scrollbars="vertical" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_feed_submit"
+            android:id="@+id/feedback_submit"
             android:layout_width="@dimen/margin_300"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_6"
             android:layout_marginTop="@dimen/margin_6"
             android:gravity="center"
-            android:padding="@dimen/margin_15"
+            android:padding="@dimen/margin_20"
             android:text="@string/submit"
             android:textAlignment="center"
-            android:textSize="@dimen/text_tab_small" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 

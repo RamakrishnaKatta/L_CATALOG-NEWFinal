@@ -100,6 +100,7 @@ public class ProductPageActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.product_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
+        tabLayout.addTab(tabLayout.newTab().setText("FEEDBACK"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.product_pager);

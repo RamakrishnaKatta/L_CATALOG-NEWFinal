@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.immersionslabs.lcatalog.Fragment_ProductDetails;
+import com.immersionslabs.lcatalog.Fragment_ProductFeedback;
 import com.immersionslabs.lcatalog.Fragment_ProductImages;
 
 public class ProductPageAdapter extends FragmentStatePagerAdapter {
@@ -105,6 +106,17 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
                 Fragment_ProductDetails tab2 = new Fragment_ProductDetails();
                 tab2.setArguments(b_tab2);
                 return tab2;
+
+            case 2:
+                Bundle b_tab3 = new Bundle();
+
+                b_tab3.putString("article_title", a_name);
+                b_tab3.putString("article_id", a_id);
+                b_tab3.putString("article_vendor_id", a_vendor_id);
+
+                Fragment_ProductFeedback tab3 = new Fragment_ProductFeedback();
+                tab3.setArguments(b_tab3);
+                return tab3;
 
             default:
                 return null;
