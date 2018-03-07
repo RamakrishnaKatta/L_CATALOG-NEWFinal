@@ -4,16 +4,33 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class FeedbackActivity extends AppCompatActivity {
+import com.android.volley.VolleyError;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Objects;
+
+public class FeedbackActivity extends AppCompatActivity implements ApiCommunication {
     public static final String TAG = "FeedbackActivity";
-    EditText feed_name, feed_subject, feed_number;
+    EditText feed_name_text, feed_subject_text, feed_number_text;
     Button feed_Submit;
+    String feed_name, feed_message, feed_number;
+    String code, message;
+
+    private static final String FEEDBACK_URL = EnvConstants.APP_BASE_URL + "/feedback";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +52,62 @@ public class FeedbackActivity extends AppCompatActivity {
         feed_Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog progressDialog = new ProgressDialog(FeedbackActivity.this, R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Submitting...");
-                progressDialog.show();
-                new android.os.Handler().postDelayed(new Runnable() {
-                    public void run() {
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+                try {
+                    feedback();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    private void feedback() throws JSONException {
+
+        final ProgressDialog progressDialog = new ProgressDialog(FeedbackActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Submitting...");
+        progressDialog.show();
+
+        feed_name_text = findViewById(R.id.input_feed_name);
+        feed_number_text = findViewById(R.id.input_feed_number);
+        feed_subject_text = findViewById(R.id.input_feed_subject);
+
+
+        feed_name = feed_name_text.getText().toString().trim();
+        feed_number = feed_number_text.getText().toString().trim();
+        feed_message = feed_subject_text.getText().toString().trim();
+
+        final JSONObject feedback = new JSONObject();
+        feedback.put("name", feed_name);
+        feedback.put("mobile", feed_number);
+        feedback.put("message", feed_message);
+        Log.e(TAG, "feedback: Request" + feedback);
+
+        ApiService.getInstance(this).postData(this, FEEDBACK_URL, feedback, "FEED", "FEEDBACK_SUBMIT");
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (Objects.equals(code, "200")) {
+                    FeedSuccess();
+                } else {
+                    FeedFailed();
+                }
+                progressDialog.dismiss();
+            }
+        }, 3000);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    private void FeedFailed() {
+        feed_Submit = findViewById(R.id.btn_feed_submit);
+        feed_Submit.setEnabled(true);
+        CustomMessage.getInstance().CustomMessage(this, "Please try again");
+
+    }
+
+    private void FeedSuccess() {
+        CustomMessage.getInstance().CustomMessage(this, "Thank you for your valuable Feedback");
+        feed_Submit.setEnabled(true);
+
     }
 
     @Override
@@ -74,4 +126,34 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("FEEDBACK_SUBMIT")) {
+            Log.e(TAG, "onResponseCallback: response" + response);
+            try {
+                code = response.getString("status_code");
+                message = response.getString("message");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(FeedbackActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
 }
