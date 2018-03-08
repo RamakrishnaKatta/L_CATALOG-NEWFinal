@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/complete_transparent"
     tools:context=".Fragment_ProductFeedback">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/feedback_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/img1"
+            android:padding="@dimen/margin_2"
+            android:text="Feedback"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/feedback_imageview"
+            android:layout_width="@dimen/margin_20"
+            android:layout_height="@dimen/margin_20"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_2"
+            android:src="@mipmap/ic_faq_down" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,4 +137,51 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratings_relative_layout"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/img1"
+                android:padding="@dimen/margin_2"
+                android:text="Ratings"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ratings_imageview"
+                android:layout_width="@dimen/margin_20"
+                android:layout_height="@dimen/margin_20"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/margin_2"
+                android:src="@mipmap/ic_faq_down" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingsbar"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_30"/>
+        </RelativeLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/ratings_submit"
+            android:layout_width="@dimen/margin_200"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_3"
+            android:layout_marginTop="@dimen/margin_3"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/submit"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_medium" />
+    </LinearLayout>
+
+
+</ScrollView>
