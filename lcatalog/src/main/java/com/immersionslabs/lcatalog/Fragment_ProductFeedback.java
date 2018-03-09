@@ -45,7 +45,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     ImageView feedback_imageview, ratings_imageview;
     SessionManager sessionManager;
     String resp, code, message;
-    Float rating;
+    double rating;
 
     public static final String RATING_URL = EnvConstants.APP_BASE_URL + "articleRating";
     public static final String ARTICLE_FEEDBACK_URL = "http://ladmin.immersionslabs.com/articleFeedback";
@@ -102,10 +102,11 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
 
         f_vendor_id = getArguments().getString("article_vendor_id");
         Log.e(TAG, "--" + f_vendor_id);
-        feedback_vendor_id.setText(f_vendor_id_mongo);
+
 
         try {
             f_vendor_id_mongo = getvendorid();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -181,10 +182,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
         super.onResume();
         try {
             getratingapicall();
-            if(_rating)
-            {
-                ratingBar.setRating(rating);
-            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -200,38 +198,8 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     public void getratingapicall() throws JSONException
     {
         String UNIQUE_GETRATING_CALL=GET_RATING_URL+"?article_id="+f_article_id+"&user_id="+user_id;
-       // ApiService.getInstance(getContext()).getData(this,false,"get_rating",UNIQUE_GETRATING_CALL,"GET_ARTICLE_RATING");
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, UNIQUE_GETRATING_CALL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try
-                {
-                    message = response.getString("message");
-                    if (message.equals("Your rating")) {
-                        JSONArray array = response.getJSONArray("data");
-                        for (int i = 0; i < array.length(); i++) {
+       ApiService.getInstance(getContext()).getData(this,false,"get_rating",UNIQUE_GETRATING_CALL,"GET_ARTICLE_RATING");
 
-                            JSONObject object = array.getJSONObject(i);
-                            rating = (float) object.get("rate");
-                        }
-                        _rating = true;
-                    }
-                }
-                catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-        RequestQueue requestQueue=Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonObjectRequest);
 
     }
 
@@ -299,11 +267,33 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
             JSONArray jsonArray=response.getJSONArray("data");
             JSONObject jsonObject=jsonArray.getJSONObject(0);
             f_vendor_id_mongo=jsonObject.getString("_id");
+            feedback_vendor_id.setText(f_vendor_id_mongo);
+            Log.e(TAG, "vendoridmongo--" + f_vendor_id_mongo);
         }
             catch (Exception e)
             {
                 e.printStackTrace();
             }
+        }
+
+        if(flag.equals("GET_ARTICLE_RATING"))
+        {
+
+            try {
+                JSONObject jsonObject = response.getJSONObject("data");
+
+                rating =  jsonObject.getDouble("rate");
+                _rating = true;
+                if(_rating)
+                {float ratings=(float)rating;
+                    ratingBar.setRating(ratings);
+                }
+            }
+
+            catch (JSONException e) {
+                e.printStackTrace();}
+            Log.e(TAG, "Ratingstars--" + rating + " Is rating true" + _rating );
+
         }
         }
 
