@@ -32,6 +32,8 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
 
     private static final String FEEDBACK_URL = EnvConstants.APP_BASE_URL + "/feedback";
 
+    int vendor_id = 100000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +83,7 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
         feedback.put("name", feed_name);
         feedback.put("mobile", feed_number);
         feedback.put("message", feed_message);
+        feedback.put("vendor_id", vendor_id);
         Log.e(TAG, "feedback: Request" + feedback);
 
         ApiService.getInstance(this).postData(this, FEEDBACK_URL, feedback, "FEED", "FEEDBACK_SUBMIT");
