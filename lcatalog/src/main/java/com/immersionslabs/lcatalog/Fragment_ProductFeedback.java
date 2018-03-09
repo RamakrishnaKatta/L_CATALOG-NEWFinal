@@ -45,12 +45,15 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     ImageView feedback_imageview, ratings_imageview;
     SessionManager sessionManager;
     String resp, code, message;
-    Float rating = 2.5f;
+    Float rating;
 
     public static final String RATING_URL = EnvConstants.APP_BASE_URL + "articleRating";
     public static final String ARTICLE_FEEDBACK_URL = "http://ladmin.immersionslabs.com/articleFeedback";
     public static final String GET_RATING_URL = EnvConstants.APP_BASE_URL + "getUserRating";
     private String global_user_id;
+    private boolean _rating;
+
+    private String f_vendor_id_mongo;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -99,7 +102,14 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
 
         f_vendor_id = getArguments().getString("article_vendor_id");
         Log.e(TAG, "--" + f_vendor_id);
-        feedback_vendor_id.setText(f_vendor_id);
+        feedback_vendor_id.setText(f_vendor_id_mongo);
+
+        try {
+            f_vendor_id_mongo = getvendorid();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e(TAG, "--" + f_vendor_id_mongo);
 
         f_article_name = getArguments().getString("article_title");
         Log.e(TAG, "--" + f_article_name);
@@ -169,6 +179,60 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
 
     public void onResume() {
         super.onResume();
+        try {
+            getratingapicall();
+            if(_rating)
+            {
+                ratingBar.setRating(rating);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public String getvendorid() throws JSONException
+    {
+        String UNIQUE_VENDORID_CALL="http://ladmin.immersionslabs.com//vendors/specific/"+f_vendor_id;
+        ApiService.getInstance(getContext()).getData(this,false,"get_mongo_vendorid",UNIQUE_VENDORID_CALL,"GET_MONGO_VENDORID");
+        return f_vendor_id_mongo;
+
+    }
+    public void getratingapicall() throws JSONException
+    {
+        String UNIQUE_GETRATING_CALL=GET_RATING_URL+"?article_id="+f_article_id+"&user_id="+user_id;
+       // ApiService.getInstance(getContext()).getData(this,false,"get_rating",UNIQUE_GETRATING_CALL,"GET_ARTICLE_RATING");
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, UNIQUE_GETRATING_CALL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try
+                {
+                    message = response.getString("message");
+                    if (message.equals("Your rating")) {
+                        JSONArray array = response.getJSONArray("data");
+                        for (int i = 0; i < array.length(); i++) {
+
+                            JSONObject object = array.getJSONObject(i);
+                            rating = (float) object.get("rate");
+                        }
+                        _rating = true;
+                    }
+                }
+                catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue requestQueue=Volley.newRequestQueue(getContext());
+        requestQueue.add(jsonObjectRequest);
+
     }
 
 
@@ -187,7 +251,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
         JSONObject feedback_parameters = new JSONObject();
         feedback_parameters.put("article_id", f_article_id);
         feedback_parameters.put("user_id", global_user_id);
-        feedback_parameters.put("vendor_id", f_vendor_id);
+        feedback_parameters.put("vendor_id", f_vendor_id_mongo);
         feedback_parameters.put("feedbacks", message);
         Log.e(TAG, "feedbackapicall: Request" + feedback_parameters);
 
@@ -208,7 +272,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     }
 
     @Override
-    public void onResponseCallback(JSONObject response, String flag) {
+    public void onResponseCallback(JSONObject response, String flag)  {
         if (flag.equals("ARTICLE_RATING")) {
             try {
 
@@ -221,7 +285,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
             }
         } else if (flag.equals("ARTICLE_FEEDBACK")) {
             try {
-
+                code=response.getString("status_code");
                 message = response.getString("message");
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                 Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
@@ -230,7 +294,19 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
                 e.printStackTrace();
             }
         }
-    }
+        else if(flag.equals("GET_MONGO_VENDORID"))
+        {try{
+            JSONArray jsonArray=response.getJSONArray("data");
+            JSONObject jsonObject=jsonArray.getJSONObject(0);
+            f_vendor_id_mongo=jsonObject.getString("_id");
+        }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        }
+
 
 
     @Override
