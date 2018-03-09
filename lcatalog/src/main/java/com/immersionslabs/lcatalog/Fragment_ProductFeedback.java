@@ -48,7 +48,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     double rating;
 
     public static final String RATING_URL = EnvConstants.APP_BASE_URL + "articleRating";
-    public static final String ARTICLE_FEEDBACK_URL = "http://ladmin.immersionslabs.com/articleFeedback";
+    public static final String ARTICLE_FEEDBACK_URL = EnvConstants.APP_BASE_URL + "/articleFeedback";
     public static final String GET_RATING_URL = EnvConstants.APP_BASE_URL + "getUserRating";
     private String global_user_id;
     private boolean _rating;
@@ -188,17 +188,17 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
         }
 
     }
-    public String getvendorid() throws JSONException
-    {
-        String UNIQUE_VENDORID_CALL="http://ladmin.immersionslabs.com//vendors/specific/"+f_vendor_id;
-        ApiService.getInstance(getContext()).getData(this,false,"get_mongo_vendorid",UNIQUE_VENDORID_CALL,"GET_MONGO_VENDORID");
+
+    public String getvendorid() throws JSONException {
+        String UNIQUE_VENDORID_CALL = EnvConstants.APP_BASE_URL + "/vendors/specific/" + f_vendor_id;
+        ApiService.getInstance(getContext()).getData(this, false, "get_mongo_vendorid", UNIQUE_VENDORID_CALL, "GET_MONGO_VENDORID");
         return f_vendor_id_mongo;
 
     }
-    public void getratingapicall() throws JSONException
-    {
-        String UNIQUE_GETRATING_CALL=GET_RATING_URL+"?article_id="+f_article_id+"&user_id="+user_id;
-       ApiService.getInstance(getContext()).getData(this,false,"get_rating",UNIQUE_GETRATING_CALL,"GET_ARTICLE_RATING");
+
+    public void getratingapicall() throws JSONException {
+        String UNIQUE_GETRATING_CALL = GET_RATING_URL + "?article_id=" + f_article_id + "&user_id=" + user_id;
+        ApiService.getInstance(getContext()).getData(this, false, "get_rating", UNIQUE_GETRATING_CALL, "GET_ARTICLE_RATING");
 
 
     }
@@ -240,7 +240,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     }
 
     @Override
-    public void onResponseCallback(JSONObject response, String flag)  {
+    public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("ARTICLE_RATING")) {
             try {
 
@@ -253,7 +253,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
             }
         } else if (flag.equals("ARTICLE_FEEDBACK")) {
             try {
-                code=response.getString("status_code");
+                code = response.getString("status_code");
                 message = response.getString("message");
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                 Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
@@ -261,47 +261,41 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-        else if(flag.equals("GET_MONGO_VENDORID"))
-        {try{
-            JSONArray jsonArray=response.getJSONArray("data");
-            JSONObject jsonObject=jsonArray.getJSONObject(0);
-            f_vendor_id_mongo=jsonObject.getString("_id");
-            feedback_vendor_id.setText(f_vendor_id_mongo);
-            Log.e(TAG, "vendoridmongo--" + f_vendor_id_mongo);
-        }
-            catch (Exception e)
-            {
+        } else if (flag.equals("GET_MONGO_VENDORID")) {
+            try {
+                JSONArray jsonArray = response.getJSONArray("data");
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                f_vendor_id_mongo = jsonObject.getString("_id");
+                feedback_vendor_id.setText(f_vendor_id_mongo);
+                Log.e(TAG, "vendoridmongo--" + f_vendor_id_mongo);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        if(flag.equals("GET_ARTICLE_RATING"))
-        {
+        if (flag.equals("GET_ARTICLE_RATING")) {
 
             try {
                 JSONObject jsonObject = response.getJSONObject("data");
 
-                rating =  jsonObject.getDouble("rate");
+                rating = jsonObject.getDouble("rate");
                 _rating = true;
-                if(_rating)
-                {float ratings=(float)rating;
+                if (_rating) {
+                    float ratings = (float) rating;
                     ratingBar.setRating(ratings);
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            catch (JSONException e) {
-                e.printStackTrace();}
-            Log.e(TAG, "Ratingstars--" + rating + " Is rating true" + _rating );
+            Log.e(TAG, "Ratingstars--" + rating + " Is rating true" + _rating);
 
         }
-        }
-
+    }
 
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-
+        Toast.makeText(getContext(), "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
 
