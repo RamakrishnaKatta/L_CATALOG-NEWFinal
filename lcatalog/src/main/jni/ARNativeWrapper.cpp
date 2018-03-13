@@ -24,7 +24,7 @@
             GLMmodel *obj;
         } ARModel;
 
-        #define NUM_MODELS 26
+        #define NUM_MODELS 30
         static ARModel models[NUM_MODELS] = {0};
 
         static float lightAmbient[4] = {0.1f, 0.1f, 0.1f, 1.0f};
@@ -55,10 +55,14 @@
             const char *model19file = "/storage/emulated/0/L_CATALOG/cache/Data/models/royaloka_tvset.obj";
             const char *model20file = "/storage/emulated/0/L_CATALOG/cache/Data/models/norland.obj";
             const char *model21file = "/storage/emulated/0/L_CATALOG/cache/Data/models/window.obj";
-            const char *model22file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeenvprta.obj";
-            const char *model23file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeenvprtb.obj";
-            const char *model24file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeenvprtc.obj";
-            const char *model25file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeenvprtd.obj";
+            const char *model22file = "/storage/emulated/0/L_CATALOG/cache/Data/models/execuofc.obj";
+            const char *model23file = "/storage/emulated/0/L_CATALOG/cache/Data/models/exewait.obj";
+            const char *model24file = "/storage/emulated/0/L_CATALOG/cache/Data/models/emppod.obj";
+            const char *model25file = "/storage/emulated/0/L_CATALOG/cache/Data/models/meetingtable.obj";
+            const char *model26file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrta.obj";
+            const char *model27file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrtb.obj";
+            const char *model28file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrtc.obj";
+            const char *model29file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrtd.obj";
 
         //Mapping to pattern 1 - bed sofa.obj
             models[0].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern1.patt;80");
@@ -391,7 +395,7 @@
             glmCreateArrays(models[21].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[21].visible = false;
 
-         //Mapping to pattern 23  - officeenvparta.obj
+         //Mapping to pattern 23  - execuofc.obj
             models[22].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern23.patt;80");
             arwSetMarkerOptionBool(models[22].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[22].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -401,12 +405,12 @@
                   LOGE("Error loading model from file '%s'.", model22file);
                   exit(-1);
                 }
-            glmScale(models[22].obj, 15.0f);
+            glmScale(models[22].obj, 50.0f);
             //glmRotate(models[22].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[22].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[22].visible = false;
 
-         //Mapping to pattern 24  - officeenvprtb.obj
+         //Mapping to pattern 24  - exewait.obj
             models[23].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern24.patt;80");
             arwSetMarkerOptionBool(models[23].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[23].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -416,41 +420,100 @@
                   LOGE("Error loading model from file '%s'.", model23file);
                   exit(-1);
                 }
-            glmScale(models[23].obj, 15.0f);
+            glmScale(models[23].obj, 50.0f);
             //glmRotate(models[23].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[23].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[23].visible = false;
 
-          //Mapping to pattern 25  - officeenvprtc.obj
+          //Mapping to pattern 25  - emppod.obj
             models[24].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern25.patt;80");
             arwSetMarkerOptionBool(models[24].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[24].patternID, ARW_MARKER_OPTION_FILTERED, true);
 
             models[24].obj = glmReadOBJ2(model24file, 0, 0); // context 25, don't read textures yet.
                 if (!models[24].obj) {
-                  LOGE("Error loading model from file '%s'.", model23file);
+                  LOGE("Error loading model from file '%s'.", model24file);
                   exit(-1);
                 }
-            glmScale(models[24].obj, 15.0f);
+            glmScale(models[24].obj, 50.0f);
             //glmRotate(models[24].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[24].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[24].visible = false;
 
-         //Mapping to pattern 26  - officeenvprtd.obj
+         //Mapping to pattern 26  - meetingtable.obj
             models[25].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern26.patt;80");
             arwSetMarkerOptionBool(models[25].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[25].patternID, ARW_MARKER_OPTION_FILTERED, true);
 
             models[25].obj = glmReadOBJ2(model25file, 0, 0); // context 26, don't read textures yet.
                 if (!models[25].obj) {
-                  LOGE("Error loading model from file '%s'.", model23file);
+                  LOGE("Error loading model from file '%s'.", model25file);
                   exit(-1);
                 }
-            glmScale(models[25].obj, 15.0f);
+            glmScale(models[25].obj, 50.0f);
             //glmRotate(models[25].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[25].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[25].visible = false;
 
+           //Mapping to pattern 27  - officeenvprta.obj
+            models[26].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern27.patt;80");
+            arwSetMarkerOptionBool(models[26].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[26].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[26].obj = glmReadOBJ2(model26file, 0, 0); // context 27, don't read textures yet.
+                if (!models[26].obj) {
+                  LOGE("Error loading model from file '%s'.", model26file);
+                  exit(-1);
+                }
+            glmScale(models[26].obj, 50.0f);
+            //glmRotate(models[26].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[26].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[26].visible = false;
+
+          //Mapping to pattern 28  - officeenvprtb.obj
+            models[27].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern28.patt;80");
+            arwSetMarkerOptionBool(models[27].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[27].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[27].obj = glmReadOBJ2(model27file, 0, 0); // context 28, don't read textures yet.
+                if (!models[27].obj) {
+                  LOGE("Error loading model from file '%s'.", model27file);
+                  exit(-1);
+                }
+            glmScale(models[27].obj, 50.0f);
+            //glmRotate(models[27].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[27].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[27].visible = false;
+
+          //Mapping to pattern 29  - officeenvprtc.obj
+            models[28].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern29.patt;80");
+            arwSetMarkerOptionBool(models[28].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[28].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[28].obj = glmReadOBJ2(model28file, 0, 0); // context 29, don't read textures yet.
+                if (!models[28].obj) {
+                  LOGE("Error loading model from file '%s'.", model28file);
+                  exit(-1);
+                }
+            glmScale(models[28].obj, 50.0f);
+            //glmRotate(models[28].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[28].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[28].visible = false;
+
+          //Mapping to pattern 30  - officeenvprtd.obj
+            models[29].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern30.patt;80");
+            arwSetMarkerOptionBool(models[29].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[29].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[29].obj = glmReadOBJ2(model29file, 0, 0); // context 30, don't read textures yet.
+                if (!models[29].obj) {
+                  LOGE("Error loading model from file '%s'.", model29file);
+                  exit(-1);
+                }
+            glmScale(models[29].obj, 50.0f);
+            //glmRotate(models[29].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[29].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[29].visible = false;
         }
 
     JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoShutdown(JNIEnv * env, jobject object)) {}
