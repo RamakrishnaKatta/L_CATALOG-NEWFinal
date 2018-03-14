@@ -32,9 +32,9 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
 
     private static final String TAG = "ProductFeedback";
 
-    public static final String RATING_URL = EnvConstants.APP_BASE_URL + "articleRating";
+    public static final String RATING_URL = EnvConstants.APP_BASE_URL + "/articleRating";
     public static final String ARTICLE_FEEDBACK_URL = EnvConstants.APP_BASE_URL + "/articleFeedback";
-    public static final String GET_RATING_URL = EnvConstants.APP_BASE_URL + "getUserRating";
+    public static final String GET_RATING_URL = EnvConstants.APP_BASE_URL + "/getUserRating";
 
     SessionManager sessionManager;
 
@@ -107,7 +107,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
         Log.e(TAG, "--" + f_article_name);
         feedback_article_name.setText(f_article_name);
 
-        HashMap userdetails = new HashMap();
+        HashMap userdetails;
         userdetails = sessionManager.getUserDetails();
         user_id = String.valueOf(userdetails.get(SessionManager.KEY_USER_ID));
         global_user_id = String.valueOf(userdetails.get(SessionManager.KEY_GLOBAL_USER_ID));
@@ -203,14 +203,22 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     private void post_feedback_apicall() throws JSONException {
 
         String message = feedback_message.getText().toString();
-        JSONObject feedback_parameters = new JSONObject();
-        feedback_parameters.put("article_id", f_article_id);
-        feedback_parameters.put("user_id", global_user_id);
-        feedback_parameters.put("vendor_id", f_vendor_id_mongo);
-        feedback_parameters.put("feedbacks", message);
-        Log.e(TAG, "post_feedback_apicall: Request" + feedback_parameters);
+        if(message.isEmpty())
+        {
+            Toast.makeText(getContext(),"Enter feedback.It should not be empty.",Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            JSONObject feedback_parameters = new JSONObject();
+            feedback_parameters.put("article_id", f_article_id);
+            feedback_parameters.put("user_id", global_user_id);
+            feedback_parameters.put("vendor_id", f_vendor_id_mongo);
+            feedback_parameters.put("feedbacks", message);
+            Log.e(TAG, "post_feedback_apicall: Request" + feedback_parameters);
 
-        ApiService.getInstance(getContext()).postData(this, ARTICLE_FEEDBACK_URL, feedback_parameters, "FEEDBACK_ARTICLE", "ARTICLE_FEEDBACK");
+            ApiService.getInstance(getContext()).postData(this, ARTICLE_FEEDBACK_URL, feedback_parameters, "FEEDBACK_ARTICLE", "ARTICLE_FEEDBACK");
+        }
+
     }
 
     @Override
@@ -286,7 +294,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+          }
 
     @Override
     public void onAttach(Context context) {
