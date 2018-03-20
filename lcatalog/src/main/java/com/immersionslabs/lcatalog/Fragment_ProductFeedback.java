@@ -203,12 +203,9 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     private void post_feedback_apicall() throws JSONException {
 
         String message = feedback_message.getText().toString();
-        if(message.isEmpty())
-        {
-            Toast.makeText(getContext(),"Enter feedback.It should not be empty.",Toast.LENGTH_LONG).show();
-        }
-        else
-        {
+        if (message.isEmpty()) {
+            Toast.makeText(getContext(), "Enter feedback.It should not be empty.", Toast.LENGTH_LONG).show();
+        } else {
             JSONObject feedback_parameters = new JSONObject();
             feedback_parameters.put("article_id", f_article_id);
             feedback_parameters.put("user_id", global_user_id);
@@ -239,20 +236,21 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
         switch (flag) {
             case "ARTICLE_RATING":
                 try {
-
+                    resp = response.getString("success");
                     message = response.getString("message");
                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
+                    Log.e(TAG, "resp   " + resp + " Status Code--" + code + " Message--" + message);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case "ARTICLE_FEEDBACK":
                 try {
+                    resp = response.getString("success");
                     code = response.getString("status_code");
                     message = response.getString("message");
                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                    Log.e(TAG, "Response--" + resp + " Status Code--" + code + " Message--" + message);
+                    Log.e(TAG, "resp   " + resp + " Status Code--" + code + " Message--" + message);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -294,7 +292,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-          }
+    }
 
     @Override
     public void onAttach(Context context) {
