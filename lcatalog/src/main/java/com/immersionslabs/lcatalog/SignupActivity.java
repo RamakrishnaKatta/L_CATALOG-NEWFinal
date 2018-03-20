@@ -182,10 +182,10 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
 
         Log.e(TAG, "request--" + signup_parameters);
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+//        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this, R.style.AppTheme_Dark_Dialog);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Creating Account...");
+//        progressDialog.show();
 
         ApiService.getInstance(this).postData(this, REGISTER_URL, signup_parameters, "SIGNUP", "USER_SIGNUP");
         new android.os.Handler().postDelayed(
@@ -196,7 +196,7 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
                         } else {
                             onSignupFailed();
                         }
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                     }
                 }, 3000);
     }

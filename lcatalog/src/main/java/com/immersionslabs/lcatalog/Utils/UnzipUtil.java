@@ -25,7 +25,6 @@ public class UnzipUtil {
         unzip();
     }
 
-    @SuppressLint("LongLogTag")
     private void unzip() {
         try {
 
@@ -71,7 +70,6 @@ public class UnzipUtil {
         }
     }
 
-    @SuppressLint("LongLogTag")
     private void dirChecker(String dir) {
 
         String state = Environment.getExternalStorageState();

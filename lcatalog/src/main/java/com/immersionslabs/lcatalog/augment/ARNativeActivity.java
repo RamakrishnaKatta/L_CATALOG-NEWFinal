@@ -1,22 +1,31 @@
 package com.immersionslabs.lcatalog.augment;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.DownloadManager_AR;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 
 import org.artoolkit.ar.base.ARActivity;
 import org.artoolkit.ar.base.assets.AssetHelper;
 import org.artoolkit.ar.base.rendering.ARRenderer;
 
+import java.io.File;
+import java.io.IOException;
+
 import static com.immersionslabs.lcatalog.augment.ARNativeApplication.getInstance;
 
 public class ARNativeActivity extends ARActivity {
 
-//    String Article_AR_ZipFileLocation, Article_AR_ExtractLocation;
-//    File article_ar_zip_file;
-//    private boolean zip_ar_downloaded = true;
+    String Article_AR_ZipFileLocation, Article_AR_ExtractLocation;
+    File article_ar_zip_file;
+    private boolean zip_ar_downloaded = true;
 
     private ARNativeRenderer arNativeRenderer = new ARNativeRenderer();
 
@@ -27,51 +36,54 @@ public class ARNativeActivity extends ARActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-//
-//        Article_AR_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/ar_files.zip";
-//        Article_AR_ExtractLocation = Environment.getExternalStorageState() + "/L_CATALOG/cache/Data/models/";
-//
-//        article_ar_zip_file = new File(Article_AR_ZipFileLocation);
-//
-//        if (article_ar_zip_file.exists()) {
-//            Log.e("AR_FILE_HANDLER", "File Already Exists, no need to download again");
-//            zip_ar_downloaded = false;
-//        } else {
-//            try {
-//                addCacheFolder();
-//                Log.e("AR_FILE_HANDLER", "File doesn't Exist, downloading now");
-//                String FILE_URL_AR = "http://35.154.150.204:4000/upload/objfiles/ar_files.zip";
-//                new DownloadManager_AR(FILE_URL_AR);
-//                zip_ar_downloaded = true;
-//
-//            } catch (IOException e) {
-//                Log.e("AR_FILE_HANDLER", "Problem Creating AR Folder Structure");
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        if (zip_ar_downloaded) {
-//            new UnzipUtil(Article_AR_ZipFileLocation, Article_AR_ExtractLocation);
-//        }
-//
-//        Toast.makeText(this, "AR Zip File Downloaded and Unzipped", Toast.LENGTH_SHORT).show();
+
+        Article_AR_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/ar_files.zip";
+        Log.e(TAG, "onCreate: ZipLocation" + Article_AR_ZipFileLocation);
+        Article_AR_ExtractLocation = Environment.getExternalStorageState() + "/L_CATALOG/cache/Data/models/";
+        Log.e(TAG, "ExtractLocation--" + Article_AR_ExtractLocation);
+
+
+        article_ar_zip_file = new File(Article_AR_ZipFileLocation);
+
+        if (article_ar_zip_file.exists()) {
+            Log.e("AR_FILE_HANDLER", "File Already Exists, no need to download again");
+            zip_ar_downloaded = false;
+        } else {
+            try {
+                addCacheFolder();
+                Log.e("AR_FILE_HANDLER", "File doesn't Exist, downloading now");
+                String FILE_URL_AR = EnvConstants.APP_BASE_URL + "/upload/objfiles/ar_files.zip";
+                new DownloadManager_AR(FILE_URL_AR);
+                zip_ar_downloaded = true;
+
+            } catch (IOException e) {
+                Log.e("AR_FILE_HANDLER", "Problem Creating AR Folder Structure");
+                e.printStackTrace();
+            }
+        }
+
+        if (zip_ar_downloaded) {
+             new UnzipUtil(Article_AR_ZipFileLocation, Article_AR_ExtractLocation);
+        }
+
+        Toast.makeText(this, "AR Zip File Downloaded and Unzipped", Toast.LENGTH_SHORT).show();
 
         initializeInstance();
     }
 
-//    private void addCacheFolder() throws IOException {
-//        String state = Environment.getExternalStorageState();
-//
-//        File folder = null;
-//        if (state.contains(Environment.MEDIA_MOUNTED)) {
-//            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data");
-//        }
-//        assert folder != null;
-//        if (!folder.exists()) {
-//            boolean wasSuccessful = folder.mkdirs();
-//            Log.e(TAG, "AR_Data Directory is Created --- '" + wasSuccessful + "' Thank You !!");
-//        }
-//    }
+    private void addCacheFolder() throws IOException {
+        String state = Environment.getExternalStorageState();
+
+        File folder = null;
+        if (state.contains(Environment.MEDIA_MOUNTED)) {
+            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/");
+        }
+        assert folder != null;
+        if (!folder.exists()) {
+            boolean wasSuccessful = folder.mkdirs();
+            Log.e(TAG, "AR  Directory is Created --- '" + wasSuccessful + "' Thank You !!");
+        }
+    }
 
     public void onStop() {
         ARNativeRenderer.demoShutdown();
