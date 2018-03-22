@@ -16,8 +16,8 @@
             android:id="@+id/feedback_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
             android:background="@color/primary"
             android:gravity="center"
             android:orientation="horizontal">
@@ -135,13 +135,12 @@
                 android:id="@+id/feedback_submit"
                 android:layout_width="@dimen/margin_200"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
+                android:layout_margin="@dimen/margin_6"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
                 android:text="@string/submit"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_tab_medium" />
+                android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
 
@@ -149,8 +148,8 @@
             android:id="@+id/ratings_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
             android:background="@color/primary"
             android:gravity="center"
             android:orientation="horizontal">
@@ -195,13 +194,12 @@
                 android:id="@+id/ratings_submit"
                 android:layout_width="@dimen/margin_200"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
+                android:layout_margin="@dimen/margin_6"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
                 android:text="@string/submit"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_tab_medium" />
+                android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
 

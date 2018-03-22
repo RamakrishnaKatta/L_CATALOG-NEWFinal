@@ -90,7 +90,7 @@
             android:padding="@dimen/margin_15"
             android:text="@string/submit"
             android:textAlignment="center"
-            android:textSize="@dimen/text_tab_small" />
+            android:textSize="@dimen/text_tab_tiny" />
 
     </LinearLayout>
 

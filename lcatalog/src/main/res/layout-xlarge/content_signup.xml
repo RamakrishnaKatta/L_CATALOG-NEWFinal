@@ -170,7 +170,7 @@
                 android:padding="@dimen/margin_24"
                 android:text="@string/create_account"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_tab_small" />
+                android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
 

@@ -84,7 +84,7 @@
                         android:id="@+id/btn_customer"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@string/login_sign"
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_l" />
@@ -129,7 +129,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@string/signup_hint"
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_s" />
@@ -173,7 +173,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@string/guest_sign"
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_g" />

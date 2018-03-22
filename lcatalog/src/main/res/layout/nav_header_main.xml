@@ -53,17 +53,6 @@
         android:layout_height="@dimen/margin_1"
         android:background="@color/white" />
 
-    <TextView
-        android:id="@+id/user_type_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:paddingTop="@dimen/margin_3"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_xlarge"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,21 +62,31 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="start"
             android:paddingTop="@dimen/margin_3"
             android:text="@string/nav_hi"
             android:textSize="@dimen/text_size_xlarge" />
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/user_type_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
+            android:paddingStart="@dimen/margin_3"
             android:paddingTop="@dimen/margin_3"
-            android:text="@string/Logged_userName"
-            android:textSize="@dimen/text_size_xlarge" />
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_xlarge"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingTop="@dimen/margin_3"
+        android:text="@string/Logged_userName"
+        android:textSize="@dimen/text_size_xlarge" />
 
     <TextView
         android:id="@+id/user_email"
