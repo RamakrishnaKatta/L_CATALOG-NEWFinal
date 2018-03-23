@@ -1,7 +1,18 @@
 # Blender MTL File: 'meetingtable.blend'
 # Material Count: 7
 
-newmtl TABLE.001
+newmtl Matericarptal
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd crptm.jpg
+
+newmtl TABLE
 Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.346841 0.462614 0.640000
@@ -11,7 +22,7 @@ Ni 1.000000
 d 0.378947
 illum 2
 
-newmtl rest.001
+newmtl rest
 Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -22,7 +33,7 @@ d 1.000000
 illum 2
 map_Kd rubb.jpg
 
-newmtl rest.002
+newmtl rest.006
 Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -33,7 +44,7 @@ d 1.000000
 illum 2
 map_Kd rubb.jpg
 
-newmtl rest.002_NONE
+newmtl rest_rubb.jpg.006
 Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -44,7 +55,7 @@ d 1.000000
 illum 2
 map_Kd rubb.jpg
 
-newmtl rest_rubb.jpg.000
+newmtl seat
 Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -53,20 +64,9 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd rubb.jpg
+map_Kd mtng.jpg
 
-newmtl seat.001
-Ns 92.156863
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd leaseat.jpg
-
-newmtl steel.001
+newmtl steel
 Ns 94.117647
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000

@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.Utils;
 
-import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.util.Log;
 
