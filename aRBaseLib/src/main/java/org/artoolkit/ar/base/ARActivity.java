@@ -24,6 +24,7 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -91,9 +92,19 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     private ImageButton mFlashButton;
     private ImageButton mCaptureButton;
     private ImageButton mScreenshotButton;
-    private boolean flashmode = false;
+    private ImageButton mHdrButton,mAutoSceneButton,mWhiteBalanceButton,mContinousPictureButton,mAutoFocusButton,mSteadyShotButton;
+    private LinearLayout mHdrButtonArea,mAutoSceneButtonArea,mWhiteBalanceButtonArea,mContinousPictureButtonArea,mAutoFocusButtonArea,mSteadyShotButtonArea;
 
+    private boolean flashmode = false;
+    private boolean cameraoptions_visibility=false;
+    private boolean hdr_toggle=false;
+    private boolean steady_toggle=false;
+    private boolean autoscene_toggle=false;
+    private boolean autofocus_toggle=false;
+    private boolean continouspicture_toggle=false;
+    private boolean whitebalance_toggle=false;
     private ProgressDialog progressDialog;
+
 
     @SuppressWarnings("unused")
     public Context getAppContext() {
@@ -105,6 +116,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
+
 
         // This needs to be done just only the very first time the application is run,
         // or whenever a new preference is added (e.g. after an application upgrade).
@@ -244,9 +256,44 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         mScreenshotButton = OptionsButtonLayout.findViewById(R.id.button_screenshot);
         mainFrameLayout.addView(OptionsButtonLayout);
 
+        mAutoFocusButton=settingsButtonLayout.findViewById(R.id.button_autofocus);
+        mAutoSceneButton=settingsButtonLayout.findViewById(R.id.button_auto);
+        mContinousPictureButton=settingsButtonLayout.findViewById(R.id.button_continous_scene_focus);
+        mHdrButton=settingsButtonLayout.findViewById(R.id.button_hdr);
+        mWhiteBalanceButton=settingsButtonLayout.findViewById(R.id.button_whitebalance);
+        mSteadyShotButton=settingsButtonLayout.findViewById(R.id.button_steady_on);
+
+        mAutoFocusButtonArea=settingsButtonLayout.findViewById(R.id.button_autofocus_area);
+        mAutoSceneButtonArea=settingsButtonLayout.findViewById(R.id.button_autoscene_area);
+        mContinousPictureButtonArea=settingsButtonLayout.findViewById(R.id.button_continous_scene_focus_area);
+        mHdrButtonArea=settingsButtonLayout.findViewById(R.id.button_hdr_area);
+        mWhiteBalanceButtonArea=settingsButtonLayout.findViewById(R.id.button_whitebalance_area);
+        mSteadyShotButtonArea=settingsButtonLayout.findViewById(R.id.button_steady_on_area);
+
         mFlashButton.setOnClickListener(this);
         mCaptureButton.setOnClickListener(this);
         mScreenshotButton.setOnClickListener(this);
+
+        mHdrButton.setOnClickListener(this);
+        mAutoSceneButton.setOnClickListener(this);
+        mWhiteBalanceButton.setOnClickListener(this);
+        mContinousPictureButton.setOnClickListener(this);
+        mAutoFocusButton.setOnClickListener(this);
+        mSteadyShotButton.setOnClickListener(this);
+
+            mHdrButtonArea.setOnClickListener(this);
+        mAutoSceneButtonArea.setOnClickListener(this);
+        mWhiteBalanceButtonArea.setOnClickListener(this);
+        mContinousPictureButtonArea.setOnClickListener(this);
+        mAutoFocusButtonArea.setOnClickListener(this);
+        mSteadyShotButtonArea.setOnClickListener(this);
+
+        mHdrButtonArea.setVisibility(View.GONE);
+        mAutoSceneButtonArea.setVisibility(View.GONE);
+        mWhiteBalanceButtonArea.setVisibility(View.GONE);
+        mContinousPictureButtonArea.setVisibility(View.GONE);
+        mAutoFocusButtonArea.setVisibility(View.GONE);
+        mSteadyShotButtonArea.setVisibility(View.GONE);
 
         mFlashButtonArea = OptionsButtonLayout.findViewById(R.id.button_flash_area);
         if (!getBaseContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
@@ -282,9 +329,31 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     public void onClick(View v) {
         if (v.equals(mSettingButton)) {
 
-            Toast.makeText(this, "Options are used for development purpose. \n Your current options are \n Resolution : 1280x720 \n Aspect Ratio : 16:9 ", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "Options are used for development purpose. \n Your current options are \n Resolution : 1280x720 \n Aspect Ratio : 16:9 ", Toast.LENGTH_SHORT).show();
 
 //            v.getContext().startActivity(new Intent(v.getContext(), CameraPreferencesActivity.class));
+           if(cameraoptions_visibility)
+           {
+               mHdrButtonArea.setVisibility(View.GONE);
+               mAutoSceneButtonArea.setVisibility(View.GONE);
+               mWhiteBalanceButtonArea.setVisibility(View.GONE);
+               mContinousPictureButtonArea.setVisibility(View.GONE);
+               mAutoFocusButtonArea.setVisibility(View.GONE);
+               mSteadyShotButtonArea.setVisibility(View.GONE);
+               cameraoptions_visibility=false;
+           }
+           else
+           {
+               mHdrButtonArea.setVisibility(View.VISIBLE);
+               mAutoSceneButtonArea.setVisibility(View.VISIBLE);
+               mWhiteBalanceButtonArea.setVisibility(View.VISIBLE);
+               mContinousPictureButtonArea.setVisibility(View.VISIBLE);
+               mAutoFocusButtonArea.setVisibility(View.VISIBLE);
+               mSteadyShotButtonArea.setVisibility(View.VISIBLE);
+               cameraoptions_visibility=true;
+           }
+
+
         }
         if (v.equals(mFlashButton)) {
             CameraFlash();
@@ -296,6 +365,93 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
         if (v.equals(mScreenshotButton)) {
             renderer.printOptionEnable = true;
+        }
+        if(v.equals(mAutoFocusButton)) {
+            if (autofocus_toggle) {
+                EnvconstantsAR.AUTOFOCUS = false;
+                autofocus_toggle = false;
+                mAutoFocusButton.setImageResource(R.mipmap.ic_auto_focus);
+            } else {
+                EnvconstantsAR.AUTOFOCUS = true;
+                autofocus_toggle = true;
+                mAutoFocusButton.setImageResource(R.mipmap.ic_autofocus_off);
+
+            }
+        }
+
+        if(v.equals(mAutoSceneButton))
+        {
+
+            if(autoscene_toggle)
+            {EnvconstantsAR.AUTOSCENE=false;
+                autoscene_toggle=false;
+                mAutoSceneButton.setImageResource(R.mipmap.ic_autooff);
+            }
+
+
+            else
+            {EnvconstantsAR.AUTOSCENE=true;
+                autoscene_toggle=true;
+                mAutoSceneButton.setImageResource(R.mipmap.ic_autoscene);
+            }
+
+        }
+        if(v.equals(mSteadyShotButton))
+        {
+            if(steady_toggle)
+            {EnvconstantsAR.STEADYSHOT=false;
+                steady_toggle=false;
+                mSteadyShotButton.setImageResource(R.mipmap.ic_steadyoff);
+            }
+
+
+            else
+            {EnvconstantsAR.STEADYSHOT=true;
+                steady_toggle=true;
+                mSteadyShotButton.setImageResource(R.mipmap.ic_steadyon);
+            }
+
+        }
+        if(v.equals(mContinousPictureButton))
+        {
+            if(continouspicture_toggle)
+        {   EnvconstantsAR.CONTINOUSPICTURE=false;
+            continouspicture_toggle=false;
+            mContinousPictureButton.setImageResource(R.mipmap.ic_focus_continous_picture);
+        }
+        else
+            {  EnvconstantsAR.CONTINOUSPICTURE=true;
+                continouspicture_toggle=true;
+                mContinousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off );
+            }
+
+        }
+        if(v.equals(mHdrButton))
+        {   if(hdr_toggle)
+             { EnvconstantsAR.HDR=false;
+            hdr_toggle=false;
+            mHdrButton.setImageResource(R.mipmap.ic_hdron);
+              }
+             else
+              { EnvconstantsAR.HDR=true;
+                  hdr_toggle=true;
+            mHdrButton.setImageResource(R.mipmap.ic_hdroff);
+               }
+
+
+        }
+        if(v.equals(mWhiteBalanceButton))
+        {
+            if(whitebalance_toggle)
+            {EnvconstantsAR.WHITEBALANCE=false;
+                whitebalance_toggle=false;
+                mWhiteBalanceButton.setImageResource(R.mipmap.ic_autowhitebalance);
+            }
+            else
+            { EnvconstantsAR.WHITEBALANCE=true;
+                whitebalance_toggle=true;
+                mWhiteBalanceButton.setImageResource(R.mipmap.ic_autobalanceoff);
+            }
         }
     }
 
