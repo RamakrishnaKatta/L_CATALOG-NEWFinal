@@ -13,11 +13,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
 
+import org.artoolkit.ar.base.EnvconstantsAR;
 import org.artoolkit.ar.base.FPSCounter;
 import org.artoolkit.ar.base.R;
 
 import java.io.IOException;
 
+@SuppressLint("ViewConstructor")
 public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     /**
@@ -84,6 +86,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         listener = cel;
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolderInstance) {
 
@@ -224,38 +227,52 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         Log.e(TAG, "surfaceChanged(): CameraResolution : (Applied) " + Integer.parseInt(dims[0]) + "x" + Integer.parseInt(dims[1]));
         parameters.setPreviewSize(Integer.parseInt(dims[0]), Integer.parseInt(dims[1]));
         parameters.setPreviewFrameRate(30);
+        if(EnvconstantsAR.CONTINOUSPICTURE)
+        {
+            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
 
-//        if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-//            Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
-//        }
-
-//        if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
-//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-//            Log.e(TAG, "CameraModes(): Focus Auto Applied ");
-//        }
-
-
-
-        if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_ACTION)) {
-            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_ACTION);
-            Log.e(TAG, "CameraModes(): Scene HDR Applied ");
+                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
+            }
         }
 
-        if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_STEADYPHOTO)) {
-            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
-            Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
+        if(EnvconstantsAR.AUTOFOCUS)
+        {
+            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+                Log.e(TAG, "CameraModes(): Focus Auto Applied ");
+            }
         }
-//
-//        if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_AUTO)) {
-//            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
-//            Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
+//        if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_ACTION)) {
+//            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_ACTION);
+//            Log.e(TAG, "CameraModes(): Scene HDR Applied ");
 //        }
-
-        if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.WHITE_BALANCE_AUTO)) {
-            parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
-            Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
+        if(EnvconstantsAR.AUTOSCENE)
+        {
+            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_AUTO)) {
+                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
+                Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
+            }
         }
+        if(EnvconstantsAR.STEADYSHOT)
+        {
+
+            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_STEADYPHOTO)) {
+                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
+                Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
+            }
+        }
+
+
+        if(EnvconstantsAR.WHITEBALANCE)
+        {
+            if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.WHITE_BALANCE_AUTO)) {
+                parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
+                Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
+            }
+        }
+
+
 
         parameters.setExposureCompensation(0);
         camera.setParameters(parameters);
