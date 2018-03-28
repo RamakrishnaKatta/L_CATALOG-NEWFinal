@@ -59,8 +59,8 @@
             const char *model23file = "/storage/emulated/0/L_CATALOG/cache/Data/models/exewait.obj";
             const char *model24file = "/storage/emulated/0/L_CATALOG/cache/Data/models/emppod.obj";
             const char *model25file = "/storage/emulated/0/L_CATALOG/cache/Data/models/meetingtable.obj";
-            const char *model26file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrta.obj";
-            const char *model27file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrtb.obj";
+            const char *model26file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeparta.obj";
+            const char *model27file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officepartb.obj";
             const char *model28file = "/storage/emulated/0/L_CATALOG/cache/Data/models/expall.obj";
             const char *model29file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empoda.obj";
             const char *model30file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empodb.obj";
