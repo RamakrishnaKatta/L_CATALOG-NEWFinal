@@ -12,6 +12,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.artoolkit.ar.base.EnvconstantsAR;
 import org.artoolkit.ar.base.FPSCounter;
@@ -227,52 +228,6 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         Log.e(TAG, "surfaceChanged(): CameraResolution : (Applied) " + Integer.parseInt(dims[0]) + "x" + Integer.parseInt(dims[1]));
         parameters.setPreviewSize(Integer.parseInt(dims[0]), Integer.parseInt(dims[1]));
         parameters.setPreviewFrameRate(30);
-        if(EnvconstantsAR.CONTINOUSPICTURE)
-        {
-            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-
-                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-                Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
-            }
-        }
-
-        if(EnvconstantsAR.AUTOFOCUS)
-        {
-            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
-                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-                Log.e(TAG, "CameraModes(): Focus Auto Applied ");
-            }
-        }
-//        if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_ACTION)) {
-//            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_ACTION);
-//            Log.e(TAG, "CameraModes(): Scene HDR Applied ");
-//        }
-        if(EnvconstantsAR.AUTOSCENE)
-        {
-            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_AUTO)) {
-                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
-                Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
-            }
-        }
-        if(EnvconstantsAR.STEADYSHOT)
-        {
-
-            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_STEADYPHOTO)) {
-                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
-                Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
-            }
-        }
-
-
-        if(EnvconstantsAR.WHITEBALANCE)
-        {
-            if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.WHITE_BALANCE_AUTO)) {
-                parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
-                Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
-            }
-        }
-
-
 
         parameters.setExposureCompensation(0);
         camera.setParameters(parameters);
@@ -316,5 +271,132 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         if (fpsCounter.frame()) {
             Log.e(TAG, "onPreviewFrame(): Camera capture FPS: " + fpsCounter.getFPS());
         }
+    }
+    public int SetContinousPicture()
+    {   int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+        if(EnvconstantsAR.CONTINOUSPICTURE)
+        {
+            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                returnval=1;
+                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
+            }
+            else
+            {  returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
+    }
+    public int setAutoFocus()
+    {int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+
+        if(EnvconstantsAR.AUTOFOCUS)
+        {
+            if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                returnval=1;
+                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+                Log.e(TAG, "CameraModes(): Focus Auto Applied ");
+            }
+            else
+            {returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            camera.cancelAutoFocus();
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
+    }
+    public int setAutoScene()
+    { int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+        if(EnvconstantsAR.AUTOSCENE)
+        {
+            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_AUTO)) {
+                returnval=1;
+                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
+                Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
+            }
+            else
+            {returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
+    }
+    public int setSteadyShot()
+    {int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+        if(EnvconstantsAR.STEADYSHOT)
+        {
+
+            if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_STEADYPHOTO)) {
+                returnval=1;
+                parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
+                Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
+            }
+            else
+            {returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
+    }
+    public int setWhiteBalance()
+    {int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+        if(EnvconstantsAR.WHITEBALANCE)
+        {
+            if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.WHITE_BALANCE_INCANDESCENT)) {
+                returnval=1;
+                parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_INCANDESCENT);
+                Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
+            }
+            else
+            {returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
+    }
+    public int setHDR()
+    {
+        int returnval=0;
+        Camera.Parameters parameters = camera.getParameters();
+        if(EnvconstantsAR.HDR)
+        {
+            if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.SCENE_MODE_HDR)) {
+                returnval=1;
+                parameters.setWhiteBalance(Camera.Parameters.SCENE_MODE_HDR);
+                Log.e(TAG, "CameraModes(): HDR Applied ");
+            }
+            else
+            {returnval=0;
+                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            }
+        }
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
+        camera.startPreview();
+        return returnval;
     }
 }
