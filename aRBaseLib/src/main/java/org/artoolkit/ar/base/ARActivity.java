@@ -243,7 +243,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         }
 
         //Load settings button
-        View settingsButtonLayout = this.getLayoutInflater().inflate(R.layout.settings_button_layout, mainFrameLayout, false);
+        View settingsButtonLayout = this.getLayoutInflater().inflate(R.layout.setting_button_layout, mainFrameLayout, false);
         mSettingButton = settingsButtonLayout.findViewById(R.id.button_settings);
         mainFrameLayout.addView(settingsButtonLayout);
         mSettingButton.setOnClickListener(this);
@@ -369,7 +369,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         if (v.equals(mScreenshotButton)) {
             renderer.printOptionEnable = true;
         }
-        if(v.equals(mAutoFocusButton)) {
+        if (v.equals(mAutoFocusButton)) {
             if (autofocus_toggle) {
                 EnvconstantsAR.AUTOFOCUS = false;
                 preview.setAutoFocus();
@@ -377,9 +377,8 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 mAutoFocusButton.setImageResource(R.mipmap.ic_auto_focus);
             } else {
                 EnvconstantsAR.AUTOFOCUS = true;
-                int response=preview.setAutoFocus();
-                if(response==1)
-                {
+                int response = preview.setAutoFocus();
+                if (response == 1) {
                     autofocus_toggle = true;
                     mAutoFocusButton.setImageResource(R.mipmap.ic_autofocus_off);
 
@@ -389,109 +388,85 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
         }
 
-        if(v.equals(mAutoSceneButton))
-        {
+        if (v.equals(mAutoSceneButton)) {
 
-            if(autoscene_toggle)
-            {EnvconstantsAR.AUTOSCENE=false;
+            if (autoscene_toggle) {
+                EnvconstantsAR.AUTOSCENE = false;
                 preview.setAutoScene();
-                autoscene_toggle=false;
+                autoscene_toggle = false;
                 mAutoSceneButton.setImageResource(R.mipmap.ic_autooff);
-            }
-
-
-            else
-            {EnvconstantsAR.AUTOSCENE=true;
-                int response=preview.setAutoScene();
-                if(response==1)
-                {
-                    autoscene_toggle=true;
+            } else {
+                EnvconstantsAR.AUTOSCENE = true;
+                int response = preview.setAutoScene();
+                if (response == 1) {
+                    autoscene_toggle = true;
                     mAutoSceneButton.setImageResource(R.mipmap.ic_autoscene);
                 }
             }
         }
-        if(v.equals(mSteadyShotButton))
-        {
-            if(steady_toggle)
-            {EnvconstantsAR.STEADYSHOT=false;
+        if (v.equals(mSteadyShotButton)) {
+            if (steady_toggle) {
+                EnvconstantsAR.STEADYSHOT = false;
                 preview.setSteadyShot();
-                steady_toggle=false;
+                steady_toggle = false;
                 mSteadyShotButton.setImageResource(R.mipmap.ic_steadyoff);
-            }
-
-
-            else
-            {EnvconstantsAR.STEADYSHOT=true;
+            } else {
+                EnvconstantsAR.STEADYSHOT = true;
                 int response = preview.setSteadyShot();
-                if(response==1)
-                {steady_toggle=true;
+                if (response == 1) {
+                    steady_toggle = true;
                     mSteadyShotButton.setImageResource(R.mipmap.ic_steadyon);
                 }
 
             }
 
         }
-        if(v.equals(mContinousPictureButton))
-        {
-            if(continouspicture_toggle)
-            {   EnvconstantsAR.CONTINOUSPICTURE=false;
+        if (v.equals(mContinousPictureButton)) {
+            if (continouspicture_toggle) {
+                EnvconstantsAR.CONTINOUSPICTURE = false;
                 preview.SetContinousPicture();
-                continouspicture_toggle=false;
+                continouspicture_toggle = false;
                 mContinousPictureButton.setImageResource(R.mipmap.ic_focus_continous_picture);
-            }
-            else
-            {  int response;
-                EnvconstantsAR.CONTINOUSPICTURE=true;
-                response=preview.SetContinousPicture();
-                if(response==1)
-                {
-                    continouspicture_toggle=true;
-                    mContinousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off );
+            } else {
+                int response;
+                EnvconstantsAR.CONTINOUSPICTURE = true;
+                response = preview.SetContinousPicture();
+                if (response == 1) {
+                    continouspicture_toggle = true;
+                    mContinousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off);
                 }
-
             }
-
         }
-        if(v.equals(mHdrButton))
-        {   if(hdr_toggle)
-        { EnvconstantsAR.HDR=false;
-            preview.setHDR();
-            hdr_toggle=false;
-            mHdrButton.setImageResource(R.mipmap.ic_hdron);
-        }
-        else
-        { int response;
-            EnvconstantsAR.HDR=true;
-            response=preview.setHDR();
-            if(response==1)
-            {
-                hdr_toggle=true;
-                mHdrButton.setImageResource(R.mipmap.ic_hdroff);
+        if (v.equals(mHdrButton)) {
+            if (hdr_toggle) {
+                EnvconstantsAR.HDR = false;
+                preview.setHDR();
+                hdr_toggle = false;
+                mHdrButton.setImageResource(R.mipmap.ic_hdron);
+            } else {
+                int response;
+                EnvconstantsAR.HDR = true;
+                response = preview.setHDR();
+                if (response == 1) {
+                    hdr_toggle = true;
+                    mHdrButton.setImageResource(R.mipmap.ic_hdroff);
+                }
             }
-
         }
-
-
-        }
-        if(v.equals(mWhiteBalanceButton))
-        {
-            if(whitebalance_toggle)
-            {
-                EnvconstantsAR.WHITEBALANCE=false;
+        if (v.equals(mWhiteBalanceButton)) {
+            if (whitebalance_toggle) {
+                EnvconstantsAR.WHITEBALANCE = false;
                 preview.setWhiteBalance();
-                whitebalance_toggle=false;
+                whitebalance_toggle = false;
                 mWhiteBalanceButton.setImageResource(R.mipmap.ic_autowhitebalance);
-            }
-            else
-            {  int response;
-                EnvconstantsAR.WHITEBALANCE=true;
-                response=preview.setWhiteBalance();
-                if(response==1)
-                {
-                    whitebalance_toggle=true;
+            } else {
+                int response;
+                EnvconstantsAR.WHITEBALANCE = true;
+                response = preview.setWhiteBalance();
+                if (response == 1) {
+                    whitebalance_toggle = true;
                     mWhiteBalanceButton.setImageResource(R.mipmap.ic_autobalanceoff);
                 }
-
             }
         }
     }
@@ -515,7 +490,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     }
 
     private void CameraImage() {
-
         preview.camera.takePicture(null, null, new Camera.PictureCallback() {
 
             private File imageFile;
@@ -589,25 +563,18 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 camera.startPreview();
             }
         });
-
     }
 
     /**
      * Returns the camera preview that is providing the video frames.
-     *
-     * @return The camera preview that is providing the video frames.
      */
-    @SuppressWarnings("unused")
     public CaptureCameraPreview getCameraPreview() {
         return preview;
     }
 
     /**
      * Returns the GL surface view.
-     *
-     * @return The GL surface view.
      */
-    @SuppressWarnings("unused")
     public GLSurfaceView getGLView() {
         return mOpenGlSurfaceViewInstance;
     }
@@ -681,16 +648,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             onFrameProcessed();
         }
     }
-
     public void onFrameProcessed() {
     }
-
     @Override
     public void cameraPreviewStopped() {
         ARToolKit.getInstance().cleanup();
     }
 
-    @SuppressWarnings("unused")
     protected void showInfo() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
