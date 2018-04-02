@@ -13,7 +13,7 @@
         android:weightSum="8">
 
         <LinearLayout
-            android:id="@+id/button_settings_area"
+            android:id="@+id/button_options_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -22,7 +22,7 @@
             android:padding="10dp">
 
             <ImageButton
-                android:id="@+id/button_settings"
+                android:id="@+id/button_options"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -30,7 +30,7 @@
                 android:src="@mipmap/ic_settings" />
 
             <TextView
-                android:id="@+id/button_settings_text"
+                android:id="@+id/button_options_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OPTIONS"
@@ -41,13 +41,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/flash_area"
+            android:id="@+id/button_flash_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="10dp">
+
             <ImageButton
                 android:id="@+id/button_flash"
                 android:layout_width="wrap_content"
@@ -60,15 +61,14 @@
                 android:id="@+id/button_flash_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FLASH"
-                android:textAllCaps="true"
                 android:layout_gravity="center"
+                android:text="FLASH"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="10sp" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/button_hdr_area"
@@ -101,7 +101,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/button_autoscene_area"
+            android:id="@+id/button_auto_scene_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -111,7 +111,7 @@
             android:padding="10dp">
 
             <ImageButton
-                android:id="@+id/button_auto"
+                android:id="@+id/button_auto_scene"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -119,7 +119,7 @@
                 android:src="@mipmap/ic_autoscene" />
 
             <TextView
-                android:id="@+id/button_auto_text"
+                android:id="@+id/button_auto_scene_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AUTO"
@@ -130,7 +130,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/button_whitebalance_area"
+            android:id="@+id/button_white_balance_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -140,7 +140,7 @@
             android:padding="10dp">
 
             <ImageButton
-                android:id="@+id/button_whitebalance"
+                android:id="@+id/button_white_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -148,7 +148,7 @@
                 android:src="@mipmap/ic_autowhitebalance" />
 
             <TextView
-                android:id="@+id/button_whitebalance_text"
+                android:id="@+id/button_white_balance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WHITE BALANCE"
@@ -159,7 +159,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/button_autofocus_area"
+            android:id="@+id/button_auto_focus_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -169,7 +169,7 @@
             android:padding="10dp">
 
             <ImageButton
-                android:id="@+id/button_autofocus"
+                android:id="@+id/button_auto_focus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -177,7 +177,7 @@
                 android:src="@mipmap/ic_auto_focus" />
 
             <TextView
-                android:id="@+id/button_autofocus_text"
+                android:id="@+id/button_auto_focus_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AUTO FOCUS"
@@ -188,7 +188,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/button_continous_scene_focus_area"
+            android:id="@+id/button_continuous_scene_focus_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -198,7 +198,7 @@
             android:padding="10dp">
 
             <ImageButton
-                android:id="@+id/button_continous_scene_focus"
+                android:id="@+id/button_continuous_scene_focus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -206,7 +206,7 @@
                 android:src="@mipmap/ic_focus_continous_picture" />
 
             <TextView
-                android:id="@+id/button_continous_scene_focus_text"
+                android:id="@+id/button_continuous_scene_focus_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CONTINOUS"
@@ -244,7 +244,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="10sp" />
         </LinearLayout>
-
 
     </LinearLayout>
 

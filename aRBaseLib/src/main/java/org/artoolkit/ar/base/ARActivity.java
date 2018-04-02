@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -24,7 +23,6 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -68,6 +66,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Android logging tag for this class.
      */
     protected final static String TAG = "ARActivity";
+
     /**
      * Renderer to use. This is provided by the subclass using {@link #supplyRenderer() Renderer()}.
      */
@@ -77,34 +76,33 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Layout that will be filled with the camera preview and GL views. This is provided by the subclass using {@link #supplyFrameLayout() supplyFrameLayout()}.
      */
     protected FrameLayout mainFrameLayout;
-//    LinearLayout mFlashButtonArea;
+
     /**
      * Camera preview which will provide video frames.
      */
     private CaptureCameraPreview preview;
+
     /**
      * GL surface to render the virtual objects
      */
     private GLSurfaceView mOpenGlSurfaceViewInstance;
+
     private boolean firstUpdate = false;
     private Context mContext;
-    private ImageButton mSettingButton;
-    private ImageButton mFlashButton;
-    private ImageButton mCaptureButton;
-    private ImageButton mScreenshotButton;
-    private ImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinousPictureButton, mAutoFocusButton, mSteadyShotButton;
-    private LinearLayout mHdrButtonArea, mAutoSceneButtonArea, mFlashArea, mWhiteBalanceButtonArea, mContinousPictureButtonArea, mAutoFocusButtonArea, mSteadyShotButtonArea;
+    private ImageButton mOptionsButton, mCaptureButton, mScreenshotButton;
+    private ImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinuousPictureButton, mAutoFocusButton, mSteadyShotButton, mFlashButton;
+    private LinearLayout mHdrButtonArea, mAutoSceneButtonArea, mWhiteBalanceButtonArea, mContinuousPictureButtonArea, mAutoFocusButtonArea, mSteadyShotButtonArea, mFlashButtonArea;
 
     private boolean flashmode = false;
-    private boolean cameraoptions_visibility = false;
+    private boolean camera_options_visibility = false;
     private boolean hdr_toggle = false;
     private boolean steady_toggle = false;
     private boolean autoscene_toggle = false;
     private boolean autofocus_toggle = false;
     private boolean continouspicture_toggle = false;
     private boolean whitebalance_toggle = false;
-    private ProgressDialog progressDialog;
 
+    private ProgressDialog progressDialog;
 
     @SuppressWarnings("unused")
     public Context getAppContext() {
@@ -116,7 +114,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
-
 
         // This needs to be done just only the very first time the application is run,
         // or whenever a new preference is added (e.g. after an application upgrade).
@@ -158,13 +155,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
     @Override
     protected void onStart() {
-
+        Log.i(TAG, "onStart()");
         super.onStart();
 
         Log.i(TAG, "onStart(): Activity starting.");
         progressDialog.setMessage("We made sure its worth waiting !!");
 
-        if (!ARToolKit.getInstance().initialiseNative(this.getCacheDir().getAbsolutePath())) { // Use cache directory for Data files.
+        if (!ARToolKit.getInstance().initialiseNative(this.getCacheDir().getAbsolutePath())) { // Uses cache directory provided by LCatalog for Data files.
             notifyFinish("The native library is not loaded. The application cannot continue.");
             return;
         }
@@ -185,7 +182,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
     @Override
     public void onResume() {
-        //Log.i(TAG, "onResume()");
+        Log.i(TAG, "onResume()");
         super.onResume();
 
         // Create the camera preview
@@ -242,67 +239,62 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             mOpenGlSurfaceViewInstance.onResume();
         }
 
-        //Load settings button
-        View settingsButtonLayout = this.getLayoutInflater().inflate(R.layout.setting_button_layout, mainFrameLayout, false);
-        mSettingButton = settingsButtonLayout.findViewById(R.id.button_settings);
-        mainFrameLayout.addView(settingsButtonLayout);
-        mSettingButton.setOnClickListener(this);
-
-        //Load Options buttons
+        //Load Capture Options buttons
         View OptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.options_buttons_layout, mainFrameLayout, false);
-
-        mFlashButton = OptionsButtonLayout.findViewById(R.id.button_flash);
-        mCaptureButton = OptionsButtonLayout.findViewById(R.id.button_capture);
-        mScreenshotButton = OptionsButtonLayout.findViewById(R.id.button_screenshot);
         mainFrameLayout.addView(OptionsButtonLayout);
 
-        mAutoFocusButton = settingsButtonLayout.findViewById(R.id.button_autofocus);
-        mAutoSceneButton = settingsButtonLayout.findViewById(R.id.button_auto);
-        mContinousPictureButton = settingsButtonLayout.findViewById(R.id.button_continous_scene_focus);
-        mHdrButton = settingsButtonLayout.findViewById(R.id.button_hdr);
-        mWhiteBalanceButton = settingsButtonLayout.findViewById(R.id.button_whitebalance);
-        mSteadyShotButton = settingsButtonLayout.findViewById(R.id.button_steady_on);
-        mFlashButton = settingsButtonLayout.findViewById(R.id.button_flash);
+        mCaptureButton = OptionsButtonLayout.findViewById(R.id.button_capture);
+        mScreenshotButton = OptionsButtonLayout.findViewById(R.id.button_screenshot);
 
-        mAutoFocusButtonArea = settingsButtonLayout.findViewById(R.id.button_autofocus_area);
-        mAutoSceneButtonArea = settingsButtonLayout.findViewById(R.id.button_autoscene_area);
-        mContinousPictureButtonArea = settingsButtonLayout.findViewById(R.id.button_continous_scene_focus_area);
-        mHdrButtonArea = settingsButtonLayout.findViewById(R.id.button_hdr_area);
-        mWhiteBalanceButtonArea = settingsButtonLayout.findViewById(R.id.button_whitebalance_area);
-        mSteadyShotButtonArea = settingsButtonLayout.findViewById(R.id.button_steady_on_area);
-        mFlashArea = settingsButtonLayout.findViewById(R.id.flash_area);
-
-        mFlashButton.setOnClickListener(this);
         mCaptureButton.setOnClickListener(this);
         mScreenshotButton.setOnClickListener(this);
 
+        //Load Camera Options button
+        View CameraOptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.cam_options_button_layout, mainFrameLayout, false);
+        mainFrameLayout.addView(CameraOptionsButtonLayout);
+        mOptionsButton = CameraOptionsButtonLayout.findViewById(R.id.button_options);
+        mOptionsButton.setOnClickListener(this);
+
+        mFlashButton = CameraOptionsButtonLayout.findViewById(R.id.button_flash);
+        mAutoFocusButton = CameraOptionsButtonLayout.findViewById(R.id.button_auto_focus);
+        mAutoSceneButton = CameraOptionsButtonLayout.findViewById(R.id.button_auto_scene);
+        mContinuousPictureButton = CameraOptionsButtonLayout.findViewById(R.id.button_continuous_scene_focus);
+        mHdrButton = CameraOptionsButtonLayout.findViewById(R.id.button_hdr);
+        mWhiteBalanceButton = CameraOptionsButtonLayout.findViewById(R.id.button_white_balance);
+        mSteadyShotButton = CameraOptionsButtonLayout.findViewById(R.id.button_steady_on);
+        mFlashButton = CameraOptionsButtonLayout.findViewById(R.id.button_flash);
+
+        mFlashButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_flash_area);
+        mAutoFocusButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_auto_focus_area);
+        mAutoSceneButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_auto_scene_area);
+        mContinuousPictureButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_continuous_scene_focus_area);
+        mHdrButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_hdr_area);
+        mWhiteBalanceButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_white_balance_area);
+        mSteadyShotButtonArea = CameraOptionsButtonLayout.findViewById(R.id.button_steady_on_area);
+
+        mFlashButton.setOnClickListener(this);
         mHdrButton.setOnClickListener(this);
         mAutoSceneButton.setOnClickListener(this);
         mWhiteBalanceButton.setOnClickListener(this);
-        mContinousPictureButton.setOnClickListener(this);
+        mContinuousPictureButton.setOnClickListener(this);
         mAutoFocusButton.setOnClickListener(this);
         mSteadyShotButton.setOnClickListener(this);
 
         mHdrButtonArea.setOnClickListener(this);
         mAutoSceneButtonArea.setOnClickListener(this);
         mWhiteBalanceButtonArea.setOnClickListener(this);
-        mContinousPictureButtonArea.setOnClickListener(this);
+        mContinuousPictureButtonArea.setOnClickListener(this);
         mAutoFocusButtonArea.setOnClickListener(this);
         mSteadyShotButtonArea.setOnClickListener(this);
-        mFlashArea.setOnClickListener(this);
+        mFlashButtonArea.setOnClickListener(this);
 
         mHdrButtonArea.setVisibility(View.GONE);
         mAutoSceneButtonArea.setVisibility(View.GONE);
         mWhiteBalanceButtonArea.setVisibility(View.GONE);
-        mContinousPictureButtonArea.setVisibility(View.GONE);
+        mContinuousPictureButtonArea.setVisibility(View.GONE);
         mAutoFocusButtonArea.setVisibility(View.GONE);
         mSteadyShotButtonArea.setVisibility(View.GONE);
-        mFlashArea.setVisibility(View.GONE);
-
-//        mFlashButtonArea = OptionsButtonLayout.findViewById(R.id.button_flash_area);
-//        if (!getBaseContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-//            mFlashButtonArea.setVisibility(View.GONE);
-//        }
+        mFlashButtonArea.setVisibility(View.GONE);
     }
 
     @Override
@@ -331,35 +323,48 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mSettingButton)) {
+        if (v.equals(mOptionsButton)) {
 
-            // Toast.makeText(this, "Options are used for development purpose. \n Your current options are \n Resolution : 1280x720 \n Aspect Ratio : 16:9 ", Toast.LENGTH_SHORT).show();
-
+//            Toast.makeText(this, "Options are used for development purpose. \n Your current options are \n Resolution : 1280x720 \n Aspect Ratio : 16:9 ", Toast.LENGTH_SHORT).show();
 //            v.getContext().startActivity(new Intent(v.getContext(), CameraPreferencesActivity.class));
-            if (cameraoptions_visibility) {
+
+            if (camera_options_visibility) {
                 mHdrButtonArea.setVisibility(View.GONE);
                 mAutoSceneButtonArea.setVisibility(View.GONE);
                 mWhiteBalanceButtonArea.setVisibility(View.GONE);
-                mContinousPictureButtonArea.setVisibility(View.GONE);
+                mContinuousPictureButtonArea.setVisibility(View.GONE);
                 mAutoFocusButtonArea.setVisibility(View.GONE);
                 mSteadyShotButtonArea.setVisibility(View.GONE);
-                mFlashArea.setVisibility(View.GONE);
-                cameraoptions_visibility = false;
+                mFlashButtonArea.setVisibility(View.GONE);
+                camera_options_visibility = false;
+
             } else {
                 mHdrButtonArea.setVisibility(View.VISIBLE);
                 mAutoSceneButtonArea.setVisibility(View.VISIBLE);
                 mWhiteBalanceButtonArea.setVisibility(View.VISIBLE);
-                mContinousPictureButtonArea.setVisibility(View.VISIBLE);
+                mContinuousPictureButtonArea.setVisibility(View.VISIBLE);
                 mAutoFocusButtonArea.setVisibility(View.VISIBLE);
                 mSteadyShotButtonArea.setVisibility(View.VISIBLE);
-                mFlashArea.setVisibility(View.VISIBLE);
-                cameraoptions_visibility = true;
+                mFlashButtonArea.setVisibility(View.VISIBLE);
+                camera_options_visibility = true;
             }
-
-
         }
+
         if (v.equals(mFlashButton)) {
-            CameraFlash();
+            if (preview.camera != null) {
+                try {
+                    Camera.Parameters param = preview.camera.getParameters();
+                    param.setFlashMode(!flashmode ? Camera.Parameters.FLASH_MODE_TORCH
+                            : Camera.Parameters.FLASH_MODE_OFF);
+                    preview.camera.setParameters(param);
+                    flashmode = !flashmode;
+                    Toast toast = Toast.makeText(this, "Flash Activated", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.show();
+
+                } catch (Exception ignored) {
+                }
+            }
         }
 
         if (v.equals(mCaptureButton)) {
@@ -369,6 +374,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         if (v.equals(mScreenshotButton)) {
             renderer.printOptionEnable = true;
         }
+
         if (v.equals(mAutoFocusButton)) {
             if (autofocus_toggle) {
                 EnvconstantsAR.AUTOFOCUS = false;
@@ -381,15 +387,11 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 if (response == 1) {
                     autofocus_toggle = true;
                     mAutoFocusButton.setImageResource(R.mipmap.ic_autofocus_off);
-
                 }
-
             }
-
         }
 
         if (v.equals(mAutoSceneButton)) {
-
             if (autoscene_toggle) {
                 EnvconstantsAR.AUTOSCENE = false;
                 preview.setAutoScene();
@@ -404,6 +406,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 }
             }
         }
+
         if (v.equals(mSteadyShotButton)) {
             if (steady_toggle) {
                 EnvconstantsAR.STEADYSHOT = false;
@@ -417,26 +420,26 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                     steady_toggle = true;
                     mSteadyShotButton.setImageResource(R.mipmap.ic_steadyon);
                 }
-
             }
-
         }
-        if (v.equals(mContinousPictureButton)) {
+
+        if (v.equals(mContinuousPictureButton)) {
             if (continouspicture_toggle) {
                 EnvconstantsAR.CONTINOUSPICTURE = false;
                 preview.SetContinousPicture();
                 continouspicture_toggle = false;
-                mContinousPictureButton.setImageResource(R.mipmap.ic_focus_continous_picture);
+                mContinuousPictureButton.setImageResource(R.mipmap.ic_focus_continous_picture);
             } else {
                 int response;
                 EnvconstantsAR.CONTINOUSPICTURE = true;
                 response = preview.SetContinousPicture();
                 if (response == 1) {
                     continouspicture_toggle = true;
-                    mContinousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off);
+                    mContinuousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off);
                 }
             }
         }
+
         if (v.equals(mHdrButton)) {
             if (hdr_toggle) {
                 EnvconstantsAR.HDR = false;
@@ -453,6 +456,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 }
             }
         }
+
         if (v.equals(mWhiteBalanceButton)) {
             if (whitebalance_toggle) {
                 EnvconstantsAR.WHITEBALANCE = false;
@@ -471,24 +475,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         }
     }
 
-    private void CameraFlash() {
-
-        if (preview.camera != null) {
-            try {
-                Camera.Parameters param = preview.camera.getParameters();
-                param.setFlashMode(!flashmode ? Camera.Parameters.FLASH_MODE_TORCH
-                        : Camera.Parameters.FLASH_MODE_OFF);
-                preview.camera.setParameters(param);
-                flashmode = !flashmode;
-                Toast toast = Toast.makeText(this, "Flash Activated", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toast.show();
-
-            } catch (Exception ignored) {
-            }
-        }
-    }
-
+    /**
+     * Captures the camera preview frame that is providing the video frames and saves it to the screenshots
+     */
     private void CameraImage() {
         preview.camera.takePicture(null, null, new Camera.PictureCallback() {
 
@@ -648,29 +637,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             onFrameProcessed();
         }
     }
+
     public void onFrameProcessed() {
     }
+
     @Override
     public void cameraPreviewStopped() {
         ARToolKit.getInstance().cleanup();
-    }
-
-    protected void showInfo() {
-
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-
-        dialogBuilder.setMessage("ARToolKit Version: " + NativeInterface.arwGetARToolKitVersion());
-
-        dialogBuilder.setCancelable(false);
-        dialogBuilder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert = dialogBuilder.create();
-        alert.setTitle("ARToolKit");
-        alert.show();
     }
 
     public void notifyFinish(String errorMessage) {
