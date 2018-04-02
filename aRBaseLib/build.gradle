@@ -36,7 +36,6 @@ model {
 
     android.sources {
     }
-
 }
 
 dependencies {

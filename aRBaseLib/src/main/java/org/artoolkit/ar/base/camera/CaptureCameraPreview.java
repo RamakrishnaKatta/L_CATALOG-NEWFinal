@@ -229,8 +229,8 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         parameters.setPreviewSize(Integer.parseInt(dims[0]), Integer.parseInt(dims[1]));
         parameters.setPreviewFrameRate(30);
 
-        parameters.setExposureCompensation(0);
-        camera.setParameters(parameters);
+//        parameters.setExposureCompensation(0);
+//        camera.setParameters(parameters);
 
         parameters = camera.getParameters();
         captureWidth = parameters.getPreviewSize().width;
@@ -259,7 +259,6 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
 
         if (listener != null)
             listener.cameraPreviewStarted(captureWidth, captureHeight, captureRate, cameraIndex, cameraIsFrontFacing);
-
     }
 
     @Override
@@ -272,19 +271,18 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
             Log.e(TAG, "onPreviewFrame(): Camera capture FPS: " + fpsCounter.getFPS());
         }
     }
-    public int SetContinousPicture()
-    {   int returnval=0;
+
+    public int SetContinousPicture() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
-        if(EnvconstantsAR.CONTINOUSPICTURE)
-        {
+        if (EnvconstantsAR.CONTINOUSPICTURE) {
             if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
                 Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
-            }
-            else
-            {  returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -292,24 +290,21 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         camera.startPreview();
         return returnval;
     }
-    public int setAutoFocus()
-    {int returnval=0;
+
+    public int setAutoFocus() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
 
-        if(EnvconstantsAR.AUTOFOCUS)
-        {
+        if (EnvconstantsAR.AUTOFOCUS) {
             if (parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
                 Log.e(TAG, "CameraModes(): Focus Auto Applied ");
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
             }
-            else
-            {returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
-            }
-        }
-        else
-        {
+        } else {
             camera.cancelAutoFocus();
         }
         parameters.setExposureCompensation(0);
@@ -317,19 +312,18 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         camera.startPreview();
         return returnval;
     }
-    public int setAutoScene()
-    { int returnval=0;
+
+    public int setAutoScene() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
-        if(EnvconstantsAR.AUTOSCENE)
-        {
+        if (EnvconstantsAR.AUTOSCENE) {
             if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_AUTO)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
                 Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
-            }
-            else
-            {returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -337,20 +331,19 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         camera.startPreview();
         return returnval;
     }
-    public int setSteadyShot()
-    {int returnval=0;
+
+    public int setSteadyShot() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
-        if(EnvconstantsAR.STEADYSHOT)
-        {
+        if (EnvconstantsAR.STEADYSHOT) {
 
             if (parameters.getSupportedSceneModes().contains(Camera.Parameters.SCENE_MODE_STEADYPHOTO)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setSceneMode(Camera.Parameters.SCENE_MODE_STEADYPHOTO);
                 Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
-            }
-            else
-            {returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile/Tablet Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -358,19 +351,18 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         camera.startPreview();
         return returnval;
     }
-    public int setWhiteBalance()
-    {int returnval=0;
+
+    public int setWhiteBalance() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
-        if(EnvconstantsAR.WHITEBALANCE)
-        {
+        if (EnvconstantsAR.WHITEBALANCE) {
             if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.WHITE_BALANCE_INCANDESCENT)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_INCANDESCENT);
                 Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
-            }
-            else
-            {returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -378,20 +370,18 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         camera.startPreview();
         return returnval;
     }
-    public int setHDR()
-    {
-        int returnval=0;
+
+    public int setHDR() {
+        int returnval = 0;
         Camera.Parameters parameters = camera.getParameters();
-        if(EnvconstantsAR.HDR)
-        {
+        if (EnvconstantsAR.HDR) {
             if (parameters.getSupportedWhiteBalance().contains(Camera.Parameters.SCENE_MODE_HDR)) {
-                returnval=1;
+                returnval = 1;
                 parameters.setWhiteBalance(Camera.Parameters.SCENE_MODE_HDR);
                 Log.e(TAG, "CameraModes(): HDR Applied ");
-            }
-            else
-            {returnval=0;
-                Toast.makeText(getContext(),"This feature is not supported on your mobile",Toast.LENGTH_LONG).show();
+            } else {
+                returnval = 0;
+                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
