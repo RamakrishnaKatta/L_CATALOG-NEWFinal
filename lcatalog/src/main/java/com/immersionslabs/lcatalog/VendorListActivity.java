@@ -109,9 +109,9 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
             }
         }
 
-        Log.e(TAG, "GetData: ids" + vendor_ids);
-        Log.e(TAG, "GetData: names" + vendor_names);
-        Log.e(TAG, "GetData: logos" + vendor_logos);
+        Log.e(TAG, " ids" + vendor_ids);
+        Log.e(TAG, " names" + vendor_names);
+        Log.e(TAG, " logos" + vendor_logos);
 
         VendorListManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(VendorListManager);

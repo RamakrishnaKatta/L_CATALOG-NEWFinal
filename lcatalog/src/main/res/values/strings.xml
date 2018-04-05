@@ -218,5 +218,6 @@
     <string name="title_activity_vendor_catalog">Vendor Catalog</string>
     <string name="title_activity_vendor_list">Our Vendors</string>
     <string name="vendor_catalog">Vendor Catalog</string>
+    <string name="campaign">Campaign</string>
 
 </resources>

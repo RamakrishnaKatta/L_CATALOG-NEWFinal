@@ -121,15 +121,15 @@ public class VendorCatalogActivity extends AppCompatActivity implements ApiCommu
             }
         }
 
-        Log.e(TAG, "GetData: ids" + item_ids);
-        Log.e(TAG, "GetData: name" + item_names);
-        Log.e(TAG, "GetData: description" + item_descriptions);
-        Log.e(TAG, "GetData: price" + item_prices);
-        Log.e(TAG, "GetData: img" + item_images);
-        Log.e(TAG, "GetData: dimensions" + item_dimensions);
-        Log.e(TAG, "GetData: discount" + item_discounts);
-        Log.e(TAG, "GetData: view_3d" + item_3ds);
-        Log.e(TAG, "GetData: vendor_id" + item_vendors);
+        Log.e(TAG, " ids" + item_ids);
+        Log.e(TAG, " name" + item_names);
+        Log.e(TAG, " description" + item_descriptions);
+        Log.e(TAG, " price" + item_prices);
+        Log.e(TAG, " img" + item_images);
+        Log.e(TAG, " dimensions" + item_dimensions);
+        Log.e(TAG, " discount" + item_discounts);
+        Log.e(TAG, " view_3d" + item_3ds);
+        Log.e(TAG, " vendor_id" + item_vendors);
 
         VendorCatalogManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         vendor_recycler.setLayoutManager(VendorCatalogManager);
