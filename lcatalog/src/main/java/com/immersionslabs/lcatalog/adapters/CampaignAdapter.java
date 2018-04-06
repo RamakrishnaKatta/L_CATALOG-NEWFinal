@@ -21,6 +21,9 @@ import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHolder> {
@@ -76,11 +79,26 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
 
         final Context[] context = new Context[1];
 
-//        Glide.with(activity)
-//                .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_ids + project_images.get(position))
-//                .placeholder(R.drawable.dummy_icon)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(holder.campaign_image);
+        String im1 = null;
+        String get_image = project_images.get(position);
+        String get_project_id = project_ids.get(position);
+        Log.e(TAG, " projectid  " + get_project_id);
+
+        try {
+            JSONArray images_json = new JSONArray(get_image);
+            if (images_json.length() > 0) {
+                im1 = images_json.getString(0);
+                Log.e(TAG, "ProjectImageasdfasdfsad " + im1);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Glide.with(activity)
+                .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + get_project_id + im1)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.campaign_image);
         holder.campaign_name.setText(project_name.get(position));
         holder.campaign_description.setText(project_description.get(position));
 
@@ -127,6 +145,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
             campaign_container = itemView.findViewById(R.id.project_container);
             campaign_name = itemView.findViewById(R.id.project_title);
             campaign_description = itemView.findViewById(R.id.project_data);
+            campaign_image = itemView.findViewById(R.id.project_image);
 
         }
     }
