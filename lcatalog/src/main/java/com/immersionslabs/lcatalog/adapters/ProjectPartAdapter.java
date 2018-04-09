@@ -103,8 +103,8 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                 context[0] = v.getContext();
                 Intent intent = new Intent(context[0], ProjectpartDetailsActivity.class);
                 Bundle b = new Bundle();
+                b.putString("_id", project_ids.get(position));
                 b.putString("part", project_part.get(position));
-                Log.e(TAG, "onClick: partnam"+project_partName );
                 b.putString("partName", project_partName.get(position));
                 b.putString("partDesc", project_partDesc.get(position));
                 b.putString("partimages", project_partimages.get(position));
