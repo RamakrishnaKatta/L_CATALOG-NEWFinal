@@ -121,18 +121,19 @@
 
             </LinearLayout>
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:orientation="vertical">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
 
-                <!--<android.support.v7.widget.RecyclerView-->
-                    <!--android:id="@+id/project_part_list_recycler"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:padding="@dimen/margin_6"-->
-                    <!--android:visibility="visible" />-->
-            <!--</LinearLayout>-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/project_part_list_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/margin_6"
+                    android:visibility="visible" />
+            </LinearLayout>
 
         </LinearLayout>
 
