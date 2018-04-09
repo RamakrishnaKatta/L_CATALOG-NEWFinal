@@ -16,11 +16,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.CampaignAdapter;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
+import com.immersionslabs.lcatalog.adapters.ProjectImageAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -39,7 +41,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
     private ViewPager viewpager;
     private LinearLayout slider_dots;
-    ImageSliderAdapter imageSliderAdapter;
+    ProjectImageAdapter imageSliderAdapter;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
     int page_position = 0;
@@ -48,7 +50,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     String image1, image2, image3, image4, image5;
 
     String project_id;
-
+    String project_images;
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;
     GridLayoutManager ProjectpartManager;
@@ -60,6 +62,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     private ArrayList<String> project_partimages;
     private ArrayList<String> project_part_articlesIds;
     private ArrayList<String> project_part_articlesData;
+    private ArrayList<String> project_ids;
 
     private static final String TAG = "ProjectDetailActivty";
 
@@ -108,6 +111,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_partimages = new ArrayList<>();
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
+        project_ids = new ArrayList<>();
 
 
         try {
@@ -116,7 +120,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             e.printStackTrace();
         }
 
-//        String project_images = (String) b.getCharSequence("images");
+        project_images = (String) b.getCharSequence("images");
+        Log.e(TAG, "images" + project_images);
 
 //        try {
 //            JSONArray image_json = new JSONArray(project_images);
@@ -131,22 +136,22 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-
-
-        Log.e(TAG, "Project Image 1----" + image1);
-        Log.e(TAG, "Project Image 2----" + image2);
-        Log.e(TAG, "Project Image 3----" + image3);
-        Log.e(TAG, "Project Image 4----" + image4);
-        Log.e(TAG, "Project Image 5----" + image5);
-
+////
+//        Log.e(TAG, "Project Image 1----" + image1);
+//        Log.e(TAG, "Project Image 2----" + image2);
+//        Log.e(TAG, "Project Image 3----" + image3);
+//        Log.e(TAG, "Project Image 4----" + image4);
+//        Log.e(TAG, "Project Image 5----" + image5);
+//
 //        final String[] Images = {image1, image2, image3, image4, image5};
 //        Collections.addAll(slider_images, Images);
 
-//        viewpager = findViewById(R.id.article_view_pager);
-//        imageSliderAdapter = new ImageSliderAdapter(ProjectDetailActivity.this, slider_images);
+//        viewpager = findViewById(R.id.project_view_pager);
+//        imageSliderAdapter = new ProjectImageAdapter(this, slider_images);
 //        viewpager.setAdapter(imageSliderAdapter);
 
 //        slider_dots = findViewById(R.id.project_slide_dots);
+
 //        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            @Override
 //            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -172,23 +177,35 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
     }
 
-//    private void addBottomDots(int currentPage) {
-//        dots = new TextView[slider_images.size()];
-//
-//        slider_dots.removeAllViews();
-//
-//        for (int i = 0; i < dots.length; i++) {
-//            dots[i] = new TextView(this);
-//            dots[i].setText(Html.fromHtml("&#8226;"));
-//            dots[i].setTextSize(35);
-//            dots[i].setTextColor(Color.WHITE);
-//            slider_dots.addView(dots[i]);
-//        }
-//
-//        if (dots.length > 0)
-//            dots[currentPage].setTextColor(Color.parseColor("#004D40"));
-//
-//    }
+    private void addBottomDots(int currentPage) {
+        dots = new TextView[slider_images.size()];
+
+        slider_dots.removeAllViews();
+
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(35);
+            dots[i].setTextColor(Color.WHITE);
+            slider_dots.addView(dots[i]);
+        }
+
+        if (dots.length > 0)
+            dots[currentPage].setTextColor(Color.parseColor("#004D40"));
+
+    }
+
+    final Runnable update = new Runnable() {
+        @Override
+        public void run() {
+            if (page_position == slider_images.size()) {
+                page_position = 0;
+            } else {
+                page_position = page_position + 1;
+            }
+            viewpager.setCurrentItem(page_position, true);
+        }
+    };
 
 
     @Override
@@ -219,6 +236,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         if (flag.equals("PROJECT_PART")) {
             try {
                 JSONObject resp = response.getJSONObject("data");
+                project_ids.add(resp.getString("_id"));
+
                 Log.e(TAG, "responseproject: " + response);
                 JSONArray parts = resp.getJSONArray("parts");
                 Log.e(TAG, "partsjson: " + parts);
@@ -246,6 +265,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
                 e.printStackTrace();
             }
         }
+        Log.e(TAG, "project_ids" + project_ids);
         Log.e(TAG, "part" + project_part);
         Log.e(TAG, "partName" + project_partName);
         Log.e(TAG, "partDesc" + project_partDesc);
@@ -255,14 +275,14 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         ProjectpartManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(ProjectpartManager);
-
-        adapter = new ProjectPartAdapter(this, project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData);
+        adapter = new ProjectPartAdapter(this, project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids);
+        recyclerView.setAdapter(adapter);
 
     }
 
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-
+        Toast.makeText(this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 }

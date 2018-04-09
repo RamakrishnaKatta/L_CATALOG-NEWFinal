@@ -3,6 +3,7 @@ package com.immersionslabs.lcatalog.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.CampaignActivity;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -29,6 +36,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     private ArrayList<String> project_part_articlesIds;
     private ArrayList<String> project_part_articlesData;
     private ArrayList<String> project_partimages;
+    private ArrayList<String> project_ids;
 
     public ProjectPartAdapter(ProjectDetailActivity activity,
                               ArrayList<String> project_part,
@@ -36,7 +44,8 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                               ArrayList<String> project_partDesc,
                               ArrayList<String> project_partimages,
                               ArrayList<String> project_part_articlesIds,
-                              ArrayList<String> project_part_articlesData) {
+                              ArrayList<String> project_part_articlesData,
+                              ArrayList<String> project_ids) {
 
         this.project_part = project_part;
         this.project_partName = project_partName;
@@ -44,6 +53,8 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         this.project_part_articlesIds = project_part_articlesIds;
         this.project_part_articlesData = project_part_articlesData;
         this.project_partimages = project_partimages;
+        this.project_ids = project_ids;
+        this.activity = activity;
 
 
     }
@@ -53,16 +64,38 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_project_parts, parent, false);
-        return null;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ProjectPartAdapter.ViewHolder holder, int position) {
         final Context[] context = new Context[1];
+        String im1 = null;
+        String get_image = project_partimages.get(position);
+        String get_project_id = project_ids.get(position);
+        Log.e(TAG, " project_ids" + get_project_id);
+
+
         holder.projectpart_name.setText(project_partName.get(position));
         holder.projectpart_Desc.setText(project_partDesc.get(position));
+        try {
+            JSONArray images_json = new JSONArray(get_image);
+            if (images_json.length() > 0) {
+                im1 = images_json.getString(0);
+                Log.e(TAG, "project_part_Image" + im1);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        Glide.with(activity)
+                .load(EnvConstants.APP_BASE_URL + "/upload/projectpartimages/partimages_" + get_project_id + "_" + im1)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.projectpart_image);
 
+        holder.projectpart_name.setText(project_partName.get(position));
+        holder.projectpart_Desc.setText(project_partDesc.get(position));
     }
 
     @Override
@@ -80,6 +113,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
             projectpart_container = itemView.findViewById(R.id.project_part_container);
             projectpart_name = itemView.findViewById(R.id.project_part_name);
             projectpart_Desc = itemView.findViewById(R.id.project_part_description);
+            projectpart_image = itemView.findViewById(R.id.project_part_image);
         }
     }
 }

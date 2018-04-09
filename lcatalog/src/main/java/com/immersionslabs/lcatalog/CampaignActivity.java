@@ -134,12 +134,12 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
         Log.e(TAG, "articlesId" + project_part_articlesIds);
         Log.e(TAG, "articlesData" + project_part_articlesData);
 
+        EnvConstants.project_image_id = project_ids;
 
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
         CampaignAdapter adapter = new CampaignAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images);
         recyclerView.setAdapter(adapter);
-
 
     }
 
@@ -153,10 +153,8 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
     }
-
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {

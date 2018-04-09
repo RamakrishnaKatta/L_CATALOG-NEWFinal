@@ -88,7 +88,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
             JSONArray images_json = new JSONArray(get_image);
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "ProjectImageasdfasdfsad " + im1);
+                Log.e(TAG, "ProjectImage " + im1);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
                 b.putString("projectName", project_name.get(position));
                 b.putString("projectDescription", project_description.get(position));
                 b.putString("projectSubDescription", project_subDescription.get(position));
-//                b.putString("images", project_images.get(position));
+                b.putString("images", project_images.get(position));
 //                b.putString("part", project_part.get(position));
 //                b.putString("partName", project_partName.get(position));
 //                b.putString("partDesc", project_partDesc.get(position));

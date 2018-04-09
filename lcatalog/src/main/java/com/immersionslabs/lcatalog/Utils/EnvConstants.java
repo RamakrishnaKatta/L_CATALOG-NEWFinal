@@ -8,4 +8,6 @@ public class EnvConstants {
 
     public static ArrayList<String> user_Favourite_list = new ArrayList<String>();
     public static String user_type = null;
+    public static ArrayList<String> project_image_id = new ArrayList<String>();
+
 }

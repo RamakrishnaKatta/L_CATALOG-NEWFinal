@@ -1,138 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_project_page">
 
     <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true"
-    android:paddingBottom="@dimen/margin_3">
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="top"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/project_image_slider_area"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_300">
-
-            <ImageView
-                android:id="@+id/project_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/dummy_icon" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/project_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="@dimen/margin_3">
 
         <LinearLayout
-            android:id="@+id/project_slide_dots"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_10"
-            android:gravity="center"
-            android:orientation="horizontal" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha=".5" />
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:gravity="top"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/project_title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="PROJECT NAME : "
-                android:textColor="@color/white"
-                android:textSize="13sp"
-
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/prject_title_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="50"
-                android:padding="3dp"
-                android:text="please display the text here............"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/project_description"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="PROJECT DESCRIPTION :"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/project_description_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="200"
-                android:padding="3dp"
-                android:text="Description of the product will be displayed here and also the the related products "
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/project_subdescription"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="PROJECT SUB DESCRIPTION :"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/project_subdescription_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="200"
-                android:padding="3dp"
-                android:text="Sub Description of the product will be displayed here and also the the related products "
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/project_part_list_recycler"
+            <RelativeLayout
+                android:id="@+id/project_image_slider_area"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/margin_6"
-                android:visibility="visible" />
-        </LinearLayout>
+                android:layout_height="@dimen/margin_300">
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/project_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dummy_icon" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/project_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/project_slide_dots"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_10"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha=".5" />
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/project_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="PROJECT NAME : "
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/prject_title_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="50"
+                    android:padding="3dp"
+                    android:text="please display the text here............"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/project_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="PROJECT DESCRIPTION :"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/project_description_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="200"
+                    android:padding="3dp"
+                    android:text="Description of the product will be displayed here and also the the related products "
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/project_subdescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="PROJECT SUB DESCRIPTION :"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/project_subdescription_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="200"
+                    android:padding="3dp"
+                    android:text="Sub Description of the product will be displayed here and also the the related products "
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/project_part_list_recycler"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:padding="@dimen/margin_6"-->
+                    <!--android:visibility="visible" />-->
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
 
     </ScrollView>
 
