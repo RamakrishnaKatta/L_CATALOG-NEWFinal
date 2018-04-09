@@ -2,6 +2,8 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.CampaignActivity;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
+import com.immersionslabs.lcatalog.ProjectpartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -68,7 +71,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ProjectPartAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ProjectPartAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = project_partimages.get(position);
@@ -94,8 +97,25 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.projectpart_image);
 
-        holder.projectpart_name.setText(project_partName.get(position));
-        holder.projectpart_Desc.setText(project_partDesc.get(position));
+        holder.projectpart_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context[0] = v.getContext();
+                Intent intent = new Intent(context[0], ProjectpartDetailsActivity.class);
+                Bundle b = new Bundle();
+                b.putString("part", project_part.get(position));
+                Log.e(TAG, "onClick: partnam"+project_partName );
+                b.putString("partName", project_partName.get(position));
+                b.putString("partDesc", project_partDesc.get(position));
+                b.putString("partimages", project_partimages.get(position));
+                b.putString("articlesId", project_part_articlesIds.get(position));
+                b.putString("articlesData", project_part_articlesData.get(position));
+
+                intent.putExtras(b);
+                context[0].startActivity(intent);
+
+            }
+        });
     }
 
     @Override

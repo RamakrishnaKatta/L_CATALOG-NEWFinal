@@ -95,6 +95,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
+            android:name=".ProjectpartDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
             android:name=".VendorRegistrationActivity"
             android:label="@string/VendorRegistrationActivity"
             android:screenOrientation="portrait"
