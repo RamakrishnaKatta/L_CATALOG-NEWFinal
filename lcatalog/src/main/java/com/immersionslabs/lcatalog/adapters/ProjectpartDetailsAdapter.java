@@ -34,7 +34,6 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
     private ArrayList<String> part_article_name;
     private ArrayList<String> part_article_images;
 
-
     public ProjectpartDetailsAdapter(ProjectpartDetailsActivity activity,
                                      ArrayList<String> part_articles_id,
                                      ArrayList<String> part_article_name,
@@ -43,7 +42,6 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         this.part_article_name = part_article_name;
         this.part_article_images = part_article_images;
         this.activity = activity;
-
     }
 
     @Override
@@ -99,7 +97,6 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
             article_name = itemView.findViewById(R.id.part_article_name);
             article_image = itemView.findViewById(R.id.part_article_image);
             part_article_container = itemView.findViewById(R.id.part_article_container);
-
 
         }
     }

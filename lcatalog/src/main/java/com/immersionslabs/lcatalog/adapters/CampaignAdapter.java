@@ -37,13 +37,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
 
-    private ArrayList<String> project_part;
-    private ArrayList<String> project_partName;
-    private ArrayList<String> project_partDesc;
-    private ArrayList<String> project_partimages;
-    private ArrayList<String> project_part_articlesIds;
-    private ArrayList<String> project_part_articlesData;
-
     public CampaignAdapter(CampaignActivity activity,
                            ArrayList<String> project_ids,
                            ArrayList<String> project_name,
@@ -57,11 +50,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
         this.project_subDescription = project_subDescription;
         this.project_images = project_images;
 
-
         this.activity = activity;
-        Log.e(TAG, " ids-------" + project_ids);
-        Log.e(TAG, " Name-------" + project_name);
-        Log.e(TAG, " Description-------" + project_description);
 
     }
 
@@ -114,13 +103,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
                 b.putString("projectDescription", project_description.get(position));
                 b.putString("projectSubDescription", project_subDescription.get(position));
                 b.putString("images", project_images.get(position));
-//                b.putString("part", project_part.get(position));
-//                b.putString("partName", project_partName.get(position));
-//                b.putString("partDesc", project_partDesc.get(position));
-//                b.putString("partimages", project_partimages.get(position));
-//                b.putString("articlesId", project_part_articlesIds.get(position));
-//                b.putString("articlesData", project_part_articlesData.get(position));
-//                b.putString("part", project_part.get(position));
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);

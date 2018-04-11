@@ -69,7 +69,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/prject_title_text"
+                    android:id="@+id/project_title_text"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="50"

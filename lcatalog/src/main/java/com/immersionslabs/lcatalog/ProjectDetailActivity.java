@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,9 +19,8 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.adapters.CampaignAdapter;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
-import com.immersionslabs.lcatalog.adapters.ProjectImageAdapter;
+import com.immersionslabs.lcatalog.adapters.ProjectImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -41,12 +38,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     private static String PROJECT_PART_URL = null;
 
     private ViewPager viewpager;
-    private LinearLayout slider_dots;
-    ProjectImageAdapter imageSliderAdapter;
+    private LinearLayout slider_dots, project_layout;
+    ProjectImageSliderAdapter imageSliderAdapter;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
     int page_position = 0;
-    TextView prject_name, project_description, project_Sdescription;
+    TextView project_name, project_description, project_Sdescription;
     ImageView project_image;
     String image1, image2, image3, image4, image5;
 
@@ -55,15 +52,14 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;
     GridLayoutManager ProjectpartManager;
-
-
+    String p_name, p_desc, p_subdesc;
+    private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
     private ArrayList<String> project_partName;
     private ArrayList<String> project_partDesc;
     private ArrayList<String> project_partimages;
     private ArrayList<String> project_part_articlesIds;
     private ArrayList<String> project_part_articlesData;
-    private ArrayList<String> project_ids;
 
     private static final String TAG = "ProjectDetailActivty";
 
@@ -80,101 +76,105 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        prject_name = findViewById(R.id.prject_title_text);
-        project_description = findViewById(R.id.project_description_text);
-        project_Sdescription = findViewById(R.id.project_subdescription_text);
-        project_image = findViewById(R.id.project_image_view);
 
-
-        recyclerView = findViewById(R.id.project_part_list_recycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-
-        final Bundle b = getIntent().getExtras();
-
-        project_id = (String) b.getCharSequence("_id");
-        Log.e(TAG, "project_id ---- " + project_id);
-
-
-        PROJECT_PART_URL = REGISTER_URL + project_id;
-        Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
-
-
-        prject_name.setText(b.getCharSequence("projectName"));
-        Log.e(TAG, "qweqeqwqw  " + prject_name);
-        project_description.setText(b.getCharSequence("projectDescription"));
-        project_Sdescription.setText(b.getCharSequence("projectSubDescription"));
-
-
+        project_ids = new ArrayList<>();
         project_part = new ArrayList<>();
         project_partName = new ArrayList<>();
         project_partDesc = new ArrayList<>();
         project_partimages = new ArrayList<>();
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
-        project_ids = new ArrayList<>();
+
+        project_layout = findViewById(R.id.project_layout);
+        project_name = findViewById(R.id.project_title_text);
+        project_description = findViewById(R.id.project_description_text);
+        project_Sdescription = findViewById(R.id.project_subdescription_text);
+        project_image = findViewById(R.id.project_image_view);
+
+        final Bundle b = getIntent().getExtras();
+
+//        p_name = b.getString("projectName");
+//        project_name.setText(p_name);
 
 
+        project_id = (String) b.getCharSequence("_id");
+        Log.e(TAG, "project_id ---- " + project_id);
+
+        Log.e(TAG, "Project_name  " + project_name);
+
+        Log.e(TAG, "project_description  " + project_description);
+        Log.e(TAG, "project_Sdescription  " + project_Sdescription);
+
+        recyclerView = findViewById(R.id.project_part_list_recycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+        project_images = (String) b.getCharSequence("images");
+        Log.e(TAG, "Project Images----" + project_images);
+
+
+        try {
+            JSONArray image_json = new JSONArray(project_images);
+            for (int i = 0; i < image_json.length(); i++) {
+                image1 = image_json.getString(0);
+                image2 = image_json.getString(1);
+                image3 = image_json.getString(2);
+                image4 = image_json.getString(3);
+                image5 = image_json.getString(4);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e(TAG, "ProjectImage 1----" + image1);
+        Log.e(TAG, "ProjectImage 2----" + image2);
+        Log.e(TAG, "ProjectImage 3----" + image3);
+        Log.e(TAG, "ProjectImage 4----" + image4);
+        Log.e(TAG, "ProjectImage 5----" + image5);
+
+        final String[] Images = {image1, image2, image3, image4, image5};
+
+        Collections.addAll(slider_images, Images);
+
+        viewpager = findViewById(R.id.project_view_pager);
+        imageSliderAdapter = new ProjectImageSliderAdapter(ProjectDetailActivity.this, slider_images, project_id);
+        viewpager.setAdapter(imageSliderAdapter);
+
+        slider_dots = findViewById(R.id.project_slide_dots);
+
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                addBottomDots(position);
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        PROJECT_PART_URL = REGISTER_URL + project_id;
+        Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
+
+
+        project_name.setText(b.getCharSequence("projectName"));
+        project_description.setText(b.getCharSequence("projectDescription"));
+
+        project_Sdescription.setText(b.getCharSequence("projectSubDescription"));
+
+//        Glide.with(getApplicationContext())
+//                .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_id + project_images)
+//                .placeholder(R.drawable.dummy_icon)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(project_image);
         try {
             getProjectData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        project_images = (String) b.getCharSequence("images");
-        Log.e(TAG, "images" + project_images);
-
-//        try {
-//            JSONArray image_json = new JSONArray(project_images);
-//            for (int i = 0; i < image_json.length(); i++) {
-//                image1 = image_json.getString(0);
-//                image2 = image_json.getString(1);
-//                image3 = image_json.getString(2);
-//                image4 = image_json.getString(3);
-//                image5 = image_json.getString(4);
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-////
-//        Log.e(TAG, "Project Image 1----" + image1);
-//        Log.e(TAG, "Project Image 2----" + image2);
-//        Log.e(TAG, "Project Image 3----" + image3);
-//        Log.e(TAG, "Project Image 4----" + image4);
-//        Log.e(TAG, "Project Image 5----" + image5);
-//
-//        final String[] Images = {image1, image2, image3, image4, image5};
-//        Collections.addAll(slider_images, Images);
-
-//        viewpager = findViewById(R.id.project_view_pager);
-//        imageSliderAdapter = new ProjectImageAdapter(this, slider_images);
-//        viewpager.setAdapter(imageSliderAdapter);
-
-//        slider_dots = findViewById(R.id.project_slide_dots);
-
-//        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-////                addBottomDots(position);
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
-
-    }
-
-    private void getProjectData() throws JSONException {
-
-        ApiService.getInstance(this).getData(this, false, "PROJECT_PART_DATA", PROJECT_PART_URL, "PROJECT_PART");
 
     }
 
@@ -190,10 +190,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             dots[i].setTextColor(Color.WHITE);
             slider_dots.addView(dots[i]);
         }
-
         if (dots.length > 0)
             dots[currentPage].setTextColor(Color.parseColor("#004D40"));
-
     }
 
     final Runnable update = new Runnable() {
@@ -207,37 +205,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             viewpager.setCurrentItem(page_position, true);
         }
     };
+    private void getProjectData() throws JSONException {
 
-
-    @Override
-    public void onBackPressed() {
-        setResult(RESULT_CANCELED);
-        super.onBackPressed();
-
-        Intent intent = new Intent(this, CampaignActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("activity", "SplashScreen");
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
-        }
-        return super.onOptionsItemSelected(item);
+        ApiService.getInstance(this).getData(this, false, "PROJECT_PART_DATA", PROJECT_PART_URL, "PROJECT_PART");
     }
 
     @Override
@@ -254,7 +224,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -286,12 +255,40 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         recyclerView.setLayoutManager(ProjectpartManager);
         adapter = new ProjectPartAdapter(this, project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids);
         recyclerView.setAdapter(adapter);
-
     }
-
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(this, "Internal Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+
+        Intent intent = new Intent(this, CampaignActivity.class);
+        intent.putExtra("activity", "SplashScreen");
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
