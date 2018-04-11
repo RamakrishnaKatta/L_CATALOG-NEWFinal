@@ -38,7 +38,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     private static String PROJECT_PART_URL = null;
 
     private ViewPager viewpager;
-    private LinearLayout slider_dots, project_layout;
+    private LinearLayout slider_dots;
     ProjectImageSliderAdapter imageSliderAdapter;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
@@ -52,7 +52,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;
     GridLayoutManager ProjectpartManager;
-    String p_name, p_desc, p_subdesc;
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
     private ArrayList<String> project_partName;
@@ -85,7 +84,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
 
-        project_layout = findViewById(R.id.project_layout);
         project_name = findViewById(R.id.project_title_text);
         project_description = findViewById(R.id.project_description_text);
         project_Sdescription = findViewById(R.id.project_subdescription_text);
@@ -99,7 +97,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         project_id = (String) b.getCharSequence("_id");
         Log.e(TAG, "project_id ---- " + project_id);
-
         Log.e(TAG, "Project_name  " + project_name);
 
         Log.e(TAG, "project_description  " + project_description);

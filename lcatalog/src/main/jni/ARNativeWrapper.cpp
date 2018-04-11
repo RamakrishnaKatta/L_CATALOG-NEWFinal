@@ -30,6 +30,11 @@
         static float lightAmbient[4] = {0.1f, 0.1f, 0.1f, 1.0f};
         static float lightDiffuse[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         static float lightPosition[4] = {1.0f, 1.0f, 1.0f, 0.0f};
+        static float lightSpecular[4] = {1.0f, 0.5f, 0.5f, 1.0f};
+
+        static float materialShininess[] = {50};
+        static float materialDiffuse[] = {1.0f, 0.f, 0.f, 1.0f};
+        static float materialSpecular[] = {1.0f, 0.f, 0.f, 1.0f};
 
         JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoInitialise(JNIEnv * env, jobject object)) {
 
@@ -241,7 +246,7 @@
                   LOGE("Error loading model from file '%s'.", model11file);
                   exit(-1);
                 }
-            glmScale(models[11].obj, 15.0f);
+            glmScale(models[11].obj, 5.0f);
             //glmRotate(models[11].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[11].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[11].visible = false;
@@ -568,6 +573,7 @@
     JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoDrawFrame(JNIEnv * env, jobject obj)) {
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Set the projection matrix to that provided by ARToolKit.
@@ -588,9 +594,16 @@
 
             if (models[i].visible) {
                 glLoadMatrixf(models[i].transformationMatrix);
+
                 glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
                 glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
                 glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+                glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+
+                glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materialDiffuse);
+                glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materialSpecular);
+                glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, materialShininess);
+
                 glmDrawArrays(models[i].obj, 0);
             }
         }

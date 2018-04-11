@@ -11,4 +11,7 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <uses-feature android:glEsVersion="0x00010100" />
+    <uses-feature android:glEsVersion="0x00020000" />
+
 </manifest>
