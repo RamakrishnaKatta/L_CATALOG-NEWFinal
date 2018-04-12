@@ -79,6 +79,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CampaignActivity"
+            android:label="@string/CampaignActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -88,14 +89,17 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProductPageActivity"
+            android:label="@string/ProductPageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProjectDetailActivity"
+            android:label="@string/ProjectDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ProjectpartDetailsActivity"
+            android:name=".ProjectPartDetailsActivity"
+            android:label="@string/ProjectPartDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -175,7 +179,6 @@
             android:label="@string/title_activity_budget_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
 
         <activity android:name=".notifications.NotificationCountSetClass" />
 

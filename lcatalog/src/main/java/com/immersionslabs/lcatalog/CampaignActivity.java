@@ -5,16 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.v7.widget.Toolbar;
-import android.widget.LinearLayout;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.CampaignAdapter;
-import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
@@ -22,10 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CampaignActivity extends AppCompatActivity implements ApiCommunication {
+
     private static final String TAG = "CampaignActivity";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getprojects";
@@ -64,18 +63,13 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
         project_subDescription = new ArrayList<>();
         project_images = new ArrayList<>();
 
-        try {
-            CommonGetData();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        CommonGetData();
     }
 
-    private void CommonGetData() throws JSONException {
+    private void CommonGetData() {
         Log.e(TAG, "CommonGetData: Project URL" + REGISTER_URL);
         final JSONObject object = new JSONObject();
         ApiService.getInstance(this).getData(this, false, "CAMPAIGN", REGISTER_URL, "PROJECT_CAMPAIGN");
-
     }
 
     private void GetData(JSONArray resp) {
@@ -108,6 +102,7 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
                 e.printStackTrace();
             }
         }
+
         Log.e(TAG, " ids" + project_ids);
         Log.e(TAG, " Name" + project_name);
         Log.e(TAG, " Description" + project_description);
@@ -117,10 +112,9 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
         CampaignAdapter adapter = new CampaignAdapter(this, project_ids,
-                                                                   project_name, project_description,
-                                                                   project_subDescription, project_images);
+                project_name, project_description,
+                project_subDescription, project_images);
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override
@@ -135,9 +129,35 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
             }
         }
     }
+
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(CampaignActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

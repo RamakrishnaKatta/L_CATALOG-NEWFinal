@@ -27,15 +27,12 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
     String project_id;
     String TAG = "ProjectImageSliderAdapter";
 
-
     public ProjectImageSliderAdapter(ProjectDetailActivity activity,
                                      ArrayList<String> slider_images,
                                      String project_id) {
         this.activity = activity;
         this.Images = slider_images;
         this.project_id = project_id;
-
-
     }
 
     @Override
@@ -51,7 +48,7 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         LayoutInflater inflater = activity.getLayoutInflater();
-        View v = inflater.inflate(R.layout.activity_project_page, container, false);
+        View v = inflater.inflate(R.layout.activity_project_details, container, false);
         Log.e(TAG, "projectimage  " + project_id);
         ImageView images = v.findViewById(R.id.project_image_view);
         Bitmap b = download_images(Images.get(position));

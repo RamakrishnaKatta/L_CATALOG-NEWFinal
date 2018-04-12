@@ -16,13 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
-import com.immersionslabs.lcatalog.ProjectpartDetailsActivity;
+import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -34,7 +30,7 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
     private ArrayList<String> part_article_name;
     private ArrayList<String> part_article_images;
 
-    public ProjectpartDetailsAdapter(ProjectpartDetailsActivity activity,
+    public ProjectpartDetailsAdapter(ProjectPartDetailsActivity activity,
                                      ArrayList<String> part_articles_id,
                                      ArrayList<String> part_article_name,
                                      ArrayList<String> part_article_images) {
@@ -47,7 +43,7 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_project_part_detail, parent, false);
+        View view = inflater.inflate(R.layout.item_project_part_details, parent, false);
         return new ViewHolder(view);
     }
 
@@ -56,7 +52,7 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = part_article_images.get(position);
-        Log.e(TAG, "project_images"  + get_image);
+        Log.e(TAG, "project_images" + get_image);
 
         holder.article_name.setText(part_article_name.get(position));
         Glide.with(activity)
@@ -76,7 +72,6 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
                 b.putString("article_id", part_articles_id.get(position));
                 intent.putExtras(b);
                 context[0].startActivity(intent);
-
             }
         });
     }

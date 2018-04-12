@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ProjectDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:theme="@style/AppTheme.Dark.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_project_part"
+            android:id="@+id/toolbar_projects"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/AppTheme.Dark.PopupOverlay">
@@ -22,6 +23,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <include layout="@layout/content_project_details" />
 
-    <include layout="@layout/content_project_part"/>
 </android.support.design.widget.CoordinatorLayout>

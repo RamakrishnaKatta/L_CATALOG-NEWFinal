@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -62,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
     CryptionRijndeal rijndeal_obj;
     private PrefManager prefManager5;
 
-    TextView app_name, _forgot_password, powered;
+    TextView _forgot_password;
     EditText _emailText, _passwordText;
     Button _loginButton;
     ImageButton get_details;
@@ -83,8 +81,6 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         userType = "CUSTOMER";
 
         sessionmanager = new SessionManager(getApplicationContext());
-        app_name = findViewById(R.id.application_name);
-        powered = findViewById(R.id.immersionslabs);
 
         _loginButton = findViewById(R.id.btn_login);
         _forgot_password = findViewById(R.id.link_forgot_password);
@@ -100,13 +96,8 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";
         file_customer = new File(customer_text_file_location);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
 
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
-        _forgot_password.setTypeface(custom_font2);
-        _forgot_password.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+//        _forgot_password.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         //Disables the keyboard to appear on the activity launch
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

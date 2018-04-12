@@ -2,7 +2,6 @@ package com.immersionslabs.lcatalog;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -51,8 +49,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        TextView app_name = findViewById(R.id.application_name);
-        TextView powered = findViewById(R.id.immersionslabs);
         _submitButton = findViewById(R.id.btn_submit);
         rijndeal_obj = new CryptionRijndeal();
         sessionManager = new SessionManager(getApplicationContext());
@@ -61,12 +57,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ApiComm
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 

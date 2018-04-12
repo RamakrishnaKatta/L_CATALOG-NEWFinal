@@ -24,9 +24,10 @@
 
         <TextView
             android:id="@+id/notification_title"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/notify_image"
+            android:fontFamily="@font/overlock_sc"
             android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"
             android:paddingTop="@dimen/margin_40"
@@ -35,13 +36,13 @@
             android:textSize="@dimen/text_tab_large"
             android:textStyle="bold" />
 
-
         <TextView
             android:id="@+id/notification_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/notification_title"
             android:layout_toEndOf="@+id/notify_image"
+            android:fontFamily="@font/assistant_semibold"
             android:maxLines="3"
             android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"

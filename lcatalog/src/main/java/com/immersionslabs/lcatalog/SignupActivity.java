@@ -1,9 +1,7 @@
 package com.immersionslabs.lcatalog;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -47,9 +45,9 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     public static final String KEY_VENDOR_ID = "vendor_id";
 
     TextView app_name, powered;
-    CoordinatorLayout SignupLayout;
     String name, email, address, mobile, password, reEnterPassword;
     String resp, code, message;
+
     String type = "CUSTOMER";
 
     int vendor_id = 100000; // This Value should be changed when a user is registered under specific customer
@@ -60,16 +58,6 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
-        powered = findViewById(R.id.immersionslabs);
-        app_name = findViewById(R.id.application_name);
-
-        SignupLayout = findViewById(R.id.SignupLayout);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 

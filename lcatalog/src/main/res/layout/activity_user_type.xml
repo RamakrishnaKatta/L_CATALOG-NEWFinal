@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/graduate"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_max" />
@@ -38,6 +39,7 @@
                 android:id="@+id/immersionslabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
                 android:textColor="@color/white"
@@ -48,23 +50,23 @@
                 android:id="@+id/welcome_aboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:padding="@dimen/margin_10"
                 android:text="@string/welcome_aboard"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_xxxlarge"
-                android:textStyle="bold|italic" />
+                android:textSize="@dimen/text_size_xxxlarge" />
 
             <TextView
                 android:id="@+id/who_are_you"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:padding="@dimen/margin_10"
                 android:text="@string/firstly_who_you_are_matters"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_xxxlarge"
-                android:textStyle="bold|italic" />
+                android:textSize="@dimen/text_size_xxxlarge" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -95,6 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/btn_customer"
+                        android:fontFamily="@font/graduate"
                         android:text="@string/login_sign"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_xlarge"
@@ -106,11 +109,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/txt_customer_text"
+                        android:fontFamily="@font/cookie"
                         android:padding="@dimen/margin_10"
                         android:text="@string/login_hint"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="italic"
+                        android:textSize="@dimen/text_size_large"
                         tools:ignore="RtlSymmetry" />
 
                 </RelativeLayout>
@@ -141,6 +144,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/btn_new_customer"
                         android:layout_toRightOf="@+id/btn_new_customer"
+                        android:fontFamily="@font/graduate"
                         android:text="@string/signup_sign"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_xlarge"
@@ -152,11 +156,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/txt_new_customer_text"
+                        android:fontFamily="@font/cookie"
                         android:padding="@dimen/margin_10"
                         android:text="@string/signup_hint"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="italic" />
+                        android:textSize="@dimen/text_size_large" />
 
                 </RelativeLayout>
 
@@ -184,6 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/btn_shopper"
+                        android:fontFamily="@font/graduate"
                         android:text="@string/guest_sign"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_xlarge"
@@ -195,11 +200,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/txt_shopper_text"
+                        android:fontFamily="@font/cookie"
                         android:padding="@dimen/margin_10"
                         android:text="@string/guest_hint"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="italic" />
+                        android:textSize="@dimen/text_size_large" />
 
                 </RelativeLayout>
 

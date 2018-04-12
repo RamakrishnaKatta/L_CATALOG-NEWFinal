@@ -19,7 +19,7 @@
     <string name="start">START</string>
 
     <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
-    <string name="powered_symbol_immersionslabs">&#8471; Immersion Software Labs. </string>
+    <string name="powered_symbol_immersionslabs"> Immersion Software Labs. &#8471;</string>
     <string name="powered_by_symbol">&#8471;</string>
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly for Us, Who you are matters !!</string>
@@ -38,7 +38,7 @@
     <string name="re_enter_password">Re Enter Password</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="btn_login">Login</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
     <string name="nav_hi">Hi,  </string>
     <string name="Logged_userName">UserName</string>
     <string name="email_phone_number">Email / phone number</string>
@@ -103,7 +103,7 @@
     <string name="discount_price_title">AFTER DISCOUNT PRICE:</string>
     <string name="discount_title">Discount :   </string>
     <string name="original_price_title">ORIGINAL PRICE:</string>
-    <string name="product_share">share</string>
+    <string name="product_share">Share</string>
     <string name="btn_edit_profile">EDIT PROFILE</string>
     <string name="btn_update_profile">UPDATE PROFILE</string>
     <string name="product_title">TITLE :</string>
@@ -219,5 +219,9 @@
     <string name="title_activity_vendor_list">Our Vendors</string>
     <string name="vendor_catalog">Vendor Catalog</string>
     <string name="campaign">Campaign</string>
+    <string name="CampaignActivity">Project Campaign</string>
+    <string name="ProductPageActivity">Product Page</string>
+    <string name="ProjectDetailActivity">Project Details</string>
+    <string name="ProjectPartDetailsActivity">Project details by Part</string>
 
 </resources>

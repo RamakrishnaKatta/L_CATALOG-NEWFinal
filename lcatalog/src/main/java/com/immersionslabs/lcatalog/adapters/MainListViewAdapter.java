@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +40,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
                                ArrayList<String> item_prices,
                                ArrayList<String> item_discounts,
                                ArrayList<String> item_descriptions) {
+
         this.item_ids = item_ids;
         this.item_names = item_names;
         this.item_images = item_images;
@@ -93,6 +93,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.item_image);
+
         viewHolder.item_name.setText(item_names.get(position));
         viewHolder.item_description.setText(item_descriptions.get(position));
 
@@ -110,7 +111,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
 
         ImageView item_image;
         LinearLayout main_container;
-        private TextView item_name, item_description, item_price, item_discount, item_price_new;
+        private TextView item_name, item_description;
 
         ViewHolder(View view) {
             super(view);
@@ -118,12 +119,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
             main_container = view.findViewById(R.id.main_container);
             item_image = view.findViewById(R.id.main_image);
             item_name = view.findViewById(R.id.main_title);
-            item_description = view.findViewById(R.id.main_data);
-
-            Typeface custom_font = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Graduate-Regular.ttf");
-            Typeface custom_font2 = Typeface.createFromAsset(activity.getActivity().getAssets(), "fonts/Cookie-Regular.ttf");
-            item_name.setTypeface(custom_font);
-            item_description.setTypeface(custom_font2);
+            item_description = view.findViewById(R.id.main_data);;
 
         }
     }

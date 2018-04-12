@@ -3,7 +3,6 @@ package com.immersionslabs.lcatalog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -57,13 +55,6 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
 
         Toolbar toolbar = findViewById(R.id.toolbar_user_account);
         setSupportActionBar(toolbar);
-
-        TextView app_name = findViewById(R.id.application_name);
-        TextView powered = findViewById(R.id.immersionslabs);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-        app_name.setTypeface(custom_font1);
-        powered.setTypeface(custom_font2);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

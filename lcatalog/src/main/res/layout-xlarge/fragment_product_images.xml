@@ -85,6 +85,7 @@
                         android:id="@+id/favourite_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -121,6 +122,7 @@
                         android:id="@+id/share_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -168,6 +170,7 @@
                         android:id="@+id/add_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -205,12 +208,14 @@
                         android:contentDescription="@string/menu_augment"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        app:srcCompat="@mipmap/ic_augment" />
+                        app:srcCompat="@mipmap/ic_augment"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/augment_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -248,6 +253,7 @@
                         android:id="@+id/view3d_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -284,6 +290,7 @@
                         android:id="@+id/download_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
@@ -311,11 +318,12 @@
                     android:id="@+id/download_note_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_20"
                     android:text="@string/note_download"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_small"
-                    android:textStyle="italic" />
+                    android:textStyle="italic|bold" />
 
                 <View
                     android:id="@+id/layout_separator7"

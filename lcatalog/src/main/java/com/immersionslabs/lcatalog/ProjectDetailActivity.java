@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
@@ -43,7 +42,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
     int page_position = 0;
-    TextView project_name, project_description, project_Sdescription;
+    TextView project_name, project_description, project_sub_description;
     ImageView project_image;
     String image1, image2, image3, image4, image5;
 
@@ -52,6 +51,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;
     GridLayoutManager ProjectpartManager;
+
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
     private ArrayList<String> project_partName;
@@ -60,13 +60,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     private ArrayList<String> project_part_articlesIds;
     private ArrayList<String> project_part_articlesData;
 
-    private static final String TAG = "ProjectDetailActivty";
+    private static final String TAG = "ProjectDetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_page);
-
+        setContentView(R.layout.activity_project_details);
 
         Toolbar toolbar = findViewById(R.id.toolbar_projects);
         setSupportActionBar(toolbar);
@@ -86,7 +85,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         project_name = findViewById(R.id.project_title_text);
         project_description = findViewById(R.id.project_description_text);
-        project_Sdescription = findViewById(R.id.project_subdescription_text);
+        project_sub_description = findViewById(R.id.project_subdescription_text);
         project_image = findViewById(R.id.project_image_view);
 
         final Bundle b = getIntent().getExtras();
@@ -94,13 +93,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 //        p_name = b.getString("projectName");
 //        project_name.setText(p_name);
 
-
         project_id = (String) b.getCharSequence("_id");
         Log.e(TAG, "project_id ---- " + project_id);
         Log.e(TAG, "Project_name  " + project_name);
 
         Log.e(TAG, "project_description  " + project_description);
-        Log.e(TAG, "project_Sdescription  " + project_Sdescription);
+        Log.e(TAG, "project_sub_description  " + project_sub_description);
 
         recyclerView = findViewById(R.id.project_part_list_recycler);
         recyclerView.setHasFixedSize(true);
@@ -108,7 +106,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         project_images = (String) b.getCharSequence("images");
         Log.e(TAG, "Project Images----" + project_images);
-
 
         try {
             JSONArray image_json = new JSONArray(project_images);
@@ -119,7 +116,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
                 image4 = image_json.getString(3);
                 image5 = image_json.getString(4);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -144,10 +140,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
+
             @Override
             public void onPageSelected(int position) {
                 addBottomDots(position);
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -156,11 +154,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         PROJECT_PART_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
 
-
         project_name.setText(b.getCharSequence("projectName"));
         project_description.setText(b.getCharSequence("projectDescription"));
 
-        project_Sdescription.setText(b.getCharSequence("projectSubDescription"));
+        project_sub_description.setText(b.getCharSequence("projectSubDescription"));
 
 //        Glide.with(getApplicationContext())
 //                .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_id + project_images)
@@ -172,7 +169,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     private void addBottomDots(int currentPage) {
@@ -202,8 +198,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             viewpager.setCurrentItem(page_position, true);
         }
     };
-    private void getProjectData() throws JSONException {
 
+    private void getProjectData() throws JSONException {
         ApiService.getInstance(this).getData(this, false, "PROJECT_PART_DATA", PROJECT_PART_URL, "PROJECT_PART");
     }
 

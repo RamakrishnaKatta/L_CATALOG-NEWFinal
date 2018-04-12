@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,10 +24,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
 
         animate();
 

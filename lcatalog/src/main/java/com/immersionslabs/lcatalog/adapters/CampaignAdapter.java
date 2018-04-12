@@ -3,7 +3,6 @@ package com.immersionslabs.lcatalog.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,7 +50,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
         this.project_images = project_images;
 
         this.activity = activity;
-
     }
 
     @Override
@@ -61,7 +59,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
         View view = inflater.inflate(R.layout.item_project, parent, false);
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(CampaignAdapter.ViewHolder holder, final int position) {
@@ -88,6 +85,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.campaign_image);
+
         holder.campaign_name.setText(project_name.get(position));
         holder.campaign_description.setText(project_description.get(position));
 
@@ -108,7 +106,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
                 context[0].startActivity(intent);
             }
         });
-
     }
 
     @Override

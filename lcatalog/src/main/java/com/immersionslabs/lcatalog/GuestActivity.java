@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
@@ -17,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
@@ -37,7 +35,6 @@ public class GuestActivity extends AppCompatActivity {
     private static final int REQUEST_GUEST_LOGIN = 0;
     AlarmManager alarmManager;
     PendingIntent pendingIntent;
-    TextView app_name, powered;
     EditText _guestNameText, _GuestPhoneText;
     Button _guestLoginButton;
     EditText _nameText, _mobileText;
@@ -55,8 +52,6 @@ public class GuestActivity extends AppCompatActivity {
 
         sessionmanager = new SessionManager(getApplicationContext());
 
-        app_name = findViewById(R.id.application_name);
-        powered = findViewById(R.id.immersionslabs);
         _guestLoginButton = findViewById(R.id.btn_guest);
         get_details = findViewById(R.id.btn_get_data);
 
@@ -70,12 +65,6 @@ public class GuestActivity extends AppCompatActivity {
 
         String guest_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/guest.txt";
         file_guest = new File(guest_text_file_location);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
 
         //Disables the keyboard to appear on the activity launch
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

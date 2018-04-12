@@ -33,6 +33,7 @@
                 android:id="@+id/application_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/graduate"
                 android:gravity="center"
                 android:text="@string/app_name"
                 android:textSize="@dimen/text_tab_max" />
@@ -41,6 +42,7 @@
                 android:id="@+id/immersionslabs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
                 android:textSize="@dimen/text_tab_large"
@@ -91,6 +93,7 @@
                     android:layout_width="@dimen/margin_250"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_6"
+                    android:fontFamily="@font/overlock_sc"
                     android:gravity="center"
                     android:padding="@dimen/margin_15"
                     android:text="@string/btn_login"
@@ -112,6 +115,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_12"
+                android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:text="@string/forgot_password"
                 android:textSize="@dimen/text_tab_xxlarge" />

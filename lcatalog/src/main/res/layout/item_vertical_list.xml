@@ -26,12 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/v_item_image"
+            android:fontFamily="@font/overlock_sc"
             android:paddingEnd="@dimen/margin_20"
             android:paddingStart="@dimen/margin_20"
             android:paddingTop="@dimen/margin_10"
             android:text="@string/catalog_title"
             android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
 
         <TextView
@@ -41,6 +42,7 @@
             android:layout_below="@+id/v_item_name"
             android:layout_toEndOf="@+id/v_item_image"
             android:ellipsize="end"
+            android:fontFamily="@font/assistant_semibold"
             android:maxLines="2"
             android:paddingEnd="@dimen/margin_20"
             android:paddingStart="@dimen/margin_20"

@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
@@ -11,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.immersionslabs.lcatalog.ProjectpartDetailsActivity;
+import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -21,14 +20,13 @@ import java.util.ArrayList;
 
 public class ProjectPartImageSliderAdapter extends PagerAdapter {
 
-
     private ArrayList<String> Images;
     private Activity activity;
 
     String project_id;
     String TAG = "ProjectPartImageSliderAdapter";
 
-    public ProjectPartImageSliderAdapter(ProjectpartDetailsActivity activity,
+    public ProjectPartImageSliderAdapter(ProjectPartDetailsActivity activity,
                                          ArrayList<String> slider_images,
                                          String project_id) {
         this.activity = activity;
@@ -48,8 +46,8 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-      LayoutInflater  inflater = activity.getLayoutInflater();
-        View v = inflater.inflate(R.layout.activity_project_part, container, false);
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View v = inflater.inflate(R.layout.activity_project_part_details, container, false);
         Log.e(TAG, "projectidpartimage  " + project_id);
         ImageView images = v.findViewById(R.id.project_part_image_view);
         Bitmap b = download_images(Images.get(position));
@@ -74,7 +72,6 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
         }
         return mIcon;
     }
-
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {

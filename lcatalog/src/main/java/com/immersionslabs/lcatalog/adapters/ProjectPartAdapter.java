@@ -10,15 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.CampaignActivity;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
-import com.immersionslabs.lcatalog.ProjectpartDetailsActivity;
+import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -28,7 +26,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.ViewHolder> {
-
 
     private static final String TAG = "ProjectPartAdapter";
     private Activity activity;
@@ -58,15 +55,13 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         this.project_partimages = project_partimages;
         this.project_ids = project_ids;
         this.activity = activity;
-
-
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_project_parts, parent, false);
+        View view = inflater.inflate(R.layout.item_project_details, parent, false);
         return new ViewHolder(view);
     }
 
@@ -77,7 +72,6 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         String get_image = project_partimages.get(position);
         String get_project_id = project_ids.get(position);
         Log.e(TAG, " project_ids" + get_project_id);
-
 
         holder.projectpart_name.setText(project_partName.get(position));
         holder.projectpart_Desc.setText(project_partDesc.get(position));
@@ -101,7 +95,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
-                Intent intent = new Intent(context[0], ProjectpartDetailsActivity.class);
+                Intent intent = new Intent(context[0], ProjectPartDetailsActivity.class);
                 Bundle b = new Bundle();
                 b.putString("_id", project_ids.get(position));
                 b.putString("part", project_part.get(position));
@@ -113,7 +107,6 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);
-
             }
         });
     }

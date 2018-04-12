@@ -85,6 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/favourite"
@@ -121,6 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/product_share"
@@ -157,13 +159,15 @@
                         android:contentDescription="@string/menu_augment"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        app:srcCompat="@mipmap/ic_augment" />
+                        app:srcCompat="@mipmap/ic_augment"
+                        tools:ignore="VectorDrawableCompat" />
 
                     <TextView
                         android:id="@+id/augment_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/menu_augment"
@@ -201,6 +205,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/article_3d_text"
@@ -244,6 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/article_download"
@@ -274,6 +280,7 @@
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_add" />
+
                     <ImageButton
                         android:id="@+id/article_remove_icon"
                         android:layout_width="wrap_content"
@@ -290,6 +297,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/budget_list"
@@ -317,11 +325,12 @@
                     android:id="@+id/download_note_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_10"
                     android:text="@string/note_download"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size_small"
-                    android:textStyle="italic" />
+                    android:textStyle="italic|bold" />
 
                 <View
                     android:id="@+id/layout_separator7"

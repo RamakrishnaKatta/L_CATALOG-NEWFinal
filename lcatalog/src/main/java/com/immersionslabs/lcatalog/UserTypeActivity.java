@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,14 +36,14 @@ import java.util.List;
 import java.util.Map;
 
 public class UserTypeActivity extends AppCompatActivity {
+
     private static final String TAG = "UserTypeActivity";
     private static final int MY_PERMISSIONS_REQUEST = 10;
     private static final int REQUEST_USERTYPE = 0;
     Toast toast;
     TextView app_name,
             welcome_aboard,
-            who_are_you,
-            powered;
+            who_are_you;
     ImageButton _customer,
             _newCustomer,
             _shopper;
@@ -75,21 +74,6 @@ public class UserTypeActivity extends AppCompatActivity {
             finish();
         }
         RequestPermissions();
-
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-
-        app_name = findViewById(R.id.application_name);
-        app_name.setTypeface(custom_font1);
-
-        welcome_aboard = findViewById(R.id.welcome_aboard);
-        welcome_aboard.setTypeface(custom_font2);
-
-        who_are_you = findViewById(R.id.who_are_you);
-        who_are_you.setTypeface(custom_font2);
-
-        powered = findViewById(R.id.immersionslabs);
-        powered.setTypeface(custom_font2);
 
         delete_cache = findViewById(R.id.icon);
         delete_cache.setOnClickListener(new View.OnClickListener() {
@@ -313,7 +297,7 @@ public class UserTypeActivity extends AppCompatActivity {
         sequence.start();
     }
 
-     /*Permissions Required for the app and granted*/
+    /*Permissions Required for the app and granted*/
 
     @Override
     public void onBackPressed() {

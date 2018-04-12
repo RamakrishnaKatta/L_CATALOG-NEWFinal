@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/overlock_sc"
             android:gravity="center"
             android:padding="@dimen/margin_10"
             android:text="Vendor Name"
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/assistant_semibold"
             android:gravity="center"
             android:padding="@dimen/margin_10"
             android:text="Vendor Address"
@@ -51,10 +53,12 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_50"
             android:layout_marginTop="@dimen/margin_20"
+            android:fontFamily="@font/assistant_semibold"
             android:padding="@dimen/margin_20"
             android:text="Vendor Articles"
             android:textAlignment="center"
-            android:textSize="@dimen/text_tab_medium" />
+            android:textSize="@dimen/text_tab_medium"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

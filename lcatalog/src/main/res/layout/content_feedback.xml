@@ -88,11 +88,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_3"
             android:layout_marginTop="@dimen/margin_3"
+            android:fontFamily="@font/overlock_sc"
             android:gravity="center"
             android:padding="@dimen/margin_10"
             android:text="@string/submit"
             android:textAlignment="center"
-            android:textSize="@dimen/text_size_medium" />
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

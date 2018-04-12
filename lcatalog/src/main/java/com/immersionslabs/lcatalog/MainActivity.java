@@ -2,7 +2,6 @@ package com.immersionslabs.lcatalog;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     boolean doubleBackToExitPressedOnce = false;
     String name, email, phone, address, user_log_type;
     String guest_name, guest_phone;
-    TextView user_type, user_email, user_name, app_name, powered;
+    TextView user_type, user_email, user_name;
     HashMap hashMap;
     SessionManager sessionmanager;
     int doubleClick = 1;
@@ -94,13 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
-
-        app_name = header.findViewById(R.id.application_name);
-        powered = header.findViewById(R.id.immersionslabs);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Graduate-Regular.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/Cookie-Regular.ttf");
-        app_name.setTypeface(custom_font);
-        powered.setTypeface(custom_font2);
 
         user_name = header.findViewById(R.id.user_name);
         user_type = header.findViewById(R.id.user_type_text);

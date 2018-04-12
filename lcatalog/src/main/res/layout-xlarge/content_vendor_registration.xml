@@ -184,10 +184,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_10"
+                android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_20"
                 android:text="@string/new_vendor_submit"
                 android:textAlignment="center"
-                android:textSize="@dimen/text_tab_small" />
+                android:textSize="@dimen/text_tab_small"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

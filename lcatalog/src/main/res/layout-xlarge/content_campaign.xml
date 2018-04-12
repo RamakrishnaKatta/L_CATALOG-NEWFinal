@@ -7,22 +7,16 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_campaign">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/layout_campaign"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/layout_campaign"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/campaign_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/campaign_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible" />
-        </RelativeLayout>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

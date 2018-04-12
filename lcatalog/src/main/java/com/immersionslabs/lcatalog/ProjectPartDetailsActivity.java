@@ -31,12 +31,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ProjectpartDetailsActivity extends AppCompatActivity implements ApiCommunication {
+public class ProjectPartDetailsActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
     private static String PROJECT_PART_ARTICLE_URL = null;
 
-    private static final String TAG = "ProjectpartDetailsActivity";
+    private static final String TAG = "ProjectPartDetailsActivity";
 
     TextView part_name, part_Desc;
     ImageView part_image;
@@ -63,12 +63,10 @@ public class ProjectpartDetailsActivity extends AppCompatActivity implements Api
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_part);
-
+        setContentView(R.layout.activity_project_part_details);
 
         Toolbar toolbar = findViewById(R.id.toolbar_project_part);
         setSupportActionBar(toolbar);
-
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -82,7 +80,6 @@ public class ProjectpartDetailsActivity extends AppCompatActivity implements Api
         part_name = findViewById(R.id.prject_part_title_text);
         part_Desc = findViewById(R.id.project_part_description_text);
         part_image = findViewById(R.id.project_part_image_view);
-
 
         part_articles_id = new ArrayList<>();
         part_article_name = new ArrayList<>();
@@ -116,26 +113,23 @@ public class ProjectpartDetailsActivity extends AppCompatActivity implements Api
         Log.e(TAG, "ProjectpartImage 4----" + image4);
         Log.e(TAG, "ProjectpartImage 5----" + image5);
 
-
         final String[] Images = {image1, image2, image3, image4, image5};
 
         Collections.addAll(slider_images, Images);
 
         viewPager = findViewById(R.id.project_part_view_pager);
-        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectpartDetailsActivity.this, slider_images, project_id);
+        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectPartDetailsActivity.this, slider_images, project_id);
         viewPager.setAdapter(imageSliderAdapter);
 
         slider_dots = findViewById(R.id.project_part_slide_dots);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
                 addBottomDots(position);
-
             }
 
             @Override
@@ -173,7 +167,6 @@ public class ProjectpartDetailsActivity extends AppCompatActivity implements Api
 
         if (dots.length > 0)
             dots[currentPage].setTextColor(Color.parseColor("#004D40"));
-
     }
 
     final Runnable update = new Runnable() {
