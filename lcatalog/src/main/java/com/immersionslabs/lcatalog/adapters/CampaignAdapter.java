@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.CampaignActivity;
+import com.immersionslabs.lcatalog.ProjectActivity;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -36,7 +36,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
 
-    public CampaignAdapter(CampaignActivity activity,
+    public CampaignAdapter(ProjectActivity activity,
                            ArrayList<String> project_ids,
                            ArrayList<String> project_name,
                            ArrayList<String> project_description,

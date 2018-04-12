@@ -78,11 +78,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".CampaignActivity"
-            android:label="@string/CampaignActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
             android:name=".Article3dViewActivity"
             android:label="@string/Article3dViewActivity"
             android:screenOrientation="portrait"
@@ -90,6 +85,11 @@
         <activity
             android:name=".ProductPageActivity"
             android:label="@string/ProductPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ProjectActivity"
+            android:label="@string/CampaignActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity

@@ -260,7 +260,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         setResult(RESULT_CANCELED);
         super.onBackPressed();
 
-        Intent intent = new Intent(this, CampaignActivity.class);
+        Intent intent = new Intent(this, ProjectActivity.class);
         intent.putExtra("activity", "SplashScreen");
         startActivity(intent);
         finish();

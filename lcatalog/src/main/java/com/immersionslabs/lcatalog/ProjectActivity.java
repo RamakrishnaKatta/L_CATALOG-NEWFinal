@@ -23,9 +23,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CampaignActivity extends AppCompatActivity implements ApiCommunication {
+public class ProjectActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String TAG = "CampaignActivity";
+    private static final String TAG = "ProjectActivity";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getprojects";
 
@@ -43,13 +43,13 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campaign);
+        setContentView(R.layout.activity_project);
 
-        recyclerView = findViewById(R.id.campaign_recycler);
+        recyclerView = findViewById(R.id.project_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_campaign);
+        Toolbar toolbar = findViewById(R.id.toolbar_project);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -132,7 +132,7 @@ public class CampaignActivity extends AppCompatActivity implements ApiCommunicat
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(CampaignActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ProjectActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     @Override

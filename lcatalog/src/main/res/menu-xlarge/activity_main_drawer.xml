@@ -19,7 +19,7 @@
     <item android:title="@string/my_profile">
         <menu>
             <item
-                android:id="@+id/nav_campaign"
+                android:id="@+id/nav_project_campaign"
                 android:icon="@mipmap/ic_campaign"
                 android:title="@string/campaign" />
             <item
