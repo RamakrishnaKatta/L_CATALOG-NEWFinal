@@ -282,7 +282,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -302,7 +302,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): Focus Auto Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         } else {
             camera.cancelAutoFocus();
@@ -323,7 +323,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): Scene Auto Mode Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -343,7 +343,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): Scene STEADY PHOTO Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile/Tablet Device", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -362,7 +362,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): White Balance Auto Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
@@ -381,7 +381,7 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 Log.e(TAG, "CameraModes(): HDR Applied ");
             } else {
                 returnval = 0;
-                Toast.makeText(getContext(), "This feature is not supported on your mobile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
         }
         parameters.setExposureCompensation(0);
