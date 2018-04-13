@@ -181,7 +181,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         }
     };
 
-    private void getpartData() throws JSONException {
+    private void getpartData() throws JSONException{
         ApiService.getInstance(this).getData(this, false, "PROJECT_PART_DATA", PROJECT_PART_ARTICLE_URL, "PART_ARTICLE");
     }
 

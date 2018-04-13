@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -22,6 +27,7 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
 
     private ArrayList<String> Images;
     private Activity activity;
+    Bitmap mIcon = null;
 
     String project_id;
     String TAG = "ProjectPartImageSliderAdapter";
@@ -59,12 +65,22 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
     private Bitmap download_images(String urls) {
         String urldisplay = EnvConstants.APP_BASE_URL + "/upload/projectpartimages/partimages_" + project_id + "_" + urls;
         Log.e(TAG, "download_images:partimage  " + urldisplay);
-        Bitmap mIcon = null;
+
         try {
-
-            InputStream in = new URL(urldisplay).openStream();
-            mIcon = BitmapFactory.decodeStream(in);
-
+            RequestQueue requestQueue= Volley.newRequestQueue(activity.getApplicationContext());
+            ImageRequest imageRequest=new ImageRequest(urldisplay, new Response.Listener<Bitmap>() {
+                @Override
+                public void onResponse(Bitmap response) {
+                    mIcon=response;
+                    Log.e(TAG, "Bitmap_response "+response );
+                }
+            },0,0,ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,new Response.ErrorListener(){
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            requestQueue.add(imageRequest);
         } catch (Exception e) {
 
             Log.e(TAG, "Error" + e.getMessage());

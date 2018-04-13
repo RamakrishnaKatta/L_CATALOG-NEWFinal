@@ -70,8 +70,9 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = project_partimages.get(position);
-        String get_project_id = project_ids.get(position);
+        String get_project_id = project_ids.get(0);
         Log.e(TAG, " project_ids" + get_project_id);
+        Log.e(TAG, " project_images" + get_image);
 
         holder.projectpart_name.setText(project_partName.get(position));
         holder.projectpart_Desc.setText(project_partDesc.get(position));
@@ -91,13 +92,14 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.projectpart_image);
 
+
         holder.projectpart_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
                 Intent intent = new Intent(context[0], ProjectPartDetailsActivity.class);
                 Bundle b = new Bundle();
-                b.putString("_id", project_ids.get(position));
+                b.putString("_id", project_ids.get(0));
                 b.putString("part", project_part.get(position));
                 b.putString("partName", project_partName.get(position));
                 b.putString("partDesc", project_partDesc.get(position));
