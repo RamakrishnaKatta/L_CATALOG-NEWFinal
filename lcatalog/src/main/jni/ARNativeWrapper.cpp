@@ -24,7 +24,7 @@
             GLMmodel *obj;
         } ARModel;
 
-        #define NUM_MODELS 32
+        #define NUM_MODELS 34
         static ARModel models[NUM_MODELS] = {0};
 
         static float lightAmbient[4] = {0.1f, 0.1f, 0.1f, 1.0f};
@@ -70,6 +70,8 @@
             const char *model29file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empoda.obj";
             const char *model30file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empodb.obj";
             const char *model31file = "/storage/emulated/0/L_CATALOG/cache/Data/models/entsfa.obj";
+            const char *model32file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Ferrari_Modena_Spider.obj";
+            const char *model33file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Porsche.obj";
 
         //Mapping to pattern 1 - bed sofa.obj
             models[0].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern1.patt;80");
@@ -551,6 +553,39 @@
             //glmRotate(models[31].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[31].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[31].visible = false;
+
+
+          //Mapping to pattern 33  - Ferrari car.obj
+            models[32].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern33.patt;80");
+            arwSetMarkerOptionBool(models[32].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[32].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[32].obj = glmReadOBJ2(model32file, 0, 0); // context 33, don't read textures yet.
+                if (!models[32].obj) {
+                  LOGE("Error loading model from file '%s'.", model32file);
+                  exit(-1);
+                }
+            glmScale(models[32].obj, 10.0f);
+            //glmRotate(models[32].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[32].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[32].visible = false;
+
+
+          //Mapping to pattern 34  - Porsche car.obj
+            models[33].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern34.patt;80");
+            arwSetMarkerOptionBool(models[33].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[33].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[33].obj = glmReadOBJ2(model33file, 0, 0); // context 34, don't read textures yet.
+                if (!models[33].obj) {
+                  LOGE("Error loading model from file '%s'.", model33file);
+                  exit(-1);
+                }
+            glmScale(models[32].obj, 15.0f);
+            //glmRotate(models[33].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[33].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[33].visible = false;
+
 
              }
 
