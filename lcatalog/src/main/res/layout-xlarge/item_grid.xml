@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_5"
-    android:background="@drawable/background_curves"
-    app:cardBackgroundColor="@color/complete_transparent"
+    app:cardBackgroundColor="@color/primary_dark"
     app:cardCornerRadius="@dimen/margin_5">
 
     <RelativeLayout
         android:id="@+id/grid_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/grid_item_image_layout"
@@ -25,47 +23,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_200"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/company_icon"
-                android:scaleType="fitCenter" />
+                android:contentDescription="@string/company_icon" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/grid_item_name"
+        <LinearLayout
+            android:id="@+id/grid_item_name_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/grid_item_image_layout"
-            android:fontFamily="@font/overlock_sc"
-            android:gravity="center"
-            android:maxLines="2"
-            android:padding="@dimen/margin_6"
-            android:text="@string/catalog_title"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_tab_tootiny"
-            android:textStyle="bold" />
+            android:background="@color/white"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/grid_item_description"
+            <TextView
+                android:id="@+id/grid_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/overlock_sc"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="@dimen/margin_6"
+                android:text="@string/catalog_title"
+                android:textColor="@color/primary_darker"
+                android:textSize="@dimen/text_tab_tootiny"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/grid_item_description_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/grid_item_name"
-            android:ellipsize="end"
-            android:fontFamily="@font/assistant_semibold"
-            android:gravity="center"
-            android:maxLines="2"
-            android:padding="@dimen/margin_6"
-            android:text="@string/catalog_description"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_tab_tootiny"
-            android:textStyle="italic" />
+            android:layout_below="@+id/grid_item_name_area"
+            android:background="@color/primary_dark">
+
+            <TextView
+                android:id="@+id/grid_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/assistant_semibold"
+                android:gravity="center"
+                android:maxLength="80"
+                android:maxLines="2"
+                android:padding="@dimen/margin_6"
+                android:text="@string/catalog_description"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tab_tootiny"
+                android:textStyle="italic" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/grid_item_description"
-            android:gravity="bottom|center"
-            android:orientation="horizontal">
+            android:layout_below="@+id/grid_item_description_area"
+            android:background="@color/primary_darker"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_6">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_6"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/Rs"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_tootiny" />
@@ -86,6 +105,7 @@
                     android:id="@+id/grid_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/original_price"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_tootiny" />
@@ -93,11 +113,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:paddingEnd="@dimen/margin_6"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_tootiny" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -111,25 +133,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_6"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/Rs"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_tootiny" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:id="@+id/grid_item_price_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/discount_price"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_tootiny"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:paddingEnd="@dimen/margin_6"
+                    android:paddingStart="@dimen/margin_0"
+                    android:text="@string/price_Tag"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_tiny" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/primary_dark"
                 android:paddingEnd="@dimen/margin_10"
                 android:paddingStart="@dimen/margin_10">
 
@@ -137,7 +170,7 @@
                     android:id="@+id/grid_item_discount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary_dark"
+                    android:fontFamily="@font/assistant_semibold"
                     android:gravity="end"
                     android:paddingEnd="@dimen/margin_0"
                     android:paddingStart="@dimen/margin_6"
@@ -150,7 +183,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/percentage_symbol"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_tab_tootiny"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
+                    android:paddingEnd="@dimen/margin_0"
+                    android:paddingStart="@dimen/margin_6"
+                    android:text="@string/discount_off"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_tootiny"
                     android:textStyle="bold" />

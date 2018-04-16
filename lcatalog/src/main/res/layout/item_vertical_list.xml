@@ -3,74 +3,107 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_2"
-    android:background="@drawable/background_curves"
-    android:paddingTop="@dimen/margin_16"
-    app:cardBackgroundColor="@color/complete_transparent">
+    android:layout_margin="@dimen/margin_3"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/margin_3">
 
     <RelativeLayout
         android:id="@+id/v_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal">
+        android:background="@color/transparent">
 
-        <ImageView
-            android:id="@+id/v_item_image"
-            android:layout_width="@dimen/margin_100"
-            android:layout_height="@dimen/margin_100"
-            android:contentDescription="@string/app_name" />
+        <LinearLayout
+            android:id="@+id/v_item_image_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/v_item_name"
+            <ImageView
+                android:id="@+id/v_item_image"
+                android:layout_width="@dimen/margin_100"
+                android:layout_height="@dimen/margin_100"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/v_item_name_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/v_item_image"
-            android:fontFamily="@font/overlock_sc"
-            android:paddingEnd="@dimen/margin_20"
+            android:layout_toEndOf="@+id/v_item_image_area"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_10"
-            android:text="@string/catalog_title"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_size_large"
-            android:textStyle="bold" />
+            android:paddingTop="@dimen/margin_5">
 
-        <TextView
-            android:id="@+id/v_item_description"
+            <TextView
+                android:id="@+id/v_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/overlock_sc"
+                android:text="@string/catalog_title"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/v_item_description_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/v_item_name"
-            android:layout_toEndOf="@+id/v_item_image"
-            android:ellipsize="end"
-            android:fontFamily="@font/assistant_semibold"
-            android:maxLines="2"
-            android:paddingEnd="@dimen/margin_20"
+            android:layout_below="@id/v_item_name_area"
+            android:layout_toEndOf="@id/v_item_image_area"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_10"
-            android:text="@string/catalog_description"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_size_small"
-            android:textStyle="italic" />
+            android:paddingTop="@dimen/margin_5">
+
+            <TextView
+                android:id="@+id/v_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/assistant_semibold"
+                android:maxLines="2"
+                android:text="@string/catalog_description"
+                android:textColor="@color/primary_darker"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="italic" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/v_item_description"
-            android:layout_toEndOf="@+id/v_item_image"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/v_item_description_a"
+            android:layout_toEndOf="@+id/v_item_image_area"
+            android:background="@color/primary_darker"
+            android:gravity="start|center"
             android:orientation="horizontal"
-            android:paddingEnd="@dimen/margin_20"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_10">
+            android:paddingTop="@dimen/margin_5">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:paddingEnd="@dimen/margin_5"
+                android:paddingStart="@dimen/margin_3">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_3"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/Rs"
                     android:textColor="@color/red" />
 
@@ -78,6 +111,7 @@
                     android:id="@+id/v_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/original_price"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size_small"
@@ -86,6 +120,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:paddingEnd="@dimen/margin_3"
                     android:paddingStart="@dimen/margin_3"
                     android:text="@string/price_Tag"
@@ -97,49 +132,51 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingEnd="@dimen/margin_3"
-                android:paddingStart="@dimen/margin_10">
+                android:paddingEnd="@dimen/margin_5"
+                android:paddingStart="@dimen/margin_5">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_marginEnd="@dimen/margin_3"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/Rs"
-                    android:textColor="@color/primary_dark" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium" />
 
                 <TextView
                     android:id="@+id/v_item_price_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/discount_price"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_size_small"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:paddingEnd="@dimen/margin_3"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/primary_dark"
-                android:paddingEnd="@dimen/margin_10"
-                android:paddingStart="@dimen/margin_10">
+                android:paddingEnd="@dimen/margin_5"
+                android:paddingStart="@dimen/margin_5">
 
                 <TextView
                     android:id="@+id/v_item_discount_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/discount_percentage"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size_small"
@@ -148,7 +185,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/percentage_symbol"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
+                    android:paddingEnd="@dimen/margin_3"
+                    android:paddingStart="@dimen/margin_3"
+                    android:text="@string/discount_off"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
