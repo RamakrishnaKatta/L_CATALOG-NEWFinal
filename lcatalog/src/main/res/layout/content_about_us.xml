@@ -28,7 +28,9 @@
                     android:id="@+id/about_header1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:text="@string/what_is_l_catalog"
+                    android:textAllCaps="true"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -36,8 +38,9 @@
                     android:id="@+id/textview2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_2"
-                    android:text="@string/Catalogue" />
+                    android:fontFamily="@font/assistant_semibold"
+                    android:text="@string/Catalogue"
+                    android:textSize="@dimen/text_size_medium" />
 
             </LinearLayout>
 
@@ -51,7 +54,9 @@
                     android:id="@+id/textview3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:text="@string/product_objectives"
+                    android:textAllCaps="true"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -59,9 +64,9 @@
                     android:id="@+id/textview4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/objectives"
-                    android:textStyle="normal" />
-
+                    android:textSize="@dimen/text_size_medium" />
 
             </LinearLayout>
 
@@ -75,7 +80,9 @@
                     android:id="@+id/textview5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:text="@string/definition_and_description"
+                    android:textAllCaps="true"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -83,7 +90,9 @@
                     android:id="@+id/textview6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Definition" />
+                    android:fontFamily="@font/assistant_semibold"
+                    android:text="@string/Definition"
+                    android:textSize="@dimen/text_size_medium" />
 
             </LinearLayout>
 
@@ -97,7 +106,9 @@
                     android:id="@+id/textview7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:text="@string/product_overview"
+                    android:textAllCaps="true"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -105,6 +116,7 @@
                     android:id="@+id/textview8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/data"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -120,8 +132,10 @@
                     android:id="@+id/textview9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:paddingBottom="@dimen/margin_2"
                     android:text="@string/contact_us"
+                    android:textAllCaps="true"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 

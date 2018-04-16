@@ -32,7 +32,6 @@
                 android:id="@+id/input_feed_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:maxLength="50" />
@@ -52,7 +51,6 @@
                 android:id="@+id/input_feed_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
                 android:hint="@string/mobile_number"
                 android:inputType="number"
                 android:maxLength="10" />
@@ -72,7 +70,6 @@
                 android:id="@+id/input_feed_subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
                 android:gravity="top|start"
                 android:hint="@string/FeedBack_Subject"
                 android:inputType="textMultiLine"
