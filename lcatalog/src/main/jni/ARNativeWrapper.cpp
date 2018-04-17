@@ -56,7 +56,7 @@
             const char *model15file = "/storage/emulated/0/L_CATALOG/cache/Data/models/wallpartition.obj";
             const char *model16file = "/storage/emulated/0/L_CATALOG/cache/Data/models/ottomanchair.obj";
             const char *model17file = "/storage/emulated/0/L_CATALOG/cache/Data/models/kitchenunit.obj";
-            const char *model18file = "/storage/emulated/0/L_CATALOG/cache/Data/models/goldchain.obj";
+            const char *model18file = "/storage/emulated/0/L_CATALOG/cache/Data/models/pizza.obj";
             const char *model19file = "/storage/emulated/0/L_CATALOG/cache/Data/models/royaloka_tvset.obj";
             const char *model20file = "/storage/emulated/0/L_CATALOG/cache/Data/models/norland.obj";
             const char *model21file = "/storage/emulated/0/L_CATALOG/cache/Data/models/window.obj";
@@ -581,7 +581,7 @@
                   LOGE("Error loading model from file '%s'.", model33file);
                   exit(-1);
                 }
-            glmScale(models[32].obj, 15.0f);
+            glmScale(models[32].obj, 10.0f);
             //glmRotate(models[33].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[33].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[33].visible = false;
