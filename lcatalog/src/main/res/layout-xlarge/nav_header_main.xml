@@ -2,29 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/margin_5"
-    android:paddingLeft="@dimen/margin_16"
-    android:paddingRight="@dimen/margin_16"
-    android:paddingTop="@dimen/margin_16"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:padding="@dimen/margin_16">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_20"
         android:paddingTop="@dimen/margin_20">
 
         <ImageView
             android:id="@+id/icon_image"
             android:layout_width="@dimen/margin_75"
             android:layout_height="@dimen/margin_75"
-            android:layout_gravity="center|start"
             android:contentDescription="@string/company_icon"
             app:srcCompat="@drawable/companyicon" />
 
@@ -33,22 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/graduate"
-            android:paddingEnd="@dimen/margin_0"
-            android:paddingStart="@dimen/margin_6"
+            android:padding="@dimen/margin_6"
             android:text="@string/app_name"
             android:textSize="@dimen/text_tab_xlarge" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/immersionslabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/cookie"
-        android:gravity="center"
-        android:text="@string/powered_symbol_immersionslabs"
-        android:textSize="@dimen/text_tab_medium"
-        android:textStyle="bold" />
 
     <View
         android:layout_width="wrap_content"

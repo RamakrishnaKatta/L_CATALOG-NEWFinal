@@ -87,6 +87,7 @@
             android:layout_below="@+id/v_item_description_a"
             android:layout_toEndOf="@+id/v_item_image_area"
             android:background="@color/primary_darker"
+            android:gravity="start|center"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"
