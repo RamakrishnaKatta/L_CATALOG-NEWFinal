@@ -42,7 +42,7 @@
             const char *model1file = "/storage/emulated/0/L_CATALOG/cache/Data/models/dressing_table.obj";
             const char *model2file = "/storage/emulated/0/L_CATALOG/cache/Data/models/outdoorsofa.obj";
             const char *model3file = "/storage/emulated/0/L_CATALOG/cache/Data/models/wardrobe.obj";
-            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/study_table.obj";
+            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/rice.obj";
             const char *model5file = "/storage/emulated/0/L_CATALOG/cache/Data/models/parasona.obj";
             const char *model6file = "/storage/emulated/0/L_CATALOG/cache/Data/models/barrelset.obj";
             const char *model7file = "/storage/emulated/0/L_CATALOG/cache/Data/models/teakbed.obj";
