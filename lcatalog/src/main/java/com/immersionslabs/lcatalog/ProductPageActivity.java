@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.ProductPageAdapter;
 
 import org.json.JSONException;
@@ -50,53 +51,104 @@ public class ProductPageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        if (EnvConstants.flag_article_details) {
+            name = EnvConstants.part_article_name_var;
+            description = EnvConstants.part_articles_description_var;
+            position = Integer.toString(EnvConstants.position);
+            id = EnvConstants.part_articles_id_var;
+            article_pattern = EnvConstants.part_articles_pattern_var;
 
-        final Bundle b = getIntent().getExtras();
+            article_3ds = EnvConstants.part_articles_3ds_var;
+            oldPrice = EnvConstants.part_articles_price_var;
 
-        name = (String) b.getCharSequence("article_title");
-        description = (String) b.getCharSequence("article_description");
-        position = (String) b.getCharSequence("article_position");
-        id = (String) b.getCharSequence("article_id");
-        article_pattern = (String) b.getCharSequence("article_pattern");
 
-        article_3ds = (String) b.getCharSequence("article_3ds");
-        oldPrice = (String) b.getCharSequence("article_price");
-        discount = (String) b.getCharSequence("article_discount");
-        Integer x = Integer.parseInt(oldPrice);
-        Integer y = Integer.parseInt(discount);
-        Integer z = (x * (100 - y)) / 100;
-        newPrice = Integer.toString(z);
+            discount = EnvConstants.part_article__discounts_var;
+            Integer x = Integer.parseInt(oldPrice);
+            Integer y = Integer.parseInt(discount);
+            Integer z = (x * (100 - y)) / 100;
+            newPrice = Integer.toString(z);
 
-        dimensions = (String) b.getCharSequence("article_dimensions");
+            dimensions = EnvConstants.part_article_dimensions_var;
 
-        try {
-            JSONObject dimension_json = new JSONObject(dimensions);
-            width = dimension_json.getString("width");
-            length = dimension_json.getString("depth");
-            height = dimension_json.getString("height");
+            try {
+                JSONObject dimension_json = new JSONObject(dimensions);
+                width = dimension_json.getString("width");
+                length = dimension_json.getString("depth");
+                height = dimension_json.getString("height");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            article_vendor_id = EnvConstants.part_articles_vendor_id_var;
+
+            images = EnvConstants.part_article_images_var;
+
+
+            // All this Data should be sent to fragments in the form of bundle !!
+            Log.e(TAG, "Article Name----" + name);
+            Log.e(TAG, "Article Description----" + description);
+            Log.e(TAG, "Article NewPrice----" + newPrice);
+            Log.e(TAG, "Article Dimensions----" + dimensions);
+            Log.e(TAG, "Article Width----" + width);
+            Log.e(TAG, "Article Height----" + height);
+            Log.e(TAG, "Article Length----" + length);
+            Log.e(TAG, "Article Position----" + position);
+            Log.e(TAG, "Article Images----" + images);
+            Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
+            Log.e(TAG, "Article 3ds File----" + article_3ds);
+            Log.e(TAG, "Article Pattern File----" + article_pattern);
+            EnvConstants.flag_article_details = false;
+        } else {
+            final Bundle b = getIntent().getExtras();
+
+            name = (String) b.getCharSequence("article_title");
+            description = (String) b.getCharSequence("article_description");
+            position = (String) b.getCharSequence("article_position");
+            id = (String) b.getCharSequence("article_id");
+            article_pattern = (String) b.getCharSequence("article_pattern");
+
+            article_3ds = (String) b.getCharSequence("article_3ds");
+            oldPrice = (String) b.getCharSequence("article_price");
+            Log.e(TAG, "project_oldprice ---- " + oldPrice);
+
+            discount = (String) b.getCharSequence("article_discount");
+            Integer x = Integer.parseInt(oldPrice);
+            Integer y = Integer.parseInt(discount);
+            Integer z = (x * (100 - y)) / 100;
+            newPrice = Integer.toString(z);
+
+            dimensions = (String) b.getCharSequence("article_dimensions");
+
+            try {
+                JSONObject dimension_json = new JSONObject(dimensions);
+                width = dimension_json.getString("width");
+                length = dimension_json.getString("depth");
+                height = dimension_json.getString("height");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            article_vendor_id = (String) b.getCharSequence("article_vendor");
+
+            images = (String) b.getCharSequence("article_images");
+
+
+            // All this Data should be sent to fragments in the form of bundle !!
+            Log.e(TAG, "Article Name----" + name);
+            Log.e(TAG, "Article Description----" + description);
+            Log.e(TAG, "Article NewPrice----" + newPrice);
+            Log.e(TAG, "Article Dimensions----" + dimensions);
+            Log.e(TAG, "Article Width----" + width);
+            Log.e(TAG, "Article Height----" + height);
+            Log.e(TAG, "Article Length----" + length);
+            Log.e(TAG, "Article Position----" + position);
+            Log.e(TAG, "Article Images----" + images);
+            Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
+            Log.e(TAG, "Article 3ds File----" + article_3ds);
+            Log.e(TAG, "Article Pattern File----" + article_pattern);
         }
-
-        article_vendor_id = (String) b.getCharSequence("article_vendor");
-
-        images = (String) b.getCharSequence("article_images");
-
-        // All this Data should be sent to fragments in the form of bundle !!
-        Log.e(TAG, "Article Name----" + name);
-        Log.e(TAG, "Article Description----" + description);
-        Log.e(TAG, "Article NewPrice----" + newPrice);
-        Log.e(TAG, "Article Dimensions----" + dimensions);
-        Log.e(TAG, "Article Width----" + width);
-        Log.e(TAG, "Article Height----" + height);
-        Log.e(TAG, "Article Length----" + length);
-        Log.e(TAG, "Article Position----" + position);
-        Log.e(TAG, "Article Images----" + images);
-        Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
-        Log.e(TAG, "Article 3ds File----" + article_3ds);
-        Log.e(TAG, "Article Pattern File----" + article_pattern);
-
         TabLayout tabLayout = findViewById(R.id.product_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));

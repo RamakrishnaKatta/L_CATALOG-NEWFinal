@@ -1,62 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_12"
-    android:background="@drawable/background_curves"
-    android:orientation="vertical">
+    android:layout_margin="@dimen/margin_6"
+    app:cardBackgroundColor="@color/primary_dark"
+    app:cardCornerRadius="@dimen/margin_6">
 
     <LinearLayout
         android:id="@+id/project_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_darker"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_400"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center">
 
             <ImageView
                 android:id="@+id/project_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/margin_400"
                 android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dummy_icon" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/transparent"
-                android:gravity="bottom"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_20">
-
-                <TextView
-                    android:id="@+id/project_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/overlock_sc"
-                    android:maxLines="1"
-                    android:text="@string/catalog_title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_tab_xxlarge"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
+                android:scaleType="fitCenter" />
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_20">
+
+            <TextView
+                android:id="@+id/project_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/overlock_sc"
+                android:maxLines="1"
+                android:text="@string/catalog_title"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_darker"
+                android:textSize="@dimen/text_tab_xxlarge"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/project_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:background="@color/primary_darker"
             android:ellipsize="end"
             android:fontFamily="@font/assistant_semibold"
             android:maxLines="3"

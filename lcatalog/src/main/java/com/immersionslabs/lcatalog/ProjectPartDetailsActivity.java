@@ -1,8 +1,11 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.service.voice.VoiceInteractionSession;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,7 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.ProjectPartImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectpartDetailsAdapter;
@@ -28,13 +38,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class ProjectPartDetailsActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
     private static String PROJECT_PART_ARTICLE_URL = null;
+    private static final String ARTICLE_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
     private static final String TAG = "ProjectPartDetailsActivity";
 
@@ -46,7 +59,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     RecyclerView recyclerView;
     ProjectpartDetailsAdapter adapter;
     GridLayoutManager layoutManager;
-
+    Context mcontext;
     private ArrayList<String> part_articles_id;
     private ArrayList<String> part_article_images;
     private ArrayList<String> part_article_name;
@@ -85,6 +98,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_article_name = new ArrayList<>();
         part_article_images = new ArrayList<>();
         project_ids = new ArrayList<>();
+        mcontext = getApplicationContext();
 
         final Bundle b = getIntent().getExtras();
 
@@ -93,7 +107,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
 
         project_part_images = (String) b.getCharSequence("partimages");
-        Log.e(TAG, "onCreate: projectpartimage" + project_part_images);
+        Log.e(TAG, " projectpartimage" + project_part_images);
 
         try {
             JSONArray image_json = new JSONArray(project_part_images);
@@ -114,7 +128,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         Log.e(TAG, "ProjectpartImage 5----" + image5);
 
         final String[] Images = {image1, image2, image3, image4, image5};
-
         Collections.addAll(slider_images, Images);
 
         viewPager = findViewById(R.id.project_part_view_pager);
@@ -147,6 +160,8 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
         try {
             getpartData();
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -181,13 +196,24 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         }
     };
 
-    private void getpartData() throws JSONException{
+    private void getpartData() throws JSONException {
         ApiService.getInstance(this).getData(this, false, "PROJECT_PART_DATA", PROJECT_PART_ARTICLE_URL, "PART_ARTICLE");
     }
+
+    public void getarticledata() {
+        Iterator iterator = EnvConstants.part_articles_id.iterator();
+        while (iterator.hasNext()) {
+            String UNIQUE_ARTICLE_URL = ARTICLE_SPECIFIC_URL + iterator.next();
+            ApiService.getInstance(this).getData(this, false, "ARTICLE_PROJECT_DATA", UNIQUE_ARTICLE_URL, "ARTICLE_DATA");
+        }
+
+    }
+
 
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("PART_ARTICLE")) {
+
             try {
                 JSONObject resp = response.getJSONObject("data");
                 project_ids.add(resp.getString("_id"));
@@ -200,11 +226,32 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
                 e.printStackTrace();
             }
         }
+        if (flag.equals("ARTICLE_DATA")) {
+            try {
+                JSONObject resp = response.getJSONObject("data");
+                Log.e(TAG, "project_articles " + response);
+                String id = resp.getString("_id");
+                EnvConstants.part_article_name.put(id, resp.getString("name"));
+                EnvConstants.part_articles_vendor_id.put(id, resp.getString("vendor_id"));
+                EnvConstants.part_articles_description.put(id, resp.getString("description"));
+                EnvConstants.part_articles_price.put(id, resp.getString("price"));
+                EnvConstants.part_article__discounts.put(id, resp.getString("discount"));
+                EnvConstants.part_article_dimensions.put(id, resp.getString("dimensions"));
+                EnvConstants.part_articles_3ds.put(id, resp.getString("view_3d"));
+                EnvConstants.part_articles_pattern.put(id, resp.getString("pattern"));
+                EnvConstants.part_article_images.put(id, resp.getString("img"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     private void getData(JSONArray parts) {
         for (int i = 0; i < parts.length(); i++) {
-            JSONObject object = null;
+            JSONObject object;
             try {
                 object = parts.getJSONObject(i);
                 JSONArray array = object.getJSONArray("articlesData");
@@ -215,18 +262,20 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
                     part_articles_id.add(object1.getString("_id"));
                     part_article_name.add(object1.getString("name"));
                     part_article_images.add(object1.getString("img"));
+                    EnvConstants.part_articles_id = part_articles_id;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        Log.e(TAG, "getData: Article Id" + part_articles_id);
-        Log.e(TAG, "getData: Article Name" + part_article_name);
-        Log.e(TAG, "getData: Article Images" + part_article_images);
+        Log.e(TAG, " Article Id" + part_articles_id);
+        Log.e(TAG, " Article Name" + part_article_name);
+        Log.e(TAG, " Article Images" + part_article_images);
 
+        getarticledata();
         layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ProjectpartDetailsAdapter(this, part_articles_id, part_article_name, part_article_images);
+        adapter = new ProjectpartDetailsAdapter(this, part_articles_id, part_article_name, part_article_images, mcontext);
         recyclerView.setAdapter(adapter);
     }
 

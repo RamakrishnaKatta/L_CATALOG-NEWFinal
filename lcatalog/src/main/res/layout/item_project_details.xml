@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_3"
-    android:background="@drawable/background_curves"
+    app:cardBackgroundColor="@color/primary_dark"
     app:cardCornerRadius="@dimen/margin_3">
 
     <RelativeLayout
         android:id="@+id/project_part_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/project_part_item_image_layout"
@@ -24,41 +23,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_100"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/company_icon"
-                android:scaleType="fitCenter"
-                android:src="@drawable/dummy_icon" />
+                android:contentDescription="@string/company_icon" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/project_part_name"
+        <LinearLayout
+            android:id="@+id/project_part_name_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/project_part_item_image_layout"
-            android:fontFamily="@font/overlock_sc"
-            android:gravity="center"
-            android:maxLines="2"
-            android:padding="@dimen/margin_3"
-            android:text="@string/catalog_title"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_size_small"
-            android:textStyle="bold" />
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/project_part_description"
+            <TextView
+                android:id="@+id/project_part_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/overlock_sc"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="@dimen/margin_3"
+                android:text="@string/catalog_title"
+                android:textColor="@color/primary_darker"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/project_part_description_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/project_part_name"
-            android:ellipsize="end"
-            android:fontFamily="@font/assistant_semibold"
-            android:gravity="center"
-            android:maxLength="80"
-            android:maxLines="2"
-            android:padding="@dimen/margin_3"
-            android:text="@string/catalog_description"
-            android:textColor="@color/primary_dark"
-            android:textSize="@dimen/text_size_small"
-            android:textStyle="italic" />
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/project_part_name_area"
+            android:background="@color/primary_dark"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/project_part_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:ellipsize="end"
+                android:fontFamily="@font/assistant_semibold"
+                android:gravity="center"
+                android:maxLength="80"
+                android:maxLines="2"
+                android:padding="@dimen/margin_3"
+                android:text="@string/catalog_description"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="italic" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

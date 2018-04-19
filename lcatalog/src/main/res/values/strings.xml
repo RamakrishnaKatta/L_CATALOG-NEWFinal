@@ -278,5 +278,15 @@
     <string name="faq_text_30">You can go back to the My Account and change the details there. Currently, we do not have an option to change the account number on the dashboard.</string>
     <string name="faq_text_31">L - CATALOG is working on introducing new, sassy features to make user experience better every time, so brace yourselves!</string>
     <string name="faq_text_32">Happy Shopping!</string>
+    <string name="sub_desc_project">Sub Description of the product will be displayed here and also the  related products</string>
+    <string name="sub_desc_project_title">PROJECT SUB DESCRIPTION :</string>
+    <string name="Desc_project">Description of the product will be displayed here and also the  related products</string>
+    <string name="Desc_project_title">PROJECT DESCRIPTION :</string>
+    <string name="project_name">please display the text here............</string>
+    <string name="project_name_title">PROJECT NAME :</string>
+    <string name="project_part_name_title">PROJECT PART NAME :</string>
+    <string name="project_part_name">please display the project text here............</string>
+    <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
+    <string name="project_part_desc">Description of the product will be displayed here and also the related products</string>
 
 </resources>

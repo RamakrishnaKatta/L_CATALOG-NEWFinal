@@ -90,7 +90,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_image = findViewById(R.id.project_image_view);
 
         final Bundle b = getIntent().getExtras();
-        p_name =  (String) b.getCharSequence("projectName");
+        p_name = (String) b.getCharSequence("projectName");
         Log.e(TAG, "project_name ---- " + p_name);
         Log.e(TAG, "Project_name  " + project_name);
         project_name.setText(p_name);
@@ -156,7 +156,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         PROJECT_PART_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
 
-     //   project_name.setText(b.getCharSequence("projectName"));
+        project_name.setText(b.getCharSequence("projectName"));
         project_description.setText(b.getCharSequence("projectDescription"));
 
         project_sub_description.setText(b.getCharSequence("projectSubDescription"));

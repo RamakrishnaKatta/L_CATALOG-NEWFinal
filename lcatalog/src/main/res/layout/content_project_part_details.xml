@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_project_part_details">
 
@@ -15,32 +14,31 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/project_part_image_slider_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/project_part_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_300"
+                    android:contentDescription="@string/project_part_name" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/project_part_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/project_part_details_layout"
+                android:id="@+id/project_slide_dots_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/project_part_image_slider_area"
                 android:orientation="vertical">
-
-                <RelativeLayout
-                    android:id="@+id/project_part_image_slider_area"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_300">
-
-                    <ImageView
-                        android:id="@+id/project_part_image_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/dummy_icon" />
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/project_part_view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/project_part_slide_dots"
@@ -53,65 +51,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:alpha=".5" />
+            </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/project_part_details_area"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/project_slide_dots_area"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/project_part_title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="3dp">
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
+                    android:padding="3dp"
+                    android:text="@string/project_part_name_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/project_part_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/overlock_sc"
-                        android:padding="3dp"
-                        android:text="PROJECT PART NAME : "
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/prject_part_title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:maxLength="50"
+                    android:padding="3dp"
+                    android:text="@string/project_part_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_small" />
 
-                    <TextView
-                        android:id="@+id/prject_part_title_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/assistant_semibold"
-                        android:maxLength="50"
-                        android:padding="3dp"
-                        android:text="please display the  project text here............"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/project_part_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
+                    android:padding="3dp"
+                    android:text="@string/project_part_desc_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/project_part_description"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/overlock_sc"
-                        android:padding="3dp"
-                        android:text="PROJECT PART DESCRIPTION :"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_medium"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/project_part_description_text"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/assistant_semibold"
-                        android:maxLength="200"
-                        android:padding="3dp"
-                        android:text="Description of the Project Part will be displayed here and also the the related products "
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small" />
-
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/project_part_description_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:maxLength="200"
+                    android:padding="3dp"
+                    android:text="@string/project_part_desc"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_small" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/project_part_details_layout"
+                android:layout_below="@+id/project_part_details_area"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView

@@ -12,23 +12,20 @@
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/margin_3">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/project_image_slider_area"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_300">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/project_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/dummy_icon" />
+                    android:layout_height="@dimen/margin_300"
+                    android:contentDescription="@string/project_name" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/project_view_pager"
@@ -38,22 +35,33 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/project_slide_dots"
+                android:id="@+id/project_slide_dots_area"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_10"
-                android:gravity="center"
-                android:orientation="horizontal" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/project_image_slider_area"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha=".5" />
+                <LinearLayout
+                    android:id="@+id/project_slide_dots"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_10"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha=".5" />
+
+            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/project_details_area"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="3dp">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/project_slide_dots_area"
+                android:layout_marginTop="@dimen/margin_3"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/project_title"
@@ -61,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
                     android:padding="3dp"
-                    android:text="PROJECT NAME : "
+                    android:text="@string/project_name_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
@@ -73,7 +81,7 @@
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="50"
                     android:padding="3dp"
-                    android:text="please display the text here............"
+                    android:text="@string/project_name"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_small" />
 
@@ -83,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
                     android:padding="3dp"
-                    android:text="PROJECT DESCRIPTION :"
+                    android:text="@string/Desc_project_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
@@ -95,7 +103,7 @@
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="200"
                     android:padding="3dp"
-                    android:text="Description of the product will be displayed here and also the the related products "
+                    android:text="@string/Desc_project"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_small" />
 
@@ -105,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
                     android:padding="3dp"
-                    android:text="PROJECT SUB DESCRIPTION :"
+                    android:text="@string/sub_desc_project_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />
@@ -117,7 +125,7 @@
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="200"
                     android:padding="3dp"
-                    android:text="Sub Description of the product will be displayed here and also the the related products "
+                    android:text="@string/sub_desc_project"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_small" />
 
@@ -126,19 +134,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_below="@id/project_details_area"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/project_part_list_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="@dimen/margin_6"
                     android:visibility="visible" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </ScrollView>
 
