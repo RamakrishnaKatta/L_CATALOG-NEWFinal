@@ -334,8 +334,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_augment) {
 
-            Intent intent = new Intent(this, ARNativeActivity.class);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog);
+            builder.setTitle("You are about to enter Augment Enabled Camera");
+            builder.setMessage("This requires 2min of your patience, Do you wish to enter ?");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Intent intent = new Intent(MainActivity.this, ARNativeActivity.class);
+                    startActivity(intent);
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
 
         } else if (id == R.id.nav_project_campaign) {
             Intent intent = new Intent(this, ProjectActivity.class);

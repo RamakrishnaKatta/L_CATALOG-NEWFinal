@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_height="match_parent"
+        android:gravity="start"
         android:orientation="horizontal"
         android:weightSum="8">
 
@@ -16,42 +16,42 @@
             android:id="@+id/button_options_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_options"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/settingsDesc"
-                android:src="@mipmap/ic_settings" />
+                android:src="@mipmap/ic_options" />
 
             <TextView
                 android:id="@+id/button_options_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OPTIONS"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
-
+                android:fontFamily="@font/overlock_sc"
+                android:text="@string/options"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_flash_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_flash"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
@@ -62,190 +62,182 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="FLASH"
+                android:fontFamily="@font/overlock_sc"
+                android:text="@string/flash"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
-
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/button_hdr_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_hdr"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_hdron" />
+                android:src="@mipmap/ic_hdr_on" />
 
             <TextView
                 android:id="@+id/button_hdr_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="HDR"
+                android:text="@string/hdr"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
-
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_auto_scene_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_auto_scene"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_autoscene" />
+                android:src="@mipmap/ic_auto_scene_on" />
 
             <TextView
                 android:id="@+id/button_auto_scene_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AUTO"
+                android:text="@string/auto"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_white_balance_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_white_balance"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_autowhitebalance" />
+                android:src="@mipmap/ic_auto_white_balance" />
 
             <TextView
                 android:id="@+id/button_white_balance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="WHITE BALANCE"
+                android:text="@string/white_balance"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_auto_focus_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_auto_focus"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_auto_focus" />
+                android:src="@mipmap/ic_auto_focus_on" />
 
             <TextView
                 android:id="@+id/button_auto_focus_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AUTO FOCUS"
+                android:text="@string/auto_focus"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_continuous_scene_focus_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_continuous_scene_focus"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_focus_continous_picture" />
+                android:src="@mipmap/ic_focus_continuous_picture_on" />
 
             <TextView
                 android:id="@+id/button_continuous_scene_focus_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CONTINOUS"
+                android:text="@string/continuous"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/button_steady_on_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="6dp">
 
             <ImageButton
                 android:id="@+id/button_steady_on"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/buttonsDesc"
-                android:src="@mipmap/ic_steadyoff" />
+                android:src="@mipmap/ic_steady_off" />
 
             <TextView
                 android:id="@+id/button_steady_on_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="STEADY SHOT"
+                android:text="@string/steady_shot"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_tab_verytiny" />
         </LinearLayout>
-
 
     </LinearLayout>
 

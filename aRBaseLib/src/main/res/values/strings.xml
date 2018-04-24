@@ -17,6 +17,18 @@
     <string name="buttonsDesc">Open Button</string>
     <string name="pref_cameraResolutionString">pref_cameraResolution</string>
     <string name="pref_defaultValue_cameraIndex">0</string>
+
+    <string name="options">OPTIONS</string>
+    <string name="flash">FLASH</string>
+    <string name="hdr">HDR</string>
+    <string name="auto">AUTO</string>
+    <string name="white_balance">WHITE BALANCE</string>
+    <string name="auto_focus">AUTO FOCUS</string>
+    <string name="continuous">CONTINUOUS</string>
+    <string name="steady_shot">STEADY SHOT</string>
+    <string name="screenshot">SCREENSHOT</string>
+    <string name="capture">CAPTURE</string>
+
     <string-array name="pref_entries_cameraIndex">
         <item>Rear camera</item>
     </string-array>

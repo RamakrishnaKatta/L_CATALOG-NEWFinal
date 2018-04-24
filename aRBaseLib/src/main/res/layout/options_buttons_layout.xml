@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:layout_weight="1"
     android:baselineAligned="false"
     android:orientation="vertical">
 
@@ -15,25 +14,26 @@
         android:layout_gravity="start"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/margin_3"
+        android:visibility="visible">
 
         <ImageButton
             android:id="@+id/button_screenshot"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:contentDescription="@string/buttonsDesc"
-            android:src="@mipmap/ic_capturescreen" />
+            android:src="@mipmap/ic_screenshot" />
 
         <TextView
             android:id="@+id/button_screenshot_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SCREENSHOT"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp"
-            android:visibility="visible" />
+            android:fontFamily="@font/overlock_sc"
+            android:text="@string/screenshot"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_verysmall" />
 
     </LinearLayout>
 
@@ -42,14 +42,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/margin_3"
+        android:visibility="visible">
 
         <ImageButton
             android:id="@+id/button_capture"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:contentDescription="@string/buttonsDesc"
@@ -59,11 +59,11 @@
             android:id="@+id/button_capture_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CAPTURE"
-            android:textAlignment="center"
+            android:fontFamily="@font/overlock_sc"
+            android:text="@string/capture"
             android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_verysmall" />
 
     </LinearLayout>
 

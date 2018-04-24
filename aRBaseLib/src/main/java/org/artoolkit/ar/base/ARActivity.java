@@ -128,11 +128,11 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
+        progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.setTitle("Configuring your Camera");
-        progressDialog.setMessage("It Takes few minutes, Please be patient.");
+        progressDialog.setMessage("It Takes couple of minutes, Please be patient.");
         progressDialog.show();
 
         AndroidUtils.reportDisplayInformation(this);
@@ -380,13 +380,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.AUTOFOCUS = false;
                 preview.setAutoFocus();
                 autofocus_toggle = false;
-                mAutoFocusButton.setImageResource(R.mipmap.ic_auto_focus);
+                mAutoFocusButton.setImageResource(R.mipmap.ic_auto_focus_on);
             } else {
                 EnvconstantsAR.AUTOFOCUS = true;
                 int response = preview.setAutoFocus();
                 if (response == 1) {
                     autofocus_toggle = true;
-                    mAutoFocusButton.setImageResource(R.mipmap.ic_autofocus_off);
+                    mAutoFocusButton.setImageResource(R.mipmap.ic_auto_focus_off);
                 }
             }
         }
@@ -396,13 +396,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.AUTOSCENE = false;
                 preview.setAutoScene();
                 autoscene_toggle = false;
-                mAutoSceneButton.setImageResource(R.mipmap.ic_autooff);
+                mAutoSceneButton.setImageResource(R.mipmap.ic_auto_scene_off);
             } else {
                 EnvconstantsAR.AUTOSCENE = true;
                 int response = preview.setAutoScene();
                 if (response == 1) {
                     autoscene_toggle = true;
-                    mAutoSceneButton.setImageResource(R.mipmap.ic_autoscene);
+                    mAutoSceneButton.setImageResource(R.mipmap.ic_auto_scene_on);
                 }
             }
         }
@@ -412,13 +412,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.STEADYSHOT = false;
                 preview.setSteadyShot();
                 steady_toggle = false;
-                mSteadyShotButton.setImageResource(R.mipmap.ic_steadyoff);
+                mSteadyShotButton.setImageResource(R.mipmap.ic_steady_off);
             } else {
                 EnvconstantsAR.STEADYSHOT = true;
                 int response = preview.setSteadyShot();
                 if (response == 1) {
                     steady_toggle = true;
-                    mSteadyShotButton.setImageResource(R.mipmap.ic_steadyon);
+                    mSteadyShotButton.setImageResource(R.mipmap.ic_steady_on);
                 }
             }
         }
@@ -428,14 +428,14 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.CONTINOUSPICTURE = false;
                 preview.SetContinousPicture();
                 continouspicture_toggle = false;
-                mContinuousPictureButton.setImageResource(R.mipmap.ic_focus_continous_picture);
+                mContinuousPictureButton.setImageResource(R.mipmap.ic_focus_continuous_picture_on);
             } else {
                 int response;
                 EnvconstantsAR.CONTINOUSPICTURE = true;
                 response = preview.SetContinousPicture();
                 if (response == 1) {
                     continouspicture_toggle = true;
-                    mContinuousPictureButton.setImageResource(R.mipmap.ic_continouspicture_off);
+                    mContinuousPictureButton.setImageResource(R.mipmap.ic_focus_continuous_picture_off);
                 }
             }
         }
@@ -445,14 +445,14 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.HDR = false;
                 preview.setHDR();
                 hdr_toggle = false;
-                mHdrButton.setImageResource(R.mipmap.ic_hdron);
+                mHdrButton.setImageResource(R.mipmap.ic_hdr_on);
             } else {
                 int response;
                 EnvconstantsAR.HDR = true;
                 response = preview.setHDR();
                 if (response == 1) {
                     hdr_toggle = true;
-                    mHdrButton.setImageResource(R.mipmap.ic_hdroff);
+                    mHdrButton.setImageResource(R.mipmap.ic_hdr_off);
                 }
             }
         }
@@ -462,14 +462,14 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 EnvconstantsAR.WHITEBALANCE = false;
                 preview.setWhiteBalance();
                 whitebalance_toggle = false;
-                mWhiteBalanceButton.setImageResource(R.mipmap.ic_autowhitebalance);
+                mWhiteBalanceButton.setImageResource(R.mipmap.ic_auto_white_balance);
             } else {
                 int response;
                 EnvconstantsAR.WHITEBALANCE = true;
                 response = preview.setWhiteBalance();
                 if (response == 1) {
                     whitebalance_toggle = true;
-                    mWhiteBalanceButton.setImageResource(R.mipmap.ic_autobalanceoff);
+                    mWhiteBalanceButton.setImageResource(R.mipmap.ic_auto_balance_off);
                 }
             }
         }
