@@ -288,5 +288,6 @@
     <string name="project_part_name">please display the project text here............</string>
     <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
     <string name="project_part_desc">Description of the product will be displayed here and also the related products</string>
+    <string name="com_appsee_apikey">dd59621a42a3ab8386863fb01099ee3894a7ac70</string>
 
 </resources>

@@ -12,19 +12,20 @@
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/margin_6">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/project_image_slider_area"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/margin_500">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/project_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_500"
+                    android:layout_height="wrap_content"
                     android:contentDescription="@string/project_name" />
 
                 <android.support.v4.view.ViewPager
@@ -34,31 +35,20 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/project_slide_dots_area"
+                android:id="@+id/project_slide_dots"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/project_image_slider_area"
-                android:orientation="vertical">
+                android:layout_height="@dimen/margin_40"
+                android:gravity="center"
+                android:orientation="horizontal" />
 
-                <LinearLayout
-                    android:id="@+id/project_slide_dots"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_20"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
-
-                <View
-                    android:id="@+id/project_slider_dots_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:alpha=".5" />
-            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
 
             <LinearLayout
                 android:id="@+id/project_details_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/project_slide_dots_area"
                 android:layout_marginTop="@dimen/margin_6"
                 android:orientation="vertical">
 
@@ -67,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/project_name_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium"
@@ -79,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="50"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/project_name"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
@@ -89,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/Desc_project_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium"
@@ -101,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="200"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/Desc_project"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
@@ -111,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/sub_desc_project_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium"
@@ -123,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:maxLength="200"
-                    android:padding="6dp"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/sub_desc_project"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
@@ -133,7 +123,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/project_details_area"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
@@ -144,7 +133,7 @@
                     android:visibility="visible" />
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 
