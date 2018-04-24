@@ -14,11 +14,10 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/profile_vendor_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:srcCompat="@drawable/dummy_icon" />
+            android:layout_height="250dp" />
 
         <TextView
             android:id="@+id/profile_vendor_name"

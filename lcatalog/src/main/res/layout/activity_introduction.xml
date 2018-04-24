@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imageView_illustration"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

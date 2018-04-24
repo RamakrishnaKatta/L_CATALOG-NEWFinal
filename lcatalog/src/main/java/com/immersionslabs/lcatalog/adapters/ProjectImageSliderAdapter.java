@@ -2,8 +2,6 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +18,6 @@ import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class ProjectImageSliderAdapter extends PagerAdapter {

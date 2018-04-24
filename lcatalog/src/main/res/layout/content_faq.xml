@@ -105,7 +105,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img1"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -149,7 +149,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img2"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -193,7 +193,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img3"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -237,7 +237,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img4"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -281,7 +281,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img5"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -333,7 +333,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img6"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -386,7 +386,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img7"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -430,7 +430,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img8"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -474,7 +474,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img9"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -518,7 +518,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img10"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -562,7 +562,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img11"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -606,7 +606,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img12"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -650,7 +650,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img13"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -694,7 +694,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img14"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -746,7 +746,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img15"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -790,7 +790,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img16"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -834,7 +834,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img17"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -878,7 +878,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img18"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -923,7 +923,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img19"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -975,7 +975,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img20"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"
@@ -1019,7 +1019,7 @@
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/img21"
                         android:layout_width="@dimen/margin_30"
                         android:layout_height="@dimen/margin_30"

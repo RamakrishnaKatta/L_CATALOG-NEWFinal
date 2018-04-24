@@ -90,7 +90,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
     public void onBindViewHolder(ListViewVerticalAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
 
-        holder.item_image.setImageResource(R.drawable.dummy_icon);
         String im1 = null;
         String get_image = item_images.get(position);
 

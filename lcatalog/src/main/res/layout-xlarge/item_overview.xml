@@ -8,7 +8,7 @@
     app:cardCornerRadius="@dimen/margin_6">
 
     <LinearLayout
-        android:id="@+id/project_container"
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -22,7 +22,7 @@
             android:gravity="center">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/project_image"
+                android:id="@+id/main_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_400"
                 android:contentDescription="@string/app_name"
@@ -38,7 +38,7 @@
             android:padding="@dimen/margin_20">
 
             <TextView
-                android:id="@+id/project_title"
+                android:id="@+id/main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -53,7 +53,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/project_data"
+            android:id="@+id/main_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_darker"

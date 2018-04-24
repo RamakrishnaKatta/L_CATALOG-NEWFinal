@@ -2,7 +2,6 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +18,6 @@ import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class ProjectPartImageSliderAdapter extends PagerAdapter {
@@ -67,14 +64,14 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
         Log.e(TAG, "download_images:partimage  " + urldisplay);
 
         try {
-            RequestQueue requestQueue= Volley.newRequestQueue(activity.getApplicationContext());
-            ImageRequest imageRequest=new ImageRequest(urldisplay, new Response.Listener<Bitmap>() {
+            RequestQueue requestQueue = Volley.newRequestQueue(activity.getApplicationContext());
+            ImageRequest imageRequest = new ImageRequest(urldisplay, new Response.Listener<Bitmap>() {
                 @Override
                 public void onResponse(Bitmap response) {
-                    mIcon=response;
-                    Log.e(TAG, "Bitmap_response "+response );
+                    mIcon = response;
+                    Log.e(TAG, "Bitmap_response " + response);
                 }
-            },0,0,ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,new Response.ErrorListener(){
+            }, 0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();

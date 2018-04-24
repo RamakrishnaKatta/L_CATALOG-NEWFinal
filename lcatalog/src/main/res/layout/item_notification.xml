@@ -17,7 +17,7 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/notify_image"
             android:layout_width="@dimen/margin_100"
             android:layout_height="@dimen/margin_100"

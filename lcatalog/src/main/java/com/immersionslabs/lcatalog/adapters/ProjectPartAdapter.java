@@ -61,7 +61,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_project_details, parent, false);
+        View view = inflater.inflate(R.layout.item_project_parts, parent, false);
         return new ViewHolder(view);
     }
 

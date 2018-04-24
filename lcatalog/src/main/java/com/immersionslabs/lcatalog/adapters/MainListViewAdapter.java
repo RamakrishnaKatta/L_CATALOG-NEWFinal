@@ -62,7 +62,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater(null);
-        View view = inflater.inflate(R.layout.content_display, viewGroup, false);
+        View view = inflater.inflate(R.layout.item_overview, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -70,8 +70,6 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     public void onBindViewHolder(final MainListViewAdapter.ViewHolder viewHolder, final int position) {
 
         final Context[] context = new Context[1];
-
-        viewHolder.item_image.setImageResource(R.drawable.dummy_icon);
 
         String im1 = null;
         String get_image = item_images.get(position);
@@ -119,7 +117,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
             main_container = view.findViewById(R.id.main_container);
             item_image = view.findViewById(R.id.main_image);
             item_name = view.findViewById(R.id.main_title);
-            item_description = view.findViewById(R.id.main_data);;
+            item_description = view.findViewById(R.id.main_data);
 
         }
     }

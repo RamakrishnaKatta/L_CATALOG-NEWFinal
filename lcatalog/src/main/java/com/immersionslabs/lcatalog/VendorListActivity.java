@@ -10,15 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.adapters.VendorListAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
@@ -28,7 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class VendorListActivity extends AppCompatActivity implements ApiCommunication {
@@ -89,7 +80,7 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(VendorListActivity.this,"Internal Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(VendorListActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     private void GetData(JSONArray resp) {
