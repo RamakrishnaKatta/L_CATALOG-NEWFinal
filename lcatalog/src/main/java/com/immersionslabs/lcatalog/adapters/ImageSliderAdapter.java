@@ -1,8 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,16 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class ImageSliderAdapter extends PagerAdapter {
 
-    String TAG = "ImageSliderAdapter";
+    private static final String TAG = "ImageSliderAdapter";
 
     private ArrayList<String> Images;
     private LayoutInflater inflater;
@@ -46,8 +44,14 @@ public class ImageSliderAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.fragment_product_images, container, false);
         ImageView images = v.findViewById(R.id.article_image_view);
-        Bitmap b = download_images(Images.get(position));
-        images.setImageBitmap(b);
+        String urls = Images.get(position);
+        Log.e(TAG, "instantiateItem:urls" + urls);
+
+        Glide.with(context)
+                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + urls)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(images);
         container.addView(v);
         return v;
     }
@@ -55,21 +59,5 @@ public class ImageSliderAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.invalidate();
-    }
-
-    public Bitmap download_images(String urls) {
-        String urldisplay = EnvConstants.APP_BASE_URL + "/upload/images/" + urls;
-        Bitmap mIcon = null;
-        try {
-
-            InputStream in = new URL(urldisplay).openStream();
-            mIcon = BitmapFactory.decodeStream(in);
-
-        } catch (Exception e) {
-
-            Log.d("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        return mIcon;
     }
 }
