@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +36,7 @@ public class VendorProfileActivity extends AppCompatActivity implements ApiCommu
     private static String VENDOR_URL = null;
     String vendor_id, vendor_name, vendor_address, vendor_image, vendor_no_of_articles;
     TextView profile_vendor_name, profile_vendor_location;
-    ImageView profile_vendor_logo;
+    AppCompatImageView profile_vendor_logo;
     Button profile_vendor_articles_list;
 
     @Override
@@ -69,6 +69,7 @@ public class VendorProfileActivity extends AppCompatActivity implements ApiCommu
         });
 
         final Bundle vendor_data = getIntent().getExtras();
+        assert vendor_data != null;
         vendor_id = vendor_data.getString("vendor_id");
 
         VENDOR_URL = REGISTER_URL + vendor_id;

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +14,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +42,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     private static final String TAG = "ProjectPartDetailsActivity";
 
     TextView part_name, part_Desc;
-    ImageView part_image;
+    AppCompatImageView part_image;
 
     String image1, image2, image3, image4, image5;
     String project_id;
@@ -94,7 +94,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
         project_id = (String) b.getCharSequence("_id");
         Log.e(TAG, "project_id ---- " + project_id);
-
 
         project_part_images = (String) b.getCharSequence("partimages");
         Log.e(TAG, " projectpartimage" + project_part_images);

@@ -1,12 +1,13 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,8 +59,9 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater(null);
         View view = inflater.inflate(R.layout.item_overview, viewGroup, false);
@@ -94,7 +96,6 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
 
         viewHolder.item_name.setText(item_names.get(position));
         viewHolder.item_description.setText(item_descriptions.get(position));
-
     }
 
     @Override
@@ -107,7 +108,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
      */
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView item_image;
+        AppCompatImageView item_image;
         LinearLayout main_container;
         private TextView item_name, item_description;
 

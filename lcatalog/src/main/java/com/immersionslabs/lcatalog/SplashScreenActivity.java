@@ -3,11 +3,11 @@ package com.immersionslabs.lcatalog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
     }
 
     private void animate() {
-        final ImageView imageView = findViewById(R.id.splash_icon);
+        final AppCompatImageView imageView = findViewById(R.id.splash_icon);
         final Animation animation_1 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
         final Animation animation_2 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.anti_rotate);
         imageView.startAnimation(animation_2);

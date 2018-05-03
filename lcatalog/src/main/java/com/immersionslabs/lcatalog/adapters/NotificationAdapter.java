@@ -2,12 +2,13 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,8 +50,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_notification, parent, false);
@@ -59,7 +61,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
 
         final Context[] context = new Context[1];
 
@@ -89,7 +91,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
      */
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
+        private AppCompatImageView imageView;
         private TextView title, message;
         private RelativeLayout container;
 

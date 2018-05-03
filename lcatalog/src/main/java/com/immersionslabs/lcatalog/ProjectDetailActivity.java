@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +13,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +43,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     TextView[] dots;
     int page_position = 0;
     TextView project_name, project_description, project_sub_description;
-    ImageView project_image;
+    AppCompatImageView project_image;
     String image1, image2, image3, image4, image5;
 
     String project_id;
@@ -90,6 +90,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_image = findViewById(R.id.project_image_view);
 
         final Bundle b = getIntent().getExtras();
+        assert b != null;
         p_name = (String) b.getCharSequence("projectName");
         Log.e(TAG, "project_name ---- " + p_name);
         Log.e(TAG, "Project_name  " + project_name);

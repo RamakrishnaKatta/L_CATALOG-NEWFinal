@@ -1,12 +1,13 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -39,11 +40,13 @@ public class ImageSliderAdapter extends PagerAdapter {
         return (view == object);
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
         View v = inflater.inflate(R.layout.fragment_product_images, container, false);
-        ImageView images = v.findViewById(R.id.article_image_view);
+        AppCompatImageView images = v.findViewById(R.id.article_image_view);
         String urls = Images.get(position);
         Log.e(TAG, "instantiateItem:urls" + urls);
 
@@ -57,7 +60,7 @@ public class ImageSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.invalidate();
     }
 }

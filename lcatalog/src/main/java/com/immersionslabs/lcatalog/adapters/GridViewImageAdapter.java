@@ -2,12 +2,13 @@ package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -31,14 +32,15 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
         this._filePaths = imagePaths;
     }
 
+    @NonNull
     @Override
-    public GridViewImageAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public GridViewImageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_gallery, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(_activity)
                 .load(_filePaths.get(position))
                 .placeholder(R.drawable.dummy_icon)
@@ -63,7 +65,7 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        AppCompatImageView imageView;
         RelativeLayout gallery_container;
 
         public ViewHolder(View itemView) {

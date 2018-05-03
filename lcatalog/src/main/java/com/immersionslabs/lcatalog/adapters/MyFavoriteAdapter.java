@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -76,8 +77,9 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_grid, parent, false);
@@ -86,7 +88,7 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(final MyFavoriteAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final MyFavoriteAdapter.ViewHolder viewHolder, final int position) {
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = item_images.get(position);
@@ -152,7 +154,7 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView item_name, item_description, item_price, item_discount, item_price_new;
-        private ImageView item_image;
+        private AppCompatImageView item_image;
         private RelativeLayout favorite_container;
 
         ViewHolder(View view) {

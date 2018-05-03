@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,8 +53,9 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_project, parent, false);
@@ -61,7 +63,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(CampaignAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull CampaignAdapter.ViewHolder holder, final int position) {
 
         final Context[] context = new Context[1];
 
@@ -115,7 +117,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView campaign_name, campaign_description;
-        ImageView campaign_image;
+        AppCompatImageView campaign_image;
 
         private LinearLayout campaign_container;
 
@@ -125,7 +127,6 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
             campaign_name = itemView.findViewById(R.id.project_title);
             campaign_description = itemView.findViewById(R.id.project_data);
             campaign_image = itemView.findViewById(R.id.project_image);
-
         }
     }
 }

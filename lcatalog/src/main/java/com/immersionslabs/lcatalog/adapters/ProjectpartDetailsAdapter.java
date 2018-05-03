@@ -3,12 +3,13 @@ package com.immersionslabs.lcatalog.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,15 +41,16 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         this.mcontext = context;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_project_part_articles, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ProjectpartDetailsAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProjectpartDetailsAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = part_article_images.get(position);
@@ -93,7 +95,7 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView article_name;
-        private ImageView article_image;
+        private AppCompatImageView article_image;
         private RelativeLayout part_article_container;
 
         public ViewHolder(View itemView) {

@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,8 +58,9 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         this.activity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_project_parts, parent, false);
@@ -66,7 +68,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ProjectPartAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProjectPartAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = project_partimages.get(position);
@@ -120,7 +122,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView projectpart_name, projectpart_Desc;
-        private ImageView projectpart_image;
+        private AppCompatImageView projectpart_image;
         private RelativeLayout projectpart_container;
 
         public ViewHolder(View itemView) {

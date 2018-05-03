@@ -3,15 +3,16 @@ package com.immersionslabs.lcatalog;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     Button feedback_submit, ratings_submit;
     RatingBar ratingBar;
     RelativeLayout feedback_layout, ratings_layout;
-    ImageView feedback_imageview, ratings_imageview;
+    AppCompatImageView feedback_imageview, ratings_imageview;
 
     String f_article_id, f_vendor_id, f_message, f_article_name, user_id;
     String resp, code, message;
@@ -51,7 +52,7 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
     private String global_user_id, f_vendor_id_mongo;
     private boolean _rating;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_feedback, container, false);

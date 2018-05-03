@@ -1,13 +1,13 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,7 +22,7 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
     private ArrayList<String> Images;
     private Activity activity;
     AppCompatImageView images;
-    String project_id;
+    private String project_id;
     private static final String TAG = "ProjectPartImageSliderAdapter";
 
     public ProjectPartImageSliderAdapter(ProjectPartDetailsActivity activity,
@@ -33,8 +33,9 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
         this.project_id = project_id;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater inflater = activity.getLayoutInflater();
         View v = inflater.inflate(R.layout.activity_project_part_details, container, false);
         Log.e(TAG, "projectpartimages  " + project_id);
@@ -58,12 +59,12 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == object);
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.invalidate();
     }
 }

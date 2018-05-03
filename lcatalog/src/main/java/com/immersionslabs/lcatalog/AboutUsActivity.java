@@ -6,17 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 public class AboutUsActivity extends AppCompatActivity {
     public static final String TAG = "AboutUsActivity";
-    ImageView facebook, linkedIn, twitter, instagram, youtube;
+    AppCompatImageView facebook, linkedIn, twitter, instagram, youtube;
     TextView heading3, heading4, heading5;
 
     @Override

@@ -13,11 +13,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +47,7 @@ public class UserTypeActivity extends AppCompatActivity {
     ImageButton _customer,
             _newCustomer,
             _shopper;
-    ImageView delete_cache;
+    AppCompatImageView delete_cache;
     SessionManager sessionmanager;
     private PrefManager prefManager1;
     private boolean success = true;
@@ -93,8 +93,8 @@ public class UserTypeActivity extends AppCompatActivity {
 
                     Log.e(TAG, "" + Arrays.toString(children_models));
 
-                    for (int i = 0; i < children_models.length; i++) {
-                        delete_models = new File(dir_models, children_models[i]).delete();
+                    for (String children_model : children_models) {
+                        delete_models = new File(dir_models, children_model).delete();
                     }
                     Log.e(TAG, "Files inside Models Folder deleted : " + delete_models);
                 }
@@ -104,8 +104,8 @@ public class UserTypeActivity extends AppCompatActivity {
 
                     Log.e(TAG, "" + Arrays.toString(children_patterns));
 
-                    for (int i = 0; i < children_patterns.length; i++) {
-                        delete_patterns = new File(dir_patterns, children_patterns[i]).delete();
+                    for (String children_pattern : children_patterns) {
+                        delete_patterns = new File(dir_patterns, children_pattern).delete();
                     }
                     Log.e(TAG, "Files inside Patterns Folder deleted : " + delete_patterns);
                 }
