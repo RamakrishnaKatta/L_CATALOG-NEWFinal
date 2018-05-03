@@ -228,9 +228,9 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
         Log.e(TAG, "surfaceChanged(): CameraResolution : (Applied) " + Integer.parseInt(dims[0]) + "x" + Integer.parseInt(dims[1]));
         parameters.setPreviewSize(Integer.parseInt(dims[0]), Integer.parseInt(dims[1]));
         parameters.setPreviewFrameRate(30);
-
-//        parameters.setExposureCompensation(0);
-//        camera.setParameters(parameters);
+        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        parameters.setExposureCompensation(0);
+        camera.setParameters(parameters);
 
         parameters = camera.getParameters();
         captureWidth = parameters.getPreviewSize().width;
@@ -280,7 +280,8 @@ public class CaptureCameraPreview extends SurfaceView implements SurfaceHolder.C
                 returnval = 1;
                 parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
                 Log.e(TAG, "CameraModes(): Focus Continuous Picture Applied ");
-            } else {
+            }
+            else {
                 returnval = 0;
                 Toast.makeText(getContext(), "This feature is not supported on your Device", Toast.LENGTH_LONG).show();
             }
