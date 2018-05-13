@@ -40,7 +40,7 @@ public class ProjectPartImageSliderAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.activity_project_part_details, container, false);
         Log.e(TAG, "projectpartimages  " + project_id);
 
-        images = v.findViewById(R.id.project_part_image_view);
+        images = v.findViewById(R.id.part_image_view);
         String urls = Images.get(position);
 
         Glide.with(activity)

@@ -1,9 +1,12 @@
 package com.immersionslabs.lcatalog;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
@@ -14,14 +17,18 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ProjectPartImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectpartDetailsAdapter;
+import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
@@ -29,6 +36,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -39,10 +48,24 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     private static String PROJECT_PART_ARTICLE_URL = null;
     private static final String ARTICLE_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
+    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/partview_3d/";
+
+    private static String EXTENDED_URL_3DS;
+    LinearLayout note;
+
     private static final String TAG = "ProjectPartDetailsActivity";
 
     TextView part_name, part_Desc;
     AppCompatImageView part_image;
+
+    ImageButton part_download, part_augment, part_3dview;
+
+    String Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation, Article_3DS_FileLocation;
+    private boolean zip_3ds_downloaded = true;
+    File article_3ds_zip_file, article_3ds_file;
+
+    TextView zip_downloaded;
+
 
     String image1, image2, image3, image4, image5;
     String project_id;
@@ -50,6 +73,8 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     ProjectpartDetailsAdapter adapter;
     GridLayoutManager layoutManager;
     Context mcontext;
+
+    String p_name, part_3ds;
     private ArrayList<String> part_articles_id;
     private ArrayList<String> part_article_images;
     private ArrayList<String> part_article_name;
@@ -68,6 +93,10 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_part_details);
 
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Toolbar toolbar = findViewById(R.id.toolbar_project_part);
         setSupportActionBar(toolbar);
 
@@ -80,9 +109,14 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         recyclerView.setHasFixedSize(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        part_name = findViewById(R.id.prject_part_title_text);
-        part_Desc = findViewById(R.id.project_part_description_text);
-        part_image = findViewById(R.id.project_part_image_view);
+        part_name = findViewById(R.id.part_title_text);
+        part_Desc = findViewById(R.id.part_description_text);
+        part_image = findViewById(R.id.part_image_view);
+        part_download = findViewById(R.id.part_download_icon);
+        part_3dview = findViewById(R.id.part_3dview_icon);
+        part_augment = findViewById(R.id.part_augment_icon);
+        zip_downloaded = findViewById(R.id.download_note_text);
+
 
         part_articles_id = new ArrayList<>();
         part_article_name = new ArrayList<>();
@@ -94,6 +128,12 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
         project_id = (String) b.getCharSequence("_id");
         Log.e(TAG, "project_id ---- " + project_id);
+
+        part_3ds = (String) b.getCharSequence("partview_3d");
+        Log.e(TAG, "part_3ds-----" + part_3ds);
+        p_name = (String) b.getCharSequence("partName");
+        Log.e(TAG, "part_name" + p_name);
+
 
         project_part_images = (String) b.getCharSequence("partimages");
         Log.e(TAG, " projectpartimage" + project_part_images);
@@ -140,6 +180,98 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
             }
         });
 
+        part_augment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProjectPartDetailsActivity.this, ARNativeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/" + part_3ds;
+        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
+        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/";
+        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
+        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/part_view.3ds";
+        Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
+
+        note = findViewById(R.id.download_note);
+
+        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
+        article_3ds_file = new File(Article_3DS_FileLocation);
+
+        zip_3ds_downloaded = false;
+        part_3dview.setEnabled(false);
+        if (article_3ds_file.exists()) {
+            part_3dview.setEnabled(true);
+            part_download.setVisibility(View.GONE);
+            note.setVisibility(View.GONE);
+            zip_3ds_downloaded = true;
+            zip_downloaded.setText("File Downloaded");
+            zip_downloaded.setTextColor(Color.BLUE);
+        }
+
+        part_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final ProgressDialog progressDialog = new ProgressDialog(ProjectPartDetailsActivity.this, R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Downloading Article, Just for once....");
+                progressDialog.setTitle("Article Downloading");
+                progressDialog.show();
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                try {
+                                    addModelFolder();
+                                    EXTENDED_URL_3DS = FILE_URL_3DS + project_id + part_3ds;
+                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
+                                    new DownloadManager_3DS(EXTENDED_URL_3DS, p_name, part_3ds);
+
+                                    if (article_3ds_zip_file.exists()) {
+                                        new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
+                                    } else {
+                                        Toast.makeText(ProjectPartDetailsActivity.this, "Cannot locate Zipper, Try to download again", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    zip_3ds_downloaded = true;
+
+                                    Log.e(TAG, "Zip Downloaded ---------- " + zip_3ds_downloaded);
+                                    progressDialog.dismiss();
+                                    part_download.setVisibility(View.GONE);
+                                    part_3dview.setEnabled(true);
+                                    note.setVisibility(View.GONE);
+                                    zip_downloaded.setText("File Downloaded");
+                                    zip_downloaded.setTextColor(getResources().getColor(R.color.primary_dark));
+
+                                } catch (IOException e) {
+                                    part_download.setVisibility(View.VISIBLE);
+                                    part_3dview.setEnabled(false);
+                                    zip_3ds_downloaded = false;
+                                    Log.e(TAG, "Zip Not Downloaded ---------- " + zip_3ds_downloaded);
+                                    e.printStackTrace();
+                                    note.setVisibility(View.VISIBLE);
+                                    zip_downloaded.setText("Download !");
+                                }
+                            }
+                        }, 6000);
+            }
+        });
+
+        part_3dview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zip_3ds_downloaded == true) {
+
+                    Bundle b5 = new Bundle();
+                    b5.putString("partName", p_name);
+                    Intent _3d_intent = new Intent(ProjectPartDetailsActivity.this, Article3dViewActivity.class).putExtras(b5);
+                    startActivity(_3d_intent);
+                }
+            }
+        });
+
         PROJECT_PART_ARTICLE_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_ARTICLE_URL);
 
@@ -153,6 +285,21 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void addModelFolder()throws IOException {
+        String state = Environment.getExternalStorageState();
+
+        File folder = null;
+        if (state.contains(Environment.MEDIA_MOUNTED)) {
+            Log.e(TAG, "Project Part Name--" + p_name);
+            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name);
+        }
+        assert folder != null;
+        if (!folder.exists()) {
+            boolean wasSuccessful = folder.mkdirs();
+            Log.e(TAG, "Model Directory is Created --- '" + wasSuccessful + "' Thank You !!");
         }
     }
 

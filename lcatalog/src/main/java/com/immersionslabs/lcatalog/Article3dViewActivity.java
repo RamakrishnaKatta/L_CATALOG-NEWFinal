@@ -20,7 +20,7 @@ import com.immersionslabs.lcatalog.loader3ds.MyGLSurfaceView;
 
 public class Article3dViewActivity extends AppCompatActivity {
     private static final String TAG = "Article3dViewActivity";
-    String name;
+    String name, p_name, part_name;
     private MyGLSurfaceView mGLView;
     private MyGLRenderer mRenderer;
     private SeekBar scaleBar;
@@ -45,6 +45,14 @@ public class Article3dViewActivity extends AppCompatActivity {
         Bundle b3 = getIntent().getExtras();
         name = (String) b3.getCharSequence("article_name");
         Log.e(TAG, "Name ---- " + name);
+
+        Bundle b4 = getIntent().getExtras();
+        p_name = (String) b4.getCharSequence("projectName");
+        Log.e(TAG, "P_name ------" + p_name);
+
+        Bundle b5 = getIntent().getExtras();
+        part_name = (String) b5.getCharSequence("partName");
+        Log.e(TAG, "Part_name----" + part_name);
 
         FloatingActionButton fab = findViewById(R.id.fab_3dView);
         fab.setOnClickListener(new View.OnClickListener() {

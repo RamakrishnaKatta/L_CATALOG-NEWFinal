@@ -36,19 +36,22 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     private ArrayList<String> project_description;
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
+    private ArrayList<String> project_3ds;
 
     public CampaignAdapter(ProjectActivity activity,
                            ArrayList<String> project_ids,
                            ArrayList<String> project_name,
                            ArrayList<String> project_description,
                            ArrayList<String> project_subDescription,
-                           ArrayList<String> project_images) {
+                           ArrayList<String> project_images,
+                           ArrayList<String> project_3ds) {
 
         this.project_ids = project_ids;
         this.project_name = project_name;
         this.project_description = project_description;
         this.project_subDescription = project_subDescription;
         this.project_images = project_images;
+        this.project_3ds = project_3ds;
 
         this.activity = activity;
     }
@@ -103,6 +106,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
                 b.putString("projectDescription", project_description.get(position));
                 b.putString("projectSubDescription", project_subDescription.get(position));
                 b.putString("images", project_images.get(position));
+                b.putString("projectView_3d", project_3ds.get(position));
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);

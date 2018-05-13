@@ -39,6 +39,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
     private ArrayList<String> project_description;
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
+    private ArrayList<String> project_3ds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +63,13 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
         project_description = new ArrayList<>();
         project_subDescription = new ArrayList<>();
         project_images = new ArrayList<>();
+        project_3ds = new ArrayList<>();
 
         CommonGetData();
     }
 
     private void CommonGetData() {
-        Log.e(TAG, "CommonGetData: Project URL" + REGISTER_URL);
-        final JSONObject object = new JSONObject();
+        Log.e(TAG, " Project URL" + REGISTER_URL);
         ApiService.getInstance(this).getData(this, false, "CAMPAIGN", REGISTER_URL, "PROJECT_CAMPAIGN");
     }
 
@@ -83,6 +84,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
                 project_description.add(object.getString("projectDescription"));
                 project_images.add(object.getString("images"));
                 project_subDescription.add(object.getString("projectSubDescription"));
+                project_3ds.add(object.getString("projectView_3d"));
 
 //                for (int j = 0; j < object.length(); j++) {
 //                    JSONArray parts = object.getJSONArray("parts");
@@ -103,17 +105,16 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
             }
         }
 
-        Log.e(TAG, " ids" + project_ids);
-        Log.e(TAG, " Name" + project_name);
-        Log.e(TAG, " Description" + project_description);
-        Log.e(TAG, " Sub Description" + project_subDescription);
-        Log.e(TAG, "Images" + project_images);
+        Log.e(TAG, "project ids" + project_ids);
+        Log.e(TAG, "project Name" + project_name);
+        Log.e(TAG, "project Description" + project_description);
+        Log.e(TAG, "project Sub Description" + project_subDescription);
+        Log.e(TAG, "project Images" + project_images);
+        Log.e(TAG, "Project 3ds" + project_3ds);
 
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
-        CampaignAdapter adapter = new CampaignAdapter(this, project_ids,
-                project_name, project_description,
-                project_subDescription, project_images);
+        CampaignAdapter adapter = new CampaignAdapter(this, project_ids,project_name, project_description,project_subDescription, project_images,project_3ds);
         recyclerView.setAdapter(adapter);
     }
 

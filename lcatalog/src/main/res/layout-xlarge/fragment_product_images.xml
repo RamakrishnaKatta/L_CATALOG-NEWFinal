@@ -97,7 +97,7 @@
                 <View
                     android:id="@+id/layout_separator3"
                     android:layout_width="@dimen/margin_1"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
                     android:background="@color/white" />
 
@@ -134,7 +134,7 @@
                 <View
                     android:id="@+id/layout_separator8"
                     android:layout_width="@dimen/margin_1"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
                     android:background="@color/white" />
 
@@ -219,7 +219,7 @@
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Augment "
+                        android:text="@string/menu_augment"
                         android:textSize="@dimen/text_tab_small" />
 
                 </LinearLayout>
@@ -227,7 +227,7 @@
                 <View
                     android:id="@+id/layout_separator4"
                     android:layout_width="@dimen/margin_1"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
                     android:background="@color/white" />
 
@@ -257,7 +257,7 @@
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="360&#176; View  "
+                        android:text="@string/article_3d_text"
                         android:textSize="@dimen/text_tab_small" />
 
                 </LinearLayout>
@@ -265,7 +265,7 @@
                 <View
                     android:id="@+id/layout_separator11"
                     android:layout_width="@dimen/margin_1"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
                     android:background="@color/white" />
 
@@ -294,7 +294,7 @@
                         android:gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Download"
+                        android:text="@string/article_download"
                         android:textSize="@dimen/text_tab_small" />
 
                 </LinearLayout>

@@ -38,6 +38,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     private ArrayList<String> project_part_articlesData;
     private ArrayList<String> project_partimages;
     private ArrayList<String> project_ids;
+    private ArrayList<String> project_part_3ds;
 
     public ProjectPartAdapter(ProjectDetailActivity activity,
                               ArrayList<String> project_part,
@@ -46,7 +47,8 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                               ArrayList<String> project_partimages,
                               ArrayList<String> project_part_articlesIds,
                               ArrayList<String> project_part_articlesData,
-                              ArrayList<String> project_ids) {
+                              ArrayList<String> project_ids,
+                              ArrayList<String> project_part_3ds) {
 
         this.project_part = project_part;
         this.project_partName = project_partName;
@@ -55,6 +57,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         this.project_part_articlesData = project_part_articlesData;
         this.project_partimages = project_partimages;
         this.project_ids = project_ids;
+        this.project_part_3ds = project_part_3ds;
         this.activity = activity;
     }
 
@@ -108,6 +111,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                 b.putString("partimages", project_partimages.get(position));
                 b.putString("articlesId", project_part_articlesIds.get(position));
                 b.putString("articlesData", project_part_articlesData.get(position));
+                b.putString("partview_3d", project_part_3ds.get(position));
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);

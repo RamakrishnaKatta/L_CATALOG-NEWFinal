@@ -121,6 +121,167 @@
 
             </LinearLayout>
 
+
+            <View
+                android:id="@+id/layout_separator1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_40"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/project_augment_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/menu_augment"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        app:srcCompat="@mipmap/ic_augment"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/augment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/menu_augment"
+                        android:textSize="@dimen/text_tab_large" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/layout_separator2"
+                    android:layout_width="@dimen/margin_1"
+                    android:layout_height="@dimen/margin_50"
+                    android:layout_gravity="center"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/project_3dview_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/_3d_text"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:visibility="visible"
+                        app:srcCompat="@mipmap/ic_3d" />
+
+                    <TextView
+                        android:id="@+id/view3d_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/article_3d_text"
+                        android:textSize="@dimen/text_tab_large" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/layout_separator6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1"
+                android:background="@color/white" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_40"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/project_download_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/dummy_address"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        app:srcCompat="@mipmap/ic_download" />
+
+                    <TextView
+                        android:id="@+id/download_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/overlock_sc"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/article_download"
+                        android:textSize="@dimen/text_tab_large" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/layout_separator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_2"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/download_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/download_note_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:padding="@dimen/margin_20"
+                    android:text="@string/note_download"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_tab_small"
+                    android:textStyle="italic|bold" />
+
+                <View
+                    android:id="@+id/layout_separator7"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
