@@ -34,6 +34,7 @@
 
         static float materialShininess[] = {50.0};
         static float materialSpecular[] = {1.0f, 1.0f, 1.0f, 1.0f};
+        static float materialEmission[] = {0.3f, 0.2f, 0.2f, 0.0f};
 
         JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoInitialise(JNIEnv * env, jobject object)) {
 
@@ -477,7 +478,7 @@
             glmCreateArrays(models[26].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[26].visible = false;
 
-          //Mapping to pattern 28  - officeenvprtb.obj
+            //Mapping to pattern 28  - officeenvprtb.obj
             models[27].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern28.patt;80");
             arwSetMarkerOptionBool(models[27].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[27].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -492,7 +493,7 @@
             glmCreateArrays(models[27].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[27].visible = false;
 
-          //Mapping to pattern 29  - expall.obj
+            //Mapping to pattern 29  - expall.obj
             models[28].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern29.patt;80");
             arwSetMarkerOptionBool(models[28].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[28].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -507,7 +508,7 @@
             glmCreateArrays(models[28].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[28].visible = false;
 
-          //Mapping to pattern 30  - empoda.obj
+            //Mapping to pattern 30  - empoda.obj
             models[29].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern30.patt;80");
             arwSetMarkerOptionBool(models[29].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[29].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -522,7 +523,7 @@
             glmCreateArrays(models[29].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[29].visible = false;
 
-          //Mapping to pattern 31  - empodb.obj
+            //Mapping to pattern 31  - empodb.obj
             models[30].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern31.patt;80");
             arwSetMarkerOptionBool(models[30].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[30].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -537,7 +538,7 @@
             glmCreateArrays(models[30].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[30].visible = false;
 
-          //Mapping to pattern 32  - entsfa.obj
+            //Mapping to pattern 32  - entsfa.obj
             models[31].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern32.patt;80");
             arwSetMarkerOptionBool(models[31].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[31].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -552,7 +553,7 @@
             glmCreateArrays(models[31].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[31].visible = false;
 
-          //Mapping to pattern 33  - Ferrari car.obj
+            //Mapping to pattern 33  - Ferrari car.obj
             models[32].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern33.patt;80");
             arwSetMarkerOptionBool(models[32].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[32].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -567,7 +568,7 @@
             glmCreateArrays(models[32].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[32].visible = false;
 
-          //Mapping to pattern 34  - Porsche car.obj
+            //Mapping to pattern 34  - Porsche car.obj
             models[33].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern34.patt;80");
             arwSetMarkerOptionBool(models[33].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[33].patternID, ARW_MARKER_OPTION_FILTERED, true);
@@ -635,6 +636,7 @@
 
                 glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
                 glMaterialfv(GL_FRONT, GL_SHININESS, materialShininess);
+                glMaterialfv(GL_FRONT, GL_EMISSION, materialEmission);
 
                 glmDrawArrays(models[i].obj, 0);
             }

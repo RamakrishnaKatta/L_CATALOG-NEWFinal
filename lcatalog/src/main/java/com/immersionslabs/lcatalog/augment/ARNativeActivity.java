@@ -1,23 +1,14 @@
 package com.immersionslabs.lcatalog.augment;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
-import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.DownloadManager_AR;
-import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 
 import org.artoolkit.ar.base.ARActivity;
 import org.artoolkit.ar.base.assets.AssetHelper;
 import org.artoolkit.ar.base.rendering.ARRenderer;
-
-import java.io.File;
-import java.io.IOException;
 
 import static com.immersionslabs.lcatalog.augment.ARNativeApplication.getInstance;
 

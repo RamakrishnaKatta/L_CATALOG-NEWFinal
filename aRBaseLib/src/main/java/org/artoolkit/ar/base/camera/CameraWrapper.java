@@ -36,13 +36,13 @@ class CameraWrapper {
             cameraClass = Class.forName(CAMERA_CLASS_NAME);
             Log.e(TAG, "CameraWrapper(): Found class " + CAMERA_CLASS_NAME);
 
-            setPreviewCallbackMethod = cameraClass.getDeclaredMethod("setPreviewCallback", new Class[]{Camera.PreviewCallback.class});
+            setPreviewCallbackMethod = cameraClass.getDeclaredMethod("setPreviewCallback", Camera.PreviewCallback.class);
             Log.e(TAG, "CameraWrapper(): Found method setPreviewCallback");
 
-            setPreviewCallbackWithBufferMethod = cameraClass.getDeclaredMethod("setPreviewCallbackWithBuffer", new Class[]{Camera.PreviewCallback.class});
+            setPreviewCallbackWithBufferMethod = cameraClass.getDeclaredMethod("setPreviewCallbackWithBuffer", Camera.PreviewCallback.class);
             Log.e(TAG, "CameraWrapper(): Found method setPreviewCallbackWithBuffer");
 
-            addCallbackBufferMethod = cameraClass.getDeclaredMethod("addCallbackBuffer", new Class[]{byte[].class});
+            addCallbackBufferMethod = cameraClass.getDeclaredMethod("addCallbackBuffer", byte[].class);
             Log.e(TAG, "CameraWrapper(): Found method addCallbackBuffer");
 
         } catch (NoSuchMethodException nsme) {
