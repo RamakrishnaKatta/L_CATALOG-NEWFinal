@@ -588,11 +588,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("FAVORITE_SELECT")) {
             Log.e(TAG, "response " + response);
-            if (value == 1) {
-                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
-            }
+//            if (value == 1) {
+//                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
+//            }
             try {
                 resp = response.getString("success");
                 code = response.getString("status_code");

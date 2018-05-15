@@ -78,14 +78,14 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
 
         feedback_article_id_area.setVisibility(View.GONE);
         feedback_vendor_id_area.setVisibility(View.GONE);
-        feedback_message_area.setVisibility(View.GONE);
-        feedback_article_name_area.setVisibility(View.GONE);
-        feedback_submit.setVisibility(View.GONE);
-        ratingBar.setVisibility(View.GONE);
-        ratings_submit.setVisibility(View.GONE);
+//        feedback_message_area.setVisibility(View.GONE);
+//        feedback_article_name_area.setVisibility(View.GONE);
+//        feedback_submit.setVisibility(View.GONE);
+//        ratingBar.setVisibility(View.GONE);
+//        ratings_submit.setVisibility(View.GONE);
 
-        feedback_layout.setTag("down");
-        ratings_layout.setTag("down");
+        feedback_layout.setTag("up");
+        ratings_layout.setTag("up");
 
         feedback_submit.setOnClickListener(this);
 
@@ -117,8 +117,8 @@ public class Fragment_ProductFeedback extends Fragment implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if (feedback_layout.getTag().toString().equals("down")) {
-                    feedback_article_id_area.setVisibility(View.VISIBLE);
-                    feedback_vendor_id_area.setVisibility(View.VISIBLE);
+                    feedback_article_id_area.setVisibility(View.GONE);
+                    feedback_vendor_id_area.setVisibility(View.GONE);
                     feedback_message_area.setVisibility(View.VISIBLE);
                     feedback_article_name_area.setVisibility(View.VISIBLE);
                     feedback_submit.setVisibility(View.VISIBLE);

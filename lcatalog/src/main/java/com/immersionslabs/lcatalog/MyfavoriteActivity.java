@@ -84,7 +84,6 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
         item_dimensions = new ArrayList<>();
         item_3ds = new ArrayList<>();
 
-        CommongetData();
     }
 
     private void CommongetData() {
@@ -216,6 +215,18 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
     @Override
     public void onResume() {
         super.onResume();
+        item_ids.clear();
+        item_descriptions.clear();
+        item_names.clear();
+        item_images.clear();
+        item_vendors.clear();
+        item_prices.clear();
+        item_discounts.clear();
+        item_dimensions.clear();
+        item_3ds.clear();
+
+        CommongetData();
+
     }
 
     @Override
