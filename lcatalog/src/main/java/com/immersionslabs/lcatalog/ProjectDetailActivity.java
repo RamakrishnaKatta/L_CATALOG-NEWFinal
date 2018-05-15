@@ -290,7 +290,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         PROJECT_PART_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
 
-         try {
+        try {
             getProjectData();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -390,7 +390,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         ProjectpartManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(ProjectpartManager);
-        adapter = new ProjectPartAdapter(this, project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids,project_part_3ds);
+        adapter = new ProjectPartAdapter(this, project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids, project_part_3ds);
         recyclerView.setAdapter(adapter);
     }
 

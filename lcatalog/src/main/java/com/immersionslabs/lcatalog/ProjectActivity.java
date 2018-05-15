@@ -114,7 +114,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
-        CampaignAdapter adapter = new CampaignAdapter(this, project_ids,project_name, project_description,project_subDescription, project_images,project_3ds);
+        CampaignAdapter adapter = new CampaignAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds);
         recyclerView.setAdapter(adapter);
     }
 
