@@ -344,7 +344,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="250dp"
+                android:layout_width="@dimen/margin_250"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
                 android:gravity="center|start"

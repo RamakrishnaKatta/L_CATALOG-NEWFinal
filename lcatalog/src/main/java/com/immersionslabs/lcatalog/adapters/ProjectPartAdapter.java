@@ -76,8 +76,8 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
         String im1 = null;
         String get_image = project_partimages.get(position);
         String get_project_id = project_ids.get(0);
-        Log.e(TAG, " project_ids" + get_project_id);
-        Log.e(TAG, " project_images" + get_image);
+        Log.e(TAG, " project_ids " + get_project_id);
+        Log.e(TAG, " project_images " + get_image);
 
         holder.projectpart_name.setText(project_partName.get(position));
         holder.projectpart_Desc.setText(project_partDesc.get(position));
@@ -85,7 +85,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
             JSONArray images_json = new JSONArray(get_image);
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "project_part_Image" + im1);
+                Log.e(TAG, "project_part_Image  " + im1);
             }
         } catch (JSONException e) {
             e.printStackTrace();

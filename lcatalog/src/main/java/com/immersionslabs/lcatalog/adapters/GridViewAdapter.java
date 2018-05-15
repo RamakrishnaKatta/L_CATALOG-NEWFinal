@@ -101,11 +101,9 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         try {
             JSONArray images_json = new JSONArray(get_image);
             if (images_json.length() > 0) {
-                //for (int i = 0; i < images_json.length(); i++) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "image Thumbnail(1) >>>>" + im1);
-                //}
             }
+            Log.e(TAG, "image Thumbnail(1) >>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

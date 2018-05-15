@@ -78,12 +78,10 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
         try {
 
             JSONArray images_json = new JSONArray(get_image);
-//            for (int i = 0; i < images_json.length(); i++) {
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "image1 >>>>" + im1);
             }
-//        }
+            Log.e(TAG, "image1 >>>>" + im1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
