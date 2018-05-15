@@ -96,7 +96,7 @@ public class MyFavoriteAdapter extends RecyclerView.Adapter<MyFavoriteAdapter.Vi
             JSONArray images_json = new JSONArray(get_image);
             for (int i = 0; i < images_json.length(); i++) {
                 im1 = images_json.getString(0);
-                Log.e(TAG, "onBindViewHolder: image1" + im1);
+                Log.e(TAG, " image1" + im1);
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -129,8 +129,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_name.setText(p_name);
 
         project_3ds = (String) b.getCharSequence("projectView_3d");
-        Log.e(TAG, "project_3ds" + project_3ds);
         project_id = (String) b.getCharSequence("_id");
+        project_name.setText(b.getCharSequence("projectName"));
+        project_description.setText(b.getCharSequence("projectDescription"));
+        project_sub_description.setText(b.getCharSequence("projectSubDescription"));
+
+        Log.e(TAG, "project_3ds  " + project_3ds);
         Log.e(TAG, "project_id ---- " + project_id);
         Log.e(TAG, "Project_name  " + project_name);
 
@@ -201,7 +205,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
         Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/";
         Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
-        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/project_view.3ds";
+        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/article_view.3ds";
         Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
 
         note = findViewById(R.id.download_note);
@@ -212,7 +216,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
 
         zip_3ds_downloaded = false;
 
-
         project_3dview.setEnabled(false);
         if (article_3ds_file.exists()) {
             project_3dview.setEnabled(true);
@@ -222,7 +225,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             zip_downloaded.setText("File Downloaded");
             zip_downloaded.setTextColor(Color.BLUE);
         }
-
 
         project_download.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,12 +290,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         PROJECT_PART_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_URL);
 
-        project_name.setText(b.getCharSequence("projectName"));
-        project_description.setText(b.getCharSequence("projectDescription"));
-
-        project_sub_description.setText(b.getCharSequence("projectSubDescription"));
-
-        try {
+         try {
             getProjectData();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -382,7 +379,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
                 e.printStackTrace();
             }
         }
-        Log.e(TAG, "project_id_projdetails" + project_ids);
+        Log.e(TAG, "project_id" + project_ids);
         Log.e(TAG, "part" + project_part);
         Log.e(TAG, "partName" + project_partName);
         Log.e(TAG, "partDesc" + project_partDesc);

@@ -49,7 +49,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     private static final String ARTICLE_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
     private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/partview_3d/";
-
+    private static String UNIQUE_ARTICLE_URL;
     private static String EXTENDED_URL_3DS;
     LinearLayout note;
 
@@ -134,9 +134,13 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         p_name = (String) b.getCharSequence("partName");
         Log.e(TAG, "part_name" + p_name);
 
+        part_name.setText(b.getCharSequence("partName"));
+        Log.e(TAG, "onCreate:part_name " + part_name);
+        part_Desc.setText(b.getCharSequence("partDesc"));
+        Log.e(TAG, " part_Desc" + part_Desc);
 
         project_part_images = (String) b.getCharSequence("partimages");
-        Log.e(TAG, " projectpartimage" + project_part_images);
+        Log.e(TAG, " part images" + project_part_images);
 
         try {
             JSONArray image_json = new JSONArray(project_part_images);
@@ -192,7 +196,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
         Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/";
         Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
-        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/part_view.3ds";
+        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "article_view.3ds";
         Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
 
         note = findViewById(R.id.download_note);
@@ -275,20 +279,16 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         PROJECT_PART_ARTICLE_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_ARTICLE_URL);
 
-        part_name.setText(b.getCharSequence("partName"));
-        Log.e(TAG, "onCreate:part_name " + part_name);
-        part_Desc.setText(b.getCharSequence("partDesc"));
 
         try {
             getpartData();
-
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void addModelFolder()throws IOException {
+    private void addModelFolder() throws IOException {
         String state = Environment.getExternalStorageState();
 
         File folder = null;
@@ -339,12 +339,11 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     public void getarticledata() {
         Iterator iterator = EnvConstants.part_articles_id.iterator();
         while (iterator.hasNext()) {
-            String UNIQUE_ARTICLE_URL = ARTICLE_SPECIFIC_URL + iterator.next();
+            UNIQUE_ARTICLE_URL = ARTICLE_SPECIFIC_URL + iterator.next();
             ApiService.getInstance(this).getData(this, false, "ARTICLE_PROJECT_DATA", UNIQUE_ARTICLE_URL, "ARTICLE_DATA");
         }
 
     }
-
 
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
@@ -380,9 +379,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     private void getData(JSONArray parts) {

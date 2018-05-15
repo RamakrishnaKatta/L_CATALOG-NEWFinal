@@ -17,7 +17,7 @@
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/profile_vendor_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="@dimen/margin_400" />
 
         <TextView
             android:id="@+id/profile_vendor_name"
@@ -47,7 +47,7 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/profile_vendor_articles_list"
-            android:layout_width="400dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_50"

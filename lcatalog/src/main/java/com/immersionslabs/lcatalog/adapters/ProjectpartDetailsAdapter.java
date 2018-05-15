@@ -54,7 +54,7 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = part_article_images.get(position);
-        Log.e(TAG, "project_images" + get_image);
+        Log.e(TAG, "project_images " +  get_image);
 
         holder.article_name.setText(part_article_name.get(position));
         Glide.with(activity)

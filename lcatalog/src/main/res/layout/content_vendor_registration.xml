@@ -168,7 +168,7 @@
             <!-- Vendor Signup/register Button -->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_vendor_submit"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_3"

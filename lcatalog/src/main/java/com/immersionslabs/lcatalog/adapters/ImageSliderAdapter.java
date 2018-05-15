@@ -48,7 +48,7 @@ public class ImageSliderAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.fragment_product_images, container, false);
         AppCompatImageView images = v.findViewById(R.id.article_image_view);
         String urls = Images.get(position);
-        Log.e(TAG, "instantiateItem:urls" + urls);
+        Log.e(TAG, "Article Image urls " + urls);
 
         Glide.with(context)
                 .load(EnvConstants.APP_BASE_URL + "/upload/images/" + urls)
