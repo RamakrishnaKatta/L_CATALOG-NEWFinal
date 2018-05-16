@@ -32,8 +32,11 @@ public class SessionManager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
+    public static final String KEY_USER_FAVOURITE_IDS="customerfavouiriteids";
 
     Set<String> set = new HashSet<String>();
+    Set<String> favoiriteset = new HashSet<String>();
+
 
     public SessionManager(Context context) {
         this.context = context;
@@ -113,10 +116,10 @@ public class SessionManager {
         editor.remove(KEY_ADDRESS);
         editor.remove(KEY_PASSWORD);
         editor.remove(KEY_USER_TYPE);
+        editor.remove(KEY_USER_FAVOURITE_IDS);
         editor.putBoolean(IS_USER_LOGIN, false);
         editor.commit();
-//        editor.clear();
-//        editor.commit();
+
     }
 
     public boolean isUserLoggedIn() {
@@ -272,4 +275,30 @@ public class SessionManager {
         }
         return returnval;
     }
+    public void setuserfavoirites(Set userfavouirites)
+    {  editor.remove(KEY_USER_FAVOURITE_IDS);
+        editor.putStringSet(KEY_USER_FAVOURITE_IDS,userfavouirites);
+editor.commit();
+}
+public Set getuserfavoirites()
+{
+return  pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
+}
+
+public void updateuserfavoirites(String article_id)
+{
+    Set set=pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
+    set.add(article_id);
+    editor.remove(KEY_USER_FAVOURITE_IDS);
+    editor.putStringSet(KEY_USER_FAVOURITE_IDS,set);
+    editor.commit();
+}
+public void removeuserfavouirites(String article_id)
+{ Set set=pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
+    set.remove(article_id);
+    editor.remove(KEY_USER_FAVOURITE_IDS);
+    editor.putStringSet(KEY_USER_FAVOURITE_IDS,set);
+    editor.commit();
+}
+
 }

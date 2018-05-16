@@ -41,7 +41,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
@@ -298,9 +302,10 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
                     }
 
                     user_Favourite_list = temp;
-
+                    Set<String> user_Favourite_list_set = new HashSet<String>(user_Favourite_list);
+                    sessionmanager.setuserfavoirites(user_Favourite_list_set);
                     Log.e(TAG, "favourite JSON Ids " + fav_ids);
-                    Log.e(TAG, "favourite Array List Ids " + user_Favourite_list);
+                    Log.e(TAG, "favourite Array List Ids " + user_Favourite_list_set);
                     Log.e(TAG, "User Name > " + userName + "\n User Address > " + userAddress + "\n User Email > " + userEmail + "\n User Phone > " + userPhone);
                 }
 

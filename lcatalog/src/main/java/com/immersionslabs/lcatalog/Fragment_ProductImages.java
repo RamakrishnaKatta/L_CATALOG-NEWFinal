@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
@@ -152,6 +153,19 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 likeButton.setLiked(false);
             }
         }
+        if (Objects.equals(user_log_type, "CUSTOMER")) {
+
+        Set set=sessionmanager.getuserfavoirites();
+
+            if (set.contains(article_id)) {
+                Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
+                likeButton.setLiked(true);
+            } else if (!set.contains(article_id)) {
+                Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
+                likeButton.setLiked(false);
+            }
+        }
+
 
         try {
             JSONArray image_json = new JSONArray(article_images);
@@ -545,6 +559,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         if (Objects.equals(user_log_type, "CUSTOMER")) {
             likeApiCall(1);
+            sessionmanager.updateuserfavoirites(article_id);
             Toast.makeText(getContext(), "liked!", Toast.LENGTH_SHORT).show();
         } else if (!Objects.equals(user_log_type, "CUSTOMER")) {
             user_Favourite_list.add(article_id);
@@ -558,6 +573,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         if (Objects.equals(user_log_type, "CUSTOMER")) {
             likeApiCall(0);
+            sessionmanager.removeuserfavouirites(article_id);
             Toast.makeText(getContext(), "Disliked!", Toast.LENGTH_SHORT).show();
         } else if (!Objects.equals(user_log_type, "CUSTOMER")) {
             user_Favourite_list.remove(article_id);
@@ -634,6 +650,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onResume() {
         super.onResume();
+
         if (EnvConstants.user_type.equals("GUEST")) {
             if (budgetManager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                 article_budgetlist.setVisibility(View.GONE);
@@ -664,6 +681,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             } else {
                 Add_Text.setTextColor(getResources().getColor(R.color.white));
             }
+
         }
     }
 
