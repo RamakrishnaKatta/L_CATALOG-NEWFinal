@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.action_replay_info) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
             builder.setTitle("Watch the welcome Slider, If you missed it");
             builder.setMessage("To see the welcome slider again, either you can go to Settings -> apps -> welcome slider -> clear data or Press OK ");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -334,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_augment) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme_Dark_Dialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
             builder.setTitle("You are about to enter Augment Enabled Camera");
             builder.setMessage("This requires 2min of your patience, Do you wish to enter ?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
 
         } else if (id == R.id.nav_faq) {
-            Intent intent = new Intent(this, faqActivity.class);
+            Intent intent = new Intent(this, FAQActivity.class);
             startActivity(intent);
         }
 

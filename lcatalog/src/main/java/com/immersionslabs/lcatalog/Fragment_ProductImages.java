@@ -142,7 +142,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Log.d(TAG, "onCreateView:name" + article_name);
 
         if (!Objects.equals(user_log_type, "CUSTOMER")) {
-
             Toast.makeText(getContext(), "This Favourite List is temporary, will be removed after this session", Toast.LENGTH_SHORT).show();
 
             if (user_Favourite_list.contains(article_id)) {
@@ -153,9 +152,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 likeButton.setLiked(false);
             }
         }
-        if (Objects.equals(user_log_type, "CUSTOMER")) {
 
-        Set set=sessionmanager.getuserfavoirites();
+        if (Objects.equals(user_log_type, "CUSTOMER")) {
+            Set set = sessionmanager.getuserfavoirites();
 
             if (set.contains(article_id)) {
                 Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
@@ -165,7 +164,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 likeButton.setLiked(false);
             }
         }
-
 
         try {
             JSONArray image_json = new JSONArray(article_images);
@@ -208,11 +206,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
 
             private void addBottomDots(int currentPage) {
-
                 dots = new TextView[slider_images.size()];
-
                 Slider_dots.removeAllViews();
-
                 for (int i = 0; i < dots.length; i++) {
                     dots[i] = new TextView(view.getContext());
                     dots[i].setText(Html.fromHtml("&#8226;"));
@@ -220,7 +215,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     dots[i].setTextColor(Color.WHITE);
                     Slider_dots.addView(dots[i]);
                 }
-
                 if (dots.length > 0)
                     dots[currentPage].setTextColor(Color.parseColor("#004D40"));
             }
@@ -275,7 +269,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     if (article_3ds_zip_file.exists()) {
                                         new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
                                     } else {
-                                        Toast.makeText(getContext(), "Cannot locate Zipper, Try to download again", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Cannot locate Zipper, Try to download again", Toast.LENGTH_LONG).show();
                                     }
 
                                     zip_3ds_downloaded = true;
@@ -305,7 +299,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3d_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (zip_3ds_downloaded == true) {
+                if (zip_3ds_downloaded) {
 
                     Bundle b3 = new Bundle();
                     b3.putString("article_name", article_name);
@@ -329,8 +323,19 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_augment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ARNativeActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("You are about to enter Augment Enabled Camera");
+                builder.setMessage("This requires 2min of your patience, Do you wish to enter ?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(getContext(), ARNativeActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
             }
         });
 

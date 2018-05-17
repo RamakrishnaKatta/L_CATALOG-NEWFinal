@@ -6,20 +6,20 @@
     tools:context=".Fragment_ProductDetails">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/margin_5">
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/article_title"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_3"
                 android:text="@string/product_title"
@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/article_title_text"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_3"
                 android:text="@string/product_title_name"
@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/article_description"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_3"
                 android:text="@string/product_desc"
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/article_description_text"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_3"
                 android:text="@string/product_desc_name"
@@ -107,7 +107,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
@@ -178,7 +178,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -225,7 +225,7 @@
             android:background="@color/white" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_3"
             android:baselineAligned="false"

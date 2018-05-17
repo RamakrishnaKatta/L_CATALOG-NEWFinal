@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/txt_welcome_21"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/graduate"
             android:text="@string/slide2_title"
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/txt_welcome_22"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cookie"
             android:text="@string/slide2_desc"

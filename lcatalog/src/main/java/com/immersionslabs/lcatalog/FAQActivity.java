@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class faqActivity extends AppCompatActivity {
+public class FAQActivity extends AppCompatActivity {
 
     RelativeLayout step1, step2, step3, step4, step5, step6, step7, step8, step9, step10, step11, step12, step13, step14, step15, step16, step17, step18, step19, step20, step21;
     TextView step_text1, step_text2, step_text3, step_text4, step_text5_1, step_text5_2, step_text6_1, step_text6_2, step_text7, step_text8, step_text9, step_text10, step_text11, step_text12, step_text13, step_text14_1, step_text14_2, step_text15, step_text16, step_text17, step_text18, step_text19_1, step_text19_2, step_text20, step_text21_1, step_text21_2;

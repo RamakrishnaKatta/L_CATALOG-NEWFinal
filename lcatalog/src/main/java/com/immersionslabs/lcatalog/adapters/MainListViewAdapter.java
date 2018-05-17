@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
@@ -63,7 +64,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
-        LayoutInflater inflater = activity.getLayoutInflater(null);
+        @SuppressLint("RestrictedApi") LayoutInflater inflater = activity.getLayoutInflater(null);
         View view = inflater.inflate(R.layout.item_overview, viewGroup, false);
         return new ViewHolder(view);
     }
@@ -102,7 +103,7 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     }
 
     /**
-     * View holder to display each RecylerView item
+     * View holder to display each RecyclerView item
      */
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -117,7 +118,6 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
             item_image = view.findViewById(R.id.main_image);
             item_name = view.findViewById(R.id.main_title);
             item_description = view.findViewById(R.id.main_data);
-
         }
     }
 }

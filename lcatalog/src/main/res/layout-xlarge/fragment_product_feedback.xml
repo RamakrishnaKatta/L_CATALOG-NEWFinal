@@ -139,7 +139,7 @@
                 android:layout_margin="@dimen/margin_6"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
-                android:text="@string/submit"
+                android:text="@string/btn_submit"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_tab_tiny" />
 
@@ -199,7 +199,7 @@
                 android:layout_margin="@dimen/margin_6"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
-                android:text="@string/submit"
+                android:text="@string/btn_submit"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_tab_tiny" />
 

@@ -1,12 +1,14 @@
 package com.immersionslabs.lcatalog;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
@@ -196,8 +198,19 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_augment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProjectDetailActivity.this, ARNativeActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext(), R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("You are about to enter Augment Enabled Camera");
+                builder.setMessage("This requires 2min of your patience, Do you wish to enter ?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(ProjectDetailActivity.this, ARNativeActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
             }
         });
 
@@ -209,7 +222,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
 
         note = findViewById(R.id.download_note);
-
 
         article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
         article_3ds_file = new File(Article_3DS_FileLocation);

@@ -1,13 +1,16 @@
 package com.immersionslabs.lcatalog;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
@@ -88,11 +91,11 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     TextView[] dots;
     int page_position = 0;
 
+    @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_part_details);
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -116,7 +119,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_3dview = findViewById(R.id.part_3dview_icon);
         part_augment = findViewById(R.id.part_augment_icon);
         zip_downloaded = findViewById(R.id.download_note_text);
-
 
         part_articles_id = new ArrayList<>();
         part_article_name = new ArrayList<>();
@@ -187,8 +189,19 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_augment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProjectPartDetailsActivity.this, ARNativeActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext(), R.style.AppCompatAlertDialogStyle);
+                builder.setTitle("You are about to enter Augment Enabled Camera");
+                builder.setMessage("This requires 2min of your patience, Do you wish to enter ?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(ProjectPartDetailsActivity.this, ARNativeActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
             }
         });
 
@@ -279,7 +292,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         PROJECT_PART_ARTICLE_URL = REGISTER_URL + project_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_ARTICLE_URL);
 
-
         try {
             getpartData();
 
@@ -288,6 +300,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         }
     }
 
+    @SuppressLint("LongLogTag")
     private void addModelFolder() throws IOException {
         String state = Environment.getExternalStorageState();
 
@@ -342,9 +355,9 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
             UNIQUE_ARTICLE_URL = ARTICLE_SPECIFIC_URL + iterator.next();
             ApiService.getInstance(this).getData(this, false, "ARTICLE_PROJECT_DATA", UNIQUE_ARTICLE_URL, "ARTICLE_DATA");
         }
-
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("PART_ARTICLE")) {
@@ -382,6 +395,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         }
     }
 
+    @SuppressLint("LongLogTag")
     private void getData(JSONArray parts) {
         for (int i = 0; i < parts.length(); i++) {
             JSONObject object;

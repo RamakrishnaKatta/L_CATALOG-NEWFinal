@@ -54,7 +54,6 @@ public class GridViewImageAdapter extends RecyclerView.Adapter<GridViewImageAdap
                 Intent intent = new Intent(_activity, FullScreenImageViewActivity.class);
                 intent.putExtra("position", position);
                 _activity.startActivity(intent);
-
             }
         });
     }

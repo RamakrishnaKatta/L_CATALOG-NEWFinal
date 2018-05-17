@@ -17,6 +17,9 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <uses-feature android:glEsVersion="0x00010100" />
+    <uses-feature android:glEsVersion="0x00020000" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -143,7 +146,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".faqActivity"
+            android:name=".FAQActivity"
             android:label="@string/faqActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />

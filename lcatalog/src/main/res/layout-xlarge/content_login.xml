@@ -31,8 +31,9 @@
 
             <TextView
                 android:id="@+id/application_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_6"
                 android:fontFamily="@font/graduate"
                 android:gravity="center"
                 android:text="@string/app_name"
@@ -40,8 +41,9 @@
 
             <TextView
                 android:id="@+id/immersionslabs"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_6"
                 android:fontFamily="@font/cookie"
                 android:gravity="center"
                 android:text="@string/powered_immersionslabs"
@@ -82,9 +84,10 @@
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_6"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -112,13 +115,13 @@
 
             <TextView
                 android:id="@+id/link_forgot_password"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_12"
+                android:layout_margin="@dimen/margin_6"
                 android:fontFamily="@font/cookie"
                 android:gravity="center"
-                android:text="@string/forgot_password"
-                android:textSize="@dimen/text_tab_xxlarge" />
+                android:text="@string/btn_forgot_password"
+                android:textSize="@dimen/text_tab_xlarge" />
 
         </LinearLayout>
 

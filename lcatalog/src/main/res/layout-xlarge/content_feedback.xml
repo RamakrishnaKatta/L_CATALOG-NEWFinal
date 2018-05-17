@@ -86,7 +86,7 @@
             android:fontFamily="@font/overlock_sc"
             android:gravity="center"
             android:padding="@dimen/margin_15"
-            android:text="@string/submit"
+            android:text="@string/btn_submit"
             android:textAlignment="center"
             android:textSize="@dimen/text_tab_tiny"
             android:textStyle="bold" />
