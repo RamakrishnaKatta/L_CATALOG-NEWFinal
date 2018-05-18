@@ -60,7 +60,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/";
+    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/web_threeds/";
 
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
 
@@ -101,6 +101,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     SessionManager sessionmanager;
     String user_log_type;
+    private String article_3ds_file_name;
 
     public Fragment_ProductImages() {
         // Required empty public constructor
@@ -135,13 +136,16 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_images = getArguments().getString("article_images");
         article_name = getArguments().getString("article_name");
         article_3ds = getArguments().getString("article_3ds");
+        article_3ds_file_name = getArguments().getString("article_3ds_file");
         article_id = getArguments().getString("article_id");
         article_price = getArguments().getString("article_new_price");
 
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
+        Log.d(TAG, "onCreateView:3dsfile" + article_3ds_file_name);
         Log.d(TAG, "onCreateView:name" + article_name);
 
         if (!Objects.equals(user_log_type, "CUSTOMER")) {
+
             Toast.makeText(getContext(), "This Favourite List is temporary, will be removed after this session", Toast.LENGTH_SHORT).show();
 
             if (user_Favourite_list.contains(article_id)) {
@@ -154,6 +158,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         }
 
         if (Objects.equals(user_log_type, "CUSTOMER")) {
+
             Set set = sessionmanager.getuserfavoirites();
 
             if (set.contains(article_id)) {
@@ -206,8 +211,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
 
             private void addBottomDots(int currentPage) {
+
                 dots = new TextView[slider_images.size()];
+
                 Slider_dots.removeAllViews();
+
                 for (int i = 0; i < dots.length; i++) {
                     dots[i] = new TextView(view.getContext());
                     dots[i].setText(Html.fromHtml("&#8226;"));
@@ -215,6 +223,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     dots[i].setTextColor(Color.WHITE);
                     Slider_dots.addView(dots[i]);
                 }
+
                 if (dots.length > 0)
                     dots[currentPage].setTextColor(Color.parseColor("#004D40"));
             }
@@ -224,16 +233,17 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
-        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
-        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
-        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
-        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/article_view.3ds";
-        Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
+//        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
+//        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
+//        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
+//        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
+
+        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds_file_name;
+        Log.e(TAG, "Object3DFileLocation -- " + Article_3DS_FileLocation);
 
         note = view.findViewById(R.id.download_note);
 
-        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
+//        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
         article_3ds_file = new File(Article_3DS_FileLocation);
 
         zip_3ds_downloaded = false;
@@ -251,6 +261,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.AppTheme_Dark_Dialog);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setMessage("Downloading Article, Just for once....");
@@ -262,15 +273,20 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             public void run() {
                                 try {
                                     addModelFolder();
-                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds;
-                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
-                                    new DownloadManager_3DS(EXTENDED_URL_3DS, article_name, article_3ds);
 
-                                    if (article_3ds_zip_file.exists()) {
-                                        new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
-                                    } else {
-                                        Toast.makeText(getContext(), "Cannot locate Zipper, Try to download again", Toast.LENGTH_LONG).show();
-                                    }
+//                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds;
+//                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
+//                                    new DownloadManager_3DS(EXTENDED_URL_3DS, article_name, article_3ds);
+//
+//                                    if (article_3ds_zip_file.exists()) {
+//                                        new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
+//                                    } else {
+//                                        Toast.makeText(getContext(), "Cannot locate Zipper, Try to download again", Toast.LENGTH_SHORT).show();
+//                                    }
+
+                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds_file_name;
+                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
+                                    new DownloadManager_3DS(EXTENDED_URL_3DS, article_3ds_file_name, article_name);
 
                                     zip_3ds_downloaded = true;
 
@@ -299,10 +315,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3d_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (zip_3ds_downloaded) {
+                if (zip_3ds_downloaded == true) {
 
                     Bundle b3 = new Bundle();
                     b3.putString("article_name", article_name);
+                    b3.putString("article_id", article_id);
                     Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
                     startActivity(_3d_intent);
                 }

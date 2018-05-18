@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -58,6 +59,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
     private ArrayList<String> item_ids;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_patterns;
+    private ArrayList<String> item_3ds_file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         item_ids = new ArrayList<>();
         item_3ds = new ArrayList<>();
         item_patterns = new ArrayList<>();
+        item_3ds_file = new ArrayList<>();
 
         fab_vertical.setSize(1);
         fab_horizontal.setSize(1);
@@ -233,6 +236,8 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                 item_dimensions.add(obj.getString("dimensions"));
                 item_3ds.add(obj.getString("view_3d"));
                 item_patterns.add(obj.getString("pattern"));
+                item_3ds_file.add(obj.getString("threeds"));
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -248,13 +253,15 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "dimensions******" + item_dimensions);
         Log.e(TAG, "3ds******" + item_3ds);
         Log.e(TAG, "patterns******" + item_patterns);
+        Log.e(TAG, "3dsfile******" + item_3ds_file);
 
         grid_Adapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices,
-                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
+
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns, item_3ds_file);
         horizontal_Adapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
-                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns, item_3ds_file);
         Vertical_Adapter = new ListViewVerticalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
-                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns);
+                item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns, item_3ds_file);
 
         if (fab_vertical.getSize() == 1 && fab_horizontal.getSize() == 1 && fab_grid.getSize() == 0) {
             base_recycler.removeAllViews();
@@ -329,6 +336,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                             item_3ds.add(obj.getString("view_3d"));
                             item_images.add(obj.getString("img"));
                             item_patterns.add(obj.getString("pattern"));
+                            item_3ds_file.add(obj.getString("threeds"));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

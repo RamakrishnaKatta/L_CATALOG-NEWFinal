@@ -35,6 +35,7 @@ public class ProductPageActivity extends AppCompatActivity {
     String article_vendor_id;
 
     String article_3ds, article_pattern;
+    private String article_3ds_file;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,6 @@ public class ProductPageActivity extends AppCompatActivity {
             article_3ds = EnvConstants.part_articles_3ds_var;
             oldPrice = EnvConstants.part_articles_price_var;
 
-
             discount = EnvConstants.part_article__discounts_var;
             Integer x = Integer.parseInt(oldPrice);
             Integer y = Integer.parseInt(discount);
@@ -84,24 +84,12 @@ public class ProductPageActivity extends AppCompatActivity {
 
             images = EnvConstants.part_article_images_var;
 
-
-            // All this Data should be sent to fragments in the form of bundle !!
-            Log.e(TAG, "Article Name----" + name);
-            Log.e(TAG, "Article Description----" + description);
-            Log.e(TAG, "Article NewPrice----" + newPrice);
-            Log.e(TAG, "Article Dimensions----" + dimensions);
-            Log.e(TAG, "Article Width----" + width);
-            Log.e(TAG, "Article Height----" + height);
-            Log.e(TAG, "Article Length----" + length);
-            Log.e(TAG, "Article Position----" + position);
-            Log.e(TAG, "Article Images----" + images);
-            Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
-            Log.e(TAG, "Article 3ds File----" + article_3ds);
-            Log.e(TAG, "Article Pattern File----" + article_pattern);
             EnvConstants.flag_article_details = false;
+
         } else {
             final Bundle b = getIntent().getExtras();
 
+            assert b != null;
             name = (String) b.getCharSequence("article_title");
             description = (String) b.getCharSequence("article_description");
             position = (String) b.getCharSequence("article_position");
@@ -109,8 +97,9 @@ public class ProductPageActivity extends AppCompatActivity {
             article_pattern = (String) b.getCharSequence("article_pattern");
 
             article_3ds = (String) b.getCharSequence("article_3ds");
+            article_3ds_file = (String) b.getCharSequence("article_3dsfile");
+
             oldPrice = (String) b.getCharSequence("article_price");
-            Log.e(TAG, "project_oldprice ---- " + oldPrice);
 
             discount = (String) b.getCharSequence("article_discount");
             Integer x = Integer.parseInt(oldPrice);
@@ -134,7 +123,6 @@ public class ProductPageActivity extends AppCompatActivity {
 
             images = (String) b.getCharSequence("article_images");
 
-
             // All this Data should be sent to fragments in the form of bundle !!
             Log.e(TAG, "Article Name----" + name);
             Log.e(TAG, "Article Description----" + description);
@@ -146,8 +134,10 @@ public class ProductPageActivity extends AppCompatActivity {
             Log.e(TAG, "Article Position----" + position);
             Log.e(TAG, "Article Images----" + images);
             Log.e(TAG, "Article Vendor Id----" + article_vendor_id);
-            Log.e(TAG, "Article 3ds File----" + article_3ds);
+            Log.e(TAG, "Article 3ds Zip File----" + article_3ds);
             Log.e(TAG, "Article Pattern File----" + article_pattern);
+            Log.e(TAG, "Article 3DS File----" + article_3ds_file);
+
         }
         TabLayout tabLayout = findViewById(R.id.product_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
@@ -157,7 +147,8 @@ public class ProductPageActivity extends AppCompatActivity {
 
         final ViewPager viewPager = findViewById(R.id.product_pager);
         final ProductPageAdapter adapter = new ProductPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
-                name, description, oldPrice, discount, newPrice, dimensions, width, height, length, position, id, images, article_vendor_id, article_3ds, article_pattern);
+                name, description, oldPrice, discount, newPrice, dimensions, width, height, length, position, id, images,
+                article_vendor_id, article_3ds, article_pattern, article_3ds_file);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

@@ -24,6 +24,7 @@ public class Article3dViewActivity extends AppCompatActivity {
     private MyGLSurfaceView mGLView;
     private MyGLRenderer mRenderer;
     private SeekBar scaleBar;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class Article3dViewActivity extends AppCompatActivity {
 
         Bundle b3 = getIntent().getExtras();
         name = (String) b3.getCharSequence("article_name");
+        id = (String) b3.getCharSequence("article_id");
         Log.e(TAG, "Name ---- " + name);
+        Log.e(TAG, "ID ---- " + id);
 
         Bundle b4 = getIntent().getExtras();
         p_name = (String) b4.getCharSequence("projectName");
@@ -83,7 +86,7 @@ public class Article3dViewActivity extends AppCompatActivity {
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
             // Set the renderer for the GLSurfaceView
-            mRenderer = new MyGLRenderer(this, name);
+            mRenderer = new MyGLRenderer(this, name,id);
             mGLView.setRenderer(mRenderer, displayMetrics.density);
 
         } else {

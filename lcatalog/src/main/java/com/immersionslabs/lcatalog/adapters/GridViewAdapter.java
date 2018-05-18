@@ -42,6 +42,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_patterns;
+    private ArrayList<String> item_3ds_file;
 
     public GridViewAdapter(Activity activity,
                            ArrayList<String> item_ids,
@@ -53,7 +54,8 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                            ArrayList<String> item_images,
                            ArrayList<String> item_dimensions,
                            ArrayList<String> item_3ds,
-                           ArrayList<String> item_patterns) {
+                           ArrayList<String> item_patterns,
+                           ArrayList<String> item_3ds_file) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -65,6 +67,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         this.item_dimensions = item_dimensions;
         this.item_3ds = item_3ds;
         this.item_patterns = item_patterns;
+        this.item_3ds_file = item_3ds_file;
 
         Log.e(TAG, "ids----" + item_ids);
         Log.e(TAG, "names----" + item_names);
@@ -76,6 +79,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         Log.e(TAG, "Dimensions----" + item_dimensions);
         Log.e(TAG, "3ds ---- " + item_3ds);
         Log.e(TAG, "patterns ---- " + item_patterns);
+        Log.e(TAG, "3dsfile ---- " + item_3ds_file);
 
         this.activity = activity;
     }
@@ -141,10 +145,11 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                 b.putString("article_price", item_prices.get(position));
                 b.putString("article_discount", item_discounts.get(position));
                 b.putString("article_vendor", item_vendors.get(position));
+                b.putString("article_images", item_images.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
                 b.putString("article_3ds", item_3ds.get(position));
                 b.putString("article_pattern", item_patterns.get(position));
-                b.putString("article_images", item_images.get(position));
+                b.putString("article_3dsfile", item_3ds_file.get(position));
                 b.putString("article_position", String.valueOf(position));
 
                 intent.putExtras(b);
