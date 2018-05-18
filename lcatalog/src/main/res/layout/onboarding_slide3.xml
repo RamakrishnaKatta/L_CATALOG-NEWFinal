@@ -16,7 +16,7 @@
             android:layout_width="@dimen/margin_150"
             android:layout_height="@dimen/margin_150"
             android:layout_gravity="center"
-            android:contentDescription="@string/slide3_title"
+            android:contentDescription="@null"
             android:padding="@dimen/margin_10"
             android:src="@drawable/ic_3d_rotation" />
     </LinearLayout>

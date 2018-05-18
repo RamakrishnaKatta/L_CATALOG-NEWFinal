@@ -5,6 +5,7 @@
     android:id="@+id/Feedbacklayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".FeedbackActivity"
     tools:showIn="@layout/activity_feedback">
@@ -79,13 +80,13 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_feed_submit"
-            android:layout_width="@dimen/margin_300"
+            android:layout_width="@dimen/margin_250"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_6"
             android:layout_marginTop="@dimen/margin_6"
             android:fontFamily="@font/overlock_sc"
             android:gravity="center"
-            android:padding="@dimen/margin_15"
+            android:padding="@dimen/margin_6"
             android:text="@string/btn_submit"
             android:textAlignment="center"
             android:textSize="@dimen/text_tab_tiny"

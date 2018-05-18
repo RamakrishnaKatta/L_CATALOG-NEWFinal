@@ -33,7 +33,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="@dimen/margin_75"
                     android:layout_height="@dimen/margin_75"
-                    android:contentDescription="@string/company_icon"
+                    android:contentDescription="@null"
                     android:src="@drawable/companyicon" />
 
                 <LinearLayout
@@ -171,9 +171,10 @@
                 android:layout_margin="@dimen/margin_3"
                 android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
-                android:padding="@dimen/margin_10"
+                android:padding="@dimen/margin_3"
                 android:text="@string/btn_create_account"
-                android:textSize="@dimen/text_size_medium" />
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_large" />
 
         </LinearLayout>
 

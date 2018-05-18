@@ -34,6 +34,7 @@
             android:fontFamily="@font/graduate"
             android:text="@string/slide2_title"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_max"
             android:textStyle="bold" />

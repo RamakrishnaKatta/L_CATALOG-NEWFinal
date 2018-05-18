@@ -50,10 +50,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_25"
             android:layout_marginTop="@dimen/margin_10"
             android:fontFamily="@font/overlock_sc"
+            android:padding="@dimen/margin_10"
             android:text="Vendor Articles"
             android:textAlignment="center"
+            android:textSize="@dimen/text_size_medium"
             android:textStyle="bold" />
 
     </LinearLayout>

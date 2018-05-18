@@ -25,7 +25,7 @@
                 android:id="@+id/project_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_200"
-                android:contentDescription="@string/app_name"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter" />
 
         </RelativeLayout>

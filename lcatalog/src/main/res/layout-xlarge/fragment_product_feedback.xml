@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/complete_transparent"
+    android:fitsSystemWindows="true"
     tools:context=".Fragment_ProductFeedback">
 
     <LinearLayout
@@ -16,9 +17,8 @@
             android:id="@+id/feedback_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:layout_marginTop="@dimen/margin_10"
-            android:background="@color/primary"
+            android:layout_gravity="center"
+            android:background="@color/primary_darker"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -37,7 +37,7 @@
             <ImageView
                 android:id="@+id/feedback_imageview"
                 android:layout_width="@dimen/margin_80"
-                android:layout_height="@dimen/margin_80"
+                android:layout_height="@dimen/margin_60"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:src="@mipmap/ic_faq_down" />
@@ -67,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
+                    android:fontFamily="@font/assistant_semibold"
                     android:hint="Article Name"
                     android:inputType="text" />
 
@@ -78,7 +79,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
                 android:visibility="visible">
 
                 <EditText
@@ -86,6 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
+                    android:fontFamily="@font/assistant_semibold"
                     android:hint="Article ID"
                     android:inputType="text" />
 
@@ -97,7 +98,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
                 android:visibility="visible">
 
                 <EditText
@@ -105,6 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
+                    android:fontFamily="@font/assistant_semibold"
                     android:hint="Vendor ID"
                     android:inputType="text" />
 
@@ -116,13 +117,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
                 android:visibility="visible">
 
                 <EditText
                     android:id="@+id/feedback_article_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:gravity="top|start"
                     android:hint="@string/FeedBack_Subject"
                     android:inputType="textMultiLine"
@@ -137,6 +138,7 @@
                 android:layout_width="@dimen/margin_200"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_6"
+                android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
                 android:text="@string/btn_submit"
@@ -149,9 +151,8 @@
             android:id="@+id/ratings_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:layout_marginTop="@dimen/margin_10"
-            android:background="@color/primary"
+            android:layout_gravity="center"
+            android:background="@color/primary_darker"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -167,10 +168,10 @@
                 android:textSize="@dimen/text_tab_xxlarge"
                 android:textStyle="bold" />
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/ratings_imageview"
                 android:layout_width="@dimen/margin_80"
-                android:layout_height="@dimen/margin_80"
+                android:layout_height="@dimen/margin_60"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:src="@mipmap/ic_faq_down" />
@@ -181,8 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/margin_20"
-            android:fitsSystemWindows="true"
+            android:layout_margin="@dimen/margin_6"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -197,6 +197,7 @@
                 android:layout_width="@dimen/margin_200"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_6"
+                android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
                 android:text="@string/btn_submit"

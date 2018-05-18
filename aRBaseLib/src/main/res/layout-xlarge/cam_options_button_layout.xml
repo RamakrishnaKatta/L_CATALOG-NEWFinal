@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/settingsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_options" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_ar_flash" />
 
             <TextView
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_hdr_on" />
 
             <TextView
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_auto_scene_on" />
 
             <TextView
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_auto_white_balance" />
 
             <TextView
@@ -169,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_auto_focus_on" />
 
             <TextView
@@ -197,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_focus_continuous_picture_on" />
 
             <TextView
@@ -225,7 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/buttonsDesc"
+                android:contentDescription="@null"
                 android:src="@mipmap/ic_steady_off" />
 
             <TextView

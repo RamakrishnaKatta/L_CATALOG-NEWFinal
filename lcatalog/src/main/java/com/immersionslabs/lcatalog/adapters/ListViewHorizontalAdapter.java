@@ -148,6 +148,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
                 b.putString("article_3ds", item_3ds.get(position));
                 b.putString("article_pattern", item_patterns.get(position));
                 b.putString("article_3dsfile", item_3ds_file.get(position));
+
                 b.putString("article_position", String.valueOf(position));
 
                 intent.putExtras(b);
@@ -169,6 +170,7 @@ public class ListViewHorizontalAdapter extends RecyclerView.Adapter<ListViewHori
 
         ViewHolder(View itemView) {
             super(itemView);
+
             h_container = itemView.findViewById(R.id.h_container);
             item_image = itemView.findViewById(R.id.h_item_image);
             item_name = itemView.findViewById(R.id.h_item_name);

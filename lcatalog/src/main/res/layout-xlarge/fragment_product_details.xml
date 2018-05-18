@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/margin_10">
+        android:padding="@dimen/margin_6">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,6 +21,7 @@
                 android:id="@+id/article_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_title"
                 android:textSize="@dimen/text_tab_tiny"
@@ -30,6 +31,7 @@
                 android:id="@+id/article_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_semibold"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_title_name"
                 android:textSize="@dimen/text_tab_tiny" />
@@ -44,7 +46,8 @@
                 android:id="@+id/article_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_4"
+                android:fontFamily="@font/overlock_sc"
+                android:padding="@dimen/margin_6"
                 android:text="@string/product_desc"
                 android:textSize="@dimen/text_tab_tiny"
                 android:textStyle="bold" />
@@ -53,6 +56,7 @@
                 android:id="@+id/article_description_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/assistant_semibold"
                 android:padding="@dimen/margin_6"
                 android:text="@string/product_desc_name"
                 android:textSize="@dimen/text_tab_tiny" />
@@ -75,10 +79,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/primary_darker"
-                android:paddingBottom="@dimen/margin_4"
+                android:fontFamily="@font/overlock_sc"
+                android:paddingBottom="@dimen/margin_6"
                 android:paddingLeft="@dimen/margin_12"
                 android:paddingRight="@dimen/margin_12"
-                android:paddingTop="@dimen/margin_4"
+                android:paddingTop="@dimen/margin_6"
                 android:text="@string/product_rating"
                 android:textSize="@dimen/text_tab_tiny"
                 android:textStyle="bold" />
@@ -87,8 +92,10 @@
                 android:id="@+id/text_ratings_reviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_24"
+                android:layout_marginStart="@dimen/margin_20"
+                android:fontFamily="@font/overlock_sc"
                 android:text="@string/product_rating_reviews"
+                android:textAllCaps="true"
                 android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
@@ -115,7 +122,8 @@
                     android:id="@+id/article_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_10"
+                    android:fontFamily="@font/overlock_sc"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/original_price_title"
                     android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
@@ -123,6 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textSize="@dimen/text_tab_tiny" />
@@ -131,12 +140,14 @@
                     android:id="@+id/article_price_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/original_price"
                     android:textSize="@dimen/text_tab_tiny" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:paddingEnd="@dimen/margin_40"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
@@ -147,12 +158,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@color/black"
-                    android:padding="@dimen/margin_10">
+                    android:padding="@dimen/margin_6">
 
                     <TextView
                         android:id="@+id/article_price_discount_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/assistant_semibold"
                         android:text="@string/discount_percentage"
                         android:textColor="@color/maroon"
                         android:textSize="@dimen/text_tab_tiny"
@@ -161,6 +173,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/assistant_semibold"
                         android:text="@string/percentage_symbol"
                         android:textColor="@color/maroon"
                         android:textSize="@dimen/text_tab_tiny"
@@ -169,6 +182,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
                         android:text="@string/discount_off"
                         android:textColor="@color/maroon"
                         android:textSize="@dimen/text_tab_tiny"
@@ -186,7 +201,8 @@
                     android:id="@+id/article_price_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_10"
+                    android:fontFamily="@font/overlock_sc"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/discount_price_title"
                     android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
@@ -194,6 +210,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
                     android:text="@string/Rs"
                     android:textSize="@dimen/text_tab_tiny"
@@ -203,6 +220,7 @@
                     android:id="@+id/article_price_value_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/discount_price"
                     android:textColorHint="@color/jet"
                     android:textSize="@dimen/text_tab_tiny"
@@ -211,6 +229,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:paddingEnd="@dimen/margin_20"
                     android:paddingStart="@dimen/margin_0"
                     android:text="@string/price_Tag"
@@ -246,6 +265,7 @@
                     android:id="@+id/article_width"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_width"
                     android:textSize="@dimen/text_tab_tiny"
@@ -255,6 +275,7 @@
                     android:id="@+id/article_width_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
                     android:text="@string/width_value"
                     android:textSize="@dimen/text_tab_tiny" />
@@ -262,6 +283,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/dimension_value"
                     android:textSize="@dimen/text_tab_tiny" />
 
@@ -277,6 +299,7 @@
                     android:id="@+id/article_length"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_length"
                     android:textSize="@dimen/text_tab_tiny"
@@ -286,6 +309,7 @@
                     android:id="@+id/article_length_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
                     android:text="@string/length_value"
                     android:textSize="@dimen/text_tab_tiny" />
@@ -293,6 +317,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/dimension_value"
                     android:textSize="@dimen/text_tab_tiny" />
 
@@ -309,6 +334,7 @@
                     android:id="@+id/article_height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
                     android:text="@string/dimen_height"
                     android:textSize="@dimen/text_tab_tiny"
@@ -318,6 +344,7 @@
                     android:id="@+id/article_height_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
                     android:text="@string/height_value"
                     android:textSize="@dimen/text_tab_tiny" />
@@ -325,6 +352,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/assistant_semibold"
                     android:text="@string/dimension_value"
                     android:textSize="@dimen/text_tab_tiny" />
 
@@ -356,6 +384,7 @@
                     android:id="@+id/article_vendor_heading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
                     android:text="@string/providedby_vendor"
                     android:textAlignment="center"
@@ -376,6 +405,7 @@
                             android:id="@+id/article_vendor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/overlock_sc"
                             android:padding="@dimen/margin_6"
                             android:text="@string/vendor_title"
                             android:textAlignment="textEnd"
@@ -386,6 +416,7 @@
                             android:id="@+id/article_vendor_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/overlock_sc"
                             android:padding="@dimen/margin_6"
                             android:text="@string/vendor_address_title"
                             android:textAlignment="textEnd"
@@ -403,6 +434,7 @@
                             android:id="@+id/article_vendor_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/assistant_semibold"
                             android:padding="@dimen/margin_6"
                             android:text="@string/vendor_name"
                             android:textAlignment="textStart"
@@ -413,6 +445,7 @@
                             android:id="@+id/article_vendor_address_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/assistant_semibold"
                             android:padding="@dimen/margin_6"
                             android:text="@string/dummy_address"
                             android:textAlignment="textStart"
@@ -436,7 +469,7 @@
                     android:id="@+id/article_vendor_logo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/company_icon"
+                    android:contentDescription="@null"
                     android:scaleType="fitCenter" />
 
             </LinearLayout>
@@ -467,8 +500,8 @@
                     android:id="@+id/article_pattern_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/company_icon"
-                    android:paddingTop="@dimen/margin_6"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/margin_6"
                     android:scaleType="fitCenter" />
             </LinearLayout>
 
@@ -477,6 +510,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
                 android:padding="@dimen/margin_6"
                 android:text="@string/pattern_image"

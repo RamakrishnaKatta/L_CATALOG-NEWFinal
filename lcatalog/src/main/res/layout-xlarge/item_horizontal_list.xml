@@ -3,25 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_10"
-    app:cardBackgroundColor="@color/complete_transparent"
+    android:layout_margin="@dimen/margin_6"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/margin_6"
+    app:cardElevation="@dimen/margin_6"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="top"
-        android:background="@color/white">
+        android:padding="@dimen/margin_6">
 
         <RelativeLayout
             android:id="@+id/h_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:gravity="top"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_6">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/h_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_400"
@@ -44,8 +45,9 @@
                     android:gravity="center"
                     android:padding="@dimen/margin_20"
                     android:text="@string/catalog_title"
+                    android:textAllCaps="true"
                     android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/text_tab_xlarge"
+                    android:textSize="@dimen/text_tab_xxlarge"
                     android:textStyle="bold" />
 
                 <TextView
@@ -56,7 +58,7 @@
                     android:gravity="center"
                     android:padding="@dimen/margin_20"
                     android:text="@string/catalog_description"
-                    android:textColor="@color/primary_dark"
+                    android:textColor="@color/primary_darker"
                     android:textSize="@dimen/text_tab_small"
                     android:textStyle="italic" />
 
@@ -70,92 +72,101 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/overlock_sc"
                         android:text="@string/discount_price_title"
-                        android:textColor="@color/primary_dark"
-                        android:textSize="@dimen/text_tab_small" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_6"
-                        android:paddingEnd="@dimen/margin_0"
-                        android:paddingStart="@dimen/margin_20"
-                        android:text="@string/Rs"
-                        android:textColor="@color/primary_dark"
-                        android:textSize="@dimen/text_tab_small" />
-
-                    <TextView
-                        android:id="@+id/h_item_price_new"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/discount_price"
-                        android:textColor="@color/primary_dark"
-                        android:textSize="@dimen/text_tab_small"
+                        android:textAllCaps="true"
+                        android:textColor="@color/primary_darker"
+                        android:textSize="@dimen/text_tab_medium"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
+                        android:paddingEnd="@dimen/margin_0"
+                        android:paddingStart="@dimen/margin_20"
+                        android:text="@string/Rs"
+                        android:textColor="@color/primary_darker"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/h_item_price_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
+                        android:text="@string/discount_price"
+                        android:textColor="@color/primary_darker"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
                         android:paddingEnd="@dimen/margin_20"
                         android:paddingStart="@dimen/margin_0"
                         android:text="@string/price_Tag"
-                        android:textColor="@color/primary_dark"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textColor="@color/primary_darker"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary_dark"
+                    android:background="@color/primary_darker"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/margin_10">
+                    android:padding="@dimen/margin_6">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:text="@string/discount_title"
+                        android:textAllCaps="true"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small"
+                        android:textSize="@dimen/text_tab_medium"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/h_item_discount_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/primary_dark"
-                        android:paddingEnd="@dimen/margin_20"
-                        android:paddingStart="@dimen/margin_20">
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:fontFamily="@font/assistant_semibold"
+                        android:text="@string/discount_percentage"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/h_item_discount_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/discount_percentage"
-                            android:textColor="@color/red"
-                            android:textSize="@dimen/text_tab_small"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/assistant_semibold"
+                        android:text="@string/percentage_symbol"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_0"
-                            android:text="@string/percentage_symbol"
-                            android:textColor="@color/red"
-                            android:textSize="@dimen/text_tab_small"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_6"
-                            android:text="@string/discount_off"
-                            android:textColor="@color/red"
-                            android:textSize="@dimen/text_tab_small"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_6"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:fontFamily="@font/overlock_sc"
+                        android:text="@string/discount_off"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -169,34 +180,44 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/overlock_sc"
                         android:text="@string/original_price_title"
+                        android:textAllCaps="true"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textSize="@dimen/text_tab_medium"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/assistant_semibold"
+                        android:paddingEnd="@dimen/margin_0"
                         android:paddingStart="@dimen/margin_20"
                         android:text="@string/Rs"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textSize="@dimen/text_tab_medium" />
 
                     <TextView
                         android:id="@+id/h_item_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
                         android:text="@string/original_price"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textSize="@dimen/text_tab_medium" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="@font/assistant_semibold"
                         android:paddingEnd="@dimen/margin_20"
+                        android:paddingStart="@dimen/margin_0"
                         android:text="@string/price_Tag"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textSize="@dimen/text_tab_medium" />
 
                 </LinearLayout>
 

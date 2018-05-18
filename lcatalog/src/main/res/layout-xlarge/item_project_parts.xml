@@ -44,7 +44,7 @@
                 android:maxLines="2"
                 android:padding="@dimen/margin_6"
                 android:text="@string/catalog_title"
-                android:textColor="@color/primary_dark"
+                android:textColor="@color/primary_darker"
                 android:textSize="@dimen/text_tab_small"
                 android:textStyle="bold" />
 

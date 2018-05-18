@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:contentDescription="@string/icon_facebook"
+                        android:contentDescription="@null"
                         android:src="@mipmap/ic_facebook" />
 
                     <android.support.v7.widget.AppCompatImageView
@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:contentDescription="@string/icon_linkedin"
+                        android:contentDescription="@null"
                         android:src="@mipmap/ic_linkedin" />
 
                     <android.support.v7.widget.AppCompatImageView
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:contentDescription="@string/icon_instagram"
+                        android:contentDescription="@null"
                         android:src="@mipmap/ic_instagram" />
 
                     <android.support.v7.widget.AppCompatImageView
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:contentDescription="@string/icon_twitter"
+                        android:contentDescription="@null"
                         android:src="@mipmap/ic_twitter" />
 
                     <android.support.v7.widget.AppCompatImageView
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:contentDescription="@string/icon_youtube"
+                        android:contentDescription="@null"
                         android:src="@mipmap/ic_youtube" />
 
                 </LinearLayout>

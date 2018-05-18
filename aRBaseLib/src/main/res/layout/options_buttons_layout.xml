@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/buttonsDesc"
+            android:contentDescription="@null"
             android:src="@mipmap/ic_screenshot" />
 
         <TextView
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/buttonsDesc"
+            android:contentDescription="@null"
             android:src="@mipmap/ic_ar_capture" />
 
         <TextView

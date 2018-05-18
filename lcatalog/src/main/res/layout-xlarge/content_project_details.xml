@@ -26,7 +26,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/project_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/project_name"
                     android:scaleType="fitCenter" />
 
@@ -39,7 +39,7 @@
             <LinearLayout
                 android:id="@+id/project_slide_dots"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_30"
+                android:layout_height="@dimen/margin_50"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
@@ -51,10 +51,8 @@
                 android:id="@+id/project_details_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/complete_transparent"
-                android:gravity="bottom"
                 android:orientation="vertical"
-                android:padding="@dimen/margin_20">
+                android:padding="@dimen/margin_6">
 
                 <TextView
                     android:id="@+id/project_title"
@@ -131,8 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="3"
-                android:baselineAligned="false">
+                android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -171,8 +168,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center">
 
                     <ImageButton
                         android:id="@+id/project_download_icon"
@@ -204,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
-                    android:padding="@dimen/margin_20"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/note_download"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_tab_small"

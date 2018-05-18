@@ -52,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin_50"
             android:layout_marginTop="@dimen/margin_20"
-            android:fontFamily="@font/assistant_semibold"
+            android:fontFamily="@font/overlock_sc"
             android:padding="@dimen/margin_20"
             android:text="Vendor Articles"
             android:textAlignment="center"

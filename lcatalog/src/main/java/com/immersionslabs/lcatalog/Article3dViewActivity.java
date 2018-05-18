@@ -20,11 +20,10 @@ import com.immersionslabs.lcatalog.loader3ds.MyGLSurfaceView;
 
 public class Article3dViewActivity extends AppCompatActivity {
     private static final String TAG = "Article3dViewActivity";
-    String name, p_name, part_name;
+    String a_name, a_3ds_file_name, p_name, part_name;
     private MyGLSurfaceView mGLView;
     private MyGLRenderer mRenderer;
     private SeekBar scaleBar;
-    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +43,11 @@ public class Article3dViewActivity extends AppCompatActivity {
         }
 
         Bundle b3 = getIntent().getExtras();
-        name = (String) b3.getCharSequence("article_name");
-        id = (String) b3.getCharSequence("article_id");
-        Log.e(TAG, "Name ---- " + name);
-        Log.e(TAG, "ID ---- " + id);
+        assert b3 != null;
+        a_name = (String) b3.getCharSequence("article_name");
+        a_3ds_file_name = (String) b3.getCharSequence("article_3ds_file_name");
+        Log.e(TAG, "Name ---- " + a_name);
+        Log.e(TAG, "3DS File Name ---- " + a_3ds_file_name);
 
         Bundle b4 = getIntent().getExtras();
         p_name = (String) b4.getCharSequence("projectName");
@@ -86,7 +86,7 @@ public class Article3dViewActivity extends AppCompatActivity {
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
             // Set the renderer for the GLSurfaceView
-            mRenderer = new MyGLRenderer(this, name,id);
+            mRenderer = new MyGLRenderer(this, a_name, a_3ds_file_name);
             mGLView.setRenderer(mRenderer, displayMetrics.density);
 
         } else {

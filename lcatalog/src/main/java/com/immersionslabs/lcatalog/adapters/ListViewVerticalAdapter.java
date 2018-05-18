@@ -148,6 +148,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                 b.putString("article_3ds", item_3ds.get(position));
                 b.putString("article_pattern", item_patterns.get(position));
                 b.putString("article_3dsfile", item_3ds_file.get(position));
+
                 b.putString("article_position", String.valueOf(position));
 
                 intent.putExtras(b);

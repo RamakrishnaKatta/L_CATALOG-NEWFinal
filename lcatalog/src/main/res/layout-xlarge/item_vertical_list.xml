@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_4"
-    android:paddingTop="@dimen/margin_32"
-    app:cardBackgroundColor="@color/white">
+    android:layout_margin="@dimen/margin_6"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/margin_6">
 
     <RelativeLayout
         android:id="@+id/v_container"
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/v_item_image_area"
             android:background="@color/transparent"
+            android:gravity="center"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_40"

@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/margin_6">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/part_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:contentDescription="@string/project_part_name"
                     android:scaleType="fitCenter" />
 
@@ -33,13 +34,12 @@
                     android:id="@+id/project_part_view_pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/project_part_slide_dots"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_30"
+                android:layout_height="@dimen/margin_50"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
@@ -50,9 +50,9 @@
             <LinearLayout
                 android:id="@+id/project_part_details_area"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_6"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_6">
 
                 <TextView
                     android:id="@+id/project_part_title"
@@ -101,13 +101,12 @@
             <View
                 android:id="@+id/layout_separator1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1"
+                android:layout_height="@dimen/margin_2"
                 android:background="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
@@ -151,7 +150,6 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-
                     <ImageButton
                         android:id="@+id/part_download_icon"
                         android:layout_width="wrap_content"
@@ -182,10 +180,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
-                    android:padding="@dimen/margin_20"
+                    android:padding="@dimen/margin_6"
                     android:text="@string/note_download"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_size_small"
+                    android:textSize="@dimen/text_tab_small"
                     android:textStyle="italic|bold" />
 
                 <View

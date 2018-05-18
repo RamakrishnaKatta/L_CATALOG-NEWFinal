@@ -32,7 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -48,7 +49,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_address"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -64,7 +66,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_location"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -80,7 +83,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_state"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -97,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_pincode"
                     android:inputType="number"
-                    android:maxLength="6" />
+                    android:maxLength="6"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -113,7 +118,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_contact_person"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -129,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -145,7 +152,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_no_of_models_req"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textSize="@dimen/text_size_small" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -162,7 +170,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/new_vendor_ph_no"
                     android:inputType="number"
-                    android:maxLength="10" />
+                    android:maxLength="10"
+                    android:textSize="@dimen/text_size_small" />
+
             </android.support.design.widget.TextInputLayout>
 
             <!-- Vendor Signup/register Button -->

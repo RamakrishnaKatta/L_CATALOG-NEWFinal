@@ -29,7 +29,7 @@
                 android:layout_width="@dimen/margin_75"
                 android:layout_height="@dimen/margin_75"
                 android:layout_marginStart="@dimen/margin_40"
-                android:contentDescription="@string/company_icon"
+                android:contentDescription="@null"
                 android:src="@drawable/companyicon" />
 
             <LinearLayout
@@ -67,8 +67,7 @@
             android:id="@+id/account_input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_3"
-            android:layout_marginTop="@dimen/margin_3">
+            android:layout_margin="@dimen/margin_3">
 
             <EditText
                 android:id="@+id/user_input_name"
@@ -84,8 +83,7 @@
             android:id="@+id/account_input_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_3"
-            android:layout_marginTop="@dimen/margin_3">
+            android:layout_margin="@dimen/margin_6">
 
             <EditText
                 android:id="@+id/user_input_address"
@@ -101,8 +99,7 @@
             android:id="@+id/account_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_3"
-            android:layout_marginTop="@dimen/margin_3"
+            android:layout_margin="@dimen/margin_3"
             android:visibility="visible">
 
             <EditText
@@ -110,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
@@ -119,8 +116,7 @@
             android:id="@+id/account_input_mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_3"
-            android:layout_marginTop="@dimen/margin_3"
+            android:layout_margin="@dimen/margin_3"
             android:visibility="visible">
 
             <EditText
@@ -152,6 +148,7 @@
             android:id="@+id/btn_update_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_3"
             android:fontFamily="@font/overlock_sc"
             android:padding="@dimen/margin_12"
             android:text="@string/btn_update_profile"

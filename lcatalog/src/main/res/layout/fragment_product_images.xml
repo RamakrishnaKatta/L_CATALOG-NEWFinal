@@ -21,7 +21,7 @@
                 android:id="@+id/article_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/company_icon"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter" />
 
             <android.support.v4.view.ViewPager
@@ -112,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/transparent"
-                        android:contentDescription="@string/product_share"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_menu_share" />
@@ -156,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/transparent"
-                        android:contentDescription="@string/menu_augment"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_augment"
@@ -194,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/_3d_text"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:visibility="visible"
@@ -239,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/dummy_address"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_download" />
@@ -276,7 +276,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/note_download"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_add" />
@@ -286,7 +286,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/note_download"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:visibility="gone"

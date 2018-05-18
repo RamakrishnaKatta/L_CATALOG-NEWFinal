@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -95,7 +96,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final GridViewAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final GridViewAdapter.ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
         final Context[] context = new Context[1];
 
@@ -150,6 +151,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
                 b.putString("article_3ds", item_3ds.get(position));
                 b.putString("article_pattern", item_patterns.get(position));
                 b.putString("article_3dsfile", item_3ds_file.get(position));
+
                 b.putString("article_position", String.valueOf(position));
 
                 intent.putExtras(b);
@@ -174,6 +176,7 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
 
         ViewHolder(View view) {
             super(view);
+
             grid_container = view.findViewById(R.id.grid_container);
             item_image = view.findViewById(R.id.grid_item_image);
             item_name = view.findViewById(R.id.grid_item_name);

@@ -25,7 +25,7 @@
                 android:id="@+id/vendor_name_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_name"
@@ -42,7 +42,7 @@
                 android:id="@+id/vendor_address_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_address"
@@ -59,7 +59,7 @@
                 android:id="@+id/vendor_location_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_location"
@@ -76,7 +76,7 @@
                 android:id="@+id/vendor_state_detials"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_state"
@@ -93,7 +93,7 @@
                 android:id="@+id/vendor_pincode_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_pincode"
@@ -123,13 +123,12 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
             <!--  Vendor Email Label -->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/vendor_email_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_email"
@@ -141,13 +140,12 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
             <!-- Vendor models/designs request label -->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/vendor_modelcount_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_modelcount"
@@ -164,7 +162,7 @@
                 android:id="@+id/vendor_mobile_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10">
+                android:layout_marginBottom="@dimen/margin_6">
 
                 <EditText
                     android:id="@+id/vendor_mobile"
@@ -183,9 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_6"
                 android:fontFamily="@font/overlock_sc"
-                android:padding="@dimen/margin_20"
+                android:padding="@dimen/margin_24"
                 android:text="@string/new_vendor_submit"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_tab_small"

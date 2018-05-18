@@ -78,14 +78,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
      */
     private float[] mTemporaryMatrix = new float[16];
 
-    private String model_name,model_id;
+    private String article_name, article_3ds_file_name;
 
-    public MyGLRenderer(final Context activityContext, String name,String id) {
+    public MyGLRenderer(final Context activityContext, String name, String file_3ds_name) {
 
         //We need to pass the Main activity context
         mActivityContext = activityContext;
-        model_name = name;
-        model_id=id;
+        article_name = name;
+        article_3ds_file_name = file_3ds_name;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
          * @param model All the 3ds models from the folder in the phone local storage are loaded in this array
          */
 
-        File f = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + model_name + "/"+model_id+model_name+".3ds");
+        File f = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds_file_name);
         Log.e(TAG, "User -- " + f);
         InputStream stream = null;
         try {

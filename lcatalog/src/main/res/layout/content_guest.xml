@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/margin_100"
                 android:layout_height="@dimen/margin_100"
                 android:layout_gravity="center_horizontal"
-                android:contentDescription="@string/app_name"
+                android:contentDescription="@null"
                 android:src="@drawable/companyicon" />
 
             <TextView
@@ -96,16 +96,18 @@
                     android:layout_margin="@dimen/margin_3"
                     android:fontFamily="@font/overlock_sc"
                     android:gravity="center"
-                    android:padding="@dimen/margin_10"
+                    android:padding="@dimen/margin_3"
                     android:text="@string/guest_details"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_size_large" />
 
                 <ImageButton
                     android:id="@+id/btn_get_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
-                    android:contentDescription="@string/autofill_details"
+                    android:contentDescription="@null"
                     app:srcCompat="@mipmap/ic_get_details" />
 
             </LinearLayout>

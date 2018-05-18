@@ -35,7 +35,8 @@ public class ProductPageActivity extends AppCompatActivity {
     String article_vendor_id;
 
     String article_3ds, article_pattern;
-    private String article_3ds_file;
+
+    String article_3ds_file;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,9 @@ public class ProductPageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
         if (EnvConstants.flag_article_details) {
+
             name = EnvConstants.part_article_name_var;
             description = EnvConstants.part_articles_description_var;
             position = Integer.toString(EnvConstants.position);
@@ -139,6 +142,7 @@ public class ProductPageActivity extends AppCompatActivity {
             Log.e(TAG, "Article 3DS File----" + article_3ds_file);
 
         }
+
         TabLayout tabLayout = findViewById(R.id.product_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));

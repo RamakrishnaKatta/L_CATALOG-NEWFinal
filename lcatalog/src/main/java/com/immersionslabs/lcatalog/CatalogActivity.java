@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -163,6 +162,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                     item_images.clear();
                     item_dimensions.clear();
                     item_patterns.clear();
+                    item_3ds_file.clear();
 
                     commonGetdata();
                 }
@@ -256,7 +256,6 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "3dsfile******" + item_3ds_file);
 
         grid_Adapter = new GridViewAdapter(this, item_ids, item_names, item_descriptions, item_prices,
-
                 item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns, item_3ds_file);
         horizontal_Adapter = new ListViewHorizontalAdapter(this, item_ids, item_names, item_descriptions, item_prices,
                 item_discounts, item_vendors, item_images, item_dimensions, item_3ds, item_patterns, item_3ds_file);
