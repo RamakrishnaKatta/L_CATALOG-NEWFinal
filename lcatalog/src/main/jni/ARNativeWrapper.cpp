@@ -42,7 +42,7 @@
             const char *model1file = "/storage/emulated/0/L_CATALOG/cache/Data/models/dressing_table.obj";
             const char *model2file = "/storage/emulated/0/L_CATALOG/cache/Data/models/outdoorsofa.obj";
             const char *model3file = "/storage/emulated/0/L_CATALOG/cache/Data/models/wardrobe.obj";
-            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/rice.obj";
+            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/interior2.obj";
             const char *model5file = "/storage/emulated/0/L_CATALOG/cache/Data/models/parasona.obj";
             const char *model6file = "/storage/emulated/0/L_CATALOG/cache/Data/models/barrelset.obj";
             const char *model7file = "/storage/emulated/0/L_CATALOG/cache/Data/models/teakbed.obj";
@@ -353,7 +353,8 @@
                   LOGE("Error loading model from file '%s'.", model18file);
                   exit(-1);
                 }
-            glmScale(models[18].obj, 5.0f);
+
+            glmScale(models[18].obj, 2.0f);
             //glmRotate(models[18].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[18].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[18].visible = false;
