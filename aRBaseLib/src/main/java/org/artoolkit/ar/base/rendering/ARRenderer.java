@@ -40,6 +40,7 @@ public class ARRenderer implements GLSurfaceView.Renderer {
     protected final static String TAG = "ARRenderer";
     public boolean printOptionEnable = false;
     public int width_surface, height_surface;
+    Bitmap inBitmap = null;
 
     /**
      * Allows subclasses to load markers and prepare the scene. This is called after
@@ -112,9 +113,9 @@ public class ARRenderer implements GLSurfaceView.Renderer {
                 }
 
                 // image naming and path to include sd card appending name you choose for file
-                String sPath = Environment.getExternalStorageDirectory().toString() + "/L_CATALOG/Screenshots";
+//                String sPath = Environment.getExternalStorageDirectory().toString() + "/L_CATALOG/Screenshots";
 
-                Bitmap inBitmap = null;
+
                 if (inBitmap == null || !inBitmap.isMutable() || inBitmap.getWidth() != w || inBitmap.getHeight() != h) {
                     inBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
                 }
@@ -122,41 +123,43 @@ public class ARRenderer implements GLSurfaceView.Renderer {
                 inBitmap.copyPixelsFromBuffer(buffer);
                 inBitmap = Bitmap.createBitmap(bt, w, h, Bitmap.Config.ARGB_8888);
 
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                inBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bos);
-                byte[] bitmapdata = bos.toByteArray();
-                ByteArrayInputStream fis = new ByteArrayInputStream(bitmapdata);
-
-                Date now = new Date();
-                android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
-                String myfile = now + ".jpeg";
-
-                File dir_image = new File(sPath);
-                dir_image.mkdirs();
-
-                try {
-                    File tmpFile = new File(dir_image, myfile);
-                    FileOutputStream fos = new FileOutputStream(tmpFile);
-
-                    byte[] buf = new byte[1024];
-                    int len;
-                    while ((len = fis.read(buf)) > 0) {
-                        fos.write(buf, 0, len);
-                    }
-                    fis.close();
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                Log.e(TAG, "Screenshot Captured:" + dir_image.toString());
+//                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                inBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bos);
+//                byte[] bitmapdata = bos.toByteArray();
+//                ByteArrayInputStream fis = new ByteArrayInputStream(bitmapdata);
+//
+//                Date now = new Date();
+//                android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+//                String myfile = now + ".jpeg";
+//
+//                File dir_image = new File(sPath);
+//                dir_image.mkdirs();
+//
+//                try {
+//                    File tmpFile = new File(dir_image, myfile);
+//                    FileOutputStream fos = new FileOutputStream(tmpFile);
+//
+//                    byte[] buf = new byte[1024];
+//                    int len;
+//                    while ((len = fis.read(buf)) > 0) {
+//                        fos.write(buf, 0, len);
+//                    }
+//                    fis.close();
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                Log.e(TAG, "Screenshot Captured:" + dir_image.toString());
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public Bitmap getReturnbitmap() {
+        return inBitmap;
+    }
 
 }
+

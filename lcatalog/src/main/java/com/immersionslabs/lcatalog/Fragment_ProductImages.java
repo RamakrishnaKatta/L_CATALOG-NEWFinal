@@ -273,7 +273,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 try {
                                     addModelFolder();
 
-                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds_file_name;
+                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds;
                                     Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
                                     new DownloadManager_3DS(EXTENDED_URL_3DS, article_3ds_file_name, article_name);
 

@@ -12,8 +12,10 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
+import android.graphics.RectF;
 import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
@@ -81,6 +83,8 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Camera preview which will provide video frames.
      */
     private CaptureCameraPreview preview;
+    private boolean safeToTakePicture = false;
+
 
     /**
      * GL surface to render the virtual objects
@@ -89,7 +93,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
     private boolean firstUpdate = false;
     private Context mContext;
-    private ImageButton mOptionsButton, mCaptureButton, mScreenshotButton;
+    private ImageButton mOptionsButton;
+//            ImageButton mCaptureButton;
+            ImageButton mScreenshotButton;
     private ImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinuousPictureButton, mAutoFocusButton, mSteadyShotButton, mFlashButton;
     private LinearLayout mHdrButtonArea, mAutoSceneButtonArea, mWhiteBalanceButtonArea, mContinuousPictureButtonArea, mAutoFocusButtonArea, mSteadyShotButtonArea, mFlashButtonArea;
 
@@ -243,10 +249,10 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         View OptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.options_buttons_layout, mainFrameLayout, false);
         mainFrameLayout.addView(OptionsButtonLayout);
 
-        mCaptureButton = OptionsButtonLayout.findViewById(R.id.button_capture);
+//        mCaptureButton = OptionsButtonLayout.findViewById(R.id.button_capture);
         mScreenshotButton = OptionsButtonLayout.findViewById(R.id.button_screenshot);
 
-        mCaptureButton.setOnClickListener(this);
+//        mCaptureButton.setOnClickListener(this);
         mScreenshotButton.setOnClickListener(this);
 
         //Load Camera Options button
@@ -367,13 +373,13 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             }
         }
 
-        if (v.equals(mCaptureButton)) {
+        if (v.equals(mScreenshotButton)) {
             CameraImage();
         }
 
-        if (v.equals(mScreenshotButton)) {
-            renderer.printOptionEnable = true;
-        }
+//        if (v.equals(mScreenshotButton)) {
+//            renderer.printOptionEnable = true;
+//        }
 
         if (v.equals(mAutoFocusButton)) {
             if (autofocus_toggle) {
@@ -479,6 +485,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Captures the camera preview frame that is providing the video frames and saves it to the screenshots
      */
     private void CameraImage() {
+
         preview.camera.takePicture(null, null, new Camera.PictureCallback() {
 
             private File imageFile;
@@ -488,16 +495,29 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                 try {
 
                     String cPath = Environment.getExternalStorageDirectory() + "/L_CATALOG/Screenshots";
-
                     // convert byte array into bitmap
-                    Bitmap loadedImage = null;
-                    Bitmap rotatedBitmap = null;
+                    Bitmap loadedImage;
+//                    Bitmap rotatedBitmap = null;
+                    Bitmap AugmentImage;
+                    renderer.printOptionEnable = true;
                     loadedImage = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    AugmentImage = renderer.getReturnbitmap();
+                    Bitmap result = Bitmap.createBitmap(loadedImage.getWidth() + 10, loadedImage.getHeight() + 10, Bitmap.Config.RGB_565);
+
+//                    if (result != null && !result.isRecycled()) {
+//                        result.recycle();
+//                        result = null;
+//                    }
+//                    assert result != null;
+                    Canvas canvas = new Canvas(result);
+                    canvas.drawBitmap(loadedImage, 0f, 0f, null);
+                    //  canvas.drawBitmap(AugmentImage, 0f, 0f, null);
+                    canvas.drawBitmap(AugmentImage, null, new RectF(0, 0, loadedImage.getWidth(), loadedImage.getHeight()), null);
 
                     // rotate Image
                     Matrix rotateMatrix = new Matrix();
                     rotateMatrix.postRotate(preview.rotation);
-                    rotatedBitmap = Bitmap.createBitmap(loadedImage, 0, 0, loadedImage.getWidth(), loadedImage.getHeight(), rotateMatrix, false);
+//                    rotatedBitmap = Bitmap.createBitmap(loadedImage, 0, 0, loadedImage.getWidth(), loadedImage.getHeight(), rotateMatrix, false);
 
                     File folder;
                     if (Environment.getExternalStorageState().contains(Environment.MEDIA_MOUNTED)) {
@@ -532,8 +552,8 @@ public abstract class ARActivity extends Activity implements CameraEventListener
                     }
                     ByteArrayOutputStream ostream = new ByteArrayOutputStream();
 
-                    // save image into gallery
-                    rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
+                    /*save image into gallery*/
+                    result.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
 
                     FileOutputStream fout = new FileOutputStream(imageFile);
                     fout.write(ostream.toByteArray());
