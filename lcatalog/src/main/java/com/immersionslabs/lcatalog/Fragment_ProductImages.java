@@ -59,7 +59,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/web_threeds/";
+    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/";
 
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
 
