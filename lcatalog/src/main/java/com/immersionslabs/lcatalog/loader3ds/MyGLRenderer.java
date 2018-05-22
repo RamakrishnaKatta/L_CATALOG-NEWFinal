@@ -8,11 +8,17 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -69,6 +75,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private int mProgramHandle;
     private int mPositionHandle;
     private int mNormalHandle;
+    DataInputStream stream;
     /**
      * This is a handle to our light point program.
      */
@@ -79,6 +86,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float[] mTemporaryMatrix = new float[16];
 
     private String article_name, article_3ds_file_name;
+    private String DOWNLOAD_URL;
 
     public MyGLRenderer(final Context activityContext, String name, String file_3ds_name) {
 
@@ -86,6 +94,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         mActivityContext = activityContext;
         article_name = name;
         article_3ds_file_name = file_3ds_name;
+       DOWNLOAD_URL= EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/"+article_3ds_file_name;
     }
 
     @Override
@@ -95,12 +104,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
          * @param model All the 3ds models from the folder in the phone local storage are loaded in this array
          */
 
-        File f = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds_file_name);
-        Log.e(TAG, "User -- " + f);
-        InputStream stream = null;
+        URL u = null;
         try {
-            stream = new FileInputStream(f);
-        } catch (FileNotFoundException e) {
+            u = new URL(DOWNLOAD_URL);
+
+
+            URLConnection conn = u.openConnection();
+            int contentLength = conn.getContentLength();
+             stream = new DataInputStream(u.openStream());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

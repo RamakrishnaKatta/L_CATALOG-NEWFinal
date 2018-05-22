@@ -67,9 +67,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private PrefManager prefManager;
 
-    LinearLayout note;
-    ImageButton article_share, article_download, article_3d_view, article_augment, article_budgetlist, article_removelist;
-    TextView file_3ds_downloaded_text;
+    ImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist;
+
 
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
@@ -93,11 +92,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     int value;
 
     LikeButton likeButton;
-
-    String Article_3DS_FileLocation;
-    private boolean file_3ds_downloaded = true;
-    File article_3ds_file;
-
     SessionManager sessionmanager;
     String user_log_type;
     private String article_3ds_file_name;
@@ -115,10 +109,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         likeButton.setOnLikeListener(this);
         likeButton.setOnAnimationEndListener(this);
         article_share = view.findViewById(R.id.article_share_icon);
-        article_download = view.findViewById(R.id.article_download_icon);
         article_3d_view = view.findViewById(R.id.article_3dview_icon);
         article_augment = view.findViewById(R.id.article_augment_icon);
-        file_3ds_downloaded_text = view.findViewById(R.id.download_text);
         article_budgetlist = view.findViewById(R.id.article_budget_icon);
         article_removelist = view.findViewById(R.id.article_remove_icon);
         Add_Text = view.findViewById(R.id.add_text);
@@ -232,88 +224,18 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-//        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds;
-//        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
-//        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/";
-//        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
 
-        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name + "/" + article_3ds_file_name;
-        Log.e(TAG, "Object3DFileLocation -- " + Article_3DS_FileLocation);
 
-        note = view.findViewById(R.id.download_note);
-
-//        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
-        article_3ds_file = new File(Article_3DS_FileLocation);
-
-        file_3ds_downloaded = false;
-
-        article_3d_view.setEnabled(false);
-        if (article_3ds_file.exists()) {
-            article_3d_view.setEnabled(true);
-            article_download.setVisibility(View.GONE);
-            note.setVisibility(View.GONE);
-            file_3ds_downloaded = true;
-            file_3ds_downloaded_text.setText("File Downloaded");
-            file_3ds_downloaded_text.setTextColor(Color.BLUE);
-        }
-
-        article_download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Downloading Article, Just for once....");
-                progressDialog.setTitle("Article Downloading");
-                progressDialog.show();
-
-                new android.os.Handler().postDelayed(
-                        new Runnable() {
-                            public void run() {
-                                try {
-                                    addModelFolder();
-
-                                    EXTENDED_URL_3DS = FILE_URL_3DS + article_3ds;
-                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
-                                    new DownloadManager_3DS(EXTENDED_URL_3DS, article_3ds_file_name, article_name);
-
-                                    file_3ds_downloaded = true;
-                                    Log.e(TAG, "3DS File Downloaded ---------- " + file_3ds_downloaded);
-
-                                    progressDialog.dismiss();
-                                    article_download.setVisibility(View.GONE);
-                                    article_3d_view.setEnabled(true);
-                                    note.setVisibility(View.GONE);
-                                    file_3ds_downloaded_text.setText("File Downloaded");
-                                    file_3ds_downloaded_text.setTextColor(getResources().getColor(R.color.primary_dark));
-
-                                } catch (IOException e) {
-                                    article_download.setVisibility(View.VISIBLE);
-                                    article_3d_view.setEnabled(false);
-
-                                    file_3ds_downloaded = false;
-                                    Log.e(TAG, "3DS File Not Downloaded ---------- " + file_3ds_downloaded);
-
-                                    e.printStackTrace();
-                                    note.setVisibility(View.VISIBLE);
-                                    file_3ds_downloaded_text.setText("Download");
-                                }
-                            }
-                        }, 6000);
-            }
-        });
 
         article_3d_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (file_3ds_downloaded == true) {
-
                     Bundle b3 = new Bundle();
                     b3.putString("article_name", article_name);
-                    b3.putString("article_3ds_file_name", article_3ds_file_name);
+                    b3.putString("article_3ds_file_name", article_3ds);
                     Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
                     startActivity(_3d_intent);
-                }
+
             }
         });
 
