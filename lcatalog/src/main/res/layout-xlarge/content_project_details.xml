@@ -128,8 +128,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/transparent"
-                        android:contentDescription="@string/menu_augment"
+                        android:contentDescription="@null"
                         app:srcCompat="@mipmap/ic_augment"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -159,25 +158,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:contentDescription="@string/_3d_text"
+                        android:contentDescription="@null"
                         android:visibility="visible"
                         app:srcCompat="@mipmap/ic_3d" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/project_download_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/dummy_address"
-                        app:srcCompat="@mipmap/ic_download" />
 
                 </LinearLayout>
 
@@ -188,32 +171,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_2"
                 android:background="@color/white" />
-
-            <LinearLayout
-                android:id="@+id/download_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <TextView
-                    android:id="@+id/download_note_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/assistant_semibold"
-                    android:padding="@dimen/margin_6"
-                    android:text="@string/note_download"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_small"
-                    android:textStyle="italic|bold" />
-
-                <View
-                    android:id="@+id/layout_separator7"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_1"
-                    android:background="@color/white" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

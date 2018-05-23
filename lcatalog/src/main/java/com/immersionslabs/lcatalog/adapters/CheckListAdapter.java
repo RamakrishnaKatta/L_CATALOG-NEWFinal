@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +30,8 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
 
     private static final String TAG = "CheckListAdapter";
     private Activity activity;
-    SessionManager sessionManager;
-    ChecklistManager checklistManager;
+    private SessionManager sessionManager;
+    private ChecklistManager checklistManager;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -53,7 +52,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
         this.item_prices = item_prices;
         this.item_discounts = item_discounts;
         this.activity = activity;
-
     }
 
     @NonNull
@@ -65,7 +63,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
         checklistManager = new ChecklistManager();
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull CheckListAdapter.ViewHolder holder, final int position) {

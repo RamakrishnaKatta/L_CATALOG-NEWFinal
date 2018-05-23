@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.adapters.CampaignAdapter;
+import com.immersionslabs.lcatalog.adapters.ProjectAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
@@ -31,8 +31,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
     RecyclerView recyclerView;
     LinearLayoutManager Campaign_Manager;
-    CampaignAdapter adapter;
-    GridLayoutManager ProjectpartManager;
+    ProjectAdapter adapter;
 
     private ArrayList<String> project_ids;
     private ArrayList<String> project_name;
@@ -86,20 +85,6 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
                 project_subDescription.add(object.getString("projectSubDescription"));
                 project_3ds.add(object.getString("projectView_3d"));
 
-//                for (int j = 0; j < object.length(); j++) {
-//                    JSONArray parts = object.getJSONArray("parts");
-//                    Log.e(TAG, " parts" + parts);
-//
-//                    JSONObject object1 = parts.getJSONObject(j);
-//
-//                    project_part.add(object1.getString("part"));
-//                    project_partName.add(object1.getString("partName"));
-//                    project_partDesc.add(object1.getString("partDesc"));
-//                    project_partimages.add(object1.getString("partimages"));
-//                    project_part_articlesIds.add(object1.getString("articlesId"));
-//                    project_part_articlesData.add(object1.getString("articlesData"));
-//
-//                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -114,7 +99,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
-        CampaignAdapter adapter = new CampaignAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds);
+        ProjectAdapter adapter = new ProjectAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds);
         recyclerView.setAdapter(adapter);
     }
 

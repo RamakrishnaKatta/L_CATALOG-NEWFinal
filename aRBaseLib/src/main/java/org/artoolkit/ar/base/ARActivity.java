@@ -105,8 +105,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     private boolean continouspicture_toggle = false;
     private boolean whitebalance_toggle = false;
 
-//    private ProgressDialog progressDialog;
-
     private View AugmentScreenLayout, OptionsButtonLayout, CameraOptionsButtonLayout;
 
     @SuppressWarnings("unused")
@@ -157,7 +155,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         super.onStart();
 
         Log.i(TAG, "onStart(): Activity starting.");
-//        progressDialog.setMessage("We made sure its worth waiting !!");
 
         if (!ARToolKit.getInstance().initialiseNative(this.getCacheDir().getAbsolutePath())) { // Uses cache directory provided by LCatalog for Data files.
             Log.e(TAG, "The native library is not loaded. The application cannot continue.");
@@ -237,6 +234,7 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             mOpenGlSurfaceViewInstance.onResume();
         }
 
+        //Load Augment Splash Screen
         AugmentScreenLayout = this.getLayoutInflater().inflate(R.layout.augment_screen, mainFrameLayout, false);
         mainFrameLayout.addView(AugmentScreenLayout);
         arTimer = AugmentScreenLayout.findViewById(R.id.timer_text);

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/margin_20"
-        android:background="@drawable/background_curves">
+        android:background="@drawable/augment_screen_frame">
 
         <TextView
             android:id="@+id/ar_note_text"

@@ -1,11 +1,9 @@
 package com.immersionslabs.lcatalog;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -24,9 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ProjectImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
@@ -37,21 +33,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class ProjectDetailActivity extends AppCompatActivity implements ApiCommunication {
 
+    private static final String TAG = "ProjectDetailActivity";
+
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
     private static String PROJECT_PART_URL = null;
-
-    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/project_view3d/";
-
-    private static String EXTENDED_URL_3DS;
-
-    LinearLayout note;
 
     private ViewPager viewpager;
     private LinearLayout slider_dots;
@@ -63,9 +53,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     AppCompatImageView project_image;
     String image1, image2, image3, image4, image5;
 
-    ImageButton  project_augment, project_3dview;
-    String project_id;
-    String project_images;
+    ImageButton project_augment, project_3dview;
+    String project_id, project_images;
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;
     GridLayoutManager ProjectpartManager;
@@ -79,8 +68,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     private ArrayList<String> project_part_articlesData;
     private ArrayList<String> project_part_3ds;
 
-    private static final String TAG = "ProjectDetailActivity";
-    private String p_name, project_3ds;
+    String p_name, project_3ds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +94,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
         project_part_3ds = new ArrayList<>();
+
         project_name = findViewById(R.id.project_title_text);
         project_description = findViewById(R.id.project_description_text);
         project_sub_description = findViewById(R.id.project_subdescription_text);
@@ -128,7 +117,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         Log.e(TAG, "project_3ds  " + project_3ds);
         Log.e(TAG, "project_id ---- " + project_id);
         Log.e(TAG, "Project_name  " + project_name);
-
         Log.e(TAG, "project_description  " + project_description);
         Log.e(TAG, "project_sub_description  " + project_sub_description);
 
@@ -203,19 +191,14 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             }
         });
 
-
-
-
         project_3dview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    Bundle b4 = new Bundle();
-                    b4.putString("projectName", project_id);
-                    b4.putString("project_3ds_file_name",project_3ds);
-                    Intent _3d_intent = new Intent(ProjectDetailActivity.this, Article3dViewActivity.class).putExtras(b4);
-                    startActivity(_3d_intent);
-
+                Bundle b4 = new Bundle();
+                b4.putString("projectName", project_id);
+                b4.putString("project_3ds_file_name", project_3ds);
+                Intent _3d_intent = new Intent(ProjectDetailActivity.this, Article3dViewActivity.class).putExtras(b4);
+                startActivity(_3d_intent);
             }
         });
 
@@ -226,22 +209,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             getProjectData();
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    /*creation of directory in external storage */
-    private void addModelFolder() throws IOException {
-        String state = Environment.getExternalStorageState();
-
-        File folder = null;
-        if (state.contains(Environment.MEDIA_MOUNTED)) {
-            Log.e(TAG, "Project Name--" + p_name);
-            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name);
-        }
-        assert folder != null;
-        if (!folder.exists()) {
-            boolean wasSuccessful = folder.mkdirs();
-            Log.e(TAG, "Model Directory is Created --- '" + wasSuccessful + "' Thank You !!");
         }
     }
 

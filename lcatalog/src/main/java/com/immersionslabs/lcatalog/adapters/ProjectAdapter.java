@@ -26,9 +26,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHolder> {
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
 
-    private static final String TAG = "CampaignAdapter";
+    private static final String TAG = "ProjectAdapter";
     private Activity activity;
 
     private ArrayList<String> project_ids;
@@ -38,13 +38,13 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     private ArrayList<String> project_images;
     private ArrayList<String> project_3ds;
 
-    public CampaignAdapter(ProjectActivity activity,
-                           ArrayList<String> project_ids,
-                           ArrayList<String> project_name,
-                           ArrayList<String> project_description,
-                           ArrayList<String> project_subDescription,
-                           ArrayList<String> project_images,
-                           ArrayList<String> project_3ds) {
+    public ProjectAdapter(ProjectActivity activity,
+                          ArrayList<String> project_ids,
+                          ArrayList<String> project_name,
+                          ArrayList<String> project_description,
+                          ArrayList<String> project_subDescription,
+                          ArrayList<String> project_images,
+                          ArrayList<String> project_3ds) {
 
         this.project_ids = project_ids;
         this.project_name = project_name;
@@ -66,7 +66,7 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CampaignAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProjectAdapter.ViewHolder holder, final int position) {
 
         final Context[] context = new Context[1];
 

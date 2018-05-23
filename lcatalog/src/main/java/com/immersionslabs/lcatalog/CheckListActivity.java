@@ -2,7 +2,6 @@ package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +34,7 @@ import java.util.Set;
 public class CheckListActivity extends AppCompatActivity {
 
     private static final String TAG = "CheckListActivity";
+
     TextView totalvalue;
     ChecklistManager checklistManager;
     SessionManager sessionManager;
@@ -60,11 +59,9 @@ public class CheckListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_list);
 
-
         totalvalue = findViewById(R.id.text_total_value);
         checklistManager = new ChecklistManager();
         sessionManager = new SessionManager(getApplicationContext());
-
 
         USER_LOG_TYPE = EnvConstants.user_type;
 
@@ -77,12 +74,10 @@ public class CheckListActivity extends AppCompatActivity {
             totalvalue.setText(Total_value_text);
         }
 
-
         checklist_recycler = findViewById(R.id.checklist_recycler);
         checklist_recycler.setHasFixedSize(true);
         checklist_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         set_list = new HashSet<String>();
-
 
         Toolbar toolbar = findViewById(R.id.toolbar_check_list);
         setSupportActionBar(toolbar);
@@ -99,7 +94,6 @@ public class CheckListActivity extends AppCompatActivity {
         item_images = new ArrayList<>();
         item_prices = new ArrayList<>();
         item_discounts = new ArrayList<>();
-
     }
 
     @Override
@@ -109,7 +103,6 @@ public class CheckListActivity extends AppCompatActivity {
 
     public void onResume() {
         commongetData();
-
         super.onResume();
     }
 
@@ -199,12 +192,14 @@ public class CheckListActivity extends AppCompatActivity {
         CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_images, item_prices, item_discounts);
         checklist_recycler.setAdapter(adapter);
     }
+
     @Override
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
         finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here

@@ -38,15 +38,12 @@ import java.util.Map;
 public class UserTypeActivity extends AppCompatActivity {
 
     private static final String TAG = "UserTypeActivity";
+
     private static final int MY_PERMISSIONS_REQUEST = 10;
     private static final int REQUEST_USERTYPE = 0;
     Toast toast;
-    TextView app_name,
-            welcome_aboard,
-            who_are_you;
-    ImageButton _customer,
-            _newCustomer,
-            _shopper;
+    TextView app_name, welcome_aboard, who_are_you;
+    ImageButton _customer, _newCustomer, _shopper;
     AppCompatImageView delete_cache;
     SessionManager sessionmanager;
     private PrefManager prefManager1;
@@ -80,24 +77,11 @@ public class UserTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean delete_models = false;
                 boolean delete_patterns = false;
                 boolean delete_data = false;
 
-                File dir_models = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/models");
                 File dir_patterns = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/patterns");
                 File dir_data = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data");
-
-                if (dir_models.isDirectory()) {
-                    String[] children_models = dir_models.list();
-
-                    Log.e(TAG, "" + Arrays.toString(children_models));
-
-                    for (String children_model : children_models) {
-                        delete_models = new File(dir_models, children_model).delete();
-                    }
-                    Log.e(TAG, "Files inside Models Folder deleted : " + delete_models);
-                }
 
                 if (dir_patterns.isDirectory()) {
                     String[] children_patterns = dir_patterns.list();
@@ -121,7 +105,7 @@ public class UserTypeActivity extends AppCompatActivity {
                     Log.e(TAG, "Files inside Data Folder deleted : " + delete_data);
                 }
 
-                if (delete_models || delete_patterns || delete_data) {
+                if (delete_patterns || delete_data) {
                     Toast.makeText(getBaseContext(), "Debugging: Cache Files Removed", Toast.LENGTH_SHORT).show();
                 } else {
                     if (toast != null)
@@ -210,20 +194,17 @@ public class UserTypeActivity extends AppCompatActivity {
 
     private void CreateFolderStructure() {
         String root_Path = Environment.getExternalStorageDirectory().toString() + "//L_CATALOG";
-        String models_Path = Environment.getExternalStorageDirectory().toString() + "//L_CATALOG/Models";
         String screenshots_Path = Environment.getExternalStorageDirectory().toString() + "//L_CATALOG/Screenshots";
         String cache_Path = Environment.getExternalStorageDirectory().toString() + "//L_CATALOG/cache";
 
-        File Root_Folder, Models_Folder, Screenshots_Folder, Cache_Folder;
+        File Root_Folder, Screenshots_Folder, Cache_Folder;
 
         if (Environment.getExternalStorageState().contains(Environment.MEDIA_MOUNTED)) {
             Root_Folder = new File(root_Path);
-            Models_Folder = new File(models_Path);
             Screenshots_Folder = new File(screenshots_Path);
             Cache_Folder = new File(cache_Path);
         } else {
             Root_Folder = new File(root_Path);
-            Models_Folder = new File(models_Path);
             Screenshots_Folder = new File(screenshots_Path);
             Cache_Folder = new File(cache_Path);
         }
@@ -235,9 +216,6 @@ public class UserTypeActivity extends AppCompatActivity {
             if (!Root_Folder.exists()) {
                 success = Root_Folder.mkdirs();
             }
-            if (!Models_Folder.exists()) {
-                success = Models_Folder.mkdirs();
-            }
             if (!Screenshots_Folder.exists()) {
                 success = Screenshots_Folder.mkdirs();
             }
@@ -246,7 +224,6 @@ public class UserTypeActivity extends AppCompatActivity {
             }
             if (success) {
                 CustomMessage.getInstance().CustomMessage(UserTypeActivity.this, "Get Set Go !!");
-
             }
         }
     }

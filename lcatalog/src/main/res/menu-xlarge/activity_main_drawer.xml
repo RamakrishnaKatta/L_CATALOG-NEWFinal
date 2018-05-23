@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_catalog"
-            android:icon="@mipmap/ic_catalog"
-            android:title="@string/nav_catalog" />
-    </group>
+    <item android:title="Catalogues">
+        <menu>
+            <item
+                android:id="@+id/nav_catalog"
+                android:icon="@mipmap/ic_catalog"
+                android:title="@string/nav_catalog" />
+            <item
+                android:id="@+id/nav_project_campaign"
+                android:icon="@mipmap/ic_campaign"
+                android:title="@string/campaign" />
+            <item
+                android:id="@+id/nav_ven"
+                android:icon="@mipmap/ic_vendors"
+                android:title="@string/vendor_catalog" />
+        </menu>
+    </item>
 
     <group android:checkableBehavior="single">
         <item
@@ -18,10 +27,6 @@
 
     <item android:title="@string/my_profile">
         <menu>
-            <item
-                android:id="@+id/nav_project_campaign"
-                android:icon="@mipmap/ic_campaign"
-                android:title="@string/campaign" />
             <item
                 android:id="@+id/nav_gallery"
                 android:icon="@mipmap/ic_menu_slideshow"
@@ -35,13 +40,17 @@
                 android:icon="@mipmap/ic_notifications"
                 android:title="@string/profile_notifications" />
             <item
-                android:id="@+id/nav_user_favorite"
-                android:icon="@mipmap/ic_fav_off"
-                android:title="@string/profile_favorites" />
+                android:id="@+id/nav_user_favourites"
+                android:icon="@mipmap/ic_fav"
+                android:title="@string/profile_favourites" />
             <item
                 android:id="@+id/nav_user_budget_bar"
                 android:icon="@mipmap/ic_budget"
                 android:title="@string/profile_budget_list" />
+            <item
+                android:id="@+id/nav_user_check_list"
+                android:icon="@mipmap/ic_checklist"
+                android:title="My Check List" />
             <item
                 android:id="@+id/nav_sign_up"
                 android:icon="@mipmap/ic_signup"
@@ -55,10 +64,6 @@
 
     <item android:title="@string/our_vendor">
         <menu>
-            <item
-                android:id="@+id/nav_ven"
-                android:icon="@mipmap/ic_vendors"
-                android:title="@string/vendor_catalog" />
             <item
                 android:id="@+id/nav_ven_reg"
                 android:icon="@mipmap/ic_vendor_register"

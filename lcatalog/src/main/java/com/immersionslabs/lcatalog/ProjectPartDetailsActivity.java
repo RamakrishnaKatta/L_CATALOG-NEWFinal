@@ -1,13 +1,11 @@
 package com.immersionslabs.lcatalog;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -26,9 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.Utils.UnzipUtil;
 import com.immersionslabs.lcatalog.adapters.ProjectPartImageSliderAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectpartDetailsAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
@@ -39,28 +35,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 public class ProjectPartDetailsActivity extends AppCompatActivity implements ApiCommunication {
 
+    private static final String TAG = "ProjectPartDetailsActivity";
+
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
     private static String PROJECT_PART_ARTICLE_URL = null;
     private static final String ARTICLE_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
     private static String UNIQUE_ARTICLE_URL;
 
-    private static final String TAG = "ProjectPartDetailsActivity";
-
     TextView part_name, part_Desc;
     AppCompatImageView part_image;
 
-    ImageButton  part_augment, part_3dview;
-
-
-
+    ImageButton part_augment, part_3dview;
 
     String image1, image2, image3, image4, image5;
     String project_id;
@@ -109,7 +100,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_image = findViewById(R.id.part_image_view);
         part_3dview = findViewById(R.id.part_3dview_icon);
         part_augment = findViewById(R.id.part_augment_icon);
-
 
         part_articles_id = new ArrayList<>();
         part_article_name = new ArrayList<>();
@@ -199,12 +189,11 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_3dview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Bundle b5 = new Bundle();
-                    b5.putString("part3dsName", part_3ds);
-                    b5.putString("name_project",project_id);
-                    Intent _3d_intent = new Intent(ProjectPartDetailsActivity.this, Article3dViewActivity.class).putExtras(b5);
-                    startActivity(_3d_intent);
-
+                Bundle b5 = new Bundle();
+                b5.putString("part3dsName", part_3ds);
+                b5.putString("name_project", project_id);
+                Intent _3d_intent = new Intent(ProjectPartDetailsActivity.this, Article3dViewActivity.class).putExtras(b5);
+                startActivity(_3d_intent);
             }
         });
 
@@ -216,22 +205,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    @SuppressLint("LongLogTag")
-    private void addModelFolder() throws IOException {
-        String state = Environment.getExternalStorageState();
-
-        File folder = null;
-        if (state.contains(Environment.MEDIA_MOUNTED)) {
-            Log.e(TAG, "Project Part Name--" + p_name);
-            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name);
-        }
-        assert folder != null;
-        if (!folder.exists()) {
-            boolean wasSuccessful = folder.mkdirs();
-            Log.e(TAG, "Model Directory is Created --- '" + wasSuccessful + "' Thank You !!");
         }
     }
 

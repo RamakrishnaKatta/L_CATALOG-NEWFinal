@@ -1,13 +1,11 @@
 package com.immersionslabs.lcatalog;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -30,7 +28,6 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.ChecklistManager;
-import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -46,8 +43,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,16 +55,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private static final String TAG = "Fragment_ProductImages";
 
-    private static String FILE_URL_3DS = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/";
-
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
-
-    private static String EXTENDED_URL_3DS;
 
     private PrefManager prefManager;
 
     ImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
-
 
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
@@ -82,7 +72,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     String user_id;
     BudgetManager budgetManager;
     ChecklistManager checklistManager;
-//    BudgetListActivity budgetListActivity;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -121,7 +110,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
         budgetManager = new BudgetManager();
-        checklistManager=new ChecklistManager();
+        checklistManager = new ChecklistManager();
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_log_type = (String) hashmap.get(SessionManager.KEY_USER_TYPE);
@@ -232,30 +221,23 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
             @Override
             public void onClick(View v) {
-                Long price=Long.parseLong(article_price);
-                if (EnvConstants.user_type.equals("CUSTOMER")){
-                    if(sessionmanager.CHECKLIST_IS_ARTICLE_EXISTS(article_id))
-                    {
-                        Toast.makeText(getContext(),"Article added in the CheckList",Toast.LENGTH_LONG).show();
+                Long price = Long.parseLong(article_price);
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    if (sessionmanager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
+                        Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
+                    } else {
+                        sessionmanager.CHECKLIST_ADD_ARTICLE(article_id, price);
+                        Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }
-                    else
-                    {
-                        sessionmanager.CHECKLIST_ADD_ARTICLE(article_id,price);
-                        Toast.makeText(getContext(),"Article added successfully",Toast.LENGTH_LONG).show();
-                    }
-                }
-                else
-                { Long currentvalue;
-                    if(checklistManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id))
-                    {
-                        Toast.makeText(getContext(),"Article added in the CheckList",Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    { currentvalue=checklistManager.CHECKLIST_GET_CURRENT()+price;
+                } else {
+                    Long currentvalue;
+                    if (checklistManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
+                        Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
+                    } else {
+                        currentvalue = checklistManager.CHECKLIST_GET_CURRENT() + price;
                         checklistManager.CHECKLIST_ADD_ARTICLE(article_id);
                         checklistManager.CHECKLIST_SET_CURRENT(currentvalue);
-                        Toast.makeText(getContext(),"Article added successfully",Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -269,7 +251,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 b3.putString("article_3ds_file_name", article_3ds);
                 Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
                 startActivity(_3d_intent);
-
             }
         });
 
@@ -470,7 +451,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Log.e(TAG, " " + prefManager.ProductPageActivityScreenLaunch());
         final Display display = getActivity().getWindowManager().getDefaultDisplay();
         final TapTargetSequence sequence = new TapTargetSequence(getActivity()).targets(
-                TapTarget.forView(view.findViewById(R.id.article_download_icon), "DOWNLOAD", "Click Here before you click the 3d & Augment ")
+                TapTarget.forView(view.findViewById(R.id.article_checklist_icon), "DOWNLOAD", "Click Here before you click the 3d & Augment ")
                         .targetRadius(30)
                         .textColor(R.color.white)
                         .outerCircleColor(R.color.primary_dark)
@@ -503,29 +484,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         sequence.start();
     }
 
-    /*creation of directory in external storage */
-    private void addModelFolder() throws IOException {
-        String state = Environment.getExternalStorageState();
-
-        File folder = null;
-        if (state.contains(Environment.MEDIA_MOUNTED)) {
-            Log.e(TAG, "Article Name--" + article_name);
-            folder = new File(Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + article_name);
-        }
-        assert folder != null;
-        if (!folder.exists()) {
-            boolean wasSuccessful = folder.mkdirs();
-            Log.e(TAG, "Model Directory is Created --- '" + wasSuccessful + "' Thank You !!");
-        }
-    }
-
     @Override
     public void onAnimationEnd(LikeButton likeButton) {
     }
 
     @Override
     public void liked(LikeButton likeButton) {
-
         if (Objects.equals(user_log_type, "CUSTOMER")) {
             likeApiCall(1);
             sessionmanager.updateuserfavoirites(article_id);
@@ -539,7 +503,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     @Override
     public void unLiked(LikeButton likeButton) {
-
         if (Objects.equals(user_log_type, "CUSTOMER")) {
             likeApiCall(0);
             sessionmanager.removeuserfavouirites(article_id);
@@ -573,11 +536,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("FAVORITE_SELECT")) {
             Log.e(TAG, "response " + response);
-//            if (value == 1) {
-//                Toast.makeText(getContext(), "Liked!", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(getContext(), "DisLiked!", Toast.LENGTH_SHORT).show();
-//            }
             try {
                 resp = response.getString("success");
                 code = response.getString("status_code");
@@ -604,7 +562,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         Activity activity;
         if (context instanceof Activity) {
             activity = (Activity) context;
@@ -650,7 +607,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             } else {
                 Add_Text.setTextColor(getResources().getColor(R.color.white));
             }
-
         }
     }
 

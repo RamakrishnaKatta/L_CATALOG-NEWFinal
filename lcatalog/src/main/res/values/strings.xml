@@ -72,7 +72,7 @@
     <string name="profile_favorites">My Favorites</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_out">Sign Out</string>
-    <string name="our_vendor">Our Vendors</string>
+    <string name="our_vendor">Vendor Campaign</string>
     <string name="vendor_registration">Vendor Registration</string>
     <string name="help_amp_support">Help &amp; Support</string>
     <string name="support_feedback">FeedBack</string>
@@ -218,7 +218,7 @@
     <string name="title_activity_vendor_catalog">Vendor Catalog</string>
     <string name="title_activity_vendor_list">Our Vendors</string>
     <string name="vendor_catalog">Vendor Catalog</string>
-    <string name="campaign">Project Campaign</string>
+    <string name="campaign">Project Catalog</string>
     <string name="CampaignActivity">Project Campaign</string>
     <string name="ProductPageActivity">Product Page</string>
     <string name="ProjectDetailActivity">Project Details</string>
