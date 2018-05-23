@@ -3,11 +3,8 @@ package org.artoolkit.ar.base;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ConfigurationInfo;
 import android.graphics.Bitmap;
@@ -34,6 +31,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.artoolkit.ar.base.camera.CameraEventListener;
@@ -83,8 +81,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
      * Camera preview which will provide video frames.
      */
     private CaptureCameraPreview preview;
-    private boolean safeToTakePicture = false;
-
 
     /**
      * GL surface to render the virtual objects
@@ -94,10 +90,11 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     private boolean firstUpdate = false;
     private Context mContext;
     private ImageButton mOptionsButton;
-//            ImageButton mCaptureButton;
-            ImageButton mScreenshotButton;
+    private ImageButton mScreenshotButton;
     private ImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinuousPictureButton, mAutoFocusButton, mSteadyShotButton, mFlashButton;
     private LinearLayout mHdrButtonArea, mAutoSceneButtonArea, mWhiteBalanceButtonArea, mContinuousPictureButtonArea, mAutoFocusButtonArea, mSteadyShotButtonArea, mFlashButtonArea;
+
+    private TextView arTimer, arProgressText;
 
     private boolean flashmode = false;
     private boolean camera_options_visibility = false;
@@ -108,7 +105,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     private boolean continouspicture_toggle = false;
     private boolean whitebalance_toggle = false;
 
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
+
+    private View AugmentScreenLayout, OptionsButtonLayout, CameraOptionsButtonLayout;
 
     @SuppressWarnings("unused")
     public Context getAppContext() {
@@ -134,13 +133,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        progressDialog = new ProgressDialog(this, R.style.AppTheme_Dark_Dialog);
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setTitle("Configuring your Camera");
-        progressDialog.setMessage("It Takes couple of minutes, Please be patient.");
-        progressDialog.show();
-
         AndroidUtils.reportDisplayInformation(this);
     }
 
@@ -165,10 +157,10 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         super.onStart();
 
         Log.i(TAG, "onStart(): Activity starting.");
-        progressDialog.setMessage("We made sure its worth waiting !!");
+//        progressDialog.setMessage("We made sure its worth waiting !!");
 
         if (!ARToolKit.getInstance().initialiseNative(this.getCacheDir().getAbsolutePath())) { // Uses cache directory provided by LCatalog for Data files.
-            notifyFinish("The native library is not loaded. The application cannot continue.");
+            Log.e(TAG, "The native library is not loaded. The application cannot continue.");
             return;
         }
 
@@ -245,19 +237,18 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             mOpenGlSurfaceViewInstance.onResume();
         }
 
+        AugmentScreenLayout = this.getLayoutInflater().inflate(R.layout.augment_screen, mainFrameLayout, false);
+        mainFrameLayout.addView(AugmentScreenLayout);
+        arTimer = AugmentScreenLayout.findViewById(R.id.timer_text);
+        arProgressText = AugmentScreenLayout.findViewById(R.id.ar_progress_text);
+
         //Load Capture Options buttons
-        View OptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.options_buttons_layout, mainFrameLayout, false);
-        mainFrameLayout.addView(OptionsButtonLayout);
-
-//        mCaptureButton = OptionsButtonLayout.findViewById(R.id.button_capture);
+        OptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.options_buttons_layout, mainFrameLayout, false);
         mScreenshotButton = OptionsButtonLayout.findViewById(R.id.button_screenshot);
-
-//        mCaptureButton.setOnClickListener(this);
         mScreenshotButton.setOnClickListener(this);
 
         //Load Camera Options button
-        View CameraOptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.cam_options_button_layout, mainFrameLayout, false);
-        mainFrameLayout.addView(CameraOptionsButtonLayout);
+        CameraOptionsButtonLayout = this.getLayoutInflater().inflate(R.layout.cam_options_button_layout, mainFrameLayout, false);
         mOptionsButton = CameraOptionsButtonLayout.findViewById(R.id.button_options);
         mOptionsButton.setOnClickListener(this);
 
@@ -323,7 +314,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     @Override
     public void onStop() {
         Log.i(TAG, "onStop(): Activity stopping.");
-
         super.onStop();
     }
 
@@ -376,10 +366,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         if (v.equals(mScreenshotButton)) {
             CameraImage();
         }
-
-//        if (v.equals(mScreenshotButton)) {
-//            renderer.printOptionEnable = true;
-//        }
 
         if (v.equals(mAutoFocusButton)) {
             if (autofocus_toggle) {
@@ -594,10 +580,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
         if (ARToolKit.getInstance().initialiseAR(width, height, "/storage/emulated/0/L_CATALOG/cache/Data/camera_para.dat", cameraIndex, cameraIsFrontFacing)) {
             // Expects Data to be already in the cache dir. This can be done with the AssetUnpacker.
 
-            progressDialog.setMessage("Another couple of Minutes");
             startTimer(130000);
-
             Log.e(TAG, "getGLView(): Camera initialised");
+
         } else {
             // Error
             Log.e(TAG, "getGLView(): Error initialising camera. Cannot continue.");
@@ -614,11 +599,14 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
             public void onTick(long millisUntilFinished) {
                 long remainedSecs = millisUntilFinished / 1000;
-                progressDialog.setMessage("Estimated Time Left :    " + (remainedSecs / 60) + " Minutes  : " + (remainedSecs % 60) + " Seconds");
+                arTimer.setText(("Estimated TIME LEFT : " + remainedSecs / 60) + " Min : " + (remainedSecs % 60) + " Secs");
             }
 
             public void onFinish() {
-                progressDialog.setMessage("DONE, Opening Camera");
+                arProgressText.setText("Camera configured");
+                mainFrameLayout.removeView(AugmentScreenLayout);
+                mainFrameLayout.addView(OptionsButtonLayout);
+                mainFrameLayout.addView(CameraOptionsButtonLayout);
                 cancel();
             }
         }.start();
@@ -632,13 +620,6 @@ public abstract class ARActivity extends Activity implements CameraEventListener
             if (renderer.configureARScene()) {
 
                 Log.e(TAG, "cameraPreviewFrame(): Scene configured successfully");
-
-                new android.os.Handler().postDelayed(new Runnable() {
-                    public void run() {
-
-                        progressDialog.dismiss();
-                    }
-                }, 130000);
 
             } else {
                 // Error
@@ -664,19 +645,5 @@ public abstract class ARActivity extends Activity implements CameraEventListener
     @Override
     public void cameraPreviewStopped() {
         ARToolKit.getInstance().cleanup();
-    }
-
-    public void notifyFinish(String errorMessage) {
-        new AlertDialog.Builder(this)
-                .setMessage(errorMessage)
-                .setTitle("Error")
-                .setCancelable(true)
-                .setNeutralButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                finish();
-                            }
-                        })
-                .show();
     }
 }

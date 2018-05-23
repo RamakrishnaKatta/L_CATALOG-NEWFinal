@@ -55,9 +55,6 @@ class ARNativeRenderer extends ARRenderer {
     @Override
     public void draw(GL10 gl) {
         ARNativeRenderer.demoDrawFrame();
-
         if (counter.frame()) Log.i("demo", counter.toString());
-
     }
-
 }

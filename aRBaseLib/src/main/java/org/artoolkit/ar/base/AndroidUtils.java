@@ -99,7 +99,6 @@ public class AndroidUtils {
         }
     }
 
-
     /**
      * Returns a formatted string representation of the number of bytes specified. The largest
      * suitable suffix up until GB will be used, with the returned value expressed to two
@@ -130,7 +129,6 @@ public class AndroidUtils {
 
         DecimalFormat df = new DecimalFormat("###.##");
         return df.format(val) + " " + units;
-
     }
 
     /**
@@ -159,7 +157,6 @@ public class AndroidUtils {
                 density = "High";
                 break;
         }
-
         Log.e(TAG, "reportDisplayInformation(): Display is " + displayWidth + "x" + displayHeight + ", Density: " + density);
     }
 }

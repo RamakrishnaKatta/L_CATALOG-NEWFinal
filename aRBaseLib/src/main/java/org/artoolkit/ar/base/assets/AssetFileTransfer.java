@@ -45,7 +45,6 @@ public class AssetFileTransfer {
         out.flush();
     }
 
-
     public void copyAssetToTargetDir(AssetManager manager, String assetFilePath, String targetDirPath) throws AssetFileTransferException {
 
         assetFile = new File(assetFilePath);

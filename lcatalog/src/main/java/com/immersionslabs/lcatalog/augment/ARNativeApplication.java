@@ -20,6 +20,4 @@ public class ARNativeApplication extends Application {
         sInstance = this;
 //        ((ARNativeApplication) sInstance).initializeInstance();
     }
-
-
 }

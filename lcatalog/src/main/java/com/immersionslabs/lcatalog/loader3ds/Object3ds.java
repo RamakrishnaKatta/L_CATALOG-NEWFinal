@@ -132,7 +132,6 @@ class Object3ds {
         setupBuffers();
     }
 
-
     private void calculateNormals() {
         int i;
         float[] l_vect1 = new float[3];

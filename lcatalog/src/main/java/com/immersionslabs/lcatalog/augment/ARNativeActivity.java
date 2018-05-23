@@ -31,8 +31,7 @@ public class ARNativeActivity extends ARActivity {
 //        Article_AR_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/ar_files.zip";
 //        Log.e(TAG, "onCreate: ZipLocation" + Article_AR_ZipFileLocation);
 //        Article_AR_ExtractLocation = Environment.getExternalStorageState() + "/L_CATALOG/cache/Data/models/";
-//        Log.e(TAG, "ExtractLocation--" + Article_AR_ExtractLocation);
-//
+//        Log.e(TAG, "ExtractLocation--" + Article_AR_ExtractLocation);//
 //
 //        article_ar_zip_file = new File(Article_AR_ZipFileLocation);
 //
@@ -89,7 +88,6 @@ public class ARNativeActivity extends ARActivity {
     @Override
     protected FrameLayout supplyFrameLayout() {
         return (FrameLayout) this.findViewById(R.id.arFrameLayout);
-
     }
 
     // Here we do one-off initialisation which should apply to all activities

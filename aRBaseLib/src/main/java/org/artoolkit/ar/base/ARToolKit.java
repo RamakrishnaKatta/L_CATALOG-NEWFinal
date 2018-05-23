@@ -164,7 +164,6 @@ public class ARToolKit {
         debugBitmap.setPixels(debugImageColors, 0, w, 0, 0, w, h);
 
         return debugBitmap;
-
     }
 
     /**
@@ -401,5 +400,4 @@ public class ARToolKit {
         }
         return null;
     }
-
 }
