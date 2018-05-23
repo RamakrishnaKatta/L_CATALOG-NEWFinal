@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
+import com.immersionslabs.lcatalog.Utils.ChecklistManager;
 import com.immersionslabs.lcatalog.Utils.DownloadManager_3DS;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
@@ -67,7 +68,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private PrefManager prefManager;
 
-    ImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist;
+    ImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
 
 
     String article_images, article_id;
@@ -80,6 +81,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     String user_id;
     BudgetManager budgetManager;
+    ChecklistManager checklistManager;
 //    BudgetListActivity budgetListActivity;
 
     private ViewPager ArticleViewPager;
@@ -113,11 +115,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_augment = view.findViewById(R.id.article_augment_icon);
         article_budgetlist = view.findViewById(R.id.article_budget_icon);
         article_removelist = view.findViewById(R.id.article_remove_icon);
+        article_checklist = view.findViewById(R.id.article_checklist_icon);
         Add_Text = view.findViewById(R.id.add_text);
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
         budgetManager = new BudgetManager();
+        checklistManager=new ChecklistManager();
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_log_type = (String) hashmap.get(SessionManager.KEY_USER_TYPE);
@@ -224,17 +228,47 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
+        article_checklist.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Long price=Long.parseLong(article_price);
+                if (EnvConstants.user_type.equals("CUSTOMER")){
+                    if(sessionmanager.CHECKLIST_IS_ARTICLE_EXISTS(article_id))
+                    {
+                        Toast.makeText(getContext(),"Article added in the CheckList",Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        sessionmanager.CHECKLIST_ADD_ARTICLE(article_id,price);
+                        Toast.makeText(getContext(),"Article added successfully",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                { Long currentvalue;
+                    if(checklistManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id))
+                    {
+                        Toast.makeText(getContext(),"Article added in the CheckList",Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    { currentvalue=checklistManager.CHECKLIST_GET_CURRENT()+price;
+                        checklistManager.CHECKLIST_ADD_ARTICLE(article_id);
+                        checklistManager.CHECKLIST_SET_CURRENT(currentvalue);
+                        Toast.makeText(getContext(),"Article added successfully",Toast.LENGTH_LONG).show();
 
+                    }
+                }
+            }
+        });
 
         article_3d_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Bundle b3 = new Bundle();
-                    b3.putString("article_name", article_name);
-                    b3.putString("article_3ds_file_name", article_3ds);
-                    Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
-                    startActivity(_3d_intent);
+                Bundle b3 = new Bundle();
+                b3.putString("article_name", article_name);
+                b3.putString("article_3ds_file_name", article_3ds);
+                Intent _3d_intent = new Intent(getContext(), Article3dViewActivity.class).putExtras(b3);
+                startActivity(_3d_intent);
 
             }
         });

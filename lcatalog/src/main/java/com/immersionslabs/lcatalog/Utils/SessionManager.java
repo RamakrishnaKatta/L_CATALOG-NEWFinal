@@ -3,6 +3,7 @@ package com.immersionslabs.lcatalog.Utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.immersionslabs.lcatalog.LoginActivity;
 
@@ -11,8 +12,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.security.auth.login.LoginException;
+
 public class SessionManager {
 
+    private static final String TAG = "sessionmanager";
 
     private SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -33,11 +37,10 @@ public class SessionManager {
     public static final String KEY_USER_TYPE = "user_type";
     public static final String KEY_USER_ID = "user_id";
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
-    public static final String KEY_USER_FAVOURITE_IDS="customerfavouiriteids";
+    public static final String KEY_USER_FAVOURITE_IDS = "customerfavouiriteids";
 
     public static final String KEY_CURRENT_CHECKLIST_VALUE = "current_checklist_value";
     public static final String KEY_CHECKLIST_GLOBAL_USER_ID = "global_checklist_user_id";
-    ;
 
     Set<String> set = new HashSet<String>();
     Set<String> checklistset = new HashSet<String>();
@@ -56,6 +59,7 @@ public class SessionManager {
         editor.putBoolean(IS_USER_LOGIN, true);
 
         editor.putString(KEY_GLOBAL_USER_ID, globalId);
+        editor.putString(KEY_CHECKLIST_GLOBAL_USER_ID, globalId);
         editor.putString(KEY_USER_ID, id);
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
@@ -147,6 +151,15 @@ public class SessionManager {
         set = pref.getStringSet(Global_id, null);
         return set;
     }
+
+    public Set<String> ReturnCheckListID() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        Log.e(TAG, "returncheckid:  " + Global_id + KEY_CHECKLIST_GLOBAL_USER_ID);
+        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        Log.e(TAG, "checklistset:  " + checklistset);
+        return checklistset;
+    }
+
 
     public HashMap<String, Long> getBudgetDetails() {
         String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
@@ -283,39 +296,43 @@ public class SessionManager {
     }
 
     public void CHECKLIST_ADD_ARTICLE(String article_id, long price) {
-        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        Long currentvalue;
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
-        Long  currentvalue;
-        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
-        String Unique_Article_Id = KEY_CHECKLIST_GLOBAL_USER_ID + Article_Id;
+        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_Article_Id = Global_id + Article_Id;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue + price;
-        checklistset = pref.getStringSet(KEY_CHECKLIST_GLOBAL_USER_ID, null);
-        if (null == set)
+        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        Log.e(TAG, "addchecklistset:  " + checklistset);
+
+        if (null == checklistset)
             checklistset = new HashSet<String>();
         checklistset.add(Article_Id);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putBoolean(Unique_Article_Id, true);
-        editor.putStringSet(Global_id, set);
+        editor.putStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, checklistset);
         editor.commit();
     }
+
     public void CHECKLIST_REMOVE_ARTICLE(String article_id, Long price) {
-        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
         Long currentvalue;
-        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
-        String Unique_Article_Id = KEY_CHECKLIST_GLOBAL_USER_ID + Article_Id;
+        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_Article_Id = Global_id + Article_Id;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue - price;
         checklistset.remove(Article_Id);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putBoolean(Unique_Article_Id, false);
-        editor.putStringSet(Global_id, set);
+        editor.putStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, checklistset);
         editor.commit();
     }
+
     public void CHECKLIST_CLEAR_ARTICLES() {
         String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
-        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         editor.remove(Global_id);
         editor.remove(Unique_Current_Id);
         editor.commit();
@@ -324,12 +341,12 @@ public class SessionManager {
     public boolean CHECKLIST_IS_ARTICLE_EXISTS(String article_id) {
         boolean flag = false;
 
-        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
-        set = pref.getStringSet(Global_id, null);
-        if (null == set) {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        if (null == checklistset) {
             //do nothng
         } else {
-            Iterator<String> iterator = set.iterator();
+            Iterator<String> iterator = checklistset.iterator();
             while (iterator.hasNext()) {
                 String value = iterator.next();
                 if (value.equals(article_id)) {
@@ -346,38 +363,49 @@ public class SessionManager {
     }
 
     public Long CHECKLIST_GET_CURRENT_VALUE() {
-        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
-        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         Long returnval;
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         returnval = pref.getLong(Unique_Current_Id, 0);
+        Log.e(TAG, "returnval:  " + returnval);
+
         return returnval;
     }
 
+    public HashMap<String, Long> getChecklistDetails() {
+        String ID = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String id_current_budget = ID + KEY_CURRENT_CHECKLIST_VALUE;
+        HashMap<String, Long> user = new HashMap<String, Long>();
+        user.put(KEY_CURRENT_CHECKLIST_VALUE, pref.getLong(id_current_budget, 0));
 
-    public void setuserfavoirites(Set userfavouirites)
-    {  editor.remove(KEY_USER_FAVOURITE_IDS);
-        editor.putStringSet(KEY_USER_FAVOURITE_IDS,userfavouirites);
-editor.commit();
-}
-public Set getuserfavoirites()
-{
-return  pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
-}
+        return user;
+    }
 
-public void updateuserfavoirites(String article_id)
-{
-    Set set=pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
-    set.add(article_id);
-    editor.remove(KEY_USER_FAVOURITE_IDS);
-    editor.putStringSet(KEY_USER_FAVOURITE_IDS,set);
-    editor.commit();
-}
-public void removeuserfavouirites(String article_id)
-{ Set set=pref.getStringSet(KEY_USER_FAVOURITE_IDS,null);
-    set.remove(article_id);
-    editor.remove(KEY_USER_FAVOURITE_IDS);
-    editor.putStringSet(KEY_USER_FAVOURITE_IDS,set);
-    editor.commit();
-}
+
+    public void setuserfavoirites(Set userfavouirites) {
+        editor.remove(KEY_USER_FAVOURITE_IDS);
+        editor.putStringSet(KEY_USER_FAVOURITE_IDS, userfavouirites);
+        editor.commit();
+    }
+
+    public Set getuserfavoirites() {
+        return pref.getStringSet(KEY_USER_FAVOURITE_IDS, null);
+    }
+
+    public void updateuserfavoirites(String article_id) {
+        Set set = pref.getStringSet(KEY_USER_FAVOURITE_IDS, null);
+        set.add(article_id);
+        editor.remove(KEY_USER_FAVOURITE_IDS);
+        editor.putStringSet(KEY_USER_FAVOURITE_IDS, set);
+        editor.commit();
+    }
+
+    public void removeuserfavouirites(String article_id) {
+        Set set = pref.getStringSet(KEY_USER_FAVOURITE_IDS, null);
+        set.remove(article_id);
+        editor.remove(KEY_USER_FAVOURITE_IDS);
+        editor.putStringSet(KEY_USER_FAVOURITE_IDS, set);
+        editor.commit();
+    }
 
 }

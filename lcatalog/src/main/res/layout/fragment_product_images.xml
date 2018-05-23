@@ -235,14 +235,14 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/article_download_icon"
+                        android:id="@+id/article_checklist_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        app:srcCompat="@mipmap/ic_download" />
+                        app:srcCompat="@mipmap/ic_wishlist" />
 
                     <TextView
                         android:id="@+id/download_text"
@@ -252,7 +252,7 @@
                         android:fontFamily="@font/overlock_sc"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/article_download"
+                        android:text="Check List"
                         android:textSize="@dimen/text_size_large" />
 
                 </LinearLayout>
