@@ -4,21 +4,14 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import android.os.Environment;
-import android.util.Log;
 
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -94,7 +87,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         mActivityContext = activityContext;
         article_name = name;
         article_3ds_file_name = file_3ds_name;
-       DOWNLOAD_URL= EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/"+article_3ds_file_name;
+        DOWNLOAD_URL = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/" + article_3ds_file_name;
     }
 
     @Override
@@ -103,15 +96,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         /**
          * @param model All the 3ds models from the folder in the phone local storage are loaded in this array
          */
-
         URL u = null;
         try {
             u = new URL(DOWNLOAD_URL);
-
-
-            URLConnection conn = u.openConnection();
-            int contentLength = conn.getContentLength();
-             stream = new DataInputStream(u.openStream());
+            u.openConnection();
+            stream = new DataInputStream(u.openStream());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -121,14 +110,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         /**
          * @param model All the 3ds models from the "raw" resource folder are loaded in this array
          */
-        model = new Parser3ds[]{
-
-                new Parser3ds(stream, mActivityContext),
-                //This is passed with a default constructor
-//                new Parser3ds(mActivityContext.getResources().openRawResource(R.raw.bedsofa), mActivityContext),
-                //In this case, the 3rd parameter "red_car" is the name of the texture, since a default texture was not provided in the original 3ds file
-//                new Parser3ds(mActivityContext.getResources().openRawResource(R.raw.car), mActivityContext, "red_car"),
-        };
+        model = new Parser3ds[]{new Parser3ds(stream, mActivityContext)};
 
         //This will be used for touch rotation
         Matrix.setIdentityM(mAccumulatedRotation, 0);
@@ -246,7 +228,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Draw a point to indicate the light.
         GLES20.glUseProgram(mPointProgramHandle);
         drawLight();
-
     }
 
     @Override

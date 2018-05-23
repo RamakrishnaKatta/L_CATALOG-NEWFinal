@@ -39,6 +39,7 @@ public class Parser3ds {
      * @param context - Main application context (needed to access resources)
      */
     Parser3ds(InputStream file, final Context context) {
+
         mActivityContext = context;
         stream = new BufferedInputStream(file);
         pos = 0;
@@ -191,7 +192,6 @@ public class Parser3ds {
     private void parseObjectChunk() throws IOException {
         String name = readString();
         models.add(models.size(), new Object3ds());
-
     }
 
     private void parseVerticesList() throws IOException {
@@ -221,18 +221,23 @@ public class Parser3ds {
         String name = readString();
         for (int i = 0; i < materials.size(); i++) {
             if (materials.get(i)[0].equals(name) && materials.get(i)[1] != null) {
-                int rID = mActivityContext.getResources().getIdentifier(materials.get(i)[1].toLowerCase(), "drawable", mActivityContext.getPackageName());
-                Log.e("Parse3D", "------" + materials.get(i)[1].toLowerCase());
-                if (rID != 0) {
-                    models.get(models.size() - 1).setTextureHandle(TextureHelper.loadTexture(mActivityContext, rID));
+//                int rID = mActivityContext.getResources().getIdentifier(materials.get(i)[1].toLowerCase(), "drawable", mActivityContext.getPackageName());
+//                Log.e("Parse3DTexture", "------" + materials.get(i)[1].toLowerCase());
+//                String resourceID = Integer.toString(rID);
+//                Log.e("Parse3DResourceID", "------" + resourceID);
+
+                String texture_file_name = materials.get(i)[1].toLowerCase();
+                Log.e("Parse3DTexture", " ------ " + texture_file_name);
+
+                if (!texture_file_name.isEmpty()) {
+                    models.get(models.size() - 1).setTextureHandle(TextureHelper.loadTexture(texture_file_name));
                     models.get(models.size() - 1).setHasTexture();
                 }
                 break;
             }
         }
         if (!models.get(models.size() - 1).hasTexture()) {
-
-            models.get(models.size() - 1).setTextureHandle(TextureHelper.loadTexture(mActivityContext, defaultTextureID));
+            models.get(models.size() - 1).setTextureHandle(TextureHelper.loadDefaultTexture(mActivityContext, defaultTextureID));
         }
         int size = getShort();
         for (int i = 0; i < size; i++) {
