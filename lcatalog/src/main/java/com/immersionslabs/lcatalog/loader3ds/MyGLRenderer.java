@@ -81,13 +81,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private String article_name, article_3ds_file_name;
     private String DOWNLOAD_URL;
 
-    public MyGLRenderer(final Context activityContext, String name, String file_3ds_name) {
+    public MyGLRenderer(final Context activityContext, String DOWNLOAD_URL) {
 
         //We need to pass the Main activity context
         mActivityContext = activityContext;
-        article_name = name;
-        article_3ds_file_name = file_3ds_name;
-        DOWNLOAD_URL = EnvConstants.APP_BASE_URL + "/upload/3dviewfiles/" + article_3ds_file_name;
+        this.DOWNLOAD_URL=DOWNLOAD_URL;
     }
 
     @Override

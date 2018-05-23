@@ -63,15 +63,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     AppCompatImageView project_image;
     String image1, image2, image3, image4, image5;
 
-    ImageButton project_download, project_augment, project_3dview;
-
-    String Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation, Article_3DS_FileLocation;
-    private boolean zip_3ds_downloaded = true;
-    File article_3ds_zip_file, article_3ds_file;
-
-    TextView zip_downloaded;
-
-
+    ImageButton  project_augment, project_3dview;
     String project_id;
     String project_images;
     RecyclerView recyclerView;
@@ -114,15 +106,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
         project_part_3ds = new ArrayList<>();
-
         project_name = findViewById(R.id.project_title_text);
         project_description = findViewById(R.id.project_description_text);
         project_sub_description = findViewById(R.id.project_subdescription_text);
         project_image = findViewById(R.id.project_image_view);
-        project_download = findViewById(R.id.project_download_icon);
         project_3dview = findViewById(R.id.project_3dview_icon);
         project_augment = findViewById(R.id.project_augment_icon);
-        zip_downloaded = findViewById(R.id.download_note_text);
 
         final Bundle b = getIntent().getExtras();
         assert b != null;
@@ -214,88 +203,19 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
             }
         });
 
-        Article_3DS_ZipFileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/" + project_3ds;
-        Log.e(TAG, "ZipFileLocation--" + Article_3DS_ZipFileLocation);
-        Article_3DS_ExtractLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/";
-        Log.e(TAG, "ExtractLocation--" + Article_3DS_ExtractLocation);
-        Article_3DS_FileLocation = Environment.getExternalStorageDirectory() + "/L_CATALOG/Models/" + p_name + "/article_view.3ds";
-        Log.e(TAG, "Object3DFileLocation--" + Article_3DS_FileLocation);
 
-        note = findViewById(R.id.download_note);
 
-        article_3ds_zip_file = new File(Article_3DS_ZipFileLocation);
-        article_3ds_file = new File(Article_3DS_FileLocation);
-
-        zip_3ds_downloaded = false;
-
-        project_3dview.setEnabled(false);
-        if (article_3ds_file.exists()) {
-            project_3dview.setEnabled(true);
-            project_download.setVisibility(View.GONE);
-            note.setVisibility(View.GONE);
-            zip_3ds_downloaded = true;
-            zip_downloaded.setText("File Downloaded");
-            zip_downloaded.setTextColor(Color.BLUE);
-        }
-
-        project_download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final ProgressDialog progressDialog = new ProgressDialog(ProjectDetailActivity.this, R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Downloading Article, Just for once....");
-                progressDialog.setTitle("Article Downloading");
-                progressDialog.show();
-                new android.os.Handler().postDelayed(
-                        new Runnable() {
-                            public void run() {
-                                try {
-                                    addModelFolder();
-                                    EXTENDED_URL_3DS = FILE_URL_3DS + project_id + project_3ds;
-                                    Log.e(TAG, "URL ---------- " + EXTENDED_URL_3DS);
-                                    new DownloadManager_3DS(EXTENDED_URL_3DS, p_name, project_3ds);
-
-                                    if (article_3ds_zip_file.exists()) {
-                                        new UnzipUtil(Article_3DS_ZipFileLocation, Article_3DS_ExtractLocation);
-                                    } else {
-                                        Toast.makeText(ProjectDetailActivity.this, "Cannot locate Zipper, Try to download again", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    zip_3ds_downloaded = true;
-
-                                    Log.e(TAG, "Zip Downloaded ---------- " + zip_3ds_downloaded);
-                                    progressDialog.dismiss();
-                                    project_download.setVisibility(View.GONE);
-                                    project_3dview.setEnabled(true);
-                                    note.setVisibility(View.GONE);
-                                    zip_downloaded.setText("File Downloaded");
-                                    zip_downloaded.setTextColor(getResources().getColor(R.color.primary_dark));
-
-                                } catch (IOException e) {
-                                    project_download.setVisibility(View.VISIBLE);
-                                    project_3dview.setEnabled(false);
-                                    zip_3ds_downloaded = false;
-                                    Log.e(TAG, "Zip Not Downloaded ---------- " + zip_3ds_downloaded);
-                                    e.printStackTrace();
-                                    note.setVisibility(View.VISIBLE);
-                                    zip_downloaded.setText("Download !");
-                                }
-                            }
-                        }, 6000);
-            }
-        });
 
         project_3dview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (zip_3ds_downloaded == true) {
 
                     Bundle b4 = new Bundle();
-                    b4.putString("projectName", p_name);
+                    b4.putString("projectName", project_id);
+                    b4.putString("project_3ds_file_name",project_3ds);
                     Intent _3d_intent = new Intent(ProjectDetailActivity.this, Article3dViewActivity.class).putExtras(b4);
                     startActivity(_3d_intent);
-                }
+
             }
         });
 
