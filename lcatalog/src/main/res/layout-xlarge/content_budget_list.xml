@@ -8,23 +8,38 @@
     tools:context=".BudgetListActivity"
     tools:showIn="@layout/activity_budget_list">
 
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape"
             android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/budget_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_12"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/margin_30"
-                android:layout_marginStart="@dimen/margin_30"
-                android:layout_marginTop="@dimen/margin_30"
                 android:background="@drawable/shape"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -45,10 +60,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Your Budget"
                         android:inputType="number"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textColor="@color/white" />
                 </android.support.design.widget.TextInputLayout>
-
 
                 <!--  Current Value Label -->
                 <android.support.design.widget.TextInputLayout
@@ -66,8 +79,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Your Current Value"
                         android:inputType="number"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textColor="@color/white" />
                 </android.support.design.widget.TextInputLayout>
 
                 <!--  Remaining Budget Label -->
@@ -86,26 +98,13 @@
                         android:layout_height="wrap_content"
                         android:hint="Your Remaining Budget"
                         android:inputType="number"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_tab_small" />
+                        android:textColor="@color/white" />
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btn_alter_budget"
-                        android:layout_width="@dimen/margin_200"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/overlock_sc"
-                        android:gravity="center"
-                        android:padding="@dimen/margin_6"
-                        android:text="ALTER BUDGET"
-                        android:textSize="@dimen/text_tab_tiny"
-                        android:textStyle="bold" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_update_budget"
@@ -116,9 +115,19 @@
                         android:gravity="center"
                         android:padding="@dimen/margin_6"
                         android:text="UPDATE BUDGET"
-                        android:textSize="@dimen/text_tab_tiny"
                         android:textStyle="bold"
                         android:visibility="gone" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_alter_budget"
+                        android:layout_width="@dimen/margin_200"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/overlock_sc"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_6"
+                        android:text="ALTER BUDGET"
+                        android:textStyle="bold" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_clear_budget"
@@ -129,22 +138,15 @@
                         android:gravity="center"
                         android:padding="@dimen/margin_6"
                         android:text="CLEAR BUDGET"
-                        android:textSize="@dimen/text_tab_tiny"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/budget_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_12"
-                android:visibility="visible" />
-
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

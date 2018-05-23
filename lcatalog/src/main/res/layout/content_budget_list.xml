@@ -8,23 +8,38 @@
     tools:context=".BudgetListActivity"
     tools:showIn="@layout/activity_budget_list">
 
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape"
             android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/budget_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_6"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/margin_15"
-                android:layout_marginStart="@dimen/margin_15"
-                android:layout_marginTop="@dimen/margin_15"
                 android:background="@drawable/shape"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -129,15 +144,9 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/budget_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_6"
-                android:visibility="visible" />
-
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
