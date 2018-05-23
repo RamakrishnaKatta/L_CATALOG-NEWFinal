@@ -13,6 +13,7 @@ import java.util.Set;
 
 public class SessionManager {
 
+
     private SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
@@ -34,7 +35,12 @@ public class SessionManager {
     public static final String KEY_GLOBAL_USER_ID = "global_user_id";
     public static final String KEY_USER_FAVOURITE_IDS="customerfavouiriteids";
 
+    public static final String KEY_CURRENT_CHECKLIST_VALUE = "current_checklist_value";
+    public static final String KEY_CHECKLIST_GLOBAL_USER_ID = "global_checklist_user_id";
+    ;
+
     Set<String> set = new HashSet<String>();
+    Set<String> checklistset = new HashSet<String>();
     Set<String> favoiriteset = new HashSet<String>();
 
 
@@ -275,6 +281,79 @@ public class SessionManager {
         }
         return returnval;
     }
+
+    public void CHECKLIST_ADD_ARTICLE(String article_id, long price) {
+        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Article_Id = article_id;
+        Long  currentvalue;
+        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_Article_Id = KEY_CHECKLIST_GLOBAL_USER_ID + Article_Id;
+        currentvalue = pref.getLong(Unique_Current_Id, 0);
+        currentvalue = currentvalue + price;
+        checklistset = pref.getStringSet(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        if (null == set)
+            checklistset = new HashSet<String>();
+        checklistset.add(Article_Id);
+        editor.putLong(Unique_Current_Id, currentvalue);
+        editor.putBoolean(Unique_Article_Id, true);
+        editor.putStringSet(Global_id, set);
+        editor.commit();
+    }
+    public void CHECKLIST_REMOVE_ARTICLE(String article_id, Long price) {
+        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Article_Id = article_id;
+        Long currentvalue;
+        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_Article_Id = KEY_CHECKLIST_GLOBAL_USER_ID + Article_Id;
+        currentvalue = pref.getLong(Unique_Current_Id, 0);
+        currentvalue = currentvalue - price;
+        checklistset.remove(Article_Id);
+        editor.putLong(Unique_Current_Id, currentvalue);
+        editor.putBoolean(Unique_Article_Id, false);
+        editor.putStringSet(Global_id, set);
+        editor.commit();
+    }
+    public void CHECKLIST_CLEAR_ARTICLES() {
+        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Unique_Current_Id = KEY_CHECKLIST_GLOBAL_USER_ID + KEY_CURRENT_CHECKLIST_VALUE;
+        editor.remove(Global_id);
+        editor.remove(Unique_Current_Id);
+        editor.commit();
+    }
+
+    public boolean CHECKLIST_IS_ARTICLE_EXISTS(String article_id) {
+        boolean flag = false;
+
+        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        set = pref.getStringSet(Global_id, null);
+        if (null == set) {
+            //do nothng
+        } else {
+            Iterator<String> iterator = set.iterator();
+            while (iterator.hasNext()) {
+                String value = iterator.next();
+                if (value.equals(article_id)) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+
+                if (flag)
+                    break;
+            }
+        }
+        return flag;
+    }
+
+    public Long CHECKLIST_GET_CURRENT_VALUE() {
+        String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
+        Long returnval;
+        returnval = pref.getLong(Unique_Current_Id, 0);
+        return returnval;
+    }
+
+
     public void setuserfavoirites(Set userfavouirites)
     {  editor.remove(KEY_USER_FAVOURITE_IDS);
         editor.putStringSet(KEY_USER_FAVOURITE_IDS,userfavouirites);
