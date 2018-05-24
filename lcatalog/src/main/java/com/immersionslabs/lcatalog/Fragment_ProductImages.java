@@ -338,6 +338,38 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         } else if (Remaining < 0) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Enter Your Budget");
+
+                            final EditText Total_budget_val = new EditText(getContext());
+                            String hinttext=sessionmanager.BUDGET_GET_TOTAL_VALUE().toString();
+                            Total_budget_val.setHint(hinttext);
+                            Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            builder.setView(Total_budget_val);
+
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String budget_value;
+                                    budget_value = Total_budget_val.getText().toString();
+                                    if (budget_value.isEmpty()) {
+                                        Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        sessionmanager.BUDGET_SET_TOTAL_VALUE(Long.parseLong(budget_value));
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+
+
+                            });
+                            builder.show();
                             Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -388,7 +420,38 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         }
                         if (Remaining <= 0) {
-                            Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
+                           Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Enter Your Budget");
+                            final EditText Total_budget_val = new EditText(getContext());
+                            String totalval_text=budgetManager.BUDGET_GET_TOTAL().toString();
+                            Total_budget_val.setHint(totalval_text);
+                            Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            builder.setView(Total_budget_val);
+
+
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String budget_value;
+                                    budget_value = Total_budget_val.getText().toString();
+
+                                    if (budget_value.isEmpty()) {
+                                        Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        budgetManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.show();
+
                         }
                     }
                 }
