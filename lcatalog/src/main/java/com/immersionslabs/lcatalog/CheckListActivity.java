@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,7 +53,7 @@ public class CheckListActivity extends AppCompatActivity {
 
     Set<String> set_list;
 
-    Button check_delete;
+    Button Help_enquiry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,8 @@ public class CheckListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check_list);
 
         totalvalue = findViewById(R.id.text_total_value);
+
+        Help_enquiry = findViewById(R.id.help_enquiry);
         checklistManager = new ChecklistManager();
         sessionManager = new SessionManager(getApplicationContext());
 
@@ -86,6 +89,13 @@ public class CheckListActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        Help_enquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CheckListActivity.this, "Hey Wonderful, Will Get back you soon", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 

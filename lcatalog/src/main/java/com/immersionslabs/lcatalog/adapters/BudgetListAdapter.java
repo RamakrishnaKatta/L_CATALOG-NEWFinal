@@ -15,23 +15,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.BudgetListActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.BudgetManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.ViewHolder> {
 
     private static final String TAG = "BudgetListAdapter";
 
     private Activity activity;
+
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -42,6 +48,8 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
+    SessionManager sessionManager;
+    BudgetManager budgetManager;
 
     public BudgetListAdapter(Activity activity,
                              ArrayList<String> item_ids,
@@ -82,8 +90,10 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_grid, parent, false);
-
+        View view = inflater.inflate(R.layout.item_budgetlist, parent, false);
+        sessionManager = new SessionManager(activity);
+        HashMap hashmap = new HashMap();
+        budgetManager = new BudgetManager();
         return new ViewHolder(view);
     }
 
@@ -111,7 +121,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));
         Integer z = (x * (100 - y)) / 100;
-        String itemNewPrice = Integer.toString(z);
+        final String itemNewPrice = Integer.toString(z);
 
         viewHolder.item_name.setText(item_names.get(position));
         viewHolder.item_description.setText(item_descriptions.get(position));
@@ -119,6 +129,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         viewHolder.item_price.setPaintFlags(viewHolder.item_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.item_discount.setText(item_discounts.get(position));
         viewHolder.item_price_new.setText(itemNewPrice);
+
 
         viewHolder.BudgetList_container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +147,6 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                 b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
                 b.putString("article_3ds", item_3ds.get(position));
-
                 b.putString("article_images", item_images.get(position));
                 b.putString("article_position", String.valueOf(position));
 
@@ -145,27 +155,52 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                 context[0].startActivity(intent);
             }
         });
+
+
+        viewHolder.item_remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    Long price = Long.parseLong(itemNewPrice);
+                    sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), price);
+                    Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Long price = Long.parseLong(itemNewPrice);
+                    Long prevprice = budgetManager.BUDGET_GET_CURRENT();
+                    Long currentprice = prevprice - price;
+                    budgetManager.BUDGET_SET_CURRENT(currentprice);
+                    budgetManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
+                    Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return item_names.size();
+        return item_ids.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView item_name, item_description, item_price, item_discount, item_price_new;
+        private TextView item_name, item_description, item_price, item_discount, item_price_new, item_remove;
         private AppCompatImageView item_image;
         private RelativeLayout BudgetList_container;
 
+
         ViewHolder(View view) {
             super(view);
-            BudgetList_container = view.findViewById(R.id.grid_container);
-            item_image = view.findViewById(R.id.grid_item_image);
-            item_name = view.findViewById(R.id.grid_item_name);
-            item_description = view.findViewById(R.id.grid_item_description);
-            item_price = view.findViewById(R.id.grid_item_price);
-            item_discount = view.findViewById(R.id.grid_item_discount_value);
-            item_price_new = view.findViewById(R.id.grid_item_price_new);
+            BudgetList_container = view.findViewById(R.id.budget_container);
+            item_image = view.findViewById(R.id.budget_item_image);
+            item_name = view.findViewById(R.id.budget_item_name);
+            item_description = view.findViewById(R.id.budget_item_description);
+            item_price = view.findViewById(R.id.budget_item_price);
+            item_discount = view.findViewById(R.id.budget_item_discount_value);
+            item_price_new = view.findViewById(R.id.budget_item_price_new);
+            item_remove = view.findViewById(R.id.remove_budget);
         }
     }
 }

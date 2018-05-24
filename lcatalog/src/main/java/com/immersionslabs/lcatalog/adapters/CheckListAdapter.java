@@ -116,15 +116,15 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
 
         private TextView item_name, item_price, item_discount, item_price_new, item_delete;
         AppCompatImageView item_image;
-        RelativeLayout wish_list_container;
+        RelativeLayout check_list_container;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            wish_list_container = itemView.findViewById(R.id.wish_container);
-            item_image = itemView.findViewById(R.id.wish_item_image);
-            item_name = itemView.findViewById(R.id.wish_item_name);
-            item_price_new = itemView.findViewById(R.id.wish_item_price);
-            item_delete = itemView.findViewById(R.id.wish_item_delete_button);
+            check_list_container = itemView.findViewById(R.id.check_container);
+            item_image = itemView.findViewById(R.id.check_item_image);
+            item_name = itemView.findViewById(R.id.check_item_name);
+            item_price_new = itemView.findViewById(R.id.check_item_price);
+            item_delete = itemView.findViewById(R.id.check_item_delete_button);
         }
     }
 }
