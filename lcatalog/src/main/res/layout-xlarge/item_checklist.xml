@@ -42,14 +42,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/check_item_name_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/transparent"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:padding="@dimen/margin_6">
@@ -102,6 +103,23 @@
                             android:textSize="@dimen/text_tab_small" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/margin_3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_6"
+                            android:fontFamily="@font/assistant_semibold"
+                            android:text="Quantity : 1"
+                            android:textColor="@color/primary_dark"
+                            android:textSize="@dimen/text_tab_small" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -111,16 +129,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primary_darker"
+                android:gravity="center|end"
+                android:orientation="horizontal"
                 android:padding="@dimen/margin_6">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/remove_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_delete" />
 
                 <TextView
                     android:id="@+id/check_item_delete_button"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:fontFamily="@font/overlock_sc"
                     android:text="REMOVE"
-                    android:textAlignment="textEnd"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small"
                     android:textStyle="bold" />

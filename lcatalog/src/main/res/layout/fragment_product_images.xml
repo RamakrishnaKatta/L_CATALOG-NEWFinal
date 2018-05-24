@@ -52,7 +52,6 @@
             android:padding="@dimen/margin_10">
 
             <View
-                android:id="@+id/layout_separator0"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
                 android:background="@color/white" />
@@ -82,19 +81,19 @@
 
                     <TextView
                         android:id="@+id/favourite_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/favourite"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/layout_separator3"
                     android:layout_width="@dimen/margin_1"
                     android:layout_height="@dimen/margin_30"
                     android:layout_gravity="center"
@@ -111,7 +110,7 @@
                         android:id="@+id/article_share_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -119,21 +118,21 @@
 
                     <TextView
                         android:id="@+id/share_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/product_share"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <View
-                android:id="@+id/layout_separator5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
                 android:background="@color/white" />
@@ -155,7 +154,7 @@
                         android:id="@+id/article_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -164,19 +163,19 @@
 
                     <TextView
                         android:id="@+id/augment_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/menu_augment"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/layout_separator4"
                     android:layout_width="@dimen/margin_1"
                     android:layout_height="@dimen/margin_30"
                     android:layout_gravity="center"
@@ -193,7 +192,7 @@
                         android:id="@+id/article_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -202,21 +201,21 @@
 
                     <TextView
                         android:id="@+id/view3d_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/article_3d_text"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <View
-                android:id="@+id/layout_separator6"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
                 android:background="@color/white" />
@@ -238,7 +237,7 @@
                         android:id="@+id/article_checklist_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -246,19 +245,19 @@
 
                     <TextView
                         android:id="@+id/checklist_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="Check List"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/layout_separator8"
                     android:layout_width="@dimen/margin_1"
                     android:layout_height="@dimen/margin_30"
                     android:layout_gravity="center"
@@ -275,7 +274,7 @@
                         android:id="@+id/article_budget_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -285,7 +284,7 @@
                         android:id="@+id/article_remove_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
@@ -294,21 +293,21 @@
 
                     <TextView
                         android:id="@+id/add_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
                         android:text="@string/budget_list"
-                        android:textSize="@dimen/text_size_large" />
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <View
-                android:id="@+id/layout_separator1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
                 android:background="@color/white" />

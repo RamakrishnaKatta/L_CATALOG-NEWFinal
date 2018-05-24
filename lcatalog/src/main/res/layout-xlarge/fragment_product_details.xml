@@ -37,7 +37,6 @@
                 android:textSize="@dimen/text_tab_tiny" />
 
             <View
-                android:id="@+id/layout_separator2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
                 android:background="@color/white" />
@@ -63,7 +62,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/layout_separator3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
             android:background="@color/white" />
@@ -101,7 +99,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/layout_separator4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
             android:background="@color/white" />
@@ -241,7 +238,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/layout_separator5"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
             android:background="@color/white" />
@@ -361,7 +357,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/layout_separator6"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
             android:background="@color/white" />
@@ -477,7 +472,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/layout_separator7"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
             android:background="@color/white" />

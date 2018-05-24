@@ -27,7 +27,7 @@
                     android:id="@+id/project_image_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/project_name"
+                    android:contentDescription="@null"
                     android:scaleType="fitCenter" />
 
                 <android.support.v4.view.ViewPager
@@ -39,7 +39,7 @@
             <LinearLayout
                 android:id="@+id/project_slide_dots"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_50"
+                android:layout_height="@dimen/margin_48"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
@@ -120,7 +120,6 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/layout_separator1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_2"
                 android:background="@color/white" />
@@ -140,12 +139,29 @@
                         android:id="@+id/project_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         app:srcCompat="@mipmap/ic_augment"
                         tools:ignore="VectorDrawableCompat" />
 
+                    <TextView
+                        android:id="@+id/project_augment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/menu_augment"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/margin_2"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -157,17 +173,28 @@
                         android:id="@+id/project_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
+                        android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:visibility="visible"
                         app:srcCompat="@mipmap/ic_3d" />
+
+                    <TextView
+                        android:id="@+id/project_view3d_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/overlock_sc"
+                        android:gravity="center|start"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/article_3d_text"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <View
-                android:id="@+id/layout_separator"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_2"
                 android:background="@color/white" />
