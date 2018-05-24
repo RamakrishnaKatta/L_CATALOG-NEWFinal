@@ -207,6 +207,9 @@ public class SessionManager {
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue - price;
         remaining = total - currentvalue;
+        set = pref.getStringSet(Global_id, null);
+        if (null == set)
+            set = new HashSet<String>();
         set.remove(Article_Id);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putLong(Unique_Remaining_Id, remaining);
