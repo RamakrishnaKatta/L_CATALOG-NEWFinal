@@ -258,9 +258,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "L_CATALOG");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "If you want to know more details Click here to visit http://immersionslabs.com/ ");
+               sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hey Check this out!!");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://portal.immersionslabs.com/#/articleDetails/"+article_id);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
