@@ -85,7 +85,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     LikeButton likeButton;
     SessionManager sessionmanager;
     String user_log_type;
-    private String article_3ds_file_name;
+    String article_3ds_file_name;
 
     public Fragment_ProductImages() {
         // Required empty public constructor
@@ -144,7 +144,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         if (Objects.equals(user_log_type, "CUSTOMER")) {
 
             Set set = sessionmanager.getuserfavoirites();
-
             if (set.contains(article_id)) {
                 Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
                 likeButton.setLiked(true);
@@ -163,7 +162,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 image4 = image_json.getString(3);
                 image5 = image_json.getString(4);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -258,9 +256,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-               sharingIntent.setType("text/plain");
+                sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hey Check this out!!");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://portal.immersionslabs.com/#/articleDetails/"+article_id);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://portal.immersionslabs.com/#/articleDetails/" + article_id);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });

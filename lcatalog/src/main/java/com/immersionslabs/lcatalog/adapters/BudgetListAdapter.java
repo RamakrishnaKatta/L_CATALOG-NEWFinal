@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.BudgetListActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
@@ -37,7 +36,8 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     private static final String TAG = "BudgetListAdapter";
 
     private Activity activity;
-
+    SessionManager sessionManager;
+    BudgetManager budgetManager;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -48,8 +48,6 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
-    SessionManager sessionManager;
-    BudgetManager budgetManager;
 
     public BudgetListAdapter(Activity activity,
                              ArrayList<String> item_ids,
@@ -130,7 +128,6 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         viewHolder.item_discount.setText(item_discounts.get(position));
         viewHolder.item_price_new.setText(itemNewPrice);
 
-
         viewHolder.BudgetList_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,7 +153,6 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
             }
         });
 
-
         viewHolder.item_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,11 +169,9 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                     budgetManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
                     Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                 }
-
             }
 
         });
-
     }
 
     @Override
@@ -189,7 +183,6 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         private TextView item_name, item_description, item_price, item_discount, item_price_new, item_remove;
         private AppCompatImageView item_image;
         private RelativeLayout BudgetList_container;
-
 
         ViewHolder(View view) {
             super(view);
