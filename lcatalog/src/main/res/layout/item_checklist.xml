@@ -21,7 +21,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/check_item_image_area"
@@ -48,7 +49,6 @@
                         android:id="@+id/check_item_name_area"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/check_item_image_area"
                         android:background="@color/transparent"
                         android:gravity="center"
                         android:orientation="horizontal"
@@ -80,7 +80,8 @@
                             android:layout_marginEnd="@dimen/margin_3"
                             android:fontFamily="@font/assistant_semibold"
                             android:text="@string/Rs"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_size_medium" />
 
                         <TextView
                             android:id="@+id/check_item_price"
@@ -89,7 +90,7 @@
                             android:fontFamily="@font/assistant_semibold"
                             android:text="@string/original_price"
                             android:textColor="@color/red"
-                            android:textSize="@dimen/text_size_small"
+                            android:textSize="@dimen/text_size_medium"
                             android:textStyle="bold" />
 
                         <TextView
@@ -98,41 +99,34 @@
                             android:fontFamily="@font/assistant_semibold"
                             android:text="@string/price_Tag"
                             android:textColor="@color/red"
-                            android:textSize="@dimen/text_size_small" />
+                            android:textSize="@dimen/text_size_medium" />
                     </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="end">
-
             <LinearLayout
                 android:id="@+id/check_item_delete"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/transparent"
-                android:gravity="bottom"
-                android:orientation="horizontal"
+                android:background="@color/primary_darker"
                 android:padding="@dimen/margin_3">
 
                 <TextView
                     android:id="@+id/check_item_delete_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/text_size_medium"
+                    android:layout_marginEnd="@dimen/margin_3"
+                    android:fontFamily="@font/overlock_sc"
+                    android:text="REMOVE"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>

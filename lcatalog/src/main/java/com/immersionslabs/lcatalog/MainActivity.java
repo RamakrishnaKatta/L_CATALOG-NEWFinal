@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
         budgetManager = new BudgetManager();
-        checklistManager=new ChecklistManager();
+        checklistManager = new ChecklistManager();
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -427,14 +427,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_logout) {
 
-            Toast.makeText(this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
-            user_Favourite_list.clear();
-            sessionmanager.logoutUser();
-            budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
-            checklistManager.CHECKLIST_CLEAR_ARRAY_ARTICLES();
-            Intent intent = new Intent(this, UserTypeActivity.class);
-            startActivity(intent);
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
+            builder.setTitle("Sign Out");
+            builder.setMessage("Your BudgetList and CheckList will be Erased. \n Are you sure want to SignOut ?");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Toast.makeText(MainActivity.this, "Successfully Signed Out", Toast.LENGTH_SHORT).show();
+                    user_Favourite_list.clear();
+                    sessionmanager.logoutUser();
+                    budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
+                    checklistManager.CHECKLIST_CLEAR_ARRAY_ARTICLES();
+                    Intent intent = new Intent(MainActivity.this, UserTypeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
 
         } else if (id == R.id.nav_about) {
 

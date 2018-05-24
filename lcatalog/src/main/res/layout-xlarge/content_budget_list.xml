@@ -8,7 +8,6 @@
     tools:context=".BudgetListActivity"
     tools:showIn="@layout/activity_budget_list">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape"
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
@@ -35,71 +33,143 @@
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/shape"
+                android:background="@color/black"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <!--  Budget Label -->
-                <android.support.design.widget.TextInputLayout
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:background="@color/primary_dark" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_4"
-                    android:layout_marginEnd="@dimen/margin_30"
-                    android:layout_marginStart="@dimen/margin_30"
-                    android:layout_marginTop="@dimen/margin_4"
-                    android:visibility="visible">
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <EditText
-                        android:id="@+id/input_your_budget"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Your Budget"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <!--  Current Value Label -->
-                <android.support.design.widget.TextInputLayout
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/overlock_sc"
+                            android:gravity="center"
+                            android:text="Total \nBudget"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/text_tab_large"
+                            android:textStyle="bold" />
+
+                        <!--  Budget Label -->
+                        <EditText
+                            android:id="@+id/input_your_budget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/assistant_semibold"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text="100000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_tab_medium" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/margin_2"
+                        android:layout_height="@dimen/margin_90"
+                        android:layout_gravity="center"
+                        android:background="@color/primary_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/overlock_sc"
+                            android:gravity="center"
+                            android:text="Current \nValue"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/text_tab_large"
+                            android:textStyle="bold" />
+
+                        <!--  Current Value Label -->
+                        <EditText
+                            android:id="@+id/input_your_current_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/assistant_semibold"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text="78000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_tab_medium" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/margin_2"
+                        android:layout_height="@dimen/margin_90"
+                        android:layout_gravity="center"
+                        android:background="@color/primary_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/overlock_sc"
+                            android:gravity="center"
+                            android:text="Remaining \nBudget"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/text_tab_large"
+                            android:textStyle="bold" />
+
+                        <!--  Remaining Budget Label -->
+                        <EditText
+                            android:id="@+id/input_your_remaining_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/assistant_semibold"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text="22000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_tab_medium" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_4"
-                    android:layout_marginEnd="@dimen/margin_30"
-                    android:layout_marginStart="@dimen/margin_30"
-                    android:layout_weight="1"
-                    android:visibility="visible">
-
-                    <EditText
-                        android:id="@+id/input_your_current_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Your Current Value"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
-
-                <!--  Remaining Budget Label -->
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_4"
-                    android:layout_marginEnd="@dimen/margin_30"
-                    android:layout_marginStart="@dimen/margin_30"
-                    android:layout_weight="1"
-                    android:visibility="visible">
-
-                    <EditText
-                        android:id="@+id/input_your_remaining_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Your Remaining Budget"
-                        android:inputType="number"
-                        android:textColor="@color/white" />
-                </android.support.design.widget.TextInputLayout>
+                    android:layout_height="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:background="@color/primary_dark" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -108,45 +178,57 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_update_budget"
-                        android:layout_width="@dimen/margin_200"
+                        android:layout_width="@dimen/margin_300"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_6"
                         android:layout_weight="1"
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_6"
                         android:text="UPDATE BUDGET"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold"
                         android:visibility="gone" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_alter_budget"
-                        android:layout_width="@dimen/margin_200"
+                        android:layout_width="@dimen/margin_300"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_6"
                         android:layout_weight="1"
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_6"
                         android:text="ALTER BUDGET"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_clear_budget"
-                        android:layout_width="@dimen/margin_200"
+                        android:layout_width="@dimen/margin_300"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_6"
                         android:layout_weight="1"
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_6"
                         android:text="CLEAR BUDGET"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:background="@color/primary_dark" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </android.support.constraint.ConstraintLayout>

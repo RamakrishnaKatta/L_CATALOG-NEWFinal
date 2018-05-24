@@ -62,7 +62,7 @@ public class CheckListActivity extends AppCompatActivity {
 
         totalvalue = findViewById(R.id.text_total_value);
 
-        Help_enquiry = findViewById(R.id.help_enquiry);
+        Help_enquiry = findViewById(R.id.place_enquiry);
         checklistManager = new ChecklistManager();
         sessionManager = new SessionManager(getApplicationContext());
 

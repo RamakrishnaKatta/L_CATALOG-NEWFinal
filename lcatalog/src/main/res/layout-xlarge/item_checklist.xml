@@ -21,7 +21,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/check_item_image_area"
@@ -79,8 +80,8 @@
                             android:layout_marginEnd="@dimen/margin_6"
                             android:fontFamily="@font/assistant_semibold"
                             android:text="@string/Rs"
-                            android:textSize="@dimen/text_tab_small"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_tab_small" />
 
                         <TextView
                             android:id="@+id/check_item_price"
@@ -105,34 +106,27 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="end">
-
             <LinearLayout
                 android:id="@+id/check_item_delete"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/transparent"
-                android:gravity="bottom"
-                android:orientation="horizontal"
+                android:background="@color/primary_darker"
                 android:padding="@dimen/margin_6">
 
                 <TextView
                     android:id="@+id/check_item_delete_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:fontFamily="@font/overlock_sc"
+                    android:text="REMOVE"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tab_small"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
