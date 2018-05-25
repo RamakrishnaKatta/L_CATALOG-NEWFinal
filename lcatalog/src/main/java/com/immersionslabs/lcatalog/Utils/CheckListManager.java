@@ -2,7 +2,7 @@ package com.immersionslabs.lcatalog.Utils;
 
 import java.util.ArrayList;
 
-public class ChecklistManager {
+public class CheckListManager {
 
     private static Long Current_Value = 0L;
     private static ArrayList<String> Articles = new ArrayList<String>();

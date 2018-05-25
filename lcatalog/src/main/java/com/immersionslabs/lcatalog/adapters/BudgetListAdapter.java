@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.BudgetManager;
+import com.immersionslabs.lcatalog.Utils.BudgetListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 
@@ -39,7 +39,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
     private Activity activity;
     private SessionManager sessionManager;
-    private BudgetManager budgetlistManager;
+    private BudgetListManager budgetlistManager;
 
     private String str_current_value, str_total_budget_value, str_remaining_value;
     private EditText Total_budget, Current_budget, Remaining_budget;
@@ -98,7 +98,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
         sessionManager = new SessionManager(activity);
         HashMap hashmap = new HashMap();
-        budgetlistManager = new BudgetManager();
+        budgetlistManager = new BudgetListManager();
         return new ViewHolder(view);
     }
 

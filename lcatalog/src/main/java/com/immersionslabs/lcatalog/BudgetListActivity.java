@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +14,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.BudgetManager;
+import com.immersionslabs.lcatalog.Utils.BudgetListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.BudgetListAdapter;
@@ -41,19 +41,16 @@ public class BudgetListActivity extends AppCompatActivity {
 
     private static final String TAG = "BudgetListActivity";
 
-    EditText Total_budget, Current_value, Remaining_value;
-    Button Alter_Budget, Update_Budget, Clear_Budget;
+    private static String BUDGETLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
-    SessionManager sessionmanager;
     HashMap<String, Long> get_details;
-    BudgetManager budgetManager;
     KeyListener listener;
+    String USER_LOG_TYPE;
 
-    private static String BUDGET_URL = null;
-
-    String USER_ID, USER_LOG_TYPE;
-    RecyclerView budget_recycler;
-    GridLayoutManager budget_list_manager;
+    SessionManager sessionManager;
+    RecyclerView budgetlist_recycler;
+    GridLayoutManager budgetlistManager;
+    BudgetListManager budgetListManager;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -71,25 +68,22 @@ public class BudgetListActivity extends AppCompatActivity {
     String str_current_value, str_total_budget_value, str_remaining_value;
     String Guest_Total_budget, Guest_Current_value, Guest_Remaining_budget;
 
+    EditText Total_budget, Current_value, Remaining_value;
+    AppCompatButton Alter_Budget, Update_Budget, Clear_Budget;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_list);
 
-        budgetManager = new BudgetManager();
+        budgetListManager = new BudgetListManager();
         USER_LOG_TYPE = EnvConstants.user_type;
 
-        sessionmanager = new SessionManager(getApplicationContext());
-        HashMap hashmap = new HashMap();
+        sessionManager = new SessionManager(getApplicationContext());
 
-        hashmap = sessionmanager.getUserDetails();
-        USER_ID = (String) hashmap.get(SessionManager.KEY_USER_ID);
-
-        BUDGET_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
-
-        budget_recycler = findViewById(R.id.budget_recycler);
-        budget_recycler.setHasFixedSize(true);
-        budget_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        budgetlist_recycler = findViewById(R.id.budget_recycler);
+        budgetlist_recycler.setHasFixedSize(true);
+        budgetlist_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         set_list = new HashSet<String>();
 
         Toolbar toolbar = findViewById(R.id.toolbar_budget_list);
@@ -144,22 +138,22 @@ public class BudgetListActivity extends AppCompatActivity {
                 } else {
                     Long Total_value = Long.parseLong(Total_budget.getText().toString());
                     if (EnvConstants.user_type.equals("CUSTOMER")) {
-                        Long Current_value = sessionmanager.BUDGET_GET_CURRENT_VALUE();
+                        Long Current_value = sessionManager.BUDGET_GET_CURRENT_VALUE();
                         if (Total_value_String.isEmpty()) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (Total_value < Current_value) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
-                            sessionmanager.BUDGET_SET_TOTAL_VALUE(Total_value);
+                            sessionManager.BUDGET_SET_TOTAL_VALUE(Total_value);
                         }
                     } else {
-                        Long Current_value = budgetManager.BUDGET_GET_CURRENT();
+                        Long Current_value = budgetListManager.BUDGET_GET_CURRENT();
                         if (Total_value_String.isEmpty()) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (Total_value < Current_value) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
-                            budgetManager.BUDGET_SET_TOTAL(Total_value);
+                            budgetListManager.BUDGET_SET_TOTAL(Total_value);
                         }
                     }
                 }
@@ -181,7 +175,7 @@ public class BudgetListActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            sessionmanager.BUDGET_CLEAR_ARTICLES();
+                            sessionManager.BUDGET_CLEAR_ARTICLES();
                             onResume();
                         }
                     });
@@ -202,7 +196,7 @@ public class BudgetListActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
+                            budgetListManager.BUDGET_CLEAR_ARRAY_ARTICLES();
                             onResume();
                         }
                     });
@@ -220,17 +214,17 @@ public class BudgetListActivity extends AppCompatActivity {
     }
 
     private void CommongetData() {
-        Log.e(TAG, "CommonGetData: " + BUDGET_URL);
+        Log.e(TAG, "CommonGetData: " + BUDGETLIST_URL);
 
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
-            set_list = sessionmanager.ReturnID();
+            set_list = sessionManager.ReturnID();
             if (null == set_list || set_list.isEmpty()) {
-                budget_recycler.setVisibility(View.GONE);
+                budgetlist_recycler.setVisibility(View.GONE);
             } else {
                 Iterator iterator = set_list.iterator();
                 while (iterator.hasNext()) {
-                    String temp_budgtet_url = BUDGET_URL + iterator.next().toString();
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
+                    String temp_budgetlist_url = BUDGETLIST_URL + iterator.next().toString();
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgetlist_url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             JSONObject RESP = null;
@@ -239,6 +233,7 @@ public class BudgetListActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            assert RESP != null;
                             GetData(RESP);
 
                         }
@@ -252,13 +247,13 @@ public class BudgetListActivity extends AppCompatActivity {
                 }
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
-            ArrayList<String> strings = budgetManager.BUDGET_GET_ARTICLE_IDS();
+            ArrayList<String> strings = budgetListManager.BUDGET_GET_ARTICLE_IDS();
             if (null == strings || strings.isEmpty()) {
-                budget_recycler.setVisibility(View.GONE);
+                budgetlist_recycler.setVisibility(View.GONE);
             } else {
                 Iterator iterator = strings.iterator();
                 while (iterator.hasNext()) {
-                    String temp_budgtet_url = BUDGET_URL + iterator.next().toString();
+                    String temp_budgtet_url = BUDGETLIST_URL + iterator.next().toString();
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -331,10 +326,10 @@ public class BudgetListActivity extends AppCompatActivity {
         Log.e(TAG, "3ds" + item_3ds);
         Log.e(TAG, "Vendors" + item_vendors);
 
-        budget_list_manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        budget_recycler.setLayoutManager(budget_list_manager);
+        budgetlistManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        budgetlist_recycler.setLayoutManager(budgetlistManager);
         BudgetListAdapter adapter = new BudgetListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
-        budget_recycler.setAdapter(adapter);
+        budgetlist_recycler.setAdapter(adapter);
     }
 
     public void onResume() {
@@ -353,9 +348,9 @@ public class BudgetListActivity extends AppCompatActivity {
         CommongetData();
 
         if (EnvConstants.user_type.equals("CUSTOMER")) {
-            sessionmanager = new SessionManager(getApplicationContext());
+            sessionManager = new SessionManager(getApplicationContext());
             get_details = new HashMap<>();
-            get_details = sessionmanager.getBudgetDetails();
+            get_details = sessionManager.getBudgetDetails();
 
             current_value = get_details.get(SessionManager.KEY_CURRENT_VALUE);
             total_budget_value = get_details.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
@@ -368,7 +363,7 @@ public class BudgetListActivity extends AppCompatActivity {
             Current_value.setText(str_current_value);
             Remaining_value.setText(str_remaining_value);
 
-            if (sessionmanager.BUDGET_RED_MARKER()) {
+            if (sessionManager.BUDGET_RED_MARKER()) {
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 Current_value.setTextColor(getResources().getColor(R.color.red));
                 Remaining_value.setTextColor(getResources().getColor(R.color.red));
@@ -379,15 +374,15 @@ public class BudgetListActivity extends AppCompatActivity {
             }
 
         } else {
-            Guest_Total_budget = Long.toString(budgetManager.BUDGET_GET_TOTAL());
-            Guest_Current_value = Long.toString(budgetManager.BUDGET_GET_CURRENT());
-            Guest_Remaining_budget = Long.toString(budgetManager.BUDGET_GET_REMAINING());
+            Guest_Total_budget = Long.toString(budgetListManager.BUDGET_GET_TOTAL());
+            Guest_Current_value = Long.toString(budgetListManager.BUDGET_GET_CURRENT());
+            Guest_Remaining_budget = Long.toString(budgetListManager.BUDGET_GET_REMAINING());
 
             Total_budget.setText(Guest_Total_budget);
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
 
-            if (budgetManager.BUDGET_RED_MARKER()) {
+            if (budgetListManager.BUDGET_RED_MARKER()) {
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 Current_value.setTextColor(getResources().getColor(R.color.red));
                 Remaining_value.setTextColor(getResources().getColor(R.color.red));

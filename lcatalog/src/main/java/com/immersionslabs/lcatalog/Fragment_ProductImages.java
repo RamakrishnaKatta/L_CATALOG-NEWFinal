@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -26,8 +27,8 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.immersionslabs.lcatalog.Utils.BudgetManager;
-import com.immersionslabs.lcatalog.Utils.ChecklistManager;
+import com.immersionslabs.lcatalog.Utils.BudgetListManager;
+import com.immersionslabs.lcatalog.Utils.CheckListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -70,8 +71,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     String resp, code, message;
 
     String user_id;
-    BudgetManager budgetManager;
-    ChecklistManager checklistManager;
+    BudgetListManager budgetListManager;
+    CheckListManager checkListManager;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -92,7 +93,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_product_images, container, false);
 
@@ -109,8 +110,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
-        budgetManager = new BudgetManager();
-        checklistManager = new ChecklistManager();
+        budgetListManager = new BudgetListManager();
+        checkListManager = new CheckListManager();
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_log_type = (String) hashmap.get(SessionManager.KEY_USER_TYPE);
@@ -229,12 +230,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     }
                 } else {
                     Long currentvalue;
-                    if (checklistManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
+                    if (checkListManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
                         Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
                     } else {
-                        currentvalue = checklistManager.CHECKLIST_GET_CURRENT() + price;
-                        checklistManager.CHECKLIST_ADD_ARTICLE(article_id);
-                        checklistManager.CHECKLIST_SET_CURRENT(currentvalue);
+                        currentvalue = checkListManager.CHECKLIST_GET_CURRENT() + price;
+                        checkListManager.CHECKLIST_ADD_ARTICLE(article_id);
+                        checkListManager.CHECKLIST_SET_CURRENT(currentvalue);
                         Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -372,7 +373,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         }
                     }
                 } else {
-                    if (budgetManager.BUDGET_GET_TOTAL() == 0) {
+                    if (budgetListManager.BUDGET_GET_TOTAL() == 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                         builder.setTitle("Enter Your Budget");
 
@@ -392,7 +393,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                 } else {
-                                    budgetManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
+                                    budgetListManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                 }
                             }
                         });
@@ -406,13 +407,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                     } else {
                         Long price = Long.parseLong(article_price);
-                        Long prevprice = budgetManager.BUDGET_GET_CURRENT();
-                        Long totalbudget = budgetManager.BUDGET_GET_TOTAL();
+                        Long prevprice = budgetListManager.BUDGET_GET_CURRENT();
+                        Long totalbudget = budgetListManager.BUDGET_GET_TOTAL();
                         Long currentprice = price + prevprice;
                         Long Remaining = totalbudget - currentprice;
                         if (Remaining > 0) {
-                            budgetManager.BUDGET_SET_CURRENT(currentprice);
-                            budgetManager.BUDGET_ADD_ARTICLE(article_id);
+                            budgetListManager.BUDGET_SET_CURRENT(currentprice);
+                            budgetListManager.BUDGET_ADD_ARTICLE(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
@@ -422,7 +423,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                             builder.setTitle("Enter Your Budget");
                             final EditText Total_budget_val = new EditText(getContext());
-                            String totalval_text = budgetManager.BUDGET_GET_TOTAL().toString();
+                            String totalval_text = budgetListManager.BUDGET_GET_TOTAL().toString();
                             Total_budget_val.setHint(totalval_text);
                             Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                             builder.setView(Total_budget_val);
@@ -438,7 +439,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     if (budget_value.isEmpty()) {
                                         Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                     } else {
-                                        budgetManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
+                                        budgetListManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                     }
                                 }
                             });
@@ -467,10 +468,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                 } else {
                     Long price = Long.parseLong(article_price);
-                    Long prevprice = budgetManager.BUDGET_GET_CURRENT();
+                    Long prevprice = budgetListManager.BUDGET_GET_CURRENT();
                     Long currentprice = prevprice - price;
-                    budgetManager.BUDGET_SET_CURRENT(currentprice);
-                    budgetManager.BUDGET_REMOVE_ARTICLE(article_id);
+                    budgetListManager.BUDGET_SET_CURRENT(currentprice);
+                    budgetListManager.BUDGET_REMOVE_ARTICLE(article_id);
                     Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                     article_budgetlist.setVisibility(View.VISIBLE);
                     article_removelist.setVisibility(View.GONE);
@@ -638,7 +639,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         super.onResume();
 
         if (EnvConstants.user_type.equals("GUEST")) {
-            if (budgetManager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
+            if (budgetListManager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                 article_budgetlist.setVisibility(View.GONE);
                 article_removelist.setVisibility(View.VISIBLE);
             } else {
@@ -646,7 +647,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 article_removelist.setVisibility(View.GONE);
             }
 
-            if (budgetManager.BUDGET_RED_MARKER()) {
+            if (budgetListManager.BUDGET_RED_MARKER()) {
                 Add_Text.setTextColor(getResources().getColor(R.color.red));
             } else {
                 Add_Text.setTextColor(getResources().getColor(R.color.white));

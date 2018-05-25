@@ -2,6 +2,7 @@ package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +10,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.ChecklistManager;
+import com.immersionslabs.lcatalog.Utils.CheckListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.CheckListAdapter;
@@ -36,14 +36,14 @@ public class CheckListActivity extends AppCompatActivity {
 
     private static final String TAG = "CheckListActivity";
 
-    TextView totalvalue;
-    ChecklistManager checklistManager;
-    SessionManager sessionManager;
-
     private static String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
-    String USER_ID, USER_LOG_TYPE;
+
+    String USER_LOG_TYPE;
+
+    SessionManager sessionManager;
     RecyclerView checklist_recycler;
-    LinearLayoutManager check_list_manager;
+    CheckListManager checkListManager;
+    LinearLayoutManager checklistmanager;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -57,29 +57,18 @@ public class CheckListActivity extends AppCompatActivity {
 
     Set<String> set_list;
 
-    Button Place_enquiry;
+    TextView total_value;
+    AppCompatButton Place_enquiry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_list);
 
-        totalvalue = findViewById(R.id.text_total_value);
-
-        Place_enquiry = findViewById(R.id.place_enquiry);
-        checklistManager = new ChecklistManager();
-        sessionManager = new SessionManager(getApplicationContext());
-
+        checkListManager = new CheckListManager();
         USER_LOG_TYPE = EnvConstants.user_type;
 
-        if (EnvConstants.user_type.equals("CUSTOMER")) {
-            String Total_value_text = sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
-            Log.e(TAG, "currentvalid" + Total_value_text);
-            totalvalue.setText(Total_value_text);
-        } else {
-            String Total_value_text = checklistManager.CHECKLIST_GET_CURRENT().toString();
-            totalvalue.setText(Total_value_text);
-        }
+        sessionManager = new SessionManager(getApplicationContext());
 
         checklist_recycler = findViewById(R.id.checklist_recycler);
         checklist_recycler.setHasFixedSize(true);
@@ -95,6 +84,18 @@ public class CheckListActivity extends AppCompatActivity {
         }
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        Place_enquiry = findViewById(R.id.place_enquiry);
+        total_value = findViewById(R.id.text_total_value);
+
+        if (EnvConstants.user_type.equals("CUSTOMER")) {
+            String Total_value_text = sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
+            Log.e(TAG, "currentvalid" + Total_value_text);
+            total_value.setText(Total_value_text);
+        } else {
+            String Total_value_text = checkListManager.CHECKLIST_GET_CURRENT().toString();
+            total_value.setText(Total_value_text);
+        }
 
         item_ids = new ArrayList<>();
         item_descriptions = new ArrayList<>();
@@ -114,29 +115,9 @@ public class CheckListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    public void onResume() {
-        super.onResume();
-
-        item_ids.clear();
-        item_descriptions.clear();
-        item_names.clear();
-        item_images.clear();
-        item_vendors.clear();
-        item_prices.clear();
-        item_discounts.clear();
-        item_dimensions.clear();
-        item_3ds.clear();
-
-        commongetData();
-    }
-
     private void commongetData() {
         Log.e(TAG, "CommonGetData: " + CHECKLIST_URL);
+
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
             set_list = sessionManager.ReturnCheckListID();
             if (null == set_list || set_list.isEmpty()) {
@@ -144,8 +125,8 @@ public class CheckListActivity extends AppCompatActivity {
             } else {
                 Iterator iterator = set_list.iterator();
                 while (iterator.hasNext()) {
-                    String temp_budgtet_url = CHECKLIST_URL + iterator.next().toString();
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_budgtet_url, null, new Response.Listener<JSONObject>() {
+                    String temp_checklist_url = CHECKLIST_URL + iterator.next().toString();
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, temp_checklist_url, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             JSONObject RESP = null;
@@ -154,6 +135,7 @@ public class CheckListActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            assert RESP != null;
                             GetData(RESP);
 
                         }
@@ -167,7 +149,7 @@ public class CheckListActivity extends AppCompatActivity {
                 }
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
-            ArrayList<String> strings = checklistManager.CHECKLIST_GET_ARTICLE_IDS();
+            ArrayList<String> strings = checkListManager.CHECKLIST_GET_ARTICLE_IDS();
             if (null == strings || strings.isEmpty()) {
                 checklist_recycler.setVisibility(View.GONE);
             } else {
@@ -226,10 +208,31 @@ public class CheckListActivity extends AppCompatActivity {
         Log.e(TAG, "3ds" + item_3ds);
         Log.e(TAG, "Vendors" + item_vendors);
 
-        check_list_manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        checklist_recycler.setLayoutManager(check_list_manager);
+        checklistmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        checklist_recycler.setLayoutManager(checklistmanager);
         CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
         checklist_recycler.setAdapter(adapter);
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        item_ids.clear();
+        item_names.clear();
+        item_descriptions.clear();
+        item_prices.clear();
+        item_images.clear();
+        item_discounts.clear();
+        item_3ds.clear();
+        item_dimensions.clear();
+        item_vendors.clear();
+
+        commongetData();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     @Override

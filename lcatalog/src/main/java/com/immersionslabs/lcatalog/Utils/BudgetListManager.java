@@ -2,7 +2,7 @@ package com.immersionslabs.lcatalog.Utils;
 
 import java.util.ArrayList;
 
-public class BudgetManager {
+public class BudgetListManager {
 
     private static Long Current_Value = Long.valueOf(0), Total_Budget = Long.valueOf(0), Remaining_Budget = Long.valueOf(0);
     private static ArrayList<String> Articles = new ArrayList<String>();

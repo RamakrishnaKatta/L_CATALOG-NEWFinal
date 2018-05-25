@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.immersionslabs.lcatalog.Utils.BudgetManager;
-import com.immersionslabs.lcatalog.Utils.ChecklistManager;
+import com.immersionslabs.lcatalog.Utils.BudgetListManager;
+import com.immersionslabs.lcatalog.Utils.CheckListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int doubleClick = 1;
     NavigationView navigationView;
     private PrefManager prefManager3;
-    BudgetManager budgetManager;
-    ChecklistManager checklistManager;
+    BudgetListManager budgetListManager;
+    CheckListManager checkListManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
-        budgetManager = new BudgetManager();
-        checklistManager = new ChecklistManager();
+        budgetListManager = new BudgetListManager();
+        checkListManager = new CheckListManager();
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -437,8 +437,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "Successfully Signed Out", Toast.LENGTH_SHORT).show();
                     user_Favourite_list.clear();
                     sessionmanager.logoutUser();
-                    budgetManager.BUDGET_CLEAR_ARRAY_ARTICLES();
-                    checklistManager.CHECKLIST_CLEAR_ARRAY_ARTICLES();
+                    budgetListManager.BUDGET_CLEAR_ARRAY_ARTICLES();
+                    checkListManager.CHECKLIST_CLEAR_ARRAY_ARTICLES();
                     Intent intent = new Intent(MainActivity.this, UserTypeActivity.class);
                     startActivity(intent);
                     finish();
