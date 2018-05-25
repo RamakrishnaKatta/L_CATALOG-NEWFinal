@@ -19,7 +19,7 @@
         android:paddingTop="@dimen/margin_40">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_40"
             android:gravity="center"
@@ -28,7 +28,6 @@
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="@dimen/margin_140"
                 android:layout_height="@dimen/margin_140"
-                android:layout_marginStart="@dimen/margin_80"
                 android:contentDescription="@string/company_icon"
                 android:src="@drawable/companyicon" />
 
@@ -74,8 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
-                android:inputType="text"
-                android:textColor="@color/white" />
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Address Label -->
@@ -90,8 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/address"
-                android:inputType="text"
-                android:textColor="@color/white" />
+                android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
         <!--  Email Label -->
@@ -107,8 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/white" />
+                android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- mobile number -->
@@ -125,8 +121,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/mobile_number"
                 android:inputType="text"
-                android:maxLength="10"
-                android:textColor="@color/white" />
+                android:maxLength="10" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Edit Button -->

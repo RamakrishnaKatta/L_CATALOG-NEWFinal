@@ -133,9 +133,9 @@
     <string name="profile_favourites">My Favourites</string>
     <string name="article_download">Download</string>
     <string name="budget_list">Budget List</string>
-    <string name="favourite">Favourite</string>
+    <string name="favourite">User Favourites</string>
     <string name="menu_vendors">Vendors</string>
-    <string name="title_activity_budget_list">My Budget List</string>
+    <string name="title_activity_budget_list">User BudgetList</string>
     <string name="title_activity_budget_bar">Budget Bar</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -222,7 +222,7 @@
     <string name="ProductPageActivity">Product Page</string>
     <string name="ProjectDetailActivity">Project Details</string>
     <string name="ProjectPartDetailsActivity">Project details by Part</string>
-
+    <string name="CheckListActivity">User CheckList</string>
 
     <string name="faq_text_1">The L – Catalog is an Augmented reality (AR) catalogue which helps the furniture manufacturers/vendors to deliver the user/customer the furniture portably in the form of a pattern printed on a paper.</string>
     <string name="faq_text_2">The goal of this product is to provide the opportunity to all the furniture vendors to deliver the customers the feel of having the furniture right in front of him/her without bringing the actual furniture home.</string>
@@ -288,6 +288,5 @@
     <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
     <string name="project_part_desc">Description of the product will be displayed here and also the related products</string>
     <string name="com_appsee_apikey">dd59621a42a3ab8386863fb01099ee3894a7ac70</string>
-    <string name="CheckListActivity">My Check List</string>
 
 </resources>
