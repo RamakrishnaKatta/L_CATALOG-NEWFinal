@@ -47,13 +47,17 @@ public class CheckListActivity extends AppCompatActivity {
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
+    private ArrayList<String> item_descriptions;
     private ArrayList<String> item_prices;
-    private ArrayList<String> item_images;
     private ArrayList<String> item_discounts;
+    private ArrayList<String> item_images;
+    private ArrayList<String> item_dimensions;
+    private ArrayList<String> item_3ds;
+    private ArrayList<String> item_vendors;
 
     Set<String> set_list;
 
-    Button Help_enquiry;
+    Button Place_enquiry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ public class CheckListActivity extends AppCompatActivity {
 
         totalvalue = findViewById(R.id.text_total_value);
 
-        Help_enquiry = findViewById(R.id.place_enquiry);
+        Place_enquiry = findViewById(R.id.place_enquiry);
         checklistManager = new ChecklistManager();
         sessionManager = new SessionManager(getApplicationContext());
 
@@ -90,20 +94,24 @@ public class CheckListActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        Help_enquiry.setOnClickListener(new View.OnClickListener() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        item_ids = new ArrayList<>();
+        item_descriptions = new ArrayList<>();
+        item_names = new ArrayList<>();
+        item_images = new ArrayList<>();
+        item_vendors = new ArrayList<>();
+        item_prices = new ArrayList<>();
+        item_discounts = new ArrayList<>();
+        item_dimensions = new ArrayList<>();
+        item_3ds = new ArrayList<>();
+
+        Place_enquiry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CheckListActivity.this, "Hey Wonderful, Will Get back you soon", Toast.LENGTH_SHORT).show();
             }
         });
-
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-        item_ids = new ArrayList<>();
-        item_names = new ArrayList<>();
-        item_images = new ArrayList<>();
-        item_prices = new ArrayList<>();
-        item_discounts = new ArrayList<>();
     }
 
     @Override
@@ -112,8 +120,19 @@ public class CheckListActivity extends AppCompatActivity {
     }
 
     public void onResume() {
-        commongetData();
         super.onResume();
+
+        item_ids.clear();
+        item_descriptions.clear();
+        item_names.clear();
+        item_images.clear();
+        item_vendors.clear();
+        item_prices.clear();
+        item_discounts.clear();
+        item_dimensions.clear();
+        item_3ds.clear();
+
+        commongetData();
     }
 
     private void commongetData() {
@@ -181,25 +200,35 @@ public class CheckListActivity extends AppCompatActivity {
     }
 
     private void GetData(JSONObject obj) {
+
         try {
             item_ids.add(obj.getString("_id"));
             item_names.add(obj.getString("name"));
+            item_descriptions.add(obj.getString("description"));
             item_prices.add(obj.getString("price"));
             item_images.add(obj.getString("img"));
             item_discounts.add(obj.getString("discount"));
+            item_3ds.add(obj.getString("view_3d"));
+            item_dimensions.add(obj.getString("dimensions"));
+            item_vendors.add(obj.getString("vendor_id"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         Log.e(TAG, "Ids" + item_ids);
         Log.e(TAG, "Names" + item_names);
+        Log.e(TAG, "Descriptions" + item_descriptions);
         Log.e(TAG, "Prices" + item_prices);
         Log.e(TAG, "Images" + item_images);
+        Log.e(TAG, "Dimensions" + item_dimensions);
         Log.e(TAG, "Discounts" + item_discounts);
-
+        Log.e(TAG, "3ds" + item_3ds);
+        Log.e(TAG, "Vendors" + item_vendors);
 
         check_list_manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         checklist_recycler.setLayoutManager(check_list_manager);
-        CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_images, item_prices, item_discounts);
+        CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
         checklist_recycler.setAdapter(adapter);
     }
 

@@ -9,6 +9,8 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.immersionslabs.lcatalog.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +80,7 @@ public class ImageUtils {
             }
 
         } else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(_context);
+            AlertDialog.Builder alert = new AlertDialog.Builder(_context, R.style.AppCompatAlertDialogStyle);
             alert.setTitle("Permission Error!");
             alert.setMessage("We are unable to read your Storage, have you given the permissions ?");
             alert.setPositiveButton("OK", null);

@@ -69,6 +69,7 @@ public class BudgetListActivity extends AppCompatActivity {
     Set<String> set_list;
 
     String str_current_value, str_total_budget_value, str_remaining_value;
+    String Guest_Total_budget, Guest_Current_value, Guest_Remaining_budget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +134,7 @@ public class BudgetListActivity extends AppCompatActivity {
                 enableEditText(Total_budget);
             }
         });
+
         Update_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,11 +169,12 @@ public class BudgetListActivity extends AppCompatActivity {
                 onResume();
             }
         });
+
         Clear_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this, R.style.AppCompatAlertDialogStyle);
                     builder.setTitle("ARE YOU SURE YOU WANT TO CLEAR THE BUDGET?");
 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -192,7 +195,7 @@ public class BudgetListActivity extends AppCompatActivity {
                     builder.show();
 
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this, R.style.AppCompatAlertDialogStyle);
                     builder.setTitle("ARE YOU SURE YOU WANT TO CLEAR THE BUDGET?");
 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -376,13 +379,14 @@ public class BudgetListActivity extends AppCompatActivity {
             }
 
         } else {
-            String Guest_Total_budget, Guest_Current_value, Guest_Remaining_budget;
             Guest_Total_budget = Long.toString(budgetManager.BUDGET_GET_TOTAL());
             Guest_Current_value = Long.toString(budgetManager.BUDGET_GET_CURRENT());
             Guest_Remaining_budget = Long.toString(budgetManager.BUDGET_GET_REMAINING());
+
             Total_budget.setText(Guest_Total_budget);
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
+
             if (budgetManager.BUDGET_RED_MARKER()) {
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 Current_value.setTextColor(getResources().getColor(R.color.red));
@@ -398,6 +402,13 @@ public class BudgetListActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     @Override

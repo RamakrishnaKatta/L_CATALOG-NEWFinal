@@ -82,6 +82,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CheckListActivity"
+            android:label="@string/CheckListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity

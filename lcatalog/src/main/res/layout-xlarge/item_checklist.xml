@@ -131,12 +131,13 @@
                 android:background="@color/primary_darker"
                 android:gravity="center|end"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_6">
+                android:paddingEnd="@dimen/margin_6"
+                android:paddingStart="@dimen/margin_6">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/remove_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/margin_40"
+                    android:layout_height="@dimen/margin_40"
                     android:src="@mipmap/ic_delete" />
 
                 <TextView
@@ -147,7 +148,7 @@
                     android:fontFamily="@font/overlock_sc"
                     android:text="REMOVE"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_tab_small"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
             </LinearLayout>

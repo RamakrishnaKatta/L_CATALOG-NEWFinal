@@ -394,7 +394,7 @@ public class UserTypeActivity extends AppCompatActivity {
     }
 
     private void showDialogOK(DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle)
                 .setMessage("Storage and Camera Services are Mandatory for this Application")
                 .setPositiveButton("OK", okListener)
                 .setNegativeButton("Cancel", okListener)

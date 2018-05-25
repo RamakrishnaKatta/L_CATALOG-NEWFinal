@@ -10,6 +10,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.BudgetListActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
@@ -38,19 +38,22 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     private static final String TAG = "BudgetListAdapter";
 
     private Activity activity;
-    SessionManager sessionManager;
-    BudgetManager budgetManager;
-    String str_current_value, str_total_budget_value, str_remaining_value;
+    private SessionManager sessionManager;
+    private BudgetManager budgetlistManager;
+
+    private String str_current_value, str_total_budget_value, str_remaining_value;
+    private EditText Total_budget, Current_budget, Remaining_budget;
+    private Long now_price, prev_price, current_price;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_descriptions;
     private ArrayList<String> item_prices;
     private ArrayList<String> item_discounts;
-    private ArrayList<String> item_vendors;
-    private ArrayList<String> item_images;
     private ArrayList<String> item_dimensions;
+    private ArrayList<String> item_images;
     private ArrayList<String> item_3ds;
+    private ArrayList<String> item_vendors;
 
     public BudgetListAdapter(Activity activity,
                              ArrayList<String> item_ids,
@@ -68,20 +71,20 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         this.item_descriptions = item_descriptions;
         this.item_prices = item_prices;
         this.item_discounts = item_discounts;
-        this.item_vendors = item_vendors;
-        this.item_images = item_images;
         this.item_dimensions = item_dimensions;
+        this.item_images = item_images;
         this.item_3ds = item_3ds;
+        this.item_vendors = item_vendors;
 
         Log.e(TAG, "ids----" + item_ids);
         Log.e(TAG, "names----" + item_names);
         Log.e(TAG, "descriptions----" + item_descriptions);
         Log.e(TAG, "prices----" + item_prices);
         Log.e(TAG, "discounts----" + item_discounts);
-        Log.e(TAG, "vendors----" + item_vendors);
-        Log.e(TAG, "images----" + item_images);
         Log.e(TAG, "Dimensions----" + item_dimensions);
+        Log.e(TAG, "images----" + item_images);
         Log.e(TAG, "3ds ---- " + item_3ds);
+        Log.e(TAG, "vendors----" + item_vendors);
 
         this.activity = activity;
     }
@@ -92,9 +95,10 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_budgetlist, parent, false);
+
         sessionManager = new SessionManager(activity);
         HashMap hashmap = new HashMap();
-        budgetManager = new BudgetManager();
+        budgetlistManager = new BudgetManager();
         return new ViewHolder(view);
     }
 
@@ -103,6 +107,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = item_images.get(position);
+
         try {
             JSONArray images_json = new JSONArray(get_image);
             for (int i = 0; i < images_json.length(); i++) {
@@ -144,14 +149,13 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                 b.putString("article_description", item_descriptions.get(position));
                 b.putString("article_price", item_prices.get(position));
                 b.putString("article_discount", item_discounts.get(position));
-                b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_dimensions", item_dimensions.get(position));
-                b.putString("article_3ds", item_3ds.get(position));
                 b.putString("article_images", item_images.get(position));
+                b.putString("article_3ds", item_3ds.get(position));
+                b.putString("article_vendor", item_vendors.get(position));
                 b.putString("article_position", String.valueOf(position));
 
                 intent.putExtras(b);
-
                 context[0].startActivity(intent);
             }
         });
@@ -160,24 +164,31 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    Long price = Long.parseLong(itemNewPrice);
-                    sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), price);
-                    str_current_value=sessionManager.BUDGET_GET_CURRENT_VALUE().toString();
-                    str_remaining_value=sessionManager.BUDGET_GET_REMAINING_VALUE().toString();
-                    str_total_budget_value=sessionManager.BUDGET_GET_TOTAL_VALUE().toString();
-                    Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                    now_price = Long.parseLong(itemNewPrice);
+                    sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), now_price);
+                    str_current_value = sessionManager.BUDGET_GET_CURRENT_VALUE().toString();
+                    str_remaining_value = sessionManager.BUDGET_GET_REMAINING_VALUE().toString();
+                    str_total_budget_value = sessionManager.BUDGET_GET_TOTAL_VALUE().toString();
+
+                    Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
 
                 } else {
-                    Long price = Long.parseLong(itemNewPrice);
-                    Long prevprice = budgetManager.BUDGET_GET_CURRENT();
-                    Long currentprice = prevprice - price;
-                    budgetManager.BUDGET_SET_CURRENT(currentprice);
-                    budgetManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
-                    str_current_value=budgetManager.BUDGET_GET_CURRENT().toString();
-                    str_remaining_value=budgetManager.BUDGET_GET_REMAINING().toString();
-                    str_total_budget_value=budgetManager.BUDGET_GET_TOTAL().toString();
-                    Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
+                    now_price = Long.parseLong(itemNewPrice);
+                    prev_price = budgetlistManager.BUDGET_GET_CURRENT();
+                    current_price = prev_price - now_price;
+                    budgetlistManager.BUDGET_SET_CURRENT(current_price);
+                    budgetlistManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
+                    str_current_value = budgetlistManager.BUDGET_GET_CURRENT().toString();
+                    str_remaining_value = budgetlistManager.BUDGET_GET_REMAINING().toString();
+                    str_total_budget_value = budgetlistManager.BUDGET_GET_TOTAL().toString();
+
+                    Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                 }
+
                 try {
                     item_ids.remove(position);
                     notifyItemRemoved(position);
@@ -185,14 +196,14 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
                 }
-                EditText Totalbudget= activity.findViewById(R.id.input_your_budget);
-                EditText Currentbudget=  activity.findViewById(R.id.input_your_current_value);
-                EditText Remainingbudget=  activity.findViewById(R.id.input_your_remaining_value);
-                Totalbudget.setText(str_total_budget_value);
-                Currentbudget.setText(str_current_value);
-                Remainingbudget.setText(str_remaining_value);
-            }
 
+                Total_budget = activity.findViewById(R.id.input_your_budget);
+                Current_budget = activity.findViewById(R.id.input_your_current_value);
+                Remaining_budget = activity.findViewById(R.id.input_your_remaining_value);
+                Total_budget.setText(str_total_budget_value);
+                Current_budget.setText(str_current_value);
+                Remaining_budget.setText(str_remaining_value);
+            }
         });
     }
 
@@ -202,12 +213,14 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+
         private TextView item_name, item_description, item_price, item_discount, item_price_new, item_remove;
         private AppCompatImageView item_image;
         private RelativeLayout BudgetList_container;
 
         ViewHolder(View view) {
             super(view);
+
             BudgetList_container = view.findViewById(R.id.budget_container);
             item_image = view.findViewById(R.id.budget_item_image);
             item_name = view.findViewById(R.id.budget_item_name);
@@ -219,4 +232,3 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         }
     }
 }
-

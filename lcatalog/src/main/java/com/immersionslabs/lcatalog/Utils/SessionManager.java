@@ -12,11 +12,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.security.auth.login.LoginException;
-
 public class SessionManager {
 
-    private static final String TAG = "sessionmanager";
+    private static final String TAG = "SessionManager";
 
     private SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -335,7 +333,7 @@ public class SessionManager {
 
     public void CHECKLIST_CLEAR_ARTICLES() {
         String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
-        String Global_id_checklist=Global_id+KEY_CHECKLIST_GLOBAL_USER_ID;
+        String Global_id_checklist = Global_id + KEY_CHECKLIST_GLOBAL_USER_ID;
         String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         editor.remove(Global_id_checklist);
         editor.remove(Unique_Current_Id);

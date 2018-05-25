@@ -258,7 +258,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hey Check this out!!");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://portal.immersionslabs.com/#/articleDetails/" + article_id);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://lcatalog.immersionslabs.com/#/articleDetails/" + article_id);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
@@ -290,7 +290,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     getdetails = sessionmanager.getBudgetDetails();
                     Long totalbudget = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
                     if (totalbudget == 0) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                         builder.setTitle("Enter Your Budget");
 
                         final EditText Total_budget_val = new EditText(getContext());
@@ -336,11 +336,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         } else if (Remaining < 0) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                             builder.setTitle("Enter Your Budget");
 
                             final EditText Total_budget_val = new EditText(getContext());
-                            String hinttext=sessionmanager.BUDGET_GET_TOTAL_VALUE().toString();
+                            String hinttext = sessionmanager.BUDGET_GET_TOTAL_VALUE().toString();
                             Total_budget_val.setHint(hinttext);
                             Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                             builder.setView(Total_budget_val);
@@ -373,7 +373,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     }
                 } else {
                     if (budgetManager.BUDGET_GET_TOTAL() == 0) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                         builder.setTitle("Enter Your Budget");
 
                         final EditText Total_budget_val = new EditText(getContext());
@@ -418,11 +418,11 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                         }
                         if (Remaining <= 0) {
-                           Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            Toast.makeText(getContext(), "Budget crossed,try increasing the budget", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                             builder.setTitle("Enter Your Budget");
                             final EditText Total_budget_val = new EditText(getContext());
-                            String totalval_text=budgetManager.BUDGET_GET_TOTAL().toString();
+                            String totalval_text = budgetManager.BUDGET_GET_TOTAL().toString();
                             Total_budget_val.setHint(totalval_text);
                             Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                             builder.setView(Total_budget_val);
@@ -449,7 +449,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 }
                             });
                             builder.show();
-
                         }
                     }
                 }

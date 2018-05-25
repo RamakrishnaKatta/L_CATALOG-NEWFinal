@@ -120,10 +120,9 @@
     <string name="dimen_height">HEIGHT :</string>
     <string name="height_value">20</string>
     <string name="providedby_vendor">PROVIDED BY :</string>
-    <string name="pattern_image">ARTICLE PATTERN</string>
-    <string name="vendor_title">NAME :</string>
+    <string name="pattern_image">ARTICLE PATTERN :</string>
+    <string name="vendor_details">NAME &amp; ADDRESS :</string>
     <string name="vendor_name">CMR</string>
-    <string name="vendor_address_title">ADDRESS :</string>
     <string name="percentage_symbol">%</string>
     <string name="dimension_value">in</string>
     <string name="discount_off"> OFF</string>
@@ -136,7 +135,7 @@
     <string name="budget_list">Budget List</string>
     <string name="favourite">Favourite</string>
     <string name="menu_vendors">Vendors</string>
-    <string name="title_activity_budget_list">Budget List</string>
+    <string name="title_activity_budget_list">My Budget List</string>
     <string name="title_activity_budget_bar">Budget Bar</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -289,5 +288,6 @@
     <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
     <string name="project_part_desc">Description of the product will be displayed here and also the related products</string>
     <string name="com_appsee_apikey">dd59621a42a3ab8386863fb01099ee3894a7ac70</string>
+    <string name="CheckListActivity">My Check List</string>
 
 </resources>
