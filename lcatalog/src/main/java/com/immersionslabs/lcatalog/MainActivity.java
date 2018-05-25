@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.immersionslabs.lcatalog.Utils.BudgetListManager;
-import com.immersionslabs.lcatalog.Utils.CheckListManager;
+import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
+import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -39,17 +39,19 @@ import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
+
     boolean doubleBackToExitPressedOnce = false;
     String name, email, phone, address, user_log_type;
     String guest_name, guest_phone;
     TextView user_type, user_email, user_name;
     HashMap hashMap;
     SessionManager sessionmanager;
+
     int doubleClick = 1;
     NavigationView navigationView;
     private PrefManager prefManager3;
-    BudgetListManager budgetListManager;
-    CheckListManager checkListManager;
+    Manager_BudgetList manager_budgetList;
+    Manager_CheckList manager_checkList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
-        budgetListManager = new BudgetListManager();
-        checkListManager = new CheckListManager();
+        manager_budgetList = new Manager_BudgetList();
+        manager_checkList = new Manager_CheckList();
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -437,8 +439,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "Successfully Signed Out", Toast.LENGTH_SHORT).show();
                     user_Favourite_list.clear();
                     sessionmanager.logoutUser();
-                    budgetListManager.BUDGET_CLEAR_ARRAY_ARTICLES();
-                    checkListManager.CHECKLIST_CLEAR_ARRAY_ARTICLES();
+                    manager_budgetList.BUDGET_CLEAR_ARRAY_ARTICLES();
+                    manager_checkList.CHECKLIST_CLEAR_ARRAY_ARTICLES();
                     Intent intent = new Intent(MainActivity.this, UserTypeActivity.class);
                     startActivity(intent);
                     finish();

@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.BudgetListManager;
+import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.BudgetListAdapter;
@@ -49,8 +49,8 @@ public class BudgetListActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
     RecyclerView budgetlist_recycler;
-    GridLayoutManager budgetlistManager;
-    BudgetListManager budgetListManager;
+    GridLayoutManager gridLayoutManager;
+    Manager_BudgetList manager_budgetList;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -76,7 +76,7 @@ public class BudgetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget_list);
 
-        budgetListManager = new BudgetListManager();
+        manager_budgetList = new Manager_BudgetList();
         USER_LOG_TYPE = EnvConstants.user_type;
 
         sessionManager = new SessionManager(getApplicationContext());
@@ -147,13 +147,13 @@ public class BudgetListActivity extends AppCompatActivity {
                             sessionManager.BUDGET_SET_TOTAL_VALUE(Total_value);
                         }
                     } else {
-                        Long Current_value = budgetListManager.BUDGET_GET_CURRENT();
+                        Long Current_value = manager_budgetList.BUDGET_GET_CURRENT();
                         if (Total_value_String.isEmpty()) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (Total_value < Current_value) {
                             Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
                         } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
-                            budgetListManager.BUDGET_SET_TOTAL(Total_value);
+                            manager_budgetList.BUDGET_SET_TOTAL(Total_value);
                         }
                     }
                 }
@@ -196,7 +196,7 @@ public class BudgetListActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            budgetListManager.BUDGET_CLEAR_ARRAY_ARTICLES();
+                            manager_budgetList.BUDGET_CLEAR_ARRAY_ARTICLES();
                             onResume();
                         }
                     });
@@ -247,7 +247,7 @@ public class BudgetListActivity extends AppCompatActivity {
                 }
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
-            ArrayList<String> strings = budgetListManager.BUDGET_GET_ARTICLE_IDS();
+            ArrayList<String> strings = manager_budgetList.BUDGET_GET_ARTICLE_IDS();
             if (null == strings || strings.isEmpty()) {
                 budgetlist_recycler.setVisibility(View.GONE);
             } else {
@@ -326,8 +326,8 @@ public class BudgetListActivity extends AppCompatActivity {
         Log.e(TAG, "3ds" + item_3ds);
         Log.e(TAG, "Vendors" + item_vendors);
 
-        budgetlistManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        budgetlist_recycler.setLayoutManager(budgetlistManager);
+        gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        budgetlist_recycler.setLayoutManager(gridLayoutManager);
         BudgetListAdapter adapter = new BudgetListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
         budgetlist_recycler.setAdapter(adapter);
     }
@@ -374,15 +374,15 @@ public class BudgetListActivity extends AppCompatActivity {
             }
 
         } else {
-            Guest_Total_budget = Long.toString(budgetListManager.BUDGET_GET_TOTAL());
-            Guest_Current_value = Long.toString(budgetListManager.BUDGET_GET_CURRENT());
-            Guest_Remaining_budget = Long.toString(budgetListManager.BUDGET_GET_REMAINING());
+            Guest_Total_budget = Long.toString(manager_budgetList.BUDGET_GET_TOTAL());
+            Guest_Current_value = Long.toString(manager_budgetList.BUDGET_GET_CURRENT());
+            Guest_Remaining_budget = Long.toString(manager_budgetList.BUDGET_GET_REMAINING());
 
             Total_budget.setText(Guest_Total_budget);
             Current_value.setText(Guest_Current_value);
             Remaining_value.setText(Guest_Remaining_budget);
 
-            if (budgetListManager.BUDGET_RED_MARKER()) {
+            if (manager_budgetList.BUDGET_RED_MARKER()) {
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 Current_value.setTextColor(getResources().getColor(R.color.red));
                 Remaining_value.setTextColor(getResources().getColor(R.color.red));

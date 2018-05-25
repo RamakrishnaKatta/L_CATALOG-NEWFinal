@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.BudgetListManager;
+import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 
@@ -39,7 +39,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
     private Activity activity;
     private SessionManager sessionManager;
-    private BudgetListManager budgetlistManager;
+    private Manager_BudgetList manager_budgetlist;
 
     private String str_current_value, str_total_budget_value, str_remaining_value;
     private EditText Total_budget, Current_budget, Remaining_budget;
@@ -98,7 +98,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
         sessionManager = new SessionManager(activity);
         HashMap hashmap = new HashMap();
-        budgetlistManager = new BudgetListManager();
+        manager_budgetlist = new Manager_BudgetList();
         return new ViewHolder(view);
     }
 
@@ -176,13 +176,13 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
 
                 } else {
                     now_price = Long.parseLong(itemNewPrice);
-                    prev_price = budgetlistManager.BUDGET_GET_CURRENT();
+                    prev_price = manager_budgetlist.BUDGET_GET_CURRENT();
                     current_price = prev_price - now_price;
-                    budgetlistManager.BUDGET_SET_CURRENT(current_price);
-                    budgetlistManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
-                    str_current_value = budgetlistManager.BUDGET_GET_CURRENT().toString();
-                    str_remaining_value = budgetlistManager.BUDGET_GET_REMAINING().toString();
-                    str_total_budget_value = budgetlistManager.BUDGET_GET_TOTAL().toString();
+                    manager_budgetlist.BUDGET_SET_CURRENT(current_price);
+                    manager_budgetlist.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
+                    str_current_value = manager_budgetlist.BUDGET_GET_CURRENT().toString();
+                    str_remaining_value = manager_budgetlist.BUDGET_GET_REMAINING().toString();
+                    str_total_budget_value = manager_budgetlist.BUDGET_GET_TOTAL().toString();
 
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);

@@ -27,8 +27,8 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.immersionslabs.lcatalog.Utils.BudgetListManager;
-import com.immersionslabs.lcatalog.Utils.CheckListManager;
+import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
+import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
@@ -71,8 +71,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     String resp, code, message;
 
     String user_id;
-    BudgetListManager budgetListManager;
-    CheckListManager checkListManager;
+    Manager_BudgetList manager_budgetList;
+    Manager_CheckList manager_checkList;
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
@@ -110,8 +110,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
-        budgetListManager = new BudgetListManager();
-        checkListManager = new CheckListManager();
+        manager_budgetList = new Manager_BudgetList();
+        manager_checkList = new Manager_CheckList();
         hashmap = sessionmanager.getUserDetails();
         user_id = (String) hashmap.get(SessionManager.KEY_USER_ID);
         user_log_type = (String) hashmap.get(SessionManager.KEY_USER_TYPE);
@@ -230,12 +230,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     }
                 } else {
                     Long currentvalue;
-                    if (checkListManager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
+                    if (manager_checkList.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
                         Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
                     } else {
-                        currentvalue = checkListManager.CHECKLIST_GET_CURRENT() + price;
-                        checkListManager.CHECKLIST_ADD_ARTICLE(article_id);
-                        checkListManager.CHECKLIST_SET_CURRENT(currentvalue);
+                        currentvalue = manager_checkList.CHECKLIST_GET_CURRENT() + price;
+                        manager_checkList.CHECKLIST_ADD_ARTICLE(article_id);
+                        manager_checkList.CHECKLIST_SET_CURRENT(currentvalue);
                         Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -373,7 +373,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         }
                     }
                 } else {
-                    if (budgetListManager.BUDGET_GET_TOTAL() == 0) {
+                    if (manager_budgetList.BUDGET_GET_TOTAL() == 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                         builder.setTitle("Enter Your Budget");
 
@@ -393,7 +393,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 if (budget_value.isEmpty()) {
                                     Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                 } else {
-                                    budgetListManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
+                                    manager_budgetList.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                 }
                             }
                         });
@@ -407,13 +407,13 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                     } else {
                         Long price = Long.parseLong(article_price);
-                        Long prevprice = budgetListManager.BUDGET_GET_CURRENT();
-                        Long totalbudget = budgetListManager.BUDGET_GET_TOTAL();
+                        Long prevprice = manager_budgetList.BUDGET_GET_CURRENT();
+                        Long totalbudget = manager_budgetList.BUDGET_GET_TOTAL();
                         Long currentprice = price + prevprice;
                         Long Remaining = totalbudget - currentprice;
                         if (Remaining > 0) {
-                            budgetListManager.BUDGET_SET_CURRENT(currentprice);
-                            budgetListManager.BUDGET_ADD_ARTICLE(article_id);
+                            manager_budgetList.BUDGET_SET_CURRENT(currentprice);
+                            manager_budgetList.BUDGET_ADD_ARTICLE(article_id);
                             article_budgetlist.setVisibility(View.GONE);
                             article_removelist.setVisibility(View.VISIBLE);
                             Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
@@ -423,7 +423,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
                             builder.setTitle("Enter Your Budget");
                             final EditText Total_budget_val = new EditText(getContext());
-                            String totalval_text = budgetListManager.BUDGET_GET_TOTAL().toString();
+                            String totalval_text = manager_budgetList.BUDGET_GET_TOTAL().toString();
                             Total_budget_val.setHint(totalval_text);
                             Total_budget_val.setInputType(InputType.TYPE_CLASS_NUMBER);
                             builder.setView(Total_budget_val);
@@ -439,7 +439,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     if (budget_value.isEmpty()) {
                                         Toast.makeText(getContext(), "Enter a value first", Toast.LENGTH_LONG).show();
                                     } else {
-                                        budgetListManager.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
+                                        manager_budgetList.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                     }
                                 }
                             });
@@ -468,10 +468,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
                 } else {
                     Long price = Long.parseLong(article_price);
-                    Long prevprice = budgetListManager.BUDGET_GET_CURRENT();
+                    Long prevprice = manager_budgetList.BUDGET_GET_CURRENT();
                     Long currentprice = prevprice - price;
-                    budgetListManager.BUDGET_SET_CURRENT(currentprice);
-                    budgetListManager.BUDGET_REMOVE_ARTICLE(article_id);
+                    manager_budgetList.BUDGET_SET_CURRENT(currentprice);
+                    manager_budgetList.BUDGET_REMOVE_ARTICLE(article_id);
                     Toast.makeText(getContext(), "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                     article_budgetlist.setVisibility(View.VISIBLE);
                     article_removelist.setVisibility(View.GONE);
@@ -639,7 +639,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         super.onResume();
 
         if (EnvConstants.user_type.equals("GUEST")) {
-            if (budgetListManager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
+            if (manager_budgetList.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                 article_budgetlist.setVisibility(View.GONE);
                 article_removelist.setVisibility(View.VISIBLE);
             } else {
@@ -647,7 +647,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 article_removelist.setVisibility(View.GONE);
             }
 
-            if (budgetListManager.BUDGET_RED_MARKER()) {
+            if (manager_budgetList.BUDGET_RED_MARKER()) {
                 Add_Text.setTextColor(getResources().getColor(R.color.red));
             } else {
                 Add_Text.setTextColor(getResources().getColor(R.color.white));

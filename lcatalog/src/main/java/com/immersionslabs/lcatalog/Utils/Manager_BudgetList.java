@@ -2,13 +2,13 @@ package com.immersionslabs.lcatalog.Utils;
 
 import java.util.ArrayList;
 
-public class BudgetListManager {
+public class Manager_BudgetList {
 
-    private static Long Current_Value = Long.valueOf(0), Total_Budget = Long.valueOf(0), Remaining_Budget = Long.valueOf(0);
+    private static Long Current_Budget = 0L, Total_Budget = 0L, Remaining_Budget = 0L;
     private static ArrayList<String> Articles = new ArrayList<String>();
 
     public Long BUDGET_GET_CURRENT() {
-        return Current_Value;
+        return Current_Budget;
     }
 
     public Long BUDGET_GET_REMAINING() {
@@ -21,7 +21,7 @@ public class BudgetListManager {
     }
 
     public void BUDGET_SET_CURRENT(Long current_Value) {
-        Current_Value = current_Value;
+        Current_Budget = current_Value;
     }
 
     public void BUDGET_SET_REMAINING(Long remaining_Budget) {
@@ -60,7 +60,7 @@ public class BudgetListManager {
 
     public void BUDGET_CLEAR_ARRAY_ARTICLES() {
         Articles.clear();
-        Current_Value = 0L;
+        Current_Budget = 0L;
         Total_Budget = 0L;
         Remaining_Budget = 0L;
     }
@@ -77,7 +77,3 @@ public class BudgetListManager {
         return returnval;
     }
 }
-
-
-
-

@@ -19,7 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.CheckListManager;
+import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.CheckListAdapter;
@@ -41,9 +41,9 @@ public class CheckListActivity extends AppCompatActivity {
     String USER_LOG_TYPE;
 
     SessionManager sessionManager;
-    RecyclerView checklist_recycler;
-    CheckListManager checkListManager;
-    LinearLayoutManager checklistmanager;
+    RecyclerView recycler_checklist;
+    Manager_CheckList manager_checkList;
+    LinearLayoutManager linearlayoutmanager;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -65,14 +65,14 @@ public class CheckListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_list);
 
-        checkListManager = new CheckListManager();
+        manager_checkList = new Manager_CheckList();
         USER_LOG_TYPE = EnvConstants.user_type;
 
         sessionManager = new SessionManager(getApplicationContext());
 
-        checklist_recycler = findViewById(R.id.checklist_recycler);
-        checklist_recycler.setHasFixedSize(true);
-        checklist_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        recycler_checklist = findViewById(R.id.checklist_recycler);
+        recycler_checklist.setHasFixedSize(true);
+        recycler_checklist.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         set_list = new HashSet<String>();
 
         Toolbar toolbar = findViewById(R.id.toolbar_check_list);
@@ -93,7 +93,7 @@ public class CheckListActivity extends AppCompatActivity {
             Log.e(TAG, "currentvalid" + Total_value_text);
             total_value.setText(Total_value_text);
         } else {
-            String Total_value_text = checkListManager.CHECKLIST_GET_CURRENT().toString();
+            String Total_value_text = manager_checkList.CHECKLIST_GET_CURRENT().toString();
             total_value.setText(Total_value_text);
         }
 
@@ -121,7 +121,7 @@ public class CheckListActivity extends AppCompatActivity {
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
             set_list = sessionManager.ReturnCheckListID();
             if (null == set_list || set_list.isEmpty()) {
-                checklist_recycler.setVisibility(View.GONE);
+                recycler_checklist.setVisibility(View.GONE);
             } else {
                 Iterator iterator = set_list.iterator();
                 while (iterator.hasNext()) {
@@ -149,9 +149,9 @@ public class CheckListActivity extends AppCompatActivity {
                 }
             }
         } else if (USER_LOG_TYPE.equals("GUEST")) {
-            ArrayList<String> strings = checkListManager.CHECKLIST_GET_ARTICLE_IDS();
+            ArrayList<String> strings = manager_checkList.CHECKLIST_GET_ARTICLE_IDS();
             if (null == strings || strings.isEmpty()) {
-                checklist_recycler.setVisibility(View.GONE);
+                recycler_checklist.setVisibility(View.GONE);
             } else {
                 Iterator iterator = strings.iterator();
                 while (iterator.hasNext()) {
@@ -208,10 +208,10 @@ public class CheckListActivity extends AppCompatActivity {
         Log.e(TAG, "3ds" + item_3ds);
         Log.e(TAG, "Vendors" + item_vendors);
 
-        checklistmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        checklist_recycler.setLayoutManager(checklistmanager);
+        linearlayoutmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recycler_checklist.setLayoutManager(linearlayoutmanager);
         CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
-        checklist_recycler.setAdapter(adapter);
+        recycler_checklist.setAdapter(adapter);
     }
 
     public void onResume() {

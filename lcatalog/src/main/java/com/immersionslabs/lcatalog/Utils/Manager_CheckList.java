@@ -2,7 +2,7 @@ package com.immersionslabs.lcatalog.Utils;
 
 import java.util.ArrayList;
 
-public class CheckListManager {
+public class Manager_CheckList {
 
     private static Long Current_Value = 0L;
     private static ArrayList<String> Articles = new ArrayList<String>();
@@ -11,11 +11,9 @@ public class CheckListManager {
         return Current_Value;
     }
 
-
     public void CHECKLIST_SET_CURRENT(Long current_Value) {
         Current_Value = current_Value;
     }
-
 
     public void CHECKLIST_ADD_ARTICLE(String article_id) {
         Articles.add(article_id);
@@ -27,6 +25,7 @@ public class CheckListManager {
             Current_Value -= price;
         }
     }
+
     public boolean CHECKLIST_IS_ARTICLE_EXISTS(String article_id) {
         Articles.add("empty");
         boolean flag;
@@ -46,6 +45,5 @@ public class CheckListManager {
     public void CHECKLIST_CLEAR_ARRAY_ARTICLES() {
         Articles.clear();
         Current_Value = 0L;
-
     }
 }

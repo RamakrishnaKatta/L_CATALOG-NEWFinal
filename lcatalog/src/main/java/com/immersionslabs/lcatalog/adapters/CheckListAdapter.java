@@ -21,8 +21,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
-import com.immersionslabs.lcatalog.Utils.CheckListManager;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 
 import org.json.JSONArray;
@@ -37,7 +37,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
 
     private Activity activity;
     private SessionManager sessionManager;
-    private CheckListManager checkListManager;
+    private Manager_CheckList manager_checkList;
 
     private String str_total_checklist_value;
     private Long now_price;
@@ -95,7 +95,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
 
         sessionManager = new SessionManager(activity);
         HashMap hashmap = new HashMap();
-        checkListManager = new CheckListManager();
+        manager_checkList = new Manager_CheckList();
         return new ViewHolder(view);
     }
 
@@ -166,8 +166,8 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
                     toast.show();
 
                 } else {
-                    checkListManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), now_price);
-                    str_total_checklist_value = checkListManager.CHECKLIST_GET_CURRENT().toString();
+                    manager_checkList.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), now_price);
+                    str_total_checklist_value = manager_checkList.CHECKLIST_GET_CURRENT().toString();
 
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
