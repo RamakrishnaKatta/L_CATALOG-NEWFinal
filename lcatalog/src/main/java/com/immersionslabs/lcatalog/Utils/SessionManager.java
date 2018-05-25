@@ -308,7 +308,6 @@ public class SessionManager {
         currentvalue = currentvalue + price;
         checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         Log.e(TAG, "addchecklistset:  " + checklistset);
-
         if (null == checklistset)
             checklistset = new HashSet<String>();
         checklistset.add(Article_Id);
@@ -326,6 +325,7 @@ public class SessionManager {
         String Unique_Article_Id = Global_id + Article_Id;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue - price;
+        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         checklistset.remove(Article_Id);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putBoolean(Unique_Article_Id, false);
@@ -335,8 +335,9 @@ public class SessionManager {
 
     public void CHECKLIST_CLEAR_ARTICLES() {
         String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        String Global_id_checklist=Global_id+KEY_CHECKLIST_GLOBAL_USER_ID;
         String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
-        editor.remove(Global_id);
+        editor.remove(Global_id_checklist);
         editor.remove(Unique_Current_Id);
         editor.commit();
     }

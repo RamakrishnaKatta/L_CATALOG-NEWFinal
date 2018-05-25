@@ -38,6 +38,8 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
     private ArrayList<String> item_prices;
     private ArrayList<String> item_images;
     private ArrayList<String> item_discounts;
+    private String total_val_text;
+    String item_id=null;
 
     public CheckListAdapter(CheckListActivity activity,
                             ArrayList<String> item_ids,
@@ -88,8 +90,15 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
         final Integer z = (x * (100 - y)) / 100;
         final String itemNewPrice = Integer.toString(z);
         final Long price = Long.parseLong(itemNewPrice);
-        final String item_id = item_ids.get(position);
 
+try
+{
+     item_id = item_ids.get(position);
+}
+catch(IndexOutOfBoundsException e)
+{
+    e.printStackTrace();
+}
         holder.item_name.setText(item_names.get(position));
         holder.item_price_new.setText(itemNewPrice);
 
@@ -98,11 +107,25 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     sessionManager.CHECKLIST_REMOVE_ARTICLE(item_id, price);
+                    total_val_text=sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
                     Toast.makeText(activity, "Article is Deleted Successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     checklistManager.CHECKLIST_REMOVE_ARTICLE(item_id, price);
+                    total_val_text=checklistManager.CHECKLIST_GET_CURRENT().toString();
                     Toast.makeText(activity, "Article is Deleted Successfully", Toast.LENGTH_SHORT).show();
                 }
+                try
+                {
+                    item_ids.remove(position);
+                    notifyItemRemoved(position);
+                    TextView text_total_value=activity.findViewById(R.id.text_total_value);
+                    text_total_value.setText(total_val_text);
+                }
+                catch (IndexOutOfBoundsException e)
+                {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
