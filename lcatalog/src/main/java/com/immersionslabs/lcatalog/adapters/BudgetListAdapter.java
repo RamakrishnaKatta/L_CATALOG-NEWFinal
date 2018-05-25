@@ -13,12 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.BudgetListActivity;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.BudgetManager;
@@ -38,6 +40,7 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
     private Activity activity;
     SessionManager sessionManager;
     BudgetManager budgetManager;
+    String str_current_value, str_total_budget_value, str_remaining_value;
 
     private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
@@ -159,6 +162,9 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     Long price = Long.parseLong(itemNewPrice);
                     sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), price);
+                    str_current_value=sessionManager.BUDGET_GET_CURRENT_VALUE().toString();
+                    str_remaining_value=sessionManager.BUDGET_GET_REMAINING_VALUE().toString();
+                    str_total_budget_value=sessionManager.BUDGET_GET_TOTAL_VALUE().toString();
                     Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
 
                 } else {
@@ -167,8 +173,24 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
                     Long currentprice = prevprice - price;
                     budgetManager.BUDGET_SET_CURRENT(currentprice);
                     budgetManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
+                    str_current_value=budgetManager.BUDGET_GET_CURRENT().toString();
+                    str_remaining_value=budgetManager.BUDGET_GET_REMAINING().toString();
+                    str_total_budget_value=budgetManager.BUDGET_GET_TOTAL().toString();
                     Toast.makeText(activity, "Artcle Removed Successfully", Toast.LENGTH_LONG).show();
                 }
+                try {
+                    item_ids.remove(position);
+                    notifyItemRemoved(position);
+//                    notifyItemRangeChanged(position, item_ids.size());
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
+                EditText Totalbudget= activity.findViewById(R.id.input_your_budget);
+                EditText Currentbudget=  activity.findViewById(R.id.input_your_current_value);
+                EditText Remainingbudget=  activity.findViewById(R.id.input_your_remaining_value);
+                Totalbudget.setText(str_total_budget_value);
+                Currentbudget.setText(str_current_value);
+                Remainingbudget.setText(str_remaining_value);
             }
 
         });
