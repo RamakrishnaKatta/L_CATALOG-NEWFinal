@@ -27,10 +27,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/margin_20"
-                android:layout_toStartOf="@+id/img1"
                 android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
-                android:text="FEEDBACK"
+                android:text="@string/article_feedback_title"
                 android:textSize="@dimen/text_tab_xxlarge"
                 android:textStyle="bold" />
 
@@ -68,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:fontFamily="@font/assistant_semibold"
-                    android:hint="Article Name"
+                    android:hint="@string/feedback_article_name"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -87,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:fontFamily="@font/assistant_semibold"
-                    android:hint="Article ID"
+                    android:hint="@string/feedback_article_id"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -106,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:fontFamily="@font/assistant_semibold"
-                    android:hint="Vendor ID"
+                    android:hint="@string/feedback_article_vendor_id"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -125,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:gravity="top|start"
-                    android:hint="@string/FeedBack_Subject"
+                    android:hint="@string/article_feedback_message"
                     android:inputType="textMultiLine"
                     android:lines="5"
                     android:maxLines="15"
@@ -141,7 +140,7 @@
                 android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
-                android:text="@string/btn_submit"
+                android:text="@string/btn_submit_feedback"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_tab_tiny" />
 
@@ -161,10 +160,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/margin_20"
-                android:layout_toStartOf="@+id/img1"
                 android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
-                android:text="RATING"
+                android:text="@string/article_rating_title"
                 android:textSize="@dimen/text_tab_xxlarge"
                 android:textStyle="bold" />
 
@@ -200,7 +198,7 @@
                 android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
                 android:padding="@dimen/margin_20"
-                android:text="@string/btn_submit"
+                android:text="@string/btn_submit_rating"
                 android:textAlignment="center"
                 android:textSize="@dimen/text_tab_tiny" />
 

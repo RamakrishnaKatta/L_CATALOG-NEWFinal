@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +17,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +53,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     AppCompatImageView project_image;
     String image1, image2, image3, image4, image5;
 
-    ImageButton project_augment, project_3dview;
+    AppCompatImageButton project_augment, project_3dview;
     String project_id, project_images;
     RecyclerView recyclerView;
     ProjectPartAdapter adapter;

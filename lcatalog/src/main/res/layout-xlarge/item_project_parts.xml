@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_200"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/company_icon" />
+                android:contentDescription="@null" />
 
         </LinearLayout>
 
@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="@dimen/margin_6"
-                android:text="@string/catalog_title"
+                android:text="@string/project_part_name"
                 android:textColor="@color/primary_darker"
                 android:textSize="@dimen/text_tab_small"
                 android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 android:maxLength="80"
                 android:maxLines="2"
                 android:padding="@dimen/margin_6"
-                android:text="@string/catalog_description"
+                android:text="@string/project_part_desc"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_tab_small"
                 android:textStyle="italic" />

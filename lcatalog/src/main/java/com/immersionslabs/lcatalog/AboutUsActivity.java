@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -34,9 +33,9 @@ public class AboutUsActivity extends AppCompatActivity {
         heading4 = findViewById(R.id.textview7);
         heading5 = findViewById(R.id.textview9);
 
-        heading3.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+//        heading3.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+//        heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+//        heading4.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override

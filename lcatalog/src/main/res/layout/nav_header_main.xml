@@ -56,6 +56,7 @@
             android:id="@+id/user_type_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_3"
             android:paddingTop="@dimen/margin_3"
             android:text=""

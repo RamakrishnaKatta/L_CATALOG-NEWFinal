@@ -8,6 +8,7 @@
     android:layout_weight="1"
     android:background="@color/transparent"
     android:baselineAligned="false"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
 </FrameLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
@@ -38,7 +38,7 @@ public class GuestActivity extends AppCompatActivity {
     EditText _guestNameText, _GuestPhoneText;
     Button _guestLoginButton;
     EditText _nameText, _mobileText;
-    ImageButton get_details;
+    AppCompatImageButton get_details;
     String guest_name, guest_phone;
     File file_guest;
     String[] text_from_guest_file;

@@ -43,7 +43,7 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
     public static final String KEY_TYPE = "type";
     public static final String KEY_VENDOR_ID = "vendor_id";
 
-    TextView app_name, powered;
+    TextView app_name;
     String name, email, address, mobile, password, reEnterPassword;
     String resp, code, message;
 

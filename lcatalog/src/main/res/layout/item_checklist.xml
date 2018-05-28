@@ -60,7 +60,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/overlock_sc"
-                            android:text="@string/catalog_title"
+                            android:text="@string/article_title_text"
                             android:textAllCaps="true"
                             android:textColor="@color/primary_dark"
                             android:textSize="@dimen/text_size_large"
@@ -80,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_3"
                             android:fontFamily="@font/assistant_semibold"
-                            android:text="@string/Rs"
+                            android:text="@string/article_price_tag_symbol"
                             android:textColor="@color/red"
                             android:textSize="@dimen/text_size_medium" />
 
@@ -89,7 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/assistant_semibold"
-                            android:text="@string/original_price"
+                            android:text="@string/article_original_price"
                             android:textColor="@color/red"
                             android:textSize="@dimen/text_size_medium"
                             android:textStyle="bold" />
@@ -98,7 +98,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/assistant_semibold"
-                            android:text="@string/price_Tag"
+                            android:text="@string/article_price_tag"
                             android:textColor="@color/red"
                             android:textSize="@dimen/text_size_medium" />
                     </LinearLayout>
@@ -146,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_3"
                     android:fontFamily="@font/overlock_sc"
-                    android:text="REMOVE"
+                    android:text="@string/btn_remove"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_medium"
                     android:textStyle="bold" />

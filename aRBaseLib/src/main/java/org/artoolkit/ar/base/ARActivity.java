@@ -22,6 +22,7 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -29,7 +30,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,9 +89,9 @@ public abstract class ARActivity extends Activity implements CameraEventListener
 
     private boolean firstUpdate = false;
     private Context mContext;
-    private ImageButton mOptionsButton;
-    private ImageButton mScreenshotButton;
-    private ImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinuousPictureButton, mAutoFocusButton, mSteadyShotButton, mFlashButton;
+    private AppCompatImageButton mOptionsButton;
+    private AppCompatImageButton mScreenshotButton;
+    private AppCompatImageButton mHdrButton, mAutoSceneButton, mWhiteBalanceButton, mContinuousPictureButton, mAutoFocusButton, mSteadyShotButton, mFlashButton;
     private LinearLayout mHdrButtonArea, mAutoSceneButtonArea, mWhiteBalanceButtonArea, mContinuousPictureButtonArea, mAutoFocusButtonArea, mSteadyShotButtonArea, mFlashButtonArea;
 
     private TextView arTimer, arProgressText;

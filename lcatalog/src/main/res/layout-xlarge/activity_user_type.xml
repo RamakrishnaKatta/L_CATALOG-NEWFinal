@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -82,7 +83,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/btn_customer"
                         android:layout_width="@dimen/margin_60"
                         android:layout_height="@dimen/margin_60"
@@ -126,7 +127,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/btn_new_customer"
                         android:layout_width="@dimen/margin_60"
                         android:layout_height="@dimen/margin_60"
@@ -170,7 +171,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/btn_shopper"
                         android:layout_width="@dimen/margin_60"
                         android:layout_height="@dimen/margin_60"

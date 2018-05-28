@@ -25,10 +25,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunication {
+public class FavoriteListActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
-    private static final String TAG = "MyfavoriteActivity";
+    private static final String TAG = "FavoriteListActivity";
 
     private static String FAVOURITE_URL = null;
     private static String GUEST_FAVOURITE_URL = null;
@@ -128,7 +128,7 @@ public class MyfavoriteActivity extends AppCompatActivity implements ApiCommunic
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(MyfavoriteActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FavoriteListActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     private void GetData(JSONArray resp) {

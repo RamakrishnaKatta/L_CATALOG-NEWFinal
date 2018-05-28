@@ -114,7 +114,7 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/part_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -148,7 +148,7 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/part_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -165,7 +165,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/article_3d_text"
+                        android:text="@string/btn_3d_view"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 

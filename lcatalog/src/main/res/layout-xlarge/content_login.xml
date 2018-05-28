@@ -103,7 +103,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/text_tab_small" />
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/btn_get_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

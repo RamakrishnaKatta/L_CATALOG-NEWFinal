@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
@@ -18,7 +19,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,9 +41,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -67,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
     TextView _forgot_password;
     EditText _emailText, _passwordText;
     Button _loginButton;
-    ImageButton get_details;
+    AppCompatImageButton get_details;
     CoordinatorLayout LoginLayout;
     String userId, globalUserId;
     String resp, code, message;

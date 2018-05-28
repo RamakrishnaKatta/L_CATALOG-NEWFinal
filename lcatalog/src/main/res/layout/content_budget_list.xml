@@ -66,7 +66,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/overlock_sc"
                             android:gravity="center"
-                            android:text="Total \nBudget"
+                            android:text="@string/total_budget_value_title"
                             android:textAlignment="center"
                             android:textSize="@dimen/text_size_large"
                             android:textStyle="bold" />
@@ -81,9 +81,8 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:padding="@dimen/margin_10"
-                            android:text="100000"
+                            android:text="@string/total_budget_value"
                             android:textSize="@dimen/text_size_medium" />
-
 
                     </LinearLayout>
 
@@ -105,7 +104,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/overlock_sc"
                             android:gravity="center"
-                            android:text="Current \nValue"
+                            android:text="@string/current_budget_value_title"
                             android:textAlignment="center"
                             android:textSize="@dimen/text_size_large"
                             android:textStyle="bold" />
@@ -120,7 +119,7 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:padding="@dimen/margin_10"
-                            android:text="78000"
+                            android:text="@string/current_budget_value"
                             android:textSize="@dimen/text_size_medium" />
 
                     </LinearLayout>
@@ -143,7 +142,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/overlock_sc"
                             android:gravity="center"
-                            android:text="Remaining \nBudget"
+                            android:text="@string/remaining_budget_value_title"
                             android:textAlignment="center"
                             android:textSize="@dimen/text_size_large"
                             android:textStyle="bold" />
@@ -158,7 +157,7 @@
                             android:gravity="center"
                             android:inputType="number"
                             android:padding="@dimen/margin_10"
-                            android:text="22000"
+                            android:text="@string/remaining_budget_value"
                             android:textSize="@dimen/text_size_medium" />
 
                     </LinearLayout>
@@ -186,7 +185,7 @@
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_3"
-                        android:text="UPDATE BUDGET"
+                        android:text="@string/btn_update_budget"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold"
                         android:visibility="gone" />
@@ -200,7 +199,7 @@
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_3"
-                        android:text="ALTER BUDGET"
+                        android:text="@string/btn_alter_budget"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
@@ -213,7 +212,7 @@
                         android:fontFamily="@font/overlock_sc"
                         android:gravity="center"
                         android:padding="@dimen/margin_3"
-                        android:text="CLEAR BUDGET"
+                        android:text="@string/btn_clear_budget"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 

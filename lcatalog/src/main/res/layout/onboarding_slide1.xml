@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cookie"
-                android:text="@string/tag_line"
+                android:text="@string/company_tag_line"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_xlarge"

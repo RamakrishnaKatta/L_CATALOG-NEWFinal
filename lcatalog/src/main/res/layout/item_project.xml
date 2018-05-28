@@ -45,7 +45,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/overlock_sc"
                 android:maxLines="1"
-                android:text="@string/catalog_title"
+                android:text="@string/project_name"
                 android:textAllCaps="true"
                 android:textColor="@color/primary_darker"
                 android:textSize="@dimen/text_size_xxlarge"
@@ -62,7 +62,7 @@
             android:fontFamily="@font/assistant_semibold"
             android:maxLines="2"
             android:padding="@dimen/margin_10"
-            android:text="@string/notifications_subject"
+            android:text="@string/project_desc"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_large" />
 

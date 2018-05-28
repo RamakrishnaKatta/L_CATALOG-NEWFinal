@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="@dimen/margin_3"
-                android:text="@string/catalog_title"
+                android:text="@string/article_title_text"
                 android:textColor="@color/primary_darker"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
@@ -69,7 +69,7 @@
                 android:maxLength="80"
                 android:maxLines="2"
                 android:padding="@dimen/margin_3"
-                android:text="@string/catalog_description"
+                android:text="@string/article_desc_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="italic" />
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_3"
                         android:fontFamily="@font/assistant_semibold"
-                        android:text="@string/Rs"
+                        android:text="@string/article_price_tag_symbol"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text_size_small" />
 
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/assistant_semibold"
-                        android:text="@string/original_price"
+                        android:text="@string/article_original_price"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text_size_small" />
 
@@ -123,7 +123,7 @@
                         android:fontFamily="@font/assistant_semibold"
                         android:paddingEnd="@dimen/margin_3"
                         android:paddingStart="@dimen/margin_0"
-                        android:text="@string/price_Tag"
+                        android:text="@string/article_price_tag"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text_size_small" />
 
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_3"
                         android:fontFamily="@font/assistant_semibold"
-                        android:text="@string/Rs"
+                        android:text="@string/article_price_tag_symbol"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_medium" />
 
@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/assistant_semibold"
-                        android:text="@string/discount_price"
+                        android:text="@string/article_after_discount_price"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold" />
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/assistant_semibold"
-                        android:text="@string/price_Tag"
+                        android:text="@string/article_price_tag"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_small" />
 
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_3"
                     android:fontFamily="@font/overlock_sc"
-                    android:text="REMOVE"
+                    android:text="@string/btn_remove"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primary_darker"
                     android:textSize="@dimen/text_size_small"
@@ -205,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/assistant_semibold"
-            android:text="@string/discount_percentage"
+            android:text="@string/article_discount_value"
             android:textAlignment="center"
             android:textColor="@color/red"
             android:textSize="@dimen/text_size_small"
@@ -215,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/assistant_semibold"
-            android:text="@string/percentage_symbol"
+            android:text="@string/article_percentage_symbol"
             android:textColor="@color/red"
             android:textSize="@dimen/text_size_small"
             android:textStyle="bold" />
@@ -225,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_3"
             android:fontFamily="@font/overlock_sc"
-            android:text="@string/discount_off"
+            android:text="@string/article_discount_off"
             android:textColor="@color/red"
             android:textSize="@dimen/text_size_small"
             android:textStyle="bold" />

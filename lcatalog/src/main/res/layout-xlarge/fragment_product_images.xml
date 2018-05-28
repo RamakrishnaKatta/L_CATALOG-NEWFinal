@@ -88,7 +88,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Favourite "
+                        android:text="@string/btn_favourite"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
@@ -107,12 +107,12 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_share_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/product_share"
+                        android:contentDescription="@string/btn_share"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         app:srcCompat="@mipmap/ic_menu_share" />
@@ -144,22 +144,22 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_budget_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/note_download"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         app:srcCompat="@mipmap/ic_add" />
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_remove_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/note_download"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:visibility="gone"
@@ -173,7 +173,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Budget List"
+                        android:text="@string/btn_budget_list"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
@@ -199,7 +199,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -237,12 +237,12 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/_3d_text"
+                        android:contentDescription="@string/btn_3d_view"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:visibility="visible"
@@ -256,7 +256,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="@string/article_3d_text"
+                        android:text="@string/btn_3d_view"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
@@ -275,7 +275,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_checklist_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -293,7 +293,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Check List"
+                        android:text="@string/btn_check_list"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 

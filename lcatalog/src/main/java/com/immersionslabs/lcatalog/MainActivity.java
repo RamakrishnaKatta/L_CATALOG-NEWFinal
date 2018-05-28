@@ -389,14 +389,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if (Objects.equals(user_log_type, "CUSTOMER")) {
 
-                Intent intent = new Intent(this, MyfavoriteActivity.class);
+                Intent intent = new Intent(this, FavoriteListActivity.class);
                 // intent.putExtra("userlogtype", "CUSTOMER");
                 startActivity(intent);
                 Toast.makeText(this, "You can see all your favourites here !!", Toast.LENGTH_SHORT).show();
 
             } else {
                 if (!user_Favourite_list.isEmpty()) {
-                    Intent intent = new Intent(this, MyfavoriteActivity.class);
+                    Intent intent = new Intent(this, FavoriteListActivity.class);
                     //   intent.putExtra("userlogtype", "GUEST");
                     startActivity(intent);
                     Toast.makeText(this, "You can see your Temporary favourites here !!", Toast.LENGTH_SHORT).show();

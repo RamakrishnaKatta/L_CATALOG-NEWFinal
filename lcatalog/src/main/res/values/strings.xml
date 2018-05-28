@@ -1,11 +1,40 @@
 <resources>
+
+    // Activity Titles
+    <string name="title_activity_Login">User Login </string>
+    <string name="title_activity_SignUp">User SignUp </string>
+    <string name="title_activity_Guest">Guest Login </string>
+    <string name="title_activity_ForgotPassword">Forgot Password </string>
+    <string name="title_activity_UserAccount">Account Details</string>
+    <string name="title_activity_AboutUs">About Us</string>
+    <string name="title_activity_Feedback">User Feedback </string>
+    <string name="title_activity_VendorRegistration">Vendor Registration</string>
+    <string name="title_activity_Notify">Notifications</string>
+    <string name="title_activity_Gallery">Screenshot Gallery</string>
+    <string name="title_activity_vendor_details">Vendor Details</string>
+    <string name="title_activity_vendor_catalog">Vendor Catalog</string>
+    <string name="title_activity_vendor_list">Our Vendors</string>
+    <string name="title_activity_Campaign">Project Catalog</string>
+    <string name="title_activity_ProductPage">Product Details</string>
+    <string name="title_activity_ProjectDetails">Project Details</string>
+    <string name="title_activity_ProjectPartDetails">Project details by Part</string>
+    <string name="title_activity_CheckList">User CheckList</string>
+    <string name="title_activity_favourite_list">User Favourites</string>
+    <string name="title_activity_budget_list">User BudgetList</string>
+    <string name="title_activity_budget_bar">Budget Bar</string>
+    <string name="title_activity_Article3dView">3D Article View</string>
+    <string name="title_activity_faq">F A Q</string>
+
+    //App default Resources
     <string name="app_name">L CATALOG</string>
     <string name="powered_by">Powered by</string>
+    <string name="powered_by_symbol">&#8471;</string>
     <string name="company_name">Immersion Software Labs Pvt. Ltd.</string>
-    <string name="company_icon">Company Icon</string>
-    <string name="tag_line">…the next big immersive experience</string>
-    <string name="Rs">\u20B9</string>
+    <string name="company_tag_line">…the next big immersive experience</string>
+    <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
+    <string name="powered_symbol_immersionslabs"> Immersion Software Labs. &#8471;</string>
 
+    // OnBoarding Activity - Sliders
     <string name="slide2_title">AUGMENT</string>
     <string name="slide2_desc">Augment Feature will let you see the object chosen by you and Project into the real world with the help of a pattern \n available at </string>
     <string name="slide2_link"><param>http://lcatalog.immersionslabs.com/</param></string>
@@ -18,18 +47,21 @@
     <string name="skip">SKIP</string>
     <string name="start">START</string>
 
-    <string name="powered_immersionslabs">Powered by Immersion Software Labs.</string>
-    <string name="powered_symbol_immersionslabs"> Immersion Software Labs. &#8471;</string>
-    <string name="powered_by_symbol">&#8471;</string>
+    // UserType Activity
     <string name="welcome_aboard">Welcome Aboard</string>
     <string name="firstly_who_you_are_matters">Firstly for Us, Who you are matters !!</string>
-    <string name="login_hint">If you are a customer already…</string>
     <string name="login_sign">OGIN</string>
+    <string name="login_hint">If you are a customer already…</string>
     <string name="signup_sign">IGNUP</string>
     <string name="signup_hint">If you want to become a customer…</string>
     <string name="guest_sign">UEST</string>
     <string name="guest_hint">If you are a oneTime Shopper…</string>
 
+    //User Login Activity
+    <string name="btn_login">LOGIN</string>
+    <string name="autofill_details">Auto Fill</string>
+
+    //User SignUp Activity
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="email">Email Address</string>
@@ -37,23 +69,103 @@
     <string name="password">Password</string>
     <string name="re_enter_password">Re Enter Password</string>
     <string name="btn_create_account">CREATE ACCOUNT</string>
-    <string name="btn_login">LOGIN</string>
     <string name="btn_forgot_password"><u>Forgot Password</u></string>
     <string name="btn_submit">SUBMIT</string>
+
+    // Guest Login Activity
+    <string name="guest_details">Login as Guest</string>
+
+    // Forgot password Activity
+    <string name="New_password">New Password</string>
+    <string name="ReEnter_new_password">Re Enter New Password</string>
+
+    // Main Activity
     <string name="nav_hi">Hi,  </string>
     <string name="Logged_userName">UserName</string>
     <string name="email_phone_number">Email / phone number</string>
-    <string name="nav_catalog">Catalog</string>
+    <string name="customer">CUSTOMER</string>
+    <string name="guest">GUEST</string>
+
+    //Menu Items
+    <string name="menu_catalog">Catalog</string>
+    <string name="menu_project_campaign">Project Catalog</string>
+    <string name="menu_vendor_catalog">Vendor Catalog</string>
     <string name="menu_augment">Augment</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="_3d_text">360&#xb0; Object Rotation</string>
-    <string name="article_3d_text">360&#176; View</string>
+    <string name="menu_my_profile">My profile</string>
+    <string name="menu_gallery">My Gallery</string>
+    <string name="menu_my_account">My Account</string>
+    <string name="menu_my_notifications">My Notifications</string>
+    <string name="menu_my_favorites">My Favorites</string>
+    <string name="menu_my_budget_list">My Budget List</string>
+    <string name="menu_my_checklist">My Check List</string>
+    <string name="menu_sign_up">Sign Up</string>
+    <string name="menu_sign_out">Sign Out</string>
+    <string name="menu_vendor_campaign">Vendor Campaign</string>
+    <string name="menu_vendor_registration">Vendor Registration</string>
+    <string name="menu_help_and_support">Help &amp; Support</string>
+    <string name="menu_feedback">FeedBack</string>
+    <string name="menu_terms_conditions">Terms &amp; Conditions</string>
+    <string name="menu_about">About</string>
+    <string name="menu_faq">FAQ\'s</string>
+
+    // Fragment Product Images Activity
+    <string name="btn_share">Share</string>
+    <string name="btn_3d_view">360&#176; View</string>
+    <string name="btn_augment">Augment</string>
+    <string name="btn_budget_list">Budget List</string>
+    <string name="btn_check_list">Check List</string>
+    <string name="btn_favourite">Favourite</string>
+
+    // Fragment Product Details Activity
+    <string name="article_title">TITLE</string>
+    <string name="article_title_text">Title Text</string>
+    <string name="article_desc">DESCRIPTION</string>
+    <string name="article_desc_text">Description Text</string>
+    <string name="article_original_price_title">ORIGINAL PRICE:</string>
+    <string name="article_original_price">1000</string>
+    <string name="article_discount_title">Discount :   </string>
+    <string name="article_discount_value">20</string>
+    <string name="article_percentage_symbol">%</string>
+    <string name="article_discount_off"> OFF</string>
+    <string name="article_discount_price_title">AFTER DISCOUNT PRICE:</string>
+    <string name="article_after_discount_price">800</string>
+    <string name="article_price_tag">/-</string>
+    <string name="article_price_tag_symbol">\u20B9</string>
+    // Rupee Symbol
+    <string name="article_rating">4.3 *</string>
+    <string name="article_rating_reviews"><![CDATA[50 ratings & 15 reviews]]></string>
+    <string name="article_dim_width">WIDTH :</string>
+    <string name="article_dim_width_value">30</string>
+    <string name="article_dim_length">LENGTH :</string>
+    <string name="article_dim_length_value">25</string>
+    <string name="article_dim_height">HEIGHT :</string>
+    <string name="article_dim_height_value">20</string>
+    <string name="article_dimension_symbol">in</string>
+    <string name="article_vendor_title">PROVIDED BY :</string>
+    <string name="article_pattern_title">ARTICLE PATTERN :</string>
+    <string name="article_vendor_details">NAME &amp; ADDRESS :</string>
+    <string name="article_vendor_name">CMR</string>
+    <string name="article_vendor_address">Chandra Layout, Bangalore- 560072</string>
+
+    // Fragment Product Feedback Activity
+    <string name="article_feedback_title">FEEDBACK</string>
+    <string name="feedback_article_name">Feedback Article Name</string>
+    <string name="feedback_article_id">Feedback Article ID</string>
+    <string name="feedback_article_vendor_id">Feedback Article Vendor ID</string>
+    <string name="article_feedback_message">Feedback/Query related to this Article</string>
+    <string name="btn_submit_feedback">SUBMIT FEEDBACK</string>
+    <string name="article_rating_title">RATING</string>
+    <string name="btn_submit_rating">SUBMIT RATING</string>
+
+    // Vendor Catalog Activity
+    <string name="vendor_title">Vendor Name</string>
+
+    // FeedBack Activity
+    <string name="btn_submit_app_feedback">SUBMIT FEEDBACK</string>
     <string name="FeedBack_Subject">My valuable FeedBack</string>
-    <string name="New_password">New Password</string>
-    <string name="ReEnter_new_password">Re Enter New Password</string>
-    <string name="note_download">NOTE : Please click the download button before you click the 360&#176; view, as it is already been disabled until you download</string>
-    <string name="dummy_address">Chandra Layout, Bangalore- 560072</string>
-    <string name="new_vendor_name">Your Company Name</string>
+
+    //Vendor Registration
+    <string name="new_vendor_name">Company Name</string>
     <string name="new_vendor_address">Company Address</string>
     <string name="new_vendor_email">Company Email</string>
     <string name="new_vendor_ph_no">Mobile Number</string>
@@ -64,83 +176,52 @@
     <string name="new_vendor_state">In which State?</string>
     <string name="new_vendor_pincode">States PinCode?</string>
     <string name="new_vendor_location">Which City?</string>
-    <string name="guest_details">Login as Guest</string>
-    <string name="autofill_details">Auto Fill</string>
-    <string name="my_profile">My profile</string>
-    <string name="profile_account">My Account</string>
-    <string name="profile_notifications">My Notifications</string>
-    <string name="profile_favorites">My Favorites</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="our_vendor">Vendor Campaign</string>
-    <string name="vendor_registration">Vendor Registration</string>
-    <string name="help_amp_support">Help &amp; Support</string>
-    <string name="support_feedback">FeedBack</string>
-    <string name="support_terms_conditions">Terms &amp; Conditions</string>
-    <string name="support_help">Help Center</string>
-    <string name="support_about">About</string>
-    <string name="support_faq">FAQ\'s</string>
-    <string name="notifications">Notifications</string>
-    <string name="what_is_l_catalog">What is L-CATALOG ?</string>
-    <string name="product_objectives">Product Objectives ?</string>
-    <string name="definition_and_description">Definition and Description :</string>
-    <string name="product_overview">Product Overview :</string>
-    <string name="contact_us">Contact Us:</string>
-    <string name="icon_linkedin">LinkedIn</string>
-    <string name="icon_facebook">Facebook</string>
-    <string name="icon_instagram">Instagram</string>
-    <string name="icon_twitter">Twitter</string>
-    <string name="icon_youtube">YouTube</string>
+
+    // Notifications Activity
     <string name="notifications_title">Notifications</string>
     <string name="notifications_subject">Hi welcome to the Immersion Software Labs and you can avail many offers from Immersion Software Labs.</string>
-    <string name="feedback_submit">SUBMIT</string>
-    <string name="catalog_description">My description.</string>
-    <string name="discount_percentage">20</string>
-    <string name="discount_price">800</string>
-    <string name="price_Tag">/-</string>
-    <string name="original_price">1000</string>
-    <string name="catalog_title">My Name </string>
-    <string name="discount_price_title">AFTER DISCOUNT PRICE:</string>
-    <string name="discount_title">Discount :   </string>
-    <string name="original_price_title">ORIGINAL PRICE:</string>
-    <string name="product_share">Share</string>
+
+    // User Profile Activity
     <string name="btn_edit_profile">EDIT PROFILE</string>
     <string name="btn_update_profile">UPDATE PROFILE</string>
-    <string name="product_title">TITLE :</string>
-    <string name="product_title_name">please display the text here............</string>
-    <string name="product_desc">DESCRIPTION :</string>
-    <string name="product_desc_name">Description of the product will be displayed here and also the related products</string>
-    <string name="product_rating">4.3 *</string>
-    <string name="product_rating_reviews"><![CDATA[50 ratings & 15 reviews]]></string>
-    <string name="disc_percent">20% OFF</string>
-    <string name="dimen_width">WIDTH :</string>
-    <string name="width_value">30</string>
-    <string name="dimen_length">LENGTH :</string>
-    <string name="length_value">25</string>
-    <string name="dimen_height">HEIGHT :</string>
-    <string name="height_value">20</string>
-    <string name="providedby_vendor">PROVIDED BY :</string>
-    <string name="pattern_image">ARTICLE PATTERN :</string>
-    <string name="vendor_details">NAME &amp; ADDRESS :</string>
-    <string name="vendor_name">CMR</string>
-    <string name="percentage_symbol">%</string>
-    <string name="dimension_value">in</string>
-    <string name="discount_off"> OFF</string>
-    <string name="customer">CUSTOMER</string>
-    <string name="guest">GUEST</string>
-    <string name="ForgotPasswordActivity">Forgot Password Page</string>
-    <string name="profile_budget_list">My Budget List</string>
-    <string name="profile_favourites">My Favourites</string>
-    <string name="article_download">Download</string>
-    <string name="budget_list">Budget List</string>
-    <string name="favourite">User Favourites</string>
-    <string name="menu_vendors">Vendors</string>
-    <string name="title_activity_budget_list">User BudgetList</string>
-    <string name="title_activity_budget_bar">Budget Bar</string>
+
+    <string name="btn_remove">REMOVE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    // Project Details Activity
+    <string name="project_name_title">PROJECT NAME :</string>
+    <string name="project_name">Project Name</string>
+    <string name="project_desc_title">PROJECT DESCRIPTION :</string>
+    <string name="project_desc">Project Description</string>
+    <string name="project_sub_desc_title">PROJECT SUB DESCRIPTION :</string>
+    <string name="project_sub_desc">Project Sub Description</string>
+
+    // Project Part Details Activity
+    <string name="project_part_name_title">PROJECT PART NAME :</string>
+    <string name="project_part_name">Project Part Name</string>
+    <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
+    <string name="project_part_desc">Project Part Description</string>
+
+    // Budget List Activity
+    <string name="total_budget_value_title">Total \nBudget</string>
+    <string name="total_budget_value">100000</string>
+    <string name="current_budget_value_title">Current \nValue</string>
+    <string name="current_budget_value">78000</string>
+    <string name="remaining_budget_value_title">Remaining \nBudget</string>
+    <string name="remaining_budget_value">22000</string>
+    <string name="btn_update_budget">UPDATE BUDGET</string>
+    <string name="btn_alter_budget">ALTER BUDGET</string>
+    <string name="btn_clear_budget">CLEAR BUDGET</string>
+
+    // Check List Activity
+    <string name="total_check_value_title">Total Value :</string>
+    <string name="total_check_value">100000</string>
+    <string name="btn_place_enquiry">Place Enquiry</string>
+
+    // AboutUs Activity
+    <string name="what_is_l_catalog">What is L-CATALOG ?</string>
     <string name="Catalogue">
         The goal of this product is to provide the opportunity to all the furniture vendors
         to deliver the customers the feel of having the furniture right in front of them
@@ -152,7 +233,7 @@
         L-Catalogue will eradicate this problem and the huge transportation cost that
         is involved in this process."
     </string>
-
+    <string name="product_objectives">Product Objectives ?</string>
     <string name="objectives">
         This product helps you in the advertisement portal as in when the product is sent for
         advertising, the article will be advertised/displayed over the newspaper or on a local
@@ -167,7 +248,7 @@
         furniture. The vendor will be able to choose this option while product development depending
         upon his/her selling forte is static designer products or customized.
     </string>
-
+    <string name="definition_and_description">Definition and Description :</string>
     <string name="Definition">
         The L – Catalog is an Augmented reality (AR) catalogue which helps the furniture
         manufacturers/vendors to deliver the user/customer the furniture portability in the form of a
@@ -181,7 +262,7 @@
         user/customer to get the feel of the furniture in real world, without placing the furniture at the
         required place physically.
     </string>
-
+    <string name="product_overview">Product Overview :</string>
     <string name="data">
        L – Catalogue is an android application that constitute of \n
             <br /> &#187; More than 100 3D furniture models which had multiple fabrics \n
@@ -201,29 +282,9 @@
         tricky part is to take a screen shot as if the furniture exists in the real. There
         will be a Gallery Button in app  which shows the list of screenshots that were taken earlier using the L – Catalog app. \n
     </string>
+    <string name="contact_us">Contact Us:</string>
 
-    <string name="Article3dViewActivity">3D Article View</string>
-    <string name="faqActivity">F A Q</string>
-    <string name="LoginActivity">User Login Page</string>
-    <string name="GuestActivity">Guest Login Page</string>
-    <string name="SignupActivity">User SignUp Page</string>
-    <string name="UserAccountActivity">Account Details</string>
-    <string name="AboutUsActivity">About Us</string>
-    <string name="FeedbackActivity">Feedback Page</string>
-    <string name="VendorRegistrationActivity">Vendor Registration</string>
-    <string name="NotifyActivity">User Notifications</string>
-    <string name="GalleryActivity">Screenshot Gallery</string>
-    <string name="title_activity_vendor_details">Vendor Details</string>
-    <string name="title_activity_vendor_catalog">Vendor Catalog</string>
-    <string name="title_activity_vendor_list">Our Vendors</string>
-    <string name="vendor_catalog">Vendor Catalog</string>
-    <string name="campaign">Project Catalog</string>
-    <string name="CampaignActivity">Project Campaign</string>
-    <string name="ProductPageActivity">Product Page</string>
-    <string name="ProjectDetailActivity">Project Details</string>
-    <string name="ProjectPartDetailsActivity">Project details by Part</string>
-    <string name="CheckListActivity">User CheckList</string>
-
+    // FAQ Activity
     <string name="faq_text_1">The L – Catalog is an Augmented reality (AR) catalogue which helps the furniture manufacturers/vendors to deliver the user/customer the furniture portably in the form of a pattern printed on a paper.</string>
     <string name="faq_text_2">The goal of this product is to provide the opportunity to all the furniture vendors to deliver the customers the feel of having the furniture right in front of him/her without bringing the actual furniture home.</string>
     <string name="faq_text_3">This product will let the vendor/manufacturer to have his own android mobile application in the android app store, which will let him have more exposure to the rest of the country aswellas the world if possible and the greatest exposure to the market.</string>
@@ -277,16 +338,7 @@
     <string name="faq_text_30">You can go back to the My Account and change the details there. Currently, we do not have an option to change the account number on the dashboard.</string>
     <string name="faq_text_31">L - CATALOG is working on introducing new, sassy features to make user experience better every time, so brace yourselves!</string>
     <string name="faq_text_32">Happy Shopping!</string>
-    <string name="sub_desc_project">Sub Description of the product will be displayed here and also the  related products</string>
-    <string name="sub_desc_project_title">PROJECT SUB DESCRIPTION :</string>
-    <string name="Desc_project">Description of the product will be displayed here and also the  related products</string>
-    <string name="Desc_project_title">PROJECT DESCRIPTION :</string>
-    <string name="project_name">please display the text here............</string>
-    <string name="project_name_title">PROJECT NAME :</string>
-    <string name="project_part_name_title">PROJECT PART NAME :</string>
-    <string name="project_part_name">please display the project text here............</string>
-    <string name="project_part_desc_title">PROJECT PART DESCRIPTION :</string>
-    <string name="project_part_desc">Description of the product will be displayed here and also the related products</string>
+
     <string name="com_appsee_apikey">dd59621a42a3ab8386863fb01099ee3894a7ac70</string>
 
 </resources>

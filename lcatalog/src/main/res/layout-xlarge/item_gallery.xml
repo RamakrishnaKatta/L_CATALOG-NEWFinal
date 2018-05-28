@@ -23,7 +23,7 @@
                 android:layout_width="@dimen/margin_400"
                 android:layout_height="@dimen/margin_400"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/GalleryActivity"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter" />
         </LinearLayout>
 

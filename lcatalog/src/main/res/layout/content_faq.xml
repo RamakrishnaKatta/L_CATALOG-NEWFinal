@@ -44,6 +44,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_1" />
@@ -51,6 +52,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_2" />
@@ -58,6 +60,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_3" />
@@ -65,6 +68,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_4" />
@@ -72,6 +76,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:autoLink="web"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
@@ -118,6 +123,7 @@
                     android:id="@+id/step1text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_6" />
@@ -162,6 +168,7 @@
                     android:id="@+id/step2text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_7" />
@@ -206,6 +213,7 @@
                     android:id="@+id/step3text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_8" />
@@ -250,6 +258,7 @@
                     android:id="@+id/step4text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_9" />
@@ -294,6 +303,7 @@
                     android:id="@+id/step5text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_10" />
@@ -302,6 +312,7 @@
                     android:id="@+id/step5text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_11" />
@@ -346,6 +357,7 @@
                     android:id="@+id/step6text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_12" />
@@ -354,6 +366,7 @@
                     android:id="@+id/step6text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:autoLink="web"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
@@ -399,6 +412,7 @@
                     android:id="@+id/step7text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_14" />
@@ -443,6 +457,7 @@
                     android:id="@+id/step8text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_15" />
@@ -487,6 +502,7 @@
                     android:id="@+id/step9text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_16" />
@@ -531,6 +547,7 @@
                     android:id="@+id/step10text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_17" />
@@ -575,6 +592,7 @@
                     android:id="@+id/step11text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_18" />
@@ -619,6 +637,7 @@
                     android:id="@+id/step12text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_19" />
@@ -663,6 +682,7 @@
                     android:id="@+id/step13text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_20" />
@@ -707,6 +727,7 @@
                     android:id="@+id/step14text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_21" />
@@ -715,6 +736,7 @@
                     android:id="@+id/step14text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_22" />
@@ -759,6 +781,7 @@
                     android:id="@+id/step15text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_23" />
@@ -803,6 +826,7 @@
                     android:id="@+id/step16text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_24" />
@@ -847,6 +871,7 @@
                     android:id="@+id/step17text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_25" />
@@ -891,10 +916,10 @@
                     android:id="@+id/step18text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_26" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -936,6 +961,7 @@
                     android:id="@+id/step19text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_27" />
@@ -944,6 +970,7 @@
                     android:id="@+id/step19text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_28" />
@@ -988,6 +1015,7 @@
                     android:id="@+id/step20text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_29" />
@@ -1032,6 +1060,7 @@
                     android:id="@+id/step21text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_30" />
@@ -1040,6 +1069,7 @@
                     android:id="@+id/step21text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_31"

@@ -20,7 +20,7 @@
             android:id="@+id/icon_image"
             android:layout_width="@dimen/margin_75"
             android:layout_height="@dimen/margin_75"
-            android:contentDescription="@string/company_icon"
+            android:contentDescription="@null"
             app:srcCompat="@drawable/companyicon" />
 
         <TextView
@@ -56,6 +56,7 @@
             android:id="@+id/user_type_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/margin_0"
             android:paddingStart="@dimen/margin_6"
             android:paddingTop="@dimen/margin_6"
             android:text=""

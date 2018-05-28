@@ -13,11 +13,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,8 +42,8 @@ public class UserTypeActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST = 10;
     private static final int REQUEST_USERTYPE = 0;
     Toast toast;
-    TextView app_name, welcome_aboard, who_are_you;
-    ImageButton _customer, _newCustomer, _shopper;
+    TextView app_name;
+    AppCompatImageButton _customer, _newCustomer, _shopper;
     AppCompatImageView delete_cache;
     SessionManager sessionmanager;
     private PrefManager prefManager1;

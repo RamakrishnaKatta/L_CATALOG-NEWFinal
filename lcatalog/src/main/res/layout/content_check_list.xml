@@ -57,7 +57,7 @@
                     android:layout_marginEnd="@dimen/margin_3"
                     android:fontFamily="@font/overlock_sc"
                     android:gravity="end"
-                    android:text="Total Value :"
+                    android:text="@string/total_check_value_title"
                     android:textSize="@dimen/text_size_xlarge"
                     android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
                     android:layout_marginStart="@dimen/margin_3"
                     android:fontFamily="@font/assistant_semibold"
                     android:gravity="start"
-                    android:text="100000"
+                    android:text="@string/total_check_value"
                     android:textSize="@dimen/text_size_xlarge"
                     android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_3"
                     android:fontFamily="@font/assistant_semibold"
-                    android:text="@string/price_Tag"
+                    android:text="@string/article_price_tag"
                     android:textSize="@dimen/text_size_xlarge" />
 
             </LinearLayout>
@@ -103,7 +103,7 @@
                     android:fontFamily="@font/overlock_sc"
                     android:gravity="center"
                     android:padding="@dimen/margin_3"
-                    android:text="Place Enquiry"
+                    android:text="@string/btn_place_enquiry"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
@@ -119,6 +119,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </android.support.constraint.ConstraintLayout>

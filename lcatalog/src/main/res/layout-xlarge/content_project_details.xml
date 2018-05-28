@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
-                    android:text="@string/Desc_project_title"
+                    android:text="@string/project_desc_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
-                    android:text="@string/Desc_project"
+                    android:text="@string/project_desc"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/overlock_sc"
                     android:padding="@dimen/margin_6"
-                    android:text="@string/sub_desc_project_title"
+                    android:text="@string/project_sub_desc_title"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
-                    android:text="@string/sub_desc_project"
+                    android:text="@string/project_sub_desc"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_tab_small" />
 
@@ -135,7 +135,7 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/project_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -169,7 +169,7 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/project_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -186,7 +186,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="@string/article_3d_text"
+                        android:text="@string/btn_3d_view"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 

@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageButton;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
@@ -19,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,9 +27,9 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
-import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
@@ -60,7 +60,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private PrefManager prefManager;
 
-    ImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
+    AppCompatImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
 
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string

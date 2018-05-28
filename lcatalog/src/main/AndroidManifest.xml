@@ -49,7 +49,6 @@
         </activity>
         <activity
             android:name=".OnBoarding"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -59,17 +58,17 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/LoginActivity"
+            android:label="@string/title_activity_Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SignupActivity"
-            android:label="@string/SignupActivity"
+            android:label="@string/title_activity_SignUp"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".GuestActivity"
-            android:label="@string/GuestActivity"
+            android:label="@string/title_activity_Guest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -84,77 +83,77 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CheckListActivity"
-            android:label="@string/CheckListActivity"
+            android:label="@string/title_activity_CheckList"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".Article3dViewActivity"
-            android:label="@string/Article3dViewActivity"
+            android:label="@string/title_activity_Article3dView"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProductPageActivity"
-            android:label="@string/ProductPageActivity"
+            android:label="@string/title_activity_ProductPage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProjectActivity"
-            android:label="@string/CampaignActivity"
+            android:label="@string/title_activity_Campaign"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProjectDetailActivity"
-            android:label="@string/ProjectDetailActivity"
+            android:label="@string/title_activity_ProjectDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ProjectPartDetailsActivity"
-            android:label="@string/ProjectPartDetailsActivity"
+            android:label="@string/title_activity_ProjectPartDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".VendorRegistrationActivity"
-            android:label="@string/VendorRegistrationActivity"
+            android:label="@string/title_activity_VendorRegistration"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".UserAccountActivity"
-            android:label="@string/UserAccountActivity"
+            android:label="@string/title_activity_UserAccount"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".MyfavoriteActivity"
-            android:label="@string/favourite"
+            android:name=".FavoriteListActivity"
+            android:label="@string/title_activity_favourite_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".AboutUsActivity"
-            android:label="@string/AboutUsActivity"
+            android:label="@string/title_activity_AboutUs"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".FeedbackActivity"
-            android:label="@string/FeedbackActivity"
+            android:label="@string/title_activity_Feedback"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:label="@string/ForgotPasswordActivity"
+            android:label="@string/title_activity_ForgotPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".GalleryActivity"
-            android:label="@string/GalleryActivity"
+            android:label="@string/title_activity_Gallery"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".NotifyActivity"
-            android:label="@string/NotifyActivity"
+            android:label="@string/title_activity_Notify"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".FAQActivity"
-            android:label="@string/faqActivity"
+            android:label="@string/title_activity_faq"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity

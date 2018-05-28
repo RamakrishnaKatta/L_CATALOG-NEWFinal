@@ -87,7 +87,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/favourite"
+                        android:text="@string/btn_favourite"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_share_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -124,7 +124,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/product_share"
+                        android:text="@string/btn_share"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
@@ -150,7 +150,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -188,7 +188,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -207,7 +207,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/article_3d_text"
+                        android:text="@string/btn_3d_view"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
@@ -233,7 +233,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_checklist_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -251,7 +251,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="Check List"
+                        android:text="@string/btn_check_list"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
@@ -270,7 +270,7 @@
                     android:gravity="start"
                     android:orientation="horizontal">
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_budget_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -280,7 +280,7 @@
                         android:paddingStart="@dimen/margin_4"
                         app:srcCompat="@mipmap/ic_add" />
 
-                    <ImageButton
+                    <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/article_remove_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -299,7 +299,7 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_4"
                         android:paddingStart="@dimen/margin_4"
-                        android:text="@string/budget_list"
+                        android:text="@string/btn_budget_list"
                         android:textSize="@dimen/text_size_large"
                         android:textStyle="bold" />
 
