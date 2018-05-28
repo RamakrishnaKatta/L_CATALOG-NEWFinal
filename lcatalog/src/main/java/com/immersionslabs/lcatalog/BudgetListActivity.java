@@ -1,7 +1,9 @@
 package com.immersionslabs.lcatalog;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -120,10 +122,16 @@ public class BudgetListActivity extends AppCompatActivity {
         item_3ds = new ArrayList<>();
 
         Alter_Budget.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 Alter_Budget.setVisibility(View.GONE);
                 Update_Budget.setVisibility(View.VISIBLE);
+                Total_budget.setFocusableInTouchMode(true);
+                Total_budget.focusSearch(View.FOCUS_RIGHT);
+                Total_budget.requestFocus();
+                Total_budget.setSelection(Total_budget.getText().length());
+                Total_budget.getShowSoftInputOnFocus();
                 Total_budget.setTextColor(getResources().getColor(R.color.red));
                 enableEditText(Total_budget);
             }
@@ -292,6 +300,7 @@ public class BudgetListActivity extends AppCompatActivity {
 
     private void enableEditText(EditText editText) {
         editText.setFocusable(true);
+        editText.requestFocus();
         editText.setFocusableInTouchMode(true);
         editText.setEnabled(true);
         editText.setClickable(true);
