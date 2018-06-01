@@ -39,11 +39,21 @@ public class SessionManager {
 
     public static final String KEY_CURRENT_CHECKLIST_VALUE = "current_checklist_value";
     public static final String KEY_CHECKLIST_GLOBAL_USER_ID = "global_checklist_user_id";
+    public static final String KEY_CHECKLIST_VENDOR_ID = "checklist_vendor_id";
+    public static final String KEY_CHECKLISTVENDORARTICLE = "CHECKLISTVENDORARTICLE";
+
+    public static final String KEY_VENDOR_NAME = "vendor_name";
+    public static final String KEY_VENDOR_EMAIL = "vendor_email";
+    public static final String KEY_VENDOR_MOBILE = "vendor_mobilenum";
+    public static final String KEY_VENDOR_ID = "vendor_ID";
+    public static final String KEY_VENDOR_TYPE = "vendor_type";
+    public static final String KEY_VENDOR_OTHERDETAILS = "vendor_otherdetails";
 
     Set<String> set = new HashSet<String>();
     Set<String> checklistset = new HashSet<String>();
     Set<String> favoiriteset = new HashSet<String>();
-
+    Set<String> checkvendorIdSet = new HashSet<>();
+    Set<String> checkvendorAticleIdSet = new HashSet<>();
 
     public SessionManager(Context context) {
         this.context = context;
@@ -296,23 +306,50 @@ public class SessionManager {
         return returnval;
     }
 
-    public void CHECKLIST_ADD_ARTICLE(String article_id, long price) {
+    public void CHECKLIST_ADD_ARTICLE(String article_id, String vendor_id, long price) {
         Long currentvalue;
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
         String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         String Unique_Article_Id = Global_id + Article_Id;
+        String Unique_check_vendorId = Global_id + KEY_CHECKLIST_VENDOR_ID;
+        String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue + price;
-        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         Log.e(TAG, "addchecklistset:  " + checklistset);
+        checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         if (null == checklistset)
             checklistset = new HashSet<String>();
         checklistset.add(Article_Id);
+        if (null == checkvendorIdSet)
+            checkvendorIdSet = new HashSet<String>();
+        checkvendorIdSet.add(vendor_id);
+
+        if (null == checkvendorAticleIdSet)
+            checkvendorAticleIdSet = new HashSet<String>();
+        checkvendorAticleIdSet.add(Article_Id);
+
+
+        editor.putStringSet(Unique_check_vendorId, checkvendorIdSet);
+        editor.putStringSet(Unique_check_vendor_ArticleId, checkvendorAticleIdSet);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putBoolean(Unique_Article_Id, true);
         editor.putStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, checklistset);
         editor.commit();
+    }
+
+    public Set GetCheckVendorId() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_check_vendorId = Global_id + KEY_CHECKLIST_VENDOR_ID;
+        return pref.getStringSet(Unique_check_vendorId, null);
+    }
+
+    public Set GetCheckArticleVendorId(String vendorId) {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        String Unique_check_vendor_ArticleId = Global_id + vendorId + KEY_CHECKLIST_VENDOR_ID;
+        Set set = pref.getStringSet(Unique_check_vendor_ArticleId, null);
+        Log.e(TAG, "GetCheckArticleVendorId: set" + set);
+        return set;
     }
 
     public void CHECKLIST_REMOVE_ARTICLE(String article_id, Long price) {
@@ -330,6 +367,20 @@ public class SessionManager {
         editor.putStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, checklistset);
         editor.commit();
     }
+
+    public HashMap<String, String> GET_VENDOR_ARTICLE_IDS() {
+        String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
+        HashMap<String, String> map = new HashMap<>();
+        Set set = new HashSet();
+        set = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()) {
+            String article_id = iterator.next().toString();
+            map.put(article_id, pref.getString(article_id + KEY_CHECKLIST_VENDOR_ID, null));
+        }
+        return map;
+    }
+
 
     public void CHECKLIST_CLEAR_ARTICLES() {
         String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
@@ -390,6 +441,7 @@ public class SessionManager {
         editor.commit();
     }
 
+
     public Set getuserfavoirites() {
         return pref.getStringSet(KEY_USER_FAVOURITE_IDS, null);
     }
@@ -408,6 +460,44 @@ public class SessionManager {
         editor.remove(KEY_USER_FAVOURITE_IDS);
         editor.putStringSet(KEY_USER_FAVOURITE_IDS, set);
         editor.commit();
+    }
+
+
+    public void SetVendorDetails(String id, HashMap map) {
+        String name = map.get(id + KEY_VENDOR_NAME).toString();
+        String email = map.get(id + KEY_VENDOR_EMAIL).toString();
+        String mobile = map.get(id + KEY_VENDOR_MOBILE).toString();
+        String type = map.get(id + KEY_VENDOR_TYPE).toString();
+        String otherDetails = map.get(id + KEY_VENDOR_OTHERDETAILS).toString();
+        String vendorId = map.get(id + KEY_VENDOR_ID).toString();
+        Log.e(TAG, "SetVendorDetails: name" + name);
+        editor.putString(id + KEY_VENDOR_NAME, name);
+        editor.putString(id + KEY_VENDOR_EMAIL, email);
+        editor.putString(id + KEY_VENDOR_MOBILE, mobile);
+        editor.putString(id + KEY_VENDOR_TYPE, type);
+        editor.putString(id + KEY_VENDOR_OTHERDETAILS, otherDetails);
+        editor.putString(id + KEY_VENDOR_ID, vendorId);
+        Log.e(TAG, "SetVendorDetails: email" + email);
+        editor.commit();
+    }
+
+    public HashMap<String, String> GetVendorDetails(String id) {
+        HashMap<String, String> map = new HashMap<>();
+        Log.e(TAG, "GetVendorDetails: id" + id);
+        String name = pref.getString(id + KEY_VENDOR_NAME, null);
+        String email = pref.getString(id + KEY_VENDOR_EMAIL, null);
+        Log.e(TAG, "GetVendorDetails: ashdgkjashdkjhaskjdhkjas" + email);
+        String mobile = pref.getString(id + KEY_VENDOR_MOBILE, null);
+        String type = pref.getString(id + KEY_VENDOR_TYPE, null);
+        String otherDetails = pref.getString(id + KEY_VENDOR_OTHERDETAILS, null);
+        String vendorId = pref.getString(id + KEY_VENDOR_ID, null);
+        map.put(id + KEY_VENDOR_NAME, name);
+        map.put(id + KEY_VENDOR_TYPE, type);
+        map.put(id + KEY_VENDOR_EMAIL, email);
+        map.put(id + KEY_VENDOR_MOBILE, mobile);
+        map.put(id + KEY_VENDOR_OTHERDETAILS, otherDetails);
+        map.put(id + KEY_VENDOR_ID, vendorId);
+        return map;
     }
 
 }

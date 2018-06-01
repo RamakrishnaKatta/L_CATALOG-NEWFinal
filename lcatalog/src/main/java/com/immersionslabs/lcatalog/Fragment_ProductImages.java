@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     // article_images is split in to five parts and assigned to each string
     String image1, image2, image3, image4, image5;
 
-    String article_name, article_3ds, article_price;
+    String article_name, article_3ds, article_price, article_vendor_id;
 
     String resp, code, message;
 
@@ -124,6 +125,9 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_3ds_file_name = getArguments().getString("article_3ds_file");
         article_id = getArguments().getString("article_id");
         article_price = getArguments().getString("article_new_price");
+        article_vendor_id = getArguments().getString("article_vendor_id");
+
+        Log.e(TAG, "onCreateView: vendor id" + article_vendor_id);
 
         Log.d(TAG, "onCreateView:3ds" + article_3ds);
         Log.d(TAG, "onCreateView:3dsfile" + article_3ds_file_name);
@@ -225,7 +229,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     if (sessionmanager.CHECKLIST_IS_ARTICLE_EXISTS(article_id)) {
                         Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
                     } else {
-                        sessionmanager.CHECKLIST_ADD_ARTICLE(article_id, price);
+                        sessionmanager.CHECKLIST_ADD_ARTICLE(article_id, article_vendor_id, price);
                         Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }
                 } else {
@@ -234,7 +238,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         Toast.makeText(getContext(), "Article added in the CheckList", Toast.LENGTH_LONG).show();
                     } else {
                         currentvalue = manager_checkList.CHECKLIST_GET_CURRENT() + price;
-                        manager_checkList.CHECKLIST_ADD_ARTICLE(article_id);
+                        manager_checkList.CHECKLIST_ADD_ARTICLE(article_id, article_vendor_id);
                         manager_checkList.CHECKLIST_SET_CURRENT(currentvalue);
                         Toast.makeText(getContext(), "Article added successfully", Toast.LENGTH_LONG).show();
                     }

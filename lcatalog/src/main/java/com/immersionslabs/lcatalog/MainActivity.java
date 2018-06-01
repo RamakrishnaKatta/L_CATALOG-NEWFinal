@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
@@ -30,15 +31,26 @@ import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
+import com.immersionslabs.lcatalog.network.ApiCommunication;
+import com.immersionslabs.lcatalog.network.ApiService;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Objects;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ApiCommunication {
 
     private static final String TAG = "MainActivity";
+    private static final String VENDOR_URL = EnvConstants.APP_BASE_URL + "/vendors";
+    private static final String VENDOR_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
+
 
     boolean doubleBackToExitPressedOnce = false;
     String name, email, phone, address, user_log_type;
@@ -53,11 +65,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Manager_BudgetList manager_budgetList;
     Manager_CheckList manager_checkList;
 
+    private ArrayList<String> vendor_ids;
+    HashMap<String, String> hash_vendor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        hash_vendor = new HashMap<>();
+        vendor_ids = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         sessionmanager = new SessionManager(getApplicationContext());
@@ -122,26 +139,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_log_type = (String) hashMap.get(SessionManager.KEY_USER_TYPE);
             Log.e(TAG, "User Log Type:  " + user_log_type);
             EnvConstants.user_type = user_log_type;
+
             user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
-
-        } else {
-
-            final Bundle guest_data = getIntent().getExtras();
-            Log.d(TAG, "Dummy -- " + guest_data);
-
-            guest_name = guest_data.getString("guest_name");
-            Log.e(TAG, "guest name:  " + guest_name);
-
-            guest_phone = guest_data.getString("guest_phone");
-            Log.e(TAG, "guest phone:  " + guest_phone);
-            user_log_type = "GUEST";
-            EnvConstants.user_type = user_log_type;
-            user_name.setText(" " + guest_name);
-            user_email.setText("Mobile # " + guest_phone);
-            user_type.setText(R.string.guest);
         }
+
 
         prefManager3 = new PrefManager(this);
         Log.e(TAG, "" + prefManager3.MainActivityScreenLaunch());
@@ -495,10 +498,113 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_email.setText(email);
             user_type.setText(R.string.customer);
         }
+        vendorapicall();
+    }
+
+    private void vendorapicall() {
+        ApiService.getInstance(this).getData(this, false, "VENDOR_LIST", VENDOR_URL, "VENDOR_LIST_ALL");
+
+    }
+
+    private void vendorSpecificApicall() {
+        Log.e(TAG, "Im in vspispecific" + vendor_ids);
+        Iterator iterator = vendor_ids.iterator();
+        while (iterator.hasNext()) {
+            String unique_vendor_specific_url = VENDOR_SPECIFIC_URL + iterator.next();
+
+            ApiService.getInstance(this).getData(this, false, "VENDOR_SPECIFIC", unique_vendor_specific_url, "UNIQUE");
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
     }
+
+    @Override
+    public void onResponseCallback(JSONObject response, String flag) {
+        if (flag.equals("VENDOR_LIST_ALL")) {
+            Log.e(TAG, "response " + response);
+
+            try {
+                JSONArray resp = response.getJSONArray("data");
+                GetData(resp);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        if (flag.equals("UNIQUE")) {
+            try {
+
+                JSONObject jsonObject = response.getJSONObject("other_details");
+
+                GetFullDetails(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void GetFullDetails(JSONObject jsonObject) {
+        try {
+            String id = jsonObject.getString("id");
+            String name = jsonObject.getString("name");
+            String type = jsonObject.getString("type");
+            String email = jsonObject.getString("email");
+            String adress = jsonObject.getString("adress");
+            String mobile_no = jsonObject.getString("mobile_no");
+            String other_details = jsonObject.getString("other_details");
+            String vendor_id = jsonObject.getString("vendor_id");
+
+
+            Log.e(TAG, "vendorespecific id:  " + id);
+            Log.e(TAG, "vendorespecific name:  " + name);
+            Log.e(TAG, "vendorespecific type:  " + type);
+            Log.e(TAG, "vendorespecific email:  " + email);
+            Log.e(TAG, "vendorespecific mobile_no:  " + mobile_no);
+            Log.e(TAG, "vendorespecific other_details:  " + other_details);
+            Log.e(TAG, "vendorespecific vendor_id:  " + vendor_id);
+
+
+            hash_vendor.put(id, id);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_NAME, name);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_TYPE, type);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_EMAIL, email);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_MOBILE, mobile_no);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_OTHERDETAILS, other_details);
+            hash_vendor.put(id + SessionManager.KEY_VENDOR_ID, vendor_id);
+            sessionmanager.SetVendorDetails(id, hash_vendor);
+            Log.e(TAG, "GetFullDetails: session" + hash_vendor);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onErrorCallback(VolleyError error, String flag) {
+        Toast.makeText(MainActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void GetData(JSONArray resp) {
+        for (int i = 0; i < resp.length(); i++) {
+            JSONObject object = null;
+            try {
+                object = resp.getJSONObject(i);
+
+                vendor_ids.add(object.getString("id"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.e(TAG, " vendorspecificids" + vendor_ids);
+        vendorSpecificApicall();
+
+    }
+
+
 }
