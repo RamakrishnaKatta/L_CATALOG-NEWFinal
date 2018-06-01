@@ -54,6 +54,7 @@ public class UserAccountActivity extends AppCompatActivity implements ApiCommuni
         setContentView(R.layout.activity_user_account);
 
         Toolbar toolbar = findViewById(R.id.toolbar_user_account);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

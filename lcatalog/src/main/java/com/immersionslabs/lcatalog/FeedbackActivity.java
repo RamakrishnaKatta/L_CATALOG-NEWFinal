@@ -40,6 +40,7 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
         setContentView(R.layout.activity_feedback);
 
         Toolbar toolbar = findViewById(R.id.toolbar_feedback);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

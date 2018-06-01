@@ -29,6 +29,7 @@
                 android:layout_width="@dimen/margin_75"
                 android:layout_height="@dimen/margin_75"
                 android:contentDescription="@null"
+                android:adjustViewBounds="true"
                 android:src="@drawable/companyicon" />
 
             <LinearLayout

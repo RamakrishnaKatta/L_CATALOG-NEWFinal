@@ -2,7 +2,6 @@ package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +49,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         Toolbar toolbar = findViewById(R.id.toolbar_project);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

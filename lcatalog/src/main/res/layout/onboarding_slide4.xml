@@ -31,6 +31,7 @@
                     android:id="@+id/capture_image"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_100"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_capture_hd" />
 
@@ -88,6 +89,7 @@
                     android:id="@+id/share_image"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_100"
+                    android:adjustViewBounds="true"
                     android:layout_below="@+id/txt_welcome_42"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_share_hd" />

@@ -68,7 +68,9 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         Toolbar toolbar = findViewById(R.id.toolbar_favorite);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

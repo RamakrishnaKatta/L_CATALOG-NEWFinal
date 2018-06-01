@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/complete_transparent"
     tools:context=".Fragment_ProductImages">
 
     <LinearLayout
@@ -14,27 +13,32 @@
         <RelativeLayout
             android:id="@+id/article_image_slider_area"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_500"
+            android:layout_height="@dimen/margin_600"
             android:gravity="top">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/article_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_60"
+                android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/article_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/article_slider_dots"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_30"
+            android:layout_height="@dimen/margin_60"
+            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal" />
 
@@ -53,8 +57,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1"
-                android:background="@color/white" />
+                android:layout_height="@dimen/margin_2"
+                android:background="@color/zobra" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,6 +67,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
+                    android:id="@+id/article_fav_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -71,8 +76,9 @@
 
                     <com.like.LikeButton
                         android:id="@+id/article_fav_icon"
-                        android:layout_width="67dp"
+                        android:layout_width="77dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         app:icon_size="@dimen/margin_60"
@@ -95,12 +101,13 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/margin_1"
+                    android:layout_width="@dimen/margin_2"
                     android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
-                    android:background="@color/white" />
+                    android:background="@color/zobra" />
 
                 <LinearLayout
+                    android:id="@+id/article_share_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -111,8 +118,9 @@
                         android:id="@+id/article_share_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/btn_share"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         app:srcCompat="@mipmap/ic_menu_share" />
@@ -125,19 +133,20 @@
                         android:gravity="center|start"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
-                        android:text="Share         "
+                        android:text="@string/btn_share"
                         android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/margin_1"
+                    android:layout_width="@dimen/margin_2"
                     android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
-                    android:background="@color/white" />
+                    android:background="@color/zobra" />
 
                 <LinearLayout
+                    android:id="@+id/article_budget_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -148,6 +157,7 @@
                         android:id="@+id/article_budget_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
@@ -158,6 +168,7 @@
                         android:id="@+id/article_remove_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
@@ -183,8 +194,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1"
-                android:background="@color/white" />
+                android:layout_height="@dimen/margin_2"
+                android:background="@color/zobra" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -193,6 +204,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
+                    android:id="@+id/article_augment_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -203,8 +215,9 @@
                         android:id="@+id/article_augment_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/menu_augment"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         app:srcCompat="@mipmap/ic_augment"
@@ -225,12 +238,13 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/margin_1"
+                    android:layout_width="@dimen/margin_2"
                     android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
-                    android:background="@color/white" />
+                    android:background="@color/zobra" />
 
                 <LinearLayout
+                    android:id="@+id/article_3dview_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -241,8 +255,9 @@
                         android:id="@+id/article_3dview_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
-                        android:contentDescription="@string/btn_3d_view"
+                        android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:visibility="visible"
@@ -263,12 +278,13 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/margin_1"
+                    android:layout_width="@dimen/margin_2"
                     android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
-                    android:background="@color/white" />
+                    android:background="@color/zobra" />
 
                 <LinearLayout
+                    android:id="@+id/article_checklist_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -279,6 +295,7 @@
                         android:id="@+id/article_checklist_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:background="@color/complete_transparent"
                         android:contentDescription="@null"
                         android:paddingEnd="@dimen/margin_8"
@@ -303,8 +320,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1"
-                android:background="@color/white" />
+                android:layout_height="@dimen/margin_2"
+                android:background="@color/zobra" />
 
         </LinearLayout>
 

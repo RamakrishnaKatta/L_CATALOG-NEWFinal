@@ -5,22 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +62,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private PrefManager prefManager;
 
     AppCompatImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
+    LinearLayout article_share_area, article_3d_view_area, article_augment_area, article_budgetlist_area, article_checklist_area;
 
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
@@ -101,6 +102,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         likeButton = view.findViewById(R.id.article_fav_icon);
         likeButton.setOnLikeListener(this);
         likeButton.setOnAnimationEndListener(this);
+
         article_share = view.findViewById(R.id.article_share_icon);
         article_3d_view = view.findViewById(R.id.article_3dview_icon);
         article_augment = view.findViewById(R.id.article_augment_icon);
@@ -108,6 +110,12 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_removelist = view.findViewById(R.id.article_remove_icon);
         article_checklist = view.findViewById(R.id.article_checklist_icon);
         Add_Text = view.findViewById(R.id.add_text);
+
+        article_share_area = view.findViewById(R.id.article_share_icon_area);
+        article_3d_view_area = view.findViewById(R.id.article_3dview_icon_area);
+        article_augment_area = view.findViewById(R.id.article_augment_icon_area);
+        article_budgetlist_area = view.findViewById(R.id.article_budget_icon_area);
+        article_checklist_area = view.findViewById(R.id.article_checklist_icon_area);
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
@@ -220,7 +228,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        article_checklist.setOnClickListener(new View.OnClickListener() {
+        article_checklist_area.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -246,7 +254,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        article_3d_view.setOnClickListener(new View.OnClickListener() {
+        article_3d_view_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle b3 = new Bundle();
@@ -257,7 +265,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        article_share.setOnClickListener(new View.OnClickListener() {
+        article_share_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -268,7 +276,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        article_augment.setOnClickListener(new View.OnClickListener() {
+        article_augment_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
@@ -287,7 +295,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             }
         });
 
-        article_budgetlist.setOnClickListener(new View.OnClickListener() {
+        article_budgetlist_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
@@ -514,24 +522,35 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private void ShowcaseView(View view) {
         prefManager.setProductPageActivityScreenLaunch();
         Log.e(TAG, " " + prefManager.ProductPageActivityScreenLaunch());
-        final Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Typeface text_font = ResourcesCompat.getFont(Objects.requireNonNull(getActivity()), R.font.assistant_semibold);
+        assert text_font != null;
         final TapTargetSequence sequence = new TapTargetSequence(getActivity()).targets(
-                TapTarget.forView(view.findViewById(R.id.article_checklist_icon), "DOWNLOAD", "Click Here before you click the 3d & Augment ")
-                        .targetRadius(30)
-                        .textColor(R.color.white)
-                        .outerCircleColor(R.color.primary_dark)
-                        .id(1),
                 TapTarget.forView(view.findViewById(R.id.article_augment_icon), "AUGMENT", "Click Here to Augment the Object")
-                        .cancelable(false)
-                        .textColor(R.color.white)
-                        .targetRadius(30)
+                        .cancelable(true)
+                        .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
-                        .id(2),
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
+                        .id(1),
                 TapTarget.forView(view.findViewById(R.id.article_3dview_icon), "3D", "Click Here see the object in 3d View")
-                        .cancelable(false)
-                        .targetRadius(30)
-                        .textColor(R.color.white)
+                        .cancelable(true)
+                        .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
+                        .id(2),
+                TapTarget.forView(view.findViewById(R.id.article_checklist_icon), "CHECK LIST", "The article can be placed in the Check list for further enquiries")
+                        .cancelable(true)
+                        .transparentTarget(true)
+                        .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
                         .id(3)
         ).listener(new TapTargetSequence.Listener() {
             @Override

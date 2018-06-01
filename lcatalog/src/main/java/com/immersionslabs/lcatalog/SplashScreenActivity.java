@@ -37,10 +37,10 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         linearLayout.setVisibility(View.VISIBLE);
         linearLayout.startAnimation(animFadeIn);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
     }
 
     private void animate() {
+
         final AppCompatImageView imageView = findViewById(R.id.splash_icon);
         final Animation animation_1 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
         final Animation animation_2 = AnimationUtils.loadAnimation(getBaseContext(), R.anim.anti_rotate);
@@ -62,6 +62,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
             }
         });
         animation_1.setAnimationListener(new Animation.AnimationListener() {
+
             @Override
             public void onAnimationStart(Animation animation) {
                 powered.setVisibility(View.VISIBLE);
@@ -69,8 +70,8 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // Start Main Screen
 
+                // Start Main Screen
                 Intent i = new Intent(SplashScreenActivity.this, OnBoarding.class);
                 startActivity(i);
                 finish();
@@ -87,7 +88,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         this.finish();
         super.onBackPressed();
     }
-
 
     @Override
     public void onAnimationStart(Animation animation) {

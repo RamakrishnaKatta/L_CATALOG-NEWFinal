@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"
     tools:context=".Fragment_ProductDetails">
 
     <LinearLayout
@@ -39,7 +38,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_1"
-                android:background="@color/white" />
+                android:background="@color/zobra" />
 
             <TextView
                 android:id="@+id/article_description"
@@ -64,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
-            android:background="@color/white" />
+            android:background="@color/zobra" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/primary_darker"
-                android:fontFamily="@font/overlock_sc"
+                android:fontFamily="@font/assistant_semibold"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingLeft="@dimen/margin_6"
                 android:paddingRight="@dimen/margin_6"
@@ -91,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_10"
-                android:fontFamily="@font/overlock_sc"
+                android:fontFamily="@font/assistant_semibold"
                 android:text="@string/article_rating_reviews"
                 android:textAllCaps="true"
                 android:textSize="@dimen/text_size_medium" />
@@ -101,7 +100,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
-            android:background="@color/white" />
+            android:background="@color/zobra" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -240,7 +239,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
-            android:background="@color/white" />
+            android:background="@color/zobra" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -280,6 +279,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
+                    android:padding="@dimen/margin_3"
                     android:text="@string/article_dimension_symbol"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -314,6 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
+                    android:padding="@dimen/margin_3"
                     android:text="@string/article_dimension_symbol"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -349,6 +350,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/assistant_semibold"
+                    android:padding="@dimen/margin_3"
                     android:text="@string/article_dimension_symbol"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -359,7 +361,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
-            android:background="@color/white" />
+            android:background="@color/zobra" />
 
         <LinearLayout
             android:id="@+id/vendor_details"
@@ -398,6 +400,7 @@
                         android:id="@+id/article_vendor_logo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:scaleType="fitCenter" />
 
@@ -444,7 +447,7 @@
             <View
                 android:layout_width="@dimen/margin_1"
                 android:layout_height="match_parent"
-                android:background="@color/white" />
+                android:background="@color/zobra" />
 
             <LinearLayout
                 android:id="@+id/pattern_details"
@@ -480,6 +483,7 @@
                         android:id="@+id/article_pattern_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:padding="@dimen/margin_3"
                         android:scaleType="fitCenter" />
@@ -507,7 +511,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_1"
-            android:background="@color/white" />
+            android:background="@color/zobra" />
 
     </LinearLayout>
 

@@ -43,6 +43,7 @@ public class VendorListActivity extends AppCompatActivity implements ApiCommunic
         recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         Toolbar toolbar = findViewById(R.id.toolbar_vendor_list);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

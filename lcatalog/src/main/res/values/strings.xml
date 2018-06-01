@@ -87,6 +87,7 @@
     <string name="guest">GUEST</string>
 
     //Menu Items
+    <string name="menu_catalogues">Catalogues</string>
     <string name="menu_catalog">Catalog</string>
     <string name="menu_project_campaign">Project Catalog</string>
     <string name="menu_vendor_catalog">Vendor Catalog</string>
@@ -133,7 +134,7 @@
     <string name="article_price_tag_symbol">\u20B9</string>
     // Rupee Symbol
     <string name="article_rating">4.3 *</string>
-    <string name="article_rating_reviews"><![CDATA[50 ratings & 15 reviews]]></string>
+    <string name="article_rating_reviews">50 ratings &amp; 15 reviews</string>
     <string name="article_dim_width">WIDTH :</string>
     <string name="article_dim_width_value">30</string>
     <string name="article_dim_length">LENGTH :</string>

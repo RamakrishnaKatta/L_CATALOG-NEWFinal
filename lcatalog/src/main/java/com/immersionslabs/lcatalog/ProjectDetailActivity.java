@@ -79,6 +79,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         StrictMode.setThreadPolicy(policy);
 
         Toolbar toolbar = findViewById(R.id.toolbar_projects);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

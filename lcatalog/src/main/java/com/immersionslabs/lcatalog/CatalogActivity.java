@@ -81,6 +81,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         progressBar = findViewById(R.id.progress_grid);
 
         Toolbar toolbar = findViewById(R.id.toolbar_catalog);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

@@ -34,6 +34,7 @@
                     android:layout_width="@dimen/margin_140"
                     android:layout_height="@dimen/margin_140"
                     android:contentDescription="@null"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/companyicon" />
 
                 <LinearLayout

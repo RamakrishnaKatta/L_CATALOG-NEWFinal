@@ -22,6 +22,7 @@
             android:id="@+id/notify_image"
             android:layout_width="@dimen/margin_100"
             android:layout_height="@dimen/margin_100"
+            android:adjustViewBounds="true"
             android:contentDescription="@null" />
 
         <LinearLayout

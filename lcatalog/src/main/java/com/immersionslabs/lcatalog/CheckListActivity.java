@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -31,8 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.CheckListAdapter;
 
@@ -78,6 +77,7 @@ public class CheckListActivity extends AppCompatActivity {
     boolean IsEmailValid;
     TextView total_value;
     AppCompatButton Place_enquiry;
+
     private final static int SUCCESS = 0;
     private final static int ERROR = 1;
     private int result;
@@ -99,7 +99,9 @@ public class CheckListActivity extends AppCompatActivity {
         set_list = new HashSet<String>();
         set_vendor = new HashSet<String>();
         map_vendor_email = new HashMap<>();
+
         Toolbar toolbar = findViewById(R.id.toolbar_check_list);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -149,7 +151,6 @@ public class CheckListActivity extends AppCompatActivity {
                 } else {
                     VerifyEmail(_user_email);
                 }
-
             }
         });
         GetVendorIds();
@@ -195,8 +196,6 @@ public class CheckListActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private boolean is_email_valid(String emailid) {
@@ -246,6 +245,7 @@ public class CheckListActivity extends AppCompatActivity {
     }
 
     private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
+
         String body_text = null;
         int Index;
         String article_name, article_desc, article_price, subject_text = null, vendor_email = null, user_email = useremail, article_id = null;
@@ -253,6 +253,7 @@ public class CheckListActivity extends AppCompatActivity {
         vendor_email = vendor_email_text;
         String username = userDetails.get(SessionManager.KEY_NAME).toString();
         Iterator iterator = articleids.iterator();
+
         while (iterator.hasNext()) {
             Index = item_ids.indexOf(article_id);
             article_name = item_names.get(Index);
@@ -266,28 +267,23 @@ public class CheckListActivity extends AppCompatActivity {
             body_text += "\n" + "\n" + "\n";
         }
 
-
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
                 , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
 
         final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
         client.setRegion(Region.getRegion(Regions.US_EAST_1));
 
-
         Content subject = new Content(subject_text);
         Body body = new Body(new Content(body_text));
         final Message message = new Message(subject, body);
-
 
         final String from = "enquiry@immersionslabs.com";
         String to = vendor_email;
         String cc = user_email;
 
-
         final Destination destination = new Destination()
                 .withToAddresses(to.contentEquals("") ? null : Arrays.asList(to.split("\\s*,\\s*")))
                 .withCcAddresses(cc.contentEquals("") ? null : Arrays.asList(cc.split("\\s*,\\s*")));
-
 
         // CREATES SEPARATE THREAD TO ATTEMPT TO SEND EMAIL
         Thread sendEmailThread = new Thread(new Runnable() {
@@ -303,7 +299,6 @@ public class CheckListActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         // RUNS SEND EMAIL THREAD
         sendEmailThread.start();
@@ -325,7 +320,6 @@ public class CheckListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     private void GetVendorIdsArticelIds() {
         String VendorEmail = null;
@@ -350,7 +344,7 @@ public class CheckListActivity extends AppCompatActivity {
         String VendorId = vendorid + 1;
         String vendorEmail = null;
         map = sessionManager.GetVendorDetails(VendorId);
-        Log.e(TAG, "GetVendorEmail:vendorid"+VendorId);
+        Log.e(TAG, "GetVendorEmail:vendorid" + VendorId);
 
         if (null == map) {
             //do nothing
@@ -361,11 +355,8 @@ public class CheckListActivity extends AppCompatActivity {
         return vendorEmail;
     }
 
-
     private void GetVendorIds() {
-
         set_vendor = sessionManager.GetCheckVendorId();
-
     }
 
     private void commongetData() {
@@ -401,6 +392,7 @@ public class CheckListActivity extends AppCompatActivity {
                     requestQueue.add(jsonObjectRequest);
                 }
             }
+
         } else if (USER_LOG_TYPE.equals("GUEST")) {
             ArrayList<String> strings = manager_checkList.CHECKLIST_GET_ARTICLE_IDS();
             if (null == strings || strings.isEmpty()) {
@@ -465,8 +457,6 @@ public class CheckListActivity extends AppCompatActivity {
         recycler_checklist.setLayoutManager(linearlayoutmanager);
         CheckListAdapter adapter = new CheckListAdapter(this, item_ids, item_names, item_descriptions, item_prices, item_discounts, item_dimensions, item_images, item_3ds, item_vendors);
         recycler_checklist.setAdapter(adapter);
-
-
     }
 
     public void onResume() {

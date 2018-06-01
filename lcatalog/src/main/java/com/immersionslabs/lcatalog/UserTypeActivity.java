@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
@@ -34,6 +36,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class UserTypeActivity extends AppCompatActivity {
 
@@ -233,28 +236,34 @@ public class UserTypeActivity extends AppCompatActivity {
         prefManager1.setUserTypeActivityScreenLaunch();
         Log.e(TAG, "Show case views are Implemented here" + prefManager1.UserTypeActivityScreenLaunch());
 
+        Typeface text_font = ResourcesCompat.getFont(Objects.requireNonNull(getApplicationContext()), R.font.assistant_semibold);
+
+        assert text_font != null;
         final TapTargetSequence sequence = new TapTargetSequence(this).targets(
-                TapTarget.forView(findViewById(R.id.btn_new_customer), "Click here if you want to signup with us...")
+                TapTarget.forView(findViewById(R.id.btn_new_customer), "SIGN UP", "Click here if you want to sign up with us...")
+                        .cancelable(true)
                         .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
-                        .cancelable(false)
+                        .textTypeface(text_font)
                         .textColor(R.color.white)
                         .tintTarget(true)
                         .id(1),
-                TapTarget.forView(findViewById(R.id.btn_customer), "Click here if you visited us before")
+                TapTarget.forView(findViewById(R.id.btn_customer), "LOG IN", "Click here if you visited us before")
+                        .cancelable(true)
                         .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
-                        .cancelable(false)
+                        .textTypeface(text_font)
                         .textColor(R.color.white)
                         .tintTarget(true)
                         .id(2),
-                TapTarget.forView(findViewById(R.id.btn_shopper), "Click here if you are a Onetime User")
+                TapTarget.forView(findViewById(R.id.btn_shopper), "GUEST LOGIN", "Click here if you are a Onetime User")
+                        .cancelable(true)
                         .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
-                        .cancelable(false)
+                        .textTypeface(text_font)
                         .textColor(R.color.white)
                         .tintTarget(true)
                         .id(3)

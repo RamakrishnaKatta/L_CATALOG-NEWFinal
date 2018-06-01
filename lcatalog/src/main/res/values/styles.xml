@@ -18,6 +18,8 @@
         <item name="android:textColorHint">@color/white</item>
         <item name="colorButtonNormal">@color/primary_dark</item>
         <item name="android:colorBackground">@color/complete_transparent</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -39,6 +41,7 @@
         <item name="colorPrimary">@color/primary_darker</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -47,5 +50,20 @@
 
     <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LCatalogCustomText_ToolBar">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/overlock_sc</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="LCatalogCustomText_Tab">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/assistant_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
 
 </resources>

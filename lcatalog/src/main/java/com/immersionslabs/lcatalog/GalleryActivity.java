@@ -27,6 +27,7 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar_gallery);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

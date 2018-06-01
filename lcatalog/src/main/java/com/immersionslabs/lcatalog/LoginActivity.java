@@ -4,16 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -98,13 +99,13 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         String customer_text_file_location = Environment.getExternalStorageDirectory() + "/L_CATALOG/customer.txt";
         file_customer = new File(customer_text_file_location);
 
-
 //        _forgot_password.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         //Disables the keyboard to appear on the activity launch
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Toolbar toolbar = findViewById(R.id.toolbar_login);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -171,14 +172,16 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
     private void showcaseview() {
         prefManager5.SetLoginActivityScreenLaunch();
         Log.e(TAG, "" + prefManager5.LoginActivityScreenLaunch());
-
-        final Display display = getWindowManager().getDefaultDisplay();
-        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "Click here to Auto fill your recent details ")
-                        .cancelable(false)
-                        .tintTarget(false)
-                        .textColor(R.color.white)
-                        .targetRadius(30)
+        Typeface text_font = ResourcesCompat.getFont(Objects.requireNonNull(getApplicationContext()), R.font.assistant_semibold);
+        assert text_font != null;
+        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "AUTO-FILL", "Click here to Auto fill your recent details ")
+                        .cancelable(true)
+                        .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
                 , new TapTargetView.Listener() {
                     @Override
                     public void onTargetClick(TapTargetView view) {

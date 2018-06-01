@@ -45,6 +45,7 @@ public class VendorProfileActivity extends AppCompatActivity implements ApiCommu
         setContentView(R.layout.activity_vendor_profile);
 
         Toolbar toolbar = findViewById(R.id.vendor_profile_toolbar);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

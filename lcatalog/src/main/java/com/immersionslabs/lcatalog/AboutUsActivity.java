@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 public class AboutUsActivity extends AppCompatActivity {
+
     public static final String TAG = "AboutUsActivity";
+
     AppCompatImageView facebook, linkedIn, twitter, instagram, youtube;
     TextView heading3, heading4, heading5;
 
@@ -80,6 +82,7 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
         Toolbar toolbar = findViewById(R.id.toolbar_about_us);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

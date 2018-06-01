@@ -44,8 +44,9 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
 
-        Toolbar notify_toolbar = findViewById(R.id.notify_toolbar);
-        setSupportActionBar(notify_toolbar);
+        Toolbar toolbar = findViewById(R.id.notify_toolbar);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -4,9 +4,11 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +30,7 @@ import com.immersionslabs.lcatalog.Utils.UserCheckUtil;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class GuestActivity extends AppCompatActivity {
 
@@ -56,6 +59,7 @@ public class GuestActivity extends AppCompatActivity {
         get_details = findViewById(R.id.btn_get_data);
 
         Toolbar toolbar = findViewById(R.id.toolbar_guest);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
@@ -117,13 +121,16 @@ public class GuestActivity extends AppCompatActivity {
     private void ShowcaseView() {
         prefManager2.setGuestActivityScreenLaunch();
         Log.e(TAG, "" + prefManager2.GuestActivityScreenLaunch());
-
-        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "Click here to autofill your recent credentials ")
-                        .cancelable(false)
-                        .tintTarget(false)
-                        .textColor(R.color.white)
-                        .targetRadius(30)
+        Typeface text_font = ResourcesCompat.getFont(Objects.requireNonNull(getApplicationContext()), R.font.assistant_semibold);
+        assert text_font != null;
+        TapTargetView.showFor(this, TapTarget.forView(findViewById(R.id.btn_get_data), "AUTO-FILL", "Click here to Auto fill your recent details ")
+                        .cancelable(true)
+                        .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
                 , new TapTargetView.Listener() {
                     @Override
                     public void onTargetClick(TapTargetView view) {

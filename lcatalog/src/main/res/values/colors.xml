@@ -8,6 +8,9 @@
     <color name="complete_transparent">#00000000</color>
     <color name="transparent">#28004d40</color>
     <color name="oil">#89333333</color>
+    <color name="grey_oil">#aaa6a6a6</color>
+
+    28747474
 
     <color name="maroon">#800000</color>
     <color name="red">#ED0909</color>

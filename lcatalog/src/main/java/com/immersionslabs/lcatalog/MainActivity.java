@@ -2,10 +2,12 @@ package com.immersionslabs.lcatalog;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +16,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +25,9 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
-import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
@@ -75,11 +76,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         hash_vendor = new HashMap<>();
         vendor_ids = new ArrayList<>();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
+
         sessionmanager = new SessionManager(getApplicationContext());
         manager_budgetList = new Manager_BudgetList();
         manager_checkList = new Manager_CheckList();
+
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("ILLUSTRATION"));
         tabLayout.addTab(tabLayout.newTab().setText("OVERVIEW"));
@@ -143,8 +148,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             user_name.setText(name);
             user_email.setText(email);
             user_type.setText(R.string.customer);
-        }
 
+        } else {
+
+            final Bundle guest_data = getIntent().getExtras();
+            Log.d(TAG, "Dummy -- " + guest_data);
+
+            guest_name = guest_data.getString("guest_name");
+            Log.e(TAG, "guest name:  " + guest_name);
+
+            guest_phone = guest_data.getString("guest_phone");
+            Log.e(TAG, "guest phone:  " + guest_phone);
+            user_log_type = "GUEST";
+            EnvConstants.user_type = user_log_type;
+            user_name.setText(" " + guest_name);
+            user_email.setText("Mobile # " + guest_phone);
+            user_type.setText(R.string.guest);
+        }
 
         prefManager3 = new PrefManager(this);
         Log.e(TAG, "" + prefManager3.MainActivityScreenLaunch());
@@ -184,25 +204,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void ShowcaseView() {
         prefManager3.SetMainActivityScreenLaunch();
         Log.e(TAG, "" + prefManager3.MainActivityScreenLaunch());
-
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        Typeface text_font = ResourcesCompat.getFont(Objects.requireNonNull(getApplicationContext()), R.font.assistant_semibold);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.main);
-        final Display display = getWindowManager().getDefaultDisplay();
-
+        assert text_font != null;
         final TapTargetSequence sequence = new TapTargetSequence(this).targets(
                 TapTarget.forToolbarMenuItem(toolbar, R.id.action_notifications, "NOTIFICATIONS", "All the notifications can be displayed Here")
+                        .cancelable(true)
                         .transparentTarget(true)
                         .outerCircleColor(R.color.primary_dark)
                         .targetRadius(25)
+                        .textTypeface(text_font)
                         .textColor(R.color.white)
                         .tintTarget(true)
                         .id(1),
                 TapTarget.forToolbarMenuItem(toolbar, R.id.action_replay_info, "WELCOME", "If you miss the welcome screen you can see here ")
+                        .cancelable(true)
                         .transparentTarget(true)
-                        .textColor(R.color.white)
-                        .targetRadius(25)
-                        .tintTarget(true)
                         .outerCircleColor(R.color.primary_dark)
+                        .targetRadius(25)
+                        .textTypeface(text_font)
+                        .textColor(R.color.white)
+                        .tintTarget(true)
                         .id(2))
                 .listener(new TapTargetSequence.Listener() {
                     @Override

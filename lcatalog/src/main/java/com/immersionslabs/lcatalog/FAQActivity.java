@@ -21,6 +21,7 @@ public class FAQActivity extends AppCompatActivity {
         setContentView(R.layout.activity_faq);
 
         Toolbar toolbar = findViewById(R.id.toolbar_faq);
+        toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
