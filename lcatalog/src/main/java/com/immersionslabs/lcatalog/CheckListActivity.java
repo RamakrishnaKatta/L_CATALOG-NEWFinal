@@ -369,7 +369,7 @@ else
 
         while (iterator.hasNext()) {
           try
-          {
+          {article_id=iterator.next().toString();
               Index  = item_ids.indexOf(article_id);
               Log.e(TAG,"ITEM_IDS"+item_ids);
               Log.e(TAG,"ARTICLE_ID"+article_id);
