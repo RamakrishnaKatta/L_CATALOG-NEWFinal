@@ -316,19 +316,18 @@ public class SessionManager {
         String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue + price;
-        Log.e(TAG, "addchecklistset:  " + checklistset);
         checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         if (null == checklistset)
             checklistset = new HashSet<String>();
         checklistset.add(Article_Id);
+        checkvendorIdSet = pref.getStringSet(Unique_check_vendorId, null);
         if (null == checkvendorIdSet)
             checkvendorIdSet = new HashSet<String>();
         checkvendorIdSet.add(vendor_id);
-
+        checkvendorAticleIdSet = pref.getStringSet(Unique_check_vendor_ArticleId, null);
         if (null == checkvendorAticleIdSet)
             checkvendorAticleIdSet = new HashSet<String>();
         checkvendorAticleIdSet.add(Article_Id);
-
 
         editor.putStringSet(Unique_check_vendorId, checkvendorIdSet);
         editor.putStringSet(Unique_check_vendor_ArticleId, checkvendorAticleIdSet);
@@ -352,19 +351,31 @@ public class SessionManager {
         return set;
     }
 
-    public void CHECKLIST_REMOVE_ARTICLE(String article_id, Long price) {
+    public void CHECKLIST_REMOVE_ARTICLE(String article_id,String vendor_id, Long price) {
         String Global_id = pref.getString(KEY_GLOBAL_USER_ID, null);
         String Article_Id = article_id;
         Long currentvalue;
         String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
         String Unique_Article_Id = Global_id + Article_Id;
+        String Unique_check_vendorId = Global_id + KEY_CHECKLIST_VENDOR_ID;
+        String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
         currentvalue = pref.getLong(Unique_Current_Id, 0);
         currentvalue = currentvalue - price;
         checklistset = pref.getStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, null);
         checklistset.remove(Article_Id);
+        checkvendorIdSet = pref.getStringSet(Unique_check_vendorId, null);
+        if (null == checkvendorIdSet)
+            checkvendorIdSet = new HashSet<String>();
+        checkvendorIdSet.remove(vendor_id);
+        checkvendorAticleIdSet = pref.getStringSet(Unique_check_vendor_ArticleId, null);
+        if (null == checkvendorAticleIdSet)
+            checkvendorAticleIdSet = new HashSet<String>();
+        checkvendorAticleIdSet.remove(Article_Id);
         editor.putLong(Unique_Current_Id, currentvalue);
         editor.putBoolean(Unique_Article_Id, false);
         editor.putStringSet(Global_id + KEY_CHECKLIST_GLOBAL_USER_ID, checklistset);
+        editor.putStringSet(Unique_check_vendorId, checkvendorIdSet);
+        editor.putStringSet(Unique_check_vendor_ArticleId, checkvendorAticleIdSet);
         editor.commit();
     }
 
@@ -386,6 +397,16 @@ public class SessionManager {
         String Global_id = pref.getString(KEY_CHECKLIST_GLOBAL_USER_ID, null);
         String Global_id_checklist = Global_id + KEY_CHECKLIST_GLOBAL_USER_ID;
         String Unique_Current_Id = Global_id + KEY_CURRENT_CHECKLIST_VALUE;
+        String Unique_check_vendorId = Global_id + KEY_CHECKLIST_VENDOR_ID;
+        Set set=pref.getStringSet(Unique_check_vendorId,null);
+        Iterator iterator=set.iterator();
+        while(iterator.hasNext())
+        {
+            String vendor_id=iterator.next().toString();
+            String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
+            editor.remove(Unique_check_vendor_ArticleId);
+        }
+      editor.remove(Unique_check_vendorId);
         editor.remove(Global_id_checklist);
         editor.remove(Unique_Current_Id);
         editor.commit();

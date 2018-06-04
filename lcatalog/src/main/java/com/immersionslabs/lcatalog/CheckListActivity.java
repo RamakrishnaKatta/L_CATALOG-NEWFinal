@@ -1,6 +1,7 @@
 package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +21,6 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
-import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityResult;
@@ -50,7 +50,7 @@ public class CheckListActivity extends AppCompatActivity {
 
     private static final String TAG = "CheckListActivity";
 
-    private static String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
+    private  String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
     String USER_LOG_TYPE;
 
@@ -68,20 +68,18 @@ public class CheckListActivity extends AppCompatActivity {
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
-    private HashMap vendorspecificchecklistarticles = new HashMap();
-
-    static Set<String> set_list;
-    static Set<String> set_vendor;
-    static HashMap<String, Set> map_vendor_article, map_vendor_email;
-
-    boolean IsEmailValid;
+    static Set<String> set_list,set_checklist_vendorids,set_checklist_articlevendorids;
+     static HashMap<String,Set> map_vendorids, map_vendorarticleids;
+     static HashMap<String,HashMap>map_vendordetails;
+String VENDORNAME,VENDOREMAIL,VENDORMOBILE,VENDORID;
+    boolean is_email_valid_boolean =false;
     TextView total_value;
     AppCompatButton Place_enquiry;
 
     private final static int SUCCESS = 0;
     private final static int ERROR = 1;
     private int result;
-    boolean returnval_emaivalidation;
+    private boolean returnval_emaivalidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,9 +95,11 @@ public class CheckListActivity extends AppCompatActivity {
         recycler_checklist.setHasFixedSize(true);
         recycler_checklist.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         set_list = new HashSet<String>();
-        set_vendor = new HashSet<String>();
-        map_vendor_email = new HashMap<>();
-
+        set_checklist_vendorids = new HashSet<String>();
+        set_checklist_articlevendorids = new HashSet<String>();
+        map_vendorarticleids = new HashMap<>();
+        map_vendorids = new HashMap<>();
+        map_vendordetails = new HashMap<>();
         Toolbar toolbar = findViewById(R.id.toolbar_check_list);
         toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
@@ -138,226 +138,81 @@ public class CheckListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 HashMap userDetails = sessionManager.getUserDetails();
                 String _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
-                IsEmailValid = is_email_valid(_user_email);
-                if (IsEmailValid) {
-                    Iterator iterator = set_vendor.iterator();
-                    while (iterator.hasNext()) {
-                        String vendor_id = iterator.next().toString();
-                        String vendor_email = map_vendor_email.get(vendor_id).toString();
-                        Set articleids = map_vendor_article.get(vendor_id);
-                        sendEmail(articleids, vendor_email, _user_email);
-                    }
+                Log.e(TAG, "useremail" + _user_email);
 
-                } else {
-                    VerifyEmail(_user_email);
-                }
-            }
-        });
-        GetVendorIds();
-        GetVendorIdsArticelIds();
+is_email_valid_boolean =is_email_valid(_user_email);
+if(is_email_valid_boolean)
+{
+    Toast.makeText(CheckListActivity.this,"User email is already verified,sending test mail",Toast.LENGTH_LONG).show();
+    Iterator iterator = set_checklist_vendorids.iterator();
+    while (iterator.hasNext()) {
+        String vendor_id = iterator.next().toString();
+        String vendor_id_clone = vendor_id;
+        Integer integer_vendor_id=Integer.parseInt(vendor_id)+1;
+        vendor_id=String.valueOf(integer_vendor_id);
+        Log.e(TAG, "vendoridfromsendmail" + vendor_id);
+        HashMap hashMap = map_vendordetails.get(vendor_id);
+       String vendor_email= hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
+        Set articleids = map_vendorarticleids.get(vendor_id_clone);
+        Log.e(TAG, "articleidset" + articleids);
+        if(articleids!=null)
+        {
+            sendEmail(articleids, vendor_email, _user_email);
+        }
+
     }
 
-    private void VerifyEmail(final String email) {
 
-        Thread verifyEmailThread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
-                    final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
-                    client.setRegion(Region.getRegion(Regions.US_EAST_1));
-                    VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
-                    VerifyEmailIdentityResult response = client.verifyEmailIdentity(request);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e(TAG, "verifyemailexception: " + e.getMessage());
-                }
+}
+else
+{
+    Toast.makeText(CheckListActivity.this,"your email is not a verified email,sending a verification email.......",Toast.LENGTH_LONG).show();
+    VerifyEmail(_user_email);
+}
             }
         });
 
-        // RUNS SEND EMAIL THREAD
-        verifyEmailThread.start();
-        try {
-            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
-            verifyEmailThread.join();
 
-            if (result == SUCCESS) {
-                Toast.makeText(CheckListActivity.this, "verification email sent to your mail.", Toast.LENGTH_LONG)
-                        .show();
+        set_checklist_vendorids = sessionManager.GetCheckVendorId();
+        Log.e(TAG, "setchecklistvendorids" + set_checklist_vendorids);
 
-            } else if (result == ERROR) {
-                Toast.makeText(CheckListActivity.this, "error", Toast.LENGTH_LONG)
-                        .show();
-            } else {
-                Toast.makeText(CheckListActivity.this, "unkown error", Toast.LENGTH_LONG)
-                        .show();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+        if (null == set_checklist_vendorids) {
 
-    private boolean is_email_valid(String emailid) {
-
-        final String email = emailid;
-        Thread sendEmailThread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
-                    AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
-
-                    List lids = ses.listIdentities().getIdentities();
-                    if (lids.contains(email)) {
-                        //the address is verified so
-                        returnval_emaivalidation = true;
-                    }
-
-                } catch (Exception e) {
-
-                    Log.e(TAG, "isemailverifiederror: " + e.getMessage());
-                }
-            }
-        });
-
-        // RUNS SEND EMAIL THREAD
-        sendEmailThread.start();
-        try {
-            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
-            sendEmailThread.join();
-
-            if (result == SUCCESS) {
-                Toast.makeText(CheckListActivity.this, "validation done Successfully", Toast.LENGTH_LONG)
-                        .show();
-            } else if (result == ERROR) {
-                Toast.makeText(CheckListActivity.this, "validation Failure", Toast.LENGTH_LONG)
-                        .show();
-            } else {
-                Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)
-                        .show();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return returnval_emaivalidation;
-    }
-
-    private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
-
-        String body_text = null;
-        int Index;
-        String article_name, article_desc, article_price, subject_text = null, vendor_email = null, user_email = useremail, article_id = null;
-        HashMap userDetails = sessionManager.getUserDetails();
-        vendor_email = vendor_email_text;
-        String username = userDetails.get(SessionManager.KEY_NAME).toString();
-        Iterator iterator = articleids.iterator();
-
-        while (iterator.hasNext()) {
-            Index = item_ids.indexOf(article_id);
-            article_name = item_names.get(Index);
-            article_desc = item_descriptions.get(Index);
-            article_price = item_prices.get(Index);
-            body_text = username + "'s" + " CheckList" + "\n" + "\n" +
-                    "ARTICLE NAME : " + article_name + "\n" +
-                    "ARTICLE PRICE : " + article_price + "\n" +
-                    "ARTICLE DESCRIPTION : " + article_desc;
-            subject_text = username + "'s" + " CheckList";
-            body_text += "\n" + "\n" + "\n";
-        }
-
-        CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
-
-        final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
-        client.setRegion(Region.getRegion(Regions.US_EAST_1));
-
-        Content subject = new Content(subject_text);
-        Body body = new Body(new Content(body_text));
-        final Message message = new Message(subject, body);
-
-        final String from = "enquiry@immersionslabs.com";
-        String to = vendor_email;
-        String cc = user_email;
-
-        final Destination destination = new Destination()
-                .withToAddresses(to.contentEquals("") ? null : Arrays.asList(to.split("\\s*,\\s*")))
-                .withCcAddresses(cc.contentEquals("") ? null : Arrays.asList(cc.split("\\s*,\\s*")));
-
-        // CREATES SEPARATE THREAD TO ATTEMPT TO SEND EMAIL
-        Thread sendEmailThread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    SendEmailRequest request = new SendEmailRequest(from, destination, message);
-                    client.sendEmail(request);
-                    result = SUCCESS;
-
-                } catch (Exception e) {
-                    result = ERROR;
-                    Log.e(TAG, "emailerorr: " + e.getMessage());
-                }
-            }
-        });
-
-        // RUNS SEND EMAIL THREAD
-        sendEmailThread.start();
-        try {
-            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
-            sendEmailThread.join();
-
-            if (result == SUCCESS) {
-                Toast.makeText(CheckListActivity.this, "Email Sent Successfully", Toast.LENGTH_LONG)
-                        .show();
-            } else if (result == ERROR) {
-                Toast.makeText(CheckListActivity.this, "Email Sent Failure", Toast.LENGTH_LONG)
-                        .show();
-            } else {
-                Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)
-                        .show();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void GetVendorIdsArticelIds() {
-        String VendorEmail = null;
-        map_vendor_article = new HashMap<>();
-        Iterator iterator = set_vendor.iterator();
-        while (iterator.hasNext()) {
-            String vendorid = iterator.next().toString();
-            Log.e(TAG, "GetVendorIdsArticelIds: vendorIdasaas  " + vendorid);
-            Set set = new HashSet();
-            Set emailset = new HashSet();
-            set = sessionManager.GetCheckArticleVendorId(vendorid);
-            emailset = map_vendor_email.get(vendorid);
-            map_vendor_article.put(vendorid, set);
-            VendorEmail = GetVendorEmail(vendorid);
-            emailset.add(VendorEmail);
-            map_vendor_email.put(vendorid, emailset);
-        }
-    }
-
-    private String GetVendorEmail(String vendorid) {
-        HashMap map = new HashMap();
-        String VendorId = vendorid + 1;
-        String vendorEmail = null;
-        map = sessionManager.GetVendorDetails(VendorId);
-        Log.e(TAG, "GetVendorEmail:vendorid" + VendorId);
-
-        if (null == map) {
-            //do nothing
         } else {
-            vendorEmail = map.get(VendorId + SessionManager.KEY_VENDOR_EMAIL).toString();
+            Iterator iterator1 = set_checklist_vendorids.iterator();
+            while (iterator1.hasNext()) {
+                String vendorid = iterator1.next().toString();
+//                int vendorid_int=Integer.parseInt(vendorid)+1;
+//                vendorid=Integer.toString(vendorid_int);
+                set_checklist_articlevendorids = sessionManager.GetCheckArticleVendorId(vendorid);
+                Log.e(TAG, "articlevendorid" + vendorid);
+                if (set_checklist_articlevendorids != null) {
+                    map_vendorarticleids.put(vendorid, set_checklist_articlevendorids);
+                    Log.e(TAG, "vendoridfrommap" + vendorid);
+                }
+            }
+            Log.e(TAG, "maparticlevendor" + map_vendorarticleids);
 
         }
-        return vendorEmail;
+        if (set_checklist_vendorids != null) {
+            Iterator iterator = set_checklist_vendorids.iterator();
+            while (iterator.hasNext()) {
+                String vendorid = iterator.next().toString();
+                int vendorid_int = Integer.parseInt(vendorid) + 1;
+                vendorid = Integer.toString(vendorid_int);
+                map_vendordetails.put(vendorid, sessionManager.GetVendorDetails(vendorid));
+
+            }
+            Log.e(TAG, "vendordetails" + map_vendordetails);
+        }
     }
 
-    private void GetVendorIds() {
-        set_vendor = sessionManager.GetCheckVendorId();
-    }
+
+
+
+
+
+
 
     private void commongetData() {
         Log.e(TAG, "CommonGetData: " + CHECKLIST_URL);
@@ -423,6 +278,171 @@ public class CheckListActivity extends AppCompatActivity {
                     requestQueue.add(jsonObjectRequest);
                 }
             }
+        }
+    }
+    private boolean is_email_valid(String emailid) {
+
+        final String email = emailid;
+        Thread EmailValidationThread = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
+                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+                    AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
+
+                    List lids = ses.listIdentities().getIdentities();
+                    Log.e(TAG, "lids: " + lids);
+
+                    if (lids.contains(email)) {
+                        //the address is verified so
+                        returnval_emaivalidation = true;
+                    }
+
+                } catch (Exception e) {
+
+                    Log.e(TAG, "isemailverifiederror: " + e.getMessage());
+                }
+            }
+        });
+
+        // RUNS SEND EMAIL THREAD
+        EmailValidationThread.start();
+        try {
+            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
+            EmailValidationThread.join();
+
+              } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return returnval_emaivalidation;
+    }
+    private void VerifyEmail(final String email) {
+
+        Thread verifyEmailThread = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
+                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+                    final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
+                    client.setRegion(Region.getRegion(Regions.US_EAST_1));
+                    VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
+                    VerifyEmailIdentityResult response = client.verifyEmailIdentity(request);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "verifyemailexception: " + e.getMessage());
+                }
+            }
+        });
+
+        // RUNS SEND EMAIL THREAD
+        verifyEmailThread.start();
+        try {
+            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
+            verifyEmailThread.join();
+
+            if (result == SUCCESS) {
+                Toast.makeText(CheckListActivity.this, "verification email sent to your mail.", Toast.LENGTH_LONG)
+                        .show();
+
+            } else if (result == ERROR) {
+                Toast.makeText(CheckListActivity.this, "error", Toast.LENGTH_LONG)
+                        .show();
+            } else {
+                Toast.makeText(CheckListActivity.this, "unkown error", Toast.LENGTH_LONG)
+                        .show();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
+
+        String body_text = null;
+        int Index;
+        String article_name, article_desc, article_price, subject_text = null, vendor_email = null, user_email = useremail, article_id = null;
+        HashMap userDetails = sessionManager.getUserDetails();
+        vendor_email = vendor_email_text;
+        String username = userDetails.get(SessionManager.KEY_NAME).toString();
+        Iterator iterator = articleids.iterator();
+
+        while (iterator.hasNext()) {
+          try
+          {
+              Index  = item_ids.indexOf(article_id);
+              Log.e(TAG,"ITEM_IDS"+item_ids);
+              Log.e(TAG,"ARTICLE_ID"+article_id);
+              article_name = item_names.get(Index);
+              article_desc = item_descriptions.get(Index);
+              article_price = item_prices.get(Index);
+              body_text = username + "'s" + " CheckList" + "\n" + "\n" +
+                      "ARTICLE NAME : " + article_name + "\n" +
+                      "ARTICLE PRICE : " + article_price + "\n" +
+                      "ARTICLE DESCRIPTION : " + article_desc;
+              subject_text = username + "'s" + " CheckList";
+              body_text += "\n" + "\n" + "\n";
+          }
+          catch(IndexOutOfBoundsException e)
+          {
+              e.printStackTrace();
+              break;
+          }
+
+
+        }
+
+        CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
+                , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+
+        final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
+        client.setRegion(Region.getRegion(Regions.US_EAST_1));
+
+        Content subject = new Content(subject_text);
+        Body body = new Body(new Content(body_text));
+        final com.amazonaws.services.simpleemail.model.Message message = new com.amazonaws.services.simpleemail.model.Message(subject,body);
+
+        final String from = "enquiry@immersionslabs.com";
+        String to = vendor_email;
+        String cc = user_email;
+
+        final Destination destination = new Destination()
+                .withToAddresses(to.contentEquals("") ? null : Arrays.asList(to.split("\\s*,\\s*")))
+                .withCcAddresses(cc.contentEquals("") ? null : Arrays.asList(cc.split("\\s*,\\s*")));
+
+        // CREATES SEPARATE THREAD TO ATTEMPT TO SEND EMAIL
+        Thread sendEmailThread = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    SendEmailRequest request = new SendEmailRequest(from, destination, message);
+                    client.sendEmail(request);
+                    result = SUCCESS;
+
+                } catch (Exception e) {
+                    result = ERROR;
+                    Log.e(TAG, "emailerorr: " + e.getMessage());
+                }
+            }
+        });
+
+        // RUNS SEND EMAIL THREAD
+        sendEmailThread.start();
+        try {
+            // WAITS THREAD TO COMPLETE TO ACT ON RESULT
+            sendEmailThread.join();
+
+            if (result == SUCCESS) {
+                Toast.makeText(CheckListActivity.this, "Email Sent Successfully", Toast.LENGTH_LONG)
+                        .show();
+            } else if (result == ERROR) {
+                Toast.makeText(CheckListActivity.this, "Email Sent Failure", Toast.LENGTH_LONG)
+                        .show();
+            } else {
+                Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)
+                        .show();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
