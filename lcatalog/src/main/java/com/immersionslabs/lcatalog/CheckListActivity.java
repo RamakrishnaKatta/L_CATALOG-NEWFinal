@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,7 +49,7 @@ public class CheckListActivity extends AppCompatActivity {
 
     private static final String TAG = "CheckListActivity";
 
-    private  String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
+    private String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
     String USER_LOG_TYPE;
 
@@ -68,11 +67,12 @@ public class CheckListActivity extends AppCompatActivity {
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_vendors;
-    static Set<String> set_list,set_checklist_vendorids,set_checklist_articlevendorids;
-     static HashMap<String,Set> map_vendorids, map_vendorarticleids;
-     static HashMap<String,HashMap>map_vendordetails;
-String VENDORNAME,VENDOREMAIL,VENDORMOBILE,VENDORID;
-    boolean is_email_valid_boolean =false;
+
+    static Set<String> set_list, set_checklist_vendorids, set_checklist_articlevendorids;
+    static HashMap<String, Set> map_vendorids, map_vendorarticleids;
+    static HashMap<String, HashMap> map_vendordetails;
+    boolean is_email_valid_boolean = false;
+
     TextView total_value;
     AppCompatButton Place_enquiry;
 
@@ -94,12 +94,15 @@ String VENDORNAME,VENDOREMAIL,VENDORMOBILE,VENDORID;
         recycler_checklist = findViewById(R.id.checklist_recycler);
         recycler_checklist.setHasFixedSize(true);
         recycler_checklist.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
         set_list = new HashSet<String>();
         set_checklist_vendorids = new HashSet<String>();
         set_checklist_articlevendorids = new HashSet<String>();
+
         map_vendorarticleids = new HashMap<>();
         map_vendorids = new HashMap<>();
         map_vendordetails = new HashMap<>();
+
         Toolbar toolbar = findViewById(R.id.toolbar_check_list);
         toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
@@ -116,7 +119,7 @@ String VENDORNAME,VENDOREMAIL,VENDORMOBILE,VENDORID;
 
         if (EnvConstants.user_type.equals("CUSTOMER")) {
             String Total_value_text = sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
-            Log.e(TAG, "currentvalid " + Total_value_text);
+            Log.e(TAG, "Current Total Value " + Total_value_text);
             total_value.setText(Total_value_text);
         } else {
             String Total_value_text = manager_checkList.CHECKLIST_GET_CURRENT().toString();
@@ -138,43 +141,35 @@ String VENDORNAME,VENDOREMAIL,VENDORMOBILE,VENDORID;
             public void onClick(View v) {
                 HashMap userDetails = sessionManager.getUserDetails();
                 String _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
-                Log.e(TAG, "useremail" + _user_email);
+                Log.e(TAG, "User Email" + _user_email);
 
-is_email_valid_boolean =is_email_valid(_user_email);
-if(is_email_valid_boolean)
-{
-    Toast.makeText(CheckListActivity.this,"User email is already verified,sending test mail",Toast.LENGTH_LONG).show();
-    Iterator iterator = set_checklist_vendorids.iterator();
-    while (iterator.hasNext()) {
-        String vendor_id = iterator.next().toString();
-        String vendor_id_clone = vendor_id;
-        Integer integer_vendor_id=Integer.parseInt(vendor_id)+1;
-        vendor_id=String.valueOf(integer_vendor_id);
-        Log.e(TAG, "vendoridfromsendmail" + vendor_id);
-        HashMap hashMap = map_vendordetails.get(vendor_id);
-       String vendor_email= hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
-        Set articleids = map_vendorarticleids.get(vendor_id_clone);
-        Log.e(TAG, "articleidset" + articleids);
-        if(articleids!=null)
-        {
-            sendEmail(articleids, vendor_email, _user_email);
-        }
-
-    }
-
-
-}
-else
-{
-    Toast.makeText(CheckListActivity.this,"your email is not a verified email,sending a verification email.......",Toast.LENGTH_LONG).show();
-    VerifyEmail(_user_email);
-}
+                is_email_valid_boolean = is_email_valid(_user_email);
+                if (is_email_valid_boolean) {
+                    Toast.makeText(CheckListActivity.this, "User email is already verified,sending test mail", Toast.LENGTH_LONG).show();
+                    Iterator iterator = set_checklist_vendorids.iterator();
+                    while (iterator.hasNext()) {
+                        String vendor_id = iterator.next().toString();
+                        String vendor_id_clone = vendor_id;
+                        Integer integer_vendor_id = Integer.parseInt(vendor_id) + 1;
+                        vendor_id = String.valueOf(integer_vendor_id);
+                        Log.e(TAG, "VendorId from sent email" + vendor_id);
+                        HashMap hashMap = map_vendordetails.get(vendor_id);
+                        String vendor_email = hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
+                        Set articleids = map_vendorarticleids.get(vendor_id_clone);
+                        Log.e(TAG, "ArticleId Set" + articleids);
+                        if (articleids != null) {
+                            sendEmail(articleids, vendor_email, _user_email);
+                        }
+                    }
+                } else {
+                    Toast.makeText(CheckListActivity.this, "Your email is not a verified email, Sending a verification email", Toast.LENGTH_LONG).show();
+                    VerifyEmail(_user_email);
+                }
             }
         });
 
-
         set_checklist_vendorids = sessionManager.GetCheckVendorId();
-        Log.e(TAG, "setchecklistvendorids" + set_checklist_vendorids);
+        Log.e(TAG, "Set Checklist Vendor Ids" + set_checklist_vendorids);
 
         if (null == set_checklist_vendorids) {
 
@@ -185,13 +180,13 @@ else
 //                int vendorid_int=Integer.parseInt(vendorid)+1;
 //                vendorid=Integer.toString(vendorid_int);
                 set_checklist_articlevendorids = sessionManager.GetCheckArticleVendorId(vendorid);
-                Log.e(TAG, "articlevendorid" + vendorid);
+                Log.e(TAG, "Article Vendor Id" + vendorid);
                 if (set_checklist_articlevendorids != null) {
                     map_vendorarticleids.put(vendorid, set_checklist_articlevendorids);
-                    Log.e(TAG, "vendoridfrommap" + vendorid);
+                    Log.e(TAG, "Vendor Id from Map" + vendorid);
                 }
             }
-            Log.e(TAG, "maparticlevendor" + map_vendorarticleids);
+            Log.e(TAG, "Map Article Vendor" + map_vendorarticleids);
 
         }
         if (set_checklist_vendorids != null) {
@@ -203,18 +198,12 @@ else
                 map_vendordetails.put(vendorid, sessionManager.GetVendorDetails(vendorid));
 
             }
-            Log.e(TAG, "vendordetails" + map_vendordetails);
+            Log.e(TAG, "Vendor Details" + map_vendordetails);
         }
     }
 
-
-
-
-
-
-
-
     private void commongetData() {
+
         Log.e(TAG, "CommonGetData: " + CHECKLIST_URL);
 
         if (USER_LOG_TYPE.equals("CUSTOMER")) {
@@ -265,6 +254,7 @@ else
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                            assert RESP != null;
                             GetData(RESP);
 
                         }
@@ -280,27 +270,26 @@ else
             }
         }
     }
-    private boolean is_email_valid(String emailid) {
 
-        final String email = emailid;
+    private boolean is_email_valid(String email_id) {
+
+        final String email = email_id;
         Thread EmailValidationThread = new Thread(new Runnable() {
             public void run() {
                 try {
                     CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
                             , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
                     AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
+                    List l_ids = ses.listIdentities().getIdentities();
+                    Log.e(TAG, "List Ids: " + l_ids);
 
-                    List lids = ses.listIdentities().getIdentities();
-                    Log.e(TAG, "lids: " + lids);
-
-                    if (lids.contains(email)) {
+                    if (l_ids.contains(email)) {
                         //the address is verified so
                         returnval_emaivalidation = true;
                     }
 
                 } catch (Exception e) {
-
-                    Log.e(TAG, "isemailverifiederror: " + e.getMessage());
+                    Log.e(TAG, "Is Email Verified Error: " + e.getMessage());
                 }
             }
         });
@@ -311,12 +300,13 @@ else
             // WAITS THREAD TO COMPLETE TO ACT ON RESULT
             EmailValidationThread.join();
 
-              } catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         return returnval_emaivalidation;
     }
+
     private void VerifyEmail(final String email) {
 
         Thread verifyEmailThread = new Thread(new Runnable() {
@@ -331,7 +321,7 @@ else
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e(TAG, "verifyemailexception: " + e.getMessage());
+                    Log.e(TAG, "Verify Email Exception: " + e.getMessage());
                 }
             }
         });
@@ -357,39 +347,42 @@ else
             e.printStackTrace();
         }
     }
+
     private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
 
+        String article_id, article_name, article_desc, article_price;
         String body_text = null;
+        String subject_text = null;
+        String vendor_email = vendor_email_text;
+        String user_email = useremail;
         int Index;
-        String article_name, article_desc, article_price, subject_text = null, vendor_email = null, user_email = useremail, article_id = null;
+
         HashMap userDetails = sessionManager.getUserDetails();
-        vendor_email = vendor_email_text;
         String username = userDetails.get(SessionManager.KEY_NAME).toString();
+
         Iterator iterator = articleids.iterator();
-
         while (iterator.hasNext()) {
-          try
-          {article_id=iterator.next().toString();
-              Index  = item_ids.indexOf(article_id);
-              Log.e(TAG,"ITEM_IDS"+item_ids);
-              Log.e(TAG,"ARTICLE_ID"+article_id);
-              article_name = item_names.get(Index);
-              article_desc = item_descriptions.get(Index);
-              article_price = item_prices.get(Index);
-              body_text = username + "'s" + " CheckList" + "\n" + "\n" +
-                      "ARTICLE NAME : " + article_name + "\n" +
-                      "ARTICLE PRICE : " + article_price + "\n" +
-                      "ARTICLE DESCRIPTION : " + article_desc;
-              subject_text = username + "'s" + " CheckList";
-              body_text += "\n" + "\n" + "\n";
-          }
-          catch(IndexOutOfBoundsException e)
-          {
-              e.printStackTrace();
-              break;
-          }
+            try {
+                article_id = iterator.next().toString();
+                Index = item_ids.indexOf(article_id);
+                Log.e(TAG, "ITEM_IDS" + item_ids);
+                Log.e(TAG, "ARTICLE_ID" + article_id);
 
+                article_name = item_names.get(Index);
+                article_desc = item_descriptions.get(Index);
+                article_price = item_prices.get(Index);
 
+                body_text = username + "'s" + " CheckList" + "\n" + "\n" +
+                        "ARTICLE NAME : " + article_name + "\n" +
+                        "ARTICLE PRICE : " + article_price + "\n" +
+                        "ARTICLE DESCRIPTION : " + article_desc;
+                subject_text = username + "'s" + " CheckList";
+                body_text += "\n" + "\n" + "\n";
+
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+                break;
+            }
         }
 
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
@@ -400,7 +393,7 @@ else
 
         Content subject = new Content(subject_text);
         Body body = new Body(new Content(body_text));
-        final com.amazonaws.services.simpleemail.model.Message message = new com.amazonaws.services.simpleemail.model.Message(subject,body);
+        final com.amazonaws.services.simpleemail.model.Message message = new com.amazonaws.services.simpleemail.model.Message(subject, body);
 
         final String from = "enquiry@immersionslabs.com";
         String to = vendor_email;
@@ -420,7 +413,7 @@ else
 
                 } catch (Exception e) {
                     result = ERROR;
-                    Log.e(TAG, "emailerorr: " + e.getMessage());
+                    Log.e(TAG, "Email Error: " + e.getMessage());
                 }
             }
         });
@@ -435,7 +428,7 @@ else
                 Toast.makeText(CheckListActivity.this, "Email Sent Successfully", Toast.LENGTH_LONG)
                         .show();
             } else if (result == ERROR) {
-                Toast.makeText(CheckListActivity.this, "Email Sent Failure", Toast.LENGTH_LONG)
+                Toast.makeText(CheckListActivity.this, "Email Sending Failed", Toast.LENGTH_LONG)
                         .show();
             } else {
                 Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)
