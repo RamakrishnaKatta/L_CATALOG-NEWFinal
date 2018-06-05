@@ -136,17 +136,24 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
 
                 Intent intent = new Intent(context[0], ProductPageActivity.class);
                 Bundle b = new Bundle();
+try
+{
+    b.putString("article_id", item_ids.get(position));
+    b.putString("article_title", item_names.get(position));
+    b.putString("article_description", item_descriptions.get(position));
+    b.putString("article_price", item_prices.get(position));
+    b.putString("article_discount", item_discounts.get(position));
+    b.putString("article_dimensions", item_dimensions.get(position));
+    b.putString("article_images", item_images.get(position));
+    b.putString("article_3ds", item_3ds.get(position));
+    b.putString("article_vendor", item_vendors.get(position));
+    b.putString("article_position", String.valueOf(position));
 
-                b.putString("article_id", item_ids.get(position));
-                b.putString("article_title", item_names.get(position));
-                b.putString("article_description", item_descriptions.get(position));
-                b.putString("article_price", item_prices.get(position));
-                b.putString("article_discount", item_discounts.get(position));
-                b.putString("article_dimensions", item_dimensions.get(position));
-                b.putString("article_images", item_images.get(position));
-                b.putString("article_3ds", item_3ds.get(position));
-                b.putString("article_vendor", item_vendors.get(position));
-                b.putString("article_position", String.valueOf(position));
+}
+catch(IndexOutOfBoundsException e)
+{
+    e.printStackTrace();
+}
 
                 intent.putExtras(b);
                 context[0].startActivity(intent);
@@ -157,8 +164,10 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
+                    String vendor_id=item_vendors.get(position)+1;
+                    Log.e(TAG, "onClick: vendor_id"+vendor_id );
                     now_price = Long.parseLong(itemNewPrice);
-                    sessionManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), now_price);
+                    sessionManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position),vendor_id,now_price);
                     str_total_checklist_value = sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
 
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
@@ -168,7 +177,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
                 } else {
                     manager_checkList.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), now_price);
                     str_total_checklist_value = manager_checkList.CHECKLIST_GET_CURRENT().toString();
-
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
