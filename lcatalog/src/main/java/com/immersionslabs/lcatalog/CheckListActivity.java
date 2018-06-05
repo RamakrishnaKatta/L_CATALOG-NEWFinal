@@ -23,6 +23,8 @@ import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityResult;
+import com.amazonaws.services.simpleemail.model.RawMessage;
+import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -146,6 +148,8 @@ public class CheckListActivity extends AppCompatActivity {
                 is_email_valid_boolean = is_email_valid(_user_email);
                 if (is_email_valid_boolean) {
                     Toast.makeText(CheckListActivity.this, "User email is already verified,sending test mail", Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "ArticleId Set" + set_checklist_vendorids);
+
                     Iterator iterator = set_checklist_vendorids.iterator();
                     while (iterator.hasNext()) {
                         String vendor_id = iterator.next().toString();
@@ -156,7 +160,6 @@ public class CheckListActivity extends AppCompatActivity {
                         HashMap hashMap = map_vendordetails.get(vendor_id);
                         String vendor_email = hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
                         Set articleids = map_vendorarticleids.get(vendor_id_clone);
-                        Log.e(TAG, "ArticleId Set" + articleids);
                         if (articleids != null) {
                             sendEmail(articleids, vendor_email, _user_email);
                         }
@@ -349,7 +352,7 @@ public class CheckListActivity extends AppCompatActivity {
     }
 
     private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
-
+        Log.e(TAG, "article ids of vendor" + articleids);
         String article_id, article_name, article_desc, article_price;
         String body_text = null;
         String subject_text = null;
@@ -359,7 +362,7 @@ public class CheckListActivity extends AppCompatActivity {
 
         HashMap userDetails = sessionManager.getUserDetails();
         String username = userDetails.get(SessionManager.KEY_NAME).toString();
-
+        body_text = username + "'s" + " CheckList" + "\n" + "\n";
         Iterator iterator = articleids.iterator();
         while (iterator.hasNext()) {
             try {
@@ -372,17 +375,18 @@ public class CheckListActivity extends AppCompatActivity {
                 article_desc = item_descriptions.get(Index);
                 article_price = item_prices.get(Index);
 
-                body_text = username + "'s" + " CheckList" + "\n" + "\n" +
+
+                body_text +=
                         "ARTICLE NAME : " + article_name + "\n" +
-                        "ARTICLE PRICE : " + article_price + "\n" +
-                        "ARTICLE DESCRIPTION : " + article_desc;
+                                "ARTICLE PRICE : " + article_price + "\n" +
+                                "ARTICLE DESCRIPTION : " + article_desc;
                 subject_text = username + "'s" + " CheckList";
                 body_text += "\n" + "\n" + "\n";
 
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
-                break;
             }
+
         }
 
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this

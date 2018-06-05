@@ -155,16 +155,22 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         }
 
         if (Objects.equals(user_log_type, "CUSTOMER")) {
-
             Set set = sessionmanager.getuserfavoirites();
-            if (set.contains(article_id)) {
-                Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
-                likeButton.setLiked(true);
-            } else if (!set.contains(article_id)) {
-                Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
-                likeButton.setLiked(false);
-            }
-        }
+      try
+      {
+          if (set.contains(article_id)) {
+              Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
+              likeButton.setLiked(true);
+          } else if (!set.contains(article_id)) {
+              Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
+              likeButton.setLiked(false);
+          }
+      }
+      catch(NullPointerException e)
+      {
+          e.printStackTrace();
+      }
+      }
 
         try {
             JSONArray image_json = new JSONArray(article_images);
