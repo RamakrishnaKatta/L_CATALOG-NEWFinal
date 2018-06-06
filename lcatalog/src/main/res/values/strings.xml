@@ -24,6 +24,8 @@
     <string name="title_activity_budget_bar">Budget Bar</string>
     <string name="title_activity_Article3dView">3D Article View</string>
     <string name="title_activity_faq">F A Q</string>
+    <string name="title_activity_experimental_3dview">Experimental Web 3DView</string>
+    <string name="title_activity_experimental_augment">Experimental Web Augment</string>
 
     //App default Resources
     <string name="app_name">L CATALOG</string>
@@ -116,6 +118,8 @@
     <string name="btn_budget_list">Budget List</string>
     <string name="btn_check_list">Check List</string>
     <string name="btn_favourite">Favourite</string>
+    <string name="btn_3dView_exp">Exp 3DView</string>
+    <string name="btn_Augment_exp">Exp Augment</string>
 
     // Fragment Product Details Activity
     <string name="article_title">TITLE</string>

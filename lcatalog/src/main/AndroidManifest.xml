@@ -12,11 +12,16 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
     <uses-feature android:glEsVersion="0x00010100" />
     <uses-feature android:glEsVersion="0x00020000" />
 
@@ -188,6 +193,16 @@
             android:label="@string/title_activity_budget_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".Experimental3DViewActivity"
+            android:label="@string/title_activity_experimental_3dview"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ExperimentalAugmentActivity"
+            android:label="@string/title_activity_experimental_augment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
 
         <activity android:name=".notifications.NotificationCountSetClass" />
 
@@ -196,7 +211,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".services.NotifyMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

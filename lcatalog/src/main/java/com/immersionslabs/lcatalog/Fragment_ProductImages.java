@@ -62,7 +62,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     private PrefManager prefManager;
 
     AppCompatImageButton article_share, article_3d_view, article_augment, article_budgetlist, article_removelist, article_checklist;
-    LinearLayout article_share_area, article_3d_view_area, article_augment_area, article_budgetlist_area, article_checklist_area;
+    LinearLayout article_share_area, article_3d_view_area, article_augment_area,
+            article_budgetlist_area, article_checklist_area, Experimental_3d_View, Experimental_Augment_View;
 
     String article_images, article_id;
     // article_images is split in to five parts and assigned to each string
@@ -116,6 +117,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         article_augment_area = view.findViewById(R.id.article_augment_icon_area);
         article_budgetlist_area = view.findViewById(R.id.article_budget_icon_area);
         article_checklist_area = view.findViewById(R.id.article_checklist_icon_area);
+        Experimental_3d_View = view.findViewById(R.id.article_3dview_exp_area);
+        Experimental_Augment_View = view.findViewById(R.id.article_augment_exp_area);
 
         sessionmanager = new SessionManager(getContext());
         HashMap hashmap = new HashMap();
@@ -156,21 +159,18 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
         if (Objects.equals(user_log_type, "CUSTOMER")) {
             Set set = sessionmanager.getuserfavoirites();
-      try
-      {
-          if (set.contains(article_id)) {
-              Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
-              likeButton.setLiked(true);
-          } else if (!set.contains(article_id)) {
-              Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
-              likeButton.setLiked(false);
-          }
-      }
-      catch(NullPointerException e)
-      {
-          e.printStackTrace();
-      }
-      }
+            try {
+                if (set.contains(article_id)) {
+                    Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Exists in the ArrayList");
+                    likeButton.setLiked(true);
+                } else if (!set.contains(article_id)) {
+                    Log.e(TAG, "Favourite Article List: " + user_Favourite_list + " Article id: " + article_id + "  --Article Doesn't Exist in the ArrayList");
+                    likeButton.setLiked(false);
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
 
         try {
             JSONArray image_json = new JSONArray(article_images);
@@ -277,7 +277,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Hey Check this out!!");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "http://lcatalog.immersionslabs.com/#/articleDetails/" + article_id);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "https://lcatalog.immersionslabs.com/#/articleDetails/" + article_id);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
@@ -494,6 +494,26 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     article_budgetlist.setVisibility(View.VISIBLE);
                     article_removelist.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        Experimental_3d_View.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle article_3ds_data = new Bundle();
+                article_3ds_data.putString("article_3ds_file", article_id);
+                Intent intent = new Intent(getActivity(), Experimental3DViewActivity.class).putExtras(article_3ds_data);
+                startActivity(intent);
+            }
+        });
+
+        Experimental_Augment_View.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle article_augment_data = new Bundle();
+                article_augment_data.putString("article_augment_file", article_id);
+                Intent intent = new Intent(getActivity(), ExperimentalAugmentActivity.class).putExtras(article_augment_data);
+                startActivity(intent);
             }
         });
 
