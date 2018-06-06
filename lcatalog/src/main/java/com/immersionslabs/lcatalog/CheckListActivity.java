@@ -21,11 +21,12 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
+import com.amazonaws.services.simpleemail.model.RawMessage;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityResult;
-import com.amazonaws.services.simpleemail.model.RawMessage;
-import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
+import com.amazonaws.services.simpleemail.model.Message;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,13 +41,23 @@ import com.immersionslabs.lcatalog.adapters.CheckListAdapter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
+
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class CheckListActivity extends AppCompatActivity {
 
@@ -54,7 +65,15 @@ public class CheckListActivity extends AppCompatActivity {
 
     private String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
+    private static String SENDER = "Sender Name <enquiry@immersionslabs.com>";
+    private static String RECIPIENT = null;
+    private static String RECIPIENT_CC = null;
+    private static String SUBJECT = null;
+    private static String ATTACHMENT = null;
+    private static String BODY_TEXT = null;
+    private static String BODY_HTML = null;
     String USER_LOG_TYPE;
+    StringBuffer stringBuffer;
 
     SessionManager sessionManager;
     RecyclerView recycler_checklist;
@@ -354,22 +373,67 @@ public class CheckListActivity extends AppCompatActivity {
 
     private void sendEmail(Set articleids, String vendor_email_text, String useremail) {
         Log.e(TAG, "article ids of vendor" + articleids);
-        String article_id, article_name, article_desc, article_price;
-        String body_text = null;
-        String subject_text = null;
+        String article_id, article_name = null, article_desc, article_price;
         String vendor_email = vendor_email_text;
         String user_email = useremail;
         int Index;
+        RECIPIENT = vendor_email;
+        RECIPIENT_CC = user_email;
+        Session session = Session.getDefaultInstance(new Properties());
+        final MimeMessage mimeMessage = new MimeMessage(session);
 
         HashMap userDetails = sessionManager.getUserDetails();
         String username = userDetails.get(SessionManager.KEY_NAME).toString().toUpperCase();
-        body_text = Html.fromHtml(getString(R.string.nice_html)) + "\n";
+        stringBuffer = new StringBuffer();
+        stringBuffer.append("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<style>\n" +
+                "table {\n" +
+                "    width:100%;\n" +
+                "}\n" +
+                "table, th, td {\n" +
+                "    border: 1px solid black;\n" +
+                "    border-collapse: collapse;\n" +
+                "}\n" +
+                "th, td {\n" +
+                "    padding: 15px;\n" +
+                "    text-align: left;\n" +
+                "}\n" +
+                "table#t01 tr:nth-child(even) {\n" +
+                "    background-color: #eee;\n" +
+                "}\n" +
+                "table#t01 tr:nth-child(odd) {\n" +
+                "   background-color: #fff;\n" +
+                "}\n" +
+                "table#t01 th {\n" +
+                "    background-color: #004D40;\n" +
+                ";\n" +
+                "    color: white;\n" +
+                "}\n" +
+                "\n" +
+                ".fontss{\n" +
+                "font-size:15px;\n" +
+                "color:#004D40;\n" +
+                "\n" +
+                "}\n" +
+                "</style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h2 class =\"fontss\">Here is  " + username + "'S   CheckList:</h2>\n" +
+                "<br>\n" +
+                "\n" +
+                "<table id=\"t01\">\n" +
+                "  <tr>\n" +
+                "    <th class=\"fontss\">Product Name</th>\n" +
+                "    <th class=\"fontss\">Product Price</th> \n" +
+                "    <th class=\"fontss\">Product Description</th>\n" +
+                "    <th class=\"fontss\">Product Link</th>\n" +
+                "    \n" +
+                "  </tr>");
 
-        body_text += "\n" + "Here " + username + "'s" + " CheckList" + "\n" + "\n";
         Iterator iterator = articleids.iterator();
         String Article_size = Integer.toString(articleids.size());
-
-        body_text += "No of Articles: " + Article_size + "\n" + "\n";
         int count = 0;
 
         while (iterator.hasNext()) {
@@ -384,20 +448,24 @@ public class CheckListActivity extends AppCompatActivity {
                 article_desc = item_descriptions.get(Index);
                 article_price = item_prices.get(Index);
 
-                body_text += "Article No :" + count + "\n" + "\n";
-                body_text += "ARTICLE NAME : " + article_name + "\n" +
-                        "ARTICLE PRICE : " + article_price + "\n" +
-                        "ARTICLE DESCRIPTION : " + article_desc + "\n" +
-
-                        "ARTICLE LINK :    " + "https://lcatalog.immersionslabs.com/#/articleDetails/" + article_id;
-                subject_text = username + "'s" + " CheckList";
-
-                body_text += "\n" + "\n" + "\n";
+                stringBuffer.append("  <tr>\n" +
+                        "    <td>" + article_name + "</td>\n" +
+                        "    <td>" + article_price + "</td>\n" +
+                        "    <td>" + article_desc + "</td>\n" +
+                        "    <td>" + "https://lcatalog.immersionslabs.com/#/articleDetails/" + article_id + "</td>\n" +
+                        "  </tr>");
 
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
         }
+
+        stringBuffer.append("</table>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        BODY_HTML = stringBuffer.toString();
+        SUBJECT = username + "'s" + " CheckList";
 
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
                 , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
@@ -405,24 +473,39 @@ public class CheckListActivity extends AppCompatActivity {
         final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
         client.setRegion(Region.getRegion(Regions.US_EAST_1));
 
-        Content subject = new Content(subject_text);
-        Body body = new Body(new Content(body_text));
-        final com.amazonaws.services.simpleemail.model.Message message = new com.amazonaws.services.simpleemail.model.Message(subject, body);
+        Content subject = new Content(SUBJECT);
+        Body body = new Body(new Content(BODY_HTML));
+        try {
+            mimeMessage.setSubject(SUBJECT, "UTF-8");
+            mimeMessage.setFrom(new InternetAddress(SENDER));
+            mimeMessage.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(RECIPIENT));
+            mimeMessage.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(RECIPIENT_CC));
 
-        final String from = "enquiry@immersionslabs.com";
-        String to = vendor_email;
-        String cc = user_email;
+            MimeMultipart msg_body = new MimeMultipart("alternative");
+            MimeBodyPart wrap = new MimeBodyPart();
+            MimeBodyPart htmlPart = new MimeBodyPart();
+            htmlPart.setContent(BODY_HTML, "text/html; charset=UTF-8");
+            msg_body.addBodyPart(htmlPart);
+            mimeMessage.setContent(msg_body);
+            wrap.setContent(msg_body);
 
-        final Destination destination = new Destination()
-                .withToAddresses(to.contentEquals("") ? null : Arrays.asList(to.split("\\s*,\\s*")))
-                .withCcAddresses(cc.contentEquals("") ? null : Arrays.asList(cc.split("\\s*,\\s*")));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        final Message message = new Message(subject, body);
 
         // CREATES SEPARATE THREAD TO ATTEMPT TO SEND EMAIL
         Thread sendEmailThread = new Thread(new Runnable() {
             public void run() {
                 try {
-                    SendEmailRequest request = new SendEmailRequest(from, destination, message);
-                    client.sendEmail(request);
+
+                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                    mimeMessage.writeTo(outputStream);
+                    RawMessage rawMessage =
+                            new RawMessage(ByteBuffer.wrap(outputStream.toByteArray()));
+                    SendRawEmailRequest rawEmailRequest =
+                            new SendRawEmailRequest(rawMessage);
+                    client.sendRawEmail(rawEmailRequest);
                     result = SUCCESS;
 
                 } catch (Exception e) {
@@ -445,7 +528,7 @@ public class CheckListActivity extends AppCompatActivity {
                 Toast.makeText(CheckListActivity.this, "Email Sending Failed,Please Try Again", Toast.LENGTH_LONG)
                         .show();
             } else {
-                Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)
+                Toast.makeText(CheckListActivity.this, "UnExpected Error, Please Try again", Toast.LENGTH_LONG)
                         .show();
             }
         } catch (InterruptedException e) {
