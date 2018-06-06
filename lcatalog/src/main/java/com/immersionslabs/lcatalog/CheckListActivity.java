@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -361,11 +362,19 @@ public class CheckListActivity extends AppCompatActivity {
         int Index;
 
         HashMap userDetails = sessionManager.getUserDetails();
-        String username = userDetails.get(SessionManager.KEY_NAME).toString();
-        body_text = username + "'s" + " CheckList" + "\n" + "\n";
+        String username = userDetails.get(SessionManager.KEY_NAME).toString().toUpperCase();
+        body_text = Html.fromHtml(getString(R.string.nice_html)) + "\n";
+
+        body_text += "\n" + "Here " + username + "'s" + " CheckList" + "\n" + "\n";
         Iterator iterator = articleids.iterator();
+        String Article_size = Integer.toString(articleids.size());
+
+        body_text += "No of Articles: " + Article_size + "\n" + "\n";
+        int count = 0;
+
         while (iterator.hasNext()) {
             try {
+                count++;
                 article_id = iterator.next().toString();
                 Index = item_ids.indexOf(article_id);
                 Log.e(TAG, "ITEM_IDS" + item_ids);
@@ -375,18 +384,19 @@ public class CheckListActivity extends AppCompatActivity {
                 article_desc = item_descriptions.get(Index);
                 article_price = item_prices.get(Index);
 
+                body_text += "Article No :" + count + "\n" + "\n";
+                body_text += "ARTICLE NAME : " + article_name + "\n" +
+                        "ARTICLE PRICE : " + article_price + "\n" +
+                        "ARTICLE DESCRIPTION : " + article_desc + "\n" +
 
-                body_text +=
-                        "ARTICLE NAME : " + article_name + "\n" +
-                                "ARTICLE PRICE : " + article_price + "\n" +
-                                "ARTICLE DESCRIPTION : " + article_desc;
+                        "ARTICLE LINK :    " + "https://lcatalog.immersionslabs.com/#/articleDetails/" + article_id;
                 subject_text = username + "'s" + " CheckList";
+
                 body_text += "\n" + "\n" + "\n";
 
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-
         }
 
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
@@ -432,7 +442,7 @@ public class CheckListActivity extends AppCompatActivity {
                 Toast.makeText(CheckListActivity.this, "Email Sent Successfully", Toast.LENGTH_LONG)
                         .show();
             } else if (result == ERROR) {
-                Toast.makeText(CheckListActivity.this, "Email Sending Failed", Toast.LENGTH_LONG)
+                Toast.makeText(CheckListActivity.this, "Email Sending Failed,Please Try Again", Toast.LENGTH_LONG)
                         .show();
             } else {
                 Toast.makeText(CheckListActivity.this, "UnExpected Error Please Try again", Toast.LENGTH_LONG)

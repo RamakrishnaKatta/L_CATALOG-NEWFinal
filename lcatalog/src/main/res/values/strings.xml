@@ -340,6 +340,10 @@
     <string name="faq_text_31">L - CATALOG is working on introducing new, sassy features to make user experience better every time, so brace yourselves!</string>
     <string name="faq_text_32">Happy Shopping!</string>
 
-    <string name="com_appsee_apikey">dd59621a42a3ab8386863fb01099ee3894a7ac70</string>
+    <string name="nice_html">
+<![CDATA[
+<p>Welcome to Immersion  Software Labs Pvt Ltd. </p> ]]>
+ <![CDATA[<b>Thank you will get back you soon</b>]]>
+    </string>
 
 </resources>
