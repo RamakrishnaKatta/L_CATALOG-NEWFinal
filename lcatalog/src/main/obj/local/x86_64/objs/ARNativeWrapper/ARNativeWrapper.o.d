@@ -7,6 +7,7 @@
   C:/Android/sdk/ndk-bundle/build//../sources/cxx-stl/llvm-libc++/include\stdlib.h \
   C:/Android/sdk/ndk-bundle/build//../sources/cxx-stl/llvm-libc++/include\string.h \
   jni/../../../../../../android/../include\AR/arConfig.h \
+  jni/../../../../../../android/../include\ARUtil/log.h \
   jni/../../../../../../android/../include\AR/matrix.h \
   C:/Android/sdk/ndk-bundle/build//../sources/cxx-stl/llvm-libc++/include\math.h \
   jni/../../../../../../android/../include\AR/icp.h \
@@ -19,7 +20,6 @@
   jni/../../../../../../android/../include\Eden/EdenSurfaces.h \
   jni/../../../../../../android/../include\ARWrapper/ARToolKitWrapperExportedAPI.h \
   jni/../../../../../../android/../include\ARWrapper/Platform.h \
-  jni/../../../../../../android/../include\ARWrapper/Image.h \
   jni/../../../../../../android/../include\ARWrapper/Error.h
 
 jni/../../../../../../android/../include\AR/gsub_es.h:
@@ -35,6 +35,8 @@ C:/Android/sdk/ndk-bundle/build//../sources/cxx-stl/llvm-libc++/include\stdlib.h
 C:/Android/sdk/ndk-bundle/build//../sources/cxx-stl/llvm-libc++/include\string.h:
 
 jni/../../../../../../android/../include\AR/arConfig.h:
+
+jni/../../../../../../android/../include\ARUtil/log.h:
 
 jni/../../../../../../android/../include\AR/matrix.h:
 
@@ -59,7 +61,5 @@ jni/../../../../../../android/../include\Eden/EdenSurfaces.h:
 jni/../../../../../../android/../include\ARWrapper/ARToolKitWrapperExportedAPI.h:
 
 jni/../../../../../../android/../include\ARWrapper/Platform.h:
-
-jni/../../../../../../android/../include\ARWrapper/Image.h:
 
 jni/../../../../../../android/../include\ARWrapper/Error.h:
