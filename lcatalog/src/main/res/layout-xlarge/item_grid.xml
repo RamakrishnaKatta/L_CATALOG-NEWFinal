@@ -42,7 +42,8 @@
                 android:background="@color/transparent"
                 android:fontFamily="@font/overlock_sc"
                 android:gravity="center"
-                android:maxLines="2"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:padding="@dimen/margin_6"
                 android:text="@string/article_title_text"
                 android:textColor="@color/primary_darker"
@@ -67,7 +68,7 @@
                 android:fontFamily="@font/assistant_semibold"
                 android:gravity="center"
                 android:maxLength="80"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:padding="@dimen/margin_6"
                 android:text="@string/article_desc_text"
                 android:textColor="@color/white"
@@ -130,6 +131,7 @@
                 android:paddingEnd="@dimen/margin_6"
                 android:paddingStart="@dimen/margin_6">
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,6 +174,13 @@
         android:paddingEnd="@dimen/margin_6"
         android:paddingStart="@dimen/margin_6">
 
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+
+
+       </RelativeLayout>
         <TextView
             android:id="@+id/grid_item_discount_value"
             android:layout_width="wrap_content"
