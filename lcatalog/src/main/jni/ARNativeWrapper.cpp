@@ -38,18 +38,18 @@
 
         JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoInitialise(JNIEnv * env, jobject object)) {
 
-            const char *model0file = "/storage/emulated/0/L_CATALOG/cache/Data/models/bedsofa.obj";
+            const char *model0file = "/storage/emulated/0/L_CATALOG/cache/Data/models/parasona.obj"; // Test Replaceable Article
             const char *model1file = "/storage/emulated/0/L_CATALOG/cache/Data/models/dressing_table.obj";
             const char *model2file = "/storage/emulated/0/L_CATALOG/cache/Data/models/outdoorsofa.obj";
             const char *model3file = "/storage/emulated/0/L_CATALOG/cache/Data/models/wardrobe.obj";
-            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/interior2.obj";
+            const char *model4file = "/storage/emulated/0/L_CATALOG/cache/Data/models/bedsofa.obj";
             const char *model5file = "/storage/emulated/0/L_CATALOG/cache/Data/models/parasona.obj";
             const char *model6file = "/storage/emulated/0/L_CATALOG/cache/Data/models/barrelset.obj";
             const char *model7file = "/storage/emulated/0/L_CATALOG/cache/Data/models/teakbed.obj";
             const char *model8file = "/storage/emulated/0/L_CATALOG/cache/Data/models/wallpaint.obj";
             const char *model9file = "/storage/emulated/0/L_CATALOG/cache/Data/models/florence_compact.obj";
             const char *model10file = "/storage/emulated/0/L_CATALOG/cache/Data/models/4seated_dinning_table.obj";
-            const char *model11file = "/storage/emulated/0/L_CATALOG/cache/Data/models/alba_sheeshamcoffee_table.obj";
+            const char *model11file = "/storage/emulated/0/L_CATALOG/cache/Data/models/alba_sheeshamcofee_table.obj";
             const char *model12file = "/storage/emulated/0/L_CATALOG/cache/Data/models/chelsea.obj";
             const char *model13file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Multiple_Frames_Buddha_Art_Wall_Painting.obj";
             const char *model14file = "/storage/emulated/0/L_CATALOG/cache/Data/models/floorlamp.obj";
@@ -62,16 +62,16 @@
             const char *model21file = "/storage/emulated/0/L_CATALOG/cache/Data/models/window.obj";
             const char *model22file = "/storage/emulated/0/L_CATALOG/cache/Data/models/execuofc.obj";
             const char *model23file = "/storage/emulated/0/L_CATALOG/cache/Data/models/exewait.obj";
-            const char *model24file = "/storage/emulated/0/L_CATALOG/cache/Data/models/emppod.obj";
+            const char *model24file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empod.obj";
             const char *model25file = "/storage/emulated/0/L_CATALOG/cache/Data/models/meetingtable.obj";
-            const char *model26file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officeparta.obj";
-            const char *model27file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officepartb.obj";
+            const char *model26file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrta.obj";
+            const char *model27file = "/storage/emulated/0/L_CATALOG/cache/Data/models/officprrtb.obj";
             const char *model28file = "/storage/emulated/0/L_CATALOG/cache/Data/models/expall.obj";
             const char *model29file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empoda.obj";
             const char *model30file = "/storage/emulated/0/L_CATALOG/cache/Data/models/empodb.obj";
             const char *model31file = "/storage/emulated/0/L_CATALOG/cache/Data/models/entsfa.obj";
             const char *model32file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Ferrari_Modena_Spider.obj";
-            const char *model33file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Porsche.obj";
+            const char *model33file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Porsche_911_GT3.obj";
 
             //Mapping to pattern 1 - bed sofa.obj
             models[0].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern1.patt;80");
@@ -248,7 +248,7 @@
                   LOGE("Error loading model from file '%s'.", model11file);
                   exit(-1);
                 }
-            glmScale(models[11].obj, 5.0f);
+            glmScale(models[11].obj, 15.0f);
             //glmRotate(models[11].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[11].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[11].visible = false;
@@ -343,7 +343,7 @@
             glmCreateArrays(models[17].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[17].visible = false;
 
-            //Mapping to pattern 19  - goldchain.obj
+            //Mapping to pattern 19  - Audi_R8.obj
             models[18].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern19.patt;80");
             arwSetMarkerOptionBool(models[18].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
             arwSetMarkerOptionBool(models[18].patternID, ARW_MARKER_OPTION_FILTERED, true);
