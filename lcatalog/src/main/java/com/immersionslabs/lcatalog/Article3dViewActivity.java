@@ -34,10 +34,6 @@ public class Article3dViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article3d_view);
 
-//        CameraView cameraView = new CameraView(this);
-//        addContentView(cameraView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-//        Log.e(TAG, "CameraView added to the Activity");
-
         Toolbar toolbar = findViewById(R.id.toolbar_3dView);
         toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);

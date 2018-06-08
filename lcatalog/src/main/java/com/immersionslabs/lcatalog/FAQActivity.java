@@ -151,8 +151,7 @@ public class FAQActivity extends AppCompatActivity {
 
     }
 
-//    onclick functions ----------------------------------------------------
-
+    //OnClick functions ----------------------------------------------------
     public void step1(View v) {
         if (step1.getTag().toString().equals("down")) {
             step_text1.setVisibility(View.VISIBLE);

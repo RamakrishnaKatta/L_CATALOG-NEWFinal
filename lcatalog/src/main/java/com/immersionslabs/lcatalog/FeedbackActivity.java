@@ -24,7 +24,9 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class FeedbackActivity extends AppCompatActivity implements ApiCommunication {
+
     public static final String TAG = "FeedbackActivity";
+
     EditText feed_name_text, feed_subject_text, feed_number_text;
     Button feed_Submit;
     String feed_name, feed_message, feed_number;
@@ -111,7 +113,6 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
     private void FeedSuccess() {
         CustomMessage.getInstance().CustomMessage(this, "Thank you for your valuable Feedback");
         feed_Submit.setEnabled(true);
-
     }
 
     @Override
@@ -147,7 +148,6 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(FeedbackActivity.this, "Internal Error", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -159,5 +159,4 @@ public class FeedbackActivity extends AppCompatActivity implements ApiCommunicat
     public void onPause() {
         super.onPause();
     }
-
 }

@@ -197,7 +197,6 @@ public class GuestActivity extends AppCompatActivity {
                 }, 3000);
     }
 
-
     public void scheduleAlarm() {
         Intent myIntent = new Intent(getBaseContext(), MyScheduledReceiver.class);
         Bundle bundle = new Bundle();

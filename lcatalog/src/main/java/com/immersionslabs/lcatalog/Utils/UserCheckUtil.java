@@ -51,12 +51,12 @@ public class UserCheckUtil {
         return ret.toString();
     }
 
-    private static boolean isExternalStorageReadOnly() {
+    public static boolean isExternalStorageReadOnly() {
         String extStorageState = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState);
     }
 
-    private static boolean isExternalStorageAvailable() {
+    public static boolean isExternalStorageAvailable() {
         String extStorageState = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(extStorageState);
     }

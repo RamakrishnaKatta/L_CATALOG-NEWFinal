@@ -9,12 +9,14 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+
 public class ExperimentalAugmentActivity extends AppCompatActivity {
 
     private static final String TAG = "ExperimentalAugmentActivity";
 
     String article_augment_file_data;
-    String WEB_URL_AUGMENT = "https://lcatalog.immersionslabs.com/#/articleAr/";
+    String WEB_URL_AUGMENT = EnvConstants.APP_BASE_URL + "/#/articleAr/";
 
     @SuppressLint("LongLogTag")
     @Override

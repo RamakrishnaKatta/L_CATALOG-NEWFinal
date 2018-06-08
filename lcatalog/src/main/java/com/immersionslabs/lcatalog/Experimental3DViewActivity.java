@@ -9,12 +9,14 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+
 public class Experimental3DViewActivity extends AppCompatActivity {
 
     private static final String TAG = "Experimental3DViewActivity";
 
     String article_3ds_file_data;
-    String WEB_URL_3DS = "https://lcatalog.immersionslabs.com/#/3d_view/";
+    String WEB_URL_3DS = EnvConstants.APP_BASE_URL + "/#/3d_view/";
 
     @SuppressLint("LongLogTag")
     @Override

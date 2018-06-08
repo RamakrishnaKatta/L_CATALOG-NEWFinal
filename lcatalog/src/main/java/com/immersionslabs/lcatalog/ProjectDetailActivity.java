@@ -303,10 +303,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
-
-        Intent intent = new Intent(this, ProjectActivity.class);
-        intent.putExtra("activity", "SplashScreen");
-        startActivity(intent);
         finish();
     }
 

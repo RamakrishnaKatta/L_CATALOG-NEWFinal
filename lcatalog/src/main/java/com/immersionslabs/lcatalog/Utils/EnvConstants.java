@@ -11,6 +11,7 @@ public class EnvConstants {
     public static String user_type = null;
     public static boolean flag_article_details = false;
     public static int position = 0;
+
     public static String part_articles_id_var = null;
     public static String part_article_name_var = null;
     public static String part_article_images_var = null;
@@ -21,7 +22,9 @@ public class EnvConstants {
     public static String part_articles_description_var = null;
     public static String part_article__discounts_var = null;
     public static String part_articles_price_var = null;
+
     public static ArrayList<String> part_articles_id = new ArrayList<>();
+
     public static HashMap<String, String> part_article_name = new HashMap<>();
     public static HashMap<String, String> part_article_images = new HashMap<>();
     public static HashMap<String, String> part_articles_vendor_id = new HashMap<>();
@@ -31,5 +34,4 @@ public class EnvConstants {
     public static HashMap<String, String> part_articles_description = new HashMap<>();
     public static HashMap<String, String> part_article__discounts = new HashMap<>();
     public static HashMap<String, String> part_articles_price = new HashMap<>();
-
 }

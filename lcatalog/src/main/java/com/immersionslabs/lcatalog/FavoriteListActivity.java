@@ -27,9 +27,9 @@ import java.util.Iterator;
 
 public class FavoriteListActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static final String TAG = "FavoriteListActivity";
 
+    private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles/";
     private static String FAVOURITE_URL = null;
     private static String GUEST_FAVOURITE_URL = null;
 
@@ -111,7 +111,7 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
 
             try {
                 JSONArray resp = response.getJSONArray("data");
-                GetData(resp);
+                GetArrayData(resp);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -120,7 +120,7 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
         if (flag.equals("GUEST")) {
             try {
                 JSONObject RESP = response.getJSONObject("data");
-                GetData(RESP);
+                GetObjectData(RESP);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -133,7 +133,7 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
         Toast.makeText(FavoriteListActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
-    private void GetData(JSONArray resp) {
+    private void GetArrayData(JSONArray resp) {
 
         for (int i = 0; i < resp.length(); i++) {
             JSONObject obj = null;
@@ -172,7 +172,7 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
         recycler.setAdapter(adapter);
     }
 
-    private void GetData(JSONObject obj) {
+    private void GetObjectData(JSONObject obj) {
 
         try {
             item_ids.add(obj.getString("_id"));
@@ -228,7 +228,13 @@ public class FavoriteListActivity extends AppCompatActivity implements ApiCommun
         item_3ds.clear();
 
         CommongetData();
+    }
 
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     @Override

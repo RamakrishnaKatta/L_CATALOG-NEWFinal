@@ -38,6 +38,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.immersionslabs.lcatalog.Utils.UserCheckUtil.isExternalStorageAvailable;
+import static com.immersionslabs.lcatalog.Utils.UserCheckUtil.isExternalStorageReadOnly;
+
 public class UserTypeActivity extends AppCompatActivity {
 
     private static final String TAG = "UserTypeActivity";
@@ -51,16 +54,6 @@ public class UserTypeActivity extends AppCompatActivity {
     SessionManager sessionmanager;
     private PrefManager prefManager1;
     private boolean success = true;
-
-    private static boolean isExternalStorageReadOnly() {
-        String extStorageState = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState);
-    }
-
-    private static boolean isExternalStorageAvailable() {
-        String extStorageState = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(extStorageState);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -28,9 +27,8 @@ import org.json.JSONObject;
 
 public class VendorProfileActivity extends AppCompatActivity implements ApiCommunication {
 
-    private Activity activity;
-
     private static final String TAG = "VendorProfileActivity";
+
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
     private static final int REQUEST_UPDATE = 0;
     private static String VENDOR_URL = null;
@@ -178,6 +176,13 @@ public class VendorProfileActivity extends AppCompatActivity implements ApiCommu
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PrefManager {
+
     // Shared preferences file name
     private static final String PREF_NAME_1 = " L_Catalog_welcome_Screen ";
     private static final String PREF_NAME_2 = " L_Catalog_UserTypeActivityScreen ";
@@ -18,9 +19,9 @@ public class PrefManager {
     private static final String MAINACTIVITY_LAUNCH_SCREEN = "MainActivityLaunchScreen";
     private static final String PRODUCTPAGEACTIVITY_LAUNCH_SCREEN = "ProductPageActivityLaunchScreen";
     private static final String LOGINACTIVITY_LAUNCH_SCREEN = "LoginActivityLaunchScreen";
+
     private SharedPreferences pref, pref1, pref2, pref3, pref4, pref5;
     private SharedPreferences.Editor editor, editor1, editor2, editor3, editor4, editor5;
-
 
     @SuppressLint("CommitPrefEdits")
     public PrefManager(Context context) {
@@ -52,7 +53,6 @@ public class PrefManager {
         return pref.getBoolean(WELCOMEACTIVITY_SCREEN_LAUNCH, true);
     }
 
-
     /*UserTypeActivity Screen Pref*/
     public void setUserTypeActivityScreenLaunch() {
         editor1.putBoolean(USERTYPEACTIVITY_LAUNCH_SCREEN, false);
@@ -62,7 +62,6 @@ public class PrefManager {
     public boolean UserTypeActivityScreenLaunch() {
         return pref1.getBoolean(USERTYPEACTIVITY_LAUNCH_SCREEN, true);
     }
-
 
     /*GuestActivity Screen pref*/
     public void setGuestActivityScreenLaunch() {
@@ -74,7 +73,6 @@ public class PrefManager {
         return pref2.getBoolean(GUESTACTIVITY_LAUNCH_SCREEN, true);
     }
 
-
     /*MainActivity Screen  Pref*/
     public void SetMainActivityScreenLaunch() {
         editor3.putBoolean(MAINACTIVITY_LAUNCH_SCREEN, false);
@@ -84,7 +82,6 @@ public class PrefManager {
     public boolean MainActivityScreenLaunch() {
         return pref3.getBoolean(MAINACTIVITY_LAUNCH_SCREEN, true);
     }
-
 
     /*ProductPageActivity Screen Pref*/
     public void setProductPageActivityScreenLaunch() {
@@ -96,7 +93,6 @@ public class PrefManager {
         return pref4.getBoolean(PRODUCTPAGEACTIVITY_LAUNCH_SCREEN, true);
     }
 
-
     /*LoginActivity Screen Pref*/
     public void SetLoginActivityScreenLaunch() {
         editor5.putBoolean(LOGINACTIVITY_LAUNCH_SCREEN, false);
@@ -106,5 +102,4 @@ public class PrefManager {
     public boolean LoginActivityScreenLaunch() {
         return pref5.getBoolean(LOGINACTIVITY_LAUNCH_SCREEN, true);
     }
-
 }

@@ -11,6 +11,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class UnzipUtil {
+
     private static final String TAG = "UnZipActivity";
 
     private String zipFile;
@@ -27,23 +28,23 @@ public class UnzipUtil {
     private void unzip() {
         try {
 
-            Log.e(TAG + " :unzip-Decompress", "Zip File Location ------" + zipFile);
-            Log.e(TAG + " :unzip-Decompress", "Extraction Location ------" + location);
+            Log.e(TAG, ":unzip-Decompress  Zip File Location ------" + zipFile);
+            Log.e(TAG, ":unzip-Decompress  Extraction Location ------" + location);
 
             FileInputStream file_in = new FileInputStream(zipFile);
             ZipInputStream zip_in = new ZipInputStream(file_in);
 
-            Log.e(TAG + " :unzip-Decompress", "fin ------" + file_in);
-            Log.e(TAG + " :unzip-Decompress", "zin ------" + zip_in);
+            Log.e(TAG, ":unzip-Decompress  fin ------" + file_in);
+            Log.e(TAG, ":unzip-Decompress  zin ------" + zip_in);
 
             ZipEntry zip_entry;
 
             while ((zip_entry = zip_in.getNextEntry()) != null) {
                 String dir_location = zip_entry.getName();
-                Log.e(TAG + " :unzip-Decompress", "Unzipping " + dir_location);
+                Log.e(TAG, ":unzip-Decompress  Unzipping " + dir_location);
 
                 if (zip_entry.isDirectory()) {
-                    Log.e(TAG + " :unzip-Decompress", "Directory Location ----------------" + dir_location);
+                    Log.e(TAG, ":unzip-Decompress  Directory Location ----------------" + dir_location);
                     dirChecker(zip_entry.getName());
                 } else {
                     FileOutputStream file_out = new FileOutputStream(location + dir_location);
@@ -62,9 +63,9 @@ public class UnzipUtil {
                 }
             }
             zip_in.close();
-            Log.e(TAG + " :unzip-Decompress", "unzip Successful");
+            Log.e(TAG, ":unzip-Decompress  unzip Successful");
         } catch (Exception e) {
-            Log.e(TAG + " :unzip-Decompress", "unzip Failed", e);
+            Log.e(TAG, ":unzip-Decompress  unzip Failed", e);
             e.printStackTrace();
         }
     }
@@ -80,9 +81,9 @@ public class UnzipUtil {
         assert folder != null;
         if (!folder.exists()) {
             boolean wasSuccessful = folder.mkdirs();
-            Log.e(TAG + " -dirChecker", "Directory is Created --- '" + wasSuccessful + "' Thank You !!");
+            Log.e(TAG, ":unzip-Decompress  Directory is Created --- '" + wasSuccessful + "' Thank You !!");
         } else {
-            Log.e(TAG + " -dirChecker", "Directory already exists");
+            Log.e(TAG, ":unzip-Decompress  Directory already exists");
         }
     }
 }

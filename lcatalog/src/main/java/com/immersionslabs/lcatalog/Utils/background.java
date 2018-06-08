@@ -8,6 +8,7 @@ import android.os.Build;
 import java.util.List;
 
 public class background {
+
     public static boolean isAppIsInBackground(Context context) {
         boolean isInBackground = true;
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

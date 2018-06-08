@@ -6,8 +6,8 @@ import android.graphics.drawable.LayerDrawable;
 
 import com.immersionslabs.lcatalog.R;
 
-class SetNotificationCount {
-    static void setBadgeCount(Context context, LayerDrawable icon, int count) {
+public class SetNotificationCount {
+    public static void setBadgeCount(Context context, LayerDrawable icon, int count) {
 
         BadgeDrawable badge;
 

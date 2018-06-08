@@ -143,9 +143,7 @@ public class TouchImageView extends AppCompatImageView {
         viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        //
         // Rescales image on rotation
-        //
         if (oldMeasuredHeight == viewWidth && oldMeasuredHeight == viewHeight
                 || viewWidth == 0 || viewHeight == 0)
             return;
@@ -216,4 +214,3 @@ public class TouchImageView extends AppCompatImageView {
         }
     }
 }
-

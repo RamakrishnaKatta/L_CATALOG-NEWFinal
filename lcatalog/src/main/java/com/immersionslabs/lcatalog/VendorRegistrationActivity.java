@@ -357,6 +357,13 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
     }
 
     @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
     }

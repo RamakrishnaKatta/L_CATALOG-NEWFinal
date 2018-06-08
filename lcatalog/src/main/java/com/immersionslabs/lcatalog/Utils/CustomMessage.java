@@ -9,7 +9,6 @@ public class CustomMessage {
     private static CustomMessage message = new CustomMessage();
 
     public CustomMessage() {
-
     }
 
     public static CustomMessage getInstance() {

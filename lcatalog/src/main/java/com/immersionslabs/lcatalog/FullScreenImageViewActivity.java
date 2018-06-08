@@ -37,7 +37,6 @@ public class FullScreenImageViewActivity extends Activity {
         } else {
             InternetMessage();
         }
-
     }
 
     private void InternetMessage() {
@@ -51,12 +50,18 @@ public class FullScreenImageViewActivity extends Activity {
                 if (NetworkConnectivity.checkInternetConnection(FullScreenImageViewActivity.this)) {
 
                 } else {
-
                     InternetMessage();
                 }
             }
         });
         snackbar.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
     }
 
     @Override

@@ -328,10 +328,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
-
-        Intent intent = new Intent(this, ProjectDetailActivity.class);
-        intent.putExtra("activity", "SplashScreen");
-        startActivity(intent);
         finish();
     }
 

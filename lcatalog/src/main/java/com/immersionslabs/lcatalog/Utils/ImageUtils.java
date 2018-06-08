@@ -35,9 +35,7 @@ public class ImageUtils {
         this._context = context;
     }
 
-    /*
-     * Reading file paths from SDCard
-     */
+    //Reading file paths from SDCard
     public ArrayList<String> getFilePaths() {
 
         ArrayList<String> ImageFilePaths = new ArrayList<>();
@@ -100,9 +98,7 @@ public class ImageUtils {
         return FILE_EXTN.contains(ext.toLowerCase(Locale.getDefault()));
     }
 
-    /*
-     * getting screen width
-     */
+    //getting screen width
     public int getScreenWidth() {
         int columnWidth;
         WindowManager wm = (WindowManager) _context.getSystemService(Context.WINDOW_SERVICE);
