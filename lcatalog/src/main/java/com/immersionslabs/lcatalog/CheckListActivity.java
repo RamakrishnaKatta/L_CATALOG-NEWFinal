@@ -168,44 +168,57 @@ public class CheckListActivity extends AppCompatActivity {
         Place_enquiry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap userDetails = sessionManager.getUserDetails();
-                 _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
-                Log.e(TAG, "User Email" + _user_email);
+                if (EnvConstants.user_type.equals("CUSTOMER")) {
 
-                is_email_valid_boolean = is_email_valid(_user_email);
-                if (is_email_valid_boolean) {
+                    HashMap userDetails = sessionManager.getUserDetails();
+                    _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
+                    Log.e(TAG, "User Email" + _user_email);
 
-                    Log.e(TAG, "ArticleId Set" + set_checklist_vendorids);
-
-                    Iterator iterator = set_checklist_vendorids.iterator();
-                    while (iterator.hasNext()) {
-                        String vendor_id = iterator.next().toString();
-                        String vendor_id_clone = vendor_id;
-                        Integer integer_vendor_id = Integer.parseInt(vendor_id) + 1;
-                        vendor_id = String.valueOf(integer_vendor_id);
-                        Log.e(TAG, "VendorId from sent email" + vendor_id);
-                        HashMap hashMap = map_vendordetails.get(vendor_id);
-                        String vendor_email = hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
-                        Set articleids = map_vendorarticleids.get(vendor_id_clone);
-                        if (articleids != null) {
-                            sendEmail(articleids, vendor_email, _user_email);
+                    is_email_valid_boolean = is_email_valid(_user_email);
+                    if (is_email_valid_boolean) {
+                        Log.e(TAG, "ArticleId Set" + set_checklist_vendorids);
+                        Iterator iterator = set_checklist_vendorids.iterator();
+                        while (iterator.hasNext()) {
+                            String vendor_id = iterator.next().toString();
+                            String vendor_id_clone = vendor_id;
+                            Integer integer_vendor_id = Integer.parseInt(vendor_id) + 1;
+                            vendor_id = String.valueOf(integer_vendor_id);
+                            Log.e(TAG, "VendorId from sent email" + vendor_id);
+                            HashMap hashMap = map_vendordetails.get(vendor_id);
+                            String vendor_email = hashMap.get(vendor_id + SessionManager.KEY_VENDOR_EMAIL).toString();
+                            Set articleids = map_vendorarticleids.get(vendor_id_clone);
+                            if (articleids != null) {
+                                sendEmail(articleids, vendor_email, _user_email);
+                            }
                         }
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CheckListActivity.this, R.style.AppCompatAlertDialogStyle);
+                        builder.setTitle("Verification");
+                        builder.setMessage("Your email is not a verified email, do you want to proceed with the verification?");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                VerifyEmail(_user_email);
+
+                            }
+                        });
+                        builder.setNegativeButton("CANCEL", null);
+                        builder.show();
                     }
                 } else {
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(CheckListActivity.this, R.style.AppCompatAlertDialogStyle);
                     builder.setTitle("Verification");
-                    builder.setMessage("Your email is not a verified email, do you want to proceed with the verification?");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    builder.setMessage("This feature is Not available for Guest User,Kindly Signup for more features");
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            VerifyEmail(_user_email);
 
+                            Intent intent = new Intent(CheckListActivity.this, SignupActivity.class);
+                            startActivity(intent);
                         }
                     });
-                    builder.setNegativeButton("Cancel", null);
+                    builder.setNegativeButton("NO", null);
                     builder.show();
-
                 }
             }
         });
@@ -322,8 +335,8 @@ public class CheckListActivity extends AppCompatActivity {
                     CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
                             , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
                     AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
-          ListVerifiedEmailAddressesResult listVerifiedEmailAddressesResult = ses.listVerifiedEmailAddresses();
-         List l_verifiedids= listVerifiedEmailAddressesResult.getVerifiedEmailAddresses();
+                    ListVerifiedEmailAddressesResult listVerifiedEmailAddressesResult = ses.listVerifiedEmailAddresses();
+                    List l_verifiedids = listVerifiedEmailAddressesResult.getVerifiedEmailAddresses();
                     List l_ids = ses.listIdentities().getIdentities();
                     Log.e(TAG, "List Ids: " + l_ids);
                     Log.e(TAG, "List VerifiedIds: " + l_verifiedids);
@@ -331,9 +344,7 @@ public class CheckListActivity extends AppCompatActivity {
                     if (l_verifiedids.contains(email)) {
                         //the address is verified so
                         returnval_emaivalidation = true;
-                    }
-                  else  if(l_ids.contains(email))
-                    {
+                    } else if (l_ids.contains(email)) {
                         Toast.makeText(CheckListActivity.this, "Mail is already sent to your registered mail please go through the link to complete the verification process", Toast.LENGTH_LONG).show();
 
                     }

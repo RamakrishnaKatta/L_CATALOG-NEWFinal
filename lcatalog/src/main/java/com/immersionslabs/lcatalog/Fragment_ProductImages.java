@@ -296,7 +296,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("Cancel", null);
+                builder.setNegativeButton("CANCEL", null);
                 builder.show();
             }
         });
@@ -331,7 +331,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 }
                             }
                         });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -378,7 +378,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     }
                                 }
                             });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.cancel();
@@ -415,7 +415,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 }
                             }
                         });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -461,7 +461,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                     }
                                 }
                             });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.cancel();

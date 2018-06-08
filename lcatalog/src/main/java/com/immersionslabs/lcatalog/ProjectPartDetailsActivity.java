@@ -182,7 +182,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("Cancel", null);
+                builder.setNegativeButton("CANCEL", null);
                 builder.show();
             }
         });

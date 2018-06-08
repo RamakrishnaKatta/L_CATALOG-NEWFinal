@@ -278,7 +278,7 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
                 // SignupActivity.super.onDestroy();
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 CustomMessage.getInstance().CustomMessage(SignupActivity.this, "Thanks for thinking again.");

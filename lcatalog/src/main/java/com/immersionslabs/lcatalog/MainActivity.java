@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                 }
             });
-            builder.setNegativeButton("Cancel", null);
+            builder.setNegativeButton("CANCEL", null);
             builder.show();
             return true;
         }
@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(intent);
                 }
             });
-            builder.setNegativeButton("Cancel", null);
+            builder.setNegativeButton("CANCEL", null);
             builder.show();
 
         } else if (id == R.id.nav_project_campaign) {
@@ -472,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                 }
             });
-            builder.setNegativeButton("Cancel", null);
+            builder.setNegativeButton("CANCEL", null);
             builder.show();
 
         } else if (id == R.id.nav_about) {

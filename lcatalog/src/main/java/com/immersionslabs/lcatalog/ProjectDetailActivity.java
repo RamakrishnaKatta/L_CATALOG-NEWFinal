@@ -187,7 +187,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("Cancel", null);
+                builder.setNegativeButton("CANCEL", null);
                 builder.show();
             }
         });
