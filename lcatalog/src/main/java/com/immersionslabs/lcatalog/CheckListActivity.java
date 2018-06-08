@@ -1,6 +1,9 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +24,15 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
+import com.amazonaws.services.simpleemail.model.ListVerifiedEmailAddressesRequest;
+import com.amazonaws.services.simpleemail.model.ListVerifiedEmailAddressesResult;
 import com.amazonaws.services.simpleemail.model.RawMessage;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
 import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityResult;
-import com.amazonaws.services.simpleemail.model.Message;
+import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailService.*;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -65,7 +71,7 @@ public class CheckListActivity extends AppCompatActivity {
 
     private String CHECKLIST_URL = EnvConstants.APP_BASE_URL + "/vendorArticles/";
 
-    private static String SENDER = "Sender Name <enquiry@immersionslabs.com>";
+    private static String SENDER = "Immersion Software Labs <enquiry@immersionslabs.com>";
     private static String RECIPIENT = null;
     private static String RECIPIENT_CC = null;
     private static String SUBJECT = null;
@@ -102,6 +108,7 @@ public class CheckListActivity extends AppCompatActivity {
     private final static int ERROR = 1;
     private int result;
     private boolean returnval_emaivalidation;
+    String _user_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,12 +169,12 @@ public class CheckListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HashMap userDetails = sessionManager.getUserDetails();
-                String _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
+                 _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
                 Log.e(TAG, "User Email" + _user_email);
 
                 is_email_valid_boolean = is_email_valid(_user_email);
                 if (is_email_valid_boolean) {
-                    Toast.makeText(CheckListActivity.this, "User email is already verified,sending test mail", Toast.LENGTH_LONG).show();
+
                     Log.e(TAG, "ArticleId Set" + set_checklist_vendorids);
 
                     Iterator iterator = set_checklist_vendorids.iterator();
@@ -185,8 +192,20 @@ public class CheckListActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(CheckListActivity.this, "Your email is not a verified email, Sending a verification email", Toast.LENGTH_LONG).show();
-                    VerifyEmail(_user_email);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CheckListActivity.this, R.style.AppCompatAlertDialogStyle);
+                    builder.setTitle("Verification");
+                    builder.setMessage("Your email is not a verified email, do you want to proceed with the verification?");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            VerifyEmail(_user_email);
+
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", null);
+                    builder.show();
+
                 }
             }
         });
@@ -303,12 +322,20 @@ public class CheckListActivity extends AppCompatActivity {
                     CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
                             , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
                     AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
+          ListVerifiedEmailAddressesResult listVerifiedEmailAddressesResult = ses.listVerifiedEmailAddresses();
+         List l_verifiedids= listVerifiedEmailAddressesResult.getVerifiedEmailAddresses();
                     List l_ids = ses.listIdentities().getIdentities();
                     Log.e(TAG, "List Ids: " + l_ids);
+                    Log.e(TAG, "List VerifiedIds: " + l_verifiedids);
 
-                    if (l_ids.contains(email)) {
+                    if (l_verifiedids.contains(email)) {
                         //the address is verified so
                         returnval_emaivalidation = true;
+                    }
+                  else  if(l_ids.contains(email))
+                    {
+                        Toast.makeText(CheckListActivity.this, "Mail is already sent to your registered mail please go through the link to complete the verification process", Toast.LENGTH_LONG).show();
+
                     }
 
                 } catch (Exception e) {
@@ -341,7 +368,6 @@ public class CheckListActivity extends AppCompatActivity {
                     client.setRegion(Region.getRegion(Regions.US_EAST_1));
                     VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
                     VerifyEmailIdentityResult response = client.verifyEmailIdentity(request);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e(TAG, "Verify Email Exception: " + e.getMessage());
@@ -356,8 +382,7 @@ public class CheckListActivity extends AppCompatActivity {
             verifyEmailThread.join();
 
             if (result == SUCCESS) {
-                Toast.makeText(CheckListActivity.this, "verification email sent to your mail.", Toast.LENGTH_LONG)
-                        .show();
+                Toast.makeText(CheckListActivity.this, "Mail is sent to your registered mail please go through the link to complete the verification process", Toast.LENGTH_LONG).show();
 
             } else if (result == ERROR) {
                 Toast.makeText(CheckListActivity.this, "error", Toast.LENGTH_LONG)
@@ -492,7 +517,7 @@ public class CheckListActivity extends AppCompatActivity {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        final Message message = new Message(subject, body);
+//        final Message message = new Message(subject, body);
 
         // CREATES SEPARATE THREAD TO ATTEMPT TO SEND EMAIL
         Thread sendEmailThread = new Thread(new Runnable() {
