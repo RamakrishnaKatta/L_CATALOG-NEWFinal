@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String VENDOR_URL = EnvConstants.APP_BASE_URL + "/vendors";
     private static final String VENDOR_SPECIFIC_URL = EnvConstants.APP_BASE_URL + "/vendors/specific/";
 
-
     boolean doubleBackToExitPressedOnce = false;
     String name, email, phone, address, user_log_type;
     String guest_name, guest_phone;
@@ -102,12 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
@@ -440,7 +437,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, CheckListActivity.class);
             startActivity(intent);
 
-
         } else if (id == R.id.nav_user_notify) {
 
             Toast.makeText(this, "Here are all your notifications, Check out !!", Toast.LENGTH_SHORT).show();
@@ -526,7 +522,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void vendorapicall() {
         ApiService.getInstance(this).getData(this, false, "VENDOR_LIST", VENDOR_URL, "VENDOR_LIST_ALL");
-
     }
 
     private void vendorSpecificApicall() {
@@ -548,7 +543,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onResponseCallback(JSONObject response, String flag) {
         if (flag.equals("VENDOR_LIST_ALL")) {
             Log.e(TAG, "response " + response);
-
             try {
                 JSONArray resp = response.getJSONArray("data");
                 GetData(resp);
@@ -558,7 +552,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if (flag.equals("UNIQUE")) {
             try {
-
                 JSONObject jsonObject = response.getJSONObject("other_details");
 
                 GetFullDetails(jsonObject);
@@ -579,7 +572,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String other_details = jsonObject.getString("other_details");
             String vendor_id = jsonObject.getString("vendor_id");
 
-
             Log.e(TAG, "vendorespecific id:  " + id);
             Log.e(TAG, "vendorespecific name:  " + name);
             Log.e(TAG, "vendorespecific type:  " + type);
@@ -587,7 +579,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.e(TAG, "vendorespecific mobile_no:  " + mobile_no);
             Log.e(TAG, "vendorespecific other_details:  " + other_details);
             Log.e(TAG, "vendorespecific vendor_id:  " + vendor_id);
-
 
             hash_vendor.put(id, id);
             hash_vendor.put(id + SessionManager.KEY_VENDOR_NAME, name);
@@ -599,17 +590,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             sessionmanager.SetVendorDetails(id, hash_vendor);
             Log.e(TAG, "GetFullDetails: session" + hash_vendor);
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
         Toast.makeText(MainActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
-
     }
 
     private void GetData(JSONArray resp) {
@@ -626,8 +614,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         Log.e(TAG, " vendorspecificids" + vendor_ids);
         vendorSpecificApicall();
-
     }
-
-
 }

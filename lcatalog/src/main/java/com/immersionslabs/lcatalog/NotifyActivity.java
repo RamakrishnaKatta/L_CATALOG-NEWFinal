@@ -1,7 +1,6 @@
 package com.immersionslabs.lcatalog;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -89,7 +88,6 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
                 if (NetworkConnectivity.checkInternetConnection(NotifyActivity.this)) {
 
                 } else {
-
                     InternetMessage();
                 }
             }
@@ -118,6 +116,7 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
             e.printStackTrace();
         }
     }
+
     public void onStart() {
         super.onStart();
     }

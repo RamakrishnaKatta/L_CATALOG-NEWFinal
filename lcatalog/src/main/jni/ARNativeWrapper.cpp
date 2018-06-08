@@ -24,7 +24,7 @@
             GLMmodel *obj;
         } ARModel;
 
-        #define NUM_MODELS 34
+        #define NUM_MODELS 37
         static ARModel models[NUM_MODELS] = {0};
 
         static float lightAmbient[4] = {0.1f, 0.1f, 0.1f, 1.0f};
@@ -72,6 +72,9 @@
             const char *model31file = "/storage/emulated/0/L_CATALOG/cache/Data/models/entsfa.obj";
             const char *model32file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Ferrari_Modena_Spider.obj";
             const char *model33file = "/storage/emulated/0/L_CATALOG/cache/Data/models/Porsche_911_GT3.obj";
+            const char *model34file = "/storage/emulated/0/L_CATALOG/cache/Data/models/loadha_building.obj";
+            const char *model35file = "/storage/emulated/0/L_CATALOG/cache/Data/models/lodha_section_a.obj";
+            const char *model36file = "/storage/emulated/0/L_CATALOG/cache/Data/models/lodha_section_b.obj";
 
             //Mapping to pattern 1 - bed sofa.obj
             models[0].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern1.patt;80");
@@ -579,11 +582,55 @@
                   LOGE("Error loading model from file '%s'.", model33file);
                   exit(-1);
                 }
-            glmScale(models[32].obj, 10.0f);
+            glmScale(models[33].obj, 10.0f);
             //glmRotate(models[33].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
             glmCreateArrays(models[33].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
                     models[33].visible = false;
 
+            //Mapping to pattern 35  - Lodha Building.obj
+            models[34].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern35.patt;80");
+            arwSetMarkerOptionBool(models[34].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[34].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[34].obj = glmReadOBJ2(model34file, 0, 0); // context 34, don't read textures yet.
+                if (!models[34].obj) {
+                  LOGE("Error loading model from file '%s'.", model34file);
+                  exit(-1);
+                }
+            glmScale(models[34].obj, 50.0f);
+            //glmRotate(models[34].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[34].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[34].visible = false;
+
+            //Mapping to pattern 36  - Lodha Building part A.obj
+            models[35].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern36.patt;80");
+            arwSetMarkerOptionBool(models[35].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[35].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[35].obj = glmReadOBJ2(model35file, 0, 0); // context 35, don't read textures yet.
+                if (!models[35].obj) {
+                  LOGE("Error loading model from file '%s'.", model35file);
+                  exit(-1);
+                }
+            glmScale(models[35].obj, 50.0f);
+            //glmRotate(models[35].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[35].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[35].visible = false;
+
+            //Mapping to pattern 37  - Lodha Building part B.obj
+            models[36].patternID = arwAddMarker("single;/storage/emulated/0/L_CATALOG/cache/Data/patterns/pattern37.patt;80");
+            arwSetMarkerOptionBool(models[36].patternID, ARW_MARKER_OPTION_SQUARE_USE_CONT_POSE_ESTIMATION, false);
+            arwSetMarkerOptionBool(models[36].patternID, ARW_MARKER_OPTION_FILTERED, true);
+
+            models[36].obj = glmReadOBJ2(model36file, 0, 0); // context 36, don't read textures yet.
+                if (!models[36].obj) {
+                  LOGE("Error loading model from file '%s'.", model36file);
+                  exit(-1);
+                }
+            glmScale(models[36].obj, 50.0f);
+            //glmRotate(models[36].obj, 3.14159f / 2.0f, 1.0f, 0.0f, 0.0f);
+            glmCreateArrays(models[36].obj, GLM_SMOOTH | GLM_MATERIAL | GLM_TEXTURE );
+                    models[36].visible = false;
          }
 
     JNIEXPORT void JNICALL JNIFUNCTION_DEMO(demoShutdown(JNIEnv * env, jobject object)) {}
