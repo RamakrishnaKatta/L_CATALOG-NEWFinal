@@ -71,6 +71,7 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
         GetNotificationData();
 
         if (NetworkConnectivity.checkInternetConnection(NotifyActivity.this)) {
+            onCreate(savedInstanceState);
 
         } else {
             InternetMessage();
@@ -80,13 +81,13 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
     private void InternetMessage() {
         final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
         final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setActionTextColor(getResources().getColor(R.color.red));
         snackbar.setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
                 if (NetworkConnectivity.checkInternetConnection(NotifyActivity.this)) {
-                    Intent intent = new Intent(NotifyActivity.this, AboutUsActivity.class);
-                    startActivity(intent);
+
                 } else {
 
                     InternetMessage();
@@ -116,6 +117,9 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -157,7 +161,6 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 
