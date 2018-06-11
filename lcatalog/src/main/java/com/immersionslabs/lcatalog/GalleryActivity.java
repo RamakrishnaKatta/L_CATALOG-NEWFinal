@@ -1,13 +1,16 @@
 package com.immersionslabs.lcatalog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.immersionslabs.lcatalog.Utils.ImageUtils;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
@@ -16,6 +19,7 @@ import com.immersionslabs.lcatalog.adapters.GridViewImageAdapter;
 import java.util.ArrayList;
 
 public class GalleryActivity extends AppCompatActivity {
+    private static final String TAG = "Gallery";
 
     RecyclerView recycler;
     GridLayoutManager manager;
@@ -48,9 +52,13 @@ public class GalleryActivity extends AppCompatActivity {
         recycler.setAdapter(adapter);
 
         if (NetworkConnectivity.checkInternetConnection(GalleryActivity.this)) {
+            Log.e(TAG, "onCdasfDSFDDSFdsfdsfdsfdsareate: " + NetworkConnectivity.checkInternetConnection(this));
+            Toast.makeText(GalleryActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+            setContentView(R.layout.activity_gallery_view);
 
         } else {
-            InternetMessage();
+            Intent intent = new Intent(GalleryActivity.this, BlankActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -62,11 +70,11 @@ public class GalleryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
-                if (NetworkConnectivity.checkInternetConnection(GalleryActivity.this)) {
-
-                } else {
-                    InternetMessage();
-                }
+//                if (NetworkConnectivity.checkInternetConnection(GalleryActivity.this)) {
+//
+//                } else {
+//                    InternetMessage();
+//                }
             }
         });
         snackbar.show();

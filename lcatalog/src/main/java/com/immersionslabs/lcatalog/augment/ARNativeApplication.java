@@ -3,6 +3,8 @@ package com.immersionslabs.lcatalog.augment;
 import android.annotation.SuppressLint;
 import android.app.Application;
 
+import com.immersionslabs.lcatalog.Utils.ConnectionReceiver;
+
 public class ARNativeApplication extends Application {
 
     @SuppressLint("StaticFieldLeak")
@@ -10,8 +12,9 @@ public class ARNativeApplication extends Application {
 
     // Anywhere in the application where an instance is required, this method
     // can be used to retrieve it.
-    public static Application getInstance() {
-        return sInstance;
+    public static ARNativeApplication getInstance() {
+
+        return (ARNativeApplication) sInstance;
     }
 
     @Override
@@ -20,4 +23,8 @@ public class ARNativeApplication extends Application {
         sInstance = this;
 //        ((ARNativeApplication) sInstance).initializeInstance();
     }
+    public void setConnectionListener(ConnectionReceiver.ConnectionReceiverListener listener) {
+        ConnectionReceiver.connectionReceiverListener = listener;
+    }
+
 }

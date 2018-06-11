@@ -1,19 +1,27 @@
 package com.immersionslabs.lcatalog;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.immersionslabs.lcatalog.Utils.ConnectionReceiver;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+import com.immersionslabs.lcatalog.augment.ARNativeApplication;
 
-public class AboutUsActivity extends AppCompatActivity {
+public class AboutUsActivity extends AppCompatActivity implements ConnectionReceiver.ConnectionReceiverListener {
 
     public static final String TAG = "AboutUsActivity";
 
@@ -24,6 +32,7 @@ public class AboutUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
+        checkConnection();
 
         facebook = findViewById(R.id.facebook_about);
         instagram = findViewById(R.id.instagram_about);
@@ -90,11 +99,7 @@ public class AboutUsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        if (NetworkConnectivity.checkInternetConnection(AboutUsActivity.this)) {
 
-        } else {
-            InternetMessage();
-        }
     }
 
     private void InternetMessage() {
@@ -105,10 +110,10 @@ public class AboutUsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
-                if (NetworkConnectivity.checkInternetConnection(AboutUsActivity.this)) {
-                } else {
-                    InternetMessage();
-                }
+//                if (NetworkConnectivity.checkInternetConnection(AboutUsActivity.this)) {
+//                } else {
+//                    InternetMessage();
+//                }
             }
         });
         snackbar.show();
@@ -116,7 +121,15 @@ public class AboutUsActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
+        ARNativeApplication.getInstance().setConnectionListener(this);
+
         super.onResume();
+    }
+
+    public void onStart() {
+        super.onStart();
+        ARNativeApplication.getInstance().setConnectionListener(this);
+
     }
 
     @Override
@@ -129,7 +142,10 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        ARNativeApplication.getInstance().setConnectionListener(this);
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -138,5 +154,30 @@ public class AboutUsActivity extends AppCompatActivity {
             finish(); // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+
+            Intent intent = new Intent(AboutUsActivity.this, BlankActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Inetreashiusaihfkjsajfhaskfhksalkfas", Toast.LENGTH_LONG).show();
+            Log.e(TAG, "onNetworkConnectionChanged: I'm fucked" + isConnected);
+        }
+
+    }
+
+    private void checkConnection() {
+        boolean isConnected = ConnectionReceiver.isConnected();
+        if (!isConnected) {
+            Intent intent = new Intent(AboutUsActivity.this, BlankActivity.class);
+            startActivity(intent);
+            InternetMessage();
+        } else {
+            Toast.makeText(AboutUsActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+            setContentView(R.layout.activity_about_us);
+        }
     }
 }
