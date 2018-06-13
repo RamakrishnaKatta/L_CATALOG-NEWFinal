@@ -19,7 +19,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,35 +88,46 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);
                 Log.e(TAG, "project_part_Image  " + im1);
+
+                Glide.with(activity)
+                        .load(EnvConstants.APP_BASE_URL + "/upload/projectpartimages/partimages_" + get_project_id + "_" + im1)
+                        .placeholder(R.drawable.dummy_icon)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.projectpart_image);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Glide.with(activity)
-                .load(EnvConstants.APP_BASE_URL + "/upload/projectpartimages/partimages_" + get_project_id + "_" + im1)
-                .placeholder(R.drawable.dummy_icon)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.projectpart_image);
-
 
         holder.projectpart_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context[0] = v.getContext();
-                Intent intent = new Intent(context[0], ProjectPartDetailsActivity.class);
-                Bundle b = new Bundle();
-                b.putString("_id", project_ids.get(0));
-                b.putString("part", project_part.get(position));
-                b.putString("partName", project_partName.get(position));
-                b.putString("partDesc", project_partDesc.get(position));
-                b.putString("partimages", project_partimages.get(position));
-                b.putString("articlesId", project_part_articlesIds.get(position));
-                b.putString("articlesData", project_part_articlesData.get(position));
-                b.putString("partview_3d", project_part_3ds.get(position));
 
-                intent.putExtras(b);
-                context[0].startActivity(intent);
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
+                    try {
+                        context[0] = v.getContext();
+                        Intent intent = new Intent(context[0], ProjectPartDetailsActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("_id", project_ids.get(0));
+                        b.putString("part", project_part.get(position));
+                        b.putString("partName", project_partName.get(position));
+                        b.putString("partDesc", project_partDesc.get(position));
+                        b.putString("partimages", project_partimages.get(position));
+                        b.putString("articlesId", project_part_articlesIds.get(position));
+                        b.putString("articlesData", project_part_articlesData.get(position));
+                        b.putString("partview_3d", project_part_3ds.get(position));
+
+                        intent.putExtras(b);
+                        context[0].startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet is Not Available");
+
+                }
+
             }
         });
     }

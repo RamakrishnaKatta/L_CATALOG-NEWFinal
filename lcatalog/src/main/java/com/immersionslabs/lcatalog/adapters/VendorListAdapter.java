@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.VendorProfileActivity;
 
 import java.util.ArrayList;
@@ -72,12 +74,22 @@ public class VendorListAdapter extends RecyclerView.Adapter<VendorListAdapter.Vi
         viewHolder.grid_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
+                    try {
+                        Bundle vendor_data = new Bundle();
+                        vendor_data.putString("vendor_id", vendor_ids.get(position));
 
-                Bundle vendor_data = new Bundle();
-                vendor_data.putString("vendor_id", vendor_ids.get(position));
+                        Intent intent = new Intent(v.getContext(), VendorProfileActivity.class).putExtras(vendor_data);
+                        v.getContext().startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet Not Available");
 
-                Intent intent = new Intent(v.getContext(), VendorProfileActivity.class).putExtras(vendor_data);
-                v.getContext().startActivity(intent);
+                }
+
+
             }
         });
     }

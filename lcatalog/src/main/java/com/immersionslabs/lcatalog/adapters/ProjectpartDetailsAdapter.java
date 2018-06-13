@@ -18,7 +18,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import java.util.ArrayList;
 
@@ -66,23 +68,33 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         holder.part_article_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnvConstants.part_articles_id_var = part_articles_id.get(position);
-                EnvConstants.part_article_name_var = EnvConstants.part_article_name.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_articles_description_var = EnvConstants.part_articles_description.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_articles_price_var = EnvConstants.part_articles_price.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_article_dimensions_var = EnvConstants.part_article_dimensions.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_article_images_var = EnvConstants.part_article_images.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_articles_vendor_id_var = EnvConstants.part_articles_vendor_id.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_articles_3ds_var = EnvConstants.part_articles_3ds.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_articles_pattern_var = EnvConstants.part_articles_pattern.get(EnvConstants.part_articles_id_var);
-                EnvConstants.part_article__discounts_var = EnvConstants.part_article__discounts.get(EnvConstants.part_articles_id_var);
-                EnvConstants.flag_article_details = true;
-                EnvConstants.position = position;
-                Log.e(TAG, "piceyyyyy " + EnvConstants.part_articles_price_var);
-                Log.e(TAG, "id " + EnvConstants.part_articles_id_var);
-                context[0] = v.getContext();
-                Intent intent = new Intent(context[0], ProductPageActivity.class);
-                context[0].startActivity(intent);
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
+                    try {
+                        EnvConstants.part_articles_id_var = part_articles_id.get(position);
+                        EnvConstants.part_article_name_var = EnvConstants.part_article_name.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_articles_description_var = EnvConstants.part_articles_description.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_articles_price_var = EnvConstants.part_articles_price.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_article_dimensions_var = EnvConstants.part_article_dimensions.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_article_images_var = EnvConstants.part_article_images.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_articles_vendor_id_var = EnvConstants.part_articles_vendor_id.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_articles_3ds_var = EnvConstants.part_articles_3ds.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_articles_pattern_var = EnvConstants.part_articles_pattern.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.part_article__discounts_var = EnvConstants.part_article__discounts.get(EnvConstants.part_articles_id_var);
+                        EnvConstants.flag_article_details = true;
+                        EnvConstants.position = position;
+                        Log.e(TAG, "piceyyyyy " + EnvConstants.part_articles_price_var);
+                        Log.e(TAG, "id " + EnvConstants.part_articles_id_var);
+                        context[0] = v.getContext();
+                        Intent intent = new Intent(context[0], ProductPageActivity.class);
+                        context[0].startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet is Not Available");
+                }
+
             }
         });
     }

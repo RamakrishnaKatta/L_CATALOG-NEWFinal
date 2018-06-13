@@ -23,8 +23,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 
 import org.json.JSONArray;
@@ -113,16 +115,16 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
             for (int i = 0; i < images_json.length(); i++) {
                 im1 = images_json.getString(0);
                 Log.e(TAG, "onBindViewHolder: image1" + im1);
+
+                Glide.with(activity)
+                        .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)
+                        .placeholder(R.drawable.dummy_icon)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(viewHolder.item_image);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        Glide.with(activity)
-                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + im1)
-                .placeholder(R.drawable.dummy_icon)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(viewHolder.item_image);
 
         Integer x = Integer.parseInt(item_prices.get(position));
         Integer y = Integer.parseInt(item_discounts.get(position));
@@ -139,70 +141,83 @@ public class BudgetListAdapter extends RecyclerView.Adapter<BudgetListAdapter.Vi
         viewHolder.BudgetList_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context[0] = v.getContext();
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
 
-                Intent intent = new Intent(context[0], ProductPageActivity.class);
-                Bundle b = new Bundle();
 
-                b.putString("article_id", item_ids.get(position));
-                b.putString("article_title", item_names.get(position));
-                b.putString("article_description", item_descriptions.get(position));
-                b.putString("article_price", item_prices.get(position));
-                b.putString("article_discount", item_discounts.get(position));
-                b.putString("article_dimensions", item_dimensions.get(position));
-                b.putString("article_images", item_images.get(position));
-                b.putString("article_3ds", item_3ds.get(position));
-                b.putString("article_vendor", item_vendors.get(position));
-                b.putString("article_position", String.valueOf(position));
+                    context[0] = v.getContext();
 
-                intent.putExtras(b);
-                context[0].startActivity(intent);
+                    Intent intent = new Intent(context[0], ProductPageActivity.class);
+                    Bundle b = new Bundle();
+
+                    b.putString("article_id", item_ids.get(position));
+                    b.putString("article_title", item_names.get(position));
+                    b.putString("article_description", item_descriptions.get(position));
+                    b.putString("article_price", item_prices.get(position));
+                    b.putString("article_discount", item_discounts.get(position));
+                    b.putString("article_dimensions", item_dimensions.get(position));
+                    b.putString("article_images", item_images.get(position));
+                    b.putString("article_3ds", item_3ds.get(position));
+                    b.putString("article_vendor", item_vendors.get(position));
+                    b.putString("article_position", String.valueOf(position));
+
+                    intent.putExtras(b);
+                    context[0].startActivity(intent);
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet Not Available");
+
+                }
             }
         });
 
         viewHolder.item_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    now_price = Long.parseLong(itemNewPrice);
-                    sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), now_price);
-                    str_current_value = sessionManager.BUDGET_GET_CURRENT_VALUE().toString();
-                    str_remaining_value = sessionManager.BUDGET_GET_REMAINING_VALUE().toString();
-                    str_total_budget_value = sessionManager.BUDGET_GET_TOTAL_VALUE().toString();
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
 
-                    Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                    if (EnvConstants.user_type.equals("CUSTOMER")) {
+                        now_price = Long.parseLong(itemNewPrice);
+                        sessionManager.BUDGET_REMOVE_ARTICLE(item_ids.get(position), now_price);
+                        str_current_value = sessionManager.BUDGET_GET_CURRENT_VALUE().toString();
+                        str_remaining_value = sessionManager.BUDGET_GET_REMAINING_VALUE().toString();
+                        str_total_budget_value = sessionManager.BUDGET_GET_TOTAL_VALUE().toString();
 
-                } else {
-                    now_price = Long.parseLong(itemNewPrice);
-                    prev_price = manager_budgetlist.BUDGET_GET_CURRENT();
-                    current_price = prev_price - now_price;
-                    manager_budgetlist.BUDGET_SET_CURRENT(current_price);
-                    manager_budgetlist.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
-                    str_current_value = manager_budgetlist.BUDGET_GET_CURRENT().toString();
-                    str_remaining_value = manager_budgetlist.BUDGET_GET_REMAINING().toString();
-                    str_total_budget_value = manager_budgetlist.BUDGET_GET_TOTAL().toString();
+                        Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
 
-                    Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }
+                    } else {
+                        now_price = Long.parseLong(itemNewPrice);
+                        prev_price = manager_budgetlist.BUDGET_GET_CURRENT();
+                        current_price = prev_price - now_price;
+                        manager_budgetlist.BUDGET_SET_CURRENT(current_price);
+                        manager_budgetlist.BUDGET_REMOVE_ARTICLE(item_ids.get(position));
+                        str_current_value = manager_budgetlist.BUDGET_GET_CURRENT().toString();
+                        str_remaining_value = manager_budgetlist.BUDGET_GET_REMAINING().toString();
+                        str_total_budget_value = manager_budgetlist.BUDGET_GET_TOTAL().toString();
 
-                try {
-                    item_ids.remove(position);
-                    notifyItemRemoved(position);
+                        Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+
+                    try {
+                        item_ids.remove(position);
+                        notifyItemRemoved(position);
 //                    notifyItemRangeChanged(position, item_ids.size());
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
-                }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
 
-                Total_budget = activity.findViewById(R.id.input_your_budget);
-                Current_budget = activity.findViewById(R.id.input_your_current_value);
-                Remaining_budget = activity.findViewById(R.id.input_your_remaining_value);
-                Total_budget.setText(str_total_budget_value);
-                Current_budget.setText(str_current_value);
-                Remaining_budget.setText(str_remaining_value);
+                    Total_budget = activity.findViewById(R.id.input_your_budget);
+                    Current_budget = activity.findViewById(R.id.input_your_current_value);
+                    Remaining_budget = activity.findViewById(R.id.input_your_remaining_value);
+                    Total_budget.setText(str_total_budget_value);
+                    Current_budget.setText(str_current_value);
+                    Remaining_budget.setText(str_remaining_value);
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet Not Available");
+
+                }
             }
         });
     }

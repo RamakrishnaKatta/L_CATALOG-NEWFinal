@@ -19,7 +19,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,22 +125,31 @@ public class VendorCatalogAdapter extends RecyclerView.Adapter<VendorCatalogAdap
         viewHolder.grid_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
+                    try {
+                        Bundle b = new Bundle();
 
-                Bundle b = new Bundle();
+                        b.putString("article_id", item_ids.get(position));
+                        b.putString("article_title", item_names.get(position));
+                        b.putString("article_description", item_descriptions.get(position));
+                        b.putString("article_price", item_prices.get(position));
+                        b.putString("article_discount", item_discounts.get(position));
+                        b.putString("article_vendor", item_vendors.get(position));
+                        b.putString("article_dimensions", item_dimensions.get(position));
+                        b.putString("article_3ds", item_3ds.get(position));
+                        b.putString("article_images", item_images.get(position));
+                        b.putString("article_position", String.valueOf(position));
 
-                b.putString("article_id", item_ids.get(position));
-                b.putString("article_title", item_names.get(position));
-                b.putString("article_description", item_descriptions.get(position));
-                b.putString("article_price", item_prices.get(position));
-                b.putString("article_discount", item_discounts.get(position));
-                b.putString("article_vendor", item_vendors.get(position));
-                b.putString("article_dimensions", item_dimensions.get(position));
-                b.putString("article_3ds", item_3ds.get(position));
-                b.putString("article_images", item_images.get(position));
-                b.putString("article_position", String.valueOf(position));
+                        Intent intent = new Intent(v.getContext(), ProductPageActivity.class).putExtras(b);
+                        v.getContext().startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    CustomMessage.getInstance().CustomMessage(activity,"Internet Not Available");
+                }
 
-                Intent intent = new Intent(v.getContext(), ProductPageActivity.class).putExtras(b);
-                v.getContext().startActivity(intent);
+
             }
         });
     }

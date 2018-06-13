@@ -16,12 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -134,28 +137,38 @@ public class GridViewAdapter extends RecyclerView.Adapter<GridViewAdapter.ViewHo
         viewHolder.grid_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
 
-                context[0] = v.getContext();
+                    try {
+                        context[0] = v.getContext();
 
-                Intent intent = new Intent(context[0], ProductPageActivity.class);
-                Bundle b = new Bundle();
+                        Intent intent = new Intent(context[0], ProductPageActivity.class);
+                        Bundle b = new Bundle();
 
-                b.putString("article_id", item_ids.get(position));
-                b.putString("article_title", item_names.get(position));
-                b.putString("article_description", item_descriptions.get(position));
-                b.putString("article_price", item_prices.get(position));
-                b.putString("article_discount", item_discounts.get(position));
-                b.putString("article_vendor", item_vendors.get(position));
-                b.putString("article_images", item_images.get(position));
-                b.putString("article_dimensions", item_dimensions.get(position));
-                b.putString("article_3ds", item_3ds.get(position));
-                b.putString("article_pattern", item_patterns.get(position));
-                b.putString("article_3dsfile", item_3ds_file.get(position));
+                        b.putString("article_id", item_ids.get(position));
+                        b.putString("article_title", item_names.get(position));
+                        b.putString("article_description", item_descriptions.get(position));
+                        b.putString("article_price", item_prices.get(position));
+                        b.putString("article_discount", item_discounts.get(position));
+                        b.putString("article_vendor", item_vendors.get(position));
+                        b.putString("article_images", item_images.get(position));
+                        b.putString("article_dimensions", item_dimensions.get(position));
+                        b.putString("article_3ds", item_3ds.get(position));
+                        b.putString("article_pattern", item_patterns.get(position));
+                        b.putString("article_3dsfile", item_3ds_file.get(position));
 
-                b.putString("article_position", String.valueOf(position));
+                        b.putString("article_position", String.valueOf(position));
 
-                intent.putExtras(b);
-                context[0].startActivity(intent);
+                        intent.putExtras(b);
+                        context[0].startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        Toast.makeText(activity, "Something went wrong Please Try again", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet is not available!");
+
+                }
             }
         });
     }

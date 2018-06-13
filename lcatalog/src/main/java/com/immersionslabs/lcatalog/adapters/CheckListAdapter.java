@@ -21,8 +21,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
 import com.immersionslabs.lcatalog.R;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 
 import org.json.JSONArray;
@@ -132,31 +134,35 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
         viewHolder.checklist_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context[0] = v.getContext();
 
-                Intent intent = new Intent(context[0], ProductPageActivity.class);
-                Bundle b = new Bundle();
-try
-{
-    b.putString("article_id", item_ids.get(position));
-    b.putString("article_title", item_names.get(position));
-    b.putString("article_description", item_descriptions.get(position));
-    b.putString("article_price", item_prices.get(position));
-    b.putString("article_discount", item_discounts.get(position));
-    b.putString("article_dimensions", item_dimensions.get(position));
-    b.putString("article_images", item_images.get(position));
-    b.putString("article_3ds", item_3ds.get(position));
-    b.putString("article_vendor", item_vendors.get(position));
-    b.putString("article_position", String.valueOf(position));
+                if (NetworkConnectivity.checkInternetConnection(activity)) {
+                    try {
+                        context[0] = v.getContext();
 
-}
-catch(IndexOutOfBoundsException e)
-{
-    e.printStackTrace();
-}
+                        Intent intent = new Intent(context[0], ProductPageActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("article_id", item_ids.get(position));
+                        b.putString("article_title", item_names.get(position));
+                        b.putString("article_description", item_descriptions.get(position));
+                        b.putString("article_price", item_prices.get(position));
+                        b.putString("article_discount", item_discounts.get(position));
+                        b.putString("article_dimensions", item_dimensions.get(position));
+                        b.putString("article_images", item_images.get(position));
+                        b.putString("article_3ds", item_3ds.get(position));
+                        b.putString("article_vendor", item_vendors.get(position));
+                        b.putString("article_position", String.valueOf(position));
+                        intent.putExtras(b);
+                        context[0].startActivity(intent);
 
-                intent.putExtras(b);
-                context[0].startActivity(intent);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    CustomMessage.getInstance().CustomMessage(activity, "Internet is not available!");
+
+                }
+
             }
         });
 
@@ -164,10 +170,10 @@ catch(IndexOutOfBoundsException e)
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    String vendor_id=item_vendors.get(position)+1;
-                    Log.e(TAG, "onClick: vendor_id"+vendor_id );
+                    String vendor_id = item_vendors.get(position) + 1;
+                    Log.e(TAG, "onClick: vendor_id" + vendor_id);
                     now_price = Long.parseLong(itemNewPrice);
-                    sessionManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position),vendor_id,now_price);
+                    sessionManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), vendor_id, now_price);
                     str_total_checklist_value = sessionManager.CHECKLIST_GET_CURRENT_VALUE().toString();
 
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
