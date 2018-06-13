@@ -170,7 +170,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.View
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    String vendor_id = item_vendors.get(position) + 1;
+                    String vendor_id = item_vendors.get(position);
                     Log.e(TAG, "onClick: vendor_id" + vendor_id);
                     now_price = Long.parseLong(itemNewPrice);
                     sessionManager.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), vendor_id, now_price);
