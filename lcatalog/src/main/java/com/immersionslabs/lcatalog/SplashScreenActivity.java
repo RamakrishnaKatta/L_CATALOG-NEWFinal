@@ -2,8 +2,10 @@ package com.immersionslabs.lcatalog;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -11,8 +13,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.immersionslabs.lcatalog.Utils.ConnectionReceiver;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
+
+import static com.immersionslabs.lcatalog.Utils.ConnectionReceiver.isConnected;
+
 public class SplashScreenActivity extends AppCompatActivity implements Animation.AnimationListener {
 
+    public static final String TAG = "SplashScreenActivity";
     Animation animFadeIn;
     LinearLayout linearLayout;
     TextView app_name, powered;
@@ -25,7 +33,13 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         app_name = findViewById(R.id.application_name);
         powered = findViewById(R.id.immersionslabs);
 
-        animate();
+
+        if (NetworkConnectivity.checkInternetConnection(SplashScreenActivity.this)) {
+
+            animate();
+        } else {
+            InternetMessage();
+        }
 
         // load the animation
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.animation_fade_in);
@@ -37,6 +51,28 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         linearLayout.setVisibility(View.VISIBLE);
         linearLayout.startAnimation(animFadeIn);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void InternetMessage() {
+        final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setActionTextColor(getResources().getColor(R.color.red));
+        snackbar.setAction("RETRY", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+                if (ConnectionReceiver.isConnected()) {
+                    if (isConnected()) {
+                        snackbar.dismiss();
+                        animate();
+                        Log.e(TAG, "He");
+                    }
+                } else {
+                    InternetMessage();
+                }
+            }
+        });
+        snackbar.show();
     }
 
     private void animate() {

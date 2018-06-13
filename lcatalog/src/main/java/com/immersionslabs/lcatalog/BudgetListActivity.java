@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -25,8 +26,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.BudgetListAdapter;
 
@@ -126,56 +129,69 @@ public class BudgetListActivity extends AppCompatActivity {
             @TargetApi(Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                Alter_Budget.setVisibility(View.GONE);
-                Update_Budget.setVisibility(View.VISIBLE);
-                Total_budget.setFocusableInTouchMode(true);
-                Total_budget.focusSearch(View.FOCUS_RIGHT);
-                Total_budget.requestFocus();
-                Total_budget.setSelection(Total_budget.getText().length());
-                Total_budget.getShowSoftInputOnFocus();
-                Total_budget.setTextColor(getResources().getColor(R.color.red));
-                enableEditText(Total_budget);
+                if (NetworkConnectivity.checkInternetConnection(BudgetListActivity.this)) {
+                    Alter_Budget.setVisibility(View.GONE);
+                    Update_Budget.setVisibility(View.VISIBLE);
+                    Total_budget.setFocusableInTouchMode(true);
+                    Total_budget.focusSearch(View.FOCUS_RIGHT);
+                    Total_budget.requestFocus();
+                    Total_budget.setSelection(Total_budget.getText().length());
+                    Total_budget.getShowSoftInputOnFocus();
+                    Total_budget.setTextColor(getResources().getColor(R.color.red));
+                    enableEditText(Total_budget);
+                } else {
+                    InternetMessage();
+                }
+
             }
         });
 
         Update_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Total_value_String = Total_budget.getText().toString();
-                if (Total_value_String.isEmpty()) {
-                    Toast.makeText(BudgetListActivity.this, "Invalid input,no value entered", Toast.LENGTH_LONG).show();
-                } else {
-                    Long Total_value = Long.parseLong(Total_budget.getText().toString());
-                    if (EnvConstants.user_type.equals("CUSTOMER")) {
-                        Long Current_value = sessionManager.BUDGET_GET_CURRENT_VALUE();
-                        if (Total_value_String.isEmpty()) {
-                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
-                        } else if (Total_value < Current_value) {
-                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
-                        } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
-                            sessionManager.BUDGET_SET_TOTAL_VALUE(Total_value);
-                        }
+                if (NetworkConnectivity.checkInternetConnection(BudgetListActivity.this)) {
+
+
+                    String Total_value_String = Total_budget.getText().toString();
+                    if (Total_value_String.isEmpty()) {
+                        Toast.makeText(BudgetListActivity.this, "Invalid input,no value entered", Toast.LENGTH_LONG).show();
                     } else {
-                        Long Current_value = manager_budgetList.BUDGET_GET_CURRENT();
-                        if (Total_value_String.isEmpty()) {
-                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
-                        } else if (Total_value < Current_value) {
-                            Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
-                        } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
-                            manager_budgetList.BUDGET_SET_TOTAL(Total_value);
+                        Long Total_value = Long.parseLong(Total_budget.getText().toString());
+                        if (EnvConstants.user_type.equals("CUSTOMER")) {
+                            Long Current_value = sessionManager.BUDGET_GET_CURRENT_VALUE();
+                            if (Total_value_String.isEmpty()) {
+                                Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                            } else if (Total_value < Current_value) {
+                                Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                            } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
+                                sessionManager.BUDGET_SET_TOTAL_VALUE(Total_value);
+                            }
+                        } else {
+                            Long Current_value = manager_budgetList.BUDGET_GET_CURRENT();
+                            if (Total_value_String.isEmpty()) {
+                                Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                            } else if (Total_value < Current_value) {
+                                Toast.makeText(BudgetListActivity.this, "Invalid input,enter a higher value", Toast.LENGTH_LONG).show();
+                            } else if (!(Total_value_String.isEmpty()) && !(Total_value < Current_value)) {
+                                manager_budgetList.BUDGET_SET_TOTAL(Total_value);
+                            }
                         }
                     }
+                    Update_Budget.setVisibility(View.GONE);
+                    Alter_Budget.setVisibility(View.VISIBLE);
+                    disableEditText(Total_budget);
+                    onResume();
+                } else {
+                    InternetMessage();
                 }
-                Update_Budget.setVisibility(View.GONE);
-                Alter_Budget.setVisibility(View.VISIBLE);
-                disableEditText(Total_budget);
-                onResume();
             }
         });
 
         Clear_Budget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (NetworkConnectivity.checkInternetConnection(BudgetListActivity.this)) {
+
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(BudgetListActivity.this, R.style.AppCompatAlertDialogStyle);
                     builder.setTitle("ARE YOU SURE YOU WANT TO CLEAR THE BUDGET?");
@@ -218,8 +234,30 @@ public class BudgetListActivity extends AppCompatActivity {
 
                     builder.show();
                 }
+            }else {
+                    InternetMessage();
+                }
             }
         });
+    }
+
+    private void InternetMessage() {
+        final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setActionTextColor(getResources().getColor(R.color.red));
+        snackbar.setAction("RETRY", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+                if (NetworkConnectivity.checkInternetConnection(BudgetListActivity.this)) {
+
+                } else {
+
+                    InternetMessage();
+                }
+            }
+        });
+        snackbar.show();
     }
 
     private void CommongetData() {
