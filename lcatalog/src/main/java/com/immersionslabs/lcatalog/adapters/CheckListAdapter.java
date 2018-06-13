@@ -175,6 +175,7 @@ catch(IndexOutOfBoundsException e)
                     toast.show();
 
                 } else {
+                    now_price = Long.parseLong(itemNewPrice);
                     manager_checkList.CHECKLIST_REMOVE_ARTICLE(item_ids.get(position), now_price);
                     str_total_checklist_value = manager_checkList.CHECKLIST_GET_CURRENT().toString();
                     Toast toast = Toast.makeText(activity, "Article Removed Successfully", Toast.LENGTH_SHORT);
