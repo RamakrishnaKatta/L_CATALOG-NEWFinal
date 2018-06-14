@@ -143,7 +143,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
             }
         });
 
-        checkInternetConnection();
+//        checkInternetConnection();
         if (NetworkConnectivity.checkInternetConnection(CatalogActivity.this)) {
         } else {
             InternetMessage();

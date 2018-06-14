@@ -73,17 +73,21 @@ public class SignupActivity extends AppCompatActivity implements ApiCommunicatio
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    signup();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (NetworkConnectivity.checkInternetConnection(SignupActivity.this)) {
+                    try {
+                        signup();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    InternetMessage();
                 }
             }
         });
-        if (NetworkConnectivity.checkInternetConnection(SignupActivity.this)) {
-        } else {
-            InternetMessage();
-        }
+//        if (NetworkConnectivity.checkInternetConnection(SignupActivity.this)) {
+//        } else {
+//            InternetMessage();
+//        }
     }
 
     private void InternetMessage() {

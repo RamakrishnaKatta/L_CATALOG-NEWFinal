@@ -304,13 +304,10 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    if(sessionmanager.BUDGET_IS_ARTICLE_EXISTS(article_id))
-                    {
+                    if (sessionmanager.BUDGET_IS_ARTICLE_EXISTS(article_id)) {
                         Toast.makeText(getContext(), "Article already added in the BudgetList", Toast.LENGTH_LONG).show();
 
-                    }
-                    else
-                    {
+                    } else {
                         HashMap<String, Long> getdetails;
                         getdetails = sessionmanager.getBudgetDetails();
                         Long totalbudget = getdetails.get(SessionManager.KEY_TOTAL_BUDGET_VALUE);
@@ -607,7 +604,6 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         }
         return view;
     }
-
 
 
     private void ShowcaseView(View view) {

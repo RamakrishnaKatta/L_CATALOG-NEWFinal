@@ -123,10 +123,14 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    login();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (NetworkConnectivity.checkInternetConnection(LoginActivity.this)) {
+                    try {
+                        login();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    InternetMessage();
                 }
             }
         });
@@ -145,11 +149,6 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
             showcaseview();
         }
 
-        if (NetworkConnectivity.checkInternetConnection(LoginActivity.this)) {
-
-        } else {
-            InternetMessage();
-        }
     }
 
     private void InternetMessage() {
@@ -161,6 +160,7 @@ public class LoginActivity extends AppCompatActivity implements ApiCommunication
             public void onClick(View v) {
                 snackbar.dismiss();
                 if (NetworkConnectivity.checkInternetConnection(LoginActivity.this)) {
+
                 } else {
                     InternetMessage();
                 }

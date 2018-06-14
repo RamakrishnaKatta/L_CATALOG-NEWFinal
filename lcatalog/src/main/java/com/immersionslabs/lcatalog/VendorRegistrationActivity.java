@@ -66,19 +66,23 @@ public class VendorRegistrationActivity extends AppCompatActivity implements Api
         v_registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    vendorRegister();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (NetworkConnectivity.checkInternetConnection(VendorRegistrationActivity.this)) {
+                    try {
+                        vendorRegister();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    InternetMessage();
                 }
             }
         });
 
-        if (NetworkConnectivity.checkInternetConnection(VendorRegistrationActivity.this)) {
-
-        } else {
-            InternetMessage();
-        }
+//        if (NetworkConnectivity.checkInternetConnection(VendorRegistrationActivity.this)) {
+//
+//        } else {
+//            InternetMessage();
+//        }
     }
 
     private void InternetMessage() {

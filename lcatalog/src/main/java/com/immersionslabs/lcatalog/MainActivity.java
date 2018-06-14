@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
@@ -25,9 +26,11 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.immersionslabs.lcatalog.Utils.ConnectionReceiver;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
+import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
 import com.immersionslabs.lcatalog.adapters.MainPageAdapter;
@@ -44,6 +47,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 
+import static com.immersionslabs.lcatalog.Utils.ConnectionReceiver.isConnected;
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ApiCommunication {
@@ -171,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         CustomMenu();
 
-        checkInternetConnection();
+//        checkInternetConnection();
     }
 
     private boolean checkInternetConnection() {
@@ -356,9 +360,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = Nav_item.getItemId();
 
         if (id == R.id.nav_catalog) {
+            if (NetworkConnectivity.checkInternetConnection(MainActivity.this)) {
+                Intent intent = new Intent(this, CatalogActivity.class);
+                startActivity(intent);
 
-            Intent intent = new Intent(this, CatalogActivity.class);
-            startActivity(intent);
+            } else {
+                InternetMessage();
+            }
 
         } else if (id == R.id.nav_augment) {
 
@@ -377,8 +385,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             builder.show();
 
         } else if (id == R.id.nav_project_campaign) {
-            Intent intent = new Intent(this, ProjectActivity.class);
-            startActivity(intent);
+            if(NetworkConnectivity.checkInternetConnection(MainActivity.this)){
+                Intent intent = new Intent(this, ProjectActivity.class);
+                startActivity(intent);
+            }else {
+                InternetMessage();
+            }
 
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(this, GalleryActivity.class);
@@ -397,10 +409,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         } else if (id == R.id.nav_ven) {
-
-            Toast.makeText(this, "We will not disappoint you, Lets get in Touch !!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, VendorListActivity.class);
-            startActivity(intent);
+            if (NetworkConnectivity.checkInternetConnection(MainActivity.this)){
+                Toast.makeText(this, "We will not disappoint you, Lets get in Touch !!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, VendorListActivity.class);
+                startActivity(intent);
+            }else {
+                InternetMessage();
+            }
 
         } else if (id == R.id.nav_ven_reg) {
 
@@ -488,6 +503,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void InternetMessage() {
+        final View view = this.getWindow().getDecorView().findViewById(android.R.id.content);
+        final Snackbar snackbar = Snackbar.make(view, "Please Check Your Internet connection", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setActionTextColor(getResources().getColor(R.color.red));
+        snackbar.setAction("RETRY", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+                if (ConnectionReceiver.isConnected()) {
+                    if (isConnected()) {
+                        snackbar.dismiss();
+                        onStart();
+                        Log.e(TAG, "onClick: brrrrrruuuuuuuuuuh");
+                    }
+                } else {
+                    InternetMessage();
+                }
+            }
+        });
+        snackbar.show();
     }
 
     @Override
