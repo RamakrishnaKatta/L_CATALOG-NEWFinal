@@ -44,7 +44,7 @@
             <LinearLayout
                 android:id="@+id/project_part_slide_dots"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_48"
+                android:layout_height="@dimen/margin_50"
                 android:gravity="center"
                 android:orientation="horizontal" />
 
