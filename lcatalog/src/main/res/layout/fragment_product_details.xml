@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@color/black"
-                    android:padding="@dimen/margin_3">
+                    android:padding="@dimen/margin_2">
 
                     <TextView
                         android:id="@+id/article_price_discount_value"
@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/assistant_semibold"
                         android:text="@string/article_discount_value"
-                        android:textColor="@color/maroon"
+                        android:textColor="@color/red"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold" />
 
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/assistant_semibold"
                         android:text="@string/article_percentage_symbol"
-                        android:textColor="@color/maroon"
+                        android:textColor="@color/red"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold" />
 
@@ -181,7 +181,7 @@
                         android:layout_marginStart="@dimen/margin_3"
                         android:fontFamily="@font/assistant_semibold"
                         android:text="@string/article_discount_off"
-                        android:textColor="@color/maroon"
+                        android:textColor="@color/red"
                         android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold" />
                 </LinearLayout>
