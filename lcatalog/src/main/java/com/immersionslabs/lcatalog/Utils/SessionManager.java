@@ -416,17 +416,18 @@ public class SessionManager {
         String Unique_check_vendorId = Global_id + KEY_CHECKLIST_VENDOR_ID;
 
         Set set = pref.getStringSet(Unique_check_vendorId, null);
-        Iterator iterator = set.iterator();
-
-        while (iterator.hasNext()) {
-            String vendor_id = iterator.next().toString();
-            String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
-            editor.remove(Unique_check_vendor_ArticleId);
+        if(set!=null) {
+            Iterator iterator = set.iterator();
+            while (iterator.hasNext()) {
+                String vendor_id = iterator.next().toString();
+                String Unique_check_vendor_ArticleId = Global_id + vendor_id + KEY_CHECKLIST_VENDOR_ID;
+                editor.remove(Unique_check_vendor_ArticleId);
+            }
         }
+
         editor.remove(Unique_check_vendorId);
         editor.remove(Global_id_checklist);
         editor.remove(Unique_Current_Id);
-
         editor.commit();
     }
 
