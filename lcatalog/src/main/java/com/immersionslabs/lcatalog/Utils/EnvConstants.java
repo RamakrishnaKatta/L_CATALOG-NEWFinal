@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class EnvConstants {
 
     public static final String APP_BASE_URL = "https://ladmin.immersionslabs.com";
+    public static final String PORTAL_BASE_URL = "https://lcatalog.immersionslabs.com";
 
     public static ArrayList<String> user_Favourite_list = new ArrayList<String>();
     public static String user_type = null;

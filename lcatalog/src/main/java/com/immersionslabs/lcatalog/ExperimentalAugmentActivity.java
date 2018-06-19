@@ -16,7 +16,7 @@ public class ExperimentalAugmentActivity extends AppCompatActivity {
     private static final String TAG = "ExperimentalAugmentActivity";
 
     String article_augment_file_data;
-    String WEB_URL_AUGMENT = EnvConstants.APP_BASE_URL + "/#/articleAr/";
+    String WEB_URL_AUGMENT = EnvConstants.PORTAL_BASE_URL + "/#/articleAr/";
 
     @SuppressLint("LongLogTag")
     @Override
