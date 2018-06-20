@@ -13,14 +13,14 @@
         <RelativeLayout
             android:id="@+id/article_image_slider_area"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_400"
+            android:layout_height="@dimen/margin_250"
             android:gravity="top">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/article_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_30"
+                android:layout_margin="@dimen/margin_25"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />

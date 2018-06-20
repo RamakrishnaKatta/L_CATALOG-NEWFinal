@@ -340,7 +340,7 @@ public class CheckListActivity extends AppCompatActivity {
             public void run() {
                 try {
                     CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+                            , "ap-south-1:61aae02f-4102-4e79-9d88-3566b8301aae", Regions.AP_SOUTH_1);
                     AmazonSimpleEmailServiceClient ses = new AmazonSimpleEmailServiceClient(credentials);
                     ListVerifiedEmailAddressesResult listVerifiedEmailAddressesResult = ses.listVerifiedEmailAddresses();
                     List l_verifiedids = listVerifiedEmailAddressesResult.getVerifiedEmailAddresses();
@@ -381,7 +381,7 @@ public class CheckListActivity extends AppCompatActivity {
             public void run() {
                 try {
                     CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                            , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+                            , "ap-south-1:61aae02f-4102-4e79-9d88-3566b8301aae", Regions.AP_SOUTH_1);
                     final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
                     client.setRegion(Region.getRegion(Regions.US_EAST_1));
                     VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
@@ -511,7 +511,7 @@ public class CheckListActivity extends AppCompatActivity {
         SUBJECT = username + "'s" + " CheckList";
 
         CognitoCachingCredentialsProvider credentials = new CognitoCachingCredentialsProvider(CheckListActivity.this
-                , "us-east-1:199fd199-d4f1-412e-9352-7918b6a69e94", Regions.US_EAST_1);
+                , "ap-south-1:61aae02f-4102-4e79-9d88-3566b8301aae", Regions.AP_SOUTH_1);
 
         final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
         client.setRegion(Region.getRegion(Regions.US_EAST_1));
