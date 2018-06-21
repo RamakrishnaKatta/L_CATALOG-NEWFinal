@@ -132,7 +132,7 @@
     <string name="article_discount_value">20</string>
     <string name="article_percentage_symbol">%</string>
     <string name="article_discount_off"> OFF</string>
-    <string name="article_discount_price_title">AFTER DISCOUNT PRICE:</string>
+    <string name="article_discount_price_title"> PRICE:</string>
     <string name="article_after_discount_price">800</string>
     <string name="article_price_tag">/-</string>
     <string name="article_price_tag_symbol">\u20B9</string>
