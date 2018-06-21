@@ -17,6 +17,8 @@ public class Experimental3DViewActivity extends AppCompatActivity {
 
     String article_3ds_file_data;
     String WEB_URL_3DS = EnvConstants.PORTAL_BASE_URL + "/#/3d_view/";
+    String PROJECT_URL_3DS=EnvConstants.PORTAL_BASE_URL+"/#/3d_view_project/";
+    private String project_3ds_file_data,flag;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -27,6 +29,7 @@ public class Experimental3DViewActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_exp_3dView);
         toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
+        WebView webView_3ds = findViewById(R.id.webView_3ds);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,14 +39,26 @@ public class Experimental3DViewActivity extends AppCompatActivity {
         final Bundle article_3ds_data = getIntent().getExtras();
         assert article_3ds_data != null;
         article_3ds_file_data = (String) article_3ds_data.getCharSequence("article_3ds_file");
+        flag=article_3ds_data.getString("flag");
 
-        WEB_URL_3DS += article_3ds_file_data;
-        Log.e(TAG, "VENDOR_URL--" + WEB_URL_3DS);
+        final Bundle project_3ds_data = getIntent().getExtras();
+        assert project_3ds_data != null;
+        project_3ds_file_data = (String) article_3ds_data.getCharSequence("project_3ds_file");
+        flag=article_3ds_data.getString("flag");
 
-        WebView webView_3ds = findViewById(R.id.webView_3ds);
-        webView_3ds.loadUrl(WEB_URL_3DS);
+        if(flag.equals("article"))
+        {
+            WEB_URL_3DS += article_3ds_file_data;
+            Log.e(TAG, "VENDOR_URL--" + WEB_URL_3DS);
+            webView_3ds.loadUrl(WEB_URL_3DS);
+        }
+        else if(flag.equals("project"))
+        {
+            PROJECT_URL_3DS+=project_3ds_file_data;
+            Log.e(TAG, "PROJECT_3D_URL--" + PROJECT_URL_3DS);
+            webView_3ds.loadUrl(PROJECT_URL_3DS);
+        }
         webView_3ds.clearCache(true);
-
         WebSettings webSettings = webView_3ds.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(true);
