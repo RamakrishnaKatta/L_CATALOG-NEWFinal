@@ -66,15 +66,6 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:fontFamily="@font/assistant_semibold"
                     android:padding="@dimen/margin_6"
-                    android:text="@string/faq_text_3"
-                    android:textSize="@dimen/text_tab_small" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:fontFamily="@font/assistant_semibold"
-                    android:padding="@dimen/margin_6"
                     android:text="@string/faq_text_4"
                     android:textSize="@dimen/text_tab_small" />
 

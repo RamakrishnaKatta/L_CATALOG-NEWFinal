@@ -57,13 +57,6 @@
                     android:padding="@dimen/margin_3"
                     android:text="@string/faq_text_2" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_5"
-                    android:fontFamily="@font/assistant_semibold"
-                    android:padding="@dimen/margin_3"
-                    android:text="@string/faq_text_3" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -1083,8 +1076,12 @@
                     android:text="@string/faq_text_32"
                     android:textAllCaps="true"
                     android:textStyle="bold" />
+
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
 
