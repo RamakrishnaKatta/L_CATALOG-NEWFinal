@@ -52,7 +52,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
     TextView project_name, project_description, project_sub_description;
     AppCompatImageView project_image;
     String image1, image2, image3, image4, image5;
-
+LinearLayout project_exp_3d_area,project_exp_aug_area;
     AppCompatImageButton project_augment, project_3dview;
     String project_id, project_images;
     RecyclerView recyclerView;
@@ -102,6 +102,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
         project_image = findViewById(R.id.project_image_view);
         project_3dview = findViewById(R.id.project_3dview_icon);
         project_augment = findViewById(R.id.project_augment_icon);
+        project_exp_3d_area=findViewById(R.id.project_3dview_exp_area);
+        project_exp_aug_area=findViewById(R.id.project_augment_exp_area);
 
         final Bundle b = getIntent().getExtras();
         assert b != null;
@@ -200,6 +202,30 @@ public class ProjectDetailActivity extends AppCompatActivity implements ApiCommu
                 b4.putString("project_3ds_file_name", project_3ds);
                 Intent _3d_intent = new Intent(ProjectDetailActivity.this, Article3dViewActivity.class).putExtras(b4);
                 startActivity(_3d_intent);
+            }
+        });
+
+        project_exp_aug_area.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle project_augment_data = new Bundle();
+                project_augment_data.putString("project_augment_file", project_id);
+                project_augment_data.putString("flag","project");
+                Intent intent = new Intent(getApplicationContext(), ExperimentalAugmentActivity.class).putExtras(project_augment_data);
+                startActivity(intent);
+
+            }
+        });
+        project_exp_3d_area.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle project_3d_data = new Bundle();
+                project_3d_data.putString("project_3ds_file", project_id);
+                project_3d_data.putString("flag","project");
+                Intent intent = new Intent(getApplicationContext(), Experimental3DViewActivity.class).putExtras(project_3d_data);
+                startActivity(intent);
+
+
             }
         });
 

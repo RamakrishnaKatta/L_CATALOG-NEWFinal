@@ -562,6 +562,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             public void onClick(View v) {
                 Bundle article_3ds_data = new Bundle();
                 article_3ds_data.putString("article_3ds_file", article_id);
+                article_3ds_data.putString("flag","article");
                 Intent intent = new Intent(getActivity(), Experimental3DViewActivity.class).putExtras(article_3ds_data);
                 startActivity(intent);
             }
@@ -572,6 +573,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
             public void onClick(View v) {
                 Bundle article_augment_data = new Bundle();
                 article_augment_data.putString("article_augment_file", article_id);
+                article_augment_data.putString("flag","article");
                 Intent intent = new Intent(getActivity(), ExperimentalAugmentActivity.class).putExtras(article_augment_data);
                 startActivity(intent);
             }
