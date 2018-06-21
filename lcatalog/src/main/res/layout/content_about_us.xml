@@ -155,7 +155,6 @@
                         android:id="@+id/facebook_about"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:contentDescription="@null"
@@ -167,7 +166,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:src="@mipmap/ic_linkedin" />
 
@@ -177,7 +175,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:src="@mipmap/ic_instagram" />
 
@@ -187,7 +184,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:src="@mipmap/ic_twitter" />
 
@@ -197,7 +193,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:adjustViewBounds="true"
                         android:contentDescription="@null"
                         android:src="@mipmap/ic_youtube" />
 
