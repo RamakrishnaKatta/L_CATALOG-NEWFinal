@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_3"
-    app:cardBackgroundColor="@color/primary_dark"
+    app:cardBackgroundColor="@color/iron"
     app:cardCornerRadius="@dimen/margin_3">
 
     <RelativeLayout
@@ -16,7 +16,7 @@
             android:id="@+id/grid_item_image_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/iron">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/grid_item_image"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_6"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/iron"
     app:cardCornerRadius="@dimen/margin_6">
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:id="@+id/v_item_image_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/iron"
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatImageView
@@ -48,9 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/overlock_sc"
+                android:maxLines="1"
                 android:text="@string/article_title_text"
                 android:textAllCaps="true"
-                android:maxLines="1"
                 android:textColor="@color/primary_dark"
                 android:textSize="@dimen/text_tab_small"
                 android:textStyle="bold" />
