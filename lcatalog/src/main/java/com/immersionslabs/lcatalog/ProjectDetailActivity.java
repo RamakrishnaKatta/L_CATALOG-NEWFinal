@@ -102,8 +102,8 @@ LinearLayout project_exp_3d_area,project_exp_aug_area;
         project_image = findViewById(R.id.project_image_view);
         project_3dview = findViewById(R.id.project_3dview_icon);
         project_augment = findViewById(R.id.project_augment_icon);
-        project_exp_3d_area=findViewById(R.id.project_3dview_exp_area);
-        project_exp_aug_area=findViewById(R.id.project_augment_exp_area);
+        project_exp_3d_area = findViewById(R.id.project_3dview_exp_area);
+        project_exp_aug_area = findViewById(R.id.project_augment_exp_area);
 
         final Bundle b = getIntent().getExtras();
         assert b != null;
@@ -210,7 +210,7 @@ LinearLayout project_exp_3d_area,project_exp_aug_area;
             public void onClick(View v) {
                 Bundle project_augment_data = new Bundle();
                 project_augment_data.putString("project_augment_file", project_id);
-                project_augment_data.putString("flag","project");
+                project_augment_data.putString("flag", "project");
                 Intent intent = new Intent(getApplicationContext(), ExperimentalAugmentActivity.class).putExtras(project_augment_data);
                 startActivity(intent);
 
@@ -221,7 +221,7 @@ LinearLayout project_exp_3d_area,project_exp_aug_area;
             public void onClick(View v) {
                 Bundle project_3d_data = new Bundle();
                 project_3d_data.putString("project_3ds_file", project_id);
-                project_3d_data.putString("flag","project");
+                project_3d_data.putString("flag", "project");
                 Intent intent = new Intent(getApplicationContext(), Experimental3DViewActivity.class).putExtras(project_3d_data);
                 startActivity(intent);
 

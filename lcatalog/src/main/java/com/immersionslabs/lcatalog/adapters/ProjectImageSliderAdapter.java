@@ -1,6 +1,7 @@
 package com.immersionslabs.lcatalog.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.AppCompatImageView;
@@ -25,27 +26,29 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
     private AppCompatImageView images;
     private String project_id;
     private static final String TAG = "ProjectImageSliderAdapter";
+    private Context context;
 
-    public ProjectImageSliderAdapter(ProjectDetailActivity activity,
+    public ProjectImageSliderAdapter(Context context,
                                      ArrayList<String> slider_images,
                                      String project_id) {
-        this.activity = activity;
-        this.Images = slider_images;
-        this.project_id = project_id;
+        this.context = context;
+        this.Images =slider_images;
+        this.project_id =project_id;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        inflater = activity.getLayoutInflater();
-        View v = inflater.inflate(R.layout.activity_project_details, container, false);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.fragment_project_design, container, false);
         Log.e(TAG, "projectimage  " + project_id);
 
         images = v.findViewById(R.id.project_image_view);
         String urls = Images.get(position);
         Log.e(TAG, "instantiateItem:urls" + urls);
 
-        Glide.with(activity)
+
+        Glide.with(context)
                 .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_id + urls)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

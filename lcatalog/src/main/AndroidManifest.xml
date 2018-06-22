@@ -206,7 +206,6 @@
             android:label="@string/title_activity_experimental_augment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
         <activity android:name=".notifications.NotificationCountSetClass" />
 
         <service android:name=".services.NotifyIDService">
@@ -233,6 +232,8 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".ProjectDetaiilsActivity"></activity>
     </application>
 
 </manifest>

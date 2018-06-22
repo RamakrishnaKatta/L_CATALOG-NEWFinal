@@ -16,6 +16,8 @@ public class SessionManager {
 
     private static final String TAG = "SessionManager";
 
+
+
     private SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
@@ -48,6 +50,8 @@ public class SessionManager {
     public static final String KEY_VENDOR_ID = "vendor_ID";
     public static final String KEY_VENDOR_TYPE = "vendor_type";
     public static final String KEY_VENDOR_OTHERDETAILS = "vendor_otherdetails";
+    public static final String KEY_VENDOR_ADDRESS ="vendoradresskey" ;
+    public static final String KEY_VENDOR_LOGO = "vendorlogoimg";
 
     Set<String> set = new HashSet<String>();
     Set<String> checklistset = new HashSet<String>();

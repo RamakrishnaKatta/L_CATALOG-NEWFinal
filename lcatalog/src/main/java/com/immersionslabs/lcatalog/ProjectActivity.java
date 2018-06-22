@@ -38,6 +38,8 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
     private ArrayList<String> project_3ds;
+    private ArrayList<String> project_pattern;
+    private ArrayList<String> project_vendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
         project_subDescription = new ArrayList<>();
         project_images = new ArrayList<>();
         project_3ds = new ArrayList<>();
+        project_pattern = new ArrayList<>();
+        project_vendor = new ArrayList<>();
 
         CommonGetData();
     }
@@ -78,12 +82,16 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
             try {
                 object = resp.getJSONObject(i);
+                JSONObject jsonObject=object.getJSONObject("vendor_id");
+                String vendorid=jsonObject.getString("id");
                 project_ids.add(object.getString("_id"));
                 project_name.add(object.getString("projectName"));
                 project_description.add(object.getString("projectDescription"));
                 project_images.add(object.getString("images"));
                 project_subDescription.add(object.getString("projectSubDescription"));
                 project_3ds.add(object.getString("projectView_3d"));
+                project_pattern.add(object.getString("patternImg"));
+                project_vendor.add(vendorid);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -96,10 +104,12 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "project Sub Description" + project_subDescription);
         Log.e(TAG, "project Images" + project_images);
         Log.e(TAG, "Project 3ds" + project_3ds);
+        Log.e(TAG, "Project Pattern" + project_pattern);
+        Log.e(TAG, "Project vendorid" + project_vendor);
 
         Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(Campaign_Manager);
-        ProjectAdapter adapter = new ProjectAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds);
+        ProjectAdapter adapter = new ProjectAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds,project_pattern,project_vendor);
         recyclerView.setAdapter(adapter);
     }
 

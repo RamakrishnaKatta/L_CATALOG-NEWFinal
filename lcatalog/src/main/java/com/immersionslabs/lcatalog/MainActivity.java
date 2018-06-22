@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ArrayList<String> vendor_ids;
     HashMap<String, String> hash_vendor;
+    private String vendor_logo_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -590,7 +591,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (flag.equals("UNIQUE")) {
             try {
                 JSONObject jsonObject = response.getJSONObject("other_details");
-
+                JSONArray jsonArray=response.getJSONArray("data");
+                JSONObject jsonObject1=jsonArray.getJSONObject(0);
+                vendor_logo_img=jsonObject1.getString("logo");
                 GetFullDetails(jsonObject);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -624,6 +627,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             hash_vendor.put(id + SessionManager.KEY_VENDOR_MOBILE, mobile_no);
             hash_vendor.put(id + SessionManager.KEY_VENDOR_OTHERDETAILS, other_details);
             hash_vendor.put(id + SessionManager.KEY_VENDOR_ID, vendor_id);
+            hash_vendor.put(id+SessionManager.KEY_VENDOR_ADDRESS,adress);
+            hash_vendor.put(id+SessionManager.KEY_VENDOR_LOGO,vendor_logo_img
+            );
             sessionmanager.SetVendorDetails(id, hash_vendor);
             Log.e(TAG, "GetFullDetails: session" + hash_vendor);
 

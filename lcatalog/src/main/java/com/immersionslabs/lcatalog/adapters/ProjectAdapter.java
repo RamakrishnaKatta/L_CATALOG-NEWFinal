@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProjectActivity;
+import com.immersionslabs.lcatalog.ProjectDetaiilsActivity;
 import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -37,6 +38,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
     private ArrayList<String> project_subDescription;
     private ArrayList<String> project_images;
     private ArrayList<String> project_3ds;
+    private ArrayList<String> project_pattern;
+    private ArrayList<String> project_vendor;
 
     public ProjectAdapter(ProjectActivity activity,
                           ArrayList<String> project_ids,
@@ -44,7 +47,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                           ArrayList<String> project_description,
                           ArrayList<String> project_subDescription,
                           ArrayList<String> project_images,
-                          ArrayList<String> project_3ds) {
+                          ArrayList<String> project_3ds,
+                          ArrayList<String> project_pattern, ArrayList<String> project_vendor) {
 
         this.project_ids = project_ids;
         this.project_name = project_name;
@@ -52,7 +56,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         this.project_subDescription = project_subDescription;
         this.project_images = project_images;
         this.project_3ds = project_3ds;
-
+        this.project_pattern = project_pattern;
+        this.project_vendor=project_vendor;
         this.activity = activity;
     }
 
@@ -98,7 +103,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
-                Intent intent = new Intent(context[0], ProjectDetailActivity.class);
+                Intent intent = new Intent(context[0], ProjectDetaiilsActivity.class);
 
                 Bundle b = new Bundle();
                 b.putString("_id", project_ids.get(position));
@@ -107,7 +112,9 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                 b.putString("projectSubDescription", project_subDescription.get(position));
                 b.putString("images", project_images.get(position));
                 b.putString("projectView_3d", project_3ds.get(position));
-
+                b.putString("patternImg", project_pattern.get(position));
+                b.putString("project_position", String.valueOf(position));
+                b.putString("vendorid",project_vendor.get(position));
                 intent.putExtras(b);
                 context[0].startActivity(intent);
             }
