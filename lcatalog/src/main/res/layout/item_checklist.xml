@@ -28,7 +28,7 @@
                     android:id="@+id/check_item_image_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/iron"
                     android:orientation="vertical">
 
                     <android.support.v7.widget.AppCompatImageView
