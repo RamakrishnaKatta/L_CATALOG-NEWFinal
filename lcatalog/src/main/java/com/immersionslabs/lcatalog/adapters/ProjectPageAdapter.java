@@ -64,6 +64,8 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
                 b_tab2.putString("projectDescription",p_desc);
                 b_tab2.putString("projectSubDescription",p_sub_desc);
                 b_tab2.putString("projectvendorid",p_vendorid);
+                b_tab2.putString("projectvendorpattern",p_pattern);
+                b_tab2.putString("projectid",p_id);
                 Fragment_ProjectDetails tab2 = new Fragment_ProjectDetails();
                 tab2.setArguments(b_tab2);
                 return tab2;
