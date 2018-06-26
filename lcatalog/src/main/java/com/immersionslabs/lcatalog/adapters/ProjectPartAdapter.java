@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -52,6 +53,18 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                               ArrayList<String> project_ids,
                               ArrayList<String> project_part_3ds) {
 
+        this.project_part = project_part;
+        this.project_partName = project_partName;
+        this.project_partDesc = project_partDesc;
+        this.project_part_articlesIds = project_part_articlesIds;
+        this.project_part_articlesData = project_part_articlesData;
+        this.project_partimages = project_partimages;
+        this.project_ids = project_ids;
+        this.project_part_3ds = project_part_3ds;
+        this.activity = activity;
+    }
+
+    public ProjectPartAdapter(FragmentActivity activity, ArrayList<String> project_part, ArrayList<String> project_partName, ArrayList<String> project_partDesc, ArrayList<String> project_partimages, ArrayList<String> project_part_articlesIds, ArrayList<String> project_part_articlesData, ArrayList<String> project_ids, ArrayList<String> project_part_3ds) {
         this.project_part = project_part;
         this.project_partName = project_partName;
         this.project_partDesc = project_partDesc;
