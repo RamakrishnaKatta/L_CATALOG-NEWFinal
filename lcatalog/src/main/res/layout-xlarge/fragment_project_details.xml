@@ -23,7 +23,7 @@
                 android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_name_title"
-                android:textSize="@dimen/text_tab_large"
+                android:textSize="@dimen/text_tab_medium"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_desc_title"
-                android:textSize="@dimen/text_tab_large"
+                android:textSize="@dimen/text_tab_medium"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/assistant_semibold"
-                android:padding="@dimen/margin_3"
+                android:padding="@dimen/margin_6"
                 android:text="@string/project_desc"
                 android:textSize="@dimen/text_tab_small" />
 
@@ -72,7 +72,7 @@
                 android:fontFamily="@font/overlock_sc"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_sub_desc_title"
-                android:textSize="@dimen/text_tab_large"
+                android:textSize="@dimen/text_tab_medium"
                 android:textStyle="bold" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="@dimen/margin_3">
+                android:padding="@dimen/margin_6">
 
                 <TextView
                     android:id="@+id/article_vendor_heading"
@@ -116,7 +116,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="@string/article_vendor_title"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_large"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -198,7 +198,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="@string/project_pattern_title"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_large"
+                    android:textSize="@dimen/text_tab_medium"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -246,7 +246,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/project_part_list_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/margin_12"
             android:visibility="visible" />
 
