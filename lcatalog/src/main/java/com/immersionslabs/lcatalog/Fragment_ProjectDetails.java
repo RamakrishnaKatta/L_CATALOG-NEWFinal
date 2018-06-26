@@ -1,8 +1,6 @@
 package com.immersionslabs.lcatalog;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,8 +28,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.security.auth.login.LoginException;
 
 
 public class Fragment_ProjectDetails extends Fragment implements ApiCommunication {
@@ -85,7 +81,7 @@ public class Fragment_ProjectDetails extends Fragment implements ApiCommunicatio
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment__project_details, container, false);
+        final View view = inflater.inflate(R.layout.fragment_project_details, container, false);
         Bundle bundle = getArguments();
 
         project_ids = new ArrayList<>();

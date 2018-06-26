@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProjectActivity;
-import com.immersionslabs.lcatalog.ProjectDetaiilsActivity;
+import com.immersionslabs.lcatalog.ProjectPageActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -47,7 +47,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                           ArrayList<String> project_subDescription,
                           ArrayList<String> project_images,
                           ArrayList<String> project_3ds,
-                          ArrayList<String> project_pattern, ArrayList<String> project_vendor) {
+                          ArrayList<String> project_pattern,
+                          ArrayList<String> project_vendor) {
 
         this.project_ids = project_ids;
         this.project_name = project_name;
@@ -102,7 +103,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
-                Intent intent = new Intent(context[0], ProjectDetaiilsActivity.class);
+                Intent intent = new Intent(context[0], ProjectPageActivity.class);
 
                 Bundle b = new Bundle();
                 b.putString("_id", project_ids.get(position));

@@ -13,9 +13,9 @@ import com.immersionslabs.lcatalog.adapters.ProjectPageAdapter;
 
 import java.util.ArrayList;
 
-public class ProjectDetaiilsActivity extends AppCompatActivity {
+public class ProjectPageActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProjectDetaiilsActivity";
+    private static final String TAG = "ProjectPageActivity";
 
     String images;
 
@@ -36,12 +36,12 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_proj);
+        setContentView(R.layout.activity_project_details);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_project);
+        Toolbar toolbar = findViewById(R.id.toolbar_projectdetails);
         toolbar.setTitleTextAppearance(this, R.style.LCatalogCustomText_ToolBar);
         setSupportActionBar(toolbar);
 
@@ -49,6 +49,7 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
         project_ids = new ArrayList<>();
         project_part = new ArrayList<>();
         project_partName = new ArrayList<>();
@@ -81,13 +82,14 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
         Log.e(TAG, "vendor id----" + vendor_id);
 
 
-        TabLayout tabLayout = findViewById(R.id.project_detaiils_tab_layout);
+        TabLayout tabLayout = findViewById(R.id.project_details_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
         tabLayout.addTab(tabLayout.newTab().setText("DETAILS"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = findViewById(R.id.project_detaiils_pager);
-        final ProjectPageAdapter adapter = new ProjectPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), name, id, description,sub_desc,images,project_3ds,project_pattern,vendor_id);
+        final ViewPager viewPager = findViewById(R.id.project_details_pager);
+        final ProjectPageAdapter adapter = new ProjectPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
+                                            name, id, description,sub_desc,images,project_3ds,project_pattern,vendor_id);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
