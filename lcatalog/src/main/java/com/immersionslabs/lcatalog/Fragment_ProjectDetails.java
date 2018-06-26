@@ -5,18 +5,29 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.Utils.SessionManager;
+
+import java.util.HashMap;
+
+import javax.security.auth.login.LoginException;
+
 
 public class Fragment_ProjectDetails extends Fragment {
-
-
-    TextView project_name, project_description, project_sub_description;
-
-
+String TAG="fragment_projectdetails";
+    TextView project_name, project_description, project_sub_description,project_vendor_name,project_vendor_address;
+String name,desc,subdesc,vendor_id,vendor_address,vendor_image;
+    AppCompatImageView vendor_logo;
+SessionManager sessionManager;
     private OnFragmentInteractionListener mListener;
 
     public Fragment_ProjectDetails() {
@@ -39,7 +50,38 @@ public class Fragment_ProjectDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__project_details, container, false);
+        final View view=inflater.inflate(R.layout.fragment__project_details, container, false);
+        Bundle bundle=getArguments();
+
+        sessionManager=new SessionManager(getContext());
+        name=bundle.getString("projectName");
+        desc=bundle.getString("projectDescription");
+        subdesc=bundle.getString("projectSubDescription");
+        vendor_id=bundle.getString("projectvendorid");
+        Log.e(TAG, "onCreateView: vendor_id"+vendor_id);
+        int vendor_id_int=Integer.parseInt(vendor_id)+1;
+       HashMap vendordet= sessionManager.GetVendorDetails(Integer.toString(vendor_id_int));
+        Log.e(TAG, "onCreateView: vendordet"+vendordet);
+        vendor_address= (String) vendordet.get(Integer.toString(vendor_id_int)+SessionManager.KEY_VENDOR_ADDRESS);
+        Log.e(TAG, "onCreateView: vendoraddress"+vendor_address);
+        vendor_image=(String)vendordet.get(Integer.toString(vendor_id_int)+SessionManager.KEY_VENDOR_LOGO);
+        Log.e(TAG, "onCreateView: vendorimage"+vendor_image);
+        project_name=view.findViewById(R.id.project_title_text);
+        project_description=view.findViewById(R.id.project_description_text);
+        project_sub_description=view.findViewById(R.id.project_subdescription_text);
+        project_vendor_name=view.findViewById(R.id.project_vendor_text);
+        project_vendor_address=view.findViewById(R.id.project_vendor_address_text);
+        vendor_logo=view.findViewById(R.id.project_vendor_logo);
+        project_name.setText(name);
+        project_description.setText(desc);
+        project_sub_description.setText(subdesc);
+        project_vendor_address.setText(vendor_address);
+        Glide.with(getContext())
+                .load(EnvConstants.APP_BASE_URL + "/upload/vendorLogos/" + vendor_image)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(vendor_logo);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
