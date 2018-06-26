@@ -148,6 +148,7 @@
     <string name="article_dimension_symbol">in</string>
     <string name="article_vendor_title">PROVIDED BY :</string>
     <string name="article_pattern_title">ARTICLE PATTERN :</string>
+    <string name="project_pattern_title">PROJECT PATTERN :</string>
     <string name="article_vendor_details">NAME &amp; ADDRESS :</string>
     <string name="article_vendor_name">CMR</string>
     <string name="article_vendor_address">Chandra Layout, Bangalore- 560072</string>

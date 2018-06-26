@@ -196,7 +196,7 @@
                     android:fontFamily="@font/overlock_sc"
                     android:gravity="center"
                     android:padding="@dimen/margin_3"
-                    android:text="@string/article_pattern_title"
+                    android:text="@string/project_pattern_title"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
