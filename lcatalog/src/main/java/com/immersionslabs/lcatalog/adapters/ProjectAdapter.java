@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProjectActivity;
 import com.immersionslabs.lcatalog.ProjectDetaiilsActivity;
-import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 

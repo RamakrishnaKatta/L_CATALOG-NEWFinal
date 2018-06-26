@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.ProjectDetailActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
@@ -20,12 +19,11 @@ import java.util.ArrayList;
 
 public class ProjectImageSliderAdapter extends PagerAdapter {
 
+    private static final String TAG ="ProjectImageSliderAdapter";
     private ArrayList<String> Images;
     private LayoutInflater inflater;
-    private Activity activity;
     private AppCompatImageView images;
     private String project_id;
-    private static final String TAG = "ProjectImageSliderAdapter";
     private Context context;
 
     public ProjectImageSliderAdapter(Context context,
@@ -40,6 +38,7 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
         View v = inflater.inflate(R.layout.fragment_project_design, container, false);
         Log.e(TAG, "projectimage  " + project_id);
 

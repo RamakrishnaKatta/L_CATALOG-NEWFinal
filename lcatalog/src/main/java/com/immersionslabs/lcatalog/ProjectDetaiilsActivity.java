@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.immersionslabs.lcatalog.adapters.ProjectPageAdapter;
 
@@ -20,10 +21,7 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
 
     String position, name, id, description, sub_desc,vendor_id;
 
-
     String project_3ds, project_pattern;
-
-
 
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
@@ -61,6 +59,7 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
         project_part_3ds = new ArrayList<>();
 
         final Bundle b = getIntent().getExtras();
+        assert b != null;
         name = (String) b.getCharSequence("projectName");
         description = (String) b.getCharSequence("projectDescription");
         sub_desc = (String) b.getCharSequence("projectSubDescription");
@@ -105,4 +104,21 @@ public class ProjectDetaiilsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED);
+        super.onBackPressed();
+        finish();
+    }
+
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
@@ -34,16 +35,24 @@ import javax.security.auth.login.LoginException;
 
 
 public class Fragment_ProjectDetails extends Fragment implements ApiCommunication {
+    private static final String TAG = "fragment_projectdetails";
+
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
+
     private static String PROJECT_PART_URL = null;
-    String TAG="fragment_projectdetails";
-    TextView project_name, project_description, project_sub_description,project_vendor_name,project_vendor_address;
-String name,desc,subdesc,vendor_id,vendor_address,vendor_image,project_pattern,project_id;
-    AppCompatImageView vendor_logo,pattern_image;
-SessionManager sessionManager;
-    private OnFragmentInteractionListener mListener;
+
+    TextView project_name, project_description, project_sub_description, project_vendor_name, project_vendor_address;
+
+    String name, desc, subdesc, vendor_id, vendor_address, vendor_image, project_pattern, project_id;
+
+    AppCompatImageView vendor_logo, pattern_image;
+
+    SessionManager sessionManager;
+
     private String vendor_name;
+
     RecyclerView project_part_recycler;
+
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
     private ArrayList<String> project_partName;
@@ -53,6 +62,7 @@ SessionManager sessionManager;
     private ArrayList<String> project_part_articlesData;
     private ArrayList<String> project_part_3ds;
     private GridLayoutManager ProjectpartManager;
+
     ProjectPartAdapter adapter;
 
     public Fragment_ProjectDetails() {
@@ -72,27 +82,12 @@ SessionManager sessionManager;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view=inflater.inflate(R.layout.fragment__project_details, container, false);
-        Bundle bundle=getArguments();
+        final View view = inflater.inflate(R.layout.fragment__project_details, container, false);
+        Bundle bundle = getArguments();
 
-        sessionManager=new SessionManager(getContext());
-        name=bundle.getString("projectName");
-        desc=bundle.getString("projectDescription");
-        subdesc=bundle.getString("projectSubDescription");
-        vendor_id=bundle.getString("projectvendorid");
-        project_pattern=bundle.getString("projectvendorpattern");
-        project_id=bundle.getString("projectid");
-        Log.e(TAG, "onCreateView: vendor_id"+vendor_id);
-        int vendor_id_int=Integer.parseInt(vendor_id)+1;
-       HashMap vendordet= sessionManager.GetVendorDetails(Integer.toString(vendor_id_int));
-        Log.e(TAG, "onCreateView: vendordet"+vendordet);
-        vendor_address= (String) vendordet.get(Integer.toString(vendor_id_int)+SessionManager.KEY_VENDOR_ADDRESS);
-        vendor_image=(String)vendordet.get(Integer.toString(vendor_id_int)+SessionManager.KEY_VENDOR_LOGO);
-        Log.e(TAG, "onCreateView: vendorimage"+vendor_image);
-        vendor_name=(String)vendordet.get(Integer.toString(vendor_id_int)+SessionManager.KEY_VENDOR_NAME);
         project_ids = new ArrayList<>();
         project_part = new ArrayList<>();
         project_partName = new ArrayList<>();
@@ -101,22 +96,46 @@ SessionManager sessionManager;
         project_part_articlesIds = new ArrayList<>();
         project_part_articlesData = new ArrayList<>();
         project_part_3ds = new ArrayList<>();
-        project_name=view.findViewById(R.id.project_title_text);
-        project_description=view.findViewById(R.id.project_description_text);
-        project_sub_description=view.findViewById(R.id.project_subdescription_text);
-        project_vendor_name=view.findViewById(R.id.project_vendor_text);
-        project_vendor_address=view.findViewById(R.id.project_vendor_address_text);
-        vendor_logo=view.findViewById(R.id.project_vendor_logo);
-        pattern_image=view.findViewById(R.id.project_pattern_image);
+
+        sessionManager = new SessionManager(getContext());
+
+        assert bundle != null;
+        name = bundle.getString("projectName");
+        desc = bundle.getString("projectDescription");
+        subdesc = bundle.getString("projectSubDescription");
+        vendor_id = bundle.getString("projectvendorid");
+        project_pattern = bundle.getString("projectvendorpattern");
+        project_id = bundle.getString("projectid");
+
+
+        Log.e(TAG, "project vendor_id" + vendor_id);
+        int vendor_id_int = Integer.parseInt(vendor_id) + 1;
+        HashMap vendordetails = sessionManager.GetVendorDetails(Integer.toString(vendor_id_int));
+
+        Log.e(TAG, " vendordetails" + vendordetails);
+        vendor_address = (String) vendordetails.get(Integer.toString(vendor_id_int) + SessionManager.KEY_VENDOR_ADDRESS);
+        vendor_image = (String) vendordetails.get(Integer.toString(vendor_id_int) + SessionManager.KEY_VENDOR_LOGO);
+        Log.e(TAG, "vendorimage " + vendor_image);
+        vendor_name = (String) vendordetails.get(Integer.toString(vendor_id_int) + SessionManager.KEY_VENDOR_NAME);
+
+        project_name = view.findViewById(R.id.project_title_text);
+        project_description = view.findViewById(R.id.project_description_text);
+        project_sub_description = view.findViewById(R.id.project_subdescription_text);
+        project_vendor_name = view.findViewById(R.id.project_vendor_text);
+        project_vendor_address = view.findViewById(R.id.project_vendor_address_text);
+        vendor_logo = view.findViewById(R.id.project_vendor_logo);
+        pattern_image = view.findViewById(R.id.project_pattern_image);
+
         project_part_recycler = view.findViewById(R.id.project_part_list_recycler);
         project_part_recycler.setHasFixedSize(true);
         project_part_recycler.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
         project_name.setText(name);
         project_description.setText(desc);
         project_sub_description.setText(subdesc);
         project_vendor_address.setText(vendor_address);
         project_vendor_name.setText(vendor_name);
-        Log.e(TAG, "onCreateView: vendorurl"+EnvConstants.APP_BASE_URL + "/upload/pattern/" + project_pattern);
+        Log.e(TAG, " Pattern URL" + project_pattern);
 
         Glide.with(getContext())
                 .load(EnvConstants.APP_BASE_URL + "/upload/vendorLogos/" + vendor_image)
@@ -124,7 +143,7 @@ SessionManager sessionManager;
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(vendor_logo);
         Glide.with(getContext())
-                .load(EnvConstants.APP_BASE_URL + "/upload/projectpatternimg/" + project_id+project_pattern)
+                .load(EnvConstants.APP_BASE_URL + "/upload/projectpatternimg/" + project_id + project_pattern)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(pattern_image);
@@ -141,29 +160,18 @@ SessionManager sessionManager;
     }
 
     private void getProjectData() throws JSONException {
-        ApiService.getInstance(getContext()).getData( this,false,"project_part_data",PROJECT_PART_URL,"project_part_det");
+        ApiService.getInstance(getContext()).getData(this, false, "project_part_data", PROJECT_PART_URL, "project_part_det");
 
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Activity activity;
-        if (context instanceof Activity) {
-            activity = (Activity) context;
-        }
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -220,9 +228,4 @@ SessionManager sessionManager;
 
     }
 
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

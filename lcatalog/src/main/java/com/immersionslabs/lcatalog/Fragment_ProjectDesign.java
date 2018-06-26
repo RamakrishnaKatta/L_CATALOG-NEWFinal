@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -43,13 +44,12 @@ public class Fragment_ProjectDesign extends Fragment {
     String image1, image2, image3, image4, image5;
     String project_id, project_images;
 
-    String p_name, project_3ds;
+    String project_3ds;
 
 
     public Fragment_ProjectDesign() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class Fragment_ProjectDesign extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_project_design, container, false);
 
@@ -66,6 +66,7 @@ public class Fragment_ProjectDesign extends Fragment {
         project_exp_3d_area = view.findViewById(R.id.project_3dview_exp_area);
         project_exp_aug_area = view.findViewById(R.id.project_augment_exp_area);
 
+        assert getArguments() != null;
         project_id = getArguments().getString("_id");
         project_images = getArguments().getString("images");
         project_3ds = getArguments().getString("projectView_3d");
@@ -114,7 +115,6 @@ public class Fragment_ProjectDesign extends Fragment {
             }
         });
 
-
         project_augment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,8 +145,6 @@ public class Fragment_ProjectDesign extends Fragment {
             }
         });
 
-
-
         project_exp_aug_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,19 +168,7 @@ public class Fragment_ProjectDesign extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
         return view;
-
     }
 
     private void addBottomDots(int currentPage) {
@@ -201,14 +187,9 @@ public class Fragment_ProjectDesign extends Fragment {
             dots[currentPage].setTextColor(Color.parseColor("#004D40"));
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Activity activity;
-        if (context instanceof Activity) {
-            activity = (Activity) context;
-        }
     }
 
     @Override
