@@ -1,1 +1,4 @@
-include ':lcatalog', ':aRBaseLib'
+include ':lcatalog'
+include 'aRBaseLib'
+
+project(':aRBaseLib').projectDir = new File('../ARBaseLibProj/aRBaseLib')

@@ -72,5 +72,6 @@
     <dimen name="text_tab_xxxlarge">48sp</dimen>
 
     <dimen name="text_tab_max">60sp</dimen>
+    <dimen name="margin_25">25dp</dimen>
 
 </resources>
