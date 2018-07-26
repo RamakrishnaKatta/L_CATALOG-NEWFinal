@@ -69,12 +69,6 @@ public class NotifyActivity extends AppCompatActivity implements ApiCommunicatio
 
         GetNotificationData();
 
-        if (NetworkConnectivity.checkInternetConnection(NotifyActivity.this)) {
-            onCreate(savedInstanceState);
-
-        } else {
-            InternetMessage();
-        }
     }
 
     private void InternetMessage() {
