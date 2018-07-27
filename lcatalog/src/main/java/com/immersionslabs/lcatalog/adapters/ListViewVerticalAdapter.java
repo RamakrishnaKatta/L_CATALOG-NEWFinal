@@ -45,7 +45,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
     private ArrayList<String> item_dimensions;
     private ArrayList<String> item_3ds;
     private ArrayList<String> item_patterns;
-    private ArrayList<String> item_3ds_file;
 
     public ListViewVerticalAdapter(Activity activity,
                                    ArrayList<String> item_ids,
@@ -57,8 +56,7 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                                    ArrayList<String> item_images,
                                    ArrayList<String> item_dimensions,
                                    ArrayList<String> item_3ds,
-                                   ArrayList<String> item_patterns,
-                                   ArrayList<String> item_3ds_file) {
+                                   ArrayList<String> item_patterns) {
 
         this.item_ids = item_ids;
         this.item_names = item_names;
@@ -70,7 +68,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         this.item_dimensions = item_dimensions;
         this.item_3ds = item_3ds;
         this.item_patterns = item_patterns;
-        this.item_3ds_file = item_3ds_file;
 
         Log.e(TAG, "ids----" + item_ids);
         Log.e(TAG, "names----" + item_names);
@@ -82,7 +79,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
         Log.e(TAG, "Dimensions----" + item_dimensions);
         Log.e(TAG, "3ds----" + item_3ds);
         Log.e(TAG, "patterns ---- " + item_patterns);
-        Log.e(TAG, "3dsfile ---- " + item_3ds_file);
 
         this.activity = activity;
     }
@@ -152,7 +148,6 @@ public class ListViewVerticalAdapter extends RecyclerView.Adapter<ListViewVertic
                         b.putString("article_dimensions", item_dimensions.get(position));
                         b.putString("article_3ds", item_3ds.get(position));
                         b.putString("article_pattern", item_patterns.get(position));
-                        b.putString("article_3dsfile", item_3ds_file.get(position));
 
                         b.putString("article_position", String.valueOf(position));
 
