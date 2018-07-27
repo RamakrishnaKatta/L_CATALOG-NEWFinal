@@ -1,11 +1,9 @@
 package com.immersionslabs.lcatalog;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -29,7 +27,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class Fragment_ProjectDesign extends Fragment {
     private static final String TAG = "Fragment_ProjectDesign";
 
@@ -45,7 +42,6 @@ public class Fragment_ProjectDesign extends Fragment {
     String project_id, project_images;
 
     String project_3ds;
-
 
     public Fragment_ProjectDesign() {
         // Required empty public constructor
@@ -95,7 +91,6 @@ public class Fragment_ProjectDesign extends Fragment {
         viewpager = view.findViewById(R.id.project_view_pager);
         imageSliderAdapter = new ProjectImageSliderAdapter(getContext(), slider_images, project_id);
         viewpager.setAdapter(imageSliderAdapter);
-
 
         slider_dots = view.findViewById(R.id.project_slide_dots);
 
@@ -153,9 +148,9 @@ public class Fragment_ProjectDesign extends Fragment {
                 project_augment_data.putString("flag", "project");
                 Intent intent = new Intent(getContext(), ExperimentalAugmentActivity.class).putExtras(project_augment_data);
                 startActivity(intent);
-
             }
         });
+
         project_exp_3d_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,10 +159,9 @@ public class Fragment_ProjectDesign extends Fragment {
                 project_3d_data.putString("flag", "project");
                 Intent intent = new Intent(getContext(), Experimental3DViewActivity.class).putExtras(project_3d_data);
                 startActivity(intent);
-
-
             }
         });
+
         return view;
     }
 
@@ -196,6 +190,4 @@ public class Fragment_ProjectDesign extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
-
 }

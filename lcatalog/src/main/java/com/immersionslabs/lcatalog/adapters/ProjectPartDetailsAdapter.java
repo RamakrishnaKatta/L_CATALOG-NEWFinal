@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,18 +25,21 @@ import com.immersionslabs.lcatalog.Utils.NetworkConnectivity;
 
 import java.util.ArrayList;
 
-public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartDetailsAdapter.ViewHolder> {
-    private static final String TAG = "ProjectpartDetailsAdapter";
+public class ProjectPartDetailsAdapter extends RecyclerView.Adapter<ProjectPartDetailsAdapter.ViewHolder> {
+
+    private static final String TAG = "ProjectPartDetailsAdapter";
     private Activity activity;
+
     private ArrayList<String> part_articles_id;
     private ArrayList<String> part_article_name;
     private ArrayList<String> part_article_images;
     private Context mcontext;
 
-    public ProjectpartDetailsAdapter(ProjectPartDetailsActivity activity,
+    public ProjectPartDetailsAdapter(ProjectPartDetailsActivity activity,
                                      ArrayList<String> part_articles_id,
                                      ArrayList<String> part_article_name,
                                      ArrayList<String> part_article_images, Context context) {
+
         this.part_articles_id = part_articles_id;
         this.part_article_name = part_article_name;
         this.part_article_images = part_article_images;
@@ -51,10 +55,10 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
         return new ViewHolder(view);
     }
 
+    @SuppressLint("LongLogTag")
     @Override
-    public void onBindViewHolder(@NonNull ProjectpartDetailsAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProjectPartDetailsAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
-        String im1 = null;
         String get_image = part_article_images.get(position);
         Log.e(TAG, "project_images " + get_image);
 
@@ -82,19 +86,20 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
                         EnvConstants.part_article__discounts_var = EnvConstants.part_article__discounts.get(EnvConstants.part_articles_id_var);
                         EnvConstants.flag_article_details = true;
                         EnvConstants.position = position;
-                        Log.e(TAG, "piceyyyyy " + EnvConstants.part_articles_price_var);
-                        Log.e(TAG, "id " + EnvConstants.part_articles_id_var);
+
+                        Log.e(TAG, " price " + EnvConstants.part_articles_price_var);
+                        Log.e(TAG, " id " + EnvConstants.part_articles_id_var);
+
                         context[0] = v.getContext();
                         Intent intent = new Intent(context[0], ProductPageActivity.class);
                         context[0].startActivity(intent);
+
                     } catch (IndexOutOfBoundsException e) {
                         e.printStackTrace();
                     }
-
                 } else {
                     CustomMessage.getInstance().CustomMessage(activity, "Internet is Not Available");
                 }
-
             }
         });
     }
@@ -103,7 +108,6 @@ public class ProjectpartDetailsAdapter extends RecyclerView.Adapter<ProjectpartD
     public int getItemCount() {
         return part_article_name.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView article_name;

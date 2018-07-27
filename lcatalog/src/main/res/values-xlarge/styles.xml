@@ -9,7 +9,7 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="LCatalogCustomText_Tab">
+    <style name="LCatalogCustomText_TabView">
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">@font/assistant_semibold</item>
         <item name="android:textStyle">bold</item>

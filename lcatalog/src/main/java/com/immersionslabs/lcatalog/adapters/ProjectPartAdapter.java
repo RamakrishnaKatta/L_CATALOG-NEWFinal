@@ -99,7 +99,6 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
             e.printStackTrace();
         }
 
-
         holder.projectpart_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,11 +122,9 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                     } catch (IndexOutOfBoundsException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     CustomMessage.getInstance().CustomMessage(activity, "Internet is Not Available");
-
                 }
-
             }
         });
     }

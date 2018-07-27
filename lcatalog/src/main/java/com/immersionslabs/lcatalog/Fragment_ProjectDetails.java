@@ -29,7 +29,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class Fragment_ProjectDetails extends Fragment implements ApiCommunication {
     private static final String TAG = "fragment_projectdetails";
 
@@ -57,7 +56,8 @@ public class Fragment_ProjectDetails extends Fragment implements ApiCommunicatio
     private ArrayList<String> project_part_articlesIds;
     private ArrayList<String> project_part_articlesData;
     private ArrayList<String> project_part_3ds;
-    private GridLayoutManager ProjectpartManager;
+
+    private GridLayoutManager Project_partManager;
 
     ProjectPartAdapter adapter;
 
@@ -74,7 +74,6 @@ public class Fragment_ProjectDetails extends Fragment implements ApiCommunicatio
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -213,15 +212,13 @@ public class Fragment_ProjectDetails extends Fragment implements ApiCommunicatio
         Log.e(TAG, "articlesData" + project_part_articlesData);
         Log.e(TAG, "part3ds" + project_part_3ds);
 
-        ProjectpartManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
-        project_part_recycler.setLayoutManager(ProjectpartManager);
+        Project_partManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+        project_part_recycler.setLayoutManager(Project_partManager);
         adapter = new ProjectPartAdapter(getActivity(), project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids, project_part_3ds);
         project_part_recycler.setAdapter(adapter);
     }
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-
     }
-
 }

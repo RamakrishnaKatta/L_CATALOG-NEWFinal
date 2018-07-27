@@ -32,12 +32,12 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
     private Activity activity;
 
     private ArrayList<String> project_ids;
-    private ArrayList<String> project_name;
-    private ArrayList<String> project_description;
-    private ArrayList<String> project_subDescription;
+    private ArrayList<String> project_names;
+    private ArrayList<String> project_descriptions;
+    private ArrayList<String> project_subDescriptions;
     private ArrayList<String> project_images;
     private ArrayList<String> project_3ds;
-    private ArrayList<String> project_pattern;
+    private ArrayList<String> project_patterns;
     private ArrayList<String> project_vendor;
 
     public ProjectAdapter(ProjectActivity activity,
@@ -51,13 +51,13 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                           ArrayList<String> project_vendor) {
 
         this.project_ids = project_ids;
-        this.project_name = project_name;
-        this.project_description = project_description;
-        this.project_subDescription = project_subDescription;
+        this.project_names = project_name;
+        this.project_descriptions = project_description;
+        this.project_subDescriptions = project_subDescription;
         this.project_images = project_images;
         this.project_3ds = project_3ds;
-        this.project_pattern = project_pattern;
-        this.project_vendor=project_vendor;
+        this.project_patterns = project_pattern;
+        this.project_vendor = project_vendor;
         this.activity = activity;
     }
 
@@ -94,27 +94,29 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                 .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + get_project_id + im1)
                 .placeholder(R.drawable.dummy_icon)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.campaign_image);
+                .into(holder.tv_project_image);
 
-        holder.campaign_name.setText(project_name.get(position));
-        holder.campaign_description.setText(project_description.get(position));
+        holder.tv_project_name.setText(project_names.get(position));
+        holder.tv_project_description.setText(project_descriptions.get(position));
 
-        holder.campaign_container.setOnClickListener(new View.OnClickListener() {
+        holder.ll_project_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context[0] = v.getContext();
                 Intent intent = new Intent(context[0], ProjectPageActivity.class);
 
                 Bundle b = new Bundle();
-                b.putString("_id", project_ids.get(position));
-                b.putString("projectName", project_name.get(position));
-                b.putString("projectDescription", project_description.get(position));
-                b.putString("projectSubDescription", project_subDescription.get(position));
-                b.putString("images", project_images.get(position));
-                b.putString("projectView_3d", project_3ds.get(position));
-                b.putString("patternImg", project_pattern.get(position));
-                b.putString("project_position", String.valueOf(position));
-                b.putString("vendorid",project_vendor.get(position));
+
+                b.putString("Project_id", project_ids.get(position));
+                b.putString("Project_Name", project_names.get(position));
+                b.putString("Project_Description", project_descriptions.get(position));
+                b.putString("Project_SubDescription", project_subDescriptions.get(position));
+                b.putString("Project_Image", project_images.get(position));
+                b.putString("Project_View3d", project_3ds.get(position));
+                b.putString("Project_PatternImg", project_patterns.get(position));
+                b.putString("Project_Position", String.valueOf(position));
+                b.putString("Project_VendorId", project_vendor.get(position));
+
                 intent.putExtras(b);
                 context[0].startActivity(intent);
             }
@@ -123,21 +125,21 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return project_name.size();
+        return project_names.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView campaign_name, campaign_description;
-        AppCompatImageView campaign_image;
+        private TextView tv_project_name, tv_project_description;
+        private AppCompatImageView tv_project_image;
 
-        private LinearLayout campaign_container;
+        private LinearLayout ll_project_container;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            campaign_container = itemView.findViewById(R.id.project_container);
-            campaign_name = itemView.findViewById(R.id.project_title);
-            campaign_description = itemView.findViewById(R.id.project_data);
-            campaign_image = itemView.findViewById(R.id.project_image);
+            ll_project_container = itemView.findViewById(R.id.project_container);
+            tv_project_name = itemView.findViewById(R.id.project_title);
+            tv_project_description = itemView.findViewById(R.id.project_data);
+            tv_project_image = itemView.findViewById(R.id.project_image);
         }
     }
 }

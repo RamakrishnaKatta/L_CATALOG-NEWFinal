@@ -11,6 +11,7 @@
     <string name="title_activity_VendorRegistration">Vendor Registration</string>
     <string name="title_activity_Notify">Notifications</string>
     <string name="title_activity_Gallery">Screenshot Gallery</string>
+    <string name="title_activity_catalog">Product Catalog</string>
     <string name="title_activity_vendor_details">Vendor Details</string>
     <string name="title_activity_vendor_catalog">Vendor Catalog</string>
     <string name="title_activity_vendor_list">Our Vendors</string>

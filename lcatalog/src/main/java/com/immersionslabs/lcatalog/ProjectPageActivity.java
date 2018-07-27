@@ -1,37 +1,23 @@
 package com.immersionslabs.lcatalog;
 
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.immersionslabs.lcatalog.adapters.ProjectPageAdapter;
 
-import java.util.ArrayList;
-
 public class ProjectPageActivity extends AppCompatActivity {
 
     private static final String TAG = "ProjectPageActivity";
 
-    String images;
-
-    String position, name, id, description, sub_desc,vendor_id;
-
+    String project_images;
+    String project_position, project_name, project_id, project_description, project_sub_desc, project_vendor_id;
     String project_3ds, project_pattern;
-
-    private ArrayList<String> project_ids;
-    private ArrayList<String> project_part;
-    private ArrayList<String> project_partName;
-    private ArrayList<String> project_partDesc;
-    private ArrayList<String> project_partimages;
-    private ArrayList<String> project_part_articlesIds;
-    private ArrayList<String> project_part_articlesData;
-    private ArrayList<String> project_part_3ds;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,37 +36,26 @@ public class ProjectPageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        project_ids = new ArrayList<>();
-        project_part = new ArrayList<>();
-        project_partName = new ArrayList<>();
-        project_partDesc = new ArrayList<>();
-        project_partimages = new ArrayList<>();
-        project_part_articlesIds = new ArrayList<>();
-        project_part_articlesData = new ArrayList<>();
-        project_part_3ds = new ArrayList<>();
-
         final Bundle b = getIntent().getExtras();
         assert b != null;
-        name = (String) b.getCharSequence("projectName");
-        description = (String) b.getCharSequence("projectDescription");
-        sub_desc = (String) b.getCharSequence("projectSubDescription");
 
-        position = (String) b.getCharSequence("project_position");
-        id = (String) b.getCharSequence("_id");
-        project_3ds = (String) b.getCharSequence("projectView_3d");
-        project_pattern =(String)b.getCharSequence("patternImg");
-         vendor_id=b.getString("vendorid");
-        images = (String) b.getCharSequence("images");
+        project_name = (String) b.getCharSequence("Project_Name");
+        project_description = (String) b.getCharSequence("Project_Description");
+        project_sub_desc = (String) b.getCharSequence("Project_SubDescription");
+        project_position = (String) b.getCharSequence("Project_Position");
+        project_id = (String) b.getCharSequence("Project_id");
+        project_3ds = (String) b.getCharSequence("Project_View3d");
+        project_pattern = (String) b.getCharSequence("Project_PatternImg");
+        project_vendor_id = b.getString("Project_VendorId");
+        project_images = (String) b.getCharSequence("Project_Image");
 
-
-        Log.e(TAG, "Project Name----" + name);
-        Log.e(TAG, "Project Description----" + description);
-        Log.e(TAG, "Project position----" + position);
-        Log.e(TAG, "Project Id----" + id);
+        Log.e(TAG, "Project Name----" + project_name);
+        Log.e(TAG, "Project Description----" + project_description);
+        Log.e(TAG, "Project project_position----" + project_position);
+        Log.e(TAG, "Project Id----" + project_id);
         Log.e(TAG, "Project Pattern----" + project_pattern);
-        Log.e(TAG, "Project Images----" + images);
-        Log.e(TAG, "vendor id----" + vendor_id);
-
+        Log.e(TAG, "Project Images----" + project_images);
+        Log.e(TAG, "Project Vendor Id----" + project_vendor_id);
 
         TabLayout tabLayout = findViewById(R.id.project_details_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
@@ -89,7 +64,7 @@ public class ProjectPageActivity extends AppCompatActivity {
 
         final ViewPager viewPager = findViewById(R.id.project_details_pager);
         final ProjectPageAdapter adapter = new ProjectPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
-                                            name, id, description,sub_desc,images,project_3ds,project_pattern,vendor_id);
+                project_name, project_id, project_description, project_sub_desc, project_images, project_3ds, project_pattern, project_vendor_id);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -101,6 +76,7 @@ public class ProjectPageActivity extends AppCompatActivity {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
@@ -122,5 +98,4 @@ public class ProjectPageActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
 }

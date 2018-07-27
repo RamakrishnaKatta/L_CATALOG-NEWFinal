@@ -87,10 +87,7 @@
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".CatalogActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
-            android:name=".ProjectPageActivity"
+            android:label="@string/title_activity_catalog"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -111,6 +108,11 @@
         <activity
             android:name=".ProjectActivity"
             android:label="@string/title_activity_Campaign"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".ProjectPageActivity"
+            android:label="@string/title_activity_ProjectDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity

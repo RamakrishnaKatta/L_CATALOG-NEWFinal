@@ -239,7 +239,6 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
                 item_patterns.add(obj.getString("pattern"));
                 item_3ds_file.add(obj.getString("threeds"));
 
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

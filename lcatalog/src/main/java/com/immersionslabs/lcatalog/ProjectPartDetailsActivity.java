@@ -25,8 +25,8 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
+import com.immersionslabs.lcatalog.adapters.ProjectPartDetailsAdapter;
 import com.immersionslabs.lcatalog.adapters.ProjectPartImageSliderAdapter;
-import com.immersionslabs.lcatalog.adapters.ProjectpartDetailsAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -50,17 +50,16 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
     TextView part_name, part_Desc;
     AppCompatImageView part_image;
-
     AppCompatImageButton part_augment, part_3dview;
 
-    String image1, image2, image3, image4, image5;
-    String project_id;
     RecyclerView recyclerView;
-    ProjectpartDetailsAdapter adapter;
+    ProjectPartDetailsAdapter adapter;
     GridLayoutManager layoutManager;
     Context mcontext;
 
-    String p_name, part_3ds;
+    String p_id, p_name, p_3ds, p_images, p_desc;
+    String p_image1, p_image2, p_image3, p_image4, p_image5;
+
     private ArrayList<String> part_articles_id;
     private ArrayList<String> part_article_images;
     private ArrayList<String> part_article_name;
@@ -68,7 +67,6 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
 
     ArrayList<String> slider_images = new ArrayList<>();
     private LinearLayout slider_dots;
-    String project_part_images;
     private ViewPager viewPager;
     ProjectPartImageSliderAdapter imageSliderAdapter;
     TextView[] dots;
@@ -106,49 +104,51 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         part_article_name = new ArrayList<>();
         part_article_images = new ArrayList<>();
         project_ids = new ArrayList<>();
+
         mcontext = getApplicationContext();
 
         final Bundle b = getIntent().getExtras();
+        assert b != null;
 
-        project_id = (String) b.getCharSequence("_id");
-        Log.e(TAG, "project_id ---- " + project_id);
-
-        part_3ds = (String) b.getCharSequence("partview_3d");
-        Log.e(TAG, "part_3ds-----" + part_3ds);
+        p_id = (String) b.getCharSequence("_id");
+        p_3ds = (String) b.getCharSequence("partview_3d");
         p_name = (String) b.getCharSequence("partName");
+        p_images = (String) b.getCharSequence("partimages");
+        p_desc = (String) b.getCharSequence("partDesc");
+
+        Log.e(TAG, "project_id ---- " + p_id);
+        Log.e(TAG, "part_3ds-----" + p_3ds);
         Log.e(TAG, "part_name" + p_name);
-
-        part_name.setText(b.getCharSequence("partName"));
         Log.e(TAG, "onCreate:part_name " + part_name);
-        part_Desc.setText(b.getCharSequence("partDesc"));
         Log.e(TAG, " part_Desc" + part_Desc);
+        Log.e(TAG, " part images" + p_images);
 
-        project_part_images = (String) b.getCharSequence("partimages");
-        Log.e(TAG, " part images" + project_part_images);
+        part_name.setText(p_name);
+        part_Desc.setText(p_desc);
 
         try {
-            JSONArray image_json = new JSONArray(project_part_images);
+            JSONArray image_json = new JSONArray(p_images);
             for (int i = 0; i < image_json.length(); i++) {
-                image1 = image_json.getString(0);
-                image2 = image_json.getString(1);
-                image3 = image_json.getString(2);
-                image4 = image_json.getString(3);
-                image5 = image_json.getString(4);
+                p_image1 = image_json.getString(0);
+                p_image2 = image_json.getString(1);
+                p_image3 = image_json.getString(2);
+                p_image4 = image_json.getString(3);
+                p_image5 = image_json.getString(4);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e(TAG, "ProjectpartImage 1----" + image1);
-        Log.e(TAG, "ProjectpartImage 2----" + image2);
-        Log.e(TAG, "ProjectpartImage 3----" + image3);
-        Log.e(TAG, "ProjectpartImage 4----" + image4);
-        Log.e(TAG, "ProjectpartImage 5----" + image5);
+        Log.e(TAG, "ProjectpartImage 1----" + p_image1);
+        Log.e(TAG, "ProjectpartImage 2----" + p_image2);
+        Log.e(TAG, "ProjectpartImage 3----" + p_image3);
+        Log.e(TAG, "ProjectpartImage 4----" + p_image4);
+        Log.e(TAG, "ProjectpartImage 5----" + p_image5);
 
-        final String[] Images = {image1, image2, image3, image4, image5};
+        final String[] Images = {p_image1, p_image2, p_image3, p_image4, p_image5};
         Collections.addAll(slider_images, Images);
 
         viewPager = findViewById(R.id.project_part_view_pager);
-        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectPartDetailsActivity.this, slider_images, project_id);
+        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectPartDetailsActivity.this, slider_images, p_id);
         viewPager.setAdapter(imageSliderAdapter);
 
         slider_dots = findViewById(R.id.project_part_slide_dots);
@@ -191,14 +191,14 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
             @Override
             public void onClick(View v) {
                 Bundle b5 = new Bundle();
-                b5.putString("part3dsName", part_3ds);
-                b5.putString("name_project", project_id);
+                b5.putString("part3dsName", p_3ds);
+                b5.putString("name_project", p_id);
                 Intent _3d_intent = new Intent(ProjectPartDetailsActivity.this, Article3dViewActivity.class).putExtras(b5);
                 startActivity(_3d_intent);
             }
         });
 
-        PROJECT_PART_ARTICLE_URL = REGISTER_URL + project_id;
+        PROJECT_PART_ARTICLE_URL = REGISTER_URL + p_id;
         Log.e(TAG, "PROJECT_PART_URL------" + PROJECT_PART_ARTICLE_URL);
 
         try {
@@ -315,7 +315,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         getarticledata();
         layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new ProjectpartDetailsAdapter(this, part_articles_id, part_article_name, part_article_images, mcontext);
+        adapter = new ProjectPartDetailsAdapter(this, part_articles_id, part_article_name, part_article_images, mcontext);
         recyclerView.setAdapter(adapter);
     }
 

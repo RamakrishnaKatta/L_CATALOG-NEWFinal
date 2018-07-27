@@ -1,6 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ProjectImageSliderAdapter extends PagerAdapter {
 
-    private static final String TAG ="ProjectImageSliderAdapter";
+    private static final String TAG = "ProjectImageSliderAdapter";
     private ArrayList<String> Images;
     private LayoutInflater inflater;
     private AppCompatImageView images;
@@ -30,10 +30,11 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
                                      ArrayList<String> slider_images,
                                      String project_id) {
         this.context = context;
-        this.Images =slider_images;
-        this.project_id =project_id;
+        this.Images = slider_images;
+        this.project_id = project_id;
     }
 
+    @SuppressLint("LongLogTag")
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -45,7 +46,6 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
         images = v.findViewById(R.id.project_image_view);
         String urls = Images.get(position);
         Log.e(TAG, "instantiateItem:urls" + urls);
-
 
         Glide.with(context)
                 .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_id + urls)

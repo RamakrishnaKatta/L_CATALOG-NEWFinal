@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:tabTextAppearance="@style/LCatalogCustomText_Tab" />
+            app:tabTextAppearance="@style/LCatalogCustomText_TabView" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/project_details_pager"
