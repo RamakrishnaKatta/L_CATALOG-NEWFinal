@@ -1,8 +1,9 @@
 package com.immersionslabs.lcatalog;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,30 +22,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Fragment_Overview extends Fragment implements ApiCommunication {
 
     private static final String TAG = "Fragment_Overview";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/vendorArticles";
+
     RecyclerView main_recycler;
-    private ArrayList<String> item_ids;
+
     private ArrayList<String> item_descriptions;
     private ArrayList<String> item_names;
     private ArrayList<String> item_images;
-    private ArrayList<String> item_prices;
-    private ArrayList<String> item_discounts;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_overview, container, false);
 
-        item_ids = new ArrayList<>();
         item_names = new ArrayList<>();
         item_descriptions = new ArrayList<>();
         item_images = new ArrayList<>();
-        item_prices = new ArrayList<>();
-        item_discounts = new ArrayList<>();
+
         getData();
 
         return view;
@@ -71,7 +70,7 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
 
     private void mainRecyclerView(JSONArray m_jsonArray) {
 
-        main_recycler = getView().findViewById(R.id.main_recycler);
+        main_recycler = Objects.requireNonNull(getView()).findViewById(R.id.main_recycler);
         main_recycler.setHasFixedSize(true);
 
         for (int i = 0; i < m_jsonArray.length(); i++) {
@@ -79,27 +78,21 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
             try {
                 obj = m_jsonArray.getJSONObject(i);
 
-                item_ids.add(obj.getString("_id"));
                 item_descriptions.add(obj.getString("description"));
                 item_images.add(obj.getString("img"));
                 item_names.add(obj.getString("name"));
-                item_prices.add(obj.getString("price"));
-                item_discounts.add(obj.getString("discount"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            Log.e(TAG, "ids******" + item_ids);
             Log.e(TAG, "images******" + item_images);
             Log.e(TAG, "names******" + item_names);
             Log.e(TAG, "descriptions*******" + item_descriptions);
-            Log.e(TAG, "prices******" + item_prices);
-            Log.e(TAG, "discounts******" + item_discounts);
 
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-            main_recycler.setLayoutManager(linearLayoutManager);
-            MainListViewAdapter gridAdapter = new MainListViewAdapter(this, item_ids, item_names, item_images, item_prices, item_discounts, item_descriptions);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+            main_recycler.setLayoutManager(gridLayoutManager);
+            MainListViewAdapter gridAdapter = new MainListViewAdapter(this, item_names, item_images, item_descriptions);
             main_recycler.setAdapter(gridAdapter);
         }
     }
@@ -118,5 +111,4 @@ public class Fragment_Overview extends Fragment implements ApiCommunication {
     public void onPause() {
         super.onPause();
     }
-
 }

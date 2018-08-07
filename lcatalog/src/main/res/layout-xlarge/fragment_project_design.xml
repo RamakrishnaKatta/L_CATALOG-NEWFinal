@@ -13,14 +13,14 @@
         <RelativeLayout
             android:id="@+id/project_image_slider_area"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_400"
+            android:layout_height="@dimen/margin_500"
             android:gravity="top">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/project_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_40"
+                android:layout_margin="@dimen/margin_60"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter" />
@@ -37,7 +37,7 @@
         <LinearLayout
             android:id="@+id/project_slide_dots"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_50"
+            android:layout_height="@dimen/margin_60"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal" />
@@ -55,28 +55,17 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_20">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_2"
-                android:background="@color/zobra" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_2"
-                android:background="@color/zobra" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_70"
+                android:layout_height="@dimen/margin_60"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="3">
 
                 <LinearLayout
                     android:id="@+id/article_augment_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -101,7 +90,7 @@
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/menu_augment"
-                        android:textSize="@dimen/text_tab_large"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -116,7 +105,7 @@
                     android:id="@+id/article_3dview_icon_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -141,7 +130,7 @@
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/btn_3d_view"
-                        android:textSize="@dimen/text_tab_large"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -155,15 +144,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_80"
+                android:layout_height="@dimen/margin_60"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="3">
 
                 <LinearLayout
                     android:id="@+id/project_3dview_exp_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -187,14 +176,14 @@
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/btn_3dView_exp"
-                        android:textSize="@dimen/text_tab_large"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="@dimen/margin_2"
-                    android:layout_height="@dimen/margin_80"
+                    android:layout_height="@dimen/margin_50"
                     android:layout_gravity="center"
                     android:background="@color/zobra" />
 
@@ -202,7 +191,7 @@
                     android:id="@+id/project_augment_exp_area"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -226,7 +215,7 @@
                         android:paddingEnd="@dimen/margin_8"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/btn_Augment_exp"
-                        android:textSize="@dimen/text_tab_large"
+                        android:textSize="@dimen/text_tab_small"
                         android:textStyle="bold" />
 
                 </LinearLayout>

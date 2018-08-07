@@ -50,16 +50,18 @@ public class ProjectPageActivity extends AppCompatActivity {
         project_images = (String) b.getCharSequence("Project_Image");
 
         Log.e(TAG, "Project Name----" + project_name);
-        Log.e(TAG, "Project Description----" + project_description);
-        Log.e(TAG, "Project project_position----" + project_position);
-        Log.e(TAG, "Project Id----" + project_id);
-        Log.e(TAG, "Project Pattern----" + project_pattern);
-        Log.e(TAG, "Project Images----" + project_images);
-        Log.e(TAG, "Project Vendor Id----" + project_vendor_id);
+        Log.e(TAG, "\n Project Description----" + project_description);
+        Log.e(TAG, "\n Project Sub Description----" + project_sub_desc);
+        Log.e(TAG, "\n Project project_position----" + project_position);
+        Log.e(TAG, "\n Project Id----" + project_id);
+        Log.e(TAG, "\n Project Pattern----" + project_pattern);
+        Log.e(TAG, "\n Project Images----" + project_images);
+        Log.e(TAG, "\n Project 3DS File----" + project_3ds);
+        Log.e(TAG, "\n Project Vendor Id----" + project_vendor_id);
 
         TabLayout tabLayout = findViewById(R.id.project_details_tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("DESIGN"));
-        tabLayout.addTab(tabLayout.newTab().setText("DETAILS"));
+        tabLayout.addTab(tabLayout.newTab().setText("Design"));
+        tabLayout.addTab(tabLayout.newTab().setText("Details"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.project_details_pager);

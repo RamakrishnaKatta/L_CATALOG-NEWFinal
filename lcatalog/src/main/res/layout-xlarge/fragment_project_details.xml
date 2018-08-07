@@ -33,7 +33,7 @@
                 android:fontFamily="@font/assistant_semibold"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_name"
-                android:textSize="@dimen/text_tab_small" />
+                android:textSize="@dimen/text_tab_tiny" />
 
             <View
                 android:layout_width="match_parent"
@@ -57,8 +57,7 @@
                 android:fontFamily="@font/assistant_semibold"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_desc"
-                android:textSize="@dimen/text_tab_small" />
-
+                android:textSize="@dimen/text_tab_tiny" />
 
             <View
                 android:layout_width="match_parent"
@@ -82,8 +81,7 @@
                 android:fontFamily="@font/assistant_semibold"
                 android:padding="@dimen/margin_6"
                 android:text="@string/project_sub_desc"
-                android:textSize="@dimen/text_tab_small" />
-
+                android:textSize="@dimen/text_tab_tiny" />
 
         </LinearLayout>
 
@@ -91,7 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_2"
             android:background="@color/zobra" />
-
 
         <LinearLayout
             android:id="@+id/vendor_details"
@@ -116,7 +113,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="@string/article_vendor_title"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -144,7 +141,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="@string/article_vendor_details"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <TextView
@@ -156,7 +153,7 @@
                     android:paddingStart="@dimen/margin_6"
                     android:text="@string/article_vendor_name"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="italic" />
 
                 <TextView
@@ -169,7 +166,7 @@
                     android:paddingStart="@dimen/margin_6"
                     android:text="@string/article_vendor_address"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="italic" />
 
             </LinearLayout>
@@ -198,7 +195,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="@string/project_pattern_title"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_medium"
+                    android:textSize="@dimen/text_tab_tiny"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -232,7 +229,7 @@
                     android:padding="@dimen/margin_6"
                     android:text="Find this pattern at \n http://lcatalog.immersionslabs.com"
                     android:textAlignment="center"
-                    android:textSize="@dimen/text_tab_small" />
+                    android:textSize="@dimen/text_tab_tootiny" />
 
             </LinearLayout>
 

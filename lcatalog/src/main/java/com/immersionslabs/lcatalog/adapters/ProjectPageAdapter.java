@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import com.immersionslabs.lcatalog.Fragment_ProjectDesign;
 import com.immersionslabs.lcatalog.Fragment_ProjectDetails;
@@ -16,7 +17,7 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
 
     private int mNumOfTabs;
 
-    public ProjectPageAdapter(FragmentManager supportFragmentManager,
+    public ProjectPageAdapter(FragmentManager projectFragmentManager,
                               int tabCount,
                               String project_name,
                               String project_id,
@@ -26,7 +27,8 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
                               String project_3ds,
                               String project_pattern,
                               String project_vendor_id) {
-        super(supportFragmentManager);
+
+        super(projectFragmentManager);
 
         this.mNumOfTabs = tabCount;
         this.p_name = project_name;
@@ -37,6 +39,15 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
         this.p_3ds = project_3ds;
         this.p_pattern = project_pattern;
         this.p_vendor_id = project_vendor_id;
+
+        Log.e(TAG, "Acquired Article Details: " + p_name
+                + " ---" + p_id
+                + " ---" + p_desc
+                + " ---" + p_sub_desc
+                + " ---" + p_images
+                + " ---" + p_3ds
+                + " ---" + p_pattern
+                + " ---" + p_vendor_id);
     }
 
     @Override
@@ -49,6 +60,7 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 Bundle b_tab1 = new Bundle();
+
                 b_tab1.putString("images", p_images);
                 b_tab1.putString("_id", p_id);
                 b_tab1.putString("projectView_3d", p_3ds);
@@ -59,6 +71,7 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
 
             case 1:
                 Bundle b_tab2 = new Bundle();
+
                 b_tab2.putString("projectName", p_name);
                 b_tab2.putString("projectDescription", p_desc);
                 b_tab2.putString("projectSubDescription", p_sub_desc);

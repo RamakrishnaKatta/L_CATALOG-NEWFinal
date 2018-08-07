@@ -11,7 +11,7 @@
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/iron"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@color/white"
             android:gravity="center">
 
             <android.support.v7.widget.AppCompatImageView
@@ -47,7 +48,7 @@
                 android:text="@string/article_title_text"
                 android:textAllCaps="true"
                 android:textColor="@color/primary_darker"
-                android:textSize="@dimen/text_tab_xlarge"
+                android:textSize="@dimen/text_tab_small"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -63,7 +64,7 @@
             android:padding="@dimen/margin_6"
             android:text="@string/article_desc_text"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_tab_medium" />
+            android:textSize="@dimen/text_tab_tiny" />
 
     </LinearLayout>
 

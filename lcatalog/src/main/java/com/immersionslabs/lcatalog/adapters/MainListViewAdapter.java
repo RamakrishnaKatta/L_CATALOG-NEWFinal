@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
@@ -29,32 +28,21 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
 
     private Fragment_Overview activity;
 
-    private ArrayList<String> item_ids;
     private ArrayList<String> item_names;
     private ArrayList<String> item_images;
-    private ArrayList<String> item_prices;
-    private ArrayList<String> item_discounts;
     private ArrayList<String> item_descriptions;
 
-    public MainListViewAdapter(Fragment_Overview activity, ArrayList<String> item_ids,
+    public MainListViewAdapter(Fragment_Overview activity,
                                ArrayList<String> item_names,
                                ArrayList<String> item_images,
-                               ArrayList<String> item_prices,
-                               ArrayList<String> item_discounts,
                                ArrayList<String> item_descriptions) {
 
-        this.item_ids = item_ids;
         this.item_names = item_names;
         this.item_images = item_images;
-        this.item_prices = item_prices;
-        this.item_discounts = item_discounts;
         this.item_descriptions = item_descriptions;
 
-        Log.e(TAG, "ids----" + item_ids);
-        Log.e(TAG, "Images----" + item_images);
         Log.e(TAG, "names----" + item_names);
-        Log.e(TAG, "prices----" + item_prices);
-        Log.e(TAG, "discounts----" + item_discounts);
+        Log.e(TAG, "Images----" + item_images);
         Log.e(TAG, "descriptions----" + item_descriptions);
 
         this.activity = activity;
@@ -64,20 +52,20 @@ public class MainListViewAdapter extends RecyclerView.Adapter<MainListViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
-        @SuppressLint("RestrictedApi") LayoutInflater inflater = activity.getLayoutInflater(null);
+        LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.item_overview, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MainListViewAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final MainListViewAdapter.ViewHolder viewHolder, final int position) {
 
         final Context[] context = new Context[1];
 
         String im1 = null;
         String get_image = item_images.get(position);
-        try {
 
+        try {
             JSONArray images_json = new JSONArray(get_image);
             if (images_json.length() > 0) {
                 im1 = images_json.getString(0);

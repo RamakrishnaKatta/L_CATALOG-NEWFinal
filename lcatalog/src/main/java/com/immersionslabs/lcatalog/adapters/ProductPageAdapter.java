@@ -19,7 +19,7 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
 
     private int mNumOfTabs;
 
-    public ProductPageAdapter(FragmentManager fragmentManager,
+    public ProductPageAdapter(FragmentManager productFragmentManager,
                               int tabCount,
                               String name,
                               String description,
@@ -38,7 +38,7 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
                               String article_pattern,
                               String article_3ds_file) {
 
-        super(fragmentManager);
+        super(productFragmentManager);
 
         this.mNumOfTabs = tabCount;
         this.a_name = name;
