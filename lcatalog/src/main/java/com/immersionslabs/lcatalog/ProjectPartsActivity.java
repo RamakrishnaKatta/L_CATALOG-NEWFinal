@@ -39,9 +39,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-public class ProjectPartDetailsActivity extends AppCompatActivity implements ApiCommunication {
+public class ProjectPartsActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String TAG = "ProjectPartDetailsActivity";
+    private static final String TAG = "ProjectPartsActivity";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getProjectDetails/";
     private static String PROJECT_PART_ARTICLE_URL = null;
@@ -119,9 +119,9 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         Log.e(TAG, "project_id ---- " + p_id);
         Log.e(TAG, "part_3ds-----" + p_3ds);
         Log.e(TAG, "part_name" + p_name);
-        Log.e(TAG, "onCreate:part_name " + part_name);
-        Log.e(TAG, " part_Desc" + part_Desc);
-        Log.e(TAG, " part images" + p_images);
+        Log.e(TAG, "part_name " + part_name);
+        Log.e(TAG, "part_Desc" + part_Desc);
+        Log.e(TAG, "part images" + p_images);
 
         part_name.setText(p_name);
         part_Desc.setText(p_desc);
@@ -138,17 +138,17 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e(TAG, "ProjectpartImage 1----" + p_image1);
-        Log.e(TAG, "ProjectpartImage 2----" + p_image2);
-        Log.e(TAG, "ProjectpartImage 3----" + p_image3);
-        Log.e(TAG, "ProjectpartImage 4----" + p_image4);
-        Log.e(TAG, "ProjectpartImage 5----" + p_image5);
+        Log.e(TAG, "ProjectPartImage 1----" + p_image1);
+        Log.e(TAG, "ProjectPartImage 2----" + p_image2);
+        Log.e(TAG, "ProjectPartImage 3----" + p_image3);
+        Log.e(TAG, "ProjectPartImage 4----" + p_image4);
+        Log.e(TAG, "ProjectPartImage 5----" + p_image5);
 
         final String[] Images = {p_image1, p_image2, p_image3, p_image4, p_image5};
         Collections.addAll(slider_images, Images);
 
         viewPager = findViewById(R.id.project_part_view_pager);
-        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectPartDetailsActivity.this, slider_images, p_id);
+        imageSliderAdapter = new ProjectPartImageSliderAdapter(ProjectPartsActivity.this, slider_images, p_id);
         viewPager.setAdapter(imageSliderAdapter);
 
         slider_dots = findViewById(R.id.project_part_slide_dots);
@@ -178,7 +178,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent intent = new Intent(ProjectPartDetailsActivity.this, ARNativeActivity.class);
+                        Intent intent = new Intent(ProjectPartsActivity.this, ARNativeActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -193,7 +193,7 @@ public class ProjectPartDetailsActivity extends AppCompatActivity implements Api
                 Bundle b5 = new Bundle();
                 b5.putString("part3dsName", p_3ds);
                 b5.putString("name_project", p_id);
-                Intent _3d_intent = new Intent(ProjectPartDetailsActivity.this, Article3dViewActivity.class).putExtras(b5);
+                Intent _3d_intent = new Intent(ProjectPartsActivity.this, Article3dViewActivity.class).putExtras(b5);
                 startActivity(_3d_intent);
             }
         });

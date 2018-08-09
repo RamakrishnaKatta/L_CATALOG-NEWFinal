@@ -13,7 +13,6 @@ public class ARNativeApplication extends Application {
     // Anywhere in the application where an instance is required, this method
     // can be used to retrieve it.
     public static ARNativeApplication getInstance() {
-
         return (ARNativeApplication) sInstance;
     }
 
@@ -23,8 +22,8 @@ public class ARNativeApplication extends Application {
         sInstance = this;
 //        ((ARNativeApplication) sInstance).initializeInstance();
     }
+
     public void setConnectionListener(ConnectionReceiver.ConnectionReceiverListener listener) {
         ConnectionReceiver.connectionReceiverListener = listener;
     }
-
 }

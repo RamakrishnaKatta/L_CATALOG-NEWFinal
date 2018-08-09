@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.adapters.ProjectPartAdapter;
+import com.immersionslabs.lcatalog.adapters.ProjectPartsAdapter;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
 
@@ -34,7 +34,7 @@ public class Fragment_ProjectParts extends Fragment implements ApiCommunication 
 
     String project_id;
 
-    ProjectPartAdapter adapter;
+    ProjectPartsAdapter adapter;
 
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part;
@@ -149,7 +149,7 @@ public class Fragment_ProjectParts extends Fragment implements ApiCommunication 
 
         Project_partManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         project_part_recycler.setLayoutManager(Project_partManager);
-        adapter = new ProjectPartAdapter(getActivity(), project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids, project_part_3ds);
+        adapter = new ProjectPartsAdapter(getActivity(), project_part, project_partName, project_partDesc, project_partimages, project_part_articlesIds, project_part_articlesData, project_ids, project_part_3ds);
         project_part_recycler.setAdapter(adapter);
     }
 

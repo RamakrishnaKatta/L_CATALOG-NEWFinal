@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
+import com.immersionslabs.lcatalog.ProjectPartsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -28,9 +28,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.ViewHolder> {
+public class ProjectPartsAdapter extends RecyclerView.Adapter<ProjectPartsAdapter.ViewHolder> {
 
-    private static final String TAG = "ProjectPartAdapter";
+    private static final String TAG = "ProjectPartsAdapter";
     private Activity activity;
 
     private ArrayList<String> project_part;
@@ -42,15 +42,15 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     private ArrayList<String> project_ids;
     private ArrayList<String> project_part_3ds;
 
-    public ProjectPartAdapter(FragmentActivity activity,
-                              ArrayList<String> project_part,
-                              ArrayList<String> project_partName,
-                              ArrayList<String> project_partDesc,
-                              ArrayList<String> project_partimages,
-                              ArrayList<String> project_part_articlesIds,
-                              ArrayList<String> project_part_articlesData,
-                              ArrayList<String> project_ids,
-                              ArrayList<String> project_part_3ds) {
+    public ProjectPartsAdapter(FragmentActivity activity,
+                               ArrayList<String> project_part,
+                               ArrayList<String> project_partName,
+                               ArrayList<String> project_partDesc,
+                               ArrayList<String> project_partimages,
+                               ArrayList<String> project_part_articlesIds,
+                               ArrayList<String> project_part_articlesData,
+                               ArrayList<String> project_ids,
+                               ArrayList<String> project_part_3ds) {
 
         this.project_part = project_part;
         this.project_partName = project_partName;
@@ -73,7 +73,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectPartAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ProjectPartsAdapter.ViewHolder holder, final int position) {
         final Context[] context = new Context[1];
         String im1 = null;
         String get_image = project_partimages.get(position);
@@ -106,7 +106,7 @@ public class ProjectPartAdapter extends RecyclerView.Adapter<ProjectPartAdapter.
                 if (NetworkConnectivity.checkInternetConnection(activity)) {
                     try {
                         context[0] = v.getContext();
-                        Intent intent = new Intent(context[0], ProjectPartDetailsActivity.class);
+                        Intent intent = new Intent(context[0], ProjectPartsActivity.class);
                         Bundle b = new Bundle();
                         b.putString("_id", project_ids.get(0));
                         b.putString("part", project_part.get(position));

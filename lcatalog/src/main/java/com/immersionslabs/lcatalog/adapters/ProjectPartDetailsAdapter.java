@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.immersionslabs.lcatalog.ProductPageActivity;
-import com.immersionslabs.lcatalog.ProjectPartDetailsActivity;
+import com.immersionslabs.lcatalog.ProjectPartsActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.CustomMessage;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -35,7 +35,7 @@ public class ProjectPartDetailsAdapter extends RecyclerView.Adapter<ProjectPartD
     private ArrayList<String> part_article_images;
     private Context mcontext;
 
-    public ProjectPartDetailsAdapter(ProjectPartDetailsActivity activity,
+    public ProjectPartDetailsAdapter(ProjectPartsActivity activity,
                                      ArrayList<String> part_articles_id,
                                      ArrayList<String> part_article_name,
                                      ArrayList<String> part_article_images, Context context) {

@@ -15,9 +15,9 @@ public class ExperimentalAugmentActivity extends AppCompatActivity {
 
     private static final String TAG = "ExperimentalAugmentActivity";
 
-    String article_augment_file_data,project_augment_file_data,flag;
+    String article_augment_file_data, project_augment_file_data, flag;
     String WEB_URL_AUGMENT = EnvConstants.PORTAL_BASE_URL + "/#/articleAr/";
-    String PROJECT_URL_AUGMENT=EnvConstants.PORTAL_BASE_URL+"/#/projectAr/";
+    String PROJECT_URL_AUGMENT = EnvConstants.PORTAL_BASE_URL + "/#/projectAr/";
 
     @SuppressLint("LongLogTag")
     @Override
@@ -38,23 +38,21 @@ public class ExperimentalAugmentActivity extends AppCompatActivity {
         final Bundle article_augment_data = getIntent().getExtras();
         assert article_augment_data != null;
         article_augment_file_data = (String) article_augment_data.getCharSequence("article_augment_file");
-        flag=article_augment_data.getString("flag");
+        flag = article_augment_data.getString("flag");
         Log.e(TAG, "FLAG--" + flag);
 
-
-        final Bundle project_augment_data=getIntent().getExtras();
-        assert project_augment_data!=null;
-        project_augment_file_data=(String) project_augment_data.getString("project_augment_file");
-        flag=project_augment_data.getString("flag");
+        final Bundle project_augment_data = getIntent().getExtras();
+        assert project_augment_data != null;
+        project_augment_file_data = project_augment_data.getString("project_augment_file");
+        flag = project_augment_data.getString("flag");
         Log.e(TAG, "FLAG--" + flag);
-        if(flag.equals("article"))
-        {
+
+        if (flag.equals("article")) {
             WEB_URL_AUGMENT += article_augment_file_data;
             Log.e(TAG, "VENDOR_URL--" + WEB_URL_AUGMENT);
             webView_augment.loadUrl(WEB_URL_AUGMENT);
-        }
-        else if(flag.equals("project"))
-        {
+
+        } else if (flag.equals("project")) {
             PROJECT_URL_AUGMENT += project_augment_file_data;
             Log.e(TAG, "VENDOR_PROJECT_URL--" + PROJECT_URL_AUGMENT);
             webView_augment.loadUrl(PROJECT_URL_AUGMENT);

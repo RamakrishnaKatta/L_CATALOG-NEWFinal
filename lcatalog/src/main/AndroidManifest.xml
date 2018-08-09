@@ -116,7 +116,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ProjectPartDetailsActivity"
+            android:name=".ProjectPartsActivity"
             android:label="@string/title_activity_ProjectPartDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
