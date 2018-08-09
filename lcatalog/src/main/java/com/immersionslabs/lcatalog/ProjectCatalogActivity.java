@@ -22,14 +22,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ProjectActivity extends AppCompatActivity implements ApiCommunication {
+public class ProjectCatalogActivity extends AppCompatActivity implements ApiCommunication {
 
-    private static final String TAG = "ProjectActivity";
+    private static final String TAG = "ProjectCatalogActivity";
 
     private static final String REGISTER_URL = EnvConstants.APP_BASE_URL + "/getprojects";
 
     RecyclerView recyclerView;
-    LinearLayoutManager Campaign_Manager;
+    LinearLayoutManager Project_Manager;
     ProjectAdapter adapter;
 
     private ArrayList<String> project_ids;
@@ -44,7 +44,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
+        setContentView(R.layout.activity_project_catalog);
 
         recyclerView = findViewById(R.id.project_recycler);
         recyclerView.setHasFixedSize(true);
@@ -78,12 +78,13 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
     private void GetData(JSONArray resp) {
         for (int i = 0; i < resp.length(); i++) {
-            JSONObject object = null;
+            JSONObject object;
 
             try {
                 object = resp.getJSONObject(i);
-                JSONObject jsonObject=object.getJSONObject("vendor_id");
-                String vendorid=jsonObject.getString("id");
+                JSONObject jsonObject = object.getJSONObject("vendor_id");
+                String vendorid = jsonObject.getString("id");
+
                 project_ids.add(object.getString("_id"));
                 project_name.add(object.getString("projectName"));
                 project_description.add(object.getString("projectDescription"));
@@ -107,9 +108,9 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
         Log.e(TAG, "Project Pattern" + project_pattern);
         Log.e(TAG, "Project vendorid" + project_vendor);
 
-        Campaign_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(Campaign_Manager);
-        ProjectAdapter adapter = new ProjectAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds,project_pattern,project_vendor);
+        Project_Manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(Project_Manager);
+        ProjectAdapter adapter = new ProjectAdapter(this, project_ids, project_name, project_description, project_subDescription, project_images, project_3ds, project_pattern, project_vendor);
         recyclerView.setAdapter(adapter);
     }
 
@@ -128,7 +129,7 @@ public class ProjectActivity extends AppCompatActivity implements ApiCommunicati
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(ProjectActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ProjectCatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 
     @Override

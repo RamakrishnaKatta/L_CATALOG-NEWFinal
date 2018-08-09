@@ -11,7 +11,7 @@
         android:id="@+id/project_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/iron"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -24,16 +24,16 @@
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/project_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200"
+                android:layout_height="@dimen/margin_400"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
-                android:scaleType="fitEnd" />
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/project_image"
-                android:background="@color/grey_oil"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_3">
 

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.immersionslabs.lcatalog.ProjectActivity;
+import com.immersionslabs.lcatalog.ProjectCatalogActivity;
 import com.immersionslabs.lcatalog.ProjectPageActivity;
 import com.immersionslabs.lcatalog.R;
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
@@ -40,7 +40,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
     private ArrayList<String> project_patterns;
     private ArrayList<String> project_vendor;
 
-    public ProjectAdapter(ProjectActivity activity,
+    public ProjectAdapter(ProjectCatalogActivity activity,
                           ArrayList<String> project_ids,
                           ArrayList<String> project_name,
                           ArrayList<String> project_description,

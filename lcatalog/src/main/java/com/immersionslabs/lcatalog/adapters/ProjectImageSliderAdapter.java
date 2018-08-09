@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class ProjectImageSliderAdapter extends PagerAdapter {
 
     private static final String TAG = "ProjectImageSliderAdapter";
+
     private ArrayList<String> Images;
     private LayoutInflater inflater;
     private AppCompatImageView images;
-    private String project_id;
     private Context context;
+
+    private String project_id;
 
     public ProjectImageSliderAdapter(Context context,
                                      ArrayList<String> slider_images,
@@ -32,6 +34,8 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
         this.context = context;
         this.Images = slider_images;
         this.project_id = project_id;
+
+        inflater = LayoutInflater.from(context);
     }
 
     @SuppressLint("LongLogTag")
@@ -41,11 +45,11 @@ public class ProjectImageSliderAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
         View v = inflater.inflate(R.layout.fragment_project_design, container, false);
-        Log.e(TAG, "projectimage  " + project_id);
+        Log.e(TAG, "projectId  " + project_id);
 
         images = v.findViewById(R.id.project_image_view);
         String urls = Images.get(position);
-        Log.e(TAG, "instantiateItem:urls" + urls);
+        Log.e(TAG, "Image urls " + urls);
 
         Glide.with(context)
                 .load(EnvConstants.APP_BASE_URL + "/upload/projectimages/" + project_id + urls)

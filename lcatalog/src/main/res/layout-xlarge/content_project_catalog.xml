@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_project">
+    tools:showIn="@layout/activity_project_catalog">
 
     <RelativeLayout
         android:id="@+id/layout_campaign"

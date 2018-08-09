@@ -6,37 +6,37 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+import com.immersionslabs.lcatalog.Fragment_ProductDesign;
 import com.immersionslabs.lcatalog.Fragment_ProductDetails;
 import com.immersionslabs.lcatalog.Fragment_ProductFeedback;
-import com.immersionslabs.lcatalog.Fragment_ProductImages;
 
-public class ProductPageAdapter extends FragmentStatePagerAdapter {
+public class ProductFragmentAdapter extends FragmentStatePagerAdapter {
 
-    private static final String TAG = "ProductPageAdapter";
+    private static final String TAG = "ProductFragmentAdapter";
 
     private String a_name, a_description, a_old_price, a_discount, a_newPrice, a_dimensions,
             a_width, a_height, a_length, a_position, a_id, a_images, a_vendor_id, a_3ds, a_pattern, a_3ds_file;
 
     private int mNumOfTabs;
 
-    public ProductPageAdapter(FragmentManager productFragmentManager,
-                              int tabCount,
-                              String name,
-                              String description,
-                              String oldPrice,
-                              String discount,
-                              String newPrice,
-                              String dimensions,
-                              String width,
-                              String height,
-                              String length,
-                              String position,
-                              String id,
-                              String images,
-                              String article_vendor_id,
-                              String article_3ds,
-                              String article_pattern,
-                              String article_3ds_file) {
+    public ProductFragmentAdapter(FragmentManager productFragmentManager,
+                                  int tabCount,
+                                  String name,
+                                  String description,
+                                  String oldPrice,
+                                  String discount,
+                                  String newPrice,
+                                  String dimensions,
+                                  String width,
+                                  String height,
+                                  String length,
+                                  String position,
+                                  String id,
+                                  String images,
+                                  String article_vendor_id,
+                                  String article_3ds,
+                                  String article_pattern,
+                                  String article_3ds_file) {
 
         super(productFragmentManager);
 
@@ -88,7 +88,7 @@ public class ProductPageAdapter extends FragmentStatePagerAdapter {
                 b_tab1.putString("article_3ds_file", a_3ds_file);
                 b_tab1.putString("article_vendor_id", a_vendor_id);
 
-                Fragment_ProductImages tab1 = new Fragment_ProductImages();
+                Fragment_ProductDesign tab1 = new Fragment_ProductDesign();
                 tab1.setArguments(b_tab1);
                 return tab1;
 

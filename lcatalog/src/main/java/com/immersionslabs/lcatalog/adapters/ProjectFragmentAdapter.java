@@ -8,25 +8,26 @@ import android.util.Log;
 
 import com.immersionslabs.lcatalog.Fragment_ProjectDesign;
 import com.immersionslabs.lcatalog.Fragment_ProjectDetails;
+import com.immersionslabs.lcatalog.Fragment_ProjectParts;
 
-public class ProjectPageAdapter extends FragmentStatePagerAdapter {
+public class ProjectFragmentAdapter extends FragmentStatePagerAdapter {
 
-    private static final String TAG = "ProjectPageAdapter";
+    private static final String TAG = "ProjectFragmentAdapter";
 
     private String p_name, p_id, p_desc, p_sub_desc, p_images, p_3ds, p_pattern, p_vendor_id;
 
     private int mNumOfTabs;
 
-    public ProjectPageAdapter(FragmentManager projectFragmentManager,
-                              int tabCount,
-                              String project_name,
-                              String project_id,
-                              String project_description,
-                              String project_sub_desc,
-                              String project_images,
-                              String project_3ds,
-                              String project_pattern,
-                              String project_vendor_id) {
+    public ProjectFragmentAdapter(FragmentManager projectFragmentManager,
+                                  int tabCount,
+                                  String project_name,
+                                  String project_id,
+                                  String project_description,
+                                  String project_sub_desc,
+                                  String project_images,
+                                  String project_3ds,
+                                  String project_pattern,
+                                  String project_vendor_id) {
 
         super(projectFragmentManager);
 
@@ -82,6 +83,14 @@ public class ProjectPageAdapter extends FragmentStatePagerAdapter {
                 Fragment_ProjectDetails tab2 = new Fragment_ProjectDetails();
                 tab2.setArguments(b_tab2);
                 return tab2;
+
+            case 2:
+                Bundle b_tab3 = new Bundle();
+                b_tab3.putString("projectid", p_id);
+
+                Fragment_ProjectParts tab3 = new Fragment_ProjectParts();
+                tab3.setArguments(b_tab3);
+                return tab3;
 
             default:
                 return null;

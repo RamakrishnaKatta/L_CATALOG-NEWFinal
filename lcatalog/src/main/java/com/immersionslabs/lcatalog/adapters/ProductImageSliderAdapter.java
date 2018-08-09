@@ -1,5 +1,6 @@
 package com.immersionslabs.lcatalog.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -16,18 +17,43 @@ import com.immersionslabs.lcatalog.Utils.EnvConstants;
 
 import java.util.ArrayList;
 
-public class ImageSliderAdapter extends PagerAdapter {
+public class ProductImageSliderAdapter extends PagerAdapter {
 
-    private static final String TAG = "ImageSliderAdapter";
+    private static final String TAG = "ProductImageSliderAdapter";
 
     private ArrayList<String> Images;
     private LayoutInflater inflater;
+    private AppCompatImageView images;
     private Context context;
 
-    public ImageSliderAdapter(Context context, ArrayList<String> Images) {
+    public ProductImageSliderAdapter(Context context,
+                                     ArrayList<String> slider_images) {
         this.context = context;
-        this.Images = Images;
+        this.Images = slider_images;
+
         inflater = LayoutInflater.from(context);
+    }
+
+    @SuppressLint("LongLogTag")
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
+        View v = inflater.inflate(R.layout.fragment_product_design, container, false);
+
+        images = v.findViewById(R.id.article_image_view);
+        String urls = Images.get(position);
+        Log.e(TAG, "Image urls " + urls);
+
+        Glide.with(context)
+                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + urls)
+                .placeholder(R.drawable.dummy_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(images);
+
+        container.addView(v);
+        return v;
     }
 
     @Override
@@ -36,27 +62,8 @@ public class ImageSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return (view == object);
-    }
-
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        assert inflater != null;
-        View v = inflater.inflate(R.layout.fragment_product_images, container, false);
-        AppCompatImageView images = v.findViewById(R.id.article_image_view);
-        String urls = Images.get(position);
-        Log.e(TAG, "Article Image urls " + urls);
-
-        Glide.with(context)
-                .load(EnvConstants.APP_BASE_URL + "/upload/images/" + urls)
-                .placeholder(R.drawable.dummy_icon)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(images);
-        container.addView(v);
-        return v;
     }
 
     @Override

@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_catalog) {
             if (NetworkConnectivity.checkInternetConnection(MainActivity.this)) {
-                Intent intent = new Intent(this, CatalogActivity.class);
+                Intent intent = new Intent(this, ProductCatalogActivity.class);
                 startActivity(intent);
 
             } else {
@@ -387,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_project_campaign) {
             if(NetworkConnectivity.checkInternetConnection(MainActivity.this)){
-                Intent intent = new Intent(this, ProjectActivity.class);
+                Intent intent = new Intent(this, ProjectCatalogActivity.class);
                 startActivity(intent);
             }else {
                 InternetMessage();

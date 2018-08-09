@@ -1,6 +1,5 @@
 package com.immersionslabs.lcatalog;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -11,7 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.immersionslabs.lcatalog.Utils.EnvConstants;
-import com.immersionslabs.lcatalog.adapters.ProductPageAdapter;
+import com.immersionslabs.lcatalog.adapters.ProductFragmentAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,7 +150,7 @@ public class ProductPageActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.product_pager);
-        final ProductPageAdapter adapter = new ProductPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
+        final ProductFragmentAdapter adapter = new ProductFragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
                 name, description, oldPrice, discount, newPrice, dimensions, width, height, length, position, id, images,
                 article_vendor_id, article_3ds, article_pattern, article_3ds_file);
         viewPager.setAdapter(adapter);
@@ -185,7 +184,7 @@ public class ProductPageActivity extends AppCompatActivity {
 //    public void onBackPressed() {
 //        setResult(RESULT_CANCELED);
 //        super.onBackPressed();
-//        Intent intent = new Intent(this, CatalogActivity.class);
+//        Intent intent = new Intent(this, ProductCatalogActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //
 //        intent.putExtra("activity", "ProductPage");

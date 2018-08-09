@@ -31,7 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CatalogActivity extends AppCompatActivity implements ApiCommunication {
+public class ProductCatalogActivity extends AppCompatActivity implements ApiCommunication {
 
     private static final String TAG = "CatalogActivity";
 
@@ -62,7 +62,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog);
+        setContentView(R.layout.activity_product_catalog);
 
         fab_grid = findViewById(R.id.fab_grid_list);
         fab_vertical = findViewById(R.id.fab_vertical_list);
@@ -142,14 +142,14 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
         });
 
 //        checkInternetConnection();
-        if (NetworkConnectivity.checkInternetConnection(CatalogActivity.this)) {
+        if (NetworkConnectivity.checkInternetConnection(ProductCatalogActivity.this)) {
         } else {
             InternetMessage();
         }
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (NetworkConnectivity.checkInternetConnection(CatalogActivity.this)) {
+                if (NetworkConnectivity.checkInternetConnection(ProductCatalogActivity.this)) {
                     refreshLayout.setRefreshing(true);
 
                     item_ids.clear();
@@ -207,7 +207,7 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
-                if (NetworkConnectivity.checkInternetConnection(CatalogActivity.this)) {
+                if (NetworkConnectivity.checkInternetConnection(ProductCatalogActivity.this)) {
                 } else {
                     InternetMessage();
                 }
@@ -351,6 +351,6 @@ public class CatalogActivity extends AppCompatActivity implements ApiCommunicati
 
     @Override
     public void onErrorCallback(VolleyError error, String flag) {
-        Toast.makeText(CatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ProductCatalogActivity.this, "Internal Error", Toast.LENGTH_SHORT).show();
     }
 }

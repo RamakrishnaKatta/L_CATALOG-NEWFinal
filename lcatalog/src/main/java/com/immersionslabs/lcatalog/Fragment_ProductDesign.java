@@ -33,7 +33,7 @@ import com.immersionslabs.lcatalog.Utils.Manager_BudgetList;
 import com.immersionslabs.lcatalog.Utils.Manager_CheckList;
 import com.immersionslabs.lcatalog.Utils.PrefManager;
 import com.immersionslabs.lcatalog.Utils.SessionManager;
-import com.immersionslabs.lcatalog.adapters.ImageSliderAdapter;
+import com.immersionslabs.lcatalog.adapters.ProductImageSliderAdapter;
 import com.immersionslabs.lcatalog.augment.ARNativeActivity;
 import com.immersionslabs.lcatalog.network.ApiCommunication;
 import com.immersionslabs.lcatalog.network.ApiService;
@@ -53,9 +53,9 @@ import java.util.Set;
 
 import static com.immersionslabs.lcatalog.Utils.EnvConstants.user_Favourite_list;
 
-public class Fragment_ProductImages extends Fragment implements OnAnimationEndListener, OnLikeListener, ApiCommunication {
+public class Fragment_ProductDesign extends Fragment implements OnAnimationEndListener, OnLikeListener, ApiCommunication {
 
-    private static final String TAG = "Fragment_ProductImages";
+    private static final String TAG = "Fragment_ProductDesign";
 
     private static String LIKE_URL = EnvConstants.APP_BASE_URL + "/users/favouriteArticles";
 
@@ -79,7 +79,7 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
 
     private ViewPager ArticleViewPager;
     private LinearLayout Slider_dots;
-    ImageSliderAdapter imagesliderAdapter;
+    ProductImageSliderAdapter imagesliderAdapterProduct;
     ArrayList<String> slider_images = new ArrayList<>();
     TextView[] dots;
     TextView Add_Text;
@@ -91,14 +91,14 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
     String user_log_type;
     String article_3ds_file_name;
 
-    public Fragment_ProductImages() {
+    public Fragment_ProductDesign() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_product_images, container, false);
+        final View view = inflater.inflate(R.layout.fragment_product_design, container, false);
 
         likeButton = view.findViewById(R.id.article_fav_icon);
         likeButton.setOnLikeListener(this);
@@ -195,8 +195,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
         Collections.addAll(slider_images, Images);
 
         ArticleViewPager = view.findViewById(R.id.article_view_pager);
-        imagesliderAdapter = new ImageSliderAdapter(getContext(), slider_images);
-        ArticleViewPager.setAdapter(imagesliderAdapter);
+        imagesliderAdapterProduct = new ProductImageSliderAdapter(getContext(), slider_images);
+        ArticleViewPager.setAdapter(imagesliderAdapterProduct);
 
         Slider_dots = view.findViewById(R.id.article_slider_dots);
 
@@ -333,8 +333,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                         sessionmanager.BUDGET_SET_TOTAL_VALUE(Long.parseLong(budget_value));
                                         getFragmentManager()
                                                 .beginTransaction()
-                                                .detach(Fragment_ProductImages.this)
-                                                .attach(Fragment_ProductImages.this)
+                                                .detach(Fragment_ProductDesign.this)
+                                                .attach(Fragment_ProductDesign.this)
                                                 .commit();
 
                                     }
@@ -365,8 +365,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                                 getFragmentManager()
                                         .beginTransaction()
-                                        .detach(Fragment_ProductImages.this)
-                                        .attach(Fragment_ProductImages.this)
+                                        .detach(Fragment_ProductDesign.this)
+                                        .attach(Fragment_ProductDesign.this)
                                         .commit();
                             } else if (Remaining < 0) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
@@ -391,8 +391,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                             sessionmanager.BUDGET_SET_TOTAL_VALUE(Long.parseLong(budget_value));
                                             getFragmentManager()
                                                     .beginTransaction()
-                                                    .detach(Fragment_ProductImages.this)
-                                                    .attach(Fragment_ProductImages.this)
+                                                    .detach(Fragment_ProductDesign.this)
+                                                    .attach(Fragment_ProductDesign.this)
                                                     .commit();
                                         }
                                     }
@@ -442,8 +442,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                         manager_budgetList.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                         getFragmentManager()
                                                 .beginTransaction()
-                                                .detach(Fragment_ProductImages.this)
-                                                .attach(Fragment_ProductImages.this)
+                                                .detach(Fragment_ProductDesign.this)
+                                                .attach(Fragment_ProductDesign.this)
                                                 .commit();
 
                                     }
@@ -471,8 +471,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                 Toast.makeText(getContext(), "ADDED TO THE BUDGET LIST", Toast.LENGTH_LONG).show();
                                 getFragmentManager()
                                         .beginTransaction()
-                                        .detach(Fragment_ProductImages.this)
-                                        .attach(Fragment_ProductImages.this)
+                                        .detach(Fragment_ProductDesign.this)
+                                        .attach(Fragment_ProductDesign.this)
                                         .commit();
 
                             }
@@ -500,8 +500,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                                             manager_budgetList.BUDGET_SET_TOTAL(Long.parseLong(budget_value));
                                             getFragmentManager()
                                                     .beginTransaction()
-                                                    .detach(Fragment_ProductImages.this)
-                                                    .attach(Fragment_ProductImages.this)
+                                                    .detach(Fragment_ProductDesign.this)
+                                                    .attach(Fragment_ProductDesign.this)
                                                     .commit();
 
                                         }
@@ -533,8 +533,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     article_removelist.setVisibility(View.GONE);
                     getFragmentManager()
                             .beginTransaction()
-                            .detach(Fragment_ProductImages.this)
-                            .attach(Fragment_ProductImages.this)
+                            .detach(Fragment_ProductDesign.this)
+                            .attach(Fragment_ProductDesign.this)
                             .commit();
 
 
@@ -549,8 +549,8 @@ public class Fragment_ProductImages extends Fragment implements OnAnimationEndLi
                     article_removelist.setVisibility(View.GONE);
                     getFragmentManager()
                             .beginTransaction()
-                            .detach(Fragment_ProductImages.this)
-                            .attach(Fragment_ProductImages.this)
+                            .detach(Fragment_ProductDesign.this)
+                            .attach(Fragment_ProductDesign.this)
                             .commit();
 
                 }

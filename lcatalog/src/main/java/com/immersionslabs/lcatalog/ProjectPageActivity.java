@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.immersionslabs.lcatalog.adapters.ProjectPageAdapter;
+import com.immersionslabs.lcatalog.adapters.ProjectFragmentAdapter;
 
 public class ProjectPageActivity extends AppCompatActivity {
 
@@ -62,10 +62,11 @@ public class ProjectPageActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.project_details_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Design"));
         tabLayout.addTab(tabLayout.newTab().setText("Details"));
+        tabLayout.addTab(tabLayout.newTab().setText("Parts"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.project_details_pager);
-        final ProjectPageAdapter adapter = new ProjectPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
+        final ProjectFragmentAdapter adapter = new ProjectFragmentAdapter(getSupportFragmentManager(), tabLayout.getTabCount(),
                 project_name, project_id, project_description, project_sub_desc, project_images, project_3ds, project_pattern, project_vendor_id);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
