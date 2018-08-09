@@ -24,9 +24,9 @@ import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.ListVerifiedEmailAddressesResult;
 import com.amazonaws.services.simpleemail.model.RawMessage;
+import com.amazonaws.services.simpleemail.model.SendCustomVerificationEmailRequest;
+import com.amazonaws.services.simpleemail.model.SendCustomVerificationEmailResult;
 import com.amazonaws.services.simpleemail.model.SendRawEmailRequest;
-import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityRequest;
-import com.amazonaws.services.simpleemail.model.VerifyEmailIdentityResult;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -162,8 +162,7 @@ public class CheckListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (EnvConstants.user_type.equals("CUSTOMER")) {
-                    if(set_checklist_vendorids!=null&&!set_checklist_vendorids.isEmpty())
-                    {
+                    if (set_checklist_vendorids != null && !set_checklist_vendorids.isEmpty()) {
                         HashMap userDetails = sessionManager.getUserDetails();
                         _user_email = userDetails.get(SessionManager.KEY_EMAIL).toString();
                         Log.e(TAG, "User Email" + _user_email);
@@ -204,10 +203,7 @@ public class CheckListActivity extends AppCompatActivity {
                             Toast.makeText(CheckListActivity.this, "Please Add Products in your checkList", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
-                    }
-
-                 else
-                    {
+                    } else {
                         Toast.makeText(CheckListActivity.this, "Please Add Products in your checkList", Toast.LENGTH_SHORT).show();
 
                     }
@@ -384,8 +380,12 @@ public class CheckListActivity extends AppCompatActivity {
                             , "ap-south-1:61aae02f-4102-4e79-9d88-3566b8301aae", Regions.AP_SOUTH_1);
                     final AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(credentials);
                     client.setRegion(Region.getRegion(Regions.US_EAST_1));
-                    VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
-                    VerifyEmailIdentityResult response = client.verifyEmailIdentity(request);
+//                    VerifyEmailIdentityRequest request = new VerifyEmailIdentityRequest().withEmailAddress(email);
+                    SendCustomVerificationEmailRequest EmailRequest = new SendCustomVerificationEmailRequest().withEmailAddress(email).withTemplateName("VerificationTemplate");
+                    SendCustomVerificationEmailResult result = client.sendCustomVerificationEmail(EmailRequest);
+                    Log.e(TAG, "Verify Email result: " + result.getMessageId());
+
+//                 VerifyEmailIdentityResult response = client.verifyEmailIdentity(request);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e(TAG, "Verify Email Exception: " + e.getMessage());
