@@ -1,5 +1,8 @@
 package com.immersionslabs.lcatalog.augment;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.FrameLayout;
@@ -10,6 +13,10 @@ import org.artoolkit.ar.base.ARActivity;
 import org.artoolkit.ar.base.assets.AssetHelper;
 import org.artoolkit.ar.base.rendering.ARRenderer;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static com.immersionslabs.lcatalog.augment.ARNativeApplication.getInstance;
 
 public class ARNativeActivity extends ARActivity {
@@ -19,6 +26,28 @@ public class ARNativeActivity extends ARActivity {
 //    private boolean zip_ar_downloaded = true;
 
     private ARNativeRenderer arNativeRenderer = new ARNativeRenderer();
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        try {
+            setMobileDataEnabled(getApplicationContext(),true);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        WifiManager wifiManager = (WifiManager)this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifiManager.setWifiEnabled(false);
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +108,12 @@ public class ARNativeActivity extends ARActivity {
         ARNativeRenderer.demoShutdown();
         super.onStop();
     }
+    public void onDestroy()
+    {
+        super.onDestroy();
+        WifiManager wifiManager = (WifiManager)this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifiManager.setWifiEnabled(true);
+    }
 
     @Override
     protected ARRenderer supplyRenderer() {
@@ -99,5 +134,17 @@ public class ARNativeActivity extends ARActivity {
         // versionCode integer in the AndroidManifest.xml file.
         AssetHelper assetHelper = new AssetHelper(getAssets());
         assetHelper.cacheAssetFolder(getInstance(), "Data");
+    }
+
+    private void setMobileDataEnabled(Context context, boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        final ConnectivityManager conman = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final Class conmanClass = Class.forName(conman.getClass().getName());
+        final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
+        connectivityManagerField.setAccessible(true);
+        final Object connectivityManager = connectivityManagerField.get(conman);
+        final Class connectivityManagerClass = Class.forName(connectivityManager.getClass().getName());
+        final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+        setMobileDataEnabledMethod.setAccessible(true);
+        setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
     }
 }
