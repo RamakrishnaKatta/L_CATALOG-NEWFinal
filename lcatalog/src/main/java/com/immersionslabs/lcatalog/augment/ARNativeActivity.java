@@ -2,9 +2,11 @@ package com.immersionslabs.lcatalog.augment;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.immersionslabs.lcatalog.R;
@@ -25,28 +27,80 @@ public class ARNativeActivity extends ARActivity {
 //    File article_ar_zip_file;
 //    private boolean zip_ar_downloaded = true;
 
+    public static final String TAG = "ARNativeActivity";
+
+    ConnectivityManager connMgr;
+
     private ARNativeRenderer arNativeRenderer = new ARNativeRenderer();
 
     @Override
     public void onStart() {
         super.onStart();
 
+        disableNetwork();
+    }
+
+    public void checkNetworkStatus() {
+        connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connMgr != null;
+        NetworkInfo wifiInfo =
+                connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
+
+        NetworkInfo mobileInfo =
+                connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
+
+        Log.e(TAG, "\n Wifi Network Connected: " + wifiConnected);
+        Log.e(TAG, "\n Mobile Network Connected: " + mobileConnected);
+    }
+
+    public void disableNetwork() {
+
+        ToggleWifi(false);
+        ToggleMobileData(false);
+
+        checkNetworkStatus();
+    }
+
+    public void enableNetwork() {
+
+        ToggleWifi(true);
+        ToggleMobileData(true);
+
+        checkNetworkStatus();
+    }
+
+    // True to Connect - False to disconnect
+    private void ToggleWifi(boolean enabled) {
+
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        assert wifiManager != null;
+        wifiManager.setWifiEnabled(enabled);
+    }
+
+    // True to Connect - False to disconnect
+    private void ToggleMobileData(boolean enabled) {
+
         try {
-            setMobileDataEnabled(getApplicationContext(),true);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+            connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            assert connMgr != null;
+            final Class conmanClass = Class.forName(connMgr.getClass().getName());
+            final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
+            iConnectivityManagerField.setAccessible(true);
+            final Object iConnectivityManager = iConnectivityManagerField.get(connMgr);
+            final Class iConnectivityManagerClass = Class.forName(
+                    iConnectivityManager.getClass().getName());
+            final Method setMobileDataEnabledMethod = iConnectivityManagerClass.getDeclaredMethod(
+                    "setMobileDataEnabled", Boolean.TYPE);
+
+            setMobileDataEnabledMethod.setAccessible(true);
+            setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
+
+        } catch (ClassNotFoundException | InvocationTargetException |
+                NoSuchMethodException | IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
-        WifiManager wifiManager = (WifiManager)this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(false);
-
     }
 
     @Override
@@ -108,11 +162,11 @@ public class ARNativeActivity extends ARActivity {
         ARNativeRenderer.demoShutdown();
         super.onStop();
     }
-    public void onDestroy()
-    {
+
+    public void onDestroy() {
         super.onDestroy();
-        WifiManager wifiManager = (WifiManager)this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(true);
+
+        enableNetwork();
     }
 
     @Override
@@ -134,17 +188,5 @@ public class ARNativeActivity extends ARActivity {
         // versionCode integer in the AndroidManifest.xml file.
         AssetHelper assetHelper = new AssetHelper(getAssets());
         assetHelper.cacheAssetFolder(getInstance(), "Data");
-    }
-
-    private void setMobileDataEnabled(Context context, boolean enabled) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        final ConnectivityManager conman = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final Class conmanClass = Class.forName(conman.getClass().getName());
-        final Field connectivityManagerField = conmanClass.getDeclaredField("mService");
-        connectivityManagerField.setAccessible(true);
-        final Object connectivityManager = connectivityManagerField.get(conman);
-        final Class connectivityManagerClass = Class.forName(connectivityManager.getClass().getName());
-        final Method setMobileDataEnabledMethod = connectivityManagerClass.getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
-        setMobileDataEnabledMethod.setAccessible(true);
-        setMobileDataEnabledMethod.invoke(connectivityManager, enabled);
     }
 }
