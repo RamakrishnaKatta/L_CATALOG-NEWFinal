@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -29,8 +30,6 @@ public class ARNativeActivity extends ARActivity {
 
     public static final String TAG = "ARNativeActivity";
 
-    ConnectivityManager connMgr;
-
     private ARNativeRenderer arNativeRenderer = new ARNativeRenderer();
 
     @Override
@@ -41,7 +40,7 @@ public class ARNativeActivity extends ARActivity {
     }
 
     public void checkNetworkStatus() {
-        connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connMgr != null;
         NetworkInfo wifiInfo =
                 connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -83,7 +82,7 @@ public class ARNativeActivity extends ARActivity {
     private void ToggleMobileData(boolean enabled) {
 
         try {
-            connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connMgr = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             assert connMgr != null;
             final Class conmanClass = Class.forName(connMgr.getClass().getName());
             final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
@@ -183,10 +182,15 @@ public class ARNativeActivity extends ARActivity {
     // in the application.
     protected void initializeInstance() {
 
+        locations(Environment.getExternalStorageDirectory() + "/L_CATALOG/Screenshots/",
+                Environment.getExternalStorageDirectory() + "/L_CATALOG/cache/Data/camera_para.dat");
+
         // Unpack assets to cache directory so native library can read them.
         // N.B.: If contents of assets folder changes, be sure to increment the
         // versionCode integer in the AndroidManifest.xml file.
         AssetHelper assetHelper = new AssetHelper(getAssets());
-        assetHelper.cacheAssetFolder(getInstance(), "Data");
+        assetHelper.cacheAssetFolder(getInstance(),
+                "Data",
+                Environment.getExternalStorageDirectory().toString() + "/L_CATALOG/cache/");
     }
 }
